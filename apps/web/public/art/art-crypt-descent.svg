@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#181a20"/><stop offset="1" stop-color="#0c0d12"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="28"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="238.0625683553517" width="800" height="211.9374316446483" fill="#08090c"/>
+  <rect y="212.0625683553517" width="800" height="52" fill="#5a6a8a" opacity="0.10"/>
+  <rect y="230.0625683553517" width="800" height="16" fill="#5a6a8a" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><rect x="431" y="430" width="130" height="9" rx="3" transform="rotate(0.2065783436410129 496 430)"/><rect x="436.0902081336826" y="396" width="122" height="9" rx="3" transform="rotate(-0.5184624763205647 497.0902081336826 396)"/><rect x="447.3315458288416" y="362" width="114" height="9" rx="3" transform="rotate(0.5752290214877576 504.3315458288416 362)"/><rect x="461.1639331183396" y="328" width="106" height="9" rx="3" transform="rotate(0.015233125304803252 514.1639331183396 328)"/><rect x="466.4372269604355" y="294" width="98" height="9" rx="3" transform="rotate(-1.2666047108359635 515.4372269604355 294)"/><rect x="479.74922772403806" y="260" width="90" height="9" rx="3" transform="rotate(1.8699645285960287 524.7492277240381 260)"/><rect x="492.7145046298392" y="226" width="82" height="9" rx="3" transform="rotate(0.6067346059717238 533.7145046298392 226)"/><rect x="488.0804556151852" y="192" width="74" height="9" rx="3" transform="rotate(-0.965835265815258 525.0804556151852 192)"/><rect x="481.3383231400512" y="158" width="66" height="9" rx="3" transform="rotate(1.8370167212560773 514.3383231400512 158)"/><rect x="473.84212889522314" y="124" width="58" height="9" rx="3" transform="rotate(0.9363360912539065 502.84212889522314 124)"/><rect x="483.5526940729469" y="90" width="50" height="9" rx="3" transform="rotate(1.7416577064432204 508.5526940729469 90)"/><rect x="496.60934364888817" y="56" width="42" height="9" rx="3" transform="rotate(-0.36152372253127396 517.6093436488882 56)"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

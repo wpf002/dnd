@@ -17,11 +17,13 @@ Scaffold only. Nothing here writes application code.
 | pnpm 9 | ✅ 9.12.0 (matches `packageManager` exactly) |
 | git | ✅ 2.50.1 |
 | `gh` CLI | ❌ not installed — use the web flow below |
-| Local Postgres | ❌ not installed — not needed until Phase 2 |
+| Database | ✅ SQLite via Prisma — `data/lantern.db`, no server needed |
 
-Phase 1 packages (`schema`, `srd`, `engine`, `linter`) have **no database
-dependency**. The missing Postgres blocks only `pnpm db:migrate`, which nothing
-needs yet.
+Persistence runs on **SQLite** (`data/lantern.db`) — durable, file-based, zero
+ops, integration-tested. Sessions and campaigns survive API restarts; turns
+persist as queryable audit rows. If this ever deploys, the swap to hosted
+Postgres is: change the provider in `packages/db/prisma/schema.prisma`, restore
+Json column types, and point `DATABASE_URL` at the instance.
 
 ---
 
@@ -64,8 +66,9 @@ cp .env.example .env
 
 Fill in `.env`:
 
-- `DATABASE_URL` — local Postgres or a Railway connection string. Leave the
-  default until Phase 2; nothing reads it yet.
+- `DATABASE_URL` — defaults to the local SQLite file. Set it (or leave the
+  example value) and the API persists sessions/campaigns; unset it and the API
+  runs memory-only.
 - `ANTHROPIC_API_KEY` — Flint's primary provider. Not needed until Flint v1.
 - `OPENAI_API_KEY` — secondary; leave empty until Flint v3 routing exists.
 
@@ -82,15 +85,18 @@ something wrong — there is no application code yet to violate anything.
 pnpm typecheck
 ```
 
-### When Postgres is available
+### Database setup
 
 ```bash
-pnpm db:generate && pnpm db:migrate
+pnpm db:generate
 ```
 
-`db:generate` needs no running server; `db:migrate` needs a reachable Postgres.
-Install locally with `brew install postgresql@16`, or point `DATABASE_URL` at a
-hosted instance.
+```bash
+pnpm --filter @lantern/db push
+```
+
+`push` creates/syncs the SQLite file at `data/lantern.db`. No server, no
+migration ceremony — appropriate for a single-user local tool.
 
 ## 4. Git
 

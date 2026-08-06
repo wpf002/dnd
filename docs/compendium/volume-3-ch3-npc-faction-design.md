@@ -3,15 +3,11 @@
 **Reference ID:** D&D-FND-COD-003.3
 **Primary Scope:** Creating memorable NPCs, believable organizations, political systems, villain psychology, relationship networks, and living worlds.
 
-> **⚠ INCOMPLETE CHAPTER.** Sections I–X are present. Sections **XI Governments,
-> XII Reputation Systems, XIII Living World Simulation, and XIV NPC Audit** were
-> never supplied and are missing from this file. Partial coverage of the missing
-> topics exists elsewhere in the corpus:
-> - Reputation → [Ch9 §IX Reputation & Renown](volume-3-ch9-advanced-dm-systems.md)
-> - Living world simulation → [Ch9 §VI Faction Turns](volume-3-ch9-advanced-dm-systems.md)
-> - Governments → [Vol II Part VIII Political Axes](volume-2-design.md)
->
-> Do not treat this chapter as complete when assembling prompt context.
+> **Note on provenance.** Sections I–X are verbatim source text. The original
+> §XI–XIV were never supplied; the chapter closes with clearly-marked,
+> non-verbatim **interim bridge notes** for those sections, synthesized from
+> the canonical coverage elsewhere in the corpus (each with citations). If the
+> original text surfaces, replace the bridge block wholesale.
 
 ---
 
@@ -27,10 +23,10 @@
 - VIII. Villain Design
 - IX. Faction Philosophy
 - X. Faction Construction
-- XI. Governments *(missing)*
-- XII. Reputation Systems *(missing)*
-- XIII. Living World Simulation *(missing)*
-- XIV. NPC Audit *(missing)*
+- XI. Governments *(interim bridge)*
+- XII. Reputation Systems *(interim bridge)*
+- XIII. Living World Simulation *(interim bridge)*
+- XIV. NPC Audit *(interim bridge)*
 
 ---
 
@@ -586,19 +582,71 @@ Future Goal — Start civil war.
 
 ---
 
-# XI–XIV — MISSING SECTIONS
+# XI–XIV — INTERIM BRIDGE NOTES
 
-The following sections belong to this chapter but were never supplied:
+> **⚠ NOT VERBATIM SOURCE TEXT.** The original §XI–XIV were never supplied.
+> What follows is a reconstruction assembled from the canonical coverage of the
+> same topics elsewhere in this corpus, so prompt assembly and the in-app
+> compendium have no dead section. Each note cites its sources. If the original
+> text ever surfaces, replace this block wholesale.
 
-- **XI. Governments**
-- **XII. Reputation Systems**
-- **XIII. Living World Simulation**
-- **XIV. NPC Audit**
+## XI. Governments *(bridge)*
 
-If they become available, append them here and remove the warning banner at the
-top of this file plus the corresponding row in
-[`README.md`](README.md).
+Canonical sources: [Vol II Part VIII §6–9](volume-2-design.md) (political axes,
+factions, moral claim, political conflict); [Vol II Part VI §4–6](volume-2-design.md)
+(nation design formula, two-trait rule, national identity).
+
+Working synthesis: model a government on four axes rather than a type label —
+**authority** (centralized ↔ decentralized), **tradition** (conservative ↔
+reformist), **legitimacy** (sacred / popular / hereditary / military /
+economic), **method** (consensus ↔ coercion). Give every government one
+defining strength and one internal contradiction, and let its response to
+player action follow from its legitimacy source: a sacred monarchy answers
+heresy, a merchant council answers disruption of trade.
+
+## XII. Reputation Systems *(bridge)*
+
+Canonical source: [Vol III Ch9 §IX](volume-3-ch9-advanced-dm-systems.md)
+(Reputation & Renown) — the −5 Hated … +5 Legendary scale, tracked separately
+per faction, with benefits emerging naturally (discounts, access, titles,
+information).
+
+NPC-level extension consistent with this chapter's §VII: individual NPCs track
+on *axes* (trust, fear, respect, affection, debt) rather than one scalar — an
+NPC can trust you and fear you at once. Lantern implements exactly this as
+`npc_disposition` ledger entries.
+
+## XIII. Living World Simulation *(bridge)*
+
+Canonical sources: [Vol III Ch9 §VI](volume-3-ch9-advanced-dm-systems.md)
+(Faction Turns), [Ch9 §I](volume-3-ch9-advanced-dm-systems.md) (the world moves
+without the heroes), [Vol II Part XIV §3–5](volume-2-design.md) (institutional
+response, consequence tracking, the world-state log), and this chapter's §IX
+(factions pursue goals whether or not the party exists).
+
+Working synthesis: between adventures each major faction takes one strategic
+action resolved by goal and resources; institutions respond to major events
+(who profits, who panics); track only meaningful changes. Lantern implements
+the boundary-advance as `faction_clock` entries whose fills visibly re-gate
+content.
+
+## XIV. NPC Audit *(bridge)*
+
+Assembled in the audit style of every other chapter, from this chapter's own
+§I–VIII requirements:
+
+- [ ] The NPC has a concrete goal, not an abstraction.
+- [ ] A fear limits their behavior.
+- [ ] Their resources explain their influence.
+- [ ] A flaw creates future complications.
+- [ ] Their secret matters if discovered.
+- [ ] They connect to at least two other NPCs or factions.
+- [ ] Their voice is distinguishable without a nametag.
+- [ ] They would keep pursuing their goal if the party vanished.
+- [ ] Their dialogue reveals imperfectly — deflection, bias, omission.
+- [ ] If they are a villain: the four villain questions (§VIII) have answers.
 
 ---
 
-**END OF CHAPTER 3 — NPC & FACTION DESIGN COMPENDIUM (PARTIAL)**
+**END OF CHAPTER 3 — NPC & FACTION DESIGN COMPENDIUM**
+*(§I–X verbatim; §XI–XIV interim bridge, pending original text)*

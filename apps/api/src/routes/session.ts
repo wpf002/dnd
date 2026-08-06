@@ -16,6 +16,7 @@ import {
   type TurnOutcome,
 } from '../services/game.js';
 import { parseIntent } from '../services/intent.js';
+import { createStore, type Store } from '../services/store.js';
 import { narrate } from '../services/narration.js';
 
 /**
@@ -28,6 +29,27 @@ const here = dirname(fileURLToPath(import.meta.url));
 const ADVENTURES_DIR = join(here, '..', '..', '..', '..', 'content', 'adventures');
 
 export const sessions = new Map<string, GameSession>();
+
+let storePromise: Promise<Store> | undefined;
+export function store(): Promise<Store> {
+  storePromise ??= createStore();
+  return storePromise;
+}
+
+/** Write-behind: persistence never blocks or fails a turn. */
+export function persistSession(session: GameSession, campaignId?: string): void {
+  void store()
+    .then((s) => s.saveSession(session, campaignId))
+    .catch((err) => console.warn(`persist: ${(err as Error).message}`));
+}
+
+async function getSession(id: string): Promise<GameSession | undefined> {
+  const live = sessions.get(id);
+  if (live) return live;
+  const revived = await (await store()).loadSession(id).catch(() => undefined);
+  if (revived) sessions.set(id, revived);
+  return revived;
+}
 
 export function loadGraph(adventureId: string): unknown {
   // Only kebab-case ids; the path never leaves the adventures directory.
@@ -52,6 +74,7 @@ async function respond(outcome: TurnOutcome): Promise<object> {
   // Narration policy: one model attempt with templated fallback — the turn
   // never blocks. `narrate` internally applies the dm-narration retry policy.
   const prose = await narrate(outcome);
+  persistSession(outcome.session);
   return {
     state: sessionView(outcome.session),
     resolutions: outcome.resolutions,
@@ -65,11 +88,12 @@ export function registerSessionRoutes(app: FastifyInstance): void {
     const graph = loadGraph(adventureId);
     const session = createSession(graph);
     sessions.set(session.id, session);
+    persistSession(session);
     return { state: sessionView(session) };
   });
 
   app.get<{ Params: { id: string } }>('/session/:id', async (request, reply) => {
-    const session = sessions.get(request.params.id);
+    const session = await getSession(request.params.id);
     if (!session) return reply.code(404).send({ error: 'no such session' });
     return { state: sessionView(session) };
   });
@@ -77,7 +101,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   app.post<{ Params: { id: string }; Body: { option: string } }>(
     '/session/:id/choose',
     async (request, reply) => {
-      const session = sessions.get(request.params.id);
+      const session = await getSession(request.params.id);
       if (!session) return reply.code(404).send({ error: 'no such session' });
       try {
         return await respond(chooseOption(session, request.body.option));
@@ -90,7 +114,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   app.post<{ Params: { id: string }; Body: { text: string } }>(
     '/session/:id/free-text',
     async (request, reply) => {
-      const session = sessions.get(request.params.id);
+      const session = await getSession(request.params.id);
       if (!session) return reply.code(404).send({ error: 'no such session' });
       const text = request.body?.text?.trim();
       if (!text) return reply.code(400).send({ error: 'empty input' });
@@ -123,7 +147,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   app.post<{ Params: { id: string }; Body: { actor: string; target: string } }>(
     '/session/:id/attack',
     async (request, reply) => {
-      const session = sessions.get(request.params.id);
+      const session = await getSession(request.params.id);
       if (!session) return reply.code(404).send({ error: 'no such session' });
       try {
         return await respond(combatAttack(session, request.body.actor, request.body.target));
@@ -134,7 +158,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   );
 
   app.post<{ Params: { id: string } }>('/session/:id/flee', async (request, reply) => {
-    const session = sessions.get(request.params.id);
+    const session = await getSession(request.params.id);
     if (!session) return reply.code(404).send({ error: 'no such session' });
     try {
       return await respond(combatFlee(session));
@@ -146,7 +170,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   app.post<{ Params: { id: string }; Body: { kind?: 'short' | 'long' } }>(
     '/session/:id/rest',
     async (request, reply) => {
-      const session = sessions.get(request.params.id);
+      const session = await getSession(request.params.id);
       if (!session) return reply.code(404).send({ error: 'no such session' });
       if (session.combat) return reply.code(400).send({ error: 'cannot rest in combat' });
       restParty(session, request.body?.kind ?? 'long');

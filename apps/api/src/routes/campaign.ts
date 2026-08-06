@@ -10,6 +10,7 @@ import {
   upsertEntry,
 } from '../services/campaign.js';
 import { sessionView, type GameSession } from '../services/game.js';
+import { persistSession, store } from './session.js';
 
 let flintInstance: Flint | undefined;
 function flint(): Flint {
@@ -30,15 +31,29 @@ export function registerCampaignRoutes(
     const adventureId = request.body?.adventure ?? 'the-bell-at-saltmire';
     const graph = loadGraph(adventureId);
     const campaign = createCampaign(graph, request.body?.title ?? adventureId);
+    void store().then((s) => s.saveCampaign(campaign)).catch(() => {});
     return { campaign: { id: campaign.id, title: campaign.title } };
   });
 
+  app.get('/campaigns', async () => {
+    const persisted = await (await store()).listCampaigns().catch(() => []);
+    const live = [...campaigns.values()].map((c) => ({ id: c.id, title: c.title }));
+    const seen = new Set(live.map((c) => c.id));
+    return { campaigns: [...live, ...persisted.filter((c) => !seen.has(c.id))] };
+  });
+
   app.post<{ Params: { id: string } }>('/campaign/:id/session', async (request, reply) => {
-    const campaign = campaigns.get(request.params.id);
+    let campaign = campaigns.get(request.params.id);
+    if (!campaign) {
+      campaign = await (await store()).loadCampaign(request.params.id).catch(() => undefined);
+      if (campaign) campaigns.set(campaign.id, campaign);
+    }
     if (!campaign) return reply.code(404).send({ error: 'no such campaign' });
     try {
       const session = startCampaignSession(campaign);
       sessions.set(session.id, session);
+      persistSession(session, campaign.id);
+      void store().then((s) => s.saveCampaign(campaign!)).catch(() => {});
       return { state: sessionView(session) };
     } catch (err) {
       return reply.code(400).send({ error: (err as Error).message });
@@ -54,6 +69,8 @@ export function registerCampaignRoutes(
     // mechanical floor always runs. Neither blocks on the other.
     const hasKey = Boolean(process.env.ANTHROPIC_API_KEY);
     const result = await endCampaignSession(campaign, session, hasKey ? flint() : undefined);
+    persistSession(session, campaign.id);
+    void store().then((s) => s.saveCampaign(campaign)).catch(() => {});
     return { delta: result.delta, compaction: result.compaction, recap: buildRecap(campaign) };
   });
 

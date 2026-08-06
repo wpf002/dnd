@@ -35,7 +35,7 @@ table is.
 |---|---|---|---|
 | 1 | [Dungeon Architect's Advanced Module](volume-3-ch1-dungeon-architect.md) | `003.1` | Complete |
 | 2 | [Encounter Design Compendium](volume-3-ch2-encounter-design.md) | `003.2` | Complete |
-| 3 | [NPC & Faction Design Compendium](volume-3-ch3-npc-faction-design.md) | `003.3` | **Partial — §XI–XIV missing** |
+| 3 | [NPC & Faction Design Compendium](volume-3-ch3-npc-faction-design.md) | `003.3` | §I–X verbatim; **§XI–XIV bridged** (interim, non-verbatim) |
 | 4 | [World Economy & Resource Systems Manual](volume-3-ch4-world-economy.md) | `003.4` | Complete |
 | 5 | [Planar & Cosmological Design Compendium](volume-3-ch5-planar-cosmology.md) | `003.5` | Complete |
 | 6 | [Campaign Structure & Story Engineering Manual](volume-3-ch6-campaign-structure.md) | `003.6` | Complete |
@@ -44,21 +44,14 @@ table is.
 | 9 | [Advanced DM Systems](volume-3-ch9-advanced-dm-systems.md) | `003.9` | Complete |
 | 10 | [Master Appendices & Complete Index](volume-3-ch10-master-appendices.md) | `003.10` | Complete |
 
-### The one known gap
+### The one known gap — bridged
 
-**Chapter 3, sections XI–XIV were never supplied:**
-
-- XI. Governments
-- XII. Reputation Systems
-- XIII. Living World Simulation
-- XIV. NPC Audit
-
-Sections I–X of that chapter are present and complete. Partial coverage of the
-missing topics exists elsewhere in the corpus — Ch9 §IX covers Reputation &
-Renown, Ch9 §VI covers faction-turn world simulation, and Vol II Part VIII
-covers political/government axes — but Chapter 3's own treatment is absent.
-
-This is the only gap in the corpus. Everything else is complete.
+**Chapter 3, sections XI–XIV were never supplied.** The chapter now carries
+clearly-marked, non-verbatim **interim bridge notes** for those four sections,
+synthesized from the canonical coverage elsewhere in the corpus (Ch9 §VI/§IX,
+Vol II Parts VI/VIII/XIV) with citations, so no consumer of this corpus hits a
+dead section. If the original text surfaces, replace the bridge block
+wholesale. Everything else in the corpus is complete and verbatim.
 
 ---
 

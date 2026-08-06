@@ -2,32 +2,42 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// SQLite: the right-sized store for a private, single-user, local-first tool.
+// Zero ops, durable file, `prisma db push` needs no server. If this ever
+// deploys (Phase 2+ on Railway), the swap is: provider = "postgresql",
+// String JSON columns back to Json, and `prisma migrate deploy`.
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-// ---- Skeleton only. Full model lands in Phase 1. ----
+// NOTE: Prisma's SQLite connector has no Json scalar; *Json-suffixed String
+// columns hold JSON validated against @lantern/schema at the store boundary.
 
 model Campaign {
-  id          String    @id @default(cuid())
-  title       String
-  adventureId String
-  graphHash   String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  sessions    Session[]
-  ledger      LedgerEntry[]
+  id            String        @id
+  title         String
+  adventureId   String
+  graphJson     String
+  activeSession String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  sessions      Session[]
+  ledger        LedgerEntry[]
 }
 
 model Session {
-  id         String    @id @default(cuid())
-  campaignId String
-  campaign   Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  beatId     String
-  startedAt  DateTime  @default(now())
-  endedAt    DateTime?
-  turns      Turn[]
+  id          String    @id
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  // Full GameSession snapshot — graph, party, flags, combat, improv spend.
+  // The Turn table below is the queryable audit trail; this is the resume state.
+  stateJson   String
+  currentBeat String
+  ended       Boolean   @default(false)
+  startedAt   DateTime  @default(now())
+  endedAt     DateTime?
+  turns       Turn[]
 
   @@index([campaignId])
 }
@@ -35,27 +45,26 @@ model Session {
 // Every mechanical outcome is persisted with its inputs so any roll can be
 // audited after the fact. This is the trust surface — do not make it lossy.
 model Turn {
-  id           String   @id @default(cuid())
-  sessionId    String
-  session      Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  index        Int
-  rawInput     String?
-  parsedAction Json?
-  resolution   Json
-  narration    String?
-  createdAt    DateTime @default(now())
+  id             String   @id @default(cuid())
+  sessionId      String
+  session        Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  idx            Int
+  rawInput       String?
+  resolutionJson String
+  createdAt      DateTime @default(now())
 
-  @@unique([sessionId, index])
+  @@unique([sessionId, idx])
 }
 
-// Structured campaign state. NOT a transcript.
+// Structured campaign state. NOT a transcript. Kind+key unique per campaign,
+// mirroring the upsert semantics in apps/api/services/campaign.ts.
 model LedgerEntry {
   id         String   @id @default(cuid())
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  kind       String   // npc_disposition | faction_clock | promise | flag | inventory | wound
+  kind       String // npc_disposition | faction_clock | promise | flag | inventory | wound
   key        String
-  value      Json
+  valueJson  String
   updatedAt  DateTime @updatedAt
 
   @@unique([campaignId, kind, key])
