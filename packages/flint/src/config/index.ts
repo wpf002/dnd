@@ -82,6 +82,17 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
     temperature: 1,
   });
   registry.register({
+    id: 'ingest',
+    provider: 'anthropic',
+    model: 'claude-opus-5',
+    system:
+      'You extract the structure of a published tabletop adventure from its text: rooms, ' +
+      'connections, encounters, NPCs, and read-aloud passages. You preserve read-aloud text ' +
+      'verbatim. You never invent rooms or creatures that are not in the source.',
+    maxTokens: 32_000,
+    temperature: 0,
+  });
+  registry.register({
     id: 'compaction',
     provider: 'anthropic',
     model: 'claude-sonnet-5',

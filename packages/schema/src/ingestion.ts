@@ -1,0 +1,57 @@
+import { z } from 'zod';
+import { Id } from './primitives.js';
+
+/**
+ * Phase 5 — the intermediate representation for module ingestion.
+ *
+ * A published adventure is extracted into this shape first, then mapped onto
+ * a BeatGraph deterministically. Two stages on purpose: extraction is a model
+ * job (messy prose in, structure out), while room→beat mapping is plain code
+ * that can be tested without a model and repaired by hand when extraction
+ * mangles something. The linter gates the result like any other graph.
+ *
+ * Honest scope note (from the roadmap): published modules are branching,
+ * spatial, and DM-improvisation-dependent in ways a beat-graph doesn't
+ * natively express. This IR keeps only what maps: rooms, connections,
+ * encounters, read-aloud text, NPCs. Expect the first pass at any real module
+ * to play like a railroad of the original; that is the research finding, not
+ * a bug in the pipeline.
+ */
+
+export const IngestedEncounter = z.object({
+  /** Free-text creature names as printed; mapped to SRD statblocks later. */
+  creatures: z.array(z.object({ name: z.string(), count: z.number().int().min(1).max(20) })).min(1),
+  setup: z.string().optional(),
+});
+export type IngestedEncounter = z.infer<typeof IngestedEncounter>;
+
+export const IngestedNpc = z.object({
+  name: z.string().min(1),
+  role: z.string().optional(),
+  wants: z.string().optional(),
+});
+export type IngestedNpc = z.infer<typeof IngestedNpc>;
+
+export const IngestedRoom = z.object({
+  id: Id,
+  name: z.string().min(1),
+  /** Boxed/read-aloud text, verbatim where present. */
+  readAloud: z.string().optional(),
+  /** DM-facing description, condensed. */
+  description: z.string().min(1),
+  /** Ids of rooms this one connects to. */
+  connections: z.array(Id).default([]),
+  encounter: IngestedEncounter.optional(),
+  npcs: z.array(IngestedNpc).default([]),
+  /** Marks a plausible conclusion point of the module. */
+  isEnding: z.boolean().default(false),
+});
+export type IngestedRoom = z.infer<typeof IngestedRoom>;
+
+export const IngestedModule = z.object({
+  title: z.string().min(1),
+  summary: z.string().min(1),
+  /** First room is the entrance. */
+  rooms: z.array(IngestedRoom).min(2).max(40),
+});
+export type IngestedModule = z.infer<typeof IngestedModule>;

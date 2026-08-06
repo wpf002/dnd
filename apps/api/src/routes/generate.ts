@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import { readFileSync, existsSync } from 'node:fs';
 import { createLanternFlint, NdjsonTelemetry, type Flint, type Telemetry } from '@lantern/flint';
 import { benchmarkFromEvents, generateAdventure } from '../services/generator.js';
+import { ingestModule } from '../services/ingestion.js';
 import { createSession, sessionView, type GameSession } from '../services/game.js';
 
 /**
@@ -53,6 +54,27 @@ export function registerGenerateRoutes(
     } catch (err) {
       return reply.code(400).send({ error: (err as Error).message });
     }
+  });
+
+  app.post<{ Body: { text?: string } }>('/ingest', async (request, reply) => {
+    const text = request.body?.text?.trim();
+    if (!text || text.length < 100) {
+      return reply.code(400).send({ error: 'provide the module text (>= 100 chars); PDF-to-text is a front-step outside this API' });
+    }
+    const result = await ingestModule(flint(), telemetry, text);
+    if (result.ok) {
+      const session = createSession(result.graph);
+      sessions.set(session.id, session);
+      return { state: sessionView(session), report: result.report, warnings: result.lintWarnings };
+    }
+    // Human-in-the-loop handoff: candidate graph + findings, 422.
+    return reply.code(422).send({
+      stage: result.stage,
+      graph: result.graph,
+      report: result.report,
+      lintErrors: result.lintErrors,
+      detail: result.detail,
+    });
   });
 
   app.get('/benchmark', async () => {

@@ -158,10 +158,10 @@ describe('structured errors', () => {
 });
 
 describe('lantern defaults', () => {
-  it('registers the five consumers', () => {
+  it('registers the six consumers', () => {
     const flint = createLanternFlint();
     const ids = flint.consumers.list().map((c) => c.id).sort();
-    expect(ids).toEqual(['compaction', 'dm-narration', 'generator', 'intent-parse', 'npc-dialogue']);
+    expect(ids).toEqual(['compaction', 'dm-narration', 'generator', 'ingest', 'intent-parse', 'npc-dialogue']);
   });
 
   it('gives each consumer a distinct system block', () => {
