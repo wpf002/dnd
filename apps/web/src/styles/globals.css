@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theme tokens derived from docs/UI-DESIGN.md.
+ * Dark ground with warm metallic accents, matching the PWA manifest
+ * (#0b0a09) so the installed splash and the app agree.
+ */
+:root {
+  --ink: #0b0a09;
+  --ink-raised: #16130f;
+  --ink-line: #2a241c;
+  --parchment: #f2ece1;
+  --muted: #a1968a;
+  --ember: #d9a441;
+  --ember-bright: #f0c26b;
+  --blood: #8c2f24;
+  --success: #5c8a4a;
+}
+
+html,
+body {
+  background: var(--ink);
+  color: var(--parchment);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* The dice tray is the product thesis. It reads from a persisted Resolution
+   and computes nothing of its own — see docs/UI-DESIGN.md. */
+.tray {
+  background: var(--ink-raised);
+  border: 1px solid var(--ink-line);
+}
+
+.d20 {
+  font-variant-numeric: tabular-nums;
+  color: var(--ember-bright);
+}
+
+.discarded {
+  color: var(--muted);
+  text-decoration: line-through;
+}

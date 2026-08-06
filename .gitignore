@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.next/
+out/
+build/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+.env
+.env.local
+.env.*.local
+!.env.example
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Flint local telemetry + replay
+.flint/
+telemetry/*.ndjson
+
+# Generated art (CDN-hosted in prod)
+content/art/generated/

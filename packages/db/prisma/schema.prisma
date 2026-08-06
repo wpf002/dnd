@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- Skeleton only. Full model lands in Phase 1. ----
+
+model Campaign {
+  id          String    @id @default(cuid())
+  title       String
+  adventureId String
+  graphHash   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  sessions    Session[]
+  ledger      LedgerEntry[]
+}
+
+model Session {
+  id         String    @id @default(cuid())
+  campaignId String
+  campaign   Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  beatId     String
+  startedAt  DateTime  @default(now())
+  endedAt    DateTime?
+  turns      Turn[]
+
+  @@index([campaignId])
+}
+
+// Every mechanical outcome is persisted with its inputs so any roll can be
+// audited after the fact. This is the trust surface — do not make it lossy.
+model Turn {
+  id           String   @id @default(cuid())
+  sessionId    String
+  session      Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  index        Int
+  rawInput     String?
+  parsedAction Json?
+  resolution   Json
+  narration    String?
+  createdAt    DateTime @default(now())
+
+  @@unique([sessionId, index])
+}
+
+// Structured campaign state. NOT a transcript.
+model LedgerEntry {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  kind       String   // npc_disposition | faction_clock | promise | flag | inventory | wound
+  key        String
+  value      Json
+  updatedAt  DateTime @updatedAt
+
+  @@unique([campaignId, kind, key])
+  @@index([campaignId, kind])
+}
