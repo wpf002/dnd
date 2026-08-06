@@ -15,3 +15,4 @@ export * from './dice/index.js';
 export * from './checks/index.js';
 export * from './combat/index.js';
 export * from './state/index.js';
+export * from './guards/index.js';

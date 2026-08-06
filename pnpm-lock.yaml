@@ -50,6 +50,9 @@ importers:
       '@lantern/schema':
         specifier: workspace:*
         version: link:../../packages/schema
+      '@lantern/srd':
+        specifier: workspace:*
+        version: link:../../packages/srd
       fastify:
         specifier: ^5.0.0
         version: 5.11.2

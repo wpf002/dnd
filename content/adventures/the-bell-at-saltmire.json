@@ -1,0 +1,531 @@
+{
+  "id": "the-bell-at-saltmire",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Bell at Saltmire",
+    "premise": "Forty years after the sea took Saltmire, its church bell has begun to ring again — and it rings the drowned awake.",
+    "tone": [
+      "gothic-horror",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Restrained and damp. Short sentences. Salt, rot, cold iron. The sea is patient and the prose knows it. Never jokes; occasionally, quietly, mourns.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen",
+        "torture"
+      ],
+      "note": "Drowning imagery is central and allowed; keep it environmental rather than lingering."
+    },
+    "provenance": "authored"
+  },
+  "entry": "arrival",
+  "beats": [
+    {
+      "id": "arrival",
+      "kind": "threshold",
+      "title": "The Tideline",
+      "prose": "The party stands at the landward end of the old causeway at low tide. Saltmire's roofline breaks the grey water half a mile out; the church tower still stands. The bell is ringing — slow, even strokes, like someone keeping time. Gulls will not cross the water.",
+      "readAloud": "The bell has no business ringing. You count the strokes anyway. Eleven. It is nowhere near eleven.",
+      "art": "art-tideline",
+      "improvBudget": 6,
+      "options": [
+        {
+          "id": "cross-now",
+          "label": "Take the causeway before the tide turns",
+          "target": "the-causeway"
+        },
+        {
+          "id": "watch-first",
+          "label": "Watch the tower a while from the shore",
+          "target": "the-causeway",
+          "effects": [
+            {
+              "flag": "watched-tower",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "find-boat",
+          "label": "Search the tideline for a usable boat",
+          "target": "village-edge",
+          "requiresCheck": {
+            "ability": "wis",
+            "skill": "survival",
+            "dc": 12,
+            "onFailure": "the-causeway"
+          }
+        }
+      ]
+    },
+    {
+      "id": "the-causeway",
+      "kind": "hazard",
+      "title": "The Causeway",
+      "prose": "Slick cobbles, black weed, and the tide coming back sooner than it should. Waves cross the stones in long intervals. Skill challenge: three ways over, none of them dignified.",
+      "art": "art-causeway",
+      "improvBudget": 6,
+      "options": [
+        {
+          "id": "dash",
+          "label": "Dash the gaps between waves",
+          "target": "village-edge",
+          "requiresCheck": {
+            "ability": "str",
+            "skill": "athletics",
+            "dc": 12,
+            "onFailure": "arrival"
+          }
+        },
+        {
+          "id": "cart-rails",
+          "label": "Balance along the old cart rails",
+          "target": "village-edge",
+          "requiresCheck": {
+            "ability": "dex",
+            "skill": "acrobatics",
+            "dc": 10,
+            "onFailure": "arrival"
+          }
+        },
+        {
+          "id": "wade",
+          "label": "Wade the long shallows — slow, but sure",
+          "target": "village-edge",
+          "effects": [
+            {
+              "flag": "soaked",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village-edge",
+      "kind": "discovery",
+      "title": "The Drowned Streets",
+      "prose": "Saltmire at ebb: doorways furred with weed, a cart fused to the road by forty years of barnacle. Everything below the old waterline is the sea's now. The bell keeps its slow count from the tower ahead.",
+      "art": "art-village-edge",
+      "improvBudget": 6,
+      "options": [
+        {
+          "id": "to-square",
+          "label": "Head straight for the church square",
+          "target": "church-square"
+        },
+        {
+          "id": "fisher-cottages",
+          "label": "Search the fisher-cottages along Harbor Row",
+          "target": "harbor-row"
+        },
+        {
+          "id": "graveyard-cut",
+          "label": "Cut through the flooded graveyard",
+          "target": "flooded-graveyard"
+        }
+      ]
+    },
+    {
+      "id": "church-square",
+      "kind": "decision",
+      "title": "The Church Square",
+      "prose": "The square holds three truths: the church with its ringing tower, the graveyard wall with its gate off one hinge, and the smoke — thin, real, recent — rising from a chimney down Harbor Row. Someone lives here.",
+      "art": "art-church-square",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "to-nave",
+          "label": "Enter the church",
+          "target": "church-nave"
+        },
+        {
+          "id": "to-graveyard",
+          "label": "Go through the graveyard gate",
+          "target": "flooded-graveyard"
+        },
+        {
+          "id": "to-harbor",
+          "label": "Follow the smoke on Harbor Row",
+          "target": "harbor-row"
+        }
+      ]
+    },
+    {
+      "id": "flooded-graveyard",
+      "kind": "conflict",
+      "title": "The Flooded Graveyard",
+      "prose": "Headstones like rotten teeth in standing water. Some of the graves are open. Some of the graves are occupied by things that no longer fit their names. They notice the living.",
+      "art": "art-graveyard",
+      "improvBudget": 4,
+      "encounter": "grave-waders",
+      "options": []
+    },
+    {
+      "id": "the-sextons-grave",
+      "kind": "discovery",
+      "title": "The Sexton's Grave",
+      "prose": "One grave in the yard is dug neat and kept clean, above the waterline, tended within the month. The stone reads: EDWIN TARROW, BELL-KEEPER OF SALTMIRE. HE STAYED. The grave is empty — not robbed. Left.",
+      "art": "art-sextons-grave",
+      "improvBudget": 6,
+      "onEntry": [
+        {
+          "flag": "learned-name",
+          "value": true
+        }
+      ],
+      "options": [
+        {
+          "id": "grave-to-nave",
+          "label": "Take the name to the church",
+          "target": "church-nave"
+        },
+        {
+          "id": "grave-to-harbor",
+          "label": "Ask the chimney-smoke hermit about Tarrow",
+          "target": "harbor-row"
+        },
+        {
+          "id": "grave-to-square",
+          "label": "Return to the square",
+          "target": "church-square"
+        }
+      ]
+    },
+    {
+      "id": "harbor-row",
+      "kind": "social",
+      "title": "Old Wend's Fire",
+      "prose": "The hermit Old Wend has lived above the waterline for forty years, in the loft of a chandlery, and does not like the bell. NPC: guarded, kind under it, terrified of the tower. Knows the keeper stayed behind when the village drowned. Will not say the name unless shown kindness.",
+      "art": "art-harbor-row",
+      "improvBudget": 8,
+      "onEntry": [
+        {
+          "flag": "met-wend",
+          "value": true
+        }
+      ],
+      "options": [
+        {
+          "id": "listen",
+          "label": "Share your food and let the old man talk",
+          "target": "church-square"
+        },
+        {
+          "id": "press-for-key",
+          "label": "Ask for the tower key he surely kept",
+          "target": "church-nave",
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 12,
+            "onFailure": "church-square"
+          }
+        },
+        {
+          "id": "dry-off",
+          "label": "Dry off by his fire",
+          "target": "church-square",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "soaked"
+          },
+          "effects": [
+            {
+              "flag": "soaked",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "church-nave",
+      "kind": "conflict",
+      "title": "The Nave",
+      "prose": "Pews in rows under three feet of clear, cold water. The congregation is still here. They stand when the bell strokes land, all together, facing the altar — then they notice the door has opened. Objective: the tower door, at the far end, behind all of them.",
+      "art": "art-nave",
+      "improvBudget": 4,
+      "encounter": "drowned-congregation",
+      "options": []
+    },
+    {
+      "id": "bell-tower-stair",
+      "kind": "hazard",
+      "title": "The Tower Stair",
+      "prose": "The stair spirals up inside the tower, wooden treads gone soft as bread. Above, the bell rings on. Skill challenge: forty feet of climb that wants very much to be thirty-nine.",
+      "art": "art-tower-stair",
+      "improvBudget": 6,
+      "options": [
+        {
+          "id": "climb-stair",
+          "label": "Climb light and fast, testing each tread",
+          "target": "the-belfry",
+          "requiresCheck": {
+            "ability": "dex",
+            "skill": "acrobatics",
+            "dc": 12,
+            "onFailure": "church-square"
+          }
+        },
+        {
+          "id": "haul-rope",
+          "label": "Haul up the bell-rope itself, hand over hand",
+          "target": "the-belfry",
+          "requiresCheck": {
+            "ability": "str",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "church-square"
+          }
+        },
+        {
+          "id": "wall-ladder",
+          "label": "Take the keeper's maintenance ladder inside the wall",
+          "target": "crypt-descent"
+        }
+      ]
+    },
+    {
+      "id": "the-belfry",
+      "kind": "discovery",
+      "title": "The Belfry",
+      "prose": "The bell swings with no hand on the rope, and the rope is forty years rotten anyway. Scratched into the bronze, over and over, in a churchwarden's careful hand: WHILE IT RINGS THEY SLEEP. The strokes are not a haunting. They are a lullaby. Below, through the floor hatch, stairs descend past the foundation — into the crypt.",
+      "art": "art-belfry",
+      "improvBudget": 6,
+      "onEntry": [
+        {
+          "flag": "bell-seen",
+          "value": true
+        }
+      ],
+      "options": [
+        {
+          "id": "descend",
+          "label": "Take the crypt stair down",
+          "target": "crypt-descent"
+        },
+        {
+          "id": "still-rope",
+          "label": "Catch and still the frayed rope — you know its rhythm from the shore",
+          "target": "crypt-descent",
+          "requiresCheck": {
+            "ability": "dex",
+            "skill": "sleight-of-hand",
+            "dc": 12,
+            "onFailure": "bell-tower-stair"
+          },
+          "visibleWhen": {
+            "op": "set",
+            "flag": "watched-tower"
+          }
+        },
+        {
+          "id": "call-name",
+          "label": "Call the keeper by name into the dark below",
+          "target": "crypt-descent",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "set",
+                "flag": "met-wend"
+              },
+              {
+                "op": "set",
+                "flag": "learned-name"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "crypt-descent",
+      "kind": "transit",
+      "title": "Below the Foundation",
+      "prose": "The stair goes down past the waterline into air that has not moved since the drowning. The bell above is muffled here, but its rhythm carries through the stone like a pulse.",
+      "art": "art-crypt-descent",
+      "improvBudget": 5,
+      "options": [
+        {
+          "id": "enter-crypt",
+          "label": "Enter the crypt",
+          "target": "the-drowned-crypt"
+        },
+        {
+          "id": "back-up",
+          "label": "Climb back to the belfry",
+          "target": "the-belfry"
+        },
+        {
+          "id": "flooded-passage",
+          "label": "Wade the flooded side-passage — a quieter approach",
+          "target": "the-drowned-crypt",
+          "effects": [
+            {
+              "flag": "soaked",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-drowned-crypt",
+      "kind": "climax",
+      "title": "The Drowned Crypt",
+      "prose": "Edwin Tarrow, bell-keeper of Saltmire, stayed. Forty years of staying have left him a wight in a churchwarden's coat, ringing the bell by will alone, and the shadows of two parishioners he could not save keep him company. He does not want to fight. He does not have a choice; the party is between him and the rope.",
+      "art": "art-drowned-crypt",
+      "improvBudget": 4,
+      "encounter": "the-bell-keeper",
+      "options": []
+    },
+    {
+      "id": "the-silent-bell",
+      "kind": "decision",
+      "title": "The Bell Falls Silent",
+      "prose": "The keeper is down, and for the first time in forty years the bell misses its stroke. In the silence, the water around the church begins — very quietly — to move. Whatever the bell was keeping asleep is turning over. The choice is now.",
+      "art": "art-silent-bell",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "sink-it",
+          "label": "Cut the bell down and sink it in the crypt — end the lullaby, wake the sea, and outrun what wakes",
+          "target": "ending-silence",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "bell-seen"
+          }
+        },
+        {
+          "id": "take-it-up",
+          "label": "Take up Tarrow's rope and ring the count yourself",
+          "target": "ending-keeper",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "learned-name"
+          }
+        },
+        {
+          "id": "run",
+          "label": "Leave it swinging and run for the causeway",
+          "target": "ending-tide"
+        }
+      ]
+    },
+    {
+      "id": "ending-silence",
+      "kind": "ending",
+      "title": "Ending: The Silence",
+      "prose": "The bell goes into the black water of the crypt and Saltmire's dead go with it, grave by grave, like lamps going out. The village is only ruins now — honestly, finally ruins. Some nights, on the far shore, you still count to eleven before you catch yourself.",
+      "art": "art-ending-silence",
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-keeper",
+      "kind": "ending",
+      "title": "Ending: The New Keeper",
+      "prose": "Someone has to ring it. The party's chronicle ends with one of you staying — provisioned by Old Wend, spelled at the solstices by the others, keeping the slow count over the sleeping town. WHILE IT RINGS THEY SLEEP. It is not a curse. It never was. It is a shift, and yours has started.",
+      "art": "art-ending-keeper",
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-tide",
+      "kind": "ending",
+      "title": "Ending: The Tide",
+      "prose": "You are halfway across the causeway when the bell, unattended, misses its second stroke, and the sea behind you takes a breath. You do not look back. The village is gone by morning — truly gone, stone and steeple — and the coast road now bends a long mile inland, though no map says why.",
+      "art": "art-ending-tide",
+      "terminal": true,
+      "options": []
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "grave-waders",
+      "title": "The Grave-Waders",
+      "combatants": [
+        {
+          "id": "ghoul-a",
+          "statblock": "ghoul",
+          "count": 2
+        },
+        {
+          "id": "rats",
+          "statblock": "giant-rat",
+          "count": 2
+        }
+      ],
+      "terrain": [
+        "water",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-sextons-grave",
+      "onDefeat": "village-edge",
+      "onFlee": "church-square"
+    },
+    {
+      "id": "drowned-congregation",
+      "title": "The Drowned Congregation",
+      "combatants": [
+        {
+          "id": "skeletons",
+          "statblock": "skeleton",
+          "count": 4
+        },
+        {
+          "id": "warden",
+          "statblock": "zombie",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "water",
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "the tower door behind the altar"
+      },
+      "onVictory": "bell-tower-stair",
+      "onDefeat": "village-edge",
+      "onFlee": "church-square"
+    },
+    {
+      "id": "the-bell-keeper",
+      "title": "Edwin Tarrow, Bell-Keeper",
+      "combatants": [
+        {
+          "id": "tarrow",
+          "statblock": "wight",
+          "count": 1
+        },
+        {
+          "id": "parishioners",
+          "statblock": "shadow",
+          "count": 2
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-silent-bell",
+      "onDefeat": "harbor-row",
+      "onFlee": "crypt-descent"
+    }
+  ]
+}

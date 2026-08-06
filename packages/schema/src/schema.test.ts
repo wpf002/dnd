@@ -144,11 +144,9 @@ describe('BeatGraph', () => {
     title: `Beat ${id}`,
     prose: 'Something happens.',
     art: `art-${id}`,
-    options: [1, 2, 3].map((n) => ({
-      id: `opt-${n}`,
-      label: `Option ${n}`,
-      target: terminal ? id : 'the-end',
-    })),
+    options: terminal
+      ? []
+      : [1, 2, 3].map((n) => ({ id: `opt-${n}`, label: `Option ${n}`, target: 'the-end' })),
     terminal,
   });
 

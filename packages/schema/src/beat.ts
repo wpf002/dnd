@@ -138,10 +138,11 @@ export const Beat = z.object({
   art: ArtSlotId,
 
   /**
-   * Exactly three authored options, per the design. Free text is handled
-   * separately via the improv budget — it is not a fourth option.
+   * Exactly three authored options on playable beats, per the design. Free
+   * text is handled separately via the improv budget — it is not a fourth
+   * option. Terminal beats end the adventure and carry no options.
    */
-  options: z.array(BeatOption).length(3),
+  options: z.array(BeatOption).max(3),
 
   /**
    * How many off-graph resolutions this beat will absorb before free text
@@ -166,6 +167,32 @@ export const Beat = z.object({
 
   /** Terminal beats end the adventure. The linter requires at least one reachable. */
   terminal: z.boolean().default(false),
+}).superRefine((beat, ctx) => {
+  // Three beat shapes, each with its own option arity:
+  //  - terminal: the adventure ends here; no options.
+  //  - encounter: combat runs on entry and the Encounter's onVictory/onDefeat/
+  //    onFlee transitions route the outcome; options would be dead weight.
+  //  - playable: exactly three authored options, always.
+  if (beat.terminal && beat.options.length !== 0) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['options'],
+      message: 'terminal beats end the adventure and must have no options',
+    });
+  } else if (beat.encounter !== undefined && beat.options.length !== 0) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['options'],
+      message:
+        'encounter beats route through the encounter\'s onVictory/onDefeat/onFlee and must have no options',
+    });
+  } else if (!beat.terminal && beat.encounter === undefined && beat.options.length !== 3) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['options'],
+      message: 'non-terminal beats must have exactly three authored options',
+    });
+  }
 });
 export type Beat = z.infer<typeof Beat>;
 

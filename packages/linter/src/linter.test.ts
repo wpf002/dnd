@@ -60,7 +60,7 @@ function validGraph() {
         prose: 'Guards.',
         art: 'art-courtyard',
         encounter: 'guards',
-        options: [opt('fight', 'hall'), opt('sneak', 'hall', { visibleWhen: { op: 'unset', flag: 'gate-used' } }), opt('talk', 'hall', { visibleWhen: { op: 'set', flag: 'soaked' } })],
+        options: [],
       },
       {
         id: 'hall',
@@ -68,7 +68,11 @@ function validGraph() {
         title: 'The Hall',
         prose: 'A choice.',
         art: 'art-hall',
-        options: [opt('left', 'the-end'), opt('right', 'the-end', { effects: [{ flag: 'took-right', value: true }] }), opt('rest', 'retreat')],
+        options: [
+          opt('left', 'the-end', { visibleWhen: { op: 'unset', flag: 'gate-used' } }),
+          opt('right', 'the-end', { effects: [{ flag: 'took-right', value: true }] }),
+          opt('rest', 'retreat', { visibleWhen: { op: 'set', flag: 'soaked' } }),
+        ],
       },
       {
         id: 'retreat',
@@ -78,7 +82,7 @@ function validGraph() {
         art: 'art-retreat',
         terminal: true,
         entryWhen: { op: 'neq', flag: 'took-right', value: true },
-        options: [opt('a', 'retreat'), opt('b', 'retreat'), opt('c', 'retreat')],
+        options: [],
       },
       {
         id: 'the-end',
@@ -87,7 +91,7 @@ function validGraph() {
         prose: 'It ends.',
         art: 'art-end',
         terminal: true,
-        options: [opt('a', 'the-end'), opt('b', 'the-end'), opt('c', 'the-end')],
+        options: [],
       },
     ],
     edges: [],
@@ -118,8 +122,7 @@ describe('a valid graph passes', () => {
 describe('broken graph #1 — unreachable content', () => {
   it('is rejected because a beat and the only ending are orphaned', () => {
     const g = validGraph();
-    // Sever the hall: nothing points to it anymore.
-    g.beats[2]!.options = [opt('loop-a', 'moat'), opt('loop-b', 'arrival'), opt('loop-c', 'moat')];
+    // Sever the hall: the only route in is the encounter's victory transition.
     g.encounters[0]!.onVictory = 'arrival';
     // Note the option/encounter targets are all still *valid* ids — this is
     // purely a connectivity failure, not a dangling reference.
@@ -183,7 +186,7 @@ describe('schema failures produce legible messages, not zod issue dumps', () => 
     expect(result.errors[0]!.message).toContain('entry');
   });
 
-  it('rejects a beat with two options — the schema requires exactly three', () => {
+  it('rejects a non-terminal beat with two options — exactly three required', () => {
     const g = validGraph();
     g.beats[0]!.options = g.beats[0]!.options.slice(0, 2);
     const result = lintGraph(g);
@@ -217,8 +220,8 @@ describe('quality warnings', () => {
     const g = validGraph();
     g.beats[1]!.options = [opt('a', 'courtyard'), opt('b', 'courtyard'), opt('c', 'courtyard')];
     // The rewrite above removed the only writer of 'soaked'; drop its reader
-    // too so this test isolates the false-choice warning.
-    g.beats[2]!.options[2] = opt('talk', 'hall');
+    // (hall's 'rest' option guard) so this test isolates the false-choice warning.
+    g.beats[3]!.options[2] = opt('rest', 'retreat');
     const result = lintGraph(g);
     expect(result.ok).toBe(true); // warning, not error
     expect(result.warnings.some((w) => w.code === 'false-choice' && w.at === 'moat')).toBe(true);

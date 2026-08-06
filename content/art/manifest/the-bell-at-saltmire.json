@@ -1,0 +1,29 @@
+{
+  "adventure": "the-bell-at-saltmire",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame, then never change them — style consistency across the set depends on it. Suggested register: muted oil-painting realism, grey-green North Sea palette, low fog, no visible faces on the dead.",
+    "seed": null,
+    "note": "Frames are generated offline and hand-curated (ROADMAP Phase 2). Drop finished PNGs into apps/web/public/art/<slot>.png — the UI renders a placeholder gradient for any slot without a file, so partial sets are playable."
+  },
+  "slots": [
+    { "slot": "art-tideline", "beat": "arrival", "brief": "The causeway at low tide, village roofline breaking grey water, church tower upright, no birds over the water." },
+    { "slot": "art-causeway", "beat": "the-causeway", "brief": "Slick cobbles vanishing under a returning tide, black weed, cart rails." },
+    { "slot": "art-village-edge", "beat": "village-edge", "brief": "Drowned street at ebb: weeded doorways, a cart fused to the road with barnacle." },
+    { "slot": "art-church-square", "beat": "church-square", "brief": "The square: church with ringing tower, broken graveyard gate, one thread of chimney smoke down Harbor Row." },
+    { "slot": "art-graveyard", "beat": "flooded-graveyard", "brief": "Headstones in standing water, several graves open, surface disturbed." },
+    { "slot": "art-sextons-grave", "beat": "the-sextons-grave", "brief": "One tended grave above the waterline; clean stone reading HE STAYED; the grave open and empty." },
+    { "slot": "art-harbor-row", "beat": "harbor-row", "brief": "Chandlery loft interior, small fire, forty years of careful hoarding, an old man's silhouette." },
+    { "slot": "art-nave", "beat": "church-nave", "brief": "Pews under three feet of clear water, standing congregation facing the altar, backs to the viewer." },
+    { "slot": "art-tower-stair", "beat": "bell-tower-stair", "brief": "Spiral wooden stair rotted soft, rope descending through the middle, light from above." },
+    { "slot": "art-belfry", "beat": "the-belfry", "brief": "The bell mid-swing with no hand on it; scratched bronze reading WHILE IT RINGS THEY SLEEP." },
+    { "slot": "art-crypt-descent", "beat": "crypt-descent", "brief": "Stairs descending past the foundation waterline into unmoving dark." },
+    { "slot": "art-drowned-crypt", "beat": "the-drowned-crypt", "brief": "A wight in a churchwarden's coat between the viewer and a bell rope, two shadows at its sides. Not eager." },
+    { "slot": "art-silent-bell", "beat": "the-silent-bell", "brief": "The bell hanging still for the first time in forty years; water beginning, very slightly, to move." },
+    { "slot": "art-ending-silence", "beat": "ending-silence", "brief": "Black crypt water closing over bronze; distant lights going out grave by grave." },
+    { "slot": "art-ending-keeper", "beat": "ending-keeper", "brief": "A lit belfry at dusk seen from the causeway, one figure at the rope, sea calm." },
+    { "slot": "art-ending-tide", "beat": "ending-tide", "brief": "The causeway at a run, the sea inhaling behind; morning: a coastline with no village and a road that bends inland." }
+  ],
+  "combatStates": {
+    "note": "The remaining ~29 frames of the target ~45 are combat-state and variant frames (each encounter at start/bloodied/won, endings by time of day). Enumerate them here as they are generated; the slot naming convention is <base-slot>-<variant>."
+  }
+}

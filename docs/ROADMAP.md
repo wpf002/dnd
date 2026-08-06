@@ -63,6 +63,11 @@ Solo, part-time. Treat estimates as sequencing, not commitments.
 
 ## Phase 0 — Fun test
 
+> **Status: CLOSED — waived by decision (2026-08-06).** The question this phase
+> answers ("is solo 45-minute play actually fun for you?") is already settled:
+> the user plays solo campaigns regularly. Kill condition #1 is satisfied by
+> prior experience rather than by experiment.
+
 **No code. This phase exists to kill the project cheaply if it deserves killing.**
 
 ### Do
@@ -457,6 +462,7 @@ whole licensing posture gets rebuilt before anything ships.
 
 ## Immediate next steps
 
-1. **Phase 0.** One weekend. Don't skip it.
-2. Run `bootstrap.sh`, push the repo, confirm CI green (see [SETUP.md](SETUP.md))
-3. `packages/schema` — the contract lands first, everything else depends on it
+1. ~~Phase 0~~ — closed, waived by decision.
+2. ~~Bootstrap, push, CI~~ — done.
+3. ~~`packages/schema`~~ — done, with engine/srd/linter/flint v1 (Phase 1 complete).
+4. Phase 2 in flight: Saltmire + game loop + PWA surface.

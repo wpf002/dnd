@@ -20,7 +20,8 @@
     "@lantern/linter": "workspace:*",
     "@lantern/schema": "workspace:*",
     "fastify": "^5.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@lantern/srd": "workspace:*"
   },
   "devDependencies": {
     "@lantern/tsconfig": "workspace:*",

@@ -9,6 +9,8 @@ export * from './config/index.js';
 export type { ProviderAdapter, ProviderRequest, ProviderResponse } from './providers/types.js';
 export { AnthropicAdapter } from './providers/anthropic.js';
 export { OpenAiAdapter } from './providers/openai.js';
+export * from './schema/index.js';
+export * from './replay.js';
 
 /**
  * `@lantern/flint` v1 — the AI seam, minimal.
