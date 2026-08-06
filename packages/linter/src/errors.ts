@@ -1,0 +1,56 @@
+/**
+ * Linter findings.
+ *
+ * The error output doubles as Davis's retry context in Phase 3: when a
+ * generated graph fails, these messages are fed back to the model verbatim.
+ * That is why every finding carries a human-legible `message` that names ids
+ * and says what to change — "beat 'crypt-door' is unreachable from entry
+ * 'arrival'" beats an issue code every time.
+ */
+
+export type Severity = 'error' | 'warning';
+
+export type FindingCode =
+  // Schema
+  | 'schema-invalid'
+  // Reachability
+  | 'entry-missing'
+  | 'beat-unreachable'
+  | 'no-terminal-beat'
+  | 'ending-unreachable'
+  | 'edge-dangling'
+  | 'option-dangling'
+  // Flags
+  | 'flag-read-never-set'
+  | 'flag-set-never-read'
+  // Encounters
+  | 'encounter-missing'
+  | 'encounter-unwinnable'
+  | 'encounter-transition-dangling'
+  | 'monster-unknown'
+  // Art
+  | 'art-slot-duplicate'
+  // Choice quality (warnings)
+  | 'false-choice'
+  | 'all-encounters-defeat-all';
+
+export interface Finding {
+  severity: Severity;
+  code: FindingCode;
+  /** Human-legible, id-bearing, actionable. This text is the Davis retry context. */
+  message: string;
+  /** The beat / encounter / edge the finding is anchored to, when there is one. */
+  at?: string;
+}
+
+export interface LintResult {
+  ok: boolean;
+  errors: Finding[];
+  warnings: Finding[];
+}
+
+export function toResult(findings: Finding[]): LintResult {
+  const errors = findings.filter((f) => f.severity === 'error');
+  const warnings = findings.filter((f) => f.severity === 'warning');
+  return { ok: errors.length === 0, errors, warnings };
+}

@@ -178,6 +178,9 @@ importers:
       '@lantern/schema':
         specifier: workspace:*
         version: link:../schema
+      '@lantern/srd':
+        specifier: workspace:*
+        version: link:../srd
     devDependencies:
       '@lantern/tsconfig':
         specifier: workspace:*
@@ -207,6 +210,9 @@ importers:
 
   packages/srd:
     dependencies:
+      '@lantern/schema':
+        specifier: workspace:*
+        version: link:../schema
       zod:
         specifier: ^3.23.8
         version: 3.25.76

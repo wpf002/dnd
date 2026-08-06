@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@lantern/schema": "workspace:*",
-    "@lantern/engine": "workspace:*"
+    "@lantern/engine": "workspace:*",
+    "@lantern/srd": "workspace:*"
   },
   "devDependencies": {
     "@lantern/tsconfig": "workspace:*",

@@ -19,6 +19,7 @@
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
+    "@lantern/schema": "workspace:*",
     "zod": "^3.23.8"
   },
   "devDependencies": {
