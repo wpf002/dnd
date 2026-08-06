@@ -161,7 +161,7 @@ describe('lantern defaults', () => {
   it('registers the four consumers', () => {
     const flint = createLanternFlint();
     const ids = flint.consumers.list().map((c) => c.id).sort();
-    expect(ids).toEqual(['davis', 'dm-narration', 'intent-parse', 'npc-dialogue']);
+    expect(ids).toEqual(['dm-narration', 'generator', 'intent-parse', 'npc-dialogue']);
   });
 
   it('gives each consumer a distinct system block', () => {

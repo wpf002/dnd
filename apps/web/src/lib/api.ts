@@ -71,8 +71,21 @@ async function post<T>(path: string, body?: object): Promise<T> {
   return (await res.json()) as T;
 }
 
+export interface GenerateRequest {
+  premise: string;
+  setting: string;
+  tone: string[];
+  partyLevel?: number;
+  contentLimits?: string[];
+}
+
 export const api = {
   start: (adventure?: string) => post<{ state: SessionState }>('/session', { adventure }),
+  generate: (req: GenerateRequest) =>
+    post<{ state: SessionState; generation: { attempts: number; firstAttemptPassed: boolean } }>(
+      '/generate',
+      req,
+    ),
   choose: (id: string, option: string) => post<TurnResponse>(`/session/${id}/choose`, { option }),
   freeText: (id: string, text: string) => post<TurnResponse>(`/session/${id}/free-text`, { text }),
   attack: (id: string, actor: string, target: string) =>

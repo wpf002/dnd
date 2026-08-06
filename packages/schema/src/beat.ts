@@ -13,7 +13,7 @@ import {
 /**
  * The beat-graph: the authored structure of an adventure.
  *
- * A `BeatGraph` is what Davis emits and what the linter gates. Hand-authored
+ * A `BeatGraph` is what the generator emits and what the linter gates. Hand-authored
  * graphs pass through the same linter — nothing bypasses it, ROADMAP invariant 6.
  */
 

@@ -14,7 +14,7 @@ export const ProviderId = z.enum(['anthropic', 'openai']);
 export type ProviderId = z.infer<typeof ProviderId>;
 
 export const ConsumerConfig = z.object({
-  /** Stable id: 'dm-narration', 'npc-dialogue', 'intent-parse', 'davis'. */
+  /** Stable id: 'dm-narration', 'npc-dialogue', 'intent-parse', 'generator'. */
   id: z.string().min(1),
   provider: ProviderId,
   model: z.string().min(1),
@@ -82,7 +82,7 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
     temperature: 1,
   });
   registry.register({
-    id: 'davis',
+    id: 'generator',
     provider: 'anthropic',
     model: 'claude-opus-5',
     system:

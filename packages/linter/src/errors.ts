@@ -1,8 +1,8 @@
 /**
  * Linter findings.
  *
- * The error output doubles as Davis's retry context in Phase 3: when a
- * generated graph fails, these messages are fed back to the model verbatim.
+ * The error output doubles as the generator's retry context in Phase 3: when
+ * a generated graph fails, these messages are fed back to the model verbatim.
  * That is why every finding carries a human-legible `message` that names ids
  * and says what to change — "beat 'crypt-door' is unreachable from entry
  * 'arrival'" beats an issue code every time.
@@ -37,7 +37,7 @@ export type FindingCode =
 export interface Finding {
   severity: Severity;
   code: FindingCode;
-  /** Human-legible, id-bearing, actionable. This text is the Davis retry context. */
+  /** Human-legible, id-bearing, actionable. This text is the generation retry context. */
   message: string;
   /** The beat / encounter / edge the finding is anchored to, when there is one. */
   at?: string;

@@ -18,8 +18,8 @@ import { FlintError, type FlintResult } from '../errors.js';
  *    same garbage back. Failure surfaces as in-fiction refusal upstream.
  *  - `dm-narration`: one retry, then the caller falls back to templated
  *    prose from the Resolution. A turn is never blocked on narration.
- *  - `davis`: up to 3 attempts with linter errors as context — behind a
- *    loading screen, latency is free there.
+ *  - `generator`: up to 3 attempts with validator errors as context —
+ *    behind a loading screen, latency is free there.
  */
 
 export interface StructuredCallOptions<T> {
@@ -143,4 +143,137 @@ export async function callStructured<T>(
   }
 
   return { ok: false, kind: 'validation-failed', attempts, issues: lastIssues };
+}
+
+
+// ---------------------------------------------------------------------------
+// External-validator loop — Flint v3
+// ---------------------------------------------------------------------------
+
+/**
+ * A domain validator the caller supplies. Flint never imports the validator's
+ * package (the linter lives app-side; invariant 3) — it receives the function
+ * and the *capability* of running the repair loop lives here in the seam.
+ */
+export interface ExternalValidation {
+  ok: boolean;
+  /** Human-legible, actionable error text — fed back to the model verbatim. */
+  errors: string[];
+  /** Non-blocking findings, appended to feedback when present. */
+  warnings?: string[];
+}
+
+export interface ValidatedCallOptions<T> {
+  schema: z.ZodType<T>;
+  schemaName: string;
+  /** Total attempts including the first. The whole loop, not per-stage. */
+  maxAttempts: number;
+  validate: (value: T) => ExternalValidation;
+  input: FlintCallInput;
+}
+
+export type ValidatedResult<T> =
+  | { ok: true; value: T; attempts: number; firstAttemptPassed: boolean; warnings: string[] }
+  | {
+      ok: false;
+      kind: 'validation-failed' | 'call-failed';
+      attempts: number;
+      errors: string[];
+      error?: FlintError;
+    };
+
+/**
+ * Structured call + external validation, with failure feedback on both
+ * stages: a schema miss and a validator miss each become the next attempt's
+ * context. Fails loudly after `maxAttempts` with the final errors attached.
+ *
+ * Telemetry: one `validated-call` event per run — consumer, attempts,
+ * firstAttemptPassed, outcome — which is exactly the substrate a
+ * first-attempt-pass-rate benchmark needs.
+ */
+export async function callValidated<T>(
+  flint: Flint,
+  consumerId: string,
+  options: ValidatedCallOptions<T>,
+): Promise<ValidatedResult<T>> {
+  let feedback = '';
+  let firstAttemptPassed = false;
+  let lastErrors: string[] = [];
+
+  for (let attempt = 1; attempt <= options.maxAttempts; attempt++) {
+    const structured = await callStructured(flint, consumerId, {
+      schema: options.schema,
+      schemaName: options.schemaName,
+      maxRepairs: 0, // schema misses count as attempts of THIS loop
+      input: {
+        input: feedback ? `${options.input.input}\n\n${feedback}` : options.input.input,
+        ...(options.input.systemSuffix !== undefined
+          ? { systemSuffix: options.input.systemSuffix }
+          : {}),
+      },
+    });
+
+    if (!structured.ok) {
+      if (structured.kind === 'call-failed') {
+        flint.telemetry.record({
+          type: 'validated-call',
+          consumer: consumerId,
+          outcome: 'call-failed',
+          attempts: attempt,
+          firstAttemptPassed: false,
+        });
+        return {
+          ok: false,
+          kind: 'call-failed',
+          attempts: attempt,
+          errors: lastErrors,
+          ...(structured.error ? { error: structured.error } : {}),
+        };
+      }
+      lastErrors = structured.issues;
+      feedback = [
+        `Your previous response failed schema validation. Fix every issue and respond again with the complete corrected JSON:`,
+        ...structured.issues.map((i) => `- ${i}`),
+      ].join('\n');
+      continue;
+    }
+
+    const validation = options.validate(structured.value);
+    if (validation.ok) {
+      if (attempt === 1) firstAttemptPassed = true;
+      flint.telemetry.record({
+        type: 'validated-call',
+        consumer: consumerId,
+        outcome: 'pass',
+        attempts: attempt,
+        firstAttemptPassed,
+        warnings: validation.warnings?.length ?? 0,
+      });
+      return {
+        ok: true,
+        value: structured.value,
+        attempts: attempt,
+        firstAttemptPassed,
+        warnings: validation.warnings ?? [],
+      };
+    }
+
+    lastErrors = validation.errors;
+    feedback = [
+      `Your previous response failed validation. Fix EVERY error below and respond again with the complete corrected JSON:`,
+      ...validation.errors.map((e) => `- ${e}`),
+      ...(validation.warnings?.length
+        ? ['Also address these warnings where possible:', ...validation.warnings.map((w) => `- ${w}`)]
+        : []),
+    ].join('\n');
+  }
+
+  flint.telemetry.record({
+    type: 'validated-call',
+    consumer: consumerId,
+    outcome: 'fail',
+    attempts: options.maxAttempts,
+    firstAttemptPassed: false,
+  });
+  return { ok: false, kind: 'validation-failed', attempts: options.maxAttempts, errors: lastErrors };
 }

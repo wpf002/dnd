@@ -182,7 +182,7 @@ export type Alignment = z.infer<typeof Alignment>;
 // ---------------------------------------------------------------------------
 
 /**
- * Davis picks from this set rather than inventing tone strings, so the same tag
+ * The generator picks from this set rather than inventing tone strings, so the same tag
  * produces the same register across generations. Derived from the theme column
  * of the campaign canon; genre implications are defined in Compendium Vol II
  * Part XII.

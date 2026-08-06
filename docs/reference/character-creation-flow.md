@@ -148,7 +148,7 @@ Each stage maps to a field group on `Character`:
 | Equipment | `inventory`, `equipped` |
 | Spells | `spellcasting: { source, known, prepared, slots }` — absent for non-casters |
 | Alignment | `alignment` — descriptive, carries no mechanical weight |
-| Story Connection | `ties: { deity, faction, nemesis, relic, quest }` — Davis + ledger hooks |
+| Story Connection | `ties: { deity, faction, nemesis, relic, quest }` — generation + ledger hooks |
 
 Derived values (modifiers, proficiency bonus, AC, passive Perception, spell save
 DC) are **computed by `@lantern/engine`, never persisted on the character**.

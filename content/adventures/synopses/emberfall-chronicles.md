@@ -14,9 +14,9 @@ endings: 3
 
 > **Why this file exists.** This was the first campaign run together and is the
 > explicit prototype for how future campaigns are structured. It is the
-> highest-value fidelity target for Davis: a blind reader should not be able to
-> tell a Davis one-shot from this. See the Legacy section — it enumerates the
-> design commitments Davis output must satisfy.
+> highest-value fidelity target for the generator: a blind reader should not be able to
+> tell a generated one-shot from this. See the Legacy section — it enumerates the
+> design commitments generated output must satisfy.
 
 ## Synopsis
 
@@ -143,7 +143,7 @@ the campaign — flagged as such so they are not mistaken for source material.
   articulation of architectural invariant 5: every `Resolution` persists its
   dice, modifiers, DC, and margin.
 - **"Multiple solutions to major problems"** is the improv-budget requirement.
-  Beats in a Davis-generated graph modelled on this campaign should carry a
+  Beats in a generated graph modelled on this campaign should carry a
   generous budget, per the Phase 2 tuning note.
 - **Captain Varrin's turn** is a `npc_disposition` ledger axis flipping on an
   evidence flag — the reference implementation for Phase 4 disposition tracking.

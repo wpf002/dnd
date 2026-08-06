@@ -2,7 +2,7 @@
 
 Canon reference. Two uses in the app:
 
-1. **Tone/genre vocabulary.** Each entry carries a setting and a theme. Davis's
+1. **Tone/genre vocabulary.** Each entry carries a setting and a theme. the generator's
    tone parameter is drawn from this vocabulary rather than invented, so
    "gothic horror" means the same thing to the generator and the player.
 2. **Structural precedent.** Several entries are named directly in the
@@ -108,8 +108,8 @@ Canon reference. Two uses in the app:
 
 ## Derived tone vocabulary
 
-The distinct themes above collapse into the tone tags Davis accepts. This is the
-closed set — Davis picks from it rather than inventing tone strings, so the same
+The distinct themes above collapse into the tone tags the generator accepts. This is the
+closed set — the generator picks from it rather than inventing tone strings, so the same
 tag produces the same register across generations.
 
 `gothic-horror` · `survival-horror` · `arctic-survival` · `jungle-survival` ·

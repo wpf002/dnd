@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import type { Resolution } from '@lantern/schema';
-import { api, type SessionState, type TurnResponse } from '../lib/api';
+import { api, type GenerateRequest, type SessionState, type TurnResponse } from '../lib/api';
 import { BeatArt } from './BeatArt';
 import { DiceTray } from './DiceTray';
 
@@ -60,23 +60,17 @@ export function Game() {
 
   if (!state) {
     return (
-      <div className="mt-10 text-center">
-        <h2 className="text-xl" style={{ color: 'var(--ember)' }}>
-          The Bell at Saltmire
-        </h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-[var(--muted)]">
-          Forty years after the sea took Saltmire, its church bell has begun to ring again.
-        </p>
-        <button
-          onClick={start}
-          disabled={busy}
-          className="mt-6 rounded-md px-6 py-3 font-semibold"
-          style={{ background: 'var(--ember)', color: 'var(--ink)' }}
-        >
-          {busy ? 'Crossing…' : 'Begin'}
-        </button>
-        {error && <p className="mt-4 text-sm" style={{ color: 'var(--blood)' }}>{error}</p>}
-      </div>
+      <StartScreen
+        busy={busy}
+        error={error}
+        onStart={start}
+        onGenerate={(req) =>
+          run(async () => {
+            const res = await api.generate(req);
+            return { state: res.state, resolutions: [], narration: [] };
+          })
+        }
+      />
     );
   }
 
@@ -230,6 +224,96 @@ export function Game() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+function StartScreen({
+  busy,
+  error,
+  onStart,
+  onGenerate,
+}: {
+  busy: boolean;
+  error: string | null;
+  onStart: () => void;
+  onGenerate: (req: GenerateRequest) => void;
+}) {
+  const [premise, setPremise] = useState('');
+  const [setting, setSetting] = useState('');
+  const [tone, setTone] = useState('mystery');
+
+  return (
+    <div className="mt-8 space-y-8">
+      <div className="text-center">
+        <h2 className="text-xl" style={{ color: 'var(--ember)' }}>
+          The Bell at Saltmire
+        </h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-[var(--muted)]">
+          Forty years after the sea took Saltmire, its church bell has begun to ring again.
+        </p>
+        <button
+          onClick={onStart}
+          disabled={busy}
+          className="mt-4 rounded-md px-6 py-3 font-semibold"
+          style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+        >
+          {busy ? 'Crossing…' : 'Begin'}
+        </button>
+      </div>
+
+      <div className="rounded-lg border border-[var(--ink-line)] p-4">
+        <h3 className="text-xs uppercase tracking-widest text-[var(--muted)]">
+          Or let Flint write one
+        </h3>
+        <form
+          className="mt-3 space-y-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (premise.trim().length < 10 || setting.trim().length < 3) return;
+            onGenerate({ premise: premise.trim(), setting: setting.trim(), tone: [tone] });
+          }}
+        >
+          <input
+            value={premise}
+            onChange={(e) => setPremise(e.target.value)}
+            placeholder="Premise — one sentence of trouble"
+            className="w-full rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm outline-none focus:border-[var(--ember)]"
+          />
+          <div className="flex gap-2">
+            <input
+              value={setting}
+              onChange={(e) => setSetting(e.target.value)}
+              placeholder="Setting"
+              className="flex-1 rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm outline-none focus:border-[var(--ember)]"
+            />
+            <select
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+              className="rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm"
+            >
+              {['mystery', 'gothic-horror', 'heist', 'high-adventure', 'whimsical-fey', 'political-fantasy', 'exploration', 'survival-horror'].map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            disabled={busy || premise.trim().length < 10}
+            className="w-full rounded-md border border-[var(--ember)] p-3 text-sm font-semibold"
+            style={{ color: 'var(--ember)' }}
+          >
+            {busy ? 'Generating — the linter is watching…' : 'Generate & play'}
+          </button>
+        </form>
+        <p className="mt-2 text-xs text-[var(--muted)]">
+          Generated adventures pass the same linter as authored ones. Requires a provider key on
+          the API.
+        </p>
+      </div>
+
+      {error && <p className="text-center text-sm" style={{ color: 'var(--blood)' }}>{error}</p>}
     </div>
   );
 }

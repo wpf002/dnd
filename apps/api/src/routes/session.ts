@@ -27,7 +27,7 @@ import { narrate } from '../services/narration.js';
 const here = dirname(fileURLToPath(import.meta.url));
 const ADVENTURES_DIR = join(here, '..', '..', '..', '..', 'content', 'adventures');
 
-const sessions = new Map<string, GameSession>();
+export const sessions = new Map<string, GameSession>();
 
 function loadGraph(adventureId: string): unknown {
   // Only kebab-case ids; the path never leaves the adventures directory.

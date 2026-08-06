@@ -5,9 +5,11 @@ for **Flint** (AI seam layer).
 
 Private project. Single user. Not distributed.
 
-> **Terminology.** "Davis" throughout this repo means the `davis` **consumer on
-> Flint** — a prompt configuration plus an output schema. It is not a separate
-> system and has no separate codebase.
+> **Terminology.** The campaign generator is the `generator` **consumer on
+> Flint** — a prompt configuration plus an output schema, not a separate
+> system. Older references to "Davis" (including throughout this roadmap's
+> phase names, kept for fidelity to the original document) mean exactly this
+> consumer; the name is retired in code and new writing.
 
 ---
 
@@ -145,7 +147,7 @@ replay of any session for debugging.
 - Orphaned flags: no state condition that nothing sets
 - Art coverage: every beat has an art slot id
 - Schema conformance (zod, but with human-legible error output — this output
-  becomes Davis's retry context in Phase 3)
+  becomes the generator's retry context in Phase 3)
 
 **5. `packages/flint` v1** — the seam, minimal.
 
@@ -250,7 +252,7 @@ This is the single largest experiential risk in the project.
 **Goal:** content generation becomes the product. This is where a private tool
 stops starving.
 
-Davis is **not** a peer of Flint. Davis is a prompt configuration plus an output
+The generator is **not** a peer of Flint. It is a prompt configuration plus an output
 schema that runs *on* Flint, and its output passes through the same linter a
 human author's does. Davis inherits the schema, so Davis inherits every rules
 guarantee. That is the entire point of Phase 1 landing first.
@@ -291,8 +293,8 @@ rate, tokens per session.
 
 - Davis produces a playable one-shot from a premise sentence
 - **First-attempt linter pass rate ≥ 70%**, ≥ 95% within 3 attempts
-- You play a Davis one-shot and finish it
-- Blind comparison: you can't reliably tell Davis output from *Saltmire*
+- You play a generated one-shot and finish it
+- Blind comparison: you can't reliably tell generated output from *Saltmire*
 
 ---
 

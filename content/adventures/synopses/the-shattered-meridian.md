@@ -13,8 +13,8 @@ central-mystery: thirty missing days
 
 > **Why this file exists.** Unlike Emberfall (finished) and Shattered Vale
 > (running), this one exists only as a premise. That makes it the natural first
-> Davis target: a premise sentence and a tone in, a linted `BeatGraph` out. If
-> Davis can produce a playable Meridian one-shot, Phase 3's exit criteria are
+> the generator target: a premise sentence and a tone in, a linted `BeatGraph` out. If
+> the generator can produce a playable Meridian one-shot, Phase 3's exit criteria are
 > within reach.
 
 ## Synopsis
@@ -100,7 +100,7 @@ terminal shape as Emberfall's Ember's Heart.
 Inferred. This campaign is unwritten, so these are design constraints for
 whoever (or whatever) writes it.
 
-- **This is the Davis benchmark candidate.** The premise reduces to a single
+- **This is the generation benchmark candidate.** The premise reduces to a single
   sentence, which is exactly the Phase 3 input contract: tone, setting, length,
   party level, premise, content limits.
 - **Party of strangers with shared Temporal Scars** solves the solo-play problem

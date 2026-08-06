@@ -19,9 +19,9 @@ export * from './errors.js';
  *  - orphaned flags: no condition nothing sets
  *  - art coverage and choice quality
  *
- * The error text is the product surface here: in Phase 3 it becomes Davis's
- * retry context verbatim, and the Flint benchmark (first-attempt pass rate)
- * is measured against exactly this function.
+ * The error text is the product surface here: in Phase 3 it becomes the
+ * generator's retry context verbatim, and the Flint benchmark (first-attempt
+ * pass rate) is measured against exactly this function.
  */
 export function lintGraph(input: unknown): LintResult {
   // Schema first. A graph that does not parse gets schema findings only —

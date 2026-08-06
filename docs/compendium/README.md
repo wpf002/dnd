@@ -2,14 +2,15 @@
 
 Project reference corpus. Feeds two consumers:
 
-1. **Davis** (Phase 3 campaign generator) — these volumes are the design
-   knowledge Davis is prompted against when emitting a `BeatGraph`.
+1. **Flint's `generator` consumer** (Phase 3) — these volumes are the design
+   knowledge the generation prompt draws on when emitting a `BeatGraph`.
 2. **In-app compendium** — browsable reference surface in `apps/web`,
    modelled on the D&D Beyond / Roll20 compendium information architecture.
 
-Volumes are stored verbatim. Do not summarize them in place — the linter and
-Davis prompt-assembly read these files directly, and lossy edits degrade
-generation quality.
+Volumes are stored verbatim. Do not summarize them in place — prompt assembly
+reads these files directly, and lossy edits degrade generation quality.
+(Note: the volumes' own internal references to "Davis" are part of the
+verbatim source text and are left as written.)
 
 ---
 
@@ -72,7 +73,7 @@ Not part of the numbered compendium, but part of the same corpus:
 - [`../reference/great-campaigns.md`](../reference/great-campaigns.md) —
   official + community campaign canon, used as tone/genre reference tags
 - [`../../content/adventures/synopses/`](../../content/adventures/synopses/) —
-  the user's own campaigns, the primary fidelity target for Davis output
+  the user's own campaigns, the primary fidelity target for generated output
 
 ## Adding a volume
 

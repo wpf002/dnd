@@ -17,9 +17,20 @@ export class AnthropicAdapter implements ProviderAdapter {
 
   async call(request: ProviderRequest): Promise<ProviderResponse> {
     const client = new Anthropic(); // reads ANTHROPIC_API_KEY
-    const system = request.systemSuffix
-      ? `${request.config.system}\n\n${request.systemSuffix}`
-      : request.config.system;
+    // Flint v3 prompt caching: the consumer's stable system block is marked
+    // cacheable; the volatile per-call suffix (voice, scene context, schema
+    // instruction) rides in a second, uncached block so it never fragments
+    // the cache for the stable prefix.
+    const system: Anthropic.TextBlockParam[] = [
+      {
+        type: 'text',
+        text: request.config.system,
+        cache_control: { type: 'ephemeral' },
+      },
+      ...(request.systemSuffix
+        ? [{ type: 'text' as const, text: request.systemSuffix }]
+        : []),
+    ];
 
     const response = await client.messages.create({
       model: request.config.model,

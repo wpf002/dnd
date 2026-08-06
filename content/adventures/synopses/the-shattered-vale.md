@@ -224,7 +224,7 @@ Inferred mappings, not source material.
 - **Echo Resonance Score is a first-class ledger stat**, not flavor. It is a
   numeric `flag` with thresholds that gate content and carry a possession risk —
   the closest thing in the corpus to a mechanical resource the engine must own
-  deterministically. Davis-generated graphs should be able to declare a
+  deterministically. generated graphs should be able to declare a
   campaign-scoped scalar like this.
 - **Three factions racing to one location** is the reference case for Phase 4
   `faction_clock`: all three advance on session boundaries toward Vhal Sereph,

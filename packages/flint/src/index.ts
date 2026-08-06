@@ -3,6 +3,7 @@ import { FlintError, type FlintResult } from './errors.js';
 import { AnthropicAdapter } from './providers/anthropic.js';
 import { OpenAiAdapter } from './providers/openai.js';
 import type { ProviderAdapter } from './providers/types.js';
+import { NullTelemetry, type Telemetry } from './telemetry/index.js';
 
 export * from './errors.js';
 export * from './config/index.js';
@@ -11,6 +12,7 @@ export { AnthropicAdapter } from './providers/anthropic.js';
 export { OpenAiAdapter } from './providers/openai.js';
 export * from './schema/index.js';
 export * from './replay.js';
+export * from './telemetry/index.js';
 
 /**
  * `@lantern/flint` v1 — the AI seam, minimal.
@@ -34,11 +36,17 @@ export interface FlintCallInput {
 export class Flint {
   private readonly registry: ConsumerRegistry;
   private readonly adapters: Map<string, ProviderAdapter>;
+  readonly telemetry: Telemetry;
 
-  constructor(options?: { registry?: ConsumerRegistry; adapters?: ProviderAdapter[] }) {
+  constructor(options?: {
+    registry?: ConsumerRegistry;
+    adapters?: ProviderAdapter[];
+    telemetry?: Telemetry;
+  }) {
     this.registry = options?.registry ?? new ConsumerRegistry();
     const adapters = options?.adapters ?? [new AnthropicAdapter(), new OpenAiAdapter()];
     this.adapters = new Map(adapters.map((a) => [a.id, a]));
+    this.telemetry = options?.telemetry ?? new NullTelemetry();
   }
 
   /** The registry is exposed so the app can override consumer configs. */
@@ -91,15 +99,35 @@ export class Flint {
       };
     }
 
+    const startedAt = Date.now();
     try {
       const response = await adapter.call({
         config,
         input: input.input,
         ...(input.systemSuffix !== undefined ? { systemSuffix: input.systemSuffix } : {}),
       });
+      this.telemetry.record({
+        type: 'call',
+        consumer: consumerId,
+        provider: config.provider,
+        model: config.model,
+        latencyMs: Date.now() - startedAt,
+        inputTokens: response.usage.inputTokens,
+        outputTokens: response.usage.outputTokens,
+        outcome: 'ok',
+      });
       return { ok: true, value: response.text, usage: response.usage };
     } catch (cause) {
-      return { ok: false, error: normalizeProviderError(consumerId, config.provider, cause) };
+      const error = normalizeProviderError(consumerId, config.provider, cause);
+      this.telemetry.record({
+        type: 'call',
+        consumer: consumerId,
+        provider: config.provider,
+        model: config.model,
+        latencyMs: Date.now() - startedAt,
+        outcome: error.kind,
+      });
+      return { ok: false, error };
     }
   }
 }
@@ -121,8 +149,8 @@ function normalizeProviderError(consumerId: string, provider: string, cause: unk
 }
 
 /** A Flint instance pre-loaded with the four Lantern consumers. */
-export function createLanternFlint(): Flint {
-  const flint = new Flint();
+export function createLanternFlint(options?: { telemetry?: Telemetry }): Flint {
+  const flint = new Flint(options?.telemetry ? { telemetry: options.telemetry } : undefined);
   lanternDefaults(flint.consumers);
   return flint;
 }
