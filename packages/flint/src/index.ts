@@ -13,6 +13,7 @@ export { OpenAiAdapter } from './providers/openai.js';
 export * from './schema/index.js';
 export * from './replay.js';
 export * from './telemetry/index.js';
+export * from './streaming.js';
 
 /**
  * `@lantern/flint` v1 — the AI seam, minimal.
@@ -52,6 +53,11 @@ export class Flint {
   /** The registry is exposed so the app can override consumer configs. */
   get consumers(): ConsumerRegistry {
     return this.registry;
+  }
+
+  /** Adapter lookup for capabilities layered on the seam (streaming, replay). */
+  adapterFor(provider: string): ProviderAdapter | undefined {
+    return this.adapters.get(provider);
   }
 
   /**

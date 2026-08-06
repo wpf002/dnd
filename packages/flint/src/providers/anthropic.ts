@@ -15,6 +15,27 @@ export class AnthropicAdapter implements ProviderAdapter {
     return Boolean(process.env.ANTHROPIC_API_KEY);
   }
 
+  /** Flint v4 streaming: yields text deltas as they arrive. */
+  async *stream(request: ProviderRequest): AsyncIterable<string> {
+    const client = new Anthropic();
+    const system: Anthropic.TextBlockParam[] = [
+      { type: 'text', text: request.config.system, cache_control: { type: 'ephemeral' } },
+      ...(request.systemSuffix ? [{ type: 'text' as const, text: request.systemSuffix }] : []),
+    ];
+    const stream = client.messages.stream({
+      model: request.config.model,
+      max_tokens: request.config.maxTokens,
+      temperature: request.config.temperature,
+      system,
+      messages: [{ role: 'user', content: request.input }],
+    });
+    for await (const event of stream) {
+      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+        yield event.delta.text;
+      }
+    }
+  }
+
   async call(request: ProviderRequest): Promise<ProviderResponse> {
     const client = new Anthropic(); // reads ANTHROPIC_API_KEY
     // Flint v3 prompt caching: the consumer's stable system block is marked

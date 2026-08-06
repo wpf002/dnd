@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import type { Resolution } from '@lantern/schema';
-import { api, type GenerateRequest, type SessionState, type TurnResponse } from '../lib/api';
+import { api, type GenerateRequest, type Recap, type SessionState, type TurnResponse } from '../lib/api';
 import { BeatArt } from './BeatArt';
 import { DiceTray } from './DiceTray';
 
@@ -14,6 +14,8 @@ import { DiceTray } from './DiceTray';
 
 export function Game() {
   const [state, setState] = useState<SessionState | null>(null);
+  const [campaignId, setCampaignId] = useState<string | null>(null);
+  const [recap, setRecap] = useState<Recap | null>(null);
   const [narration, setNarration] = useState<string[]>([]);
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
   const [freeText, setFreeText] = useState('');
@@ -49,6 +51,7 @@ export function Game() {
       setState(fresh);
       setNarration([]);
       setResolutions([]);
+      setRecap(null);
     } catch (err) {
       setError(
         `${(err as Error).message} — is the API running? Start it with: pnpm --filter @lantern/api dev`,
@@ -58,9 +61,62 @@ export function Game() {
     }
   }, []);
 
+  const startCampaign = useCallback(async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { campaign } = await api.createCampaign();
+      setCampaignId(campaign.id);
+      const { state: fresh } = await api.campaignSession(campaign.id);
+      setState(fresh);
+      setNarration([]);
+      setResolutions([]);
+      setRecap(null);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }, []);
+
+  const endSession = useCallback(async () => {
+    if (!campaignId) return;
+    setBusy(true);
+    try {
+      const res = await api.endCampaignSession(campaignId);
+      setRecap(res.recap);
+      setState(null);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }, [campaignId]);
+
+  const nextSession = useCallback(async () => {
+    if (!campaignId) return;
+    setBusy(true);
+    try {
+      const { state: fresh } = await api.campaignSession(campaignId);
+      setState(fresh);
+      setRecap(null);
+      setNarration([]);
+      setResolutions([]);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }, [campaignId]);
+
+  if (!state && recap) {
+    return <RecapScreen recap={recap} busy={busy} onNextSession={nextSession} />;
+  }
+
   if (!state) {
     return (
       <StartScreen
+        onStartCampaign={startCampaign}
         busy={busy}
         error={error}
         onStart={start}
@@ -197,9 +253,15 @@ export function Game() {
           <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--ember)' }}>
             {beat.title}
           </p>
-          <button onClick={start} disabled={busy} className="mt-4 text-sm underline text-[var(--muted)]">
-            Play again — different choices this time
-          </button>
+          {campaignId ? (
+            <button onClick={endSession} disabled={busy} className="mt-4 text-sm underline text-[var(--muted)]">
+              Close the session — write it to the ledger
+            </button>
+          ) : (
+            <button onClick={start} disabled={busy} className="mt-4 text-sm underline text-[var(--muted)]">
+              Play again — different choices this time
+            </button>
+          )}
         </div>
       )}
 
@@ -232,11 +294,13 @@ function StartScreen({
   busy,
   error,
   onStart,
+  onStartCampaign,
   onGenerate,
 }: {
   busy: boolean;
   error: string | null;
   onStart: () => void;
+  onStartCampaign: () => void;
   onGenerate: (req: GenerateRequest) => void;
 }) {
   const [premise, setPremise] = useState('');
@@ -252,14 +316,24 @@ function StartScreen({
         <p className="mx-auto mt-2 max-w-md text-sm text-[var(--muted)]">
           Forty years after the sea took Saltmire, its church bell has begun to ring again.
         </p>
-        <button
-          onClick={onStart}
-          disabled={busy}
-          className="mt-4 rounded-md px-6 py-3 font-semibold"
-          style={{ background: 'var(--ember)', color: 'var(--ink)' }}
-        >
-          {busy ? 'Crossing…' : 'Begin'}
-        </button>
+        <div className="mt-4 flex justify-center gap-3">
+          <button
+            onClick={onStart}
+            disabled={busy}
+            className="rounded-md px-6 py-3 font-semibold"
+            style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+          >
+            {busy ? 'Crossing…' : 'One-shot'}
+          </button>
+          <button
+            onClick={onStartCampaign}
+            disabled={busy}
+            className="rounded-md border border-[var(--ember)] px-6 py-3 font-semibold"
+            style={{ color: 'var(--ember)' }}
+          >
+            Campaign
+          </button>
+        </div>
       </div>
 
       <div className="rounded-lg border border-[var(--ink-line)] p-4">
@@ -314,6 +388,89 @@ function StartScreen({
       </div>
 
       {error && <p className="text-center text-sm" style={{ color: 'var(--blood)' }}>{error}</p>}
+    </div>
+  );
+}
+
+function RecapScreen({
+  recap,
+  busy,
+  onNextSession,
+}: {
+  recap: Recap;
+  busy: boolean;
+  onNextSession: () => void;
+}) {
+  return (
+    <div className="mt-6 space-y-4">
+      <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">Previously on…</h2>
+      <h3 className="text-xl" style={{ color: 'var(--ember)' }}>
+        {recap.title}
+      </h3>
+      <p className="text-xs text-[var(--muted)]">
+        {recap.sessions} session{recap.sessions === 1 ? '' : 's'} played
+      </p>
+
+      {recap.clocks.length > 0 && (
+        <section>
+          <h4 className="mb-1 text-xs uppercase tracking-widest text-[var(--muted)]">The world moves</h4>
+          {recap.clocks.map((c) => (
+            <div key={c.faction} className="mb-1 text-sm">
+              <span className="font-semibold">{c.faction}</span>{' '}
+              <span className="text-[var(--ember)]">
+                {'●'.repeat(c.filled)}
+                {'○'.repeat(Math.max(0, c.segments - c.filled))}
+              </span>
+              <span className="ml-2 text-xs text-[var(--muted)]">
+                {c.filled >= c.segments ? c.consequence : `when it fills: ${c.consequence}`}
+              </span>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {recap.promises.length > 0 && (
+        <section>
+          <h4 className="mb-1 text-xs uppercase tracking-widest text-[var(--muted)]">Unkept promises</h4>
+          {recap.promises.map((p, i) => (
+            <p key={i} className="text-sm">
+              To {p.to}: {p.description}
+            </p>
+          ))}
+        </section>
+      )}
+
+      {recap.wounds.length > 0 && (
+        <section>
+          <h4 className="mb-1 text-xs uppercase tracking-widest text-[var(--muted)]">Wounds carried</h4>
+          {recap.wounds.map((w, i) => (
+            <p key={i} className="text-sm" style={{ color: 'var(--blood)' }}>
+              {w.character}: {w.description} ({w.severity})
+            </p>
+          ))}
+        </section>
+      )}
+
+      {recap.dispositions.length > 0 && (
+        <section>
+          <h4 className="mb-1 text-xs uppercase tracking-widest text-[var(--muted)]">Standing with the world</h4>
+          {recap.dispositions.map((d, i) => (
+            <p key={i} className="text-sm">
+              {d.npc} — {d.axis} {d.value >= 0 ? '+' : ''}
+              {d.value}
+            </p>
+          ))}
+        </section>
+      )}
+
+      <button
+        onClick={onNextSession}
+        disabled={busy}
+        className="w-full rounded-md p-3 font-semibold"
+        style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+      >
+        {busy ? 'The tide turns…' : 'Next session'}
+      </button>
     </div>
   );
 }

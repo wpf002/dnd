@@ -82,6 +82,17 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
     temperature: 1,
   });
   registry.register({
+    id: 'compaction',
+    provider: 'anthropic',
+    model: 'claude-sonnet-5',
+    system:
+      'You summarize a play session into structured ledger entries. You record only what the ' +
+      'provided turn log supports — no invention, no embellishment. Dispositions, promises, ' +
+      'flags, and wounds; nothing else.',
+    maxTokens: 4096,
+    temperature: 0,
+  });
+  registry.register({
     id: 'generator',
     provider: 'anthropic',
     model: 'claude-opus-5',

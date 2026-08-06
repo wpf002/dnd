@@ -79,7 +79,23 @@ export interface GenerateRequest {
   contentLimits?: string[];
 }
 
+export interface Recap {
+  title: string;
+  sessions: number;
+  lastPlayed?: string;
+  dispositions: { npc: string; axis: string; value: number }[];
+  clocks: { faction: string; filled: number; segments: number; consequence: string }[];
+  promises: { to: string; description: string; status: string }[];
+  wounds: { character: string; description: string; severity: string }[];
+  worldFlags: { flag: string; value: boolean | number | string }[];
+}
+
 export const api = {
+  createCampaign: (adventure?: string, title?: string) =>
+    post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title }),
+  campaignSession: (id: string) => post<{ state: SessionState }>(`/campaign/${id}/session`),
+  endCampaignSession: (id: string) =>
+    post<{ recap: Recap; compaction: string }>(`/campaign/${id}/end-session`),
   start: (adventure?: string) => post<{ state: SessionState }>('/session', { adventure }),
   generate: (req: GenerateRequest) =>
     post<{ state: SessionState; generation: { attempts: number; firstAttemptPassed: boolean } }>(

@@ -29,7 +29,7 @@ const ADVENTURES_DIR = join(here, '..', '..', '..', '..', 'content', 'adventures
 
 export const sessions = new Map<string, GameSession>();
 
-function loadGraph(adventureId: string): unknown {
+export function loadGraph(adventureId: string): unknown {
   // Only kebab-case ids; the path never leaves the adventures directory.
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(adventureId)) {
     throw Object.assign(new Error('invalid adventure id'), { statusCode: 400 });
