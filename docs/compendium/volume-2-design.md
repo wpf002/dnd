@@ -1,6 +1,6 @@
 # D&D FOUNDATIONS COMPENDIUM — VOLUME II: DESIGN
 
-**Project:** Davis → Core References → D&D Foundations Compendium
+**Project:** Flint → Core References → D&D Foundations Compendium
 **Reference ID:** D&D-FND-COD-002
 **Status:** Core Reference Volume
 **Primary Scope:** Worldbuilding, campaign design, narrative architecture, game-design philosophy, cultural impact, thematic construction, and practical setting-development tools.

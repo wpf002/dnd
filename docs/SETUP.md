@@ -64,13 +64,28 @@ pnpm install
 cp .env.example .env
 ```
 
+The API loads this file at boot via Node's built-in `--env-file` support (no
+dotenv dependency) and logs which mode it came up in. Real environment
+variables still win, so `DATABASE_URL=... pnpm dev` and CI-injected secrets
+override it as before.
+
 Fill in `.env`:
 
 - `DATABASE_URL` — defaults to the local SQLite file. Set it (or leave the
   example value) and the API persists sessions/campaigns; unset it and the API
   runs memory-only.
-- `ANTHROPIC_API_KEY` — Flint's primary provider. Not needed until Flint v1.
-- `OPENAI_API_KEY` — secondary; leave empty until Flint v3 routing exists.
+- `ANTHROPIC_API_KEY` — **the one that matters.** Without it every Flint
+  consumer runs its fallback: narration is templated prose from the
+  `Resolution`, intent parsing is a deterministic refusal, and `/generate` and
+  `/benchmark` are unavailable. The engine, linter, persistence, and all four
+  adventures work fully without it — but the AI seam is untested until it's set.
+- `OPENAI_API_KEY` — secondary; leave empty until Flint v3 routing needs it.
+
+On boot the API states which mode it is in:
+
+```
+loaded /path/to/.env   provider: fallback-only
+```
 
 Then verify the parts that don't need a database:
 

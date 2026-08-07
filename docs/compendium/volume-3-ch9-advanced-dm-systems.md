@@ -452,7 +452,7 @@ This becomes the campaign's operational dashboard.
 
 ---
 
-# THE DAVIS ADVANCED PRINCIPLE
+# THE FLINT ADVANCED PRINCIPLE
 
 The larger the campaign becomes, the less the Dungeon Master should attempt to control every detail.
 

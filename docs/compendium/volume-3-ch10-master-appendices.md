@@ -18,7 +18,7 @@
 - IX. Campaign Dashboard
 - X. World-State Tracker
 - XI. Complete Campaign Checklist
-- XII. Davis' Twenty Principles
+- XII. Flint's Twenty Principles
 - XIII. Complete Index
 
 ---
@@ -364,7 +364,7 @@ Responsible Party
 
 ---
 
-# XII. DAVIS' TWENTY PRINCIPLES
+# XII. FLINT'S TWENTY PRINCIPLES
 
 1. Prepare situations, not scripts.
 2. Every important NPC wants something.
@@ -473,7 +473,7 @@ War · Worldbuilding · World-State
 
 ---
 
-# THE DAVIS MASTER DIRECTIVE
+# THE FLINT MASTER DIRECTIVE
 
 The Dungeon Master is not responsible for creating the perfect campaign.
 

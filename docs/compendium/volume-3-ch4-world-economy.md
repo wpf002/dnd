@@ -1672,7 +1672,7 @@ ____________________________________________________________
 
 ---
 
-# DAVIS' ECONOMIC GOLDEN RULE
+# FLINT'S ECONOMIC GOLDEN RULE
 
 Every kingdom rests on something.
 

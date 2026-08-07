@@ -552,7 +552,7 @@ Reality itself.
 
 ---
 
-# DAVIS' COSMOLOGY GOLDEN RULE
+# FLINT'S COSMOLOGY GOLDEN RULE
 
 Players should eventually realize that the universe has rules.
 

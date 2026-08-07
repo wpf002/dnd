@@ -140,7 +140,7 @@ Players understand why adventures matter.
 
 # IV. CAMPAIGN STRUCTURE
 
-## The Davis Four-Tier Structure
+## The Flint Four-Tier Structure
 
 **Tier 1 — Local — Levels 1–4**
 
@@ -491,7 +491,7 @@ History should move forward.
 
 ---
 
-# DAVIS' STORY GOLDEN RULE
+# FLINT'S STORY GOLDEN RULE
 
 Never ask,
 

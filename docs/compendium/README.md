@@ -9,8 +9,6 @@ Project reference corpus. Feeds two consumers:
 
 Volumes are stored verbatim. Do not summarize them in place — prompt assembly
 reads these files directly, and lossy edits degrade generation quality.
-(Note: the volumes' own internal references to "Davis" are part of the
-verbatim source text and are left as written.)
 
 ---
 

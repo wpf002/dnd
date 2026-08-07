@@ -1,11 +1,11 @@
 # D&D FOUNDATIONS COMPENDIUM — VOLUME I: FOUNDATIONS
 
-**Project:** Davis → Core References → D&D Foundations Compendium
+**Project:** Flint → Core References → D&D Foundations Compendium
 **Reference ID:** D&D-FND-COD-001
 **Status:** Core Reference Volume
 **Primary Scope:** History, editions, campaign settings, character systems, pantheons, cosmology, magic, monsters, and foundational game mechanics.
 
-> **Terminology note.** "Davis" throughout this corpus refers to the `davis`
+> **Terminology note.** "Flint" throughout this corpus refers to the `flint`
 > consumer on Flint — a prompt configuration plus an output schema, not a
 > separate system. See `docs/ARCHITECTURE.md`.
 

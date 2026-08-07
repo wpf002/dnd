@@ -133,7 +133,7 @@ describe('broken graph #1 — unreachable content', () => {
     // hall, retreat, and the-end are all cut off
     expect(unreachable.map((e) => e.at).sort()).toEqual(['hall', 'retreat', 'the-end']);
     expect(result.errors.some((e) => e.code === 'ending-unreachable')).toBe(true);
-    // The message names the beat and the entry — Davis-usable text.
+    // The message names the beat and the entry — Flint-usable text.
     expect(unreachable[0]!.message).toContain('unreachable from entry');
   });
 });

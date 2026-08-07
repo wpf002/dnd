@@ -564,7 +564,7 @@ Every encounter should teach something.
 
 ---
 
-# DAVIS' ENCOUNTER GOLDEN RULE
+# FLINT'S ENCOUNTER GOLDEN RULE
 
 The players should remember
 

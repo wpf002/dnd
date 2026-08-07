@@ -5,12 +5,6 @@ for **Flint** (AI seam layer).
 
 Private project. Single user. Not distributed.
 
-> **Terminology.** The campaign generator is the `generator` **consumer on
-> Flint** — a prompt configuration plus an output schema, not a separate
-> system. Older references to "Davis" (including throughout this roadmap's
-> phase names, kept for fidelity to the original document) mean exactly this
-> consumer; the name is retired in code and new writing.
-
 ---
 
 ## The bet, in one paragraph
@@ -55,7 +49,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 0 | Fun test — no code | — | 1 weekend |
 | 1 | Contract + deterministic engine | v1 — call interface, adapters, config registry | 3–4 weeks |
 | 2 | First playable one-shot, end to end | v2 — schema-constrained output, retry policy | 3–4 weeks |
-| 3 | **Davis** — campaign generator | v3 — routing, tiering, telemetry | 3–4 weeks |
+| 3 | **Generation** — campaign generator | v3 — routing, tiering, telemetry | 3–4 weeks |
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion (PDF → beat-graph) | — | open-ended |
 
@@ -154,7 +148,7 @@ replay of any session for debugging.
 - Typed call interface: `flint.call(consumerId, input) → Result`
 - Provider adapters: Anthropic primary, OpenAI stubbed
 - **Per-consumer config registry** — each consumer (`dm-narration`,
-  `npc-dialogue`, `intent-parse`, `davis`) owns its own system block, model
+  `npc-dialogue`, `intent-parse`, `flint`) owns its own system block, model
   choice, and parameters. No shared global voice.
 - Structured error types, not thrown strings
 
@@ -213,7 +207,7 @@ The hard part. Intent parsing must convert arbitrary free text into a valid
 action is worse than an error, because the engine will execute it.
 
 - Zod schema → JSON schema → provider-constrained output
-- Validation-failure feedback loop (used by Davis in Phase 3, built here)
+- Validation-failure feedback loop (used by the generator in Phase 3, built here)
 - **Per-consumer retry policy:**
   - `intent-parse`: **zero retries.** Failure surfaces as in-fiction refusal.
     A silent retry burns 2–3 seconds mid-turn and usually returns the same
@@ -247,21 +241,21 @@ This is the single largest experiential risk in the project.
 
 ---
 
-## Phase 3 — Davis
+## Phase 3 — Generation
 
 **Goal:** content generation becomes the product. This is where a private tool
 stops starving.
 
 The generator is **not** a peer of Flint. It is a prompt configuration plus an output
 schema that runs *on* Flint, and its output passes through the same linter a
-human author's does. Davis inherits the schema, so Davis inherits every rules
-guarantee. That is the entire point of Phase 1 landing first.
+human author's does. The generator inherits the schema, so it inherits every
+rules guarantee. That is the entire point of Phase 1 landing first.
 
 ### Flow
 
 1. User answers 5–6 prompts: tone, setting, length, party level, a premise
    sentence, content limits
-2. Davis emits a 10–16 beat `BeatGraph` JSON
+2. The generator emits a 10–16 beat `BeatGraph` JSON
 3. Linter validates
 4. On failure: retry with linter errors as context, **max 3 attempts**, then
    fail loudly. It's behind a loading screen — latency is free here, unlike
@@ -270,12 +264,12 @@ guarantee. That is the entire point of Phase 1 landing first.
 
 ### Flint v3 — routing and telemetry
 
-- Model routing per consumer (cheap for intent parsing, frontier for Davis and
+- Model routing per consumer (cheap for intent parsing, frontier for the generator and
   scene openers)
 - Prompt caching for campaign bible / system blocks
 - **Telemetry: ndjson call log** — latency, tokens, provider, consumer, outcome
 
-### The Flint benchmark
+### The generation benchmark
 
 **First-attempt linter pass rate is the metric.**
 
@@ -291,7 +285,7 @@ rate, tokens per session.
 
 ### Exit criteria
 
-- Davis produces a playable one-shot from a premise sentence
+- The generator produces a playable one-shot from a premise sentence
 - **First-attempt linter pass rate ≥ 70%**, ≥ 95% within 3 attempts
 - You play a generated one-shot and finish it
 - Blind comparison: you can't reliably tell generated output from *Saltmire*
@@ -373,7 +367,7 @@ sandbox.
 |---|---|---|---|
 | v1 | Typed call interface, provider adapters, per-consumer config registry | Narration needs a seam at all | 1 |
 | v2 | Schema-constrained output, validation-feedback retry, per-consumer retry policy | Intent parsing must fail closed | 2 |
-| v3 | Routing/tiering, prompt caching, ndjson telemetry | Davis needs a scorable benchmark | 3 |
+| v3 | Routing/tiering, prompt caching, ndjson telemetry | The generator needs a scorable benchmark | 3 |
 | v4 | Streaming, structured context compaction | Multi-session ledger | 4 |
 
 ### What Lantern stresses that the rest of the portfolio doesn't
@@ -426,7 +420,7 @@ Falsifiable. Each has a phase.
 | 1 | Solo 45-minute play is actually fun | 0 | Stop. Weekend spent, not months. |
 | 2 | Engine holds < 2% noticeable mechanical error over 200 turns | 1 | The entire differentiation is gone; you're building a chat wrapper. |
 | 3 | Intent parsing fails closed reliably | 2 | Free text becomes a liability; cut to three options only. |
-| 4 | Davis first-attempt linter pass ≥ 70% | 3 | Content engine is you writing graphs by hand. Project starves. |
+| 4 | Generator first-attempt linter pass ≥ 70% | 3 | Content engine is you writing graphs by hand. Project starves. |
 | 5 | A campaign survives three sessions coherently | 4 | Ship one-shots only; drop the ledger. |
 
 ---

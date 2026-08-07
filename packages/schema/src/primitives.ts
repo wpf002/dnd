@@ -11,7 +11,7 @@ import { z } from 'zod';
 // Identifiers
 // ---------------------------------------------------------------------------
 
-/** Stable, human-readable ids. Authored by hand and by Davis, so keep them legible. */
+/** Stable, human-readable ids. Authored by hand and by Flint, so keep them legible. */
 export const Id = z.string().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
   message: 'ids must be lowercase kebab-case',
 });

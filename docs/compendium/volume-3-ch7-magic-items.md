@@ -331,7 +331,7 @@ Or decide it should survive.
 
 ---
 
-# DAVIS' ITEM GOLDEN RULE
+# FLINT'S ITEM GOLDEN RULE
 
 Players should remember where they found an item,
 

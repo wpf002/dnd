@@ -315,8 +315,8 @@ export const GraphMetadata = z.object({
    */
   narrationVoice: z.string().min(1),
   contentLimits: ContentLimits.default({ exclude: [] }),
-  /** `authored` or the Davis run that produced it. */
-  provenance: z.enum(['authored', 'davis', 'ingested']).default('authored'),
+  /** `authored` or the Flint run that produced it. */
+  provenance: z.enum(['authored', 'flint', 'ingested']).default('authored'),
 });
 export type GraphMetadata = z.infer<typeof GraphMetadata>;
 

@@ -27,7 +27,7 @@
 - XI. Running the Table
 - XII. Handling Problems
 - XIII. Campaign Longevity
-- XIV. The Davis Principles
+- XIV. The Flint Principles
 - XV. Dungeon Master Audit
 
 ---
@@ -317,7 +317,7 @@ History should accumulate.
 
 ---
 
-# XIV. THE DAVIS PRINCIPLES
+# XIV. THE FLINT PRINCIPLES
 
 1. Prepare situations, not scripts.
 2. Every important NPC wants something.
@@ -347,7 +347,7 @@ History should accumulate.
 
 ---
 
-# THE DAVIS CODE
+# THE FLINT CODE
 
 A great Dungeon Master does not build the perfect story.
 

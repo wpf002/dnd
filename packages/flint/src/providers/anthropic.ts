@@ -2,6 +2,13 @@ import Anthropic from '@anthropic-ai/sdk';
 import type { ProviderAdapter, ProviderRequest, ProviderResponse } from './types.js';
 
 /**
+ * Above this max_tokens, the SDK requires streaming for a single request.
+ * Kept well under the SDK's own limit so a config bump doesn't silently
+ * reintroduce the failure.
+ */
+const LONG_REQUEST_TOKEN_THRESHOLD = 8192;
+
+/**
  * Anthropic adapter — the primary provider.
  *
  * The credential comes from the environment at call time, server-side only.
@@ -53,13 +60,24 @@ export class AnthropicAdapter implements ProviderAdapter {
         : []),
     ];
 
-    const response = await client.messages.create({
+    const params = {
       model: request.config.model,
       max_tokens: request.config.maxTokens,
       temperature: request.config.temperature,
       system,
       messages: [{ role: 'user', content: request.input }],
-    });
+    } satisfies Anthropic.MessageCreateParamsNonStreaming;
+
+    // The SDK refuses a non-streaming request whose max_tokens implies a
+    // possible runtime over ten minutes — which the `generator` and `ingest`
+    // consumers hit at 32k. Stream those and await the assembled message:
+    // the caller's contract is unchanged (one complete response), and the
+    // long-request guard is satisfied. Below the threshold, the plain call
+    // stays — it is one less moving part on the hot path.
+    const response =
+      request.config.maxTokens > LONG_REQUEST_TOKEN_THRESHOLD
+        ? await client.messages.stream(params).finalMessage()
+        : await client.messages.create(params);
 
     const text = response.content
       .filter((block): block is Anthropic.TextBlock => block.type === 'text')
