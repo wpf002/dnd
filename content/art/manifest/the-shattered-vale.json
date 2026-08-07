@@ -1,0 +1,25 @@
+{
+  "adventure": "the-shattered-vale",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame, then never change them — style consistency across the set depends on it. Suggested register: cold votive light, drowned architecture, teal and bone-white with gold leaf where the divine intrudes. Faces of the gods never depicted, only their geometry.",
+    "seed": null,
+    "note": "Frames are generated offline and hand-curated (ROADMAP Phase 2). Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient, so partial sets are playable."
+  },
+  "slots": [
+    { "slot": "art-null-shrine", "beat": "null-shrine", "brief": "A small windowless stone shrine on a bare plain, ringed by standing markers. Notably, absolutely nothing glows — the only frame in the set with no divine light." },
+    { "slot": "art-sereph-road", "beat": "sereph-road", "brief": "An eastward road across salt flats. A fishing weir stranded miles from any water, tilted, still strung with rotted net." },
+    { "slot": "art-inland-sea", "beat": "drowned-approach", "brief": "An impossibly clear inland sea seen from a bluff. Beneath the surface, an intact city grid — streets, towers, closed doors — with no silt." },
+    { "slot": "art-syndicate-camp", "beat": "syndicate-camp", "brief": "A well-appointed merchant camp on a shoreline: diving apparatus laid out in rows, ledgers under a canvas awning, everything expensive." },
+    { "slot": "art-dawnward-picket", "beat": "dawnward-picket", "brief": "Armoured knights in a cordon across the head of a submerged stair, standing knee-deep in still water, dawn-sigil tabards." },
+    { "slot": "art-seren-breaks", "beat": "seren-breaks", "brief": "A paladin standing motionless in shallow water, helm off, looking at nothing. Others in the frame are still moving; he is not." },
+    { "slot": "art-long-stair", "beat": "the-descent", "brief": "A processional stair descending into deep water, the sea held back in a clean vertical wall on either side by nothing visible." },
+    { "slot": "art-resonance-halls", "beat": "resonance-halls", "brief": "A vast hall of tuned stone and gold-inlaid channels, built for sound. Sealed doors with no handles, keyed to a voice." },
+    { "slot": "art-covenant-ritual", "beat": "covenant-ritual", "brief": "An antechamber mid-ritual: zealots in ash-grey, a half-finished resurrection circle, the geometry visibly going wrong at one edge." },
+    { "slot": "art-heart-chamber", "beat": "heart-chamber", "brief": "A drowned sanctum containing a single suspended fragment — not heart-shaped; a fragment of an organ of judgement, geometric, attentive." },
+    { "slot": "art-convergence", "beat": "the-convergence", "brief": "Three groups entering one chamber from three directions at once — armoured, mercantile, ash-grey — all stopping at the same instant." },
+    { "slot": "art-heart-fragment", "beat": "heart-fragment", "brief": "Close on the fragment, filling the frame, a single small figure silhouetted against it. The light is cold, not warm." },
+    { "slot": "art-ending-archive", "beat": "ending-archive", "brief": "A lone tiefling walking north on a ridge road, three faint layers of afterimage trailing a half-step behind him." },
+    { "slot": "art-ending-drowned", "beat": "ending-drowned", "brief": "The inland sea from the bluff again, now opaque and ordinary. Silt clouding. No city visible. Water behaving normally at last." },
+    { "slot": "art-ending-brokered", "beat": "ending-brokered", "brief": "A handover: the fragment passing between two pairs of hands, only the hands in frame, the giver's already withdrawing." }
+  ]
+}

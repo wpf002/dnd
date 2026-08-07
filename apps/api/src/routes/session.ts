@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { lintGraph } from '@lantern/linter';
@@ -83,6 +83,42 @@ async function respond(outcome: TurnOutcome): Promise<object> {
 }
 
 export function registerSessionRoutes(app: FastifyInstance): void {
+  /**
+   * Every playable adventure. A graph that fails the linter is reported as
+   * unplayable rather than omitted — silently hiding broken content is how you
+   * end up not noticing it broke.
+   */
+  app.get('/adventures', async () => {
+    const adventures = readdirSync(ADVENTURES_DIR)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => {
+        const id = f.replace(/\.json$/, '');
+        try {
+          const g = loadGraph(id) as {
+            metadata: { title: string; premise: string; tone: string[]; partyLevel: number; tier?: string };
+            beats: unknown[];
+            encounters: unknown[];
+          };
+          return {
+            id,
+            playable: true as const,
+            title: g.metadata.title,
+            premise: g.metadata.premise,
+            tone: g.metadata.tone,
+            tier: g.metadata.tier ?? 'local',
+            partyLevel: g.metadata.partyLevel,
+            beats: g.beats.length,
+            encounters: g.encounters.length,
+            endings: (g.beats as Array<{ terminal?: boolean }>).filter((b) => b.terminal).length,
+          };
+        } catch (err) {
+          return { id, playable: false as const, error: (err as Error).message.split('\n')[0] };
+        }
+      })
+      .sort((a, b) => a.id.localeCompare(b.id));
+    return { adventures };
+  });
+
   app.post<{ Body: { adventure?: string } }>('/session', async (request) => {
     const adventureId = request.body?.adventure ?? 'the-bell-at-saltmire';
     const graph = loadGraph(adventureId);

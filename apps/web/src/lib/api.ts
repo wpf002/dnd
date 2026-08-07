@@ -58,6 +58,15 @@ export interface TurnResponse {
   rejected?: { reason: string };
 }
 
+async function get<T>(path: string): Promise<T> {
+  const res = await fetch(`${BASE}${path}`);
+  if (!res.ok) {
+    const detail = (await res.json().catch(() => ({}))) as { error?: string };
+    throw new Error(detail.error ?? `${res.status}`);
+  }
+  return (await res.json()) as T;
+}
+
 async function post<T>(path: string, body?: object): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
     method: 'POST',
@@ -90,7 +99,22 @@ export interface Recap {
   worldFlags: { flag: string; value: boolean | number | string }[];
 }
 
+export interface AdventureSummary {
+  id: string;
+  playable: boolean;
+  title?: string;
+  premise?: string;
+  tone?: string[];
+  tier?: string;
+  partyLevel?: number;
+  beats?: number;
+  encounters?: number;
+  endings?: number;
+  error?: string;
+}
+
 export const api = {
+  adventures: () => get<{ adventures: AdventureSummary[] }>('/adventures'),
   createCampaign: (adventure?: string, title?: string) =>
     post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title }),
   campaignSession: (id: string) => post<{ state: SessionState }>(`/campaign/${id}/session`),

@@ -1,0 +1,634 @@
+{
+  "id": "the-shattered-meridian",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Shattered Meridian — The Absent Month",
+    "premise": "Time stopped for exactly one hour, and when it started again thirty days had been stolen from history — leaving a handful of scarred strangers as the only people who remember a month that officially never happened.",
+    "tone": [
+      "mystery",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 3,
+    "narrationVoice": "Clean, unhurried, faintly wrong. Tense slips where the Scar is close — a sentence that starts in the past and finishes in the future, corrected too late. Never wink at the paradox; the world takes its own impossibility entirely seriously.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Erased identity is the core fear. The Unmade Regent is genuinely sympathetic — a person arguing for their own existence — and must never be played as a sneering schemer. Neither Dawnbound nor Duskhollow is correct."
+    },
+    "provenance": "authored"
+  },
+  "entry": "waking-scarred",
+  "beats": [
+    {
+      "id": "waking-scarred",
+      "kind": "threshold",
+      "title": "Thirty Days Ago Was Yesterday",
+      "prose": "You remember yesterday. Yesterday was the fourteenth. Every calendar, ledger, and gravestone in the city agrees it is now the sixteenth of the following month, and that you have been somewhere for thirty days doing things that people can describe to you in detail. On the inside of your left forearm there is a mark that was not there yesterday, and it is warm.",
+      "art": "art-waking-scarred",
+      "improvBudget": 10,
+      "options": [
+        {
+          "id": "read-the-scar",
+          "label": "Hold still and let the Scar show you what it wants to show you",
+          "target": "the-calendar",
+          "effects": [
+            {
+              "flag": "scar-read",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "find-a-witness",
+          "label": "Find someone who can account for where you were",
+          "target": "the-calendar",
+          "effects": [
+            {
+              "flag": "has-witness",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "check-the-records",
+          "label": "Don't trust anyone's memory, including your own. Go to the registry",
+          "target": "the-calendar"
+        }
+      ]
+    },
+    {
+      "id": "the-calendar",
+      "kind": "discovery",
+      "title": "The Arithmetic of a Missing Month",
+      "prose": "The registry is meticulous and it is lying, though not on purpose. Thirty days of entries exist in a hand that is demonstrably the clerk's, recording events the clerk cannot remember writing. Births, deaths, a treaty signature. Someone was Regent for eleven of those days and the name has been scraped from every line without leaving a gap — the words simply close over the space where it was.",
+      "art": "art-the-calendar",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "trace-the-scraping",
+          "label": "Work out what shape the missing name was",
+          "target": "scar-visions",
+          "effects": [
+            {
+              "flag": "regent-shaped-hole",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "count-the-dead",
+          "label": "Count the deaths. Somebody profited from thirty unwitnessed days",
+          "target": "scar-visions"
+        },
+        {
+          "id": "corroborate",
+          "label": "Put your witness in front of the ledger and watch them disagree with it",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "has-witness"
+          },
+          "target": "scar-visions",
+          "effects": [
+            {
+              "flag": "regent-shaped-hole",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scar-visions",
+      "kind": "decision",
+      "title": "What the Scar Remembers",
+      "prose": "It comes in fragments and none of them are yours: a battle you did not fight, a hand you did not hold, a betrayal committed with your face on it. The visions are not memories of the stolen month. They are memories *from inside* it — from a version of the month that was itself replaced. There are at least two layers under this and you are standing on the top one.",
+      "art": "art-scar-visions",
+      "improvBudget": 11,
+      "options": [
+        {
+          "id": "follow-prophecy",
+          "label": "Follow the vision that hasn't happened yet — go west, to the Dawnbound",
+          "target": "dawnbound-court"
+        },
+        {
+          "id": "follow-memory",
+          "label": "Follow the vision of what was — go east, to Duskhollow",
+          "target": "duskhollow-archive"
+        },
+        {
+          "id": "follow-the-scar",
+          "label": "Follow neither. The Scar itself is pointing at the Meridian",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "scar-read"
+          },
+          "target": "memory-market",
+          "effects": [
+            {
+              "flag": "scar-guided",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dawnbound-court",
+      "kind": "social",
+      "title": "The Court That Lives Ahead",
+      "prose": "Dawnbound protocol is exhausting because everyone here has already had this conversation. They answer questions before you finish them and are visibly irritated when you deviate from a script you have never read. Their Seers knew the hour was coming. They did not stop it, and the reason they give — that a prophecy observed is a prophecy spent — is either profound or the most expensive excuse in history.",
+      "art": "art-dawnbound-court",
+      "improvBudget": 10,
+      "options": [
+        {
+          "id": "petition-seers",
+          "label": "Petition the Seers for what they saw of the missing month",
+          "target": "memory-market",
+          "effects": [
+            {
+              "flag": "dawnbound-favor",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "memory-market"
+          }
+        },
+        {
+          "id": "accuse-the-court",
+          "label": "Accuse them of letting it happen, loudly, in front of the court",
+          "target": "memory-market",
+          "effects": [
+            {
+              "flag": "regent-shaped-hole",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "steal-the-almanac",
+          "label": "Don't ask. Take the Seers' almanac",
+          "target": "memory-market",
+          "requiresCheck": {
+            "ability": "dex",
+            "skill": "sleight-of-hand",
+            "dc": 15,
+            "onFailure": "memory-market"
+          }
+        }
+      ]
+    },
+    {
+      "id": "duskhollow-archive",
+      "kind": "social",
+      "title": "The Archive That Lives Behind",
+      "prose": "Duskhollow keeps everything, which is a religion here rather than a filing policy. They are the only institution on the continent that noticed the month was missing on the day it went, because they are the only one that checks. The Archivist is old, unhurried, and asks whether you would like to know what you did during it — and makes clear that the answer is not obviously yes.",
+      "art": "art-duskhollow-archive",
+      "improvBudget": 10,
+      "options": [
+        {
+          "id": "ask-what-you-did",
+          "label": "Ask. You would rather know",
+          "target": "memory-market",
+          "effects": [
+            {
+              "flag": "duskhollow-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-about-regent",
+          "label": "Don't ask about yourself. Ask who was Regent for eleven days",
+          "target": "memory-market",
+          "effects": [
+            {
+              "flag": "duskhollow-favor",
+              "value": true
+            },
+            {
+              "flag": "regent-shaped-hole",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-to-know",
+          "label": "Refuse. Whatever you did, you did not choose it",
+          "target": "memory-market"
+        }
+      ]
+    },
+    {
+      "id": "memory-market",
+      "kind": "social",
+      "title": "The Market Under the Scar",
+      "prose": "Where the two time-streams grind together, people trade the sediment: an afternoon, a name, the exact feeling of a room you have never entered. It is not metaphor. A day here is a physical commodity with a weight and a price, and the Chronosepters have been buying in bulk for eleven years — which is a fact you can purchase for the cost of one Tuesday you were not using.",
+      "art": "art-memory-market",
+      "improvBudget": 11,
+      "options": [
+        {
+          "id": "buy-a-day",
+          "label": "Sell a day of your own. Buy what they know about the buyers",
+          "target": "scar-crossing",
+          "effects": [
+            {
+              "flag": "bought-a-day",
+              "value": true
+            },
+            {
+              "flag": "regent-named",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "lean-on-a-broker",
+          "label": "Lean on a broker instead of paying",
+          "target": "scar-crossing",
+          "effects": [
+            {
+              "flag": "regent-named",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "intimidation",
+            "dc": 15,
+            "onFailure": "scar-crossing"
+          }
+        },
+        {
+          "id": "watch-the-stalls",
+          "label": "Buy nothing. Watch who the Chronosepters' factor talks to",
+          "target": "scar-crossing",
+          "requiresCheck": {
+            "ability": "wis",
+            "skill": "perception",
+            "dc": 13,
+            "onFailure": "scar-crossing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "scar-crossing",
+      "kind": "hazard",
+      "title": "Crossing the Meridian Scar",
+      "prose": "Inside the Scar the two streams are not reconciled and your body has to pick one per step. Rain falls upward in places. A supply column that was destroyed nine years ago is still burning at the eleven-mile marker, and will be, indefinitely. Anything you drop here you will find again ahead of you, slightly older.",
+      "art": "art-scar-crossing",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "dawnbound-outriders",
+          "label": "Cross behind Dawnbound outriders who already know where the sinkholes are",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "dawnbound-favor"
+          },
+          "target": "chronoseptor-cell"
+        },
+        {
+          "id": "duskhollow-charts",
+          "label": "Cross on Duskhollow's charts of where the Scar used to be",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "duskhollow-favor"
+          },
+          "target": "chronoseptor-cell"
+        },
+        {
+          "id": "walk-it-blind",
+          "label": "Walk it blind and trust the Scar on your arm to know its own",
+          "target": "chronoseptor-cell",
+          "requiresCheck": {
+            "ability": "con",
+            "skill": "survival",
+            "dc": 14,
+            "onFailure": "chronoseptor-cell"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chronoseptor-cell",
+      "kind": "conflict",
+      "title": "The Cell at the Eleven-Mile Marker",
+      "prose": "They are not hiding, because hiding is a use of time and they have opinions about waste. The cell is small, disciplined, and genuinely surprised to see people who remember — which tells you that whatever the theft was for, being remembered was not part of the plan.",
+      "art": "art-chronoseptor-cell",
+      "improvBudget": 6,
+      "encounter": "septor-cell",
+      "options": []
+    },
+    {
+      "id": "stolen-hour",
+      "kind": "puzzle",
+      "title": "The Hour Itself",
+      "prose": "They kept it. The hour the world stopped is in a box the size of a hatbox at the centre of the cell's camp, still running, still stopped — sixty minutes folded closed with a continent inside them. Opening it is how you get to the Absent Month. Opening it is also how the Chronosepters get there, which is presumably why they have not.",
+      "art": "art-stolen-hour",
+      "improvBudget": 11,
+      "options": [
+        {
+          "id": "duskhollow-method",
+          "label": "Open it the Archive's way — slowly, recording everything",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "duskhollow-favor"
+          },
+          "target": "absent-month-gate",
+          "effects": [
+            {
+              "flag": "month-open",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "spend-the-day",
+          "label": "Pay the box in kind — feed it the day you bought at the market",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "bought-a-day"
+          },
+          "target": "absent-month-gate",
+          "effects": [
+            {
+              "flag": "month-open",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "force-it",
+          "label": "Force it and accept whatever the hour does to you on the way through",
+          "target": "absent-month-gate",
+          "effects": [
+            {
+              "flag": "month-open",
+              "value": true
+            },
+            {
+              "flag": "scar-guided",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "int",
+            "skill": "arcana",
+            "dc": 16,
+            "onFailure": "absent-month-gate"
+          }
+        }
+      ]
+    },
+    {
+      "id": "absent-month-gate",
+      "kind": "hazard",
+      "title": "The Threshold of the Absent Month",
+      "prose": "Thirty days folded into a place, and the place has weather and roads and a sky. Everything that happened here happened. Everyone who died here died. The month is not a memory or a projection — it is the intact original, cut out and set aside, still running on its own without anyone to run it for.",
+      "art": "art-absent-gate",
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "set",
+        "flag": "month-open"
+      },
+      "options": [
+        {
+          "id": "walk-your-own-days",
+          "label": "Find where you were and watch yourself do it",
+          "target": "alternate-selves",
+          "effects": [
+            {
+              "flag": "saw-yourself",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "find-the-regent",
+          "label": "Skip your own days. Go straight to the eleven the Regent held",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "regent-named"
+          },
+          "target": "alternate-selves",
+          "effects": [
+            {
+              "flag": "saw-yourself",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-the-seam",
+          "label": "Find the cut — the exact seam where the month was excised",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "regent-shaped-hole"
+          },
+          "target": "alternate-selves"
+        }
+      ]
+    },
+    {
+      "id": "alternate-selves",
+      "kind": "conflict",
+      "title": "The Ones Who Stayed",
+      "prose": "There are versions of you in here who have been living the same thirty days on a loop since the excision, and they have had considerably longer to think about it than you have. They are not hostile on principle. They are hostile because only one set of you can walk out into a month that has room for one set.",
+      "art": "art-alternate-selves",
+      "improvBudget": 7,
+      "encounter": "the-ones-who-stayed",
+      "options": []
+    },
+    {
+      "id": "unmade-regent",
+      "kind": "social",
+      "title": "The Unmade Regent",
+      "prose": "He ruled for eleven days and then was written out so thoroughly that the sentence describing him closed like water. He is not mad and he is not cruel. He is a man making the only argument available to him — that a person erased from history has an absolute right to reclaim it, and that everything alive now is standing on the theft of everything he was. He is, in the narrow terms of the wrong done to him, entirely correct.",
+      "art": "art-unmade-regent",
+      "improvBudget": 13,
+      "entryWhen": {
+        "op": "set",
+        "flag": "saw-yourself"
+      },
+      "options": [
+        {
+          "id": "name-him",
+          "label": "Say his name out loud. Nobody has, in thirty days or a year",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "regent-named"
+          },
+          "target": "the-meridian-choice",
+          "effects": [
+            {
+              "flag": "regent-heard",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "argue-the-cost",
+          "label": "Argue the arithmetic: his restoration erases everyone downstream",
+          "target": "the-meridian-choice",
+          "effects": [
+            {
+              "flag": "regent-heard",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 16,
+            "onFailure": "the-meridian-choice"
+          }
+        },
+        {
+          "id": "show-him-the-scar",
+          "label": "Show him your arm. You are what his restoration is made of",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "scar-guided"
+          },
+          "target": "the-meridian-choice",
+          "effects": [
+            {
+              "flag": "regent-heard",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-meridian-choice",
+      "kind": "climax",
+      "title": "What History Is For",
+      "prose": "The seam is open and it will take one instruction. Put the month back where it was and the world reconciles with thirty days of grief it has not yet had. Let the Regent's timeline overwrite this one and a man stops being a hole in a sentence — at the price of everyone who has lived since. Or cut the month loose entirely, and let thirty days of real people stop existing so that nobody can ever weaponise them again.",
+      "art": "art-meridian-choice",
+      "improvBudget": 14,
+      "entryWhen": {
+        "op": "set",
+        "flag": "regent-heard"
+      },
+      "options": [
+        {
+          "id": "restore",
+          "label": "Restore it. The world is owed its own history, grief included",
+          "target": "ending-restored"
+        },
+        {
+          "id": "rewrite",
+          "label": "Let him have it. He is right about the wrong, whatever it costs",
+          "target": "ending-rewritten"
+        },
+        {
+          "id": "destroy",
+          "label": "Cut it loose. No one should be able to hold a month hostage again",
+          "target": "ending-severed"
+        }
+      ]
+    },
+    {
+      "id": "ending-restored",
+      "kind": "ending",
+      "title": "Ending — The Month Returned",
+      "prose": "Thirty days come back all at once and the continent has to survive them retroactively. People learn on a Tuesday afternoon that they were widowed a month ago. The Treaty of Shadows is signed and broken again inside the same hour. Dawnbound rages that a prophecy has been spent twice; Duskhollow simply files it. The Unmade Regent exists for the length of the restored month and then, exactly on schedule, stops — and this time there are witnesses, and the witnesses remember, and that turns out to be the only thing anyone could actually have given him.",
+      "art": "art-meridian-restored",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-rewritten",
+      "kind": "ending",
+      "title": "Ending — The Regent's Timeline",
+      "prose": "The seam takes his instruction instead of yours. The world does not end; worlds rarely do. It simply becomes a different one, in which a capable and unremarkable man reigned for forty years and died in bed, and in which the war that made half the continent's borders never had a reason to start. Nobody mourns the erased, because in this reading nobody was. Somewhere in the new arrangement there is a person with your name and no scar on their forearm who has never once woken up certain that yesterday was the fourteenth.",
+      "art": "art-meridian-rewritten",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-severed",
+      "kind": "ending",
+      "title": "Ending — Thirty Days Cut Loose",
+      "prose": "You sever the month and it goes wherever severed things go, taking the Regent and the loops and every real person who lived those thirty days with it. The Chronosepters lose the only commodity that mattered. History has a permanent hole in it now, honestly labelled — Duskhollow's archivists start a new register on the first blank page and title it, without irony, *What We Chose Not To Keep*. The scar on your arm goes cold and stays. You are one of maybe nine people alive who know what it cost, and the other eight are not speaking about it either.",
+      "art": "art-meridian-severed",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "septor-cell",
+      "title": "The Chronoseptor Cell",
+      "combatants": [
+        {
+          "id": "septor-adept",
+          "statblock": "hobgoblin",
+          "count": 2
+        },
+        {
+          "id": "septor-warden",
+          "statblock": "animated-armor",
+          "count": 1
+        },
+        {
+          "id": "septor-factor",
+          "statblock": "bandit-captain",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "fog",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "the hatbox at the centre of the camp"
+      },
+      "onVictory": "stolen-hour",
+      "onDefeat": "stolen-hour",
+      "onFlee": "stolen-hour"
+    },
+    {
+      "id": "the-ones-who-stayed",
+      "title": "The Ones Who Stayed",
+      "combatants": [
+        {
+          "id": "looped-self",
+          "statblock": "shadow",
+          "count": 3
+        },
+        {
+          "id": "elder-loop",
+          "statblock": "wight",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "open",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 5
+      },
+      "onVictory": "unmade-regent",
+      "onDefeat": "unmade-regent",
+      "onFlee": "unmade-regent"
+    }
+  ]
+}

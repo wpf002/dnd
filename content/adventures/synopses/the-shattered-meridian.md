@@ -95,6 +95,19 @@ terminal shape as Emberfall's Ember's Heart.
 
 ---
 
+## Playable graph
+
+**[`content/adventures/the-shattered-meridian.json`](../the-shattered-meridian.json)** — linted, art-covered, and play-tested
+end to end. First playable form of a campaign that existed only as a premise. 16 beats to the Absent Month and the three-way choice about history.
+
+Start it from the app's adventure picker, or:
+
+```bash
+curl -X POST localhost:3001/session -H 'content-type: application/json' -d '{"adventure":"the-shattered-meridian"}'
+```
+
+---
+
 ## Engine notes
 
 Inferred. This campaign is unwritten, so these are design constraints for

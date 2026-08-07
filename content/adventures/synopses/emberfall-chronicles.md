@@ -130,6 +130,19 @@ more varied gameplay.
 
 ---
 
+## Playable graph
+
+**[`content/adventures/emberfall-chronicles.json`](../emberfall-chronicles.json)** — linted, art-covered, and play-tested
+end to end. The full arc, 18 beats, 3 encounters, all three endings from the synopsis.
+
+Start it from the app's adventure picker, or:
+
+```bash
+curl -X POST localhost:3001/session -H 'content-type: application/json' -d '{"adventure":"emberfall-chronicles"}'
+```
+
+---
+
 ## Engine notes
 
 These map the synopsis onto Lantern's schema. They are inferred, not authored by

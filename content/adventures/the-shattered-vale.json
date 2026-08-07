@@ -1,0 +1,575 @@
+{
+  "id": "the-shattered-vale",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Shattered Vale — Vhal Sereph",
+    "premise": "Three factions race a stable vessel to a drowned city for the Heart Fragment of a shattered god, and the only person who can carry it is the one it will most certainly consume.",
+    "tone": [
+      "mystery",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Cool, precise, faintly archival — a scholar's register describing something that keeps interrupting. Divine Echoes speak in the second person and in the past tense, as memories do. Nothing is unambiguously good; nobody in this story is lying to themselves less than anyone else.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Possession and loss-of-self are the campaign's central fear — play them as erosion and intrusion, never as body horror. No faction is a strawman: Dawnward, Covenant, and Syndicate each have a defensible reading of the same facts."
+    },
+    "provenance": "authored"
+  },
+  "entry": "null-shrine",
+  "beats": [
+    {
+      "id": "null-shrine",
+      "kind": "threshold",
+      "title": "Leaving the Null Shrine",
+      "prose": "The silence here is manufactured — an old architecture built to make gods inaudible, and it worked. For six days Lucen has been able to hear his own thoughts in his own voice. Resonance holds at five. Stable. Outside the shrine's ring the Echoes will start again, and east of that is a drowned city with a piece of a heart in it.",
+      "art": "art-null-shrine",
+      "improvBudget": 9,
+      "onEntry": [
+        {
+          "flag": "ers",
+          "value": 5
+        }
+      ],
+      "options": [
+        {
+          "id": "hold-the-line",
+          "label": "Leave with resonance where it is. Five is survivable",
+          "target": "sereph-road"
+        },
+        {
+          "id": "open-the-channel",
+          "label": "Let Veyra back in before you go — you will want her eyes down there",
+          "target": "sereph-road",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 7
+            },
+            {
+              "flag": "veyra-listening",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "seal-deeper",
+          "label": "Take the shrine's deeper silence and go in half-deaf",
+          "target": "sereph-road",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sereph-road",
+      "kind": "transit",
+      "title": "The Sereph Road",
+      "prose": "Four days east and the land starts disagreeing with itself — salt flats where there should be pasture, a fishing weir eleven miles from any water. Seren rides ahead and prays where he thinks no one can hear him. Tessa has stopped taking notes, which from her is alarming.",
+      "art": "art-sereph-road",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "talk-to-seren",
+          "label": "Ask Seren what the Dawnward Circle actually taught him about relics",
+          "target": "drowned-approach",
+          "effects": [
+            {
+              "flag": "seren-doubts",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-tessas-work",
+          "label": "Read what Tessa stopped writing down",
+          "target": "drowned-approach",
+          "effects": [
+            {
+              "flag": "tessa-theory",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ride-hard",
+          "label": "Ride hard. Whoever reaches the water first sets the terms",
+          "target": "drowned-approach",
+          "requiresCheck": {
+            "ability": "con",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "drowned-approach"
+          }
+        }
+      ]
+    },
+    {
+      "id": "drowned-approach",
+      "kind": "discovery",
+      "title": "The Inland Sea",
+      "prose": "Vhal Sereph is under ninety feet of water that has no business existing, and the water is clear enough to see the street grid. Towers stand. Doors are shut. Nothing has silted over in four hundred years, which is not how drowned cities behave, and the reason is presumably down there holding its breath.",
+      "art": "art-inland-sea",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "read-the-grid",
+          "label": "Read the street grid from above and find the temple district",
+          "target": "syndicate-camp",
+          "effects": [
+            {
+              "flag": "heart-located",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "veyra-sees",
+          "label": "Let Veyra look through the water for you",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "veyra-listening"
+          },
+          "target": "syndicate-camp",
+          "effects": [
+            {
+              "flag": "heart-located",
+              "value": true
+            },
+            {
+              "flag": "ers",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "id": "walk-the-shore",
+          "label": "Walk the shoreline first and count the camps",
+          "target": "syndicate-camp",
+          "effects": [
+            {
+              "flag": "counted-rivals",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "syndicate-camp",
+      "kind": "social",
+      "title": "The Black Anvil Camp",
+      "prose": "They got here first because they always get anywhere first — Black Anvil runs on advance knowledge and other people's debts. Their factor is polite, well-fed, and entirely honest about the proposition: divine power is going to become a commodity whether or not Lucen approves, and she would rather buy it than fight him for it.",
+      "art": "art-syndicate-camp",
+      "improvBudget": 10,
+      "options": [
+        {
+          "id": "take-the-deal",
+          "label": "Take her diving gear and her maps. Owe her a favour",
+          "target": "dawnward-picket",
+          "effects": [
+            {
+              "flag": "syndicate-debt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "sell-a-lie",
+          "label": "Sell her a fragment she will never be able to collect",
+          "target": "dawnward-picket",
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "deception",
+            "dc": 16,
+            "onFailure": "dawnward-picket"
+          },
+          "visibleWhen": {
+            "op": "set",
+            "flag": "counted-rivals"
+          }
+        },
+        {
+          "id": "walk-past",
+          "label": "Walk past. Owing Black Anvil anything is how people end up owned",
+          "target": "dawnward-picket"
+        }
+      ]
+    },
+    {
+      "id": "dawnward-picket",
+      "kind": "conflict",
+      "title": "The Dawnward Picket",
+      "prose": "The Circle has thrown a cordon around the only intact stair down. Their orders are to protect humanity from relics. Their actual orders, as Seren is about to discover in the worst possible way, are to make sure nobody reaches the Heart before the Circle's own diving team does.",
+      "art": "art-dawnward-picket",
+      "improvBudget": 6,
+      "encounter": "picket-line",
+      "options": []
+    },
+    {
+      "id": "seren-breaks",
+      "kind": "social",
+      "title": "What Seren Heard",
+      "prose": "One of the picket knights knew him by name, and said the quiet part in front of him: that the Circle was never protecting anyone, that the resurrection programme has been running for eleven years, that the order Seren swore to has been rewriting divine history in a cellar in Greyhaven. He does not shout. He just stops, in the shallows, and stands there.",
+      "art": "art-seren-breaks",
+      "improvBudget": 11,
+      "options": [
+        {
+          "id": "let-him-choose",
+          "label": "Say nothing. Let him arrive at it himself",
+          "target": "the-descent",
+          "effects": [
+            {
+              "flag": "seren-doubts",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "give-him-the-truth",
+          "label": "Tell him everything you know, including the parts that damn you",
+          "target": "the-descent",
+          "effects": [
+            {
+              "flag": "seren-doubts",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "keep-him-moving",
+          "label": "Keep him moving. Grieve the order later, the tide is turning",
+          "target": "the-descent"
+        }
+      ]
+    },
+    {
+      "id": "the-descent",
+      "kind": "hazard",
+      "title": "The Long Stair Down",
+      "prose": "Ninety feet, and the water does not behave. It parts around the old processional route the way water parts around nothing at all — held off by a divine architecture that is still, four centuries on, doing its job. The pressure is wrong. The silence is the shrine's silence, which means the shrine was built by the same hands as this.",
+      "art": "art-long-stair",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "syndicate-gear",
+          "label": "Use the Black Anvil gear and go straight down",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "syndicate-debt"
+          },
+          "target": "resonance-halls"
+        },
+        {
+          "id": "follow-processional",
+          "label": "Follow the processional route and trust the architecture",
+          "target": "resonance-halls",
+          "requiresCheck": {
+            "ability": "int",
+            "skill": "religion",
+            "dc": 14,
+            "onFailure": "resonance-halls"
+          }
+        },
+        {
+          "id": "let-echoes-guide",
+          "label": "Let the Echoes navigate. They have been here before",
+          "visibleWhen": {
+            "op": "gte",
+            "flag": "ers",
+            "value": 7
+          },
+          "target": "resonance-halls",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resonance-halls",
+      "kind": "puzzle",
+      "title": "The Resonance Halls",
+      "prose": "The Listening Vault was a receiver. This is the transmitter. Vhal Sereph was where the gods talked to each other, and the halls are still keyed to divine voice — they will open for an Echo and stay shut for a mortal, which is an access-control problem four hundred years old and specifically designed to exclude exactly the sort of person Lucen has become.",
+      "art": "art-resonance-halls",
+      "improvBudget": 10,
+      "options": [
+        {
+          "id": "speak-as-veyra",
+          "label": "Let Veyra speak the opening. Give her your throat for a moment",
+          "visibleWhen": {
+            "op": "gte",
+            "flag": "ers",
+            "value": 7
+          },
+          "target": "covenant-ritual",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 9
+            }
+          ]
+        },
+        {
+          "id": "tessa-forges-voice",
+          "label": "Have Tessa forge a resonance signature from her research",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "tessa-theory"
+          },
+          "target": "covenant-ritual"
+        },
+        {
+          "id": "break-the-door",
+          "label": "It is a four-hundred-year-old door. Break it",
+          "target": "covenant-ritual",
+          "requiresCheck": {
+            "ability": "str",
+            "skill": "athletics",
+            "dc": 15,
+            "onFailure": "covenant-ritual"
+          }
+        }
+      ]
+    },
+    {
+      "id": "covenant-ritual",
+      "kind": "conflict",
+      "title": "The Ashen Covenant",
+      "prose": "They are already in the antechamber and already halfway through, because the Covenant does not scout, negotiate, or wait — they simply arrive and begin. What they are attempting is a full resurrection through an incomplete fragment, which every source Tessa has ever read agrees will not produce a god. It will produce something, though.",
+      "art": "art-covenant-ritual",
+      "improvBudget": 6,
+      "encounter": "ashen-rite",
+      "options": []
+    },
+    {
+      "id": "heart-chamber",
+      "kind": "discovery",
+      "title": "The Heart Chamber",
+      "prose": "It is not a heart and it never was. It is the part of a god that decided things — the organ of judgement, sunk here deliberately by the others in the last hours before the shattering, because they could not agree with it and could not destroy it. It has been alone and awake and deciding, about nothing, for four hundred years. It notices Lucen the way a lighthouse notices a ship.",
+      "art": "art-heart-chamber",
+      "improvBudget": 12,
+      "options": [
+        {
+          "id": "let-it-read-you",
+          "label": "Stand still and let it finish reading you",
+          "target": "the-convergence",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 10
+            }
+          ]
+        },
+        {
+          "id": "bargain",
+          "label": "Speak first. Offer it something before it decides on its own",
+          "target": "the-convergence",
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 17,
+            "onFailure": "the-convergence"
+          }
+        },
+        {
+          "id": "shield-mind",
+          "label": "Shut every Echo down and face it as nothing but a thief from Greyhaven",
+          "target": "the-convergence",
+          "effects": [
+            {
+              "flag": "ers",
+              "value": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-convergence",
+      "kind": "decision",
+      "title": "Everyone Arrives at Once",
+      "prose": "Dawnward's diving team through the processional. Black Anvil down the shaft they cut on the second day. What is left of the Covenant crawling out of their own failed rite. Three factions, one chamber, one fragment, and a stable vessel standing in the middle of it who is the only person here that all three of them need alive.",
+      "art": "art-convergence",
+      "improvBudget": 11,
+      "options": [
+        {
+          "id": "call-the-debt",
+          "label": "Call in Black Anvil against the other two",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "syndicate-debt"
+          },
+          "target": "heart-fragment",
+          "effects": [
+            {
+              "flag": "faction-leverage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "seren-testifies",
+          "label": "Put Seren in front of the Dawnward team and let him say it out loud",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "seren-doubts"
+          },
+          "target": "heart-fragment",
+          "effects": [
+            {
+              "flag": "faction-leverage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-it-and-run",
+          "label": "Take the fragment and let them fight each other over the hole it leaves",
+          "target": "heart-fragment"
+        }
+      ]
+    },
+    {
+      "id": "heart-fragment",
+      "kind": "climax",
+      "title": "The Organ of Judgement",
+      "prose": "Whatever the factions are doing behind him, the decision in front of Lucen is the same one it has always been, only larger. Resonance is where it is. The Heart is offering the same bargain the Shadowglass offered and the Mind Fragment offered, and the only thing that has changed across three fragments is how much of the man doing the accepting is left to consent.",
+      "art": "art-heart-fragment",
+      "improvBudget": 14,
+      "entryWhen": {
+        "op": "set",
+        "flag": "heart-located"
+      },
+      "options": [
+        {
+          "id": "take-the-heart",
+          "label": "Take it. Become the archive the gods have been asking for",
+          "visibleWhen": {
+            "op": "gte",
+            "flag": "ers",
+            "value": 7
+          },
+          "target": "ending-archive"
+        },
+        {
+          "id": "drown-it",
+          "label": "Let the sea back in. Some things should stay decided against",
+          "target": "ending-drowned"
+        },
+        {
+          "id": "give-it-away",
+          "label": "Hand it to a faction and make the choice theirs to answer for",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "faction-leverage"
+          },
+          "target": "ending-brokered"
+        }
+      ]
+    },
+    {
+      "id": "ending-archive",
+      "kind": "ending",
+      "title": "Ending — The Living Archive",
+      "prose": "Three Echoes, one vessel, and a resonance score with no ceiling left above it. Lucen Marr walks out of Vhal Sereph carrying the judgement of a dead god, and for the first eleven days he is entirely himself. The Hollowspire is four hundred miles north and he can already hear it. Tessa records everything, including the moment his handwriting changes. Seren stops calling him by name and starts calling him *you*, the way you address something you are still deciding about.",
+      "art": "art-ending-archive",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-drowned",
+      "kind": "ending",
+      "title": "Ending — Let the Sea Back In",
+      "prose": "He breaks the architecture and ninety feet of held-off water remembers what it is for. The Heart goes down with the chamber, past reach, past salvage, past any diving team the Circle or the Syndicate can field this century. The gods stay shattered. The Vale stays a place where faith is a choice made without proof — which is, Seren says much later and without much comfort, probably what faith was supposed to be.",
+      "art": "art-ending-drowned",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-brokered",
+      "kind": "ending",
+      "title": "Ending — Somebody Else's Hands",
+      "prose": "He gives it away, and the giving is the most honest thing he does all year: he has held two fragments and he knows exactly what the third would cost, and he decides that the cost should be paid by an institution that can be held to account rather than by a man who cannot. Whichever faction takes it, they take the consequences with it. Lucen Marr walks north to the Hollowspire as a witness instead of a vessel, which is a smaller role and the first one he has ever chosen.",
+      "art": "art-ending-brokered",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "picket-line",
+      "title": "The Dawnward Picket",
+      "combatants": [
+        {
+          "id": "picket-knight",
+          "statblock": "hobgoblin",
+          "count": 3
+        },
+        {
+          "id": "picket-captain",
+          "statblock": "bandit-captain",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "water",
+        "difficult",
+        "open"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "seren-breaks",
+      "onDefeat": "seren-breaks",
+      "onFlee": "seren-breaks"
+    },
+    {
+      "id": "ashen-rite",
+      "title": "The Interrupted Rite",
+      "combatants": [
+        {
+          "id": "covenant-zealot",
+          "statblock": "ghast",
+          "count": 2
+        },
+        {
+          "id": "rite-remnant",
+          "statblock": "shadow",
+          "count": 3
+        },
+        {
+          "id": "rite-leader",
+          "statblock": "wight",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 5
+      },
+      "onVictory": "heart-chamber",
+      "onDefeat": "heart-chamber",
+      "onFlee": "heart-chamber"
+    }
+  ]
+}

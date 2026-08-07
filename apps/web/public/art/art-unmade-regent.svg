@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3448"/><stop offset="1" stop-color="#1d1a26"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="57"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="270.34079035464674" width="800" height="179.65920964535326" fill="#15131c"/>
+  <rect y="244.34079035464674" width="800" height="52" fill="#9a90b8" opacity="0.10"/>
+  <rect y="262.34079035464674" width="800" height="16" fill="#9a90b8" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><rect x="52.61191692203283" y="163.50373562425375" width="26" height="241.49626437574625"/><rect x="44.61191692203283" y="151.50373562425375" width="42" height="12"/><rect x="154.23209685832262" y="248.0059238243848" width="26" height="156.9940761756152"/><rect x="146.23209685832262" y="236.0059238243848" width="42" height="12"/><rect x="260.73818020988256" y="143.0515111796558" width="26" height="261.9484888203442"/><rect x="252.73818020988256" y="131.0515111796558" width="42" height="12"/><rect x="386.3993329741061" y="171.9399137981236" width="26" height="233.0600862018764"/><rect x="378.3993329741061" y="159.9399137981236" width="42" height="12"/><rect x="496.49203991983086" y="145.77615905553102" width="26" height="259.223840944469"/><rect x="488.49203991983086" y="133.77615905553102" width="42" height="12"/><rect x="609.9378681648523" y="160.37062310613692" width="26" height="244.62937689386308"/><rect x="601.9378681648523" y="148.37062310613692" width="42" height="12"/><rect x="718.0737274093553" y="248.4388632606715" width="26" height="156.5611367393285"/><rect x="710.0737274093553" y="236.4388632606715" width="42" height="12"/><ellipse cx="230.6065531484783" cy="294.0090514579788" rx="13" ry="15"/><path d="M213.6065531484783 405 L218.6065531484783 306.0090514579788 L242.6065531484783 306.0090514579788 L247.6065531484783 405 Z"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

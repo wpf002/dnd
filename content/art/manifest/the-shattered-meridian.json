@@ -1,0 +1,90 @@
+{
+  "adventure": "the-shattered-meridian",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame, then never change them — style consistency across the set depends on it. Suggested register: pale violet-grey daylight, long shadows falling in two directions at once, edges of objects very slightly doubled. Architectural clarity; the wrongness is always in the light, never in the drawing.",
+    "seed": null,
+    "note": "Frames are generated offline and hand-curated (ROADMAP Phase 2). Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient, so partial sets are playable."
+  },
+  "slots": [
+    {
+      "slot": "art-waking-scarred",
+      "beat": "waking-scarred",
+      "brief": "A plain room at morning, ordinary in every respect. A bare forearm in the foreground bearing a fresh geometric mark. The light comes from two windows that cast shadows at different angles."
+    },
+    {
+      "slot": "art-the-calendar",
+      "beat": "the-calendar",
+      "brief": "A civic registry: ledgers open across a long table, one line in each scraped clean of a name, the surrounding text closed neatly over the gap."
+    },
+    {
+      "slot": "art-scar-visions",
+      "beat": "scar-visions",
+      "brief": "A figure standing still while fragments of unrelated scenes overlay them — a battle, a hand, a doorway — none of them agreeing on light direction."
+    },
+    {
+      "slot": "art-dawnbound-court",
+      "beat": "dawnbound-court",
+      "brief": "A bright formal court where every courtier is mid-gesture toward something that has not happened. Sundials on every surface, all reading slightly ahead."
+    },
+    {
+      "slot": "art-duskhollow-archive",
+      "beat": "duskhollow-archive",
+      "brief": "A colossal archive of stacked record-cases lit by low amber lamps, one very old archivist on a ladder, dust suspended and unmoving."
+    },
+    {
+      "slot": "art-memory-market",
+      "beat": "memory-market",
+      "brief": "A crowded market under a torn violet sky, stalls selling small stoppered containers that hold weather, afternoons, and voices."
+    },
+    {
+      "slot": "art-scar-crossing",
+      "beat": "scar-crossing",
+      "brief": "A blasted corridor of land where rain falls upward in patches and a supply column burns without being consumed. A mile-marker stone at centre."
+    },
+    {
+      "slot": "art-chronoseptor-cell",
+      "beat": "chronoseptor-cell",
+      "brief": "A small disciplined camp in the Scar. Tents in exact rows. At the centre, on a plain table, a closed hatbox that everything is arranged around."
+    },
+    {
+      "slot": "art-stolen-hour",
+      "beat": "stolen-hour",
+      "brief": "The hatbox open a crack, and inside it a whole landscape at the wrong scale — a continent folded into sixty minutes, still running."
+    },
+    {
+      "slot": "art-absent-gate",
+      "beat": "absent-month-gate",
+      "brief": "A threshold standing free in open ground, and through it a completely ordinary sunlit month — roads, weather, a sky — going on without anyone."
+    },
+    {
+      "slot": "art-alternate-selves",
+      "beat": "alternate-selves",
+      "brief": "Figures approaching across a field who are the same figures as the viewer's party, older, worn, and entirely certain."
+    },
+    {
+      "slot": "art-unmade-regent",
+      "beat": "unmade-regent",
+      "brief": "A man in unremarkable state dress in an empty hall, seen clearly, whose reflection in the floor is missing. He is not posing; he is waiting."
+    },
+    {
+      "slot": "art-meridian-choice",
+      "beat": "the-meridian-choice",
+      "brief": "A visible seam in the air across an open landscape, edges of reality on either side not quite matching. Nothing dramatic. Just an unclosed cut."
+    },
+    {
+      "slot": "art-meridian-restored",
+      "beat": "ending-restored",
+      "brief": "A city square in the middle of a normal afternoon where every single person has stopped walking at the same instant."
+    },
+    {
+      "slot": "art-meridian-rewritten",
+      "beat": "ending-rewritten",
+      "brief": "A serene state portrait of an unremarkable elderly ruler who reigned forty years and died in bed. Nothing in the frame is wrong at all."
+    },
+    {
+      "slot": "art-meridian-severed",
+      "beat": "ending-severed",
+      "brief": "A blank first page in a new archive register, quill beside it, the title line written and the rest empty."
+    }
+  ]
+}

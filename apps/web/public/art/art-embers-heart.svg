@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b1d14"/><stop offset="1" stop-color="#140d09"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="87"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="277.1445947550237" width="800" height="172.85540524497628" fill="#0f0a07"/>
+  <rect y="251.14459475502372" width="800" height="52" fill="#c07038" opacity="0.10"/>
+  <rect y="269.1445947550237" width="800" height="16" fill="#c07038" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><circle cx="400" cy="234" r="70" fill="#ff9a3c"/><circle cx="400" cy="234" r="130" fill="#ff9a3c" opacity="0.18"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

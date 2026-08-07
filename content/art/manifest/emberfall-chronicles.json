@@ -1,0 +1,28 @@
+{
+  "adventure": "emberfall-chronicles",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame, then never change them — style consistency across the set depends on it. Suggested register: warm industrial romanticism, soot and brass and ember-orange against cold blue shadow, Victorian foundry scale, glowing metal as the only saturated colour in frame.",
+    "seed": null,
+    "note": "Frames are generated offline and hand-curated (ROADMAP Phase 2). Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient, so partial sets are playable."
+  },
+  "slots": [
+    { "slot": "art-ruined-forge", "beat": "ruined-forge", "brief": "A burned-out village smithy at dusk, roof beams collapsed, anvil split. One coal in the ruined bed still glowing — the only warm light in the frame." },
+    { "slot": "art-emberwatch-road", "beat": "emberwatch-road", "brief": "A cart road at dawn descending toward a distant city under a permanent brown haze. Chimney stacks on the horizon like a second treeline." },
+    { "slot": "art-slag-fields", "beat": "slag-fields", "brief": "Grey tailings heaps stretching to the horizon. Half-buried armour and cast metal standing upright in the slag, wrong-shaped, facing the viewer." },
+    { "slot": "art-emberwatch-gates", "beat": "emberwatch-gates", "brief": "A vast riveted gate in a coal-black curtain wall, queues of workers funnelling through, guild banners heavy with soot." },
+    { "slot": "art-guildhall", "beat": "guildhall", "brief": "A cluttered undercroft workshop lit by a single forge — schematics pinned across every surface, a dwarf artificer's bench in the foreground." },
+    { "slot": "art-tunnels", "beat": "forgotten-tunnels", "brief": "A brick flue tunnel, unlit, heat shimmer distorting the far end. Vent grates in the ceiling glowing faintly orange on a cycle." },
+    { "slot": "art-dawnfire-array", "beat": "dawnfire-array", "brief": "Nine stories of concentric brass focusing rings around a central containment throat. Enormous, beautiful, and pointed downward into the city." },
+    { "slot": "art-evidence-vault", "beat": "evidence-vault", "brief": "A records vault of iron shelving and requisition ledgers, one open on a desk under a shuttered lamp, a signature repeated down the page." },
+    { "slot": "art-varrin", "beat": "varrin", "brief": "A watch captain in half-armour standing very still in a corridor, holding an open folder, reading something she cannot un-read." },
+    { "slot": "art-broadcast-approach", "beat": "broadcast-approach", "brief": "The base of a resonance bell tower at night, seen from the street. Stair windows lit one after another as men climb from the far side." },
+    { "slot": "art-broadcast-tower", "beat": "broadcast-tower", "brief": "Inside the bell-frame: a cottage-sized resonance bell, a narrow spiral stair, and armed men coming up through the gap in the boards." },
+    { "slot": "art-city-chaos", "beat": "city-chaos", "brief": "A packed industrial street in full evacuation, all movement flowing away from the viewer, sky above the manufactory district glowing welding-white." },
+    { "slot": "art-vault-descent", "beat": "vault-descent", "brief": "A stone stair descending past three distinct eras of masonry into warm darkness, the deepest stonework older and unlike the rest." },
+    { "slot": "art-pylons", "beat": "three-pylons", "brief": "Three ancient stone pylons in a triangle around a suspended point of unbearable light, containment field visible as heat distortion." },
+    { "slot": "art-embers-heart", "beat": "embers-heart", "brief": "The Heart of the Skyforge unshielded — a small, patient, self-illuminating thing, far too bright to look at directly, entirely still." },
+    { "slot": "art-ending-unmade", "beat": "ending-unmade", "brief": "A cold city at dawn. Every chimney dark for the first time in centuries. Grey light, clear air, an unlit lamp in the foreground." },
+    { "slot": "art-ending-restored", "beat": "ending-restored", "brief": "The Heart back in its pylons, seen from above through the broken throat of the dismantled Array. Guild seals freshly set on the vault door." },
+    { "slot": "art-ending-living-forge", "beat": "ending-living-forge", "brief": "A lone figure on a road at dusk, seen from behind, faint light visible through the skin of the hands and forearms. A smith's pack on one shoulder." }
+  ]
+}

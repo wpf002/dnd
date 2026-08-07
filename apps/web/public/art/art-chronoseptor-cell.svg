@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e2a24"/><stop offset="1" stop-color="#17150f"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="68"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="234.69555839197713" width="800" height="215.30444160802287" fill="#100e0a"/>
+  <rect y="208.69555839197713" width="800" height="52" fill="#b0a080" opacity="0.10"/>
+  <rect y="226.69555839197713" width="800" height="16" fill="#b0a080" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><path d="M33.52521616499871 273.4667982403189 L88.52521616499871 247.4667982403189 L143.5252161649987 273.4667982403189 Z"/><rect x="39.52521616499871" y="273.4667982403189" width="98" height="176.5332017596811"/><path d="M152.10191561374813 284.29242182616144 L207.10191561374813 258.29242182616144 L262.10191561374813 284.29242182616144 Z"/><rect x="158.10191561374813" y="284.29242182616144" width="98" height="165.70757817383856"/><path d="M285.73241545818746 290.06290919473395 L340.73241545818746 264.06290919473395 L395.73241545818746 290.06290919473395 Z"/><rect x="291.73241545818746" y="290.06290919473395" width="98" height="159.93709080526605"/><path d="M413.1341936439276 264.8268554485403 L468.1341936439276 238.8268554485403 L523.1341936439276 264.8268554485403 Z"/><rect x="419.1341936439276" y="264.8268554485403" width="98" height="185.1731445514597"/><path d="M557.123082280159 264.99233728833497 L612.123082280159 238.99233728833497 L667.123082280159 264.99233728833497 Z"/><rect x="563.123082280159" y="264.99233728833497" width="98" height="185.00766271166503"/><path d="M680.4888330586255 265.85272874543443 L735.4888330586255 239.85272874543443 L790.4888330586255 265.85272874543443 Z"/><rect x="686.4888330586255" y="265.85272874543443" width="98" height="184.14727125456557"/><rect x="352" y="279" width="96" height="45" rx="4"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

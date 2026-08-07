@@ -1,8 +1,15 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Resolution } from '@lantern/schema';
-import { api, type GenerateRequest, type Recap, type SessionState, type TurnResponse } from '../lib/api';
+import {
+  api,
+  type AdventureSummary,
+  type GenerateRequest,
+  type Recap,
+  type SessionState,
+  type TurnResponse,
+} from '../lib/api';
 import { BeatArt } from './BeatArt';
 import { DiceTray } from './DiceTray';
 
@@ -15,6 +22,8 @@ import { DiceTray } from './DiceTray';
 export function Game() {
   const [state, setState] = useState<SessionState | null>(null);
   const [campaignId, setCampaignId] = useState<string | null>(null);
+  // Which adventure this session came from, so 'play again' replays the right one.
+  const [currentAdventure, setCurrentAdventure] = useState<string | null>(null);
   const [recap, setRecap] = useState<Recap | null>(null);
   const [narration, setNarration] = useState<string[]>([]);
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
@@ -43,11 +52,12 @@ export function Game() {
     [applyTurn],
   );
 
-  const start = useCallback(async () => {
+  const start = useCallback(async (adventure: string) => {
     setBusy(true);
     setError(null);
     try {
-      const { state: fresh } = await api.start();
+      const { state: fresh } = await api.start(adventure);
+      setCurrentAdventure(adventure);
       setState(fresh);
       setNarration([]);
       setResolutions([]);
@@ -61,11 +71,12 @@ export function Game() {
     }
   }, []);
 
-  const startCampaign = useCallback(async () => {
+  const startCampaign = useCallback(async (adventure: string) => {
     setBusy(true);
     setError(null);
     try {
-      const { campaign } = await api.createCampaign();
+      const { campaign } = await api.createCampaign(adventure);
+      setCurrentAdventure(adventure);
       setCampaignId(campaign.id);
       const { state: fresh } = await api.campaignSession(campaign.id);
       setState(fresh);
@@ -258,7 +269,11 @@ export function Game() {
               Close the session — write it to the ledger
             </button>
           ) : (
-            <button onClick={start} disabled={busy} className="mt-4 text-sm underline text-[var(--muted)]">
+            <button
+              onClick={() => currentAdventure && void start(currentAdventure)}
+              disabled={busy || !currentAdventure}
+              className="mt-4 text-sm underline text-[var(--muted)]"
+            >
               Play again — different choices this time
             </button>
           )}
@@ -299,36 +314,105 @@ function StartScreen({
 }: {
   busy: boolean;
   error: string | null;
-  onStart: () => void;
-  onStartCampaign: () => void;
+  onStart: (adventure: string) => void;
+  onStartCampaign: (adventure: string) => void;
   onGenerate: (req: GenerateRequest) => void;
 }) {
   const [premise, setPremise] = useState('');
   const [setting, setSetting] = useState('');
   const [tone, setTone] = useState('mystery');
+  const [adventures, setAdventures] = useState<AdventureSummary[] | null>(null);
+  const [picked, setPicked] = useState<string | null>(null);
+
+  // The library is whatever passes the linter on disk — there is no hardcoded
+  // list to drift out of sync with content/adventures/.
+  useEffect(() => {
+    let live = true;
+    api
+      .adventures()
+      .then((r) => {
+        if (!live) return;
+        setAdventures(r.adventures);
+        setPicked(r.adventures.find((a) => a.playable)?.id ?? null);
+      })
+      .catch(() => live && setAdventures([]));
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  const chosen = adventures?.find((a) => a.id === picked);
 
   return (
     <div className="mt-8 space-y-8">
-      <div className="text-center">
-        <h2 className="text-xl" style={{ color: 'var(--ember)' }}>
-          The Bell at Saltmire
-        </h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-[var(--muted)]">
-          Forty years after the sea took Saltmire, its church bell has begun to ring again.
-        </p>
+      <div>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">Adventures</h2>
+
+        {adventures === null && <p className="mt-3 text-sm text-[var(--muted)]">Loading…</p>}
+        {adventures?.length === 0 && (
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            Could not reach the API. Start it with:{' '}
+            <code className="text-[var(--parchment)]">pnpm --filter @lantern/api dev</code>
+          </p>
+        )}
+
+        <ul className="mt-3 space-y-2">
+          {adventures?.map((a) => (
+            <li key={a.id}>
+              <button
+                onClick={() => a.playable && setPicked(a.id)}
+                disabled={!a.playable}
+                className="w-full rounded-lg border p-3 text-left transition-colors disabled:opacity-50"
+                style={{
+                  borderColor: picked === a.id ? 'var(--ember)' : 'var(--ink-line)',
+                  background: picked === a.id ? 'var(--ink-raised)' : 'transparent',
+                }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-semibold" style={{ color: 'var(--ember)' }}>
+                    {a.title ?? a.id}
+                  </span>
+                  {a.playable ? (
+                    <span className="shrink-0 text-xs text-[var(--muted)]">
+                      lvl {a.partyLevel} · {a.beats} beats · {a.endings} endings
+                    </span>
+                  ) : (
+                    <span className="shrink-0 text-xs" style={{ color: 'var(--blood)' }}>
+                      fails the linter
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 text-sm text-[var(--muted)]">{a.premise ?? a.error}</p>
+                {a.tone && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {a.tone.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded border border-[var(--ink-line)] px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-[var(--muted)]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </button>
+            </li>
+          ))}
+        </ul>
+
         <div className="mt-4 flex justify-center gap-3">
           <button
-            onClick={onStart}
-            disabled={busy}
-            className="rounded-md px-6 py-3 font-semibold"
+            onClick={() => picked && onStart(picked)}
+            disabled={busy || !chosen}
+            className="rounded-md px-6 py-3 font-semibold disabled:opacity-40"
             style={{ background: 'var(--ember)', color: 'var(--ink)' }}
           >
-            {busy ? 'Crossing…' : 'One-shot'}
+            {busy ? 'Beginning…' : 'One-shot'}
           </button>
           <button
-            onClick={onStartCampaign}
-            disabled={busy}
-            className="rounded-md border border-[var(--ember)] px-6 py-3 font-semibold"
+            onClick={() => picked && onStartCampaign(picked)}
+            disabled={busy || !chosen}
+            className="rounded-md border border-[var(--ember)] px-6 py-3 font-semibold disabled:opacity-40"
             style={{ color: 'var(--ember)' }}
           >
             Campaign

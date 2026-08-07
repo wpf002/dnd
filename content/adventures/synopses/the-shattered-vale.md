@@ -217,6 +217,19 @@ struggle over the future of creation itself.
 
 ---
 
+## Playable graph
+
+**[`content/adventures/the-shattered-vale.json`](../the-shattered-vale.json)** — linted, art-covered, and play-tested
+end to end. The **next** chapter — Vhal Sereph and the Heart Fragment — picking up exactly where the live campaign stands (Lucen at level 5, ERS 5, stable). Echo Resonance is a real numeric flag the graph gates on.
+
+Start it from the app's adventure picker, or:
+
+```bash
+curl -X POST localhost:3001/session -H 'content-type: application/json' -d '{"adventure":"the-shattered-vale"}'
+```
+
+---
+
 ## Engine notes
 
 Inferred mappings, not source material.

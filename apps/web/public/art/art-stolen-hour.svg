@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e2a24"/><stop offset="1" stop-color="#17150f"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="17"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="234.22699292656037" width="800" height="215.77300707343963" fill="#100e0a"/>
+  <rect y="208.22699292656037" width="800" height="52" fill="#b0a080" opacity="0.10"/>
+  <rect y="226.22699292656037" width="800" height="16" fill="#b0a080" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><rect x="256" y="189" width="288" height="135" rx="6" fill="#e8c880" opacity="0.5"/><rect x="256" y="189" width="288" height="135" rx="6" fill="none" stroke="rgba(6,8,9,0.9)" stroke-width="14"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

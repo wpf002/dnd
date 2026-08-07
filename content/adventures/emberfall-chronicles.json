@@ -1,0 +1,686 @@
+{
+  "id": "emberfall-chronicles",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Emberfall Chronicles: Reforging the First Flame",
+    "premise": "A blacksmith carrying a living ember discovers he is the only soul who can command the shattered Skyforge — and a magistrate is building an engine to weaponize its heart beneath a city of four hundred thousand.",
+    "tone": [
+      "high-adventure",
+      "urban-intrigue"
+    ],
+    "tier": "regional",
+    "partyLevel": 3,
+    "narrationVoice": "Warm, worked metal. Craft vocabulary — quench, temper, anneal, draw. Sentences that build like a bellows and land like a hammer. Respect for labour and the people who do it. The fire is beautiful and it is not safe.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Industrial injury and burns are thematically central; keep them consequential rather than gratuitous. Corven is a true believer, never a sneering villain."
+    },
+    "provenance": "authored"
+  },
+  "entry": "ruined-forge",
+  "beats": [
+    {
+      "id": "ruined-forge",
+      "kind": "threshold",
+      "title": "What the Fire Left",
+      "prose": "The Brinholt forge, three weeks cold. Roof beams down, the anvil cracked clean through — and the coal bed still warm to the palm, which is not how coal works. When Kael reaches into it, the ember answers. It has been answering since the night the forge burned.",
+      "art": "art-ruined-forge",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "listen-to-ember",
+          "label": "Close your hand on the coal and listen",
+          "target": "emberwatch-road",
+          "effects": [
+            {
+              "flag": "ember-heard",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "salvage-tools",
+          "label": "Salvage your father's tools before you go",
+          "target": "emberwatch-road",
+          "effects": [
+            {
+              "flag": "carries-tools",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bar-the-door",
+          "label": "Bank the coal, bar the door, and walk",
+          "target": "emberwatch-road"
+        }
+      ]
+    },
+    {
+      "id": "emberwatch-road",
+      "kind": "transit",
+      "title": "The Emberwatch Road",
+      "prose": "Two days of cart ruts and wagon-song, and the smell changes as you go — woodsmoke, then coke, then the flat metallic taste of a city that never lets its fires out. Lira Vance falls in beside you at a waystone and does not explain herself for six miles.",
+      "art": "art-emberwatch-road",
+      "improvBudget": 7,
+      "options": [
+        {
+          "id": "question-lira",
+          "label": "Ask the ranger what she is actually following",
+          "target": "slag-fields",
+          "effects": [
+            {
+              "flag": "carries-tools",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "walk-in-silence",
+          "label": "Let her keep her reasons and keep walking",
+          "target": "slag-fields"
+        },
+        {
+          "id": "cut-cross-country",
+          "label": "Leave the road — something is pacing you through the brush",
+          "target": "slag-fields",
+          "requiresCheck": {
+            "ability": "wis",
+            "skill": "survival",
+            "dc": 12,
+            "onFailure": "slag-fields"
+          }
+        }
+      ]
+    },
+    {
+      "id": "slag-fields",
+      "kind": "conflict",
+      "title": "The Slag Fields",
+      "prose": "Tailings heaps for a mile, and something moving wrong across them. Forge-creatures: old armour and cast-off metal that the Emberfall woke and never let sleep. They are not hostile so much as unfinished, and they come toward the ember in Kael's chest like filings to a lodestone.",
+      "art": "art-slag-fields",
+      "improvBudget": 6,
+      "encounter": "waking-slag",
+      "options": []
+    },
+    {
+      "id": "emberwatch-gates",
+      "kind": "social",
+      "title": "The Emberwatch Gates",
+      "prose": "Four hundred thousand souls and every one of them downwind of something. The gate-guilds check hands before papers — calluses in the right places get you through faster than a seal does. Durren Stoneveil, foreman, reads Kael's palms in one glance and decides something.",
+      "art": "art-emberwatch-gates",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "show-hands",
+          "label": "Show your hands and claim the trade",
+          "target": "guildhall"
+        },
+        {
+          "id": "ask-about-array",
+          "label": "Ask what the Magistrate is building past the third furnace",
+          "target": "guildhall",
+          "effects": [
+            {
+              "flag": "ember-heard",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "slip-the-gate",
+          "label": "Don't be counted at all — go over the coal wall",
+          "target": "forgotten-tunnels",
+          "requiresCheck": {
+            "ability": "dex",
+            "skill": "acrobatics",
+            "dc": 13,
+            "onFailure": "guildhall"
+          }
+        }
+      ]
+    },
+    {
+      "id": "guildhall",
+      "kind": "social",
+      "title": "The Smiths' Guildhall",
+      "prose": "Tovren Blackbarrel has a workshop in the undercroft and an opinion about everything in it. He has been mapping the Magistrate's requisitions for a year — ore quantities that make no sense for defence, and containment schematics that make sense for nothing else. The guild is split. Some of them want proof before they move.",
+      "art": "art-guildhall",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "rally-guild",
+          "label": "Argue the guild into your corner now, on your word alone",
+          "target": "forgotten-tunnels",
+          "effects": [
+            {
+              "flag": "guild-allied",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 15,
+            "onFailure": "forgotten-tunnels"
+          },
+          "visibleWhen": {
+            "op": "set",
+            "flag": "ember-heard"
+          }
+        },
+        {
+          "id": "take-tovrens-maps",
+          "label": "Take Tovren's requisition maps and find the proof yourself",
+          "target": "forgotten-tunnels",
+          "effects": [
+            {
+              "flag": "has-maps",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warn-and-leave",
+          "label": "Warn them what the ember is and let them decide without you",
+          "target": "forgotten-tunnels"
+        }
+      ]
+    },
+    {
+      "id": "forgotten-tunnels",
+      "kind": "hazard",
+      "title": "The Under-Flues",
+      "prose": "Emberwatch is built on the bones of its own earlier fires. The old flue network runs under the manufactory district — hot, unlit, and vented at intervals that a person who has not memorised them will discover by being cooked. Tovren's maps mark the vent cycles. If you have them.",
+      "art": "art-tunnels",
+      "improvBudget": 7,
+      "options": [
+        {
+          "id": "follow-maps",
+          "label": "Move on Tovren's vent-cycle timings",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "has-maps"
+          },
+          "target": "dawnfire-array",
+          "effects": [
+            {
+              "flag": "carries-tools",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "time-the-vents",
+          "label": "Count the cycles yourself and run them cold",
+          "target": "dawnfire-array",
+          "requiresCheck": {
+            "ability": "int",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "city-chaos"
+          }
+        },
+        {
+          "id": "brute-through",
+          "label": "Take the burns and go straight through",
+          "target": "dawnfire-array",
+          "effects": [
+            {
+              "flag": "ember-heard",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dawnfire-array",
+      "kind": "discovery",
+      "title": "The Dawnfire Array",
+      "prose": "It is the most beautiful thing Kael has ever seen and it is going to kill everyone. Nine stories of focusing rings around a containment throat, and at the centre, held in three ancient pylons that predate the city by an age, the Heart of the Skyforge. Publicly this is a defence works. The tolerances say otherwise: nothing built to defend a city needs a throat pointed inward.",
+      "art": "art-dawnfire-array",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "read-tolerances",
+          "label": "Read the machine the way you'd read a bad weld",
+          "target": "evidence-vault",
+          "effects": [
+            {
+              "flag": "knows-array-fails",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "touch-the-heart",
+          "label": "Let the ember in your chest reach for the Heart",
+          "target": "evidence-vault",
+          "effects": [
+            {
+              "flag": "heart-knows-kael",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "find-the-paperwork",
+          "label": "Machines lie less than ledgers — go find the ledgers",
+          "target": "evidence-vault"
+        }
+      ]
+    },
+    {
+      "id": "evidence-vault",
+      "kind": "decision",
+      "title": "Requisition and Record",
+      "prose": "Project Crucible has a paper trail because it had to be paid for. Corven Talan's own signature, forty times, authorising a containment failure margin he was told in writing was insufficient. He knew. He signed anyway. There is a difference between a liar and a man who has decided the arithmetic is worth it, and the difference is going to matter later.",
+      "art": "art-evidence-vault",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "take-the-ledgers",
+          "label": "Take the originals — the signature is the whole case",
+          "target": "varrin",
+          "effects": [
+            {
+              "flag": "evidence-held",
+              "value": true
+            }
+          ],
+          "visibleWhen": {
+            "op": "set",
+            "flag": "knows-array-fails"
+          }
+        },
+        {
+          "id": "copy-and-leave",
+          "label": "Copy them and leave the originals so no one knows you were here",
+          "target": "varrin",
+          "effects": [
+            {
+              "flag": "evidence-held",
+              "value": true
+            },
+            {
+              "flag": "guild-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "burn-the-vault",
+          "label": "Burn it. Corven can't build what he can't requisition",
+          "target": "city-chaos",
+          "effects": [
+            {
+              "flag": "city-warned",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "varrin",
+      "kind": "social",
+      "title": "Captain Varrin",
+      "prose": "She has twelve years of loyalty to Corven Talan and a folder in her hands that says he signed off on a margin that eats the city. She is not stupid and she is not corrupt, which is worse for her — it means she cannot pretend she has not understood. She asks one question: who else has seen this?",
+      "art": "art-varrin",
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "set",
+        "flag": "evidence-held"
+      },
+      "options": [
+        {
+          "id": "tell-her-truth",
+          "label": "Tell her the truth: almost no one, and that's the problem",
+          "target": "broadcast-approach",
+          "effects": [
+            {
+              "flag": "varrin-turned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bluff-numbers",
+          "label": "Bluff — claim the guild already has copies across the city",
+          "target": "broadcast-approach",
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "deception",
+            "dc": 15,
+            "onFailure": "broadcast-approach"
+          }
+        },
+        {
+          "id": "appeal-to-oath",
+          "label": "Don't argue the evidence — ask what she joined the watch for",
+          "target": "broadcast-approach",
+          "effects": [
+            {
+              "flag": "varrin-turned",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "cha",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "broadcast-approach"
+          }
+        }
+      ]
+    },
+    {
+      "id": "broadcast-approach",
+      "kind": "decision",
+      "title": "Ninety Seconds of Bells",
+      "prose": "Emberwatch talks to itself through resonance bells — every district, every shift change, one signal. Put the ledgers on that signal and four hundred thousand people learn what is under their feet in a minute and a half. The tower is four flights of stair and Corven's household guard are already climbing it from the other side.",
+      "art": "art-broadcast-approach",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "climb-and-hold",
+          "label": "Climb it yourself and hold the stair while the signal goes",
+          "target": "broadcast-tower"
+        },
+        {
+          "id": "guild-relay",
+          "label": "Let the guild run the relay — you go for the Vault now",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "guild-allied"
+          },
+          "target": "vault-descent",
+          "effects": [
+            {
+              "flag": "city-warned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "varrin-holds",
+          "label": "Varrin's watch takes the tower. You have one job left",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "varrin-turned"
+          },
+          "target": "vault-descent",
+          "effects": [
+            {
+              "flag": "city-warned",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "broadcast-tower",
+      "kind": "conflict",
+      "title": "The Bell-Signal Tower",
+      "prose": "Four flights, a bell-frame the size of a cottage, and men on the stair who have been told that the man with the burned hands is a saboteur. They believe it. That is the part Corven is genuinely good at.",
+      "art": "art-broadcast-tower",
+      "improvBudget": 6,
+      "encounter": "tower-guard",
+      "options": []
+    },
+    {
+      "id": "city-chaos",
+      "kind": "transit",
+      "title": "Emberwatch Comes Apart",
+      "prose": "Whatever you did or failed to do, the city knows now — through the bells, through rumour, or through the simple fact that the Array has started its warming cycle and the sky over the manufactory district has gone the colour of a forge at welding heat. Everyone is running. Kael is the only person in Emberwatch running toward it.",
+      "art": "art-city-chaos",
+      "improvBudget": 8,
+      "options": [
+        {
+          "id": "against-the-crowd",
+          "label": "Push against the crowd to the Vault stair",
+          "target": "vault-descent"
+        },
+        {
+          "id": "shepherd-out",
+          "label": "Spend the minutes clearing people out of the blast throat first",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "city-warned"
+          },
+          "target": "vault-descent",
+          "effects": [
+            {
+              "flag": "heart-knows-kael",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "find-companions",
+          "label": "Find Lira and Tovren — you are not doing the last part alone",
+          "target": "vault-descent",
+          "effects": [
+            {
+              "flag": "knows-array-fails",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vault-descent",
+      "kind": "hazard",
+      "title": "The Vault Stair",
+      "prose": "Down past the foundations, past the older foundations, to stonework no guild laid. The stair is warm. The Array's warming cycle is pulling heat down the throat instead of up it — which is exactly the failure mode Corven was warned about in writing, and exactly the one he initialled.",
+      "art": "art-vault-descent",
+      "improvBudget": 7,
+      "encounter": "vault-wardens",
+      "options": []
+    },
+    {
+      "id": "three-pylons",
+      "kind": "puzzle",
+      "title": "The Three Containments",
+      "prose": "Three pylons, older than Emberwatch, holding the Heart in a field that has kept it stable since the Emberfall. Corven's engineers spent two years learning to weaken them on command. Kael has to finish that job to free the Heart — and freeing the Heart is the only way to stop the Array from firing. The arithmetic is not comfortable. It was never going to be.",
+      "art": "art-pylons",
+      "improvBudget": 9,
+      "options": [
+        {
+          "id": "tovren-sequence",
+          "label": "Run Tovren's disable sequence in reverse order",
+          "target": "embers-heart",
+          "effects": [
+            {
+              "flag": "pylons-down",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ember-asks",
+          "label": "Let the ember ask the pylons to let go — they were forge-made too",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "heart-knows-kael"
+          },
+          "target": "embers-heart",
+          "effects": [
+            {
+              "flag": "pylons-down",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "hammer-work",
+          "label": "No cleverness. Hammer, anvil-sense, and your father's tools",
+          "target": "embers-heart",
+          "effects": [
+            {
+              "flag": "pylons-down",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "str",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "embers-heart"
+          },
+          "visibleWhen": {
+            "op": "set",
+            "flag": "carries-tools"
+          }
+        }
+      ]
+    },
+    {
+      "id": "embers-heart",
+      "kind": "climax",
+      "title": "The Heart of the Skyforge",
+      "prose": "It is awake and it is aware and it has been alone since the world was young. It does not threaten. It offers — the way a forge offers, which is to say completely, and without any promise that you survive the offering. Above, the Array is at three-quarter cycle. Kael has the time it takes to decide and not one breath more.",
+      "art": "art-embers-heart",
+      "improvBudget": 12,
+      "entryWhen": {
+        "op": "set",
+        "flag": "pylons-down"
+      },
+      "options": [
+        {
+          "id": "destroy-it",
+          "label": "End it. No one should hold this — not Corven, not you",
+          "target": "ending-unmade"
+        },
+        {
+          "id": "restore-it",
+          "label": "Give it back to the city. Let Emberwatch decide what it is for",
+          "target": "ending-restored"
+        },
+        {
+          "id": "become-it",
+          "label": "Take it into yourself and carry it beyond anyone's reach",
+          "target": "ending-living-forge"
+        }
+      ]
+    },
+    {
+      "id": "ending-unmade",
+      "kind": "ending",
+      "title": "Ending — The Ember Unmade",
+      "prose": "The first fire goes out. It takes the Array with it, and Project Crucible, and every enchantment in Emberwatch older than the Emberfall — the lift-engines, the sealed furnaces, the lamps that had burned since the founding. Four hundred thousand people live. The city that survives is poorer, colder, and entirely mortal. Kael Brinholt is a blacksmith with ordinary hands who will never be able to explain what he gave up on their behalf, and who will spend a long time deciding whether that is a mercy.",
+      "art": "art-ending-unmade",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-restored",
+      "kind": "ending",
+      "title": "Ending — The Heart Returned",
+      "prose": "Kael puts the Heart back into the pylons and breaks the Array's throat instead. Emberwatch keeps its first fire, its lift-engines, its sealed furnaces — and keeps, too, the thing Corven Talan wanted, sitting under the city where the next ambitious man will eventually find it. The guilds swear oaths about stewardship. Oaths are cheap and the Heart is patient. It has outlasted better promises than these.",
+      "art": "art-ending-restored",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    },
+    {
+      "id": "ending-living-forge",
+      "kind": "ending",
+      "title": "Ending — The Living Forge",
+      "prose": "He chooses sacrifice over certainty, and the fusion does not kill him — which is not the same as saying he survives it. The Array goes dark. Corven's conspiracy collapses under the weight of his own signature. Emberwatch rebuilds under its craftsmen instead of its magistrates. And somewhere on the roads west there is a smith whose veins glow faintly through the skin, whose touch closes a cracked blade like a wound, and whose heartbeat keeps the rhythm of the first forge that ever burned.",
+      "art": "art-ending-living-forge",
+      "improvBudget": 4,
+      "terminal": true,
+      "options": []
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "waking-slag",
+      "title": "The Waking Slag",
+      "combatants": [
+        {
+          "id": "slag-hulk",
+          "statblock": "animated-armor",
+          "count": 1
+        },
+        {
+          "id": "slag-swarm",
+          "statblock": "kobold",
+          "count": 3
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "emberwatch-gates",
+      "onDefeat": "emberwatch-gates",
+      "onFlee": "emberwatch-gates"
+    },
+    {
+      "id": "tower-guard",
+      "title": "Corven's Household Guard",
+      "combatants": [
+        {
+          "id": "guard-captain",
+          "statblock": "bandit-captain",
+          "count": 1
+        },
+        {
+          "id": "guards",
+          "statblock": "bandit",
+          "count": 3
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "city-chaos",
+      "onDefeat": "city-chaos",
+      "onFlee": "city-chaos"
+    },
+    {
+      "id": "vault-wardens",
+      "title": "The Forge-Wardens",
+      "combatants": [
+        {
+          "id": "warden-pair",
+          "statblock": "animated-armor",
+          "count": 2
+        },
+        {
+          "id": "warden-hulk",
+          "statblock": "ogre",
+          "count": 1
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "the pylon floor"
+      },
+      "onVictory": "three-pylons",
+      "onDefeat": "three-pylons",
+      "onFlee": "three-pylons"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123038"/><stop offset="1" stop-color="#07171c"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="25"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="231.71200548671183" width="800" height="218.28799451328817" fill="#051014"/>
+  <rect y="205.71200548671183" width="800" height="52" fill="#4fa8b8" opacity="0.10"/>
+  <rect y="223.71200548671183" width="800" height="16" fill="#4fa8b8" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><rect x="42.9414398688823" y="194.1211111843586" width="26" height="210.8788888156414"/><rect x="34.9414398688823" y="182.1211111843586" width="42" height="12"/><rect x="152.13479849509895" y="237.74377168156207" width="26" height="167.25622831843793"/><rect x="144.13479849509895" y="225.74377168156207" width="42" height="12"/><rect x="266.6335303010419" y="175.12058570981026" width="26" height="229.87941429018974"/><rect x="258.6335303010419" y="163.12058570981026" width="42" height="12"/><rect x="384.69013065099716" y="163.49383014254272" width="26" height="241.50616985745728"/><rect x="376.69013065099716" y="151.49383014254272" width="42" height="12"/><rect x="485.8086088206619" y="169.01246080175042" width="26" height="235.98753919824958"/><rect x="477.8086088206619" y="157.01246080175042" width="42" height="12"/><rect x="590.5819193879142" y="189.08142993226647" width="26" height="215.91857006773353"/><rect x="582.5819193879142" y="177.08142993226647" width="42" height="12"/><rect x="708.8942554127425" y="138.49162202328444" width="26" height="266.50837797671556"/><rect x="700.8942554127425" y="126.49162202328444" width="42" height="12"/><rect x="304" y="135" width="192" height="270" fill="#e8d08a" opacity="0.55"/>
+   <path d="M280 414 L280 135 L304 108 L496 108 L520 135 L520 414 Z" fill="none" stroke="rgba(6,8,9,0.92)" stroke-width="26"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>
