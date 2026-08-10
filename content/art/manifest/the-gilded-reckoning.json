@@ -1,0 +1,90 @@
+{
+  "adventure": "the-gilded-reckoning",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-gilded-reckoning-arrival-solmere",
+      "beat": "arrival-at-solmere",
+      "brief": "Arrival at Solmere — Golden spires catch the morning sun over Solmere, kingdom of orchards and open markets. But the temple bell, meant to ring once at dawn, tolls seven t"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-cracked-bell",
+      "beat": "the-cracked-bell",
+      "brief": "The Cracked Bell — Up close, the bell's fracture reveals faint runes scratched from the inside, as if something had clawed to be heard through bronze."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-archivist-warning",
+      "beat": "archivists-warning",
+      "brief": "The Archivist's Warning — Royal archivist Yselle meets you in a room of half-burned scrolls. She speaks of Ashvale, a village erased from every map two centuries ago, and begs "
+    },
+    {
+      "slot": "art-the-gilded-reckoning-old-quarter",
+      "beat": "into-the-old-quarter",
+      "brief": "Into the Old Quarter — Narrow lanes wind between shuttered houses. Residents cross themselves and mention a sealed crypt, a boarded chapel, and a palace that has never once "
+    },
+    {
+      "slot": "art-the-gilded-reckoning-crypt-door",
+      "beat": "sealed-crypt-door",
+      "brief": "The Sealed Crypt Door — Ward-stones ring the crypt door, etched with a riddle in an older tongue: names for names, a life for a life."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-massacre-ledger",
+      "beat": "massacre-ledger",
+      "brief": "The Massacre Ledger — Beneath dust and cobwebs lies a ledger in the old regent's hand: an order to burn Ashvale and its people for the land beneath it, dated two hundred ye"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-skeletal-watch",
+      "beat": "skeletal-watch",
+      "brief": "The Skeletal Watch — Bones rattle upright from alcoves in the crypt walls, the ancient wardens of Ashvale's forgotten dead, roused by your trespass."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-confront-choice",
+      "beat": "confront-choice",
+      "brief": "Who to Confront — With the truth of Ashvale weighing on you, you must decide who in Solmere deserves to hear it first: the regent who profits from the silence, the prie"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-regents-confession",
+      "beat": "regents-confession",
+      "brief": "The Regent's Confession — Cornered, Aldric admits his ancestors' crime and reveals a weeping vault beneath the palace where Ashvale's true remains still lie unburied."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-hollow-choir",
+      "beat": "hollow-choir",
+      "brief": "The Hollow Choir — A mournful chorus rises from the shrine's shadows, spectral voices of Ashvale's dead demanding to be heard before they let anyone pass."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-weeping-vault",
+      "beat": "weeping-vault",
+      "brief": "The Weeping Vault — Beneath the palace, water drips like tears down walls stacked with unmarked bones. The floor groans, unstable and ancient, as something vast stirs dee"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-unquiet-king",
+      "beat": "unquiet-king",
+      "brief": "The Unquiet King — At the vault's heart rises a crowned wight, the last lord of Ashvale, bound in chains of old grief and older rage, flanked by bone-picked guardsmen st"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-final-reckoning",
+      "beat": "final-reckoning",
+      "brief": "The Final Reckoning — With the Unquiet King's rage spent or unspent, and the truth in hand or ash, Solmere waits to learn what you will do with its unquiet past."
+    },
+    {
+      "slot": "art-the-gilded-reckoning-ending-truth",
+      "beat": "ending-truth-revealed",
+      "brief": "The Truth Revealed — The ledger is read aloud from the palace steps. Solmere reels, then rebuilds itself on honesty rather than gilded silence, Ashvale's name restored to "
+    },
+    {
+      "slot": "art-the-gilded-reckoning-ending-buried",
+      "beat": "ending-buried-again",
+      "brief": "A Kingdom's Quiet — The crown makes its reparations in secret, coin and land quietly redirected to Ashvale's scattered descendants. Solmere shines on, its past folded onc"
+    },
+    {
+      "slot": "art-the-gilded-reckoning-ending-ashes",
+      "beat": "ending-ashes-absolution",
+      "brief": "Ashes and Absolution — The vault collapses as the last rites are spoken, burying ledger, bones, and crowned wight together. Solmere never learns the whole truth, but the wee"
+    }
+  ]
+}

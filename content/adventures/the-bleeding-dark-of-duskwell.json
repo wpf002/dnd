@@ -1,0 +1,719 @@
+{
+  "id": "the-bleeding-dark-of-duskwell",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Bleeding Dark of Duskwell",
+    "premise": "In the gaslit city of Duskwell, the streetlamps have begun to weep thin rivulets of living dark, and everyone who witnesses it vanishes by morning. Beneath the cobbles lies a truth the city was built to keep buried: Duskwell was never founded upon the earth at all.",
+    "tone": [
+      "cosmic-horror",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, atmospheric second-person noir investigator, dripping with dread and dry gallows humor.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "All missing or endangered persons referenced in this adventure are adults."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-summons",
+  "beats": [
+    {
+      "id": "the-summons",
+      "kind": "threshold",
+      "title": "A Commission in Ash and Gaslight",
+      "prose": "A trembling clerk hires you to look into the lamp on Coyle Street that bled black ichor last night. A passerby, Tobias Rane, hasn't been seen since. The gaslight hisses overhead, ordinary and watching.",
+      "readAloud": "The lamp on the corner gutters, and for a heartbeat its glow looks less like light than like a wound trying to close.",
+      "art": "art-the-bleeding-dark-of-duskwell-the-summons-art",
+      "options": [
+        {
+          "id": "go-alley-scene",
+          "label": "Go examine the bleeding lamp on Coyle Street",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "alley-scene",
+          "effects": []
+        },
+        {
+          "id": "go-guild-hall",
+          "label": "Visit the Lamplighters' Guild Hall for answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guild-hall",
+          "effects": []
+        },
+        {
+          "id": "go-ashgrove",
+          "label": "Seek out your informant, Mrs. Ashgrove",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashgrove-shop",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "alley-scene",
+      "kind": "discovery",
+      "title": "The Weeping Lamp",
+      "prose": "Black ichor threads down the lamppost and pools in a chalk outline where Tobias Rane last stood. It smells of hot iron and forgetting. A baker across the street won't stop staring at the spot.",
+      "art": "art-the-bleeding-dark-of-duskwell-alley-scene-art",
+      "options": [
+        {
+          "id": "examine-residue",
+          "label": "Examine the residue with a trained eye",
+          "target": "guild-hall",
+          "effects": [
+            {
+              "flag": "found-residue",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "alley-scene"
+          }
+        },
+        {
+          "id": "interview-witness",
+          "label": "Interview the baker who saw it happen",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashgrove-shop",
+          "effects": []
+        },
+        {
+          "id": "move-on",
+          "label": "Move on before the Watch arrives",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guild-hall",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guild-hall",
+      "kind": "social",
+      "title": "The Lamplighters' Guild Hall",
+      "prose": "Guildmaster Nissa Vray receives you amid humming sconces, her smile too even. Every lamp in the hall burns with the same patient, unblinking light.",
+      "art": "art-the-bleeding-dark-of-duskwell-guild-hall-art",
+      "options": [
+        {
+          "id": "demand-records",
+          "label": "Demand access to the ritual maintenance records",
+          "target": "undercroft-entrance",
+          "effects": [
+            {
+              "flag": "learned-ritual",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "guild-hall"
+          }
+        },
+        {
+          "id": "visit-ashgrove-from-guild",
+          "label": "Leave for Mrs. Ashgrove's shop",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashgrove-shop",
+          "effects": []
+        },
+        {
+          "id": "return-alley-from-guild",
+          "label": "Return to the alley for a second look",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "alley-scene",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashgrove-shop",
+      "kind": "social",
+      "title": "Ashgrove's Curiosities",
+      "prose": "Mrs. Ashgrove trades in secrets and stranger things. She sets down a jar of something that isn't quite ink and murmurs the word 'Undercroft,' beneath the old gasworks.",
+      "art": "art-the-bleeding-dark-of-duskwell-ashgrove-shop-art",
+      "options": [
+        {
+          "id": "press-ashgrove",
+          "label": "Press her for the names of her sources",
+          "target": "undercroft-entrance",
+          "effects": [
+            {
+              "flag": "has-ashgrove-lead",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 13,
+            "onFailure": "ashgrove-shop"
+          }
+        },
+        {
+          "id": "visit-guild-from-ashgrove",
+          "label": "Head to the Lamplighters' Guild Hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guild-hall",
+          "effects": []
+        },
+        {
+          "id": "return-alley-from-ashgrove",
+          "label": "Return to the alley for a second look",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "alley-scene",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undercroft-entrance",
+      "kind": "threshold",
+      "title": "The Gasworks Undercroft",
+      "prose": "A rusted grate beneath the old gasworks. Wardstones ring the opening, scratched with sigils older than the guild itself, and black seep glistens at the threshold like a fresh scab.",
+      "art": "art-the-bleeding-dark-of-duskwell-undercroft-entrance-art",
+      "options": [
+        {
+          "id": "descend-tunnels",
+          "label": "Descend into the tunnels",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "undercroft-tunnels",
+          "effects": []
+        },
+        {
+          "id": "study-wards",
+          "label": "Study the entrance wardstones first",
+          "target": "undercroft-tunnels",
+          "effects": [
+            {
+              "flag": "understood-wards",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 14,
+            "onFailure": "undercroft-tunnels"
+          }
+        },
+        {
+          "id": "report-nightwatch",
+          "label": "Turn back and report your suspicions to the Nightwatch Captain",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "nightwatch-report",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undercroft-tunnels",
+      "kind": "hazard",
+      "title": "Tunnels That Remember Nothing",
+      "prose": "Ichor drips from cracks that shouldn't exist. The gas-lamps here burn low and reluctant, and something in the dark keeps almost the shape of a person.",
+      "art": "art-the-bleeding-dark-of-duskwell-undercroft-tunnels-art",
+      "options": [
+        {
+          "id": "use-wards-knowledge",
+          "label": "Use your knowledge of the wardstones to slip past unseen",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "understood-wards",
+            "value": true
+          },
+          "target": "the-vault",
+          "effects": []
+        },
+        {
+          "id": "push-through",
+          "label": "Push forward and confront whatever waits",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shadow-encounter",
+          "effects": []
+        },
+        {
+          "id": "sneak-past",
+          "label": "Try to sneak past the gathering shadows",
+          "target": "the-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "shadow-encounter"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shadow-encounter",
+      "kind": "conflict",
+      "title": "Where the Gaslight Fails",
+      "prose": "Shadows peel themselves off the tunnel walls, hungry and cold, and reach for the warmth of your name.",
+      "art": "art-the-bleeding-dark-of-duskwell-shadow-encounter-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "shadow-swarm",
+      "terminal": false
+    },
+    {
+      "id": "the-vault",
+      "kind": "discovery",
+      "title": "The Vault Beneath the Skin of the World",
+      "prose": "The walls here are not stone but something that pulses, warm and veined with black. An altar is carved with thousands of names, and you understand, all at once and without wanting to, what Duskwell's streets actually are: scars, drawn on the hide of something vast and dreaming, bound in gaslight woven from forgotten names. No mortal was meant to hold this thought and keep it.",
+      "readAloud": "You feel the fact settle into you like a splinter of glass too deep to remove: the city is not built upon the world. The city is a wound in something else, and you are standing inside it.",
+      "art": "art-the-bleeding-dark-of-duskwell-the-vault-art",
+      "options": [
+        {
+          "id": "search-ledger",
+          "label": "Search for the ritual ledger naming the missing",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "found-residue",
+                "value": true
+              }
+            ]
+          },
+          "target": "vale-confrontation",
+          "effects": [
+            {
+              "flag": "found-ledger",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "the-vault"
+          }
+        },
+        {
+          "id": "touch-wall",
+          "label": "Touch the weeping wall to glimpse the truth firsthand",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "learned-ritual",
+                "value": true
+              }
+            ]
+          },
+          "target": "vale-confrontation",
+          "effects": [
+            {
+              "flag": "touched-wall",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-vault",
+          "label": "Leave without disturbing anything further",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vale-confrontation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-truth",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vale-confrontation",
+      "kind": "social",
+      "title": "Dr. Corvin Vale, Keeper of the Ledger",
+      "prose": "A guild scholar steps from behind the altar, unsurprised to see you. Dr. Corvin Vale explains, almost gently, that he has been feeding the Dreamer Beneath more than names — feeding it people — to hasten something he calls an awakening worth the cost.",
+      "art": "art-the-bleeding-dark-of-duskwell-vale-confrontation-art",
+      "options": [
+        {
+          "id": "confront-with-ledger",
+          "label": "Confront Vale with the ledger's evidence",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "found-ledger",
+                "value": true
+              }
+            ]
+          },
+          "target": "ghoul-encounter",
+          "effects": [
+            {
+              "flag": "vale-hostile",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "persuade-vale",
+          "label": "Try to reason with Vale, appeal to the greater good",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "has-ashgrove-lead",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-choice",
+          "effects": [
+            {
+              "flag": "vale-allied",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "ghoul-encounter"
+          }
+        },
+        {
+          "id": "attack-vale",
+          "label": "Attack before he can summon his guardians",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ghoul-encounter",
+          "effects": [
+            {
+              "flag": "vale-hostile",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghoul-encounter",
+      "kind": "conflict",
+      "title": "Vale's Guardians",
+      "prose": "Alcoves in the pulsing wall crack open. Two ghouls unfold from niches of dried ichor, and a suit of armor rattles upright with no one inside it.",
+      "art": "art-the-bleeding-dark-of-duskwell-ghoul-encounter-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vale-guardians",
+      "terminal": false
+    },
+    {
+      "id": "the-choice",
+      "kind": "decision",
+      "title": "What the City Deserves",
+      "prose": "The Dreamer Beneath's wound still bleeds, and you alone hold the whole shape of the truth. Vale, alive or dead or won over, is no longer the only question. What do you do with what you know?",
+      "art": "art-the-bleeding-dark-of-duskwell-the-choice-art",
+      "options": [
+        {
+          "id": "choose-seal",
+          "label": "Seal the wound with the old ritual, and let the city forget again",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "vale-hostile",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-seal",
+          "effects": []
+        },
+        {
+          "id": "choose-feed",
+          "label": "Work with Vale to feed the entity properly and stop the bleed",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vale-allied",
+            "value": true
+          },
+          "target": "ending-feed",
+          "effects": []
+        },
+        {
+          "id": "choose-expose",
+          "label": "Expose the truth to the city, whatever the cost",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-truth",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "touched-wall",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-expose",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-seal",
+      "kind": "ending",
+      "title": "The Second Forgetting",
+      "prose": "You perform the old rite. The wound closes, the lamps burn even again, and Duskwell forgets it ever bled. Only you remember the shape of the thing beneath the streets — and it, perhaps, remembers you.",
+      "readAloud": "The city sleeps soundly tonight. You do not.",
+      "art": "art-the-bleeding-dark-of-duskwell-ending-seal-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-feed",
+      "kind": "ending",
+      "title": "A Covenant Renewed",
+      "prose": "You and Vale renew the old covenant on new terms — measured, mercifully rationed, but a covenant of names and lives all the same. The bleeding stops. The ledger keeps growing, one careful entry at a time.",
+      "art": "art-the-bleeding-dark-of-duskwell-ending-feed-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-expose",
+      "kind": "ending",
+      "title": "The Truth Untethered",
+      "prose": "You tell the city what lies beneath it. Panic follows, then denial, then a strange stubborn courage as Duskwell decides to live knowingly atop the Dreamer Beneath rather than sleep unknowing. The dark still bleeds sometimes. Now, at least, someone is watching.",
+      "art": "art-the-bleeding-dark-of-duskwell-ending-expose-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-consumed",
+      "kind": "ending",
+      "title": "Swallowed by the Dark Between Lamps",
+      "prose": "The dark does not kill you so much as it unwrites you. Somewhere in the vault, a new name joins the ledger's endless column, and the gaslights of Duskwell burn on, patient and unbothered, exactly as they always have.",
+      "art": "art-the-bleeding-dark-of-duskwell-ending-consumed-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "nightwatch-report",
+      "kind": "ending",
+      "title": "A Report Filed and Forgotten",
+      "prose": "Captain Coyne listens, thanks you for your civic diligence, and files your report in a drawer that will never be opened again. Somewhere below the gasworks, the dark keeps bleeding, patient and entirely unremarked upon.",
+      "art": "art-the-bleeding-dark-of-duskwell-nightwatch-report-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "shadow-swarm",
+      "title": "Where the Gaslight Fails",
+      "combatants": [
+        {
+          "id": "clinging-shadows",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight, dodge, or bull through to the vault door despite the shadows' grasp."
+      },
+      "onVictory": "the-vault",
+      "onDefeat": "ending-consumed",
+      "onFlee": "undercroft-tunnels"
+    },
+    {
+      "id": "vale-guardians",
+      "title": "Vale's Guardians",
+      "combatants": [
+        {
+          "id": "ichor-ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hollow-sentinel",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-choice",
+      "onDefeat": "ending-consumed",
+      "onFlee": "nightwatch-report"
+    }
+  ]
+}

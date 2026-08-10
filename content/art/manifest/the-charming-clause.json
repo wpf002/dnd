@@ -1,0 +1,90 @@
+{
+  "adventure": "the-charming-clause",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: whimsical-fey, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-charming-clause-weald-threshold-art",
+      "beat": "weald-threshold",
+      "brief": "The Weald's Toll — Old Marsk, envoy of Hollowmere Vale, meets you at the tree-line where the road turns to moss. His hands tremble — smaller than they ought to be, as if"
+    },
+    {
+      "slot": "art-the-charming-clause-elder-council-art",
+      "beat": "elder-council",
+      "brief": "The Founder's Words — In a smoke-stained hall, Marsk recites the bargain his ancestor Elsbet Thorn struck generations ago, word for word, as if reciting a lullaby he cannot"
+    },
+    {
+      "slot": "art-the-charming-clause-singing-road-art",
+      "beat": "singing-road",
+      "brief": "The Singing Road — The path into the Weald hums with old warding-songs, half-remembered tunes that seem to expect an answer. The trees lean in, listening."
+    },
+    {
+      "slot": "art-the-charming-clause-hollowmere-vale-art",
+      "beat": "hollowmere-vale",
+      "brief": "The Shrinking Village — Hollowmere Vale's adults move through their chores half-sized, clothes pinned and re-hemmed a dozen times over. Nothing is wrong with the children — t"
+    },
+    {
+      "slot": "art-the-charming-clause-contract-stone-art",
+      "beat": "contract-stone",
+      "brief": "The Carved Contract — Deep in a hollow, a standing stone bears the bargain's words in flowing, deliberately charming script — every clause a trap for someone who thought po"
+    },
+    {
+      "slot": "art-the-charming-clause-bog-of-forgetting-art",
+      "beat": "bog-of-forgetting",
+      "brief": "The Bog of Forgetting — A fog-choked bog swallows sound and memory alike. Will-o-wisps drift over the black water, each one whispering a fragment of a forgotten name."
+    },
+    {
+      "slot": "art-the-charming-clause-coven-scout-art",
+      "beat": "coven-scout",
+      "brief": "Thistle of the Nine Brambles — A lesser witch named Thistle blocks the path, cloak stitched from magpie feathers, smiling the smile of someone who has already decided how this conve"
+    },
+    {
+      "slot": "art-the-charming-clause-bramble-ambush-art",
+      "beat": "bramble-ambush",
+      "brief": "Ambush in the Brambles — Thorns rustle and split apart as goblins spill from the hedgerows, a lean wolf snarling at their heels, all of them eager to make an example of trespa"
+    },
+    {
+      "slot": "art-the-charming-clause-broker-ledger-art",
+      "beat": "broker-ledger",
+      "brief": "The Broker's Ledger — In a hollow oak, you find the coven's ledger of bargains — pages of charming little promises, each annotated in a second, crueler hand explaining exac"
+    },
+    {
+      "slot": "art-the-charming-clause-loophole-puzzle-art",
+      "beat": "loophole-puzzle",
+      "brief": "A Word for a Word — The contract's wording is a knot of fey wordplay: 'finest,' 'little,' 'gladly' — each word chosen to sound sweet while meaning something narrower and "
+    },
+    {
+      "slot": "art-the-charming-clause-approach-decision-art",
+      "beat": "approach-decision",
+      "brief": "The Court of the Nine Brambles — Mother Nettlecrown receives you in a bower of thorns hung with tiny, precise contracts. She is all courtesy and terrible patience. How you address her"
+    },
+    {
+      "slot": "art-the-charming-clause-coven-court-art",
+      "beat": "coven-court",
+      "brief": "The Coven's Court — Your wordplay slips, or Nettlecrown simply enjoys a challenge — either way, her attendants rise from the thorns with less courtesy than before. You mu"
+    },
+    {
+      "slot": "art-the-charming-clause-ending-rewritten-bargain-art",
+      "beat": "ending-rewritten-bargain",
+      "brief": "The Bargain Rewritten — Nettlecrown laughs — a real laugh, delighted rather than cruel — and produces a fresh contract, worded this time by all parties, plainly and without c"
+    },
+    {
+      "slot": "art-the-charming-clause-ending-paid-debt-art",
+      "beat": "ending-paid-debt",
+      "brief": "The Debt Paid in Full — You offer what the village cannot: your own years, luck, or memory, measured out little by little. Nettlecrown accepts, almost gently. Hollowmere Vale"
+    },
+    {
+      "slot": "art-the-charming-clause-ending-weald-claims-art",
+      "beat": "ending-weald-claims",
+      "brief": "The Weald Claims Its Own — You are driven back, bruised and outmatched, into the tangled dark. The bargain stands unchanged. Somewhere behind you, Hollowmere Vale keeps shrinkin"
+    },
+    {
+      "slot": "art-the-charming-clause-ending-trickster-art",
+      "beat": "ending-trickster",
+      "brief": "The Trickster's Bargain — You outlast the hedge-knights just long enough to finish your own clever clause, one Nettlecrown cannot help but honor on principle. She is furious, d"
+    }
+  ]
+}

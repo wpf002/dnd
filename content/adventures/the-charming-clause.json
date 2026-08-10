@@ -1,0 +1,643 @@
+{
+  "id": "the-charming-clause",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Charming Clause",
+    "premise": "In the tangled wilderness of the Nine Brambles, a village's ancestor once struck a fey bargain in words too pretty to be safe. Now the coven collects on that bargain exactly as written — and the wording has turned literal, and cruel.",
+    "tone": [
+      "whimsical-fey",
+      "exploration"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, lyrical, and formally polite, as if the wilderness itself is reciting old contracts by moonlight.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Bargain's toll falls on adult villagers only; no child peril is depicted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "weald-threshold",
+  "beats": [
+    {
+      "id": "weald-threshold",
+      "kind": "threshold",
+      "title": "The Weald's Toll",
+      "prose": "Old Marsk, envoy of Hollowmere Vale, meets you at the tree-line where the road turns to moss. His hands tremble — smaller than they ought to be, as if worn down like a coin. He begs your aid against 'the Nine Brambles,' the coven who holds his village's oldest debt.",
+      "readAloud": "\"Every full moon we sang them a song. Every harvest, the finest cut. And when the debt came due, a little price, paid gladly. We thought it charming, once.\"",
+      "art": "art-the-charming-clause-weald-threshold-art",
+      "options": [
+        {
+          "id": "agree-and-go",
+          "label": "Agree at once and head straight into the Weald",
+          "target": "singing-road",
+          "effects": []
+        },
+        {
+          "id": "demand-terms",
+          "label": "Demand the bargain's exact wording before you take a step",
+          "target": "elder-council",
+          "effects": []
+        },
+        {
+          "id": "see-the-vale",
+          "label": "Insist on seeing the village's suffering with your own eyes first",
+          "target": "hollowmere-vale",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "elder-council",
+      "kind": "social",
+      "title": "The Founder's Words",
+      "prose": "In a smoke-stained hall, Marsk recites the bargain his ancestor Elsbet Thorn struck generations ago, word for word, as if reciting a lullaby he cannot stop singing.",
+      "readAloud": "\"A song for every full moon, fair sung. The finest cut of the harvest. And when the debt comes due — a little price, paid gladly.\" He shudders. \"They keep it exactly. That is the trouble.\"",
+      "art": "art-the-charming-clause-elder-council-art",
+      "options": [
+        {
+          "id": "ask-coven-leader",
+          "label": "Ask who leads the coven now",
+          "target": "contract-stone",
+          "effects": [
+            {
+              "flag": "learned-terms",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-village-history",
+          "label": "Ask how the village has suffered since",
+          "target": "hollowmere-vale",
+          "effects": [
+            {
+              "flag": "learned-terms",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cut-short",
+          "label": "Cut the story short and head into the wood",
+          "target": "singing-road",
+          "effects": [
+            {
+              "flag": "learned-terms",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "singing-road",
+      "kind": "transit",
+      "title": "The Singing Road",
+      "prose": "The path into the Weald hums with old warding-songs, half-remembered tunes that seem to expect an answer. The trees lean in, listening.",
+      "readAloud": "The road itself seems to inhale, waiting for you to finish its melody.",
+      "art": "art-the-charming-clause-singing-road-art",
+      "options": [
+        {
+          "id": "answer-song",
+          "label": "Answer the wards with a song of your own",
+          "target": "coven-scout",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "performance",
+            "dc": 13,
+            "onFailure": "bog-of-forgetting"
+          }
+        },
+        {
+          "id": "walk-quiet",
+          "label": "Walk quietly past without singing",
+          "target": "bog-of-forgetting",
+          "effects": []
+        },
+        {
+          "id": "detour-village",
+          "label": "Turn aside toward the village for a safer route",
+          "target": "hollowmere-vale",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollowmere-vale",
+      "kind": "discovery",
+      "title": "The Shrinking Village",
+      "prose": "Hollowmere Vale's adults move through their chores half-sized, clothes pinned and re-hemmed a dozen times over. Nothing is wrong with the children — the bargain, at least, has left them be. It is the grown who are dwindling, a little at a time, every full moon.",
+      "readAloud": "A miller, barely three feet tall now, waves cheerfully from atop a stool built just for reaching his own counter. \"We manage,\" he says, too brightly.",
+      "art": "art-the-charming-clause-hollowmere-vale-art",
+      "options": [
+        {
+          "id": "examine-shrinking",
+          "label": "Examine the shrinking villagers for clues to the cause",
+          "target": "contract-stone",
+          "effects": []
+        },
+        {
+          "id": "find-descendant",
+          "label": "Ask for the founder's descendant and the bargain's story",
+          "target": "elder-council",
+          "effects": []
+        },
+        {
+          "id": "head-to-wood",
+          "label": "Leave the village and head into the wood to confront the coven",
+          "target": "singing-road",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "contract-stone",
+      "kind": "discovery",
+      "title": "The Carved Contract",
+      "prose": "Deep in a hollow, a standing stone bears the bargain's words in flowing, deliberately charming script — every clause a trap for someone who thought poetry was harmless.",
+      "readAloud": "The moss has grown to spell out the final clause even larger than the rest: 'a little price, paid gladly.'",
+      "art": "art-the-charming-clause-contract-stone-art",
+      "options": [
+        {
+          "id": "copy-and-move",
+          "label": "Move on toward the coven's territory with the wording memorized",
+          "target": "broker-ledger",
+          "effects": []
+        },
+        {
+          "id": "go-direct",
+          "label": "Head straight for the coven now that you know the terms",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-terms",
+            "value": true
+          },
+          "target": "coven-scout",
+          "effects": []
+        },
+        {
+          "id": "study-marks",
+          "label": "Study the stone's hidden marks for a deeper loophole",
+          "target": "loophole-puzzle",
+          "effects": [
+            {
+              "flag": "found-loophole",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "bog-of-forgetting"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bog-of-forgetting",
+      "kind": "hazard",
+      "title": "The Bog of Forgetting",
+      "prose": "A fog-choked bog swallows sound and memory alike. Will-o-wisps drift over the black water, each one whispering a fragment of a forgotten name.",
+      "readAloud": "You already cannot recall which way you entered.",
+      "art": "art-the-charming-clause-bog-of-forgetting-art",
+      "options": [
+        {
+          "id": "wade-through",
+          "label": "Wade straight through the main current",
+          "target": "coven-scout",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "dc": 13,
+            "onFailure": "bramble-ambush"
+          }
+        },
+        {
+          "id": "follow-wisps",
+          "label": "Follow the will-o-wisps' lights",
+          "target": "bramble-ambush",
+          "effects": []
+        },
+        {
+          "id": "backtrack",
+          "label": "Backtrack and find another way around",
+          "target": "hollowmere-vale",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "coven-scout",
+      "kind": "social",
+      "title": "Thistle of the Nine Brambles",
+      "prose": "A lesser witch named Thistle blocks the path, cloak stitched from magpie feathers, smiling the smile of someone who has already decided how this conversation ends.",
+      "readAloud": "\"Trespassers pay tolls,\" Thistle says pleasantly. \"Or trespassers become tolls. Your choice, dears.\"",
+      "art": "art-the-charming-clause-coven-scout-art",
+      "options": [
+        {
+          "id": "trade-info",
+          "label": "Offer a bargain of your own — information for passage",
+          "target": "broker-ledger",
+          "effects": [
+            {
+              "flag": "allied-scout",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bribe-scout",
+          "label": "Try to bribe her with a trinket",
+          "target": "broker-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 12,
+            "onFailure": "bramble-ambush"
+          }
+        },
+        {
+          "id": "push-past",
+          "label": "Refuse to negotiate and push past her",
+          "target": "bramble-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bramble-ambush",
+      "kind": "conflict",
+      "title": "Ambush in the Brambles",
+      "prose": "Thorns rustle and split apart as goblins spill from the hedgerows, a lean wolf snarling at their heels, all of them eager to make an example of trespassers.",
+      "readAloud": "\"Toll's due!\" cackles a goblin, and the brambles themselves seem to cheer.",
+      "art": "art-the-charming-clause-bramble-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bramble-ambush-encounter",
+      "terminal": false
+    },
+    {
+      "id": "broker-ledger",
+      "kind": "discovery",
+      "title": "The Broker's Ledger",
+      "prose": "In a hollow oak, you find the coven's ledger of bargains — pages of charming little promises, each annotated in a second, crueler hand explaining exactly how each was 'fairly' fulfilled.",
+      "readAloud": "One margin note reads: 'They said finest. We took literal. They should have specified.'",
+      "art": "art-the-charming-clause-broker-ledger-art",
+      "options": [
+        {
+          "id": "study-ledger",
+          "label": "Study the ledger closely for the Hollowmere clause's loophole",
+          "target": "loophole-puzzle",
+          "effects": [
+            {
+              "flag": "found-loophole",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-and-go",
+          "label": "Take the ledger as leverage without studying it further",
+          "target": "approach-decision",
+          "effects": []
+        },
+        {
+          "id": "memorize-and-burn",
+          "label": "Memorize the key phrases, then burn the ledger out of spite",
+          "target": "loophole-puzzle",
+          "effects": [
+            {
+              "flag": "found-loophole",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "dc": 12,
+            "onFailure": "approach-decision"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "loophole-puzzle",
+      "kind": "puzzle",
+      "title": "A Word for a Word",
+      "prose": "The contract's wording is a knot of fey wordplay: 'finest,' 'little,' 'gladly' — each word chosen to sound sweet while meaning something narrower and sharper. Somewhere in that knot is a thread that unravels it.",
+      "readAloud": "'Paid gladly' — by whom? The contract never says the price must be paid by the village.",
+      "art": "art-the-charming-clause-loophole-puzzle-art",
+      "options": [
+        {
+          "id": "reason-through",
+          "label": "Reason through the wordplay carefully",
+          "target": "approach-decision",
+          "effects": [
+            {
+              "flag": "solved-puzzle",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "approach-decision"
+          }
+        },
+        {
+          "id": "ask-thistle",
+          "label": "Ask Thistle for a hint, coven-to-guest",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-scout",
+            "value": true
+          },
+          "target": "approach-decision",
+          "effects": [
+            {
+              "flag": "solved-puzzle",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "guess-fey-trick",
+          "label": "Guess based on common fey tricks and hope for the best",
+          "target": "approach-decision",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "approach-decision",
+      "kind": "decision",
+      "title": "The Court of the Nine Brambles",
+      "prose": "Mother Nettlecrown receives you in a bower of thorns hung with tiny, precise contracts. She is all courtesy and terrible patience. How you address her will decide everything.",
+      "readAloud": "\"Well,\" she says, folding her hands. \"You've come about the wording. Do go on — I do love a well-argued clause.\"",
+      "art": "art-the-charming-clause-approach-decision-art",
+      "options": [
+        {
+          "id": "present-honestly",
+          "label": "Present the loophole honestly and ask for fair renegotiation",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "solved-puzzle",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "found-loophole",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-rewritten-bargain",
+          "effects": []
+        },
+        {
+          "id": "offer-substitute",
+          "label": "Offer yourselves as substitute payment to spare the village",
+          "target": "ending-paid-debt",
+          "effects": []
+        },
+        {
+          "id": "trick-the-court",
+          "label": "Try to trick the court with clever wordplay of your own",
+          "target": "coven-court",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "coven-court",
+      "kind": "conflict",
+      "title": "The Coven's Court",
+      "prose": "Your wordplay slips, or Nettlecrown simply enjoys a challenge — either way, her attendants rise from the thorns with less courtesy than before. You must stall them long enough to complete your trick.",
+      "readAloud": "\"A contest, then,\" Nettlecrown purrs, and her hedge-knights uncoil.",
+      "art": "art-the-charming-clause-coven-court-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "coven-court-encounter",
+      "terminal": false
+    },
+    {
+      "id": "ending-rewritten-bargain",
+      "kind": "ending",
+      "title": "The Bargain Rewritten",
+      "prose": "Nettlecrown laughs — a real laugh, delighted rather than cruel — and produces a fresh contract, worded this time by all parties, plainly and without charm. Hollowmere Vale's people begin, slowly, to grow back to themselves. The Nine Brambles, oddly, seem to respect you more for besting their own game.",
+      "readAloud": "\"Plain words,\" Nettlecrown sighs happily, signing with a thorn. \"How refreshingly dull. I do so appreciate a client who reads the fine print.\"",
+      "art": "art-the-charming-clause-ending-rewritten-bargain-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-paid-debt",
+      "kind": "ending",
+      "title": "The Debt Paid in Full",
+      "prose": "You offer what the village cannot: your own years, luck, or memory, measured out little by little. Nettlecrown accepts, almost gently. Hollowmere Vale is spared, and you leave the Weald diminished in ways no one else will ever see, having paid, gladly enough, a price that was never truly little.",
+      "readAloud": "\"How generous,\" she murmurs, and for once there is no mockery in it at all.",
+      "art": "art-the-charming-clause-ending-paid-debt-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-weald-claims",
+      "kind": "ending",
+      "title": "The Weald Claims Its Own",
+      "prose": "You are driven back, bruised and outmatched, into the tangled dark. The bargain stands unchanged. Somewhere behind you, Hollowmere Vale keeps shrinking, one full moon at a time, and the Weald closes quietly over the path you came by.",
+      "readAloud": "The brambles knit themselves shut behind you, humming a small, satisfied tune.",
+      "art": "art-the-charming-clause-ending-weald-claims-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-trickster",
+      "kind": "ending",
+      "title": "The Trickster's Bargain",
+      "prose": "You outlast the hedge-knights just long enough to finish your own clever clause, one Nettlecrown cannot help but honor on principle. She is furious, delighted, and utterly bound by her own love of a good contract. Hollowmere Vale is freed — and the Nine Brambles now owe you a favor no wise soul would want to collect carelessly.",
+      "readAloud": "\"Insufferable,\" Nettlecrown says, and then, unable to help herself, \"—brilliant. Fine. FINE. You win this one, mortal.\"",
+      "art": "art-the-charming-clause-ending-trickster-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "bramble-ambush-encounter",
+      "title": "Ambush in the Brambles",
+      "combatants": [
+        {
+          "id": "goblin-group",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "wolf-1",
+          "statblock": "wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "broker-ledger",
+      "onDefeat": "ending-weald-claims",
+      "onFlee": "hollowmere-vale"
+    },
+    {
+      "id": "coven-court-encounter",
+      "title": "The Coven's Court",
+      "combatants": [
+        {
+          "id": "hobgoblin-1",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kobold-group",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "dire-wolf-1",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "ending-trickster",
+      "onDefeat": "ending-weald-claims",
+      "onFlee": "ending-paid-debt"
+    }
+  ]
+}

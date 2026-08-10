@@ -1,0 +1,630 @@
+{
+  "id": "the-last-hour-of-velmarch",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Hour of Velmarch",
+    "premise": "In the doomed capital of Velmarch, a cosmic tear called the Rent hangs open above the Cathedral of Bells, and only the ancient Engine within can be thrown one final time before dawn — to seal it, redirect it, or surrender the city to what waits beyond.",
+    "tone": [
+      "epic-finale",
+      "cosmic-horror"
+    ],
+    "tier": "national",
+    "partyLevel": 9,
+    "narrationVoice": "Elegiac, grave, second-person present tense, evoking dread grandeur and the weight of final choices.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are placed in on-screen jeopardy; refugees mentioned are adults and elders only."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-the-rent",
+  "beats": [
+    {
+      "id": "arrival-at-the-rent",
+      "kind": "threshold",
+      "title": "The Last Bell Tolls",
+      "prose": "Velmarch burns under a sky torn open. The Rent hangs above the Cathedral of Bells like a wound that will not close, and the city's last hour is running out beneath it. You have entered through the Ashgate with one truth: somewhere in that cathedral, the ancient Engine can still be thrown.",
+      "readAloud": "The bells have not stopped ringing in three days. Above the spires, the sky peels back like burnt paper, and something vast leans closer with every toll.",
+      "art": "art-the-last-hour-of-velmarch-arrival-at-the-rent-art",
+      "options": [
+        {
+          "id": "take-the-market-road",
+          "label": "Cut through the burning market district",
+          "target": "market-district-flight",
+          "effects": []
+        },
+        {
+          "id": "descend-the-undercroft",
+          "label": "Slip into the undercroft tunnels beneath the city",
+          "target": "undercroft-tunnels",
+          "effects": []
+        },
+        {
+          "id": "seek-the-curia",
+          "label": "Seek out the Ashen Curia's enclave for answers",
+          "target": "curia-enclave",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "market-district-flight",
+      "kind": "hazard",
+      "title": "The Burning Market",
+      "prose": "Stalls collapse in cascades of ember. Crowds surge toward gates that may already be sealed, and cultists of the Undertow move against the current, singing to the tear above.",
+      "art": "art-the-last-hour-of-velmarch-market-district-flight-art",
+      "options": [
+        {
+          "id": "push-through-crowd",
+          "label": "Push through the panicked crowd",
+          "target": "approach-to-cathedral",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 15,
+            "onFailure": "cultist-ambush"
+          }
+        },
+        {
+          "id": "help-trapped-survivors",
+          "label": "Stop to free survivors trapped under debris",
+          "target": "approach-to-cathedral",
+          "effects": [
+            {
+              "flag": "saved-refugees",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "rally-the-wardens",
+          "label": "Rally the Wardens to hold the line here",
+          "target": "wardens-last-stand",
+          "effects": [
+            {
+              "flag": "rallied-wardens",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undercroft-tunnels",
+      "kind": "discovery",
+      "title": "The Undercroft",
+      "prose": "Beneath the streets, forgotten archives and older stone remember Velmarch before the Curia. A prisoner rattles chains in the dark, and dust-choked ledgers speak of the Engine's true name.",
+      "art": "art-the-last-hour-of-velmarch-undercroft-tunnels-art",
+      "options": [
+        {
+          "id": "study-forbidden-archive",
+          "label": "Study the forbidden archive for the Engine's true name",
+          "target": "the-choir-below",
+          "effects": [
+            {
+              "flag": "learned-true-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 16,
+            "onFailure": "approach-to-cathedral"
+          }
+        },
+        {
+          "id": "shortcut-through-crypts",
+          "label": "Take the quiet shortcut through the crypts",
+          "target": "approach-to-cathedral",
+          "effects": []
+        },
+        {
+          "id": "free-the-prisoner",
+          "label": "Free the chained Curia scribe",
+          "target": "curia-enclave",
+          "effects": [
+            {
+              "flag": "freed-scribe",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "curia-enclave",
+      "kind": "social",
+      "title": "The Ashen Curia",
+      "prose": "Matriarch Oleth Vray and her remaining clergy have barricaded themselves in a side chapel, arguing over whether the Engine should be thrown at all. She watches you with the exhausted calculation of someone out of good options.",
+      "art": "art-the-last-hour-of-velmarch-curia-enclave-art",
+      "options": [
+        {
+          "id": "pledge-to-curia",
+          "label": "Pledge to help the Curia seal the Rift",
+          "target": "approach-to-cathedral",
+          "effects": [
+            {
+              "flag": "sided-with-curia",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "question-about-undertow",
+          "label": "Press the Matriarch about the Undertow cult",
+          "target": "approach-to-cathedral",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Insight",
+            "dc": 14,
+            "onFailure": "approach-to-cathedral"
+          }
+        },
+        {
+          "id": "refuse-entanglement",
+          "label": "Refuse entanglement and leave for the cathedral alone",
+          "target": "approach-to-cathedral",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cultist-ambush",
+      "kind": "conflict",
+      "title": "Song of the Undertow",
+      "prose": "Cultists spill from a collapsed stall-row, blades out, chanting a hymn to whatever waits beyond the Rent. Their captain raises a hand blackened by devotion.",
+      "art": "art-the-last-hour-of-velmarch-cultist-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cultist-ambush",
+      "terminal": false
+    },
+    {
+      "id": "wardens-last-stand",
+      "kind": "conflict",
+      "title": "Hold the Line",
+      "prose": "Shadows peel from the smoke, ghast-thin and hungry, converging on the last knot of Wardens trying to shepherd refugees to the gate. Warden-Captain Iss Farrow bellows for aid.",
+      "art": "art-the-last-hour-of-velmarch-wardens-last-stand-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wardens-last-stand",
+      "terminal": false
+    },
+    {
+      "id": "the-choir-below",
+      "kind": "puzzle",
+      "title": "The Choir Mechanism",
+      "prose": "Beneath the cathedral, a lattice of resonant bells forms the Engine's hidden throat. Align them wrong and the Rent widens; align them right and the final lever becomes usable at all.",
+      "art": "art-the-last-hour-of-velmarch-the-choir-below-art",
+      "options": [
+        {
+          "id": "align-resonant-bells",
+          "label": "Align the resonant bells by careful trial",
+          "target": "approach-to-cathedral",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 15,
+            "onFailure": "approach-to-cathedral"
+          }
+        },
+        {
+          "id": "speak-true-name",
+          "label": "Speak the Engine's true name to force the mechanism",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-true-name",
+            "value": true
+          },
+          "target": "approach-to-cathedral",
+          "effects": []
+        },
+        {
+          "id": "abandon-the-puzzle",
+          "label": "Abandon the puzzle — time is too short",
+          "target": "approach-to-cathedral",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "approach-to-cathedral",
+      "kind": "transit",
+      "title": "The Shadow of the Cathedral",
+      "prose": "Every road through Velmarch now bends toward the Cathedral of Bells, its spires wrapped in the Rent's pale light. The last stretch is a gauntlet of falling ash and dying prayers.",
+      "art": "art-the-last-hour-of-velmarch-approach-to-cathedral-art",
+      "options": [
+        {
+          "id": "press-toward-cathedral",
+          "label": "Press on toward the Cathedral of Bells",
+          "target": "cathedral-threshold",
+          "effects": []
+        },
+        {
+          "id": "brace-psychic-pressure",
+          "label": "Brace against the Rent's psychic pressure and scout ahead",
+          "target": "cathedral-threshold",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "dc": 13,
+            "onFailure": "cathedral-threshold"
+          }
+        },
+        {
+          "id": "comfort-the-dying",
+          "label": "Pause to comfort the dying in the street",
+          "target": "cathedral-threshold",
+          "effects": [
+            {
+              "flag": "comforted-dying",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cathedral-threshold",
+      "kind": "decision",
+      "title": "The Cathedral Doors",
+      "prose": "The great doors of the Cathedral of Bells stand ajar, and something vast and armored moves in the nave beyond — the last guardian between you and the Engine chamber.",
+      "art": "art-the-last-hour-of-velmarch-cathedral-threshold-art",
+      "options": [
+        {
+          "id": "sneak-scribe-map",
+          "label": "Slip past using the freed scribe's hidden map",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "freed-scribe",
+            "value": true
+          },
+          "target": "the-engine-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 15,
+            "onFailure": "rift-guardian"
+          }
+        },
+        {
+          "id": "charge-the-guardian",
+          "label": "Stand and face the guardian directly",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "sided-with-curia",
+                "value": true
+              }
+            ]
+          },
+          "target": "rift-guardian",
+          "effects": []
+        },
+        {
+          "id": "signal-the-wardens",
+          "label": "Signal the rallied Wardens to storm the threshold",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "rallied-wardens",
+            "value": true
+          },
+          "target": "the-engine-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Survival",
+            "dc": 13,
+            "onFailure": "rift-guardian"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rift-guardian",
+      "kind": "conflict",
+      "title": "The Guardians of the Nave",
+      "prose": "Suits of animated armor rise from alcoves of dead saints, and something that was once a bishop unfolds from behind the altar, wight-pale and grinning.",
+      "art": "art-the-last-hour-of-velmarch-rift-guardian-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "rift-guardian",
+      "terminal": false
+    },
+    {
+      "id": "the-engine-chamber",
+      "kind": "climax",
+      "title": "The Engine of Last Things",
+      "prose": "The Engine fills the chamber beneath the bells: brass and bone and something that hums just beneath hearing. One lever remains untouched. Beyond the walls, the Rent widens toward its final hour. Whatever you choose now, Velmarch will not see another dawn unchanged.",
+      "readAloud": "The lever is warm to the touch, as if something on the other side is already holding it too.",
+      "art": "art-the-last-hour-of-velmarch-the-engine-chamber-art",
+      "options": [
+        {
+          "id": "seal-the-rift",
+          "label": "Throw the lever to seal the Rift, paying the Engine's price",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "always"
+              },
+              {
+                "op": "eq",
+                "flag": "comforted-dying",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-sealed-salvation",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 17,
+            "onFailure": "fallen-in-the-dark"
+          }
+        },
+        {
+          "id": "redirect-the-rift",
+          "label": "Redirect the Rift's hunger into the Undercity slums instead",
+          "target": "ending-redirected-doom",
+          "effects": []
+        },
+        {
+          "id": "embrace-the-rift",
+          "label": "Open yourself as a willing vessel for what waits beyond",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "saved-refugees",
+            "value": true
+          },
+          "target": "ending-embrace-the-star",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "dc": 18,
+            "onFailure": "fallen-in-the-dark"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-sealed-salvation",
+      "kind": "ending",
+      "title": "The Bells Fall Silent",
+      "prose": "The Engine screams once, a sound like every bell in Velmarch breaking at once, and then the Rent closes like a wound scarring over. The city stands, scorched and half-emptied, but standing. You will carry the cost of that silence for the rest of your life, whatever that life now is.",
+      "art": "art-the-last-hour-of-velmarch-ending-sealed-salvation-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-redirected-doom",
+      "kind": "ending",
+      "title": "A City Traded",
+      "prose": "The Rent shudders and slides sideways across the sky, its hunger pouring instead into the Undercity's crowded tenements. Velmarch's high quarters are saved. Somewhere below, a hundred thousand lives simply stop, and the bells ring on for people who will never know why.",
+      "art": "art-the-last-hour-of-velmarch-ending-redirected-doom-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-embrace-the-star",
+      "kind": "ending",
+      "title": "The Herald's Hour",
+      "prose": "You open the last door in yourself, and something ancient and vast pours through gladly. Velmarch does not end so much as it is rewritten, and you stand at the center of the change, no longer entirely yourself, no longer entirely anything the world has a name for.",
+      "art": "art-the-last-hour-of-velmarch-ending-embrace-the-star-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "fallen-in-the-dark",
+      "kind": "ending",
+      "title": "The Hour Runs Out",
+      "prose": "The lever slips from failing hands, or the guardians never let you reach it at all. Above the cathedral, the Rent finishes opening, and Velmarch's last hour ends not with a choice but with a silence that swallows the whole city whole.",
+      "art": "art-the-last-hour-of-velmarch-fallen-in-the-dark-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "cultist-ambush",
+      "title": "Song of the Undertow",
+      "combatants": [
+        {
+          "id": "undertow-zealot-1",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "undertow-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "approach-to-cathedral",
+      "onDefeat": "fallen-in-the-dark",
+      "onFlee": "undercroft-tunnels"
+    },
+    {
+      "id": "wardens-last-stand",
+      "title": "Hold the Line",
+      "combatants": [
+        {
+          "id": "creeping-shadow",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hollow-ghast",
+          "statblock": "ghast",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "warden-captain",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "warden-captain"
+      },
+      "onVictory": "approach-to-cathedral",
+      "onDefeat": "fallen-in-the-dark",
+      "onFlee": "approach-to-cathedral"
+    },
+    {
+      "id": "rift-guardian",
+      "title": "The Guardians of the Nave",
+      "combatants": [
+        {
+          "id": "consecrated-armor",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "bishop-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "vertical",
+        "open"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the guardian line and reach the Engine chamber threshold."
+      },
+      "onVictory": "the-engine-chamber",
+      "onDefeat": "fallen-in-the-dark",
+      "onFlee": "cathedral-threshold"
+    }
+  ]
+}

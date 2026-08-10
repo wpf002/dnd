@@ -1,0 +1,768 @@
+{
+  "id": "the-cindergate-road",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Cindergate Road",
+    "premise": "In a war-scarred old world of wizards and wild borderlands, every expedition sent to reopen the vital Cindergate Road through the Greywood has vanished — until one broken scout stumbles back with a map and a reason to try again.",
+    "tone": [
+      "exploration",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "A weary court chronicler's voice, formal diction roughened by wilderness grit.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen in danger."
+    },
+    "provenance": "flint"
+  },
+  "entry": "petitioners-hall",
+  "beats": [
+    {
+      "id": "petitioners-hall",
+      "kind": "threshold",
+      "title": "The Petitioner's Hall",
+      "prose": "The Duchess of Vaelmar receives you beneath cracked frescoes of an older, unbroken realm. The Cindergate Road once fed her war-starved duchy from the far markets; now it swallows every company sent to reclaim it. She offers you the writ others refused.",
+      "readAloud": "\"Three companies. Three silences. You are the fourth, and perhaps the last I can afford to send.\"",
+      "art": "art-the-cindergate-road-duchess-petition-hall",
+      "options": [
+        {
+          "id": "accept-writ",
+          "label": "Take up the writ and ride out at once",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashbound-watch",
+          "effects": []
+        },
+        {
+          "id": "ask-history",
+          "label": "Press the Duchess about what happened to the lost expeditions",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "waystone-ruins",
+          "effects": [
+            {
+              "flag": "asked-history",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bargain-supplies",
+          "label": "Bargain for more coin and men before you go",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashbound-watch",
+          "effects": [
+            {
+              "flag": "bargained-supplies",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "ashbound-watch"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashbound-watch",
+      "kind": "social",
+      "title": "The Ashbound Watch",
+      "prose": "At the edge of the Greywood stands a tower of the Ashbound Circle, wizards who ward the border for their own old reasons. Magistrix Orvenna studies your writ with a wary eye and offers her Circle's escort — for a price unspoken.",
+      "readAloud": "\"The wood does not forget who enters it uninvited,\" she says. \"Go with us, or go alone. Either way, go carefully.\"",
+      "art": "art-the-cindergate-road-ashbound-watchtower",
+      "options": [
+        {
+          "id": "accept-escort",
+          "label": "Accept the Ashbound Circle's escort into the Greywood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "path-divide",
+          "effects": [
+            {
+              "flag": "allied-wizards",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-escort",
+          "label": "Refuse their help and trust your own company",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "path-divide",
+          "effects": [
+            {
+              "flag": "allied-wizards",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "ask-magistrix",
+          "label": "Ask the Magistrix what became of the vanished scouts",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "asked-history",
+            "value": true
+          },
+          "target": "waystone-ruins",
+          "effects": [
+            {
+              "flag": "queried-magistrix",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 12,
+            "onFailure": "path-divide"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "waystone-ruins",
+      "kind": "discovery",
+      "title": "The Waystone Ruins",
+      "prose": "Toppled waystones mark the old road's first mile, their runes half-erased by moss and war. Fresh gouges in the stone suggest something recent passed this way — or was dragged.",
+      "readAloud": "Beneath a fallen lintel, a rune still glows faintly, as if waiting for someone to read it correctly.",
+      "art": "art-the-cindergate-road-waystone-ruins-art",
+      "options": [
+        {
+          "id": "study-runes",
+          "label": "Study the runes for a safe route ahead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-path",
+          "effects": [
+            {
+              "flag": "found-safe-route",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "sinking-mire"
+          }
+        },
+        {
+          "id": "search-supplies",
+          "label": "Search the ruins for the last expedition's supplies",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sinking-mire",
+          "effects": [
+            {
+              "flag": "found-supplies",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "press-onward",
+          "label": "Press onward without delay",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "path-divide",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "path-divide",
+      "kind": "decision",
+      "title": "Where the Road Splits",
+      "prose": "The Cindergate Road forks ahead: a low route vanishing into mire-fog, and a ridge trail climbing into wind and stone. Somewhere between them lies whatever has been eating expeditions whole.",
+      "readAloud": "Neither path shows a single footprint returning.",
+      "art": "art-the-cindergate-road-greywood-path-divide",
+      "options": [
+        {
+          "id": "take-mire",
+          "label": "Take the low road through the mire",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sinking-mire",
+          "effects": []
+        },
+        {
+          "id": "take-ridge",
+          "label": "Climb the ridge path instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-path",
+          "effects": []
+        },
+        {
+          "id": "hidden-trail",
+          "label": "Follow the Ashbound escort's hidden trail",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-wizards",
+            "value": true
+          },
+          "target": "sealed-cairn",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sinking-mire",
+      "kind": "hazard",
+      "title": "The Sinking Mire",
+      "prose": "Black water swallows the road here, hiding old wreckage beneath its skin. Something disturbs the reeds just out of sight, patient as the fog.",
+      "readAloud": "The mud pulls at your boots like it remembers the taste of the last company that tried this.",
+      "art": "art-the-cindergate-road-sinking-mire-crossing",
+      "options": [
+        {
+          "id": "wade-carefully",
+          "label": "Wade through carefully, testing every step",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sealed-cairn",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "survival",
+            "dc": 13,
+            "onFailure": "thornreach-ambush"
+          }
+        },
+        {
+          "id": "use-supplies-bridge",
+          "label": "Use the recovered supplies as a makeshift bridge",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "found-supplies",
+            "value": true
+          },
+          "target": "sealed-cairn",
+          "effects": []
+        },
+        {
+          "id": "push-through",
+          "label": "Push through quickly despite the deep water",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sealed-cairn",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 15,
+            "onFailure": "thornreach-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ridge-path",
+      "kind": "transit",
+      "title": "The Ridge Path",
+      "prose": "Wind claws at the ridge trail, and loose scree threatens to send you tumbling. Far below, the mire glints like a wound in the land.",
+      "readAloud": "From up here you can just see a shape that might be a watchtower, or might be a cairn.",
+      "art": "art-the-cindergate-road-ridge-path-climb",
+      "options": [
+        {
+          "id": "safe-route",
+          "label": "Follow the safe route marked by the runes",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "found-safe-route",
+            "value": true
+          },
+          "target": "sealed-cairn",
+          "effects": []
+        },
+        {
+          "id": "navigate-instinct",
+          "label": "Navigate by starlight and instinct",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sealed-cairn",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 12,
+            "onFailure": "thornreach-ambush"
+          }
+        },
+        {
+          "id": "signal-watchtower",
+          "label": "Signal the Ashbound watchtower for guidance",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-wizards",
+            "value": true
+          },
+          "target": "sealed-cairn",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 8,
+            "onFailure": "sealed-cairn"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thornreach-ambush",
+      "kind": "conflict",
+      "title": "Ambush at Thornreach",
+      "prose": "Riders in mismatched war-plate burst from the brush — the Thornreach Warband, deserters turned toll-takers, wolves loping at their heels.",
+      "readAloud": "\"Toll for the road!\" their leader laughs, though you both know no toll was ever collected and returned.",
+      "art": "art-the-cindergate-road-thornreach-ambush-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "thornreach-ambush-encounter",
+      "terminal": false
+    },
+    {
+      "id": "sealed-cairn",
+      "kind": "puzzle",
+      "title": "The Sealed Cairn",
+      "prose": "A cairn of black stone blocks the road entirely, sealed with a ward older than the war itself. Scratched into its base, in a dozen hands, are names — the missing.",
+      "readAloud": "The seal hums faintly when you approach, as if recognizing that you, too, might soon be a name on the stone.",
+      "art": "art-the-cindergate-road-sealed-cairn-door",
+      "options": [
+        {
+          "id": "decipher-seal",
+          "label": "Decipher the seal using arcane knowledge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lost-expedition",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 15,
+            "onFailure": "lost-expedition"
+          }
+        },
+        {
+          "id": "force-seal",
+          "label": "Force the seal open with brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lost-expedition",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 16,
+            "onFailure": "thornreach-ambush"
+          }
+        },
+        {
+          "id": "use-wizard-key",
+          "label": "Use the Ashbound escort's key-rune to open the seal",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-wizards",
+            "value": true
+          },
+          "target": "lost-expedition",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lost-expedition",
+      "kind": "discovery",
+      "title": "The Lost Expedition",
+      "prose": "Beyond the cairn lies a camp long overrun: tents rotted to lace, a broken standard, and at its center, remarkably whole, the body of a Vaelmar scout — Warden Iss Cael, if the signet ring is any clue.",
+      "readAloud": "His journal lies open, the last entry unfinished mid-word, as if something interrupted him gently.",
+      "art": "art-the-cindergate-road-lost-expedition-camp",
+      "options": [
+        {
+          "id": "read-journal",
+          "label": "Read the fallen scout's journal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-chapel",
+          "effects": [
+            {
+              "flag": "learned-truth",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-signet",
+          "label": "Recover the scout's signet ring for the Duchess",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-chapel",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "perception",
+            "dc": 11,
+            "onFailure": "hollow-chapel"
+          }
+        },
+        {
+          "id": "search-cache",
+          "label": "Search for a hidden second supply cache",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bargained-supplies",
+            "value": true
+          },
+          "target": "hollow-chapel",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "hollow-chapel"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-chapel",
+      "kind": "social",
+      "title": "The Hollow Chapel",
+      "prose": "A ruined wayside chapel stands past the camp, and within it, unmistakably, the translucent shade of Warden Iss Cael himself — bound to the place by whatever took his life.",
+      "readAloud": "\"You found my road,\" the ghost says. \"Good. Now let me tell you why it eats travelers, and why I could not stop it alone.\"",
+      "art": "art-the-cindergate-road-hollow-chapel-spirit",
+      "options": [
+        {
+          "id": "speak-warden",
+          "label": "Speak with the spectral Warden Cael and win his trust",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-decision",
+          "effects": [
+            {
+              "flag": "warden-allied",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "vault-decision"
+          }
+        },
+        {
+          "id": "banish-spirit",
+          "label": "Banish the restless spirit to grant it peace",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-decision",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "religion",
+            "dc": 13,
+            "onFailure": "vault-decision"
+          }
+        },
+        {
+          "id": "query-magistrix-tale",
+          "label": "Recall what the Magistrix told you about the vanished scouts",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "queried-magistrix",
+            "value": true
+          },
+          "target": "vault-decision",
+          "effects": [
+            {
+              "flag": "full-context",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-decision",
+      "kind": "decision",
+      "title": "The Gate to the Cindergate Vault",
+      "prose": "Beyond the chapel, a war-scarred vault gate stands ajar: the true heart of the road's ruin, held by the deserter-captain Rathe Bellorn and the dead he's raised to guard his toll.",
+      "readAloud": "Firelight flickers within. You hear Rathe's voice, and beneath it, the dry rattle of bones that should not move.",
+      "art": "art-the-cindergate-road-vault-gate-decision",
+      "options": [
+        {
+          "id": "storm-vault",
+          "label": "Storm the vault and confront Captain Rathe head-on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cindergate-vault",
+          "effects": []
+        },
+        {
+          "id": "offer-truce",
+          "label": "Offer Rathe a truce and a share of the road's toll",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-uneasy-truce",
+          "effects": []
+        },
+        {
+          "id": "slip-in-unseen",
+          "label": "Slip into the vault unseen, guided by the warden's ghost",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "warden-allied",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "full-context",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "learned-truth",
+                "value": true
+              }
+            ]
+          },
+          "target": "cindergate-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cindergate-vault",
+      "kind": "climax",
+      "title": "The Cindergate Vault",
+      "prose": "Captain Rathe Bellorn stands amid stacked coffers and stolen banners, skeletal guards flanking him — the bones of travelers who never made it home.",
+      "readAloud": "\"You're not the first to reach this room,\" Rathe sneers, \"just the first with the sense to be afraid.\"",
+      "art": "art-the-cindergate-road-cindergate-vault-battle",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cindergate-vault-encounter",
+      "terminal": false
+    },
+    {
+      "id": "ending-new-road",
+      "kind": "ending",
+      "title": "The Road Reopened",
+      "prose": "With Rathe fallen and his bone-guard scattered to dust, you plant the Duchess's banner at the vault's threshold. Within a season, wagons roll where only silence walked before. The Cindergate Road belongs to the living again.",
+      "readAloud": "Somewhere behind you, you swear the warden's ghost finally sighs — and is gone.",
+      "art": "art-the-cindergate-road-ending-new-road-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-uneasy-truce",
+      "kind": "ending",
+      "title": "An Uneasy Truce",
+      "prose": "Rathe takes your offer, and the road reopens under an arrangement no one back in Vaelmar will ever fully approve of: a toll paid quietly, a war-band left to police the wood in the Duchess's name, in all but title.",
+      "readAloud": "The Duchess reads your report twice, then locks it in a drawer. \"The road is open,\" she says. \"That will have to be enough.\"",
+      "art": "art-the-cindergate-road-ending-truce-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-broken",
+      "kind": "ending",
+      "title": "One More Silence",
+      "prose": "The Greywood keeps its newest names. Somewhere in Vaelmar, the Duchess will wait for a report that never comes, and eventually send another company down a road that still, stubbornly, leads nowhere anyone returns from.",
+      "readAloud": "The last thing you hear is wind through cairn-stones, patient as ever.",
+      "art": "art-the-cindergate-road-ending-broken-road-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "thornreach-ambush-encounter",
+      "title": "Ambush at Thornreach",
+      "combatants": [
+        {
+          "id": "bandit-raider",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "warband-wolf",
+          "statblock": "wolf",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "fog"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "sealed-cairn",
+      "onDefeat": "ending-broken",
+      "onFlee": "ashbound-watch"
+    },
+    {
+      "id": "cindergate-vault-encounter",
+      "title": "The Cindergate Vault",
+      "combatants": [
+        {
+          "id": "captain-rathe",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "vault-skeleton",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "captain-rathe"
+      },
+      "onVictory": "ending-new-road",
+      "onDefeat": "ending-broken",
+      "onFlee": "ending-uneasy-truce"
+    }
+  ]
+}

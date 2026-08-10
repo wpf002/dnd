@@ -1,0 +1,850 @@
+{
+  "id": "the-long-dim-score",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Long Dim Score",
+    "premise": "In the haunted industrial city of Cinderfall, a crew has one night—the Long Dim, when the ghost-lights fail and the veil thins—to steal the Choir Key from the Hollowmere Exchange, a vault building designed by an architect who anticipated exactly this kind of theft.",
+    "tone": [
+      "heist",
+      "urban-intrigue"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "wry, atmospheric noir narrator who savors the city's grime and ghosts",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children are present in this scenario."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crew-briefing",
+  "beats": [
+    {
+      "id": "crew-briefing",
+      "kind": "threshold",
+      "title": "The Fixer's Offer",
+      "prose": "The back room of the Choke & Ember reeks of tar-smoke. A fixer named Ondine Vask slides a folded schematic across the table: the Hollowmere Exchange, the vault beneath it, and the Choir Key that opens what nothing else can. Tonight the ghost-lights fail city-wide. Tonight is the Long Dim.",
+      "readAloud": "\"One night a year the wardlights go dark and the dead walk closer to the living,\" Ondine says. \"That's your window. That's the whole job.\"",
+      "art": "art-the-long-dim-score-crew-briefing-art",
+      "options": [
+        {
+          "id": "take-job",
+          "label": "Take the job as offered, no questions",
+          "target": "casing-the-exchange",
+          "effects": []
+        },
+        {
+          "id": "grill-fixer",
+          "label": "Press Ondine for the real story behind the Key",
+          "target": "fixer-meeting",
+          "effects": []
+        },
+        {
+          "id": "loop-in-mara",
+          "label": "Loop in loyal muscle Mara before moving",
+          "target": "casing-the-exchange",
+          "effects": [
+            {
+              "flag": "has-mara",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "fixer-meeting",
+      "kind": "social",
+      "title": "What Ondine Knows",
+      "prose": "Ondine's smile is thin. She talks about Vesper Thane, the architect who built Hollowmere—a man obsessed with the idea that someone, someday, would try exactly this. He died in the building's cellar. Some say he never left.",
+      "art": "art-the-long-dim-score-fixer-meeting-art",
+      "options": [
+        {
+          "id": "ask-wards",
+          "label": "Ask what Thane built into the vault's wards",
+          "target": "casing-the-exchange",
+          "effects": [
+            {
+              "flag": "knows-wards",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-rivals-go-roof",
+          "label": "Ask about the Ashgate Combine, then head straight for the rooftops yourself",
+          "target": "rooftop-approach",
+          "effects": []
+        },
+        {
+          "id": "skip-chat",
+          "label": "Cut the conversation short, there's no time",
+          "target": "casing-the-exchange",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "casing-the-exchange",
+      "kind": "discovery",
+      "title": "Casing Hollowmere",
+      "prose": "The Exchange squats over the canal district like an iron tombstone, its windows dark even before the Long Dim. Patrol lanterns bob along three approaches: the flooded culvert beneath, the rain-chain gantries above, and the brass-doored front where night auditors still shuffle papers.",
+      "art": "art-the-long-dim-score-casing-the-exchange-art",
+      "options": [
+        {
+          "id": "go-sewer",
+          "label": "Slip in through the old sewer culvert",
+          "target": "sewer-approach",
+          "effects": []
+        },
+        {
+          "id": "go-roof",
+          "label": "Climb the rain-chains to the roof",
+          "target": "rooftop-approach",
+          "effects": []
+        },
+        {
+          "id": "go-front",
+          "label": "Walk in disguised as night auditors",
+          "target": "front-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sewer-approach",
+      "kind": "hazard",
+      "title": "The Flooded Culvert",
+      "prose": "Black water laps at the tunnel walls. Something down here has been dead a long while and hasn't noticed yet. Bones glimmer under the surface like a warning.",
+      "art": "art-the-long-dim-score-sewer-approach-art",
+      "options": [
+        {
+          "id": "wade-fast",
+          "label": "Push through quickly before anything wakes",
+          "target": "vault-antechamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Stealth",
+            "dc": 12,
+            "onFailure": "sewer-ambush"
+          }
+        },
+        {
+          "id": "slow-dry-route",
+          "label": "Take the slower, dry maintenance ledge",
+          "target": "vault-antechamber",
+          "effects": []
+        },
+        {
+          "id": "mara-guides",
+          "label": "Let Mara read the water and guide you through safely",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-mara",
+            "value": true
+          },
+          "target": "vault-antechamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rooftop-approach",
+      "kind": "hazard",
+      "title": "The Rain-Chain Gantries",
+      "prose": "Iron gantries sway over a hundred-foot drop into the canal. Wardlanterns hang dead on their hooks. Somewhere above, boots scuff on wet metal.",
+      "art": "art-the-long-dim-score-rooftop-approach-art",
+      "options": [
+        {
+          "id": "sprint-gantries",
+          "label": "Sprint across before the patrol turns",
+          "target": "vault-antechamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "rooftop-guards"
+          }
+        },
+        {
+          "id": "rig-quiet-line",
+          "label": "Rig a quiet line down through a skylight",
+          "target": "vault-antechamber",
+          "effects": []
+        },
+        {
+          "id": "bail-to-sewer",
+          "label": "Bail out and try the culvert instead",
+          "target": "sewer-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "front-approach",
+      "kind": "social",
+      "title": "The Brass Doors",
+      "prose": "Two night auditors flank a brass-barred door, ledgers in hand, faces gray with fatigue and worse things. A guard station's lantern flickers, undecided about the dark.",
+      "art": "art-the-long-dim-score-front-approach-art",
+      "options": [
+        {
+          "id": "bluff-clerk",
+          "label": "Bluff past the night clerk with a forged manifest",
+          "target": "vault-antechamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Deception",
+            "dc": 13,
+            "onFailure": "front-alarm"
+          }
+        },
+        {
+          "id": "bribe-clerk",
+          "label": "Bribe the clerk outright and buy silence",
+          "target": "vault-antechamber",
+          "effects": []
+        },
+        {
+          "id": "abandon-disguise",
+          "label": "Abandon the disguise, slip around to the sewer",
+          "target": "sewer-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sewer-ambush",
+      "kind": "conflict",
+      "title": "Something in the Water",
+      "prose": "The water churns. Rotted hands break the surface, and eyes that have not blinked in decades fix on the crew.",
+      "art": "art-the-long-dim-score-sewer-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sewer-ambush",
+      "terminal": false
+    },
+    {
+      "id": "rooftop-guards",
+      "kind": "conflict",
+      "title": "Boots on the Gantry",
+      "prose": "A patrol rounds the water tower, lanterns swinging, and behind them something that clanks with no breath at all.",
+      "art": "art-the-long-dim-score-rooftop-guards-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "rooftop-guards",
+      "terminal": false
+    },
+    {
+      "id": "front-alarm",
+      "kind": "conflict",
+      "title": "The Alarm Bell",
+      "prose": "A bell shrieks through the lobby. Ashgate Combine mercs pour from a side office, blades already drawn — they've been waiting for someone to try this exact door.",
+      "art": "art-the-long-dim-score-front-alarm-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "front-alarm",
+      "terminal": false
+    },
+    {
+      "id": "vault-antechamber",
+      "kind": "puzzle",
+      "title": "The Singing Door",
+      "prose": "A door of tuned brass rods blocks the vault, humming faintly even in the dead air of the Long Dim. Vesper Thane built it to answer only to a particular sound — or to punish whoever guesses wrong.",
+      "art": "art-the-long-dim-score-vault-antechamber-art",
+      "options": [
+        {
+          "id": "attune-key",
+          "label": "Use the Choir Key, attuning it by ear",
+          "target": "vault-open",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Perception",
+            "dc": 14,
+            "onFailure": "ghost-thane-encounter"
+          }
+        },
+        {
+          "id": "force-mechanism",
+          "label": "Force the mechanism open with tools",
+          "target": "vault-open",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "Athletics",
+            "dc": 15,
+            "onFailure": "ghost-thane-encounter"
+          }
+        },
+        {
+          "id": "recall-wards",
+          "label": "Recall what Ondine said about Thane's wards",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-wards",
+            "value": true
+          },
+          "target": "vault-open",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghost-thane-encounter",
+      "kind": "climax",
+      "title": "The Architect's Unquiet Guard",
+      "prose": "The rods scream a discordant note. Shadows peel from the walls, and at their center rises a withered shape in a foreman's coat: Vesper Thane, or what's left binding itself to his own design.",
+      "art": "art-the-long-dim-score-ghost-thane-encounter-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ghost-thane-encounter",
+      "terminal": false
+    },
+    {
+      "id": "vault-open",
+      "kind": "decision",
+      "title": "What the Vault Holds",
+      "prose": "Inside: the Choir Key's twin, and beside it a ledger of names — every magistrate, every crew boss, every debt Cinderfall pretends it doesn't owe. This was never just a heist.",
+      "readAloud": "The ledger's ink is still wet, somehow, after all these years. Someone has been adding to it.",
+      "art": "art-the-long-dim-score-vault-open-art",
+      "options": [
+        {
+          "id": "torch-vault",
+          "label": "Take the ledger and Key, torch the vault to bury the truth",
+          "target": "ending-burn-it-down",
+          "effects": []
+        },
+        {
+          "id": "give-mara-ledger",
+          "label": "Take only the Key, leave the ledger for the neighborhood to use",
+          "target": "ending-mara-alliance",
+          "effects": []
+        },
+        {
+          "id": "take-everything",
+          "label": "Grab everything and vanish, sell it to the highest bidder",
+          "target": "ending-betrayal",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-burn-it-down",
+      "kind": "ending",
+      "title": "Ash Over Hollowmere",
+      "prose": "The Exchange burns through the night, its secrets going up with it. The crew walks away rich and unnamed, and Cinderfall never learns what almost surfaced. Some truths, you decide, are safer as smoke.",
+      "art": "art-the-long-dim-score-ending-burn-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-mara-alliance",
+      "kind": "ending",
+      "title": "The Ledger's Weight",
+      "prose": "The names in that ledger reach every doorstep in the canal district by morning. Cinderfall's bosses scramble, exposed. The crew keeps the Key and Mara's trust — and a city's worth of enemies who now know your face.",
+      "art": "art-the-long-dim-score-ending-mara-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-betrayal",
+      "kind": "ending",
+      "title": "Everything Has a Price",
+      "prose": "You take it all — Key, ledger, and the silence to match. Somewhere in the city, someone very rich is now very interested in you, for reasons that will follow the crew long after the Long Dim ends.",
+      "art": "art-the-long-dim-score-ending-betrayal-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "crew-scattered",
+      "kind": "ending",
+      "title": "Left in the Dark",
+      "prose": "The Long Dim ends the way it began: with the wardlights guttering back on over a city that never noticed you were there. Whatever's left of the crew scatters into Cinderfall's alleys, the job unfinished and the Key still buried in Hollowmere's dark.",
+      "art": "art-the-long-dim-score-crew-scattered-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "crew-briefing",
+      "to": "casing-the-exchange",
+      "when": {
+        "op": "always"
+      },
+      "note": "take job"
+    },
+    {
+      "from": "crew-briefing",
+      "to": "fixer-meeting",
+      "when": {
+        "op": "always"
+      },
+      "note": "grill fixer"
+    },
+    {
+      "from": "crew-briefing",
+      "to": "casing-the-exchange",
+      "when": {
+        "op": "always"
+      },
+      "note": "loop in Mara"
+    },
+    {
+      "from": "fixer-meeting",
+      "to": "casing-the-exchange",
+      "when": {
+        "op": "always"
+      },
+      "note": "ask wards"
+    },
+    {
+      "from": "fixer-meeting",
+      "to": "rooftop-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "ask rivals, go roof"
+    },
+    {
+      "from": "fixer-meeting",
+      "to": "casing-the-exchange",
+      "when": {
+        "op": "always"
+      },
+      "note": "skip chat"
+    },
+    {
+      "from": "casing-the-exchange",
+      "to": "sewer-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "casing-the-exchange",
+      "to": "rooftop-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "casing-the-exchange",
+      "to": "front-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sewer-approach",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sewer-approach",
+      "to": "sewer-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "rooftop-approach",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "rooftop-approach",
+      "to": "rooftop-guards",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "rooftop-approach",
+      "to": "sewer-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "front-approach",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "front-approach",
+      "to": "front-alarm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "front-approach",
+      "to": "sewer-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sewer-ambush",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "sewer-ambush",
+      "to": "crew-scattered",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "sewer-ambush",
+      "to": "rooftop-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "rooftop-guards",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "rooftop-guards",
+      "to": "crew-scattered",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "rooftop-guards",
+      "to": "front-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "front-alarm",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "front-alarm",
+      "to": "crew-scattered",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "front-alarm",
+      "to": "sewer-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "vault-antechamber",
+      "to": "vault-open",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-antechamber",
+      "to": "ghost-thane-encounter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghost-thane-encounter",
+      "to": "vault-open",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "ghost-thane-encounter",
+      "to": "crew-scattered",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "ghost-thane-encounter",
+      "to": "vault-antechamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "vault-open",
+      "to": "ending-burn-it-down",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-open",
+      "to": "ending-mara-alliance",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-open",
+      "to": "ending-betrayal",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "sewer-ambush",
+      "title": "Ambush in the Flooded Culvert",
+      "combatants": [
+        {
+          "id": "ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "zombies",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-antechamber",
+      "onDefeat": "crew-scattered",
+      "onFlee": "rooftop-approach"
+    },
+    {
+      "id": "rooftop-guards",
+      "title": "Guards on the Gantries",
+      "combatants": [
+        {
+          "id": "hobgoblins",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "animated-armor-guard",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "wind",
+        "open"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "vault-antechamber",
+      "onDefeat": "crew-scattered",
+      "onFlee": "front-approach"
+    },
+    {
+      "id": "front-alarm",
+      "title": "Ashgate Mercs Answer the Alarm",
+      "combatants": [
+        {
+          "id": "bandits",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "bandit-boss",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the lobby to the service elevator and reach the vault antechamber."
+      },
+      "onVictory": "vault-antechamber",
+      "onDefeat": "crew-scattered",
+      "onFlee": "sewer-approach"
+    },
+    {
+      "id": "ghost-thane-encounter",
+      "title": "The Architect's Unquiet Guard",
+      "combatants": [
+        {
+          "id": "shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "vesper-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-open",
+      "onDefeat": "crew-scattered",
+      "onFlee": "vault-antechamber"
+    }
+  ]
+}

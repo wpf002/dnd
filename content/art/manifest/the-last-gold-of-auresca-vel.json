@@ -1,0 +1,85 @@
+{
+  "adventure": "the-last-gold-of-auresca-vel",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: epic-finale, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-golden-city-dusk-gate",
+      "beat": "threshold-arrival",
+      "brief": "The Sun Gate at Dusk — The last gold of Auresca Vel bleeds across the sky as the Aurelian Heart flickers in its tower above the city. Refugees clog the Sun Gate; smugglers w"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-sun-gate-panic",
+      "beat": "sun-gate-crowds",
+      "brief": "Chaos at the Gate — Captain Doreth Kane of the city guard fights to hold a line against a surging, terrified crowd as golden dust sifts down from the failing wards above."
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-undertow-tunnel-lanterns",
+      "beat": "undertow-tunnels",
+      "brief": "Tunnels Beneath the Gold — Lantern-lit tunnels wind beneath the golden streets, thick with smoke and older secrets. Ilbrec, a broker with too many rings and too few scruples, ey"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-choir-sanctum-glow",
+      "beat": "choir-sanctum-approach",
+      "brief": "The Hidden Sanctum — Incense and golden light spill from a sanctum hidden behind a false wall. A young acolyte startles, then recognizes desperation for what it is: allies"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-aurelian-heart-chamber",
+      "beat": "the-failing-heart",
+      "brief": "The Aurelian Heart — In the palace's central tower, the Aurelian Heart pulses like a dying star, and Archon Selwyn Marrow—last steward of Auresca Vel—stands before it, hol"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-ashen-senate-hall",
+      "beat": "senate-negotiation",
+      "brief": "The Ashen Senate's Demands — The Ashen Senate has gathered its remaining wealth into carts, arguing over who deserves a place on the last ships out. They will help—for a price, or"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-ritual-script-scroll",
+      "beat": "vesper-ritual-lore",
+      "brief": "The Ritual of Unmaking — Vesper Ilanya, First Voice of the Choir, unrolls a ritual script older than the city's golden age. 'The Heart can be overloaded, redirected, or stille"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-armored-guardians-clash",
+      "beat": "heart-chamber-guardians",
+      "brief": "Guardians of the Heart — Animate suits of golden armor and flickering shadow-wardens bar the way to the Heart's inner sanctum, roused by the last of its failing power."
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-senate-loyalists-riot",
+      "beat": "ashen-uprising",
+      "brief": "The Senate's Last Stand — Senate loyalists, refusing to be denied their place on the last ships, storm the sanctum with blades drawn."
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-lever-chamber-glow",
+      "beat": "lever-chamber",
+      "brief": "The Black Iron Lever — The lever itself is a shaft of black iron sunk into the Heart's core, humming with barely-contained power. Whatever you do next cannot be undone."
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-final-lever-decision",
+      "beat": "the-last-choice",
+      "brief": "One Lever Left — The Heart shudders, seconds from collapse. Archon Marrow steps back. The lever is yours to pull."
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-heart-overload-blaze",
+      "beat": "ending-overload-sacrifice",
+      "brief": "The Last Sunrise — The Aurelian Heart blazes one final time, a second dawn that scours the encroaching dark from the land for a hundred miles. Auresca Vel burns to ember"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-city-transformed-dawn",
+      "beat": "ending-redirect-transformation",
+      "brief": "The New Dawn — The lever turns true. The Aurelian Heart does not die but changes, its failing light folding inward and blooming outward again as something stranger a"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-evacuation-embers-fleet",
+      "beat": "ending-evacuation-embers",
+      "brief": "Embers on the Water — The Heart dims to nothing, gently, as you and Captain Kane's guard funnel the last citizens through the gates and down to the harbor. Auresca Vel sink"
+    },
+    {
+      "slot": "art-the-last-gold-of-auresca-vel-city-collapse-ruin",
+      "beat": "ending-fall-of-the-city",
+      "brief": "The Unmade City — The lever slips, or the ritual falters, or the guardians were never truly cleared. The Aurelian Heart collapses in on itself, uncontrolled, and Auresc"
+    }
+  ]
+}

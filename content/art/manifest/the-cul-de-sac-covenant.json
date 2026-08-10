@@ -1,0 +1,85 @@
+{
+  "adventure": "the-cul-de-sac-covenant",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: whimsical-fey, infernal-war.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-cul-de-sac-covenant-maple-court-arrival",
+      "beat": "welcome-to-maple-court",
+      "brief": "Welcome to Maple Court — The cul-de-sac looks like a paint swatch come to life — until you notice the sky above the last house is the color of a healing bruise, and the street"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-perfect-lawns",
+      "beat": "the-perfect-lawns",
+      "brief": "The Perfect Lawns — Every blade of grass is trimmed to identical height. Tiny brass plaques poke from the turf like grave markers, each stamped with a clause number. The "
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-hoa-meeting",
+      "beat": "the-hoa-meeting",
+      "brief": "An Audience With the HOA — Mrs. Threnody Vance, HOA president, greets you with a smile that never quite reaches her eyes. Her cardigan is embroidered with tiny contract seals. S"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-read-covenant",
+      "beat": "read-the-covenant",
+      "brief": "The Covenant, In Full — The document is bound in something that isn't leather. Clauses glow faintly: ETERNAL LAWN PERFECTION. NEIGHBORLY HARMONY, ENFORCED. Any breach summons"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-bleeding-hedge",
+      "beat": "the-bleeding-hedge",
+      "brief": "The Bleeding Hedge — The hedge at the cul-de-sac's end weeps embers instead of dew. Through the gaps you can see a mirror Maple Court — brimstone driveways, smoldering mai"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-imp-patrol",
+      "beat": "imp-patrol",
+      "brief": "Imp Patrol — Small, sneering shapes boil out of the hedge-line — imps in miniature, wielding hedge-clippers like halberds, fiercely defending the rift they've been"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-fine-print",
+      "beat": "the-fine-print",
+      "brief": "The Fine Print — Squinting at the smallest text, you realize 'continual' was meant literally — the lawns were never supposed to stop growing perfect, forever, and 'nei"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-bargain-lilith",
+      "beat": "bargain-with-lilith",
+      "brief": "Bargain With Lilith Emberholt — Lilith is a minor devil in a cardigan that matches Mrs. Vance's, sipping lemonade on a porch that smells faintly of sulfur. She drafted the original C"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-dusk-bleed",
+      "beat": "the-dusk-bleed",
+      "brief": "The Dusk Bleed — The sun drops and the whole cul-de-sac warps — sulfurous rain, driveways cracking into cobblestone brimstone, the hell-realm bleeding fully through un"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-choose-leverage",
+      "beat": "choose-your-leverage",
+      "brief": "Choose Your Leverage — Whatever you've learned and whoever you've spoken to, it's time to decide how you'll approach the final signing table where the Covenant's power pools"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-covenant-enforcer",
+      "beat": "the-covenants-enforcer",
+      "brief": "The Covenant's Enforcer — A hulking construct of hedge-clippers, chain-link, and brimstone rises between you and the signing table — the neighborhood's literal enforcement clau"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-final-signing",
+      "beat": "the-final-signing",
+      "brief": "The Final Signing — Vance and Lilith wait at the table, the Covenant open between them, glowing at the blank signature line. This is where the bargain ends — rewritten, b"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-renewed-bargain",
+      "beat": "renewed-bargain",
+      "brief": "A Fairer Covenant — The lawns settle into merely-nice instead of eternally-perfect. The hedge stops bleeding at dusk. Mrs. Vance sends a thank-you card, sincerely, for on"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-broken-covenant",
+      "beat": "broken-covenant",
+      "brief": "No More Bargains — The Covenant burns to nothing. The hell-realm mirror collapses, the hedge grows wild and ordinary, and the lawns go patchy and unremarkable within a w"
+    },
+    {
+      "slot": "art-the-cul-de-sac-covenant-devils-court",
+      "beat": "devils-court",
+      "brief": "The New Broker — You sign. The ink is warm. Lilith laughs, delighted, and hands you her cardigan along with the deed to a cul-de-sac that now answers to you — every cl"
+    }
+  ]
+}

@@ -1,0 +1,870 @@
+{
+  "id": "the-cul-de-sac-covenant",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Cul-de-Sac Covenant",
+    "premise": "Decades ago the Maple Court Homeowners' Association struck a charming little bargain with a devil to keep the lawns perfect and the neighbors happy forever. Now the fine print has become literal, a hell-realm bleeds through the hedges every dusk, and someone has to renegotiate, break, or inherit the deal.",
+    "tone": [
+      "whimsical-fey",
+      "infernal-war"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Warm, arch, and faintly menacing — like a real-estate brochure written by something with too many teeth.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are placed in on-screen danger; any references to families are kept off-page."
+    },
+    "provenance": "flint"
+  },
+  "entry": "welcome-to-maple-court",
+  "beats": [
+    {
+      "id": "welcome-to-maple-court",
+      "kind": "threshold",
+      "title": "Welcome to Maple Court",
+      "prose": "The cul-de-sac looks like a paint swatch come to life — until you notice the sky above the last house is the color of a healing bruise, and the streetlight at the end flickers between electric white and hellfire orange.",
+      "readAloud": "A sign reads WELCOME TO MAPLE COURT — WHERE EVERY LAWN IS PERFECT. Beneath it, someone has scratched: FOREVER.",
+      "art": "art-the-cul-de-sac-covenant-maple-court-arrival",
+      "options": [
+        {
+          "id": "knock-on-door",
+          "label": "Knock on the nearest cheerful door",
+          "target": "the-hoa-meeting",
+          "effects": []
+        },
+        {
+          "id": "inspect-lawns",
+          "label": "Crouch to inspect the unnervingly perfect lawns",
+          "target": "the-perfect-lawns",
+          "effects": []
+        },
+        {
+          "id": "rush-hedge",
+          "label": "Push straight through the shimmering hedge at the court's end",
+          "target": "the-bleeding-hedge",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "the-perfect-lawns"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-perfect-lawns",
+      "kind": "discovery",
+      "title": "The Perfect Lawns",
+      "prose": "Every blade of grass is trimmed to identical height. Tiny brass plaques poke from the turf like grave markers, each stamped with a clause number. The grass hums faintly, as if reciting something.",
+      "art": "art-the-cul-de-sac-covenant-perfect-lawns",
+      "options": [
+        {
+          "id": "read-plaque",
+          "label": "Read a brass clause-plaque embedded in the turf",
+          "target": "read-the-covenant",
+          "effects": []
+        },
+        {
+          "id": "dig-lawn",
+          "label": "Dig into the suspiciously perfect turf",
+          "target": "the-bleeding-hedge",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "Athletics",
+            "dc": 10,
+            "onFailure": "the-hoa-meeting"
+          }
+        },
+        {
+          "id": "ask-neighbor",
+          "label": "Flag down a passing homeowner for answers",
+          "target": "the-hoa-meeting",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-hoa-meeting",
+      "kind": "social",
+      "title": "An Audience With the HOA",
+      "prose": "Mrs. Threnody Vance, HOA president, greets you with a smile that never quite reaches her eyes. Her cardigan is embroidered with tiny contract seals. She speaks of the 'Covenant of Continual Curb Appeal' the way one speaks of scripture.",
+      "art": "art-the-cul-de-sac-covenant-hoa-meeting",
+      "options": [
+        {
+          "id": "ask-history",
+          "label": "Ask about the Covenant's history",
+          "target": "read-the-covenant",
+          "effects": []
+        },
+        {
+          "id": "demand-release",
+          "label": "Demand she release the neighborhood now",
+          "target": "bargain-with-lilith",
+          "effects": []
+        },
+        {
+          "id": "offer-help",
+          "label": "Offer to help fix the Covenant peacefully",
+          "target": "the-fine-print",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "read-the-covenant",
+      "kind": "decision",
+      "title": "The Covenant, In Full",
+      "prose": "The document is bound in something that isn't leather. Clauses glow faintly: ETERNAL LAWN PERFECTION. NEIGHBORLY HARMONY, ENFORCED. Any breach summons an Enforcer. There's a blank line at the bottom, still waiting for a signature.",
+      "art": "art-the-cul-de-sac-covenant-read-covenant",
+      "options": [
+        {
+          "id": "study-clauses",
+          "label": "Study the clauses for loopholes",
+          "target": "the-fine-print",
+          "effects": []
+        },
+        {
+          "id": "sign-addendum-attempt",
+          "label": "Add your own name to the waiting addendum line",
+          "target": "the-dusk-bleed",
+          "effects": [
+            {
+              "flag": "signed-addendum",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "burn-covenant-attempt",
+          "label": "Try to burn the covenant on the spot",
+          "target": "the-bleeding-hedge",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 13,
+            "onFailure": "imp-patrol"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-bleeding-hedge",
+      "kind": "discovery",
+      "title": "The Bleeding Hedge",
+      "prose": "The hedge at the cul-de-sac's end weeps embers instead of dew. Through the gaps you can see a mirror Maple Court — brimstone driveways, smoldering mailboxes, lawns of ash trimmed just as precisely.",
+      "art": "art-the-cul-de-sac-covenant-bleeding-hedge",
+      "options": [
+        {
+          "id": "seal-rift",
+          "label": "Weave the hedge shut with a borrowed fey charm",
+          "target": "the-dusk-bleed",
+          "effects": [
+            {
+              "flag": "hedge-sealed",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "imp-patrol"
+          }
+        },
+        {
+          "id": "step-through",
+          "label": "Step through into the hell-realm mirror",
+          "target": "imp-patrol",
+          "effects": []
+        },
+        {
+          "id": "mark-location",
+          "label": "Mark the hedge and retreat to gather more information",
+          "target": "the-hoa-meeting",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "imp-patrol",
+      "kind": "conflict",
+      "title": "Imp Patrol",
+      "prose": "Small, sneering shapes boil out of the hedge-line — imps in miniature, wielding hedge-clippers like halberds, fiercely defending the rift they've been assigned to guard.",
+      "art": "art-the-cul-de-sac-covenant-imp-patrol",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "imp-patrol-encounter",
+      "terminal": false
+    },
+    {
+      "id": "the-fine-print",
+      "kind": "puzzle",
+      "title": "The Fine Print",
+      "prose": "Squinting at the smallest text, you realize 'continual' was meant literally — the lawns were never supposed to stop growing perfect, forever, and 'neighborly harmony' is enforced by binding everyone's smiles. Buried in a footnote is a recursive clause that could unmake the whole thing, if invoked correctly.",
+      "art": "art-the-cul-de-sac-covenant-fine-print",
+      "options": [
+        {
+          "id": "decode-clause",
+          "label": "Decode the recursive binding clause",
+          "target": "choose-your-leverage",
+          "effects": [
+            {
+              "flag": "knows-loophole",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "consult-vance",
+          "label": "Bring your findings back to Mrs. Vance",
+          "target": "the-hoa-meeting",
+          "effects": []
+        },
+        {
+          "id": "consult-broker",
+          "label": "Seek out the original broker who drafted it",
+          "target": "bargain-with-lilith",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bargain-with-lilith",
+      "kind": "social",
+      "title": "Bargain With Lilith Emberholt",
+      "prose": "Lilith is a minor devil in a cardigan that matches Mrs. Vance's, sipping lemonade on a porch that smells faintly of sulfur. She drafted the original Covenant, and she is, charmingly, still quite proud of it.",
+      "art": "art-the-cul-de-sac-covenant-bargain-lilith",
+      "options": [
+        {
+          "id": "negotiate-fair",
+          "label": "Negotiate a fairer renegotiation",
+          "target": "choose-your-leverage",
+          "effects": []
+        },
+        {
+          "id": "accept-her-offer",
+          "label": "Accept Lilith's tempting counter-offer",
+          "target": "the-dusk-bleed",
+          "effects": [
+            {
+              "flag": "allied-with-lilith",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-and-threaten",
+          "label": "Refuse and threaten to expose her",
+          "target": "the-covenants-enforcer",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-dusk-bleed",
+      "kind": "hazard",
+      "title": "The Dusk Bleed",
+      "prose": "The sun drops and the whole cul-de-sac warps — sulfurous rain, driveways cracking into cobblestone brimstone, the hell-realm bleeding fully through until dawn resets the illusion of normalcy.",
+      "art": "art-the-cul-de-sac-covenant-dusk-bleed",
+      "options": [
+        {
+          "id": "brace-shelter",
+          "label": "Brace inside a warded garage until the bleed passes",
+          "target": "choose-your-leverage",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "skill": "Survival",
+            "dc": 12,
+            "onFailure": "the-covenants-enforcer"
+          }
+        },
+        {
+          "id": "push-through-bleed",
+          "label": "Push through the bleed toward the rift's heart",
+          "target": "the-covenants-enforcer",
+          "effects": []
+        },
+        {
+          "id": "use-loophole",
+          "label": "Invoke your fey ward or the loophole to stall the bleed",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-loophole",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "hedge-sealed",
+                "value": true
+              }
+            ]
+          },
+          "target": "choose-your-leverage",
+          "effects": [
+            {
+              "flag": "stalled-bleed",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choose-your-leverage",
+      "kind": "decision",
+      "title": "Choose Your Leverage",
+      "prose": "Whatever you've learned and whoever you've spoken to, it's time to decide how you'll approach the final signing table where the Covenant's power pools thickest.",
+      "art": "art-the-cul-de-sac-covenant-choose-leverage",
+      "options": [
+        {
+          "id": "legal-rewrite",
+          "label": "Prepare to rewrite the covenant's binding clause on the spot",
+          "target": "the-final-signing",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Arcana",
+            "dc": 14,
+            "onFailure": "the-covenants-enforcer"
+          }
+        },
+        {
+          "id": "force-confrontation",
+          "label": "March to force a confrontation with Vance and Lilith together",
+          "target": "the-covenants-enforcer",
+          "effects": []
+        },
+        {
+          "id": "leverage-loophole",
+          "label": "Use your stalled window or loophole to slip toward the table unseen",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-loophole",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "stalled-bleed",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-final-signing",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-covenants-enforcer",
+      "kind": "conflict",
+      "title": "The Covenant's Enforcer",
+      "prose": "A hulking construct of hedge-clippers, chain-link, and brimstone rises between you and the signing table — the neighborhood's literal enforcement clause, given terrible shape.",
+      "art": "art-the-cul-de-sac-covenant-covenant-enforcer",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enforcer-encounter",
+      "terminal": false
+    },
+    {
+      "id": "the-final-signing",
+      "kind": "climax",
+      "title": "The Final Signing",
+      "prose": "Vance and Lilith wait at the table, the Covenant open between them, glowing at the blank signature line. This is where the bargain ends — rewritten, broken, or inherited.",
+      "art": "art-the-cul-de-sac-covenant-final-signing",
+      "options": [
+        {
+          "id": "rewrite-covenant",
+          "label": "Rewrite the covenant into a fair, finite bargain",
+          "target": "renewed-bargain",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "broken-covenant"
+          }
+        },
+        {
+          "id": "destroy-covenant",
+          "label": "Tear the covenant to ash, breaking every bargain at once",
+          "visibleWhen": {
+            "op": "not",
+            "clause": {
+              "op": "eq",
+              "flag": "signed-addendum",
+              "value": true
+            }
+          },
+          "target": "broken-covenant",
+          "effects": []
+        },
+        {
+          "id": "sign-yourself",
+          "label": "Sign your own name and inherit Lilith's throne of curb appeal",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-with-lilith",
+            "value": true
+          },
+          "target": "devils-court",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "renewed-bargain",
+      "kind": "ending",
+      "title": "A Fairer Covenant",
+      "prose": "The lawns settle into merely-nice instead of eternally-perfect. The hedge stops bleeding at dusk. Mrs. Vance sends a thank-you card, sincerely, for once. Maple Court is still strange, but it is finally, mercifully, its own.",
+      "art": "art-the-cul-de-sac-covenant-renewed-bargain",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "broken-covenant",
+      "kind": "ending",
+      "title": "No More Bargains",
+      "prose": "The Covenant burns to nothing. The hell-realm mirror collapses, the hedge grows wild and ordinary, and the lawns go patchy and unremarkable within a week. Freedom, it turns out, looks a lot like dandelions.",
+      "art": "art-the-cul-de-sac-covenant-broken-covenant",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "devils-court",
+      "kind": "ending",
+      "title": "The New Broker",
+      "prose": "You sign. The ink is warm. Lilith laughs, delighted, and hands you her cardigan along with the deed to a cul-de-sac that now answers to you — every clause, every clipping, every soul on the block, forever curb-appealing under your new and terrible management.",
+      "art": "art-the-cul-de-sac-covenant-devils-court",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "welcome-to-maple-court",
+      "to": "the-hoa-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "welcome-to-maple-court",
+      "to": "the-perfect-lawns",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "welcome-to-maple-court",
+      "to": "the-bleeding-hedge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-perfect-lawns",
+      "to": "read-the-covenant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-perfect-lawns",
+      "to": "the-bleeding-hedge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-perfect-lawns",
+      "to": "the-hoa-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-hoa-meeting",
+      "to": "read-the-covenant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-hoa-meeting",
+      "to": "bargain-with-lilith",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-hoa-meeting",
+      "to": "the-fine-print",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "read-the-covenant",
+      "to": "the-fine-print",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "read-the-covenant",
+      "to": "the-dusk-bleed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "read-the-covenant",
+      "to": "the-bleeding-hedge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-bleeding-hedge",
+      "to": "the-dusk-bleed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-bleeding-hedge",
+      "to": "imp-patrol",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-bleeding-hedge",
+      "to": "the-hoa-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "imp-patrol",
+      "to": "the-fine-print",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "imp-patrol",
+      "to": "the-hoa-meeting",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "imp-patrol",
+      "to": "the-perfect-lawns",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "the-fine-print",
+      "to": "choose-your-leverage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-fine-print",
+      "to": "the-hoa-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-fine-print",
+      "to": "bargain-with-lilith",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bargain-with-lilith",
+      "to": "choose-your-leverage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bargain-with-lilith",
+      "to": "the-dusk-bleed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bargain-with-lilith",
+      "to": "the-covenants-enforcer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-dusk-bleed",
+      "to": "choose-your-leverage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-dusk-bleed",
+      "to": "the-covenants-enforcer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choose-your-leverage",
+      "to": "the-final-signing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choose-your-leverage",
+      "to": "the-covenants-enforcer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-covenants-enforcer",
+      "to": "the-final-signing",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "the-covenants-enforcer",
+      "to": "broken-covenant",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "the-covenants-enforcer",
+      "to": "the-dusk-bleed",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "the-final-signing",
+      "to": "renewed-bargain",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-final-signing",
+      "to": "broken-covenant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-final-signing",
+      "to": "devils-court",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "imp-patrol-encounter",
+      "title": "Imp Patrol",
+      "combatants": [
+        {
+          "id": "imp-1",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "imp-2",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "imp-3",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-fine-print",
+      "onDefeat": "the-hoa-meeting",
+      "onFlee": "the-perfect-lawns"
+    },
+    {
+      "id": "enforcer-encounter",
+      "title": "The Covenant's Enforcer",
+      "combatants": [
+        {
+          "id": "enforcer-frame",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "enforcer-warden-1",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "enforcer-warden-2",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break past the hedge-clipper enforcer to reach the signing table."
+      },
+      "onVictory": "the-final-signing",
+      "onDefeat": "broken-covenant",
+      "onFlee": "the-dusk-bleed"
+    }
+  ]
+}

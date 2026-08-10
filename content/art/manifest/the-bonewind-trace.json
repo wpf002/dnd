@@ -1,0 +1,90 @@
+{
+  "adventure": "the-bonewind-trace",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-bonewind-trace-waystation-contract",
+      "beat": "contract-at-waystation",
+      "brief": "The Waystation Contract — Duskwell Waystation huddles at the edge of the dunes, its well running dry. The elder Marsha Coth offers what coin remains to any who will ride the Bo"
+    },
+    {
+      "slot": "art-the-bonewind-trace-elder-warning-scene",
+      "beat": "elder-warning",
+      "brief": "The Elder's Warning — Marsha Coth's hands shake as she describes the Trace: outlaws called the Salt Hand Riders who tax every traveler, and stones older than any road that "
+    },
+    {
+      "slot": "art-the-bonewind-trace-rees-backstory-scene",
+      "beat": "rees-backstory",
+      "brief": "The Cartographer's Trail — The waystation folk remember Rees fondly: obsessive about the old stones, convinced a hidden aquifer lay beneath them, and gone six weeks past with on"
+    },
+    {
+      "slot": "art-the-bonewind-trace-trace-crossroads-view",
+      "beat": "trace-crossroads",
+      "brief": "Where the Trace Splits — The road forks below a lone standing stone. One path runs open beneath the sun, one is a hidden goat-trail you've heard mentioned, and a third climbs "
+    },
+    {
+      "slot": "art-the-bonewind-trace-first-standing-stone-carving",
+      "beat": "first-standing-stone",
+      "brief": "The First Standing Stone — Runes spiral up the weathered monolith, half-buried in drifting sand. They seem to shift meaning depending on the angle of the sun."
+    },
+    {
+      "slot": "art-the-bonewind-trace-bandit-toll-post-scene",
+      "beat": "bandit-toll-post",
+      "brief": "The Salt Hand Toll — Riders in salt-crusted leathers block the road, spears loose in their hands. Their leader grins, missing two teeth, and names a price for passage."
+    },
+    {
+      "slot": "art-the-bonewind-trace-bandit-ambush-clash",
+      "beat": "bandit-ambush",
+      "brief": "Steel on the Sand — The Salt Hand Riders close in, blades drawn, unwilling to let anyone pass without paying one way or another."
+    },
+    {
+      "slot": "art-the-bonewind-trace-stone-alignment-ritual",
+      "beat": "stone-alignment-puzzle",
+      "brief": "Aligning the Stones — A ring of standing stones surrounds a sunken basin. Rees's notes, old lore, or sheer force might reveal the path down into the dark beneath them."
+    },
+    {
+      "slot": "art-the-bonewind-trace-sandstorm-hazard-wall",
+      "beat": "sandstorm-hazard",
+      "brief": "The Bonewind Rises — A wall of stinging sand rolls across the Trace, swallowing the horizon and the standing stones alike. Voices seem to whisper in the wind."
+    },
+    {
+      "slot": "art-the-bonewind-trace-rees-camp-remains",
+      "beat": "rees-camp",
+      "brief": "Rees's Abandoned Camp — A collapsed tent and a cold firepit mark where the cartographer made his last camp. His journal lies half-buried, pages fluttering."
+    },
+    {
+      "slot": "art-the-bonewind-trace-vault-entrance-steps",
+      "beat": "vault-entrance",
+      "brief": "The Sunken Vault — Stone steps spiral down beneath the ring of monoliths. Ancient guardians of pitted armor and living shadow flank a door carved with the same shifting "
+    },
+    {
+      "slot": "art-the-bonewind-trace-guardian-encounter-clash",
+      "beat": "guardian-encounter",
+      "brief": "The Stone Guardians — Armor clatters upright with no one inside it, and shadows peel from the walls with hungry, reaching edges."
+    },
+    {
+      "slot": "art-the-bonewind-trace-vashka-showdown-cavern",
+      "beat": "vashka-showdown",
+      "brief": "Vashka Cole's Spring — Beyond the guardians, a hidden spring glimmers in a cavern lit by shafts of sun. Vashka Cole, captain of the Salt Hand Riders, stands over it with bla"
+    },
+    {
+      "slot": "art-the-bonewind-trace-vault-choice-spring",
+      "beat": "vault-choice",
+      "brief": "The Spring's Price — Vashka is fallen and the spring is finally yours, but the vault holds more than water: bound captives, an old relic half-buried at the spring's edge, "
+    },
+    {
+      "slot": "art-the-bonewind-trace-ending-hero-caravan",
+      "beat": "ending-hero",
+      "brief": "Water for Duskwell — You lead a caravan of relief back to Duskwell Waystation, the hidden spring's water sloshing in every cask. The well fills. The Trace, for the first t"
+    },
+    {
+      "slot": "art-the-bonewind-trace-ending-dark-stones",
+      "beat": "ending-dark",
+      "brief": "The Trace Claims Another — The standing stones watch as the wind erases your tracks. Somewhere back at Duskwell, the well runs a little drier, and the road adds another name to "
+    }
+  ]
+}

@@ -1,0 +1,915 @@
+{
+  "id": "the-ashfall-road",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ashfall Road",
+    "premise": "The frontier town of Kettlebrook sits at the last fence before ruin country, where every expedition down the old trade road has vanished without trace. A dying prospector's widow now holds a map and a reason to try the road again.",
+    "tone": [
+      "exploration",
+      "high-adventure"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "a weathered frontier chronicler recounting the tale by lamplight",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children are placed in on-screen danger at any point."
+    },
+    "provenance": "flint"
+  },
+  "entry": "town-gates",
+  "beats": [
+    {
+      "id": "town-gates",
+      "kind": "threshold",
+      "title": "The Last Fence",
+      "prose": "Kettlebrook's palisade gate creaks in the wind that rolls off the ruin country beyond. A rope-and-bell warning line marks where the town ends and the dead road begins.",
+      "art": "art-the-ashfall-road-town-gates-art",
+      "options": [
+        {
+          "id": "go-council",
+          "label": "Seek out the town council",
+          "target": "council-hall",
+          "effects": []
+        },
+        {
+          "id": "go-widow",
+          "label": "Visit the prospector's widow",
+          "target": "widows-cottage",
+          "effects": []
+        },
+        {
+          "id": "go-broker",
+          "label": "Find the black-market broker",
+          "target": "black-market-den",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "council-hall",
+      "kind": "social",
+      "title": "The Council's Ledger",
+      "prose": "Elder Marlow Dunn keeps a grim tally of every party lost on the ruin road, chalked names never crossed out. He watches you with tired hope.",
+      "art": "art-the-ashfall-road-council-hall-art",
+      "options": [
+        {
+          "id": "press-council",
+          "label": "Press the council for details on the vanished patrols",
+          "target": "ruin-road",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "ruin-road"
+          }
+        },
+        {
+          "id": "visit-widow-instead",
+          "label": "Thank them and go speak with the prospector's widow",
+          "target": "widows-cottage",
+          "effects": []
+        },
+        {
+          "id": "visit-broker-instead",
+          "label": "Slip away to find the black-market broker",
+          "target": "black-market-den",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-danger",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "widows-cottage",
+      "kind": "social",
+      "title": "Senna Vey's Cottage",
+      "prose": "The widow's hands shake as she unrolls her late husband's map, its margins scrawled with warnings in a hand growing wilder toward the ruin's heart.",
+      "art": "art-the-ashfall-road-widows-cottage-art",
+      "options": [
+        {
+          "id": "ask-for-map",
+          "label": "Ask Senna Vey for her husband's map",
+          "target": "ruin-road",
+          "effects": [
+            {
+              "flag": "has-map",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 12,
+            "onFailure": "ruin-road"
+          }
+        },
+        {
+          "id": "widow-to-council",
+          "label": "Excuse yourself to consult the town council",
+          "target": "council-hall",
+          "effects": []
+        },
+        {
+          "id": "widow-to-broker",
+          "label": "Head to the black market instead",
+          "target": "black-market-den",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "black-market-den",
+      "kind": "social",
+      "title": "The Broker's Back Room",
+      "prose": "A one-eyed broker named Tull deals in salvage from the ruin road for those bold or foolish enough to buy secrets nobody else survived to sell.",
+      "art": "art-the-ashfall-road-black-market-den-art",
+      "options": [
+        {
+          "id": "bribe-broker",
+          "label": "Bribe the broker for safe-passage secrets",
+          "target": "ruin-road",
+          "effects": [
+            {
+              "flag": "bribed-broker",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "deception",
+            "dc": 13,
+            "onFailure": "ruin-road"
+          }
+        },
+        {
+          "id": "broker-to-council",
+          "label": "Leave for the town council",
+          "target": "council-hall",
+          "effects": []
+        },
+        {
+          "id": "broker-to-widow",
+          "label": "Leave for the widow's cottage",
+          "target": "widows-cottage",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ruin-road",
+      "kind": "transit",
+      "title": "The Dead Road",
+      "prose": "Beyond the fence the road turns to cracked stone and ash. Old wagon wheels lie half-buried, pointing every direction but forward.",
+      "art": "art-the-ashfall-road-ruin-road-art",
+      "options": [
+        {
+          "id": "follow-tracks",
+          "label": "Follow the recent tracks toward the old campsite",
+          "target": "silent-camp",
+          "effects": []
+        },
+        {
+          "id": "take-detour",
+          "label": "Take the longer detour the council warned about",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-danger",
+            "value": true
+          },
+          "target": "cracked-bridge",
+          "effects": []
+        },
+        {
+          "id": "push-ravine",
+          "label": "Push straight through the ravine",
+          "target": "bandit-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "silent-camp",
+      "kind": "discovery",
+      "title": "The Silent Camp",
+      "prose": "Tents stand half-collapsed, cookfires long cold. Nothing here died violently — everything simply stopped, mid-motion.",
+      "art": "art-the-ashfall-road-silent-camp-art",
+      "options": [
+        {
+          "id": "use-map",
+          "label": "Use the widow's map to find the hidden vault entrance",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-map",
+            "value": true
+          },
+          "target": "whispering-vault",
+          "effects": []
+        },
+        {
+          "id": "bypass-camp",
+          "label": "Bypass the camp and head for the bridge",
+          "target": "cracked-bridge",
+          "effects": []
+        },
+        {
+          "id": "investigate-noises",
+          "label": "Investigate the noises in the brush",
+          "target": "bandit-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cracked-bridge",
+      "kind": "hazard",
+      "title": "The Cracked Bridge",
+      "prose": "A stone bridge spans a chasm of shifting ash-fog, its center span shattered and groaning under its own weight.",
+      "art": "art-the-ashfall-road-cracked-bridge-art",
+      "options": [
+        {
+          "id": "cross-carefully",
+          "label": "Cross the bridge carefully, plank by plank",
+          "target": "ghoul-warren",
+          "effects": [
+            {
+              "flag": "crossed-bridge",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "acrobatics",
+            "dc": 13,
+            "onFailure": "bandit-ambush"
+          }
+        },
+        {
+          "id": "rope-line",
+          "label": "Use the broker's secret rope line",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bribed-broker",
+            "value": true
+          },
+          "target": "ghoul-warren",
+          "effects": []
+        },
+        {
+          "id": "turn-back",
+          "label": "Turn back and regroup at the camp",
+          "target": "silent-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bandit-ambush",
+      "kind": "conflict",
+      "title": "Ambush in the Ravine",
+      "prose": "Shapes drop from the rocks above — road bandits who've made a grim living picking through the belongings of those who never came back.",
+      "art": "art-the-ashfall-road-bandit-ambush-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bandit-ambush-fight",
+      "terminal": false
+    },
+    {
+      "id": "whispering-vault",
+      "kind": "puzzle",
+      "title": "The Whispering Vault",
+      "prose": "A sealed door hums with warded glyphs that whisper half-words as you approach, as if trying to remember a language.",
+      "art": "art-the-ashfall-road-whispering-vault-art",
+      "options": [
+        {
+          "id": "decode-glyphs",
+          "label": "Decode the warding glyphs on the vault door",
+          "target": "hollow-choir",
+          "effects": [
+            {
+              "flag": "solved-vault",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "ghoul-warren"
+          }
+        },
+        {
+          "id": "force-door",
+          "label": "Force the ancient door open by brute strength",
+          "target": "ghoul-warren",
+          "effects": []
+        },
+        {
+          "id": "abandon-vault",
+          "label": "Abandon the vault and retreat to the bridge",
+          "target": "cracked-bridge",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghoul-warren",
+      "kind": "conflict",
+      "title": "The Ghoul Warren",
+      "prose": "Beneath the vault, tunnels reek of old blood. Pale shapes uncoil from the dark, hungry for anything that still breathes.",
+      "art": "art-the-ashfall-road-ghoul-warren-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ghoul-warren-fight",
+      "terminal": false
+    },
+    {
+      "id": "hollow-choir",
+      "kind": "discovery",
+      "title": "The Hollow Choir",
+      "prose": "A cavern opens ahead, filled with a low, layered singing — the voices of everyone who never returned, bound together in the dark.",
+      "art": "art-the-ashfall-road-hollow-choir-art",
+      "options": [
+        {
+          "id": "approach-choir",
+          "label": "Approach the source of the singing",
+          "target": "wight-guardian",
+          "effects": []
+        },
+        {
+          "id": "understand-warning",
+          "label": "Try to understand the choir's warning before advancing",
+          "target": "final-choice",
+          "effects": [
+            {
+              "flag": "heard-choir-truth",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 13,
+            "onFailure": "wight-guardian"
+          }
+        },
+        {
+          "id": "retreat-bridge-route",
+          "label": "Retreat across the bridge route to regroup",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "crossed-bridge",
+            "value": true
+          },
+          "target": "ghoul-warren",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wight-guardian",
+      "kind": "conflict",
+      "title": "The Warden of the Choir",
+      "prose": "At the choir's heart stands a crowned, withered thing wreathed in cold light — the road's true warden, and the reason nobody comes back.",
+      "art": "art-the-ashfall-road-wight-guardian-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wight-guardian-fight",
+      "terminal": false
+    },
+    {
+      "id": "final-choice",
+      "kind": "decision",
+      "title": "What the Road Demands",
+      "prose": "The warden is broken, and the choir's voices hang suspended, waiting on your next act to decide what the ruin road becomes.",
+      "art": "art-the-ashfall-road-final-choice-art",
+      "options": [
+        {
+          "id": "break-curse",
+          "label": "Use what you've learned to break the curse and lead survivors home",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "heard-choir-truth",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "solved-vault",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-return",
+          "effects": []
+        },
+        {
+          "id": "seal-road",
+          "label": "Offer yourself to seal the road forever",
+          "target": "ending-sacrifice",
+          "effects": []
+        },
+        {
+          "id": "seize-treasure",
+          "label": "Seize the ruin's treasure and flee, leaving the road open",
+          "target": "ending-doom",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-return",
+      "kind": "ending",
+      "title": "The Road Remembers",
+      "prose": "The choir's voices fall silent one by one, freed. You lead the last few lost souls back through the fence gate as Kettlebrook's bell rings for the first return in years.",
+      "art": "art-the-ashfall-road-ending-return-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sacrifice",
+      "kind": "ending",
+      "title": "A Bargain Kept",
+      "prose": "You stay behind as the vault seals, your name added to the council's chalk tally — but this time, crossed out with honor, and no one else will walk the road again.",
+      "art": "art-the-ashfall-road-ending-sacrifice-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-doom",
+      "kind": "ending",
+      "title": "The Road Takes Its Due",
+      "prose": "Whether by treasure or by ruin, the road claims its price. Kettlebrook adds new names to its ledger, and the fence bell rings a warning, not a welcome.",
+      "art": "art-the-ashfall-road-ending-doom-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "town-gates",
+      "to": "council-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "town-gates",
+      "to": "widows-cottage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "town-gates",
+      "to": "black-market-den",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-hall",
+      "to": "ruin-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-hall",
+      "to": "widows-cottage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-hall",
+      "to": "black-market-den",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-cottage",
+      "to": "ruin-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-cottage",
+      "to": "council-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-cottage",
+      "to": "black-market-den",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "black-market-den",
+      "to": "ruin-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "black-market-den",
+      "to": "council-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "black-market-den",
+      "to": "widows-cottage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-road",
+      "to": "silent-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-road",
+      "to": "cracked-bridge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-road",
+      "to": "bandit-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "silent-camp",
+      "to": "whispering-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "silent-camp",
+      "to": "cracked-bridge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "silent-camp",
+      "to": "bandit-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cracked-bridge",
+      "to": "ghoul-warren",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cracked-bridge",
+      "to": "bandit-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cracked-bridge",
+      "to": "silent-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "whispering-vault",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "whispering-vault",
+      "to": "ghoul-warren",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "whispering-vault",
+      "to": "cracked-bridge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bandit-ambush",
+      "to": "silent-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bandit-ambush",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bandit-ambush",
+      "to": "ruin-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghoul-warren",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghoul-warren",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghoul-warren",
+      "to": "whispering-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-choir",
+      "to": "wight-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-choir",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-choir",
+      "to": "ghoul-warren",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wight-guardian",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wight-guardian",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wight-guardian",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-return",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "bandit-ambush-fight",
+      "title": "Ambush in the Ravine",
+      "combatants": [
+        {
+          "id": "bandit-1",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "silent-camp",
+      "onDefeat": "ending-doom",
+      "onFlee": "ruin-road"
+    },
+    {
+      "id": "ghoul-warren-fight",
+      "title": "The Ghoul Warren",
+      "combatants": [
+        {
+          "id": "ghoul-1",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "zombie-1",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "hollow-choir",
+      "onDefeat": "ending-doom",
+      "onFlee": "whispering-vault"
+    },
+    {
+      "id": "wight-guardian-fight",
+      "title": "The Warden of the Choir",
+      "combatants": [
+        {
+          "id": "wight-1",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "skeleton-1",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "final-choice",
+      "onDefeat": "ending-doom",
+      "onFlee": "hollow-choir"
+    }
+  ]
+}

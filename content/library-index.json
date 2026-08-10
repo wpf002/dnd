@@ -694,6 +694,138 @@
       ],
       "partyLevel": 5,
       "beats": 16
+    },
+    {
+      "id": "the-long-dim-score",
+      "title": "The Long Dim Score",
+      "inspiredBy": "RollPlay: Blades",
+      "source": "community",
+      "tone": [
+        "heist",
+        "urban-intrigue"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-cul-de-sac-covenant",
+      "title": "The Cul-de-Sac Covenant",
+      "inspiredBy": "Dungeons & Daddies",
+      "source": "community",
+      "tone": [
+        "whimsical-fey",
+        "infernal-war"
+      ],
+      "partyLevel": 3,
+      "beats": 15
+    },
+    {
+      "id": "the-bonewind-trace",
+      "title": "The Bonewind Trace",
+      "inspiredBy": "Three Black Halflings: Outlaws & Obelisks",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-cindergate-road",
+      "title": "The Cindergate Road",
+      "inspiredBy": "Worlds Beyond Number",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "political-fantasy"
+      ],
+      "partyLevel": 5,
+      "beats": 15
+    },
+    {
+      "id": "the-charming-clause",
+      "title": "The Charming Clause",
+      "inspiredBy": "Venture Maidens",
+      "source": "community",
+      "tone": [
+        "whimsical-fey",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ashfall-road",
+      "title": "The Ashfall Road",
+      "inspiredBy": "Critical Role: Exandria Unlimited",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "high-adventure"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-gilded-reckoning",
+      "title": "The Gilded Reckoning",
+      "inspiredBy": "Legends of Avantris",
+      "source": "community",
+      "tone": [
+        "high-adventure",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-last-gold-of-auresca-vel",
+      "title": "The Last Gold of Auresca Vel",
+      "inspiredBy": "Critical Role: Calamity",
+      "source": "community",
+      "tone": [
+        "epic-finale",
+        "political-fantasy"
+      ],
+      "partyLevel": 10,
+      "beats": 15
+    },
+    {
+      "id": "the-last-hour-of-velmarch",
+      "title": "The Last Hour of Velmarch",
+      "inspiredBy": "Critical Role: Downfall",
+      "source": "community",
+      "tone": [
+        "epic-finale",
+        "cosmic-horror"
+      ],
+      "partyLevel": 9,
+      "beats": 15
+    },
+    {
+      "id": "the-bleeding-dark-of-duskwell",
+      "title": "The Bleeding Dark of Duskwell",
+      "inspiredBy": "Critical Role: Candela Obscura",
+      "source": "community",
+      "tone": [
+        "cosmic-horror",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-cellar-under-puddlewick",
+      "title": "The Cellar Under Puddlewick",
+      "inspiredBy": "Heroes & Halfwits",
+      "source": "community",
+      "tone": [
+        "beginner-classic",
+        "high-adventure"
+      ],
+      "partyLevel": 2,
+      "beats": 15
     }
   ]
 }

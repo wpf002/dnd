@@ -1,0 +1,90 @@
+{
+  "adventure": "the-long-dim-score",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, urban-intrigue.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-long-dim-score-crew-briefing-art",
+      "beat": "crew-briefing",
+      "brief": "The Fixer's Offer — The back room of the Choke & Ember reeks of tar-smoke. A fixer named Ondine Vask slides a folded schematic across the table: the Hollowmere Exchange, "
+    },
+    {
+      "slot": "art-the-long-dim-score-fixer-meeting-art",
+      "beat": "fixer-meeting",
+      "brief": "What Ondine Knows — Ondine's smile is thin. She talks about Vesper Thane, the architect who built Hollowmere—a man obsessed with the idea that someone, someday, would try"
+    },
+    {
+      "slot": "art-the-long-dim-score-casing-the-exchange-art",
+      "beat": "casing-the-exchange",
+      "brief": "Casing Hollowmere — The Exchange squats over the canal district like an iron tombstone, its windows dark even before the Long Dim. Patrol lanterns bob along three approac"
+    },
+    {
+      "slot": "art-the-long-dim-score-sewer-approach-art",
+      "beat": "sewer-approach",
+      "brief": "The Flooded Culvert — Black water laps at the tunnel walls. Something down here has been dead a long while and hasn't noticed yet. Bones glimmer under the surface like a wa"
+    },
+    {
+      "slot": "art-the-long-dim-score-rooftop-approach-art",
+      "beat": "rooftop-approach",
+      "brief": "The Rain-Chain Gantries — Iron gantries sway over a hundred-foot drop into the canal. Wardlanterns hang dead on their hooks. Somewhere above, boots scuff on wet metal."
+    },
+    {
+      "slot": "art-the-long-dim-score-front-approach-art",
+      "beat": "front-approach",
+      "brief": "The Brass Doors — Two night auditors flank a brass-barred door, ledgers in hand, faces gray with fatigue and worse things. A guard station's lantern flickers, undecided"
+    },
+    {
+      "slot": "art-the-long-dim-score-sewer-ambush-art",
+      "beat": "sewer-ambush",
+      "brief": "Something in the Water — The water churns. Rotted hands break the surface, and eyes that have not blinked in decades fix on the crew."
+    },
+    {
+      "slot": "art-the-long-dim-score-rooftop-guards-art",
+      "beat": "rooftop-guards",
+      "brief": "Boots on the Gantry — A patrol rounds the water tower, lanterns swinging, and behind them something that clanks with no breath at all."
+    },
+    {
+      "slot": "art-the-long-dim-score-front-alarm-art",
+      "beat": "front-alarm",
+      "brief": "The Alarm Bell — A bell shrieks through the lobby. Ashgate Combine mercs pour from a side office, blades already drawn — they've been waiting for someone to try this e"
+    },
+    {
+      "slot": "art-the-long-dim-score-vault-antechamber-art",
+      "beat": "vault-antechamber",
+      "brief": "The Singing Door — A door of tuned brass rods blocks the vault, humming faintly even in the dead air of the Long Dim. Vesper Thane built it to answer only to a particula"
+    },
+    {
+      "slot": "art-the-long-dim-score-ghost-thane-encounter-art",
+      "beat": "ghost-thane-encounter",
+      "brief": "The Architect's Unquiet Guard — The rods scream a discordant note. Shadows peel from the walls, and at their center rises a withered shape in a foreman's coat: Vesper Thane, or what'"
+    },
+    {
+      "slot": "art-the-long-dim-score-vault-open-art",
+      "beat": "vault-open",
+      "brief": "What the Vault Holds — Inside: the Choir Key's twin, and beside it a ledger of names — every magistrate, every crew boss, every debt Cinderfall pretends it doesn't owe. This"
+    },
+    {
+      "slot": "art-the-long-dim-score-ending-burn-art",
+      "beat": "ending-burn-it-down",
+      "brief": "Ash Over Hollowmere — The Exchange burns through the night, its secrets going up with it. The crew walks away rich and unnamed, and Cinderfall never learns what almost surf"
+    },
+    {
+      "slot": "art-the-long-dim-score-ending-mara-art",
+      "beat": "ending-mara-alliance",
+      "brief": "The Ledger's Weight — The names in that ledger reach every doorstep in the canal district by morning. Cinderfall's bosses scramble, exposed. The crew keeps the Key and Mara"
+    },
+    {
+      "slot": "art-the-long-dim-score-ending-betrayal-art",
+      "beat": "ending-betrayal",
+      "brief": "Everything Has a Price — You take it all — Key, ledger, and the silence to match. Somewhere in the city, someone very rich is now very interested in you, for reasons that will"
+    },
+    {
+      "slot": "art-the-long-dim-score-crew-scattered-art",
+      "beat": "crew-scattered",
+      "brief": "Left in the Dark — The Long Dim ends the way it began: with the wardlights guttering back on over a city that never noticed you were there. Whatever's left of the crew s"
+    }
+  ]
+}

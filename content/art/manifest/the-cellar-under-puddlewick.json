@@ -1,0 +1,85 @@
+{
+  "adventure": "the-cellar-under-puddlewick",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: beginner-classic, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-cellar-under-puddlewick-arrival-puddlewick",
+      "beat": "arrival-puddlewick",
+      "brief": "Arrival in Puddlewick — The party's cart rattles to a stop in the muddy square of Puddlewick, a village so unremarkable it doesn't even have a proper coat of arms. A hand-pai"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-mayor-audience",
+      "beat": "mayor-audience",
+      "brief": "Mayor Tillby's Plea — Mayor Tillby is a nervous man with cheese-stains on his sleeves and a ledger he keeps hugging to his chest. 'Goblins, we think,' he says, not meeting "
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-tavern-gossip",
+      "beat": "tavern-gossip",
+      "brief": "Gossip at the Leaky Bucket — The tavern smells like spilled ale and older spilled ale. A tipsy fiddler claims the goblins have been seen ferrying sacks through the miller's cellar"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-mill-exterior",
+      "beat": "mill-exterior",
+      "brief": "The Old Mill — The mill's waterwheel has long since stopped turning, but lantern-light flickers behind shuttered windows and a rough voice barks orders inside. Whoev"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-mill-guard-encounter",
+      "beat": "mill-guard-encounter",
+      "brief": "Kobold Watch — A knot of kobolds startles up from a card game, snatching rusty spears. They're clearly not thrilled about unscheduled visitors."
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-hidden-trapdoor",
+      "beat": "hidden-trapdoor",
+      "brief": "The Trapdoor Beneath the Grain — Under a heap of spilled flour, a trapdoor sits bolted shut with a lock far too fine for a village mill. Muffled voices and the scrape of claws drift u"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-goblin-ambush",
+      "beat": "goblin-ambush",
+      "brief": "Ambush in the Tunnel — The passage narrows into a low, root-choked tunnel — and goblins spring from side-nooks with a wolf snarling at their heels."
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-hidden-room",
+      "beat": "hidden-room",
+      "brief": "The Room at the Bottom — The tunnel opens into a torch-lit chamber lined with stolen crates — goats bleating in a pen, lanterns stacked in neat rows, and at the center, a humm"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-negotiation-scene",
+      "beat": "negotiation-scene",
+      "brief": "The Captain's Offer — The captain spreads his hands, all reasonable charm. 'No need for swords. There's coin enough here for all of us to forget this ever happened. Or,' he"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-bandit-captain-fight",
+      "beat": "bandit-captain-fight",
+      "brief": "Steel in the Vault — The captain snaps his fingers and two bandits step from the shadows, flanked by a pair of skeletons that clatter upright from behind the crates. 'Take"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-ending-heroic-arrest",
+      "beat": "ending-heroic-arrest",
+      "brief": "A Bloodless Victory — Village guards, alerted by your signal, pour down the tunnel to clap the captain in irons before a single sword is drawn. Mayor Tillby, stunned, hands"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-ending-heroic-victory",
+      "beat": "ending-heroic-victory",
+      "brief": "The Vault Falls Silent — The captain crumples and his hirelings scatter into the dark. You return to Puddlewick with the stolen goats, the good cheese, and a story that will g"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-ending-corrupt",
+      "beat": "ending-corrupt",
+      "brief": "Coin Over Cause — You take the bribe and walk back into the daylight with heavier pockets and a story about goblins that never actually happened. Mayor Tillby thanks yo"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-ending-defeat",
+      "beat": "ending-defeat",
+      "brief": "Adequate, Not Enough — You wake up bruised, disarmed, and tied to a post in the mill's yard, while the actual goblins problem — such as it was — solves itself by stepping ne"
+    },
+    {
+      "slot": "art-the-cellar-under-puddlewick-ending-thief-flee",
+      "beat": "ending-thief-flee",
+      "brief": "Gone With the Relic — With the miller's cart waiting at the mill's back door, you snatch the humming relic and bolt before the captain's coat even finishes turning. What th"
+    }
+  ]
+}

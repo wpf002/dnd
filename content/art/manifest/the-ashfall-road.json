@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ashfall-road",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ashfall-road-town-gates-art",
+      "beat": "town-gates",
+      "brief": "The Last Fence — Kettlebrook's palisade gate creaks in the wind that rolls off the ruin country beyond. A rope-and-bell warning line marks where the town ends and the "
+    },
+    {
+      "slot": "art-the-ashfall-road-council-hall-art",
+      "beat": "council-hall",
+      "brief": "The Council's Ledger — Elder Marlow Dunn keeps a grim tally of every party lost on the ruin road, chalked names never crossed out. He watches you with tired hope."
+    },
+    {
+      "slot": "art-the-ashfall-road-widows-cottage-art",
+      "beat": "widows-cottage",
+      "brief": "Senna Vey's Cottage — The widow's hands shake as she unrolls her late husband's map, its margins scrawled with warnings in a hand growing wilder toward the ruin's heart."
+    },
+    {
+      "slot": "art-the-ashfall-road-black-market-den-art",
+      "beat": "black-market-den",
+      "brief": "The Broker's Back Room — A one-eyed broker named Tull deals in salvage from the ruin road for those bold or foolish enough to buy secrets nobody else survived to sell."
+    },
+    {
+      "slot": "art-the-ashfall-road-ruin-road-art",
+      "beat": "ruin-road",
+      "brief": "The Dead Road — Beyond the fence the road turns to cracked stone and ash. Old wagon wheels lie half-buried, pointing every direction but forward."
+    },
+    {
+      "slot": "art-the-ashfall-road-silent-camp-art",
+      "beat": "silent-camp",
+      "brief": "The Silent Camp — Tents stand half-collapsed, cookfires long cold. Nothing here died violently — everything simply stopped, mid-motion."
+    },
+    {
+      "slot": "art-the-ashfall-road-cracked-bridge-art",
+      "beat": "cracked-bridge",
+      "brief": "The Cracked Bridge — A stone bridge spans a chasm of shifting ash-fog, its center span shattered and groaning under its own weight."
+    },
+    {
+      "slot": "art-the-ashfall-road-bandit-ambush-art",
+      "beat": "bandit-ambush",
+      "brief": "Ambush in the Ravine — Shapes drop from the rocks above — road bandits who've made a grim living picking through the belongings of those who never came back."
+    },
+    {
+      "slot": "art-the-ashfall-road-whispering-vault-art",
+      "beat": "whispering-vault",
+      "brief": "The Whispering Vault — A sealed door hums with warded glyphs that whisper half-words as you approach, as if trying to remember a language."
+    },
+    {
+      "slot": "art-the-ashfall-road-ghoul-warren-art",
+      "beat": "ghoul-warren",
+      "brief": "The Ghoul Warren — Beneath the vault, tunnels reek of old blood. Pale shapes uncoil from the dark, hungry for anything that still breathes."
+    },
+    {
+      "slot": "art-the-ashfall-road-hollow-choir-art",
+      "beat": "hollow-choir",
+      "brief": "The Hollow Choir — A cavern opens ahead, filled with a low, layered singing — the voices of everyone who never returned, bound together in the dark."
+    },
+    {
+      "slot": "art-the-ashfall-road-wight-guardian-art",
+      "beat": "wight-guardian",
+      "brief": "The Warden of the Choir — At the choir's heart stands a crowned, withered thing wreathed in cold light — the road's true warden, and the reason nobody comes back."
+    },
+    {
+      "slot": "art-the-ashfall-road-final-choice-art",
+      "beat": "final-choice",
+      "brief": "What the Road Demands — The warden is broken, and the choir's voices hang suspended, waiting on your next act to decide what the ruin road becomes."
+    },
+    {
+      "slot": "art-the-ashfall-road-ending-return-art",
+      "beat": "ending-return",
+      "brief": "The Road Remembers — The choir's voices fall silent one by one, freed. You lead the last few lost souls back through the fence gate as Kettlebrook's bell rings for the fir"
+    },
+    {
+      "slot": "art-the-ashfall-road-ending-sacrifice-art",
+      "beat": "ending-sacrifice",
+      "brief": "A Bargain Kept — You stay behind as the vault seals, your name added to the council's chalk tally — but this time, crossed out with honor, and no one else will walk th"
+    },
+    {
+      "slot": "art-the-ashfall-road-ending-doom-art",
+      "beat": "ending-doom",
+      "brief": "The Road Takes Its Due — Whether by treasure or by ruin, the road claims its price. Kettlebrook adds new names to its ledger, and the fence bell rings a warning, not a welcome"
+    }
+  ]
+}

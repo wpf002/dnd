@@ -1,0 +1,85 @@
+{
+  "adventure": "the-last-hour-of-velmarch",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: epic-finale, cosmic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-hour-of-velmarch-arrival-at-the-rent-art",
+      "beat": "arrival-at-the-rent",
+      "brief": "The Last Bell Tolls — Velmarch burns under a sky torn open. The Rent hangs above the Cathedral of Bells like a wound that will not close, and the city's last hour is runnin"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-market-district-flight-art",
+      "beat": "market-district-flight",
+      "brief": "The Burning Market — Stalls collapse in cascades of ember. Crowds surge toward gates that may already be sealed, and cultists of the Undertow move against the current, sin"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-undercroft-tunnels-art",
+      "beat": "undercroft-tunnels",
+      "brief": "The Undercroft — Beneath the streets, forgotten archives and older stone remember Velmarch before the Curia. A prisoner rattles chains in the dark, and dust-choked led"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-curia-enclave-art",
+      "beat": "curia-enclave",
+      "brief": "The Ashen Curia — Matriarch Oleth Vray and her remaining clergy have barricaded themselves in a side chapel, arguing over whether the Engine should be thrown at all. Sh"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-cultist-ambush-art",
+      "beat": "cultist-ambush",
+      "brief": "Song of the Undertow — Cultists spill from a collapsed stall-row, blades out, chanting a hymn to whatever waits beyond the Rent. Their captain raises a hand blackened by dev"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-wardens-last-stand-art",
+      "beat": "wardens-last-stand",
+      "brief": "Hold the Line — Shadows peel from the smoke, ghast-thin and hungry, converging on the last knot of Wardens trying to shepherd refugees to the gate. Warden-Captain Iss"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-the-choir-below-art",
+      "beat": "the-choir-below",
+      "brief": "The Choir Mechanism — Beneath the cathedral, a lattice of resonant bells forms the Engine's hidden throat. Align them wrong and the Rent widens; align them right and the fi"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-approach-to-cathedral-art",
+      "beat": "approach-to-cathedral",
+      "brief": "The Shadow of the Cathedral — Every road through Velmarch now bends toward the Cathedral of Bells, its spires wrapped in the Rent's pale light. The last stretch is a gauntlet of fa"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-cathedral-threshold-art",
+      "beat": "cathedral-threshold",
+      "brief": "The Cathedral Doors — The great doors of the Cathedral of Bells stand ajar, and something vast and armored moves in the nave beyond — the last guardian between you and the "
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-rift-guardian-art",
+      "beat": "rift-guardian",
+      "brief": "The Guardians of the Nave — Suits of animated armor rise from alcoves of dead saints, and something that was once a bishop unfolds from behind the altar, wight-pale and grinning."
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-the-engine-chamber-art",
+      "beat": "the-engine-chamber",
+      "brief": "The Engine of Last Things — The Engine fills the chamber beneath the bells: brass and bone and something that hums just beneath hearing. One lever remains untouched. Beyond the w"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-ending-sealed-salvation-art",
+      "beat": "ending-sealed-salvation",
+      "brief": "The Bells Fall Silent — The Engine screams once, a sound like every bell in Velmarch breaking at once, and then the Rent closes like a wound scarring over. The city stands, s"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-ending-redirected-doom-art",
+      "beat": "ending-redirected-doom",
+      "brief": "A City Traded — The Rent shudders and slides sideways across the sky, its hunger pouring instead into the Undercity's crowded tenements. Velmarch's high quarters are "
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-ending-embrace-the-star-art",
+      "beat": "ending-embrace-the-star",
+      "brief": "The Herald's Hour — You open the last door in yourself, and something ancient and vast pours through gladly. Velmarch does not end so much as it is rewritten, and you sta"
+    },
+    {
+      "slot": "art-the-last-hour-of-velmarch-fallen-in-the-dark-art",
+      "beat": "fallen-in-the-dark",
+      "brief": "The Hour Runs Out — The lever slips from failing hands, or the guardians never let you reach it at all. Above the cathedral, the Rent finishes opening, and Velmarch's las"
+    }
+  ]
+}

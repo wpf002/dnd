@@ -1,0 +1,672 @@
+{
+  "id": "the-bonewind-trace",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Bonewind Trace",
+    "premise": "A desert caravan road bristling with outlaws and ancient standing stones hides a spring that could save a dying waystation, but every scout sent down its southern fork has vanished without a trace.",
+    "tone": [
+      "exploration",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A weathered desert guide narrates in terse, sun-scoured prose, equal parts dry wit and reverence for the old stones that watch the road.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ]
+    },
+    "provenance": "flint"
+  },
+  "entry": "contract-at-waystation",
+  "beats": [
+    {
+      "id": "contract-at-waystation",
+      "kind": "threshold",
+      "title": "The Waystation Contract",
+      "prose": "Duskwell Waystation huddles at the edge of the dunes, its well running dry. The elder Marsha Coth offers what coin remains to any who will ride the Bonewind Trace and find Rees Fallow, the cartographer who vanished chasing rumors of a hidden spring among the standing stones.",
+      "readAloud": "Nobody who takes the southern fork comes back the same road they left on. But the well is dry, and dry wells make desperate offers.",
+      "art": "art-the-bonewind-trace-waystation-contract",
+      "options": [
+        {
+          "id": "hear-elder-warning",
+          "label": "Hear the elder's full warning about the Trace",
+          "target": "elder-warning",
+          "effects": []
+        },
+        {
+          "id": "head-out-at-once",
+          "label": "Head out at once toward the standing stones",
+          "target": "trace-crossroads",
+          "effects": []
+        },
+        {
+          "id": "ask-about-rees",
+          "label": "Ask about Rees Fallow, the missing cartographer",
+          "target": "rees-backstory",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "elder-warning",
+      "kind": "social",
+      "title": "The Elder's Warning",
+      "prose": "Marsha Coth's hands shake as she describes the Trace: outlaws called the Salt Hand Riders who tax every traveler, and stones older than any road that seem to move when watched too long.",
+      "art": "art-the-bonewind-trace-elder-warning-scene",
+      "options": [
+        {
+          "id": "ask-toll",
+          "label": "Ask about the Salt Hand Riders' toll",
+          "target": "trace-crossroads",
+          "effects": [
+            {
+              "flag": "knows-toll",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-stones",
+          "label": "Ask about the standing stones' history",
+          "target": "trace-crossroads",
+          "effects": [
+            {
+              "flag": "knows-stones",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cut-talk-short",
+          "label": "Cut the talk short, time is short",
+          "target": "trace-crossroads",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "helped-elder",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rees-backstory",
+      "kind": "social",
+      "title": "The Cartographer's Trail",
+      "prose": "The waystation folk remember Rees fondly: obsessive about the old stones, convinced a hidden aquifer lay beneath them, and gone six weeks past with only a mule and a battered satchel.",
+      "art": "art-the-bonewind-trace-rees-backstory-scene",
+      "options": [
+        {
+          "id": "see-sketches",
+          "label": "Ask to see Rees's old sketches",
+          "target": "trace-crossroads",
+          "effects": [
+            {
+              "flag": "has-map-clue",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-planned-route",
+          "label": "Ask what route he planned to take",
+          "target": "trace-crossroads",
+          "effects": [
+            {
+              "flag": "knows-stones",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "thank-and-move-on",
+          "label": "Thank them and move on",
+          "target": "trace-crossroads",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-rees",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "trace-crossroads",
+      "kind": "decision",
+      "title": "Where the Trace Splits",
+      "prose": "The road forks below a lone standing stone. One path runs open beneath the sun, one is a hidden goat-trail you've heard mentioned, and a third climbs toward distant campfire smoke.",
+      "art": "art-the-bonewind-trace-trace-crossroads-view",
+      "options": [
+        {
+          "id": "take-open-road",
+          "label": "Take the open road past the first standing stone",
+          "target": "first-standing-stone",
+          "effects": []
+        },
+        {
+          "id": "follow-hidden-trail",
+          "label": "Follow a hidden trail you learned of, bypassing the toll",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-stones",
+            "value": true
+          },
+          "target": "rees-camp",
+          "effects": []
+        },
+        {
+          "id": "march-toward-smoke",
+          "label": "March straight for the smoke of a bandit camp",
+          "target": "bandit-toll-post",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "first-standing-stone",
+      "kind": "discovery",
+      "title": "The First Standing Stone",
+      "prose": "Runes spiral up the weathered monolith, half-buried in drifting sand. They seem to shift meaning depending on the angle of the sun.",
+      "art": "art-the-bonewind-trace-first-standing-stone-carving",
+      "options": [
+        {
+          "id": "study-runes",
+          "label": "Study the carved runes closely",
+          "target": "stone-alignment-puzzle",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "sandstorm-hazard"
+          }
+        },
+        {
+          "id": "recall-elder-lore",
+          "label": "Recall the elder's lore about these stones",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "helped-elder",
+            "value": true
+          },
+          "target": "stone-alignment-puzzle",
+          "effects": []
+        },
+        {
+          "id": "search-for-tracks",
+          "label": "Search the ground for tracks of Rees's expedition",
+          "target": "rees-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bandit-toll-post",
+      "kind": "social",
+      "title": "The Salt Hand Toll",
+      "prose": "Riders in salt-crusted leathers block the road, spears loose in their hands. Their leader grins, missing two teeth, and names a price for passage.",
+      "art": "art-the-bonewind-trace-bandit-toll-post-scene",
+      "options": [
+        {
+          "id": "pay-the-toll",
+          "label": "Pay the toll in coin",
+          "target": "stone-alignment-puzzle",
+          "effects": [
+            {
+              "flag": "paid-toll",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "shame-with-warning",
+          "label": "Reference the elder's warning to shame their leader",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-toll",
+            "value": true
+          },
+          "target": "stone-alignment-puzzle",
+          "effects": []
+        },
+        {
+          "id": "refuse-and-push",
+          "label": "Refuse and push through",
+          "target": "bandit-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bandit-ambush",
+      "kind": "conflict",
+      "title": "Steel on the Sand",
+      "prose": "The Salt Hand Riders close in, blades drawn, unwilling to let anyone pass without paying one way or another.",
+      "art": "art-the-bonewind-trace-bandit-ambush-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "salt-hand-skirmish",
+      "terminal": false
+    },
+    {
+      "id": "stone-alignment-puzzle",
+      "kind": "puzzle",
+      "title": "Aligning the Stones",
+      "prose": "A ring of standing stones surrounds a sunken basin. Rees's notes, old lore, or sheer force might reveal the path down into the dark beneath them.",
+      "art": "art-the-bonewind-trace-stone-alignment-ritual",
+      "options": [
+        {
+          "id": "use-map-notes",
+          "label": "Use Rees's map notes to align the stones",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-map-clue",
+            "value": true
+          },
+          "target": "vault-entrance",
+          "effects": []
+        },
+        {
+          "id": "observe-carefully",
+          "label": "Align the stones through careful observation",
+          "target": "vault-entrance",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "perception",
+            "dc": 13,
+            "onFailure": "sandstorm-hazard"
+          }
+        },
+        {
+          "id": "force-the-stones",
+          "label": "Force the stones into place with brute strength",
+          "target": "vault-entrance",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 15,
+            "onFailure": "sandstorm-hazard"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sandstorm-hazard",
+      "kind": "hazard",
+      "title": "The Bonewind Rises",
+      "prose": "A wall of stinging sand rolls across the Trace, swallowing the horizon and the standing stones alike. Voices seem to whisper in the wind.",
+      "art": "art-the-bonewind-trace-sandstorm-hazard-wall",
+      "options": [
+        {
+          "id": "shelter-behind-stones",
+          "label": "Shelter behind the stones and wait it out",
+          "target": "stone-alignment-puzzle",
+          "effects": []
+        },
+        {
+          "id": "push-through-storm",
+          "label": "Push through the storm toward the vault",
+          "target": "vault-entrance",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "skill": "survival",
+            "dc": 12,
+            "onFailure": "ending-dark"
+          }
+        },
+        {
+          "id": "retreat-to-crossroads",
+          "label": "Retreat to the crossroads to regroup",
+          "target": "trace-crossroads",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rees-camp",
+      "kind": "discovery",
+      "title": "Rees's Abandoned Camp",
+      "prose": "A collapsed tent and a cold firepit mark where the cartographer made his last camp. His journal lies half-buried, pages fluttering.",
+      "art": "art-the-bonewind-trace-rees-camp-remains",
+      "options": [
+        {
+          "id": "read-journal",
+          "label": "Read Rees's journal for clues to the vault",
+          "target": "stone-alignment-puzzle",
+          "effects": [
+            {
+              "flag": "has-map-clue",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "search-supplies",
+          "label": "Search the camp for lost supplies",
+          "target": "stone-alignment-puzzle",
+          "effects": []
+        },
+        {
+          "id": "backtrack-warn-toll",
+          "label": "Backtrack to warn against the Salt Hand toll ahead",
+          "target": "bandit-toll-post",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-entrance",
+      "kind": "threshold",
+      "title": "The Sunken Vault",
+      "prose": "Stone steps spiral down beneath the ring of monoliths. Ancient guardians of pitted armor and living shadow flank a door carved with the same shifting runes.",
+      "art": "art-the-bonewind-trace-vault-entrance-steps",
+      "options": [
+        {
+          "id": "confront-guardians",
+          "label": "Confront the guardians head-on",
+          "target": "guardian-encounter",
+          "effects": []
+        },
+        {
+          "id": "sneak-past-guardians",
+          "label": "Try to sneak past toward Vashka's camp beyond",
+          "target": "vashka-showdown",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 15,
+            "onFailure": "guardian-encounter"
+          }
+        },
+        {
+          "id": "invoke-truce",
+          "label": "Invoke your earlier truce or Rees's name to seek parley",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "paid-toll",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "knows-rees",
+                "value": true
+              }
+            ]
+          },
+          "target": "vashka-showdown",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guardian-encounter",
+      "kind": "conflict",
+      "title": "The Stone Guardians",
+      "prose": "Armor clatters upright with no one inside it, and shadows peel from the walls with hungry, reaching edges.",
+      "art": "art-the-bonewind-trace-guardian-encounter-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "stone-guardians-stand",
+      "terminal": false
+    },
+    {
+      "id": "vashka-showdown",
+      "kind": "conflict",
+      "title": "Vashka Cole's Spring",
+      "prose": "Beyond the guardians, a hidden spring glimmers in a cavern lit by shafts of sun. Vashka Cole, captain of the Salt Hand Riders, stands over it with blade drawn and captives bound at her feet.",
+      "art": "art-the-bonewind-trace-vashka-showdown-cavern",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vashka-final-clash",
+      "terminal": false
+    },
+    {
+      "id": "vault-choice",
+      "kind": "decision",
+      "title": "The Spring's Price",
+      "prose": "Vashka is fallen and the spring is finally yours, but the vault holds more than water: bound captives, an old relic half-buried at the spring's edge, and a choice about what you leave behind.",
+      "art": "art-the-bonewind-trace-vault-choice-spring",
+      "options": [
+        {
+          "id": "free-captives",
+          "label": "Free the captives and lead everyone back with the water",
+          "target": "ending-hero",
+          "effects": []
+        },
+        {
+          "id": "seal-vault-abandon",
+          "label": "Take the water quietly and seal the vault, abandoning the captives",
+          "target": "ending-dark",
+          "effects": []
+        },
+        {
+          "id": "claim-the-relic",
+          "label": "Claim the old relic buried beside the spring, whatever the cost",
+          "target": "ending-hero",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "arcana",
+            "dc": 13,
+            "onFailure": "ending-dark"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-hero",
+      "kind": "ending",
+      "title": "Water for Duskwell",
+      "prose": "You lead a caravan of relief back to Duskwell Waystation, the hidden spring's water sloshing in every cask. The well fills. The Trace, for the first time in memory, has given someone back.",
+      "art": "art-the-bonewind-trace-ending-hero-caravan",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-dark",
+      "kind": "ending",
+      "title": "The Trace Claims Another",
+      "prose": "The standing stones watch as the wind erases your tracks. Somewhere back at Duskwell, the well runs a little drier, and the road adds another name to the ones who never returned.",
+      "art": "art-the-bonewind-trace-ending-dark-stones",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "salt-hand-skirmish",
+      "title": "Skirmish on the Trace",
+      "combatants": [
+        {
+          "id": "riders",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "stone-alignment-puzzle",
+      "onDefeat": "ending-dark",
+      "onFlee": "trace-crossroads"
+    },
+    {
+      "id": "stone-guardians-stand",
+      "title": "The Guardians Awaken",
+      "combatants": [
+        {
+          "id": "armored-sentinels",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "clinging-shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "vashka-showdown",
+      "onDefeat": "ending-dark",
+      "onFlee": "trace-crossroads"
+    },
+    {
+      "id": "vashka-final-clash",
+      "title": "Vashka's Last Stand",
+      "combatants": [
+        {
+          "id": "vashka-cole",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "her-guards",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-choice",
+      "onDefeat": "ending-dark",
+      "onFlee": "trace-crossroads"
+    }
+  ]
+}

@@ -1,0 +1,861 @@
+{
+  "id": "the-last-gold-of-auresca-vel",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Gold of Auresca Vel",
+    "premise": "In the golden city of Auresca Vel, the failing Aurelian Heart has only hours left before its light dies forever—and only one lever remains to decide whether the city burns to save the land, transforms into something new, or falls silent into the dark.",
+    "tone": [
+      "epic-finale",
+      "political-fantasy"
+    ],
+    "tier": "national",
+    "partyLevel": 10,
+    "narrationVoice": "A weary herald chronicling the city's final hours, equal parts elegy and urgency.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No on-screen harm to children; refugee children may be mentioned as present but never endangered on-page."
+    },
+    "provenance": "flint"
+  },
+  "entry": "threshold-arrival",
+  "beats": [
+    {
+      "id": "threshold-arrival",
+      "kind": "threshold",
+      "title": "The Sun Gate at Dusk",
+      "prose": "The last gold of Auresca Vel bleeds across the sky as the Aurelian Heart flickers in its tower above the city. Refugees clog the Sun Gate; smugglers whisper of tunnels beneath; and somewhere in a hidden sanctum, the Choir of Radiance prepares a ritual no outsider has ever witnessed. You have hours—perhaps less—before the Heart's light fails and its wards fall with it.",
+      "art": "art-the-last-gold-of-auresca-vel-golden-city-dusk-gate",
+      "options": [
+        {
+          "id": "approach-sun-gate",
+          "label": "Push through the panicked crowds at the Sun Gate",
+          "target": "sun-gate-crowds",
+          "effects": []
+        },
+        {
+          "id": "slip-undertow-tunnels",
+          "label": "Slip into the Undertow smugglers' tunnels beneath the city",
+          "target": "undertow-tunnels",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 15,
+            "onFailure": "sun-gate-crowds"
+          }
+        },
+        {
+          "id": "seek-choir-sanctum",
+          "label": "Seek the Choir of Radiance's hidden sanctum entrance",
+          "target": "choir-sanctum-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 13,
+            "onFailure": "sun-gate-crowds"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sun-gate-crowds",
+      "kind": "social",
+      "title": "Chaos at the Gate",
+      "prose": "Captain Doreth Kane of the city guard fights to hold a line against a surging, terrified crowd as golden dust sifts down from the failing wards above. Every choice here costs time you don't have.",
+      "art": "art-the-last-gold-of-auresca-vel-sun-gate-panic",
+      "options": [
+        {
+          "id": "help-kane-crowd",
+          "label": "Help Captain Kane calm the crowd",
+          "target": "the-failing-heart",
+          "effects": []
+        },
+        {
+          "id": "push-past-crowd",
+          "label": "Push past toward the palace regardless of the chaos",
+          "target": "the-failing-heart",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 14,
+            "onFailure": "undertow-tunnels"
+          }
+        },
+        {
+          "id": "question-kane",
+          "label": "Question Kane about why the Heart is failing",
+          "target": "choir-sanctum-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undertow-tunnels",
+      "kind": "transit",
+      "title": "Tunnels Beneath the Gold",
+      "prose": "Lantern-lit tunnels wind beneath the golden streets, thick with smoke and older secrets. Ilbrec, a broker with too many rings and too few scruples, eyes you from a stall of stolen relics.",
+      "art": "art-the-last-gold-of-auresca-vel-undertow-tunnel-lanterns",
+      "options": [
+        {
+          "id": "ally-ilbrec",
+          "label": "Strike a bargain with Ilbrec the broker",
+          "target": "the-failing-heart",
+          "effects": [
+            {
+              "flag": "smuggler-alliance",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "fight-tunnel-gang",
+          "label": "Fight through a tunnel gang blocking the passage",
+          "target": "the-failing-heart",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 15,
+            "onFailure": "sun-gate-crowds"
+          }
+        },
+        {
+          "id": "sneak-past-ilbrec",
+          "label": "Sneak past Ilbrec's crew without being seen",
+          "target": "choir-sanctum-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 16,
+            "onFailure": "the-failing-heart"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-sanctum-approach",
+      "kind": "discovery",
+      "title": "The Hidden Sanctum",
+      "prose": "Incense and golden light spill from a sanctum hidden behind a false wall. A young acolyte startles, then recognizes desperation for what it is: allies, or at least witnesses.",
+      "art": "art-the-last-gold-of-auresca-vel-choir-sanctum-glow",
+      "options": [
+        {
+          "id": "swear-to-choir",
+          "label": "Swear to aid the Choir's ritual",
+          "target": "the-failing-heart",
+          "effects": [
+            {
+              "flag": "choir-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "demand-answers-choir",
+          "label": "Demand answers about why the Heart is dying",
+          "target": "the-failing-heart",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "sun-gate-crowds"
+          }
+        },
+        {
+          "id": "steal-ritual-glance",
+          "label": "Steal a glance at the Choir's hidden ritual texts",
+          "target": "vesper-ritual-lore",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight-of-hand",
+            "dc": 15,
+            "onFailure": "the-failing-heart"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-failing-heart",
+      "kind": "discovery",
+      "title": "The Aurelian Heart",
+      "prose": "In the palace's central tower, the Aurelian Heart pulses like a dying star, and Archon Selwyn Marrow—last steward of Auresca Vel—stands before it, hollow-eyed. 'One lever remains,' he says. 'One choice, and one chance to make it.' Three paths lie open before the hour runs out.",
+      "art": "art-the-last-gold-of-auresca-vel-aurelian-heart-chamber",
+      "options": [
+        {
+          "id": "investigate-heart-chamber",
+          "label": "Investigate the Heart chamber directly",
+          "target": "heart-chamber-guardians",
+          "effects": []
+        },
+        {
+          "id": "negotiate-with-senate",
+          "label": "Negotiate with the Ashen Senate for their cooperation",
+          "target": "senate-negotiation",
+          "effects": []
+        },
+        {
+          "id": "consult-vesper-ritual",
+          "label": "Consult Vesper of the Choir on the ritual's true nature",
+          "target": "vesper-ritual-lore",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "senate-negotiation",
+      "kind": "social",
+      "title": "The Ashen Senate's Demands",
+      "prose": "The Ashen Senate has gathered its remaining wealth into carts, arguing over who deserves a place on the last ships out. They will help—for a price, or under threat.",
+      "art": "art-the-last-gold-of-auresca-vel-ashen-senate-hall",
+      "options": [
+        {
+          "id": "bribe-senate",
+          "label": "Offer the Senate a share of the Heart's remaining gold reserves",
+          "target": "vesper-ritual-lore",
+          "effects": [
+            {
+              "flag": "senate-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "threaten-senate",
+          "label": "Threaten the Senate with the guard's authority",
+          "target": "vesper-ritual-lore",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "intimidation",
+            "dc": 15,
+            "onFailure": "ashen-uprising"
+          }
+        },
+        {
+          "id": "refuse-senate",
+          "label": "Refuse their demands outright and walk away",
+          "target": "vesper-ritual-lore",
+          "effects": [
+            {
+              "flag": "senate-favor",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vesper-ritual-lore",
+      "kind": "puzzle",
+      "title": "The Ritual of Unmaking",
+      "prose": "Vesper Ilanya, First Voice of the Choir, unrolls a ritual script older than the city's golden age. 'The Heart can be overloaded, redirected, or stilled,' she says, 'but the lever must be primed correctly, or all three fail at once.'",
+      "art": "art-the-last-gold-of-auresca-vel-ritual-script-scroll",
+      "options": [
+        {
+          "id": "decipher-ritual-script",
+          "label": "Decipher the ritual script yourself",
+          "target": "lever-chamber",
+          "effects": [
+            {
+              "flag": "ritual-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 16,
+            "onFailure": "heart-chamber-guardians"
+          }
+        },
+        {
+          "id": "trust-vesper-guidance",
+          "label": "Trust Vesper's guidance without question",
+          "target": "lever-chamber",
+          "effects": [
+            {
+              "flag": "choir-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "second-opinion-ilbrec",
+          "label": "Seek a second opinion from Ilbrec's smuggler contacts",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "smuggler-alliance",
+            "value": true
+          },
+          "target": "lever-chamber",
+          "effects": [
+            {
+              "flag": "ritual-known",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "heart-chamber-guardians",
+      "kind": "conflict",
+      "title": "Guardians of the Heart",
+      "prose": "Animate suits of golden armor and flickering shadow-wardens bar the way to the Heart's inner sanctum, roused by the last of its failing power.",
+      "art": "art-the-last-gold-of-auresca-vel-armored-guardians-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "heart-chamber-guardians",
+      "terminal": false
+    },
+    {
+      "id": "ashen-uprising",
+      "kind": "conflict",
+      "title": "The Senate's Last Stand",
+      "prose": "Senate loyalists, refusing to be denied their place on the last ships, storm the sanctum with blades drawn.",
+      "art": "art-the-last-gold-of-auresca-vel-senate-loyalists-riot",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ashen-uprising",
+      "terminal": false
+    },
+    {
+      "id": "lever-chamber",
+      "kind": "puzzle",
+      "title": "The Black Iron Lever",
+      "prose": "The lever itself is a shaft of black iron sunk into the Heart's core, humming with barely-contained power. Whatever you do next cannot be undone.",
+      "art": "art-the-last-gold-of-auresca-vel-lever-chamber-glow",
+      "options": [
+        {
+          "id": "calibrate-precise",
+          "label": "Calibrate the lever with precise ritual knowledge",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "ritual-known",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "senate-favor",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-last-choice",
+          "effects": [
+            {
+              "flag": "lever-primed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "guess-calibration",
+          "label": "Guess at the calibration using instinct and old lore",
+          "target": "the-last-choice",
+          "effects": [
+            {
+              "flag": "lever-primed",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 17,
+            "onFailure": "ending-fall-of-the-city"
+          }
+        },
+        {
+          "id": "force-lever-raw",
+          "label": "Force the lever raw, trusting brute will over precision",
+          "target": "the-last-choice",
+          "effects": [
+            {
+              "flag": "lever-primed",
+              "value": false
+            }
+          ],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 16,
+            "onFailure": "ending-fall-of-the-city"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-last-choice",
+      "kind": "decision",
+      "title": "One Lever Left",
+      "prose": "The Heart shudders, seconds from collapse. Archon Marrow steps back. The lever is yours to pull.",
+      "art": "art-the-last-gold-of-auresca-vel-final-lever-decision",
+      "options": [
+        {
+          "id": "pull-overload",
+          "label": "Overload the Heart to scour back the encroaching dark and save the outer lands",
+          "target": "ending-overload-sacrifice",
+          "effects": []
+        },
+        {
+          "id": "pull-redirect",
+          "label": "Redirect the Heart's power to transform the city into something new",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "lever-primed",
+                "value": true
+              },
+              {
+                "op": "or",
+                "clauses": [
+                  {
+                    "op": "eq",
+                    "flag": "ritual-known",
+                    "value": true
+                  },
+                  {
+                    "op": "eq",
+                    "flag": "choir-trust",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          },
+          "target": "ending-redirect-transformation",
+          "effects": []
+        },
+        {
+          "id": "pull-shutdown",
+          "label": "Shut the Heart down and lead the evacuation while there's still time",
+          "target": "ending-evacuation-embers",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 14,
+            "onFailure": "ending-fall-of-the-city"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-overload-sacrifice",
+      "kind": "ending",
+      "title": "The Last Sunrise",
+      "prose": "The Aurelian Heart blazes one final time, a second dawn that scours the encroaching dark from the land for a hundred miles. Auresca Vel burns to embers and memory, but the outer villages, the farms, the refugees on the roads—they live. Songs will be sung of the golden city that gave itself so others could see another morning.",
+      "art": "art-the-last-gold-of-auresca-vel-heart-overload-blaze",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-redirect-transformation",
+      "kind": "ending",
+      "title": "The New Dawn",
+      "prose": "The lever turns true. The Aurelian Heart does not die but changes, its failing light folding inward and blooming outward again as something stranger and stronger—a city no longer golden but luminous in ways no one has named yet. Auresca Vel survives, transfigured, its people waking into a future none of them expected but all of them will come to call home.",
+      "art": "art-the-last-gold-of-auresca-vel-city-transformed-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-evacuation-embers",
+      "kind": "ending",
+      "title": "Embers on the Water",
+      "prose": "The Heart dims to nothing, gently, as you and Captain Kane's guard funnel the last citizens through the gates and down to the harbor. Auresca Vel sinks slowly into dusk behind the fleeing ships, its golden towers going dark one by one—not a death, but a long, quiet ending, witnessed by everyone who lived to see it.",
+      "art": "art-the-last-gold-of-auresca-vel-evacuation-embers-fleet",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-fall-of-the-city",
+      "kind": "ending",
+      "title": "The Unmade City",
+      "prose": "The lever slips, or the ritual falters, or the guardians were never truly cleared. The Aurelian Heart collapses in on itself, uncontrolled, and Auresca Vel falls silent all at once—towers, gates, and golden light swallowed by a dark that does not flicker. Somewhere far off, survivors will tell of a city that simply stopped, and wonder what final choice was made too late.",
+      "art": "art-the-last-gold-of-auresca-vel-city-collapse-ruin",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "threshold-arrival",
+      "to": "sun-gate-crowds",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "threshold-arrival",
+      "to": "undertow-tunnels",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "threshold-arrival",
+      "to": "choir-sanctum-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sun-gate-crowds",
+      "to": "the-failing-heart",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sun-gate-crowds",
+      "to": "undertow-tunnels",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sun-gate-crowds",
+      "to": "choir-sanctum-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undertow-tunnels",
+      "to": "the-failing-heart",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undertow-tunnels",
+      "to": "sun-gate-crowds",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undertow-tunnels",
+      "to": "choir-sanctum-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-sanctum-approach",
+      "to": "the-failing-heart",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-sanctum-approach",
+      "to": "vesper-ritual-lore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-failing-heart",
+      "to": "heart-chamber-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-failing-heart",
+      "to": "senate-negotiation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-failing-heart",
+      "to": "vesper-ritual-lore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "senate-negotiation",
+      "to": "vesper-ritual-lore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "senate-negotiation",
+      "to": "ashen-uprising",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vesper-ritual-lore",
+      "to": "lever-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vesper-ritual-lore",
+      "to": "heart-chamber-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "heart-chamber-guardians",
+      "to": "lever-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "heart-chamber-guardians",
+      "to": "ending-fall-of-the-city",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "heart-chamber-guardians",
+      "to": "the-failing-heart",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashen-uprising",
+      "to": "vesper-ritual-lore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashen-uprising",
+      "to": "ending-fall-of-the-city",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashen-uprising",
+      "to": "senate-negotiation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lever-chamber",
+      "to": "the-last-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lever-chamber",
+      "to": "ending-fall-of-the-city",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-overload-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-redirect-transformation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-evacuation-embers",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-fall-of-the-city",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "heart-chamber-guardians",
+      "title": "Guardians of the Heart",
+      "combatants": [
+        {
+          "id": "armor-guard",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "shadow-warden",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "lever-chamber",
+      "onDefeat": "ending-fall-of-the-city",
+      "onFlee": "the-failing-heart"
+    },
+    {
+      "id": "ashen-uprising",
+      "title": "The Senate's Last Stand",
+      "combatants": [
+        {
+          "id": "loyalist-hobgoblin",
+          "statblock": "hobgoblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "loyalist-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-heavy",
+        "open"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 5
+      },
+      "onVictory": "vesper-ritual-lore",
+      "onDefeat": "ending-fall-of-the-city",
+      "onFlee": "senate-negotiation"
+    }
+  ]
+}

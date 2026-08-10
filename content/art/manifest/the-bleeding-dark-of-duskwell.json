@@ -1,0 +1,90 @@
+{
+  "adventure": "the-bleeding-dark-of-duskwell",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: cosmic-horror, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-the-summons-art",
+      "beat": "the-summons",
+      "brief": "A Commission in Ash and Gaslight — A trembling clerk hires you to look into the lamp on Coyle Street that bled black ichor last night. A passerby, Tobias Rane, hasn't been seen since. T"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-alley-scene-art",
+      "beat": "alley-scene",
+      "brief": "The Weeping Lamp — Black ichor threads down the lamppost and pools in a chalk outline where Tobias Rane last stood. It smells of hot iron and forgetting. A baker across "
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-guild-hall-art",
+      "beat": "guild-hall",
+      "brief": "The Lamplighters' Guild Hall — Guildmaster Nissa Vray receives you amid humming sconces, her smile too even. Every lamp in the hall burns with the same patient, unblinking light."
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ashgrove-shop-art",
+      "beat": "ashgrove-shop",
+      "brief": "Ashgrove's Curiosities — Mrs. Ashgrove trades in secrets and stranger things. She sets down a jar of something that isn't quite ink and murmurs the word 'Undercroft,' beneath "
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-undercroft-entrance-art",
+      "beat": "undercroft-entrance",
+      "brief": "The Gasworks Undercroft — A rusted grate beneath the old gasworks. Wardstones ring the opening, scratched with sigils older than the guild itself, and black seep glistens at th"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-undercroft-tunnels-art",
+      "beat": "undercroft-tunnels",
+      "brief": "Tunnels That Remember Nothing — Ichor drips from cracks that shouldn't exist. The gas-lamps here burn low and reluctant, and something in the dark keeps almost the shape of a person."
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-shadow-encounter-art",
+      "beat": "shadow-encounter",
+      "brief": "Where the Gaslight Fails — Shadows peel themselves off the tunnel walls, hungry and cold, and reach for the warmth of your name."
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-the-vault-art",
+      "beat": "the-vault",
+      "brief": "The Vault Beneath the Skin of the World — The walls here are not stone but something that pulses, warm and veined with black. An altar is carved with thousands of names, and you understand, al"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-vale-confrontation-art",
+      "beat": "vale-confrontation",
+      "brief": "Dr. Corvin Vale, Keeper of the Ledger — A guild scholar steps from behind the altar, unsurprised to see you. Dr. Corvin Vale explains, almost gently, that he has been feeding the Dreamer Ben"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ghoul-encounter-art",
+      "beat": "ghoul-encounter",
+      "brief": "Vale's Guardians — Alcoves in the pulsing wall crack open. Two ghouls unfold from niches of dried ichor, and a suit of armor rattles upright with no one inside it."
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-the-choice-art",
+      "beat": "the-choice",
+      "brief": "What the City Deserves — The Dreamer Beneath's wound still bleeds, and you alone hold the whole shape of the truth. Vale, alive or dead or won over, is no longer the only ques"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ending-seal-art",
+      "beat": "ending-seal",
+      "brief": "The Second Forgetting — You perform the old rite. The wound closes, the lamps burn even again, and Duskwell forgets it ever bled. Only you remember the shape of the thing ben"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ending-feed-art",
+      "beat": "ending-feed",
+      "brief": "A Covenant Renewed — You and Vale renew the old covenant on new terms — measured, mercifully rationed, but a covenant of names and lives all the same. The bleeding stops. "
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ending-expose-art",
+      "beat": "ending-expose",
+      "brief": "The Truth Untethered — You tell the city what lies beneath it. Panic follows, then denial, then a strange stubborn courage as Duskwell decides to live knowingly atop the Dre"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-ending-consumed-art",
+      "beat": "ending-consumed",
+      "brief": "Swallowed by the Dark Between Lamps — The dark does not kill you so much as it unwrites you. Somewhere in the vault, a new name joins the ledger's endless column, and the gaslights of Dusk"
+    },
+    {
+      "slot": "art-the-bleeding-dark-of-duskwell-nightwatch-report-art",
+      "beat": "nightwatch-report",
+      "brief": "A Report Filed and Forgotten — Captain Coyne listens, thanks you for your civic diligence, and files your report in a drawer that will never be opened again. Somewhere below the gas"
+    }
+  ]
+}

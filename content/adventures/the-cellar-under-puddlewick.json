@@ -1,0 +1,541 @@
+{
+  "id": "the-cellar-under-puddlewick",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Cellar Under Puddlewick",
+    "premise": "When livestock and lanterns start vanishing from the thoroughly average village of Puddlewick, the barely-licensed members of the Adequate Adventurers' Guild go looking for goblins — and instead find a hidden room beneath the old mill, and the bandit who built his whole scheme on top of it.",
+    "tone": [
+      "beginner-classic",
+      "high-adventure"
+    ],
+    "tier": "local",
+    "partyLevel": 2,
+    "narrationVoice": "A warm, wry narrator who clearly likes these heroes despite their complete lack of qualifications",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children are placed in danger or harmed on-screen anywhere in this adventure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-puddlewick",
+  "beats": [
+    {
+      "id": "arrival-puddlewick",
+      "kind": "threshold",
+      "title": "Arrival in Puddlewick",
+      "prose": "The party's cart rattles to a stop in the muddy square of Puddlewick, a village so unremarkable it doesn't even have a proper coat of arms. A hand-painted notice nailed to the well reads: 'MISSING: Six Goats, Four Lanterns, One Wheel of Cheese (the good kind). Reward offered. Ask for Mayor Tillby.' A crowd of villagers eyes your guild badges with the specific skepticism reserved for adventurers who are, technically, licensed.",
+      "readAloud": "Mud, chickens, and a notice board with entirely too many exclamation points. Welcome to Puddlewick.",
+      "art": "art-the-cellar-under-puddlewick-arrival-puddlewick",
+      "options": [
+        {
+          "id": "speak-with-mayor",
+          "label": "Report to Mayor Tillby at the town hall",
+          "target": "mayor-audience",
+          "effects": []
+        },
+        {
+          "id": "drink-at-tavern",
+          "label": "Duck into the Leaky Bucket tavern for gossip first",
+          "target": "tavern-gossip",
+          "effects": []
+        },
+        {
+          "id": "head-straight-for-mill",
+          "label": "Skip the formalities and head straight for the old mill",
+          "target": "mill-exterior",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mayor-audience",
+      "kind": "social",
+      "title": "Mayor Tillby's Plea",
+      "prose": "Mayor Tillby is a nervous man with cheese-stains on his sleeves and a ledger he keeps hugging to his chest. 'Goblins, we think,' he says, not meeting your eyes. 'From the old mill, past the well. Nasty little things. Just... don't ask too many questions down there, eh?'",
+      "art": "art-the-cellar-under-puddlewick-mayor-audience",
+      "options": [
+        {
+          "id": "accept-the-job-formally",
+          "label": "Accept the commission and ask where to start",
+          "target": "tavern-gossip",
+          "effects": []
+        },
+        {
+          "id": "head-to-mill-immediately",
+          "label": "Cut the pleasantries and march for the mill",
+          "target": "mill-exterior",
+          "effects": []
+        },
+        {
+          "id": "interrogate-mayor-about-motives",
+          "label": "Press the mayor on what he's not telling you",
+          "target": "mill-exterior",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 12,
+            "onFailure": "tavern-gossip"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tavern-gossip",
+      "kind": "social",
+      "title": "Gossip at the Leaky Bucket",
+      "prose": "The tavern smells like spilled ale and older spilled ale. A tipsy fiddler claims the goblins have been seen ferrying sacks through the miller's cellar at midnight, and that the miller himself seems awfully relaxed about the whole thing.",
+      "art": "art-the-cellar-under-puddlewick-tavern-gossip",
+      "options": [
+        {
+          "id": "buy-drinks-for-miller-info",
+          "label": "Buy a round and ask pointed questions about the miller",
+          "target": "mill-exterior",
+          "effects": [
+            {
+              "flag": "miller-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "listen-quietly-and-leave",
+          "label": "Sit in a corner, listen, and slip out unnoticed",
+          "target": "mill-exterior",
+          "effects": []
+        },
+        {
+          "id": "challenge-local-to-riddle",
+          "label": "Challenge a grizzled local to a riddle contest for information",
+          "target": "mill-exterior",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "dc": 11,
+            "onFailure": "mill-exterior"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mill-exterior",
+      "kind": "discovery",
+      "title": "The Old Mill",
+      "prose": "The mill's waterwheel has long since stopped turning, but lantern-light flickers behind shuttered windows and a rough voice barks orders inside. Whoever's in there isn't a goat.",
+      "art": "art-the-cellar-under-puddlewick-mill-exterior",
+      "options": [
+        {
+          "id": "sneak-in",
+          "label": "Sneak in through the loading hatch",
+          "target": "hidden-trapdoor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 12,
+            "onFailure": "mill-guard-encounter"
+          }
+        },
+        {
+          "id": "knock-and-talk",
+          "label": "Knock and talk your way past the watch",
+          "target": "hidden-trapdoor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 11,
+            "onFailure": "mill-guard-encounter"
+          }
+        },
+        {
+          "id": "charge-the-door",
+          "label": "Kick the door open and announce yourselves",
+          "target": "mill-guard-encounter",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mill-guard-encounter",
+      "kind": "conflict",
+      "title": "Kobold Watch",
+      "prose": "A knot of kobolds startles up from a card game, snatching rusty spears. They're clearly not thrilled about unscheduled visitors.",
+      "art": "art-the-cellar-under-puddlewick-mill-guard-encounter",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "mill-guard-encounter",
+      "terminal": false
+    },
+    {
+      "id": "hidden-trapdoor",
+      "kind": "puzzle",
+      "title": "The Trapdoor Beneath the Grain",
+      "prose": "Under a heap of spilled flour, a trapdoor sits bolted shut with a lock far too fine for a village mill. Muffled voices and the scrape of claws drift up from below.",
+      "art": "art-the-cellar-under-puddlewick-hidden-trapdoor",
+      "options": [
+        {
+          "id": "force-the-door-open",
+          "label": "Pry the trapdoor open with a crowbar",
+          "target": "goblin-ambush",
+          "effects": []
+        },
+        {
+          "id": "disarm-and-slip-through",
+          "label": "Disarm the lock quietly and slip through unseen",
+          "target": "hidden-room",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight of hand",
+            "dc": 13,
+            "onFailure": "goblin-ambush"
+          }
+        },
+        {
+          "id": "search-for-another-way",
+          "label": "Search the mill for a quieter second way down",
+          "target": "hidden-room",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 12,
+            "onFailure": "goblin-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "goblin-ambush",
+      "kind": "conflict",
+      "title": "Ambush in the Tunnel",
+      "prose": "The passage narrows into a low, root-choked tunnel — and goblins spring from side-nooks with a wolf snarling at their heels.",
+      "art": "art-the-cellar-under-puddlewick-goblin-ambush",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "goblin-ambush",
+      "terminal": false
+    },
+    {
+      "id": "hidden-room",
+      "kind": "discovery",
+      "title": "The Room at the Bottom",
+      "prose": "The tunnel opens into a torch-lit chamber lined with stolen crates — goats bleating in a pen, lanterns stacked in neat rows, and at the center, a humming black relic on a stone plinth. A scarred man in a captain's coat turns to face you, entirely unsurprised. 'Ah,' he says. 'The Guild sent the cheap ones.'",
+      "readAloud": "This is not a goblin lair. This is somebody's very tidy operation.",
+      "art": "art-the-cellar-under-puddlewick-hidden-room",
+      "options": [
+        {
+          "id": "confront-captain-directly",
+          "label": "Confront the bandit captain head-on",
+          "target": "bandit-captain-fight",
+          "effects": []
+        },
+        {
+          "id": "attempt-negotiation",
+          "label": "Try to talk the captain down",
+          "target": "negotiation-scene",
+          "effects": []
+        },
+        {
+          "id": "grab-relic-and-flee",
+          "label": "Grab the humming relic and flee with the miller's help",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "miller-ally",
+            "value": true
+          },
+          "target": "ending-thief-flee",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "negotiation-scene",
+      "kind": "decision",
+      "title": "The Captain's Offer",
+      "prose": "The captain spreads his hands, all reasonable charm. 'No need for swords. There's coin enough here for all of us to forget this ever happened. Or,' he shrugs, 'we do this the loud way.'",
+      "art": "art-the-cellar-under-puddlewick-negotiation-scene",
+      "options": [
+        {
+          "id": "accept-bribe-and-vanish",
+          "label": "Pocket the captain's bribe and walk away",
+          "target": "ending-corrupt",
+          "effects": [
+            {
+              "flag": "bribe-taken",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "expose-the-captain",
+          "label": "Stall for time and expose the captain's scheme",
+          "target": "ending-heroic-arrest",
+          "effects": [
+            {
+              "flag": "captain-exposed",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "bandit-captain-fight"
+          }
+        },
+        {
+          "id": "refuse-and-attack",
+          "label": "Refuse outright and draw your weapons",
+          "target": "bandit-captain-fight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bandit-captain-fight",
+      "kind": "climax",
+      "title": "Steel in the Vault",
+      "prose": "The captain snaps his fingers and two bandits step from the shadows, flanked by a pair of skeletons that clatter upright from behind the crates. 'Take the captain down,' someone in your party mutters, 'and the rest might just run.'",
+      "art": "art-the-cellar-under-puddlewick-bandit-captain-fight",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bandit-captain-fight",
+      "terminal": false
+    },
+    {
+      "id": "ending-heroic-arrest",
+      "kind": "ending",
+      "title": "A Bloodless Victory",
+      "prose": "Village guards, alerted by your signal, pour down the tunnel to clap the captain in irons before a single sword is drawn. Mayor Tillby, stunned, hands over the reward and then some. The Adequate Adventurers' Guild has, against all odds, done something adequate.",
+      "art": "art-the-cellar-under-puddlewick-ending-heroic-arrest",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "captain-exposed",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-heroic-victory",
+      "kind": "ending",
+      "title": "The Vault Falls Silent",
+      "prose": "The captain crumples and his hirelings scatter into the dark. You return to Puddlewick with the stolen goats, the good cheese, and a story that will grow taller with every retelling at the Leaky Bucket.",
+      "art": "art-the-cellar-under-puddlewick-ending-heroic-victory",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-corrupt",
+      "kind": "ending",
+      "title": "Coin Over Cause",
+      "prose": "You take the bribe and walk back into the daylight with heavier pockets and a story about goblins that never actually happened. Mayor Tillby thanks you profusely. Somewhere behind you, the humming relic keeps humming.",
+      "art": "art-the-cellar-under-puddlewick-ending-corrupt",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "bribe-taken",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-defeat",
+      "kind": "ending",
+      "title": "Adequate, Not Enough",
+      "prose": "You wake up bruised, disarmed, and tied to a post in the mill's yard, while the actual goblins problem — such as it was — solves itself by stepping neatly over your unconscious forms. The Guild will hear about this.",
+      "art": "art-the-cellar-under-puddlewick-ending-defeat",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-thief-flee",
+      "kind": "ending",
+      "title": "Gone With the Relic",
+      "prose": "With the miller's cart waiting at the mill's back door, you snatch the humming relic and bolt before the captain's coat even finishes turning. What the thing actually does is a problem for a much later, much richer day.",
+      "art": "art-the-cellar-under-puddlewick-ending-thief-flee",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "miller-ally",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "mill-guard-encounter",
+      "title": "Kobold Watch at the Mill",
+      "combatants": [
+        {
+          "id": "kobold-watch",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "hidden-trapdoor",
+      "onDefeat": "ending-defeat"
+    },
+    {
+      "id": "goblin-ambush",
+      "title": "Ambush in the Tunnel",
+      "combatants": [
+        {
+          "id": "goblin-raiders",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "tunnel-wolf",
+          "statblock": "wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the ambushers to reach the far end of the tunnel."
+      },
+      "onVictory": "hidden-room",
+      "onDefeat": "ending-defeat"
+    },
+    {
+      "id": "bandit-captain-fight",
+      "title": "Steel in the Vault",
+      "combatants": [
+        {
+          "id": "bandit-captain-1",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-thugs",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "animated-skeletons",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "bandit-captain-1"
+      },
+      "onVictory": "ending-heroic-victory",
+      "onDefeat": "ending-defeat"
+    }
+  ]
+}

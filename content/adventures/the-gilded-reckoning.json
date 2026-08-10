@@ -1,0 +1,865 @@
+{
+  "id": "the-gilded-reckoning",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Gilded Reckoning",
+    "premise": "In the bright kingdom of Solmere, festival bells crack and toll on their own as an old massacre buried beneath the palace stirs, and a party of adventurers must decide whether to expose the crown's crime or let the dead rest in silence.",
+    "tone": [
+      "high-adventure",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "a wry, atmospheric herald who loves irony and gilded ruins",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Any references to the historical massacre focus on adults; no children are depicted as victims on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-solmere",
+  "beats": [
+    {
+      "id": "arrival-at-solmere",
+      "kind": "threshold",
+      "title": "Arrival at Solmere",
+      "prose": "Golden spires catch the morning sun over Solmere, kingdom of orchards and open markets. But the temple bell, meant to ring once at dawn, tolls seven times and cracks mid-peal, its sound curdling into something like a groan.",
+      "readAloud": "The bell splits with a sound like a throat closing. For a heartbeat, no one in the square breathes.",
+      "art": "art-the-gilded-reckoning-arrival-solmere",
+      "options": [
+        {
+          "id": "opt-arrival-bell",
+          "label": "Investigate the cracked bell at the temple",
+          "target": "the-cracked-bell",
+          "effects": []
+        },
+        {
+          "id": "opt-arrival-archivist",
+          "label": "Seek the royal archivist for context on the omen",
+          "target": "archivists-warning",
+          "effects": []
+        },
+        {
+          "id": "opt-arrival-quarter",
+          "label": "Head straight into the Old Quarter where locals whisper of restless dead",
+          "target": "into-the-old-quarter",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-cracked-bell",
+      "kind": "discovery",
+      "title": "The Cracked Bell",
+      "prose": "Up close, the bell's fracture reveals faint runes scratched from the inside, as if something had clawed to be heard through bronze.",
+      "art": "art-the-gilded-reckoning-cracked-bell",
+      "options": [
+        {
+          "id": "opt-bell-runes",
+          "label": "Study the runes carved into the crack (Investigation)",
+          "target": "massacre-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "archivists-warning"
+          }
+        },
+        {
+          "id": "opt-bell-ringer",
+          "label": "Question the terrified bell-ringer",
+          "target": "archivists-warning",
+          "effects": []
+        },
+        {
+          "id": "opt-bell-leave",
+          "label": "Leave the bell behind and head into the Old Quarter",
+          "target": "into-the-old-quarter",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archivists-warning",
+      "kind": "social",
+      "title": "The Archivist's Warning",
+      "prose": "Royal archivist Yselle meets you in a room of half-burned scrolls. She speaks of Ashvale, a village erased from every map two centuries ago, and begs you not to dig further.",
+      "art": "art-the-gilded-reckoning-archivist-warning",
+      "options": [
+        {
+          "id": "opt-archivist-press",
+          "label": "Press her for the location of the hidden records",
+          "target": "massacre-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-archivist-reassure",
+          "label": "Reassure her and head into the Old Quarter yourself",
+          "target": "into-the-old-quarter",
+          "effects": []
+        },
+        {
+          "id": "opt-archivist-read",
+          "label": "Read her hesitation for what she isn't saying (Insight)",
+          "target": "massacre-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 10,
+            "onFailure": "into-the-old-quarter"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "into-the-old-quarter",
+      "kind": "transit",
+      "title": "Into the Old Quarter",
+      "prose": "Narrow lanes wind between shuttered houses. Residents cross themselves and mention a sealed crypt, a boarded chapel, and a palace that has never once opened its lower vaults to the public.",
+      "art": "art-the-gilded-reckoning-old-quarter",
+      "options": [
+        {
+          "id": "opt-quarter-crypt",
+          "label": "Approach the sealed crypt door",
+          "target": "sealed-crypt-door",
+          "effects": []
+        },
+        {
+          "id": "opt-quarter-chapel",
+          "label": "Investigate the boarded-up chapel first",
+          "target": "massacre-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-quarter-palace",
+          "label": "Push forward toward the palace to confront the regent directly",
+          "target": "confront-choice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sealed-crypt-door",
+      "kind": "puzzle",
+      "title": "The Sealed Crypt Door",
+      "prose": "Ward-stones ring the crypt door, etched with a riddle in an older tongue: names for names, a life for a life.",
+      "art": "art-the-gilded-reckoning-crypt-door",
+      "options": [
+        {
+          "id": "opt-crypt-riddle",
+          "label": "Decipher the ward-stones' riddle (Arcana)",
+          "target": "massacre-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 14,
+            "onFailure": "skeletal-watch"
+          }
+        },
+        {
+          "id": "opt-crypt-force",
+          "label": "Force the door open by strength alone (Athletics)",
+          "target": "massacre-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 15,
+            "onFailure": "skeletal-watch"
+          }
+        },
+        {
+          "id": "opt-crypt-around",
+          "label": "Search for another way around the wards entirely",
+          "target": "skeletal-watch",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "massacre-ledger",
+      "kind": "discovery",
+      "title": "The Massacre Ledger",
+      "prose": "Beneath dust and cobwebs lies a ledger in the old regent's hand: an order to burn Ashvale and its people for the land beneath it, dated two hundred years past. The unquiet dead are its authors' unpaid debt.",
+      "art": "art-the-gilded-reckoning-massacre-ledger",
+      "options": [
+        {
+          "id": "opt-ledger-take",
+          "label": "Take the ledger as undeniable evidence",
+          "target": "confront-choice",
+          "effects": []
+        },
+        {
+          "id": "opt-ledger-leave",
+          "label": "Leave it hidden, fearing what disturbing it further will wake",
+          "target": "hollow-choir",
+          "effects": []
+        },
+        {
+          "id": "opt-ledger-burn",
+          "label": "Burn the ledger to erase the evidence entirely",
+          "target": "confront-choice",
+          "effects": [
+            {
+              "flag": "found-ledger",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "found-ledger",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "skeletal-watch",
+      "kind": "conflict",
+      "title": "The Skeletal Watch",
+      "prose": "Bones rattle upright from alcoves in the crypt walls, the ancient wardens of Ashvale's forgotten dead, roused by your trespass.",
+      "art": "art-the-gilded-reckoning-skeletal-watch",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "skeletal-watch-encounter",
+      "terminal": false
+    },
+    {
+      "id": "confront-choice",
+      "kind": "decision",
+      "title": "Who to Confront",
+      "prose": "With the truth of Ashvale weighing on you, you must decide who in Solmere deserves to hear it first: the regent who profits from the silence, the priestess who guards the old faith, or the people themselves.",
+      "art": "art-the-gilded-reckoning-confront-choice",
+      "options": [
+        {
+          "id": "opt-confront-regent",
+          "label": "Confront Regent Aldric privately in his study",
+          "target": "regents-confession",
+          "effects": []
+        },
+        {
+          "id": "opt-confront-priestess",
+          "label": "Confront the High Priestess of the Old Faith at her shrine",
+          "target": "hollow-choir",
+          "effects": []
+        },
+        {
+          "id": "opt-confront-public",
+          "label": "Announce the truth in the town square immediately",
+          "target": "final-reckoning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "regents-confession",
+      "kind": "social",
+      "title": "The Regent's Confession",
+      "prose": "Cornered, Aldric admits his ancestors' crime and reveals a weeping vault beneath the palace where Ashvale's true remains still lie unburied.",
+      "art": "art-the-gilded-reckoning-regents-confession",
+      "options": [
+        {
+          "id": "opt-regent-accept",
+          "label": "Accept his offer to quietly seal the vault forever",
+          "target": "weeping-vault",
+          "effects": []
+        },
+        {
+          "id": "opt-regent-demand",
+          "label": "Demand he make public restitution instead",
+          "target": "hollow-choir",
+          "effects": []
+        },
+        {
+          "id": "opt-regent-threaten",
+          "label": "Threaten to expose him unless he abdicates (Intimidation)",
+          "target": "weeping-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Intimidation",
+            "dc": 14,
+            "onFailure": "hollow-choir"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-choir",
+      "kind": "conflict",
+      "title": "The Hollow Choir",
+      "prose": "A mournful chorus rises from the shrine's shadows, spectral voices of Ashvale's dead demanding to be heard before they let anyone pass.",
+      "art": "art-the-gilded-reckoning-hollow-choir",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hollow-choir-encounter",
+      "terminal": false
+    },
+    {
+      "id": "weeping-vault",
+      "kind": "hazard",
+      "title": "The Weeping Vault",
+      "prose": "Beneath the palace, water drips like tears down walls stacked with unmarked bones. The floor groans, unstable and ancient, as something vast stirs deeper within.",
+      "art": "art-the-gilded-reckoning-weeping-vault",
+      "options": [
+        {
+          "id": "opt-vault-shore",
+          "label": "Carefully shore up the crumbling walls before advancing (Athletics)",
+          "target": "unquiet-king",
+          "effects": [
+            {
+              "flag": "vault-unstable",
+              "value": false
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "unquiet-king"
+          }
+        },
+        {
+          "id": "opt-vault-rush",
+          "label": "Rush through quickly, ignoring the danger",
+          "target": "unquiet-king",
+          "effects": [
+            {
+              "flag": "vault-unstable",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-vault-search",
+          "label": "Search for the villagers' remains to grant them rest first (Perception)",
+          "target": "unquiet-king",
+          "effects": [
+            {
+              "flag": "vault-unstable",
+              "value": false
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "unquiet-king"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "unquiet-king",
+      "kind": "climax",
+      "title": "The Unquiet King",
+      "prose": "At the vault's heart rises a crowned wight, the last lord of Ashvale, bound in chains of old grief and older rage, flanked by bone-picked guardsmen still loyal past death.",
+      "art": "art-the-gilded-reckoning-unquiet-king",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "unquiet-king-encounter",
+      "terminal": false
+    },
+    {
+      "id": "final-reckoning",
+      "kind": "decision",
+      "title": "The Final Reckoning",
+      "prose": "With the Unquiet King's rage spent or unspent, and the truth in hand or ash, Solmere waits to learn what you will do with its unquiet past.",
+      "art": "art-the-gilded-reckoning-final-reckoning",
+      "options": [
+        {
+          "id": "opt-final-truth",
+          "label": "Present the ledger to the people, exposing the crown's crime",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "found-ledger",
+            "value": true
+          },
+          "target": "ending-truth-revealed",
+          "effects": []
+        },
+        {
+          "id": "opt-final-quiet",
+          "label": "Convince the crown toward quiet, hidden reparations instead",
+          "target": "ending-buried-again",
+          "effects": []
+        },
+        {
+          "id": "opt-final-sacrifice",
+          "label": "Lay the spirits to rest in a silent ceremony amid the vault's ruin",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-unstable",
+            "value": true
+          },
+          "target": "ending-ashes-absolution",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-truth-revealed",
+      "kind": "ending",
+      "title": "The Truth Revealed",
+      "prose": "The ledger is read aloud from the palace steps. Solmere reels, then rebuilds itself on honesty rather than gilded silence, Ashvale's name restored to every map.",
+      "art": "art-the-gilded-reckoning-ending-truth",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-buried-again",
+      "kind": "ending",
+      "title": "A Kingdom's Quiet",
+      "prose": "The crown makes its reparations in secret, coin and land quietly redirected to Ashvale's scattered descendants. Solmere shines on, its past folded once more beneath polished stone.",
+      "art": "art-the-gilded-reckoning-ending-buried",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ashes-absolution",
+      "kind": "ending",
+      "title": "Ashes and Absolution",
+      "prose": "The vault collapses as the last rites are spoken, burying ledger, bones, and crowned wight together. Solmere never learns the whole truth, but the weeping in its foundations finally stops.",
+      "art": "art-the-gilded-reckoning-ending-ashes",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-at-solmere",
+      "to": "the-cracked-bell",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-solmere",
+      "to": "archivists-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-solmere",
+      "to": "into-the-old-quarter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-cracked-bell",
+      "to": "massacre-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-cracked-bell",
+      "to": "archivists-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-cracked-bell",
+      "to": "into-the-old-quarter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archivists-warning",
+      "to": "massacre-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archivists-warning",
+      "to": "into-the-old-quarter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "into-the-old-quarter",
+      "to": "sealed-crypt-door",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "into-the-old-quarter",
+      "to": "massacre-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "into-the-old-quarter",
+      "to": "confront-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sealed-crypt-door",
+      "to": "massacre-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sealed-crypt-door",
+      "to": "skeletal-watch",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "massacre-ledger",
+      "to": "confront-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "massacre-ledger",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "skeletal-watch",
+      "to": "massacre-ledger",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "skeletal-watch",
+      "to": "ending-buried-again",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "skeletal-watch",
+      "to": "into-the-old-quarter",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "confront-choice",
+      "to": "regents-confession",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-choice",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-choice",
+      "to": "final-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "regents-confession",
+      "to": "weeping-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "regents-confession",
+      "to": "hollow-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-choir",
+      "to": "weeping-vault",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "hollow-choir",
+      "to": "ending-ashes-absolution",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "hollow-choir",
+      "to": "confront-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "weeping-vault",
+      "to": "unquiet-king",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "unquiet-king",
+      "to": "final-reckoning",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "unquiet-king",
+      "to": "ending-ashes-absolution",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "unquiet-king",
+      "to": "ending-buried-again",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "final-reckoning",
+      "to": "ending-truth-revealed",
+      "when": {
+        "op": "eq",
+        "flag": "found-ledger",
+        "value": true
+      }
+    },
+    {
+      "from": "final-reckoning",
+      "to": "ending-buried-again",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-reckoning",
+      "to": "ending-ashes-absolution",
+      "when": {
+        "op": "eq",
+        "flag": "vault-unstable",
+        "value": true
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "skeletal-watch-encounter",
+      "title": "The Skeletal Watch",
+      "combatants": [
+        {
+          "id": "watch-skeleton-1",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "massacre-ledger",
+      "onDefeat": "ending-buried-again",
+      "onFlee": "into-the-old-quarter"
+    },
+    {
+      "id": "hollow-choir-encounter",
+      "title": "The Hollow Choir",
+      "combatants": [
+        {
+          "id": "choir-shadow",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "choir-ghoul",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "fog"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "weeping-vault",
+      "onDefeat": "ending-ashes-absolution",
+      "onFlee": "confront-choice"
+    },
+    {
+      "id": "unquiet-king-encounter",
+      "title": "The Unquiet King",
+      "combatants": [
+        {
+          "id": "unquiet-king-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "king-guard-skeleton",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "unstable",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "unquiet-king-wight"
+      },
+      "onVictory": "final-reckoning",
+      "onDefeat": "ending-ashes-absolution",
+      "onFlee": "ending-buried-again"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "adventure": "the-cindergate-road",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-cindergate-road-duchess-petition-hall",
+      "beat": "petitioners-hall",
+      "brief": "The Petitioner's Hall — The Duchess of Vaelmar receives you beneath cracked frescoes of an older, unbroken realm. The Cindergate Road once fed her war-starved duchy from the "
+    },
+    {
+      "slot": "art-the-cindergate-road-ashbound-watchtower",
+      "beat": "ashbound-watch",
+      "brief": "The Ashbound Watch — At the edge of the Greywood stands a tower of the Ashbound Circle, wizards who ward the border for their own old reasons. Magistrix Orvenna studies yo"
+    },
+    {
+      "slot": "art-the-cindergate-road-waystone-ruins-art",
+      "beat": "waystone-ruins",
+      "brief": "The Waystone Ruins — Toppled waystones mark the old road's first mile, their runes half-erased by moss and war. Fresh gouges in the stone suggest something recent passed t"
+    },
+    {
+      "slot": "art-the-cindergate-road-greywood-path-divide",
+      "beat": "path-divide",
+      "brief": "Where the Road Splits — The Cindergate Road forks ahead: a low route vanishing into mire-fog, and a ridge trail climbing into wind and stone. Somewhere between them lies what"
+    },
+    {
+      "slot": "art-the-cindergate-road-sinking-mire-crossing",
+      "beat": "sinking-mire",
+      "brief": "The Sinking Mire — Black water swallows the road here, hiding old wreckage beneath its skin. Something disturbs the reeds just out of sight, patient as the fog."
+    },
+    {
+      "slot": "art-the-cindergate-road-ridge-path-climb",
+      "beat": "ridge-path",
+      "brief": "The Ridge Path — Wind claws at the ridge trail, and loose scree threatens to send you tumbling. Far below, the mire glints like a wound in the land."
+    },
+    {
+      "slot": "art-the-cindergate-road-thornreach-ambush-art",
+      "beat": "thornreach-ambush",
+      "brief": "Ambush at Thornreach — Riders in mismatched war-plate burst from the brush — the Thornreach Warband, deserters turned toll-takers, wolves loping at their heels."
+    },
+    {
+      "slot": "art-the-cindergate-road-sealed-cairn-door",
+      "beat": "sealed-cairn",
+      "brief": "The Sealed Cairn — A cairn of black stone blocks the road entirely, sealed with a ward older than the war itself. Scratched into its base, in a dozen hands, are names — "
+    },
+    {
+      "slot": "art-the-cindergate-road-lost-expedition-camp",
+      "beat": "lost-expedition",
+      "brief": "The Lost Expedition — Beyond the cairn lies a camp long overrun: tents rotted to lace, a broken standard, and at its center, remarkably whole, the body of a Vaelmar scout —"
+    },
+    {
+      "slot": "art-the-cindergate-road-hollow-chapel-spirit",
+      "beat": "hollow-chapel",
+      "brief": "The Hollow Chapel — A ruined wayside chapel stands past the camp, and within it, unmistakably, the translucent shade of Warden Iss Cael himself — bound to the place by wh"
+    },
+    {
+      "slot": "art-the-cindergate-road-vault-gate-decision",
+      "beat": "vault-decision",
+      "brief": "The Gate to the Cindergate Vault — Beyond the chapel, a war-scarred vault gate stands ajar: the true heart of the road's ruin, held by the deserter-captain Rathe Bellorn and the dead he"
+    },
+    {
+      "slot": "art-the-cindergate-road-cindergate-vault-battle",
+      "beat": "cindergate-vault",
+      "brief": "The Cindergate Vault — Captain Rathe Bellorn stands amid stacked coffers and stolen banners, skeletal guards flanking him — the bones of travelers who never made it home."
+    },
+    {
+      "slot": "art-the-cindergate-road-ending-new-road-art",
+      "beat": "ending-new-road",
+      "brief": "The Road Reopened — With Rathe fallen and his bone-guard scattered to dust, you plant the Duchess's banner at the vault's threshold. Within a season, wagons roll where on"
+    },
+    {
+      "slot": "art-the-cindergate-road-ending-truce-art",
+      "beat": "ending-uneasy-truce",
+      "brief": "An Uneasy Truce — Rathe takes your offer, and the road reopens under an arrangement no one back in Vaelmar will ever fully approve of: a toll paid quietly, a war-band l"
+    },
+    {
+      "slot": "art-the-cindergate-road-ending-broken-road-art",
+      "beat": "ending-broken",
+      "brief": "One More Silence — The Greywood keeps its newest names. Somewhere in Vaelmar, the Duchess will wait for a report that never comes, and eventually send another company do"
+    }
+  ]
+}
