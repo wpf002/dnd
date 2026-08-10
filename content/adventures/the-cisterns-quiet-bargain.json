@@ -1,0 +1,791 @@
+{
+  "id": "the-cisterns-quiet-bargain",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Cistern's Quiet Bargain",
+    "premise": "In the flood-worn wards of Draygate, three powers—the Tinkers' Guild, the Drowned Bell temple, and an absentee lord's steward—each quietly need the same forgotten seal, and each is desperate that the other two never learn why.",
+    "tone": [
+      "urban-intrigue",
+      "political-fantasy"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A wry, street-level narrator who knows every alley's going price.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No violence toward or endangerment of children is ever depicted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "entry-salt-row",
+  "beats": [
+    {
+      "id": "entry-salt-row",
+      "kind": "threshold",
+      "title": "Three Petitioners, One Secret",
+      "prose": "Old Ferro slides three names across a stained table in Salt Row: Matron Ilsa Corvain of the Tinkers' Guild, Deacon Ashur Vey of the Drowned Bell, and Steward Renna Oswick of absentee Lord Thale. Each has quietly asked around the wards for the same small tin seal—the old Cistern Warden's mark—and each has offered coin for silence. Ferro wants to know why, and who'll pay best to keep it that way.",
+      "readAloud": "The rain drums on tin roofs as Ferro taps the table. 'Three of the city's quiet powers, all chasing the same trinket. Pick a door, and mind you don't let the other two see you knock.'",
+      "art": "art-the-cisterns-quiet-bargain-entry-salt-row-art",
+      "options": [
+        {
+          "id": "go-guild-hall",
+          "label": "Follow the lead to the Tinkers' Guild hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guild-hall",
+          "effects": []
+        },
+        {
+          "id": "go-temple",
+          "label": "Follow the lead to the Drowned Bell temple",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-bell-temple",
+          "effects": []
+        },
+        {
+          "id": "go-manor",
+          "label": "Follow the lead to Thale Manor",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "thale-manor",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guild-hall",
+      "kind": "social",
+      "title": "Matron Corvain's Ledger",
+      "prose": "The guild hall smells of solder and lamp oil. Matron Corvain, hands stained black from her forges, admits she needs the Cistern Warden's seal to legally claim the water rights her workers have kept flowing for free for a decade. She doesn't want the temple or the manor to know the guild is this desperate.",
+      "art": "art-the-cisterns-quiet-bargain-guild-hall-art",
+      "options": [
+        {
+          "id": "pledge-corvain",
+          "label": "Offer quiet help to Matron Corvain",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "corvain"
+            }
+          ]
+        },
+        {
+          "id": "press-corvain",
+          "label": "Press her about who else wants the seal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "corvain"
+            }
+          ]
+        },
+        {
+          "id": "leave-corvain",
+          "label": "Take her coin and keep your distance",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "corvain"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-bell-temple",
+      "kind": "social",
+      "title": "Deacon Vey's Confession",
+      "prose": "Beneath the temple's cracked bell, Deacon Vey confesses the seal once bound a small spirit that keeps the ward's cisterns from souring during floods. He fears the guild or the manor would sell the water rights and let the binding lapse for profit.",
+      "art": "art-the-cisterns-quiet-bargain-drowned-bell-temple-art",
+      "options": [
+        {
+          "id": "pledge-vey",
+          "label": "Offer quiet help to Deacon Vey",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "vey"
+            }
+          ]
+        },
+        {
+          "id": "press-vey",
+          "label": "Press him about who else wants the seal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "vey"
+            }
+          ]
+        },
+        {
+          "id": "leave-vey",
+          "label": "Take his coin and keep your distance",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "vey"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thale-manor",
+      "kind": "social",
+      "title": "Steward Oswick's Offer",
+      "prose": "Steward Oswick receives you in an empty parlor, Lord Thale's portrait gathering dust. She wants the seal to quietly fold the ward's water rights into the absentee lord's estate before anyone notices he hasn't visited in years. Her smile doesn't reach her eyes.",
+      "art": "art-the-cisterns-quiet-bargain-thale-manor-art",
+      "options": [
+        {
+          "id": "pledge-oswick",
+          "label": "Offer quiet help to Steward Oswick",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "oswick"
+            }
+          ]
+        },
+        {
+          "id": "press-oswick",
+          "label": "Press her about who else wants the seal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "oswick"
+            }
+          ]
+        },
+        {
+          "id": "leave-oswick",
+          "label": "Take her coin and keep your distance",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ward-archive",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "oswick"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ward-archive",
+      "kind": "puzzle",
+      "title": "The Waterlogged Archive",
+      "prose": "Musty survey maps and half-drowned ledgers hold the seal's last known resting place: a sealed vault beneath the old cistern-house, forgotten since before the current wardens were born.",
+      "art": "art-the-cisterns-quiet-bargain-ward-archive-art",
+      "options": [
+        {
+          "id": "use-guild-shortcut",
+          "label": "Use Corvain's guild records to find a service tunnel",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allegiance",
+            "value": "corvain"
+          },
+          "target": "seal-vault-approach",
+          "effects": [
+            {
+              "flag": "archive-shortcut",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "search-ledgers",
+          "label": "Search the public cistern ledgers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seal-vault-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 12,
+            "onFailure": "seal-vault-approach"
+          }
+        },
+        {
+          "id": "bribe-archivist",
+          "label": "Bribe the archivist for the old survey maps",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seal-vault-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "seal-vault-approach",
+      "kind": "hazard",
+      "title": "The Cistern-House Vault",
+      "prose": "Rusted pipes and standing water lead to a vault door sealed since the last flood generation. Something still guards it—old wards, or older bones.",
+      "art": "art-the-cisterns-quiet-bargain-seal-vault-approach-art",
+      "options": [
+        {
+          "id": "use-shortcut",
+          "label": "Slip through the guild's service tunnel",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "archive-shortcut",
+            "value": true
+          },
+          "target": "seal-in-hand",
+          "effects": []
+        },
+        {
+          "id": "pick-lock",
+          "label": "Pick the vault's ancient lock",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seal-in-hand",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight of hand",
+            "dc": 13,
+            "onFailure": "vault-guardians"
+          }
+        },
+        {
+          "id": "force-door",
+          "label": "Force the vault door open",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-guardians",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-guardians",
+      "kind": "conflict",
+      "title": "The Wardens Below",
+      "prose": "The vault's guardians never left—brittle skeletons in warden's sashes, and something darker clinging to the shadows between them.",
+      "art": "art-the-cisterns-quiet-bargain-vault-guardians-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardians-fight",
+      "terminal": false
+    },
+    {
+      "id": "seal-in-hand",
+      "kind": "discovery",
+      "title": "The Warden's Seal",
+      "prose": "The seal is smaller than expected—tin, tarnished, warm to the touch. Faint inscriptions ring its edge, older than any of the three powers who want it.",
+      "art": "art-the-cisterns-quiet-bargain-seal-in-hand-art",
+      "options": [
+        {
+          "id": "study-seal",
+          "label": "Study the seal's worn inscriptions",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "oswick-ultimatum",
+          "effects": []
+        },
+        {
+          "id": "pocket-seal",
+          "label": "Pocket it and keep moving",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "oswick-ultimatum",
+          "effects": []
+        },
+        {
+          "id": "ask-local",
+          "label": "Ask a passing hedge-scholar what it means",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "oswick-ultimatum",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "oswick-ultimatum",
+      "kind": "conflict",
+      "title": "Oswick's Enforcers",
+      "prose": "Steward Oswick's hired blades block the alley ahead. She's tired of waiting quietly and wants the seal now, one way or another.",
+      "art": "art-the-cisterns-quiet-bargain-oswick-ultimatum-art",
+      "options": [
+        {
+          "id": "fight-enforcers",
+          "label": "Stand and fight Oswick's enforcers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mercenary-ambush",
+          "effects": []
+        },
+        {
+          "id": "bargain-oswick",
+          "label": "Strike a bargain: hand her the seal now",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-oswick-rule",
+          "effects": []
+        },
+        {
+          "id": "negotiate-flee",
+          "label": "Talk your way clear and keep moving",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "decision-final",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "mercenary-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mercenary-ambush",
+      "kind": "conflict",
+      "title": "Blades in the Alley",
+      "prose": "Oswick's enforcers close in, steel ringing off wet cobblestones. You don't need to beat them—just get clear with the seal.",
+      "art": "art-the-cisterns-quiet-bargain-mercenary-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "mercenary-ambush-fight",
+      "terminal": false
+    },
+    {
+      "id": "decision-final",
+      "kind": "decision",
+      "title": "The Seal in Your Hand",
+      "prose": "The seal's weight is more than tin. Whoever holds it decides who controls the ward's water for a generation—or whether anyone does at all.",
+      "art": "art-the-cisterns-quiet-bargain-decision-final-art",
+      "options": [
+        {
+          "id": "give-to-guild",
+          "label": "Return the seal to the Tinkers' Guild",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-guild-rule",
+          "effects": []
+        },
+        {
+          "id": "give-to-temple",
+          "label": "Deliver the seal to the Drowned Bell temple",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-temple-rule",
+          "effects": []
+        },
+        {
+          "id": "keep-independent",
+          "label": "Destroy the ledger of claims and vanish with the truth",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-independent-ward",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-guild-rule",
+      "kind": "ending",
+      "title": "The Guild's Water",
+      "prose": "Matron Corvain grips the seal like a promise kept. The wards' cisterns will run under guild oversight now—fairer than the manor, harder-edged than the temple, but yours to have shaped. Salt Row will remember who chose them.",
+      "art": "art-the-cisterns-quiet-bargain-ending-guild-rule-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-temple-rule",
+      "kind": "ending",
+      "title": "The Bell Endures",
+      "prose": "Deacon Vey seals the vault properly this time, the old binding renewed under the Drowned Bell's care. The water stays sweet, the spirit stays quiet, and the temple's quiet influence over the wards grows a little deeper.",
+      "art": "art-the-cisterns-quiet-bargain-ending-temple-rule-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-independent-ward",
+      "kind": "ending",
+      "title": "No One's Seal",
+      "prose": "You burn the claim ledgers in a rain barrel and let the truth of the binding spread through Salt Row's gossip instead of its courts. No single power gets the water. The wards argue, organize, and—slowly—govern themselves.",
+      "art": "art-the-cisterns-quiet-bargain-ending-independent-ward-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-oswick-rule",
+      "kind": "ending",
+      "title": "The Absentee Lord's Hand",
+      "prose": "Oswick takes the seal with a satisfied nod and folds the ward's water into Lord Thale's distant estate. The wards get a new landlord who has never once visited them. Your coin purse is heavier; your welcome in Salt Row is not.",
+      "art": "art-the-cisterns-quiet-bargain-ending-oswick-rule-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-defeat",
+      "kind": "ending",
+      "title": "Lost Beneath the Wards",
+      "prose": "Between old bones and hired blades, the ward finally claims something back. The seal is never found again, and the three powers quietly go on wanting it, and wondering.",
+      "art": "art-the-cisterns-quiet-bargain-ending-defeat-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "entry-salt-row",
+      "to": "guild-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "entry-salt-row",
+      "to": "drowned-bell-temple",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "entry-salt-row",
+      "to": "thale-manor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guild-hall",
+      "to": "ward-archive",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-bell-temple",
+      "to": "ward-archive",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "thale-manor",
+      "to": "ward-archive",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ward-archive",
+      "to": "seal-vault-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-vault-approach",
+      "to": "seal-in-hand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-vault-approach",
+      "to": "vault-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-guardians",
+      "to": "seal-in-hand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-guardians",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-in-hand",
+      "to": "oswick-ultimatum",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "oswick-ultimatum",
+      "to": "mercenary-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "oswick-ultimatum",
+      "to": "ending-oswick-rule",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "oswick-ultimatum",
+      "to": "decision-final",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mercenary-ambush",
+      "to": "decision-final",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mercenary-ambush",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decision-final",
+      "to": "ending-guild-rule",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decision-final",
+      "to": "ending-temple-rule",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decision-final",
+      "to": "ending-independent-ward",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "vault-guardians-fight",
+      "title": "The Cistern Vault's Wardens",
+      "combatants": [
+        {
+          "id": "warden-skeleton",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "warden-shadow",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "seal-in-hand",
+      "onDefeat": "ending-defeat"
+    },
+    {
+      "id": "mercenary-ambush-fight",
+      "title": "Oswick's Enforcers",
+      "combatants": [
+        {
+          "id": "enforcer-bandit",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "enforcer-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "decision-final",
+      "onDefeat": "ending-defeat"
+    }
+  ]
+}

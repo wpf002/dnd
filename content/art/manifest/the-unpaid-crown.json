@@ -1,0 +1,90 @@
+{
+  "adventure": "the-unpaid-crown",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: political-fantasy, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-unpaid-crown-arrival-veskmoor",
+      "beat": "arrival-at-veskmoor",
+      "brief": "Ashes at Veskmoor Keep — The funeral bells of Veskmoor toll over a keep already fracturing. Baron Aldric is dead, his debt to the Barony of Corrin unpaid, and his heir unteste"
+    },
+    {
+      "slot": "art-the-unpaid-crown-ledger-hall",
+      "beat": "ledger-hall",
+      "brief": "The Forged Ledger — Dust and candle-wax choke the ledger hall. The debt entries to Corrin have been altered — someone padded the sum, and recently."
+    },
+    {
+      "slot": "art-the-unpaid-crown-shrine-audience",
+      "beat": "shrine-audience",
+      "brief": "The Grieving Heir — Lady Ysenne kneels before her father's shrine, more frightened than sorrowful. She needs allies, not mourners."
+    },
+    {
+      "slot": "art-the-unpaid-crown-barracks-warning",
+      "beat": "barracks-warning",
+      "brief": "The Captain's Warning — Captainورs Dovrik warns that Corrin's envoys already ride for Veskmoor, and the garrison is split on whom to follow."
+    },
+    {
+      "slot": "art-the-unpaid-crown-steward-showdown",
+      "beat": "steward-showdown",
+      "brief": "Blades in the Archive — The steward's hand goes to a hidden bell — and armed men pour from the archive shadows."
+    },
+    {
+      "slot": "art-the-unpaid-crown-council-summons",
+      "beat": "council-summons",
+      "brief": "The Baronial Council — The council gathers beneath the fractured seal of Veskmoor. Corrin's envoy waits at the gate. A decision on the debt must begin to take shape."
+    },
+    {
+      "slot": "art-the-unpaid-crown-treaty-vault",
+      "beat": "treaty-vault",
+      "brief": "The Treaty Vault — Old parchment and older wax seals. Somewhere in this clause-tangled treaty lies a way out — or a way to make one."
+    },
+    {
+      "slot": "art-the-unpaid-crown-corrin-envoy",
+      "beat": "corrin-envoy",
+      "brief": "Corrin's Envoy — The envoy of Corrin, cloaked in grey and silver, waits with a patience that feels like a blade held to the throat of the barony."
+    },
+    {
+      "slot": "art-the-unpaid-crown-debt-reckoning",
+      "beat": "debt-reckoning",
+      "brief": "The Price of the Debt — A settlement must be named aloud before the council and the envoy both. Whatever you choose becomes Veskmoor's new truth."
+    },
+    {
+      "slot": "art-the-unpaid-crown-climax-battle",
+      "beat": "climax-battle",
+      "brief": "The Ashen Warden's Stand — Corrin's enforcers refuse the settlement and storm the hall, aiming to seize the heir's ancestral guardian before terms can be sealed."
+    },
+    {
+      "slot": "art-the-unpaid-crown-resolution-choice",
+      "beat": "resolution-choice",
+      "brief": "Sealing the Terms — With the enforcers routed, the terms you named must now be made real before the whole of Veskmoor."
+    },
+    {
+      "slot": "art-the-unpaid-crown-ending-alliance",
+      "beat": "ending-alliance",
+      "brief": "A Fragile Peace — Ashmere passes to Corrin under seal and witness. It costs Veskmoor land, but buys it years of uneasy, genuine peace, and Lady Ysenne rules with your n"
+    },
+    {
+      "slot": "art-the-unpaid-crown-ending-sacrifice",
+      "beat": "ending-sacrifice",
+      "brief": "The Blood Price Paid — The steward's head buys the debt's forgiveness, but the barons whisper of what you were willing to trade for peace. Veskmoor survives, hollowed and wa"
+    },
+    {
+      "slot": "art-the-unpaid-crown-ending-shadow-rule",
+      "beat": "ending-shadow-rule",
+      "brief": "A Kingdom Built on Forgery — The false treaty holds — for now. Lady Ysenne rules atop a lie only you and the envoy know, a debt owed forever to your silence."
+    },
+    {
+      "slot": "art-the-unpaid-crown-ending-warfare",
+      "beat": "ending-warfare",
+      "brief": "The Baronies at War — Steel answers where words failed. Corrin's banners darken the passes, and Veskmoor burns behind you as the old feud becomes open war."
+    },
+    {
+      "slot": "art-the-unpaid-crown-ending-exile",
+      "beat": "ending-exile",
+      "brief": "Flight from the Ashen Hall — The Warden falls and the hall with it. You flee Veskmoor's ruin with nothing settled, exiles from a succession you could not save."
+    }
+  ]
+}

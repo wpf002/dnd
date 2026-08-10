@@ -1,0 +1,90 @@
+{
+  "adventure": "the-stitchroad-reckoning",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-stitchroad-reckoning-seamgate-arrival",
+      "beat": "threshold-seamgate",
+      "brief": "The Seamgate — The town of Seamgate clings to the raw border where two grafted continents were stitched together by the Old Cartographers' magic centuries ago. Ropey"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-lyra-briefing",
+      "beat": "social-lyra-briefing",
+      "brief": "The Survivor's Warning — Lyra Vessport sits wrapped in blankets in the back room of the Two-World Inn, her left arm ending in a stump wrapped in seam-silver bandages. She is t"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-seam-scar",
+      "beat": "discovery-seam-scar",
+      "brief": "Where the Worlds Were Sewn — Up close, the seam is not a line but a wound of grafted matter -- rootwork from one continent fused mid-growth into basalt from another, rivers that r"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-map-fragment",
+      "beat": "discovery-map-fragment",
+      "brief": "A Torn Map — Half-buried in stitch-sand, or pressed into Lyra's trembling hand, a fragment of the expedition's map survives: inked in a cipher of overlapping alpha"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-cipher-puzzle",
+      "beat": "puzzle-seam-cipher",
+      "brief": "The Overlapping Alphabets — The map fragment's script is two languages fused into one, letters from each continent grafted together the way the land itself was. Untangling it mig"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-unstable-ground",
+      "beat": "hazard-unstable-ground",
+      "brief": "The Shifting Fissure — The Stitchroad bucks and ripples beneath your feet where the graft is still settling after all these centuries. A fissure has opened ahead, venting co"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-warden-shrine",
+      "beat": "discovery-warden-shrine",
+      "brief": "The Shrine of the Seam Wardens — A half-buried shrine straddles the exact line of the graft, its statues carved with faces from both continents merged into one. Glyphs crawl across it"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-seam-wardens-clash",
+      "beat": "conflict-seam-wardens",
+      "brief": "The Shrine Wakes — The merged statues shudder and split apart into animated guardians of fused metal and living shadow, their forms neither wholly one continent's craft "
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-warden-glyphs",
+      "beat": "puzzle-warden-glyphs",
+      "brief": "Reading the Merged Faces — The glyphs describe a covenant: the wardens were once living people from both continents, bound into the shrine to keep the seam from tearing further."
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-the-crossing-decision",
+      "beat": "decision-the-crossing",
+      "brief": "The Guarded Crossing — Ahead, the Stitchroad narrows to a single crossing point where the two continents' bedrock finally meets -- and it is held by armed guardians who once"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-stitchroad-guardian-clash",
+      "beat": "conflict-stitchroad-guardian",
+      "brief": "The Crossing Barricade — The bandits holding the crossing were once its protectors, and they fight like it -- disciplined, coordinated, and utterly unwilling to let anyone els"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-open-seam-climax",
+      "beat": "climax-the-open-seam",
+      "brief": "The Open Seam — Beyond the crossing, the Stitchroad ends at the seam itself: a vertical tear of light and dark where the two continents were never quite finished bein"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-ending-seam-sealed",
+      "beat": "ending-seam-sealed",
+      "brief": "The Seam Sealed — With the last of the shrine's covenant and your own hard-won knowledge, you close the tear between the continents for good. The road stops swallowing "
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-ending-new-horizon",
+      "beat": "ending-new-horizon",
+      "brief": "The Third Land — You step through the seam and find not a grave for lost expeditions, but a whole unstitched continent, raw and unclaimed, waiting on the other side of"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-ending-heros-sacrifice",
+      "beat": "ending-heros-sacrifice",
+      "brief": "The New Warden — You take up the freed spirit's old post, binding yourself into the shrine to hold the seam steady. It is not death, exactly -- more a patient watching"
+    },
+    {
+      "slot": "art-the-stitchroad-reckoning-ending-lost-seam",
+      "beat": "ending-lost-to-the-seam",
+      "brief": "Lost to the Seam — The Stitchroad claims you as it claimed every expedition before, your names added to the list of those who tried and did not return. Somewhere in Seam"
+    }
+  ]
+}

@@ -1,0 +1,947 @@
+{
+  "id": "the-silent-ford",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Silent Ford",
+    "premise": "In the river-valley League of Carrow's Reach, three caravans have vanished on the old Ferry Road between Millhaven and Carrow's Landing, and the League needs someone willing to find out why before the fourth wagon train refuses to leave at all.",
+    "tone": [
+      "exploration",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "a wry, observant chronicler recording the League's official (and unofficial) history",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "A missing child is referenced only as an off-screen motivation; never depicted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "league-hall",
+  "beats": [
+    {
+      "id": "league-hall",
+      "kind": "threshold",
+      "title": "The League's Plea",
+      "prose": "The Overseer of the River League spreads three manifests across the table, each stamped 'lost beyond the tollhouse.' No wagon that took the old Ferry Road this season has returned, and the League's coffers cannot survive a fourth silence.",
+      "readAloud": "\"Three caravans, gone without wreckage or word,\" the Overseer says. \"Find out what waits past the tollhouse, or Carrow's Landing starves this winter.\"",
+      "art": "art-the-silent-ford-league-hall-overseer",
+      "options": [
+        {
+          "id": "hall-interview-guard",
+          "label": "Interview the sole surviving guard",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guard-testimony",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "hall-study-ledgers",
+          "label": "Study the tollhouse ledgers first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tollhouse-records",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "hall-go-trailhead",
+          "label": "Skip preparation and head straight for the trailhead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "trailhead",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guard-testimony",
+      "kind": "social",
+      "title": "The Guard's Ravings",
+      "prose": "The last guard to walk back alive sits wrapped in blankets, insisting no one believes him: lights beneath the river, a stone at the crossroads that 'asked him a question' before the road simply ended.",
+      "art": "art-the-silent-ford-guard-survivor-testimony",
+      "options": [
+        {
+          "id": "guard-ask-lights",
+          "label": "Ask about the lights beneath the water",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "trailhead",
+          "effects": [
+            {
+              "flag": "knows-shrine",
+              "value": true
+            },
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "guard-ask-tollpost",
+          "label": "Ask about the toll-post that 'asked a question'",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "trailhead",
+          "effects": [
+            {
+              "flag": "knows-toll-code",
+              "value": true
+            },
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "guard-cross-reference",
+          "label": "Thank him and go cross-reference the tollhouse ledgers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tollhouse-records",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tollhouse-records",
+      "kind": "discovery",
+      "title": "The Ledger Room",
+      "prose": "Dusty manifests confirm the pattern: each lost wagon's last entry reads the same clerk's hand, 'paid the deep toll,' followed by nothing at all.",
+      "art": "art-the-silent-ford-tollhouse-ledger-room",
+      "options": [
+        {
+          "id": "toll-records-crossref",
+          "label": "Cross-reference the ledgers with the guard's story",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guard-testimony",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "toll-records-code",
+          "label": "Note the recurring toll code in the manifests",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "trailhead",
+          "effects": [
+            {
+              "flag": "knows-toll-code",
+              "value": true
+            },
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "toll-records-trailhead",
+          "label": "Pocket your notes and head for the trailhead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "trailhead",
+          "effects": [
+            {
+              "flag": "skipped-investigation",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "trailhead",
+      "kind": "transit",
+      "title": "The Ferry Road Trailhead",
+      "prose": "Past the last watchpost, the Ferry Road drops toward the river valley, splitting around a collapsed bridge, a weather-worn shrine, and the ruts of a camp that never moved on.",
+      "art": "art-the-silent-ford-river-road-trailhead",
+      "options": [
+        {
+          "id": "trail-river-road",
+          "label": "Follow the river road toward the sunken bridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sunken-bridge",
+          "effects": []
+        },
+        {
+          "id": "trail-shrine-detour",
+          "label": "Turn aside to the roadside shrine",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shrine-discovery",
+          "effects": []
+        },
+        {
+          "id": "trail-push-camp",
+          "label": "Push straight on to the abandoned camp",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "abandoned-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sunken-bridge",
+      "kind": "hazard",
+      "title": "The Sunken Bridge",
+      "prose": "The old stone bridge has slumped into the current, leaving only a treacherous ford and a few rotten rope-ends swinging over the gap.",
+      "art": "art-the-silent-ford-sunken-bridge-crossing",
+      "options": [
+        {
+          "id": "bridge-swim-ford",
+          "label": "Swim the ford where the bridge collapsed",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-stone",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "abandoned-camp"
+          }
+        },
+        {
+          "id": "bridge-rope-crossing",
+          "label": "Rig a rope line across the gap",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-stone",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 12,
+            "onFailure": "abandoned-camp"
+          }
+        },
+        {
+          "id": "bridge-detour-shrine",
+          "label": "Detour along the bank toward the old shrine",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shrine-discovery",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shrine-discovery",
+      "kind": "discovery",
+      "title": "The Roadside Shrine",
+      "prose": "A weathered shrine to some half-forgotten river spirit stands choked with recent offerings: coins, ribbons, and a wagon-wheel spoke etched with a spiral mark.",
+      "art": "art-the-silent-ford-roadside-river-shrine",
+      "options": [
+        {
+          "id": "shrine-search-marks",
+          "label": "Search the shrine for hidden markings left by the missing caravans",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "abandoned-camp",
+          "effects": [
+            {
+              "flag": "found-cult-clue",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "shrine-recall-guard",
+          "label": "Recall the guard's warning about lights beneath the water",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-shrine",
+            "value": true
+          },
+          "target": "toll-stone",
+          "effects": [
+            {
+              "flag": "found-cult-clue",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "shrine-leave-offering",
+          "label": "Leave a token offering and move on quickly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-stone",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "abandoned-camp",
+      "kind": "discovery",
+      "title": "The Abandoned Camp",
+      "prose": "Wagon frames lie stripped to their bones. Small clawed tracks circle the firepits and vanish into a burrow beneath an uprooted willow.",
+      "art": "art-the-silent-ford-abandoned-caravan-camp",
+      "options": [
+        {
+          "id": "camp-follow-tracks",
+          "label": "Follow the kobold tracks leading from the ransacked wagons",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "kobold-ambush",
+          "effects": []
+        },
+        {
+          "id": "camp-search-journal",
+          "label": "Search the wreckage for a survivor's journal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-stone",
+          "effects": [
+            {
+              "flag": "found-cult-clue",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "camp-return-bridge",
+          "label": "Backtrack to try the sunken bridge route instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sunken-bridge",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "toll-stone",
+      "kind": "puzzle",
+      "title": "The Ancient Toll-Stone",
+      "prose": "A crossroads stone, older than the League itself, is carved with a riddle in flowing script. Beneath it, a mechanism waits, patient as the river.",
+      "art": "art-the-silent-ford-ancient-toll-stone",
+      "options": [
+        {
+          "id": "toll-use-code",
+          "label": "Answer the toll-stone using the code you learned",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-toll-code",
+            "value": true
+          },
+          "target": "ferryman-bargain",
+          "effects": []
+        },
+        {
+          "id": "toll-solve-riddle",
+          "label": "Study the stone and attempt to solve its riddle",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ferryman-bargain",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "kobold-ambush"
+          }
+        },
+        {
+          "id": "toll-force-open",
+          "label": "Force the ancient mechanism with brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ferryman-bargain",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "dc": 15,
+            "onFailure": "kobold-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kobold-ambush",
+      "kind": "conflict",
+      "title": "Ambush Beneath the Willow",
+      "prose": "The burrow erupts with kobolds defending their spoils, a goblin outrider barking orders from the treeline.",
+      "art": "art-the-silent-ford-kobold-ambush-scene",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "kobold-ambush",
+      "terminal": false
+    },
+    {
+      "id": "ferryman-bargain",
+      "kind": "decision",
+      "title": "The Ferryman's Price",
+      "prose": "At a landing hidden behind reeds, a gaunt ferryman waits beside a boat that should not still float. He knows the river's secrets, but nothing from him comes free.",
+      "art": "art-the-silent-ford-ferryman-at-the-landing",
+      "options": [
+        {
+          "id": "ferry-pay-price",
+          "label": "Pay the ferryman's price in coin",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "barrow-wight",
+          "effects": [
+            {
+              "flag": "paid-ferryman",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ferry-intimidate",
+          "label": "Press him for free passage with a hard stare",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "barrow-wight",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Intimidation",
+            "dc": 13,
+            "onFailure": "barrow-wight"
+          }
+        },
+        {
+          "id": "ferry-help-son",
+          "label": "Offer to help him find the son he lost to the deep toll",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "skipped-investigation",
+            "value": false
+          },
+          "target": "barrow-wight",
+          "effects": [
+            {
+              "flag": "helped-ferryman",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barrow-wight",
+      "kind": "conflict",
+      "title": "The Barrow Wight's Guard",
+      "prose": "Past the ferry landing, a sunken barrow guards the river's true crossing. A wight rises from the silt, zombies shambling at its call.",
+      "art": "art-the-silent-ford-barrow-wight-guardian",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "barrow-wight",
+      "terminal": false
+    },
+    {
+      "id": "confrontation",
+      "kind": "climax",
+      "title": "The Cult of the Deep Toll",
+      "prose": "Beyond the barrow, a hidden shrine-hall opens onto the truth: a cult has been diverting caravans into flooded tunnels beneath the river, feeding them to something that answers only to 'the deep toll.' The cult leader waits, unsurprised by your arrival.",
+      "art": "art-the-silent-ford-cult-leader-confrontation",
+      "options": [
+        {
+          "id": "expose-shrine",
+          "label": "Destroy the shrine and expose the cult's toll",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "found-cult-clue",
+            "value": true
+          },
+          "target": "ending-route-reopened",
+          "effects": []
+        },
+        {
+          "id": "bargain-cult",
+          "label": "Strike a bargain to keep the deep toll flowing quietly",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "paid-ferryman",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "helped-ferryman",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-deep-bargain",
+          "effects": []
+        },
+        {
+          "id": "retreat-fail",
+          "label": "Retreat and report failure to the League",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-league-fractured",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-route-reopened",
+      "kind": "ending",
+      "title": "The Route Reopened",
+      "prose": "With the shrine broken and the cult scattered, the Ferry Road reopens under League guard. Wagons roll again, and your names are carved beside the old toll-stone as a warning to anything still listening beneath the water.",
+      "art": "art-the-silent-ford-ending-route-reopened-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-deep-bargain",
+      "kind": "ending",
+      "title": "The Deep Bargain",
+      "prose": "The road reopens, wagons rolling smoothly past the barrow once more. Only you know the price paid to keep it so, and only you hear, some nights, the toll being collected downriver.",
+      "art": "art-the-silent-ford-ending-deep-bargain-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-league-fractured",
+      "kind": "ending",
+      "title": "The League Fractured",
+      "prose": "You return with no answers and fewer allies. Millhaven and Carrow's Landing sever the old road entirely, trade routes fracturing around the valley for a generation, and the toll-stone keeps its silence.",
+      "art": "art-the-silent-ford-ending-league-fractured-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "league-hall",
+      "to": "guard-testimony",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "league-hall",
+      "to": "tollhouse-records",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "league-hall",
+      "to": "trailhead",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guard-testimony",
+      "to": "trailhead",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guard-testimony",
+      "to": "tollhouse-records",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tollhouse-records",
+      "to": "guard-testimony",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tollhouse-records",
+      "to": "trailhead",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "trailhead",
+      "to": "sunken-bridge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "trailhead",
+      "to": "shrine-discovery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "trailhead",
+      "to": "abandoned-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sunken-bridge",
+      "to": "toll-stone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sunken-bridge",
+      "to": "abandoned-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sunken-bridge",
+      "to": "shrine-discovery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shrine-discovery",
+      "to": "abandoned-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shrine-discovery",
+      "to": "toll-stone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "abandoned-camp",
+      "to": "kobold-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "abandoned-camp",
+      "to": "toll-stone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "abandoned-camp",
+      "to": "sunken-bridge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "toll-stone",
+      "to": "ferryman-bargain",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "toll-stone",
+      "to": "kobold-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-ambush",
+      "to": "ferryman-bargain",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "kobold-ambush",
+      "to": "ending-league-fractured",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "kobold-ambush",
+      "to": "abandoned-camp",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "ferryman-bargain",
+      "to": "barrow-wight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "barrow-wight",
+      "to": "confrontation",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "barrow-wight",
+      "to": "ending-deep-bargain",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "confrontation",
+      "to": "ending-route-reopened",
+      "when": {
+        "op": "eq",
+        "flag": "found-cult-clue",
+        "value": true
+      }
+    },
+    {
+      "from": "confrontation",
+      "to": "ending-deep-bargain",
+      "when": {
+        "op": "or",
+        "clauses": [
+          {
+            "op": "eq",
+            "flag": "paid-ferryman",
+            "value": true
+          },
+          {
+            "op": "eq",
+            "flag": "helped-ferryman",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "from": "confrontation",
+      "to": "ending-league-fractured",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "kobold-ambush",
+      "title": "Ambush Beneath the Willow",
+      "combatants": [
+        {
+          "id": "kobold-raiders",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "goblin-outrider",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the ambush and reach the tree line toward the ferry landing."
+      },
+      "onVictory": "ferryman-bargain",
+      "onDefeat": "ending-league-fractured",
+      "onFlee": "abandoned-camp"
+    },
+    {
+      "id": "barrow-wight",
+      "title": "The Barrow Wight's Guard",
+      "combatants": [
+        {
+          "id": "barrow-wight-1",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "silt-zombies",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "water"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "confrontation",
+      "onDefeat": "ending-deep-bargain"
+    }
+  ]
+}

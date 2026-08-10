@@ -1,0 +1,90 @@
+{
+  "adventure": "the-weight-of-ash",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: survival-horror, urban-intrigue.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-weight-of-ash-quarantine-line-art",
+      "beat": "quarantine-line",
+      "brief": "The Quarantine Line — Ash sifts down like grey snow over the checkpoint where Greyhollow's last open gate groans on failing hinges. Soldiers with cloth-wrapped faces turn a"
+    },
+    {
+      "slot": "art-the-weight-of-ash-ashfall-market-art",
+      "beat": "ashfall-market",
+      "brief": "The Ashfall Market — Beneath a sagging tarp roof, survivors trade rations and rumors. Someone whispers that Warden Iris Calloway, keeper of the last working seal-gate, has"
+    },
+    {
+      "slot": "art-the-weight-of-ash-wardens-office-art",
+      "beat": "wardens-office",
+      "brief": "The Warden's Office — Warden Iris Calloway sits behind a desk stacked with sealed reports, her eyes rimmed with grey dust that isn't quite ash. She speaks of the gate's clo"
+    },
+    {
+      "slot": "art-the-weight-of-ash-crossroads-choice-art",
+      "beat": "crossroads-choice",
+      "brief": "Three Roads to the Crater — Beyond the office, the city splits into ruin. The Undercroft tunnels run beneath the rubble, Ashbound territory wraps the crater's edge, and the colla"
+    },
+    {
+      "slot": "art-the-weight-of-ash-ashbound-parley-art",
+      "beat": "ashbound-parley",
+      "brief": "Parley with the Ashbound — Robed figures ring a shrine of fused glass and stone dust. Their speaker offers safe passage to the crater — for a price, or a pledge."
+    },
+    {
+      "slot": "art-the-weight-of-ash-ashbound-ambush-art",
+      "beat": "ashbound-ambush",
+      "brief": "Zealots in the Ash — The Ashbound speaker's calm shatters into a snarl. Robed zealots close in, chanting the stone's name like a curse."
+    },
+    {
+      "slot": "art-the-weight-of-ash-undercroft-tunnels-art",
+      "beat": "undercroft-tunnels",
+      "brief": "The Undercroft — Ash-slurry drips through cracked ceilings. Somewhere below, something shuffles in the dark, disturbed by the falling stone's tremor."
+    },
+    {
+      "slot": "art-the-weight-of-ash-plague-ward-art",
+      "beat": "plague-ward-encounter",
+      "brief": "The Plague Ward — Rows of abandoned cots line a flooded ward. Shapes rise from the shadows between them, drawn by fresh footsteps."
+    },
+    {
+      "slot": "art-the-weight-of-ash-stone-shard-chamber-art",
+      "beat": "stone-shard-chamber",
+      "brief": "The Shard Chamber — A fragment of the fallen stone rests in a crater of melted stone, humming with a wrongness that itches behind the eyes."
+    },
+    {
+      "slot": "art-the-weight-of-ash-gate-mechanism-art",
+      "beat": "gate-mechanism",
+      "brief": "The Shrinking Gate — The seal-gate's rune-locks have drifted out of alignment, closing by degrees. Whatever you decide, it must be soon."
+    },
+    {
+      "slot": "art-the-weight-of-ash-wardens-betrayal-art",
+      "beat": "wardens-betrayal",
+      "brief": "The Warden's Guardian — Iron footsteps echo as an animated suit of ceremonial armor blocks the gate, and behind it, something wearing the Warden's shape rises with hollow, hu"
+    },
+    {
+      "slot": "art-the-weight-of-ash-final-choice-art",
+      "beat": "final-choice",
+      "brief": "The Last Hour — The gate groans, nearly shut. Whatever you carry, whatever you know, this is the moment it matters."
+    },
+    {
+      "slot": "art-the-weight-of-ash-ending-escape-shard-art",
+      "beat": "ending-escape-shard",
+      "brief": "Out of the Ash — You clear the gate as it grinds shut behind you, the shard's weight cold against your ribs. Greyhollow is still sealed, still suffering, but you carry"
+    },
+    {
+      "slot": "art-the-weight-of-ash-ending-seal-sacrifice-art",
+      "beat": "ending-seal-sacrifice",
+      "brief": "The Gate Holds — You brace the mechanism with everything you have as the last light of the outside world narrows to a seam, then nothing. The gate holds. Whether you h"
+    },
+    {
+      "slot": "art-the-weight-of-ash-ending-expose-corruption-art",
+      "beat": "ending-expose-corruption",
+      "brief": "The Warden Unmasked — You drag Iris Calloway's corruption into the market square's ashen light. The survivors riot, then rebuild under new leadership. The stone remains bur"
+    },
+    {
+      "slot": "art-the-weight-of-ash-ending-trapped-below-art",
+      "beat": "ending-trapped-below",
+      "brief": "Swallowed by the Quarantine — The last measurement of the gate reads zero. Somewhere above, Greyhollow seals itself against the world, and you are left among the ash and the things"
+    }
+  ]
+}

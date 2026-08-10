@@ -1,0 +1,821 @@
+{
+  "id": "the-midnight-audit",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Midnight Audit",
+    "premise": "An original adventure set in a hopeless branch office on a bad contract. The situation turns on one object, one night, and a building designed by someone who thought of this.",
+    "tone": [
+      "heist",
+      "beginner-classic"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Wry, weary corporate-gothic narrator who treats horror like an overdue invoice",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen; all threats target adult employees and undead functionaries."
+    },
+    "provenance": "flint"
+  },
+  "entry": "bad-contract",
+  "beats": [
+    {
+      "id": "bad-contract",
+      "kind": "threshold",
+      "title": "The Terms of Service",
+      "prose": "Your crew signed with the Gray Ledger Trading Company for coin you badly needed. The fine print, you now realize, binds your souls to the firm if its cursed ledger isn't returned to the vault before the Night Audit at midnight. The branch office squats ahead, windows dark, chimneys smoking though no one lit a fire.",
+      "readAloud": "The contract's ink is still warm. Somewhere inside, something is already counting the hours.",
+      "art": "art-the-midnight-audit-bad-contract-scene",
+      "options": [
+        {
+          "id": "enter-bold",
+          "label": "Walk in through the front lobby like you belong",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "office-arrival",
+          "effects": [
+            {
+              "flag": "entry-style",
+              "value": "bold"
+            }
+          ]
+        },
+        {
+          "id": "enter-sneak",
+          "label": "Slip in through the loading dock at dusk",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "office-arrival",
+          "effects": [
+            {
+              "flag": "entry-style",
+              "value": "sneak"
+            }
+          ]
+        },
+        {
+          "id": "enter-clever",
+          "label": "Bribe the night clerk's cousin for a spare key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "office-arrival",
+          "effects": [
+            {
+              "flag": "entry-style",
+              "value": "clever"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "office-arrival",
+      "kind": "transit",
+      "title": "Inside the Branch",
+      "prose": "The lobby smells of stale coffee and older magic. Fluorescent wards flicker overhead. A directory board lists departments that shouldn't exist: Collections, Extraction, Perpetual Renewal. Three corridors lead deeper into the building the architect built to survive exactly this kind of visit.",
+      "art": "art-the-midnight-audit-office-arrival-scene",
+      "options": [
+        {
+          "id": "to-records",
+          "label": "Head for the records room to find a floor plan",
+          "target": "records-room",
+          "effects": []
+        },
+        {
+          "id": "to-clerk",
+          "label": "Track down the lone night clerk",
+          "target": "night-clerk",
+          "effects": []
+        },
+        {
+          "id": "to-vault-direct",
+          "label": "Push straight toward the vault approach",
+          "target": "vault-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "records-room",
+      "kind": "discovery",
+      "title": "Filing Cabinets of the Damned",
+      "prose": "Rows of cabinets hum faintly, each drawer labeled with a debtor's name in fading ink. Somewhere in here is the building's true floor plan, drawn by an architect who clearly expected thieves like you.",
+      "art": "art-the-midnight-audit-records-room-scene",
+      "options": [
+        {
+          "id": "study-plan",
+          "label": "Study the ledgers for the building's true floor plan",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "has-map",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "pocket-evidence",
+          "label": "Pocket incriminating evidence on the Concern's dealings",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "has-map",
+              "value": true
+            },
+            {
+              "flag": "evidence",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-quick",
+          "label": "Leave quickly before the wards notice you",
+          "target": "vault-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "night-clerk",
+      "kind": "social",
+      "title": "The Last Employee",
+      "prose": "A gaunt clerk named Perrin Aldwyn hunches over a desk, chained by contract to this office long after the sun should have set him free. He watches you with the flat exhaustion of someone who has seen worse things walk these halls.",
+      "art": "art-the-midnight-audit-night-clerk-scene",
+      "options": [
+        {
+          "id": "sympathy",
+          "label": "Offer sympathy for a fellow trapped worker",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "clerk-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bribe-clerk",
+          "label": "Bribe the clerk with your last coin",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "clerk-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "threaten-clerk",
+          "label": "Threaten to expose the clerk's own debts",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "clerk-ally",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-approach",
+      "kind": "decision",
+      "title": "The Long Hallway",
+      "prose": "A corridor stretches toward the vault, its floor tiled in a pattern that itches at the eye. The architect who built this place, one Torvain Wrey, was famous for thinking three steps ahead of anyone who meant him harm.",
+      "art": "art-the-midnight-audit-vault-approach-scene",
+      "options": [
+        {
+          "id": "search-ward-key",
+          "label": "Search for the architect's hidden ward-key",
+          "target": "warded-door",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 12,
+            "onFailure": "goblin-ambush"
+          }
+        },
+        {
+          "id": "find-ghost-whispers",
+          "label": "Follow whispers of a ghost said to haunt the walls",
+          "target": "architect-ghost",
+          "effects": []
+        },
+        {
+          "id": "force-the-vault",
+          "label": "Force your way toward the vault, contract be damned",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "entry-style",
+            "value": "clever"
+          },
+          "target": "goblin-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warded-door",
+      "kind": "puzzle",
+      "title": "The Sigil-Locked Door",
+      "prose": "A door etched with interlocking wards bars the way to the vault chamber. The sigils shift when looked at directly, rearranging themselves like a contract clause designed to trap the unwary.",
+      "art": "art-the-midnight-audit-warded-door-scene",
+      "options": [
+        {
+          "id": "use-floor-plan",
+          "label": "Trace the warding sigils using the recovered floor plan",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-map",
+            "value": true
+          },
+          "target": "vault-chamber",
+          "effects": []
+        },
+        {
+          "id": "coin-toss-wards",
+          "label": "Test the wards with a coin toss, literally",
+          "target": "vault-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "dc": 13,
+            "onFailure": "goblin-ambush"
+          }
+        },
+        {
+          "id": "chant-phrase",
+          "label": "Chant the ward-breaking phrase you overheard earlier",
+          "target": "vault-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "goblin-ambush"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "architect-ghost",
+      "kind": "discovery",
+      "title": "The Architect's Regret",
+      "prose": "A translucent figure paces a service closet, muttering measurements to no one. Torvain Wrey built every trap in this building to protect a firm he came to despise, and now his spirit is bound here as thoroughly as any debtor.",
+      "art": "art-the-midnight-audit-architect-ghost-scene",
+      "options": [
+        {
+          "id": "listen-to-wrey",
+          "label": "Listen to Wrey's tragic tale and accept his help",
+          "target": "vault-chamber",
+          "effects": [
+            {
+              "flag": "know-secret-passage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "decline-politely",
+          "label": "Politely decline; time is short",
+          "target": "vault-chamber",
+          "effects": []
+        },
+        {
+          "id": "banish-spirit",
+          "label": "Banish the spirit before it warns the guards",
+          "target": "goblin-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "goblin-ambush",
+      "kind": "conflict",
+      "title": "Guards on the Payroll",
+      "prose": "Three goblin enforcers in ill-fitting Concern uniforms spill out of a side office, crossbows raised. They're underpaid, overworked, and thrilled for an excuse to hit someone.",
+      "art": "art-the-midnight-audit-goblin-ambush-scene",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "goblin-ambush-fight",
+      "terminal": false
+    },
+    {
+      "id": "vault-chamber",
+      "kind": "decision",
+      "title": "The Ledger Vault",
+      "prose": "The vault chamber holds a single iron lectern, and upon it, chained in silver wire, rests the Sable Ledger itself. Every debt the Concern ever wrote is bound in its pages, including the one now bound to you.",
+      "art": "art-the-midnight-audit-vault-chamber-scene",
+      "options": [
+        {
+          "id": "secret-passage",
+          "label": "Follow the ghost's secret passage straight past the guardian",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "know-secret-passage",
+            "value": true
+          },
+          "target": "night-audit",
+          "effects": [
+            {
+              "flag": "ledger-secured",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "grab-and-run",
+          "label": "Grab the ledger and make a break for it",
+          "target": "guardian-encounter",
+          "effects": [
+            {
+              "flag": "ledger-secured",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "copy-pages",
+          "label": "Copy only the incriminating pages and leave the ledger chained",
+          "target": "guardian-encounter",
+          "effects": [
+            {
+              "flag": "ledger-secured",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guardian-encounter",
+      "kind": "conflict",
+      "title": "The Suit of Perpetual Renewal",
+      "prose": "A hulking suit of animated armor unfolds from an alcove, flanked by two skeletal auditors clicking their finger-bones like tally counters. They were built to guard exactly this moment.",
+      "art": "art-the-midnight-audit-guardian-encounter-scene",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardian-fight",
+      "terminal": false
+    },
+    {
+      "id": "night-audit",
+      "kind": "climax",
+      "title": "The Night Audit Arrives",
+      "prose": "Midnight strikes. The building groans as the true Night Audit convenes: skeletal auditors and a lumbering zombie accountant shamble in to reconcile every soul on the books, starting with yours.",
+      "art": "art-the-midnight-audit-night-audit-scene",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "night-audit-fight",
+      "terminal": false
+    },
+    {
+      "id": "escape-choice",
+      "kind": "decision",
+      "title": "The Last Exit",
+      "prose": "Alarms wail and the wards begin to fail as dawn's first hint touches the horizon. Every corridor back to freedom is collapsing behind you, one clause at a time.",
+      "art": "art-the-midnight-audit-escape-choice-scene",
+      "options": [
+        {
+          "id": "walk-out-front",
+          "label": "Walk out the front with the ledger in hand",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ledger-secured",
+            "value": true
+          },
+          "target": "ending-triumph",
+          "effects": []
+        },
+        {
+          "id": "clerk-hidden-route",
+          "label": "Slip out the clerk's hidden route with proof of the Concern's crimes",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "clerk-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "evidence",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-expose",
+          "effects": []
+        },
+        {
+          "id": "desperate-dash",
+          "label": "Make a desperate dash into the night, empty-handed but alive",
+          "target": "ending-bittersweet",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-triumph",
+      "kind": "ending",
+      "title": "Contract Void",
+      "prose": "You burst into the cold morning air with the Sable Ledger under your arm. By dawn, the Gray Ledger Trading Company's branch office is a smoking husk of broken wards, and your names are struck from every debt it ever recorded. Free and clear, for once.",
+      "art": "art-the-midnight-audit-ending-triumph-scene",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-expose",
+      "kind": "ending",
+      "title": "The Firm Exposed",
+      "prose": "You and Perrin the clerk vanish into the alleys together, evidence in hand. Within a week, pamphlets detailing the Concern's soul-debts paper the city, and angry creditors burn down what the Night Audit couldn't defend. Your contract is void, and so is the company that wrote it.",
+      "art": "art-the-midnight-audit-ending-expose-scene",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bittersweet",
+      "kind": "ending",
+      "title": "Free, But Owing",
+      "prose": "You escape with your lives but not the ledger. Somewhere behind you, the Concern's accountants are already re-filing your names under 'Outstanding.' You're alive to fight another day, but the bad contract still has your signature.",
+      "art": "art-the-midnight-audit-ending-bittersweet-scene",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-defeat",
+      "kind": "ending",
+      "title": "Filed and Forgotten",
+      "prose": "The building's defenders overwhelm you. Your names are inked into the Sable Ledger's final page, and the branch office gains four new permanent employees who never clock out. The Night Audit always balances its books.",
+      "art": "art-the-midnight-audit-ending-defeat-scene",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "bad-contract",
+      "to": "office-arrival",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "office-arrival",
+      "to": "records-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "office-arrival",
+      "to": "night-clerk",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "office-arrival",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "records-room",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "night-clerk",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-approach",
+      "to": "warded-door",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-approach",
+      "to": "architect-ghost",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-approach",
+      "to": "goblin-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warded-door",
+      "to": "vault-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warded-door",
+      "to": "goblin-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed check triggers ambush"
+    },
+    {
+      "from": "architect-ghost",
+      "to": "vault-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "architect-ghost",
+      "to": "goblin-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "goblin-ambush",
+      "to": "vault-chamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "goblin-ambush",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "vault-chamber",
+      "to": "night-audit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-chamber",
+      "to": "guardian-encounter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guardian-encounter",
+      "to": "night-audit",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "guardian-encounter",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "night-audit",
+      "to": "escape-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "night-audit",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "escape-choice",
+      "to": "ending-triumph",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "escape-choice",
+      "to": "ending-expose",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "escape-choice",
+      "to": "ending-bittersweet",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "goblin-ambush-fight",
+      "title": "Guards on the Payroll",
+      "combatants": [
+        {
+          "id": "goblin-guards",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-chamber",
+      "onDefeat": "ending-defeat",
+      "onFlee": "vault-approach"
+    },
+    {
+      "id": "vault-guardian-fight",
+      "title": "The Suit of Perpetual Renewal",
+      "combatants": [
+        {
+          "id": "armor-guardian",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "skeleton-sentries",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "night-audit",
+      "onDefeat": "ending-defeat"
+    },
+    {
+      "id": "night-audit-fight",
+      "title": "The Night Audit Arrives",
+      "combatants": [
+        {
+          "id": "skeleton-auditors",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "zombie-accountant",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "escape-choice",
+      "onDefeat": "ending-defeat"
+    }
+  ]
+}

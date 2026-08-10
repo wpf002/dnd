@@ -1,0 +1,90 @@
+{
+  "adventure": "the-weeping-nave",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: gothic-horror, survival-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-weeping-nave-quarantine-gate-art",
+      "beat": "quarantine-gate",
+      "brief": "The Quarantine Line — Iron stakes and salt-lines ring the cathedral quarter of Aldmarsh. Beyond them, spires lean at wrong angles and a fine grey rot clings to every stone."
+    },
+    {
+      "slot": "art-the-weeping-nave-warden-camp-art",
+      "beat": "warden-camp",
+      "brief": "The Warden's Camp — Captain Ilsevet Thorn commands from a scorched pavilion, salt-burners smoking at every corner. She has lost a patrol to the quarter already and does n"
+    },
+    {
+      "slot": "art-the-weeping-nave-contaminated-plaza-art",
+      "beat": "contaminated-plaza",
+      "brief": "The Weeping Plaza — Statues here weep a grey, viscous rot from stone eyes. The cobbles are cracked by root-like veins of contamination pulsing faintly, as if breathing, a"
+    },
+    {
+      "slot": "art-the-weeping-nave-archive-ruins-art",
+      "beat": "archive-ruins",
+      "brief": "The Parish Archive — Among collapsed shelves and water-damaged ledgers, you find the truth: generations ago, Bishop Corvane sealed forty plague-touched pilgrims alive bene"
+    },
+    {
+      "slot": "art-the-weeping-nave-scavenger-den-art",
+      "beat": "scavenger-den",
+      "brief": "The Ashen Compact — In a gutted chapel, scavengers under Cutter Rennick harvest the contamination itself, bottling grey ichor to sell as a reagent. Rennick offers you a c"
+    },
+    {
+      "slot": "art-the-weeping-nave-scavenger-ambush-art",
+      "beat": "scavenger-ambush",
+      "brief": "Blades in the Ash — Rennick's crew was never going to let you walk away with their secret. Steel rasps free in the smoke-choked chapel."
+    },
+    {
+      "slot": "art-the-weeping-nave-descendant-house-art",
+      "beat": "descendant-house",
+      "brief": "Mireille's House — Mireille Vantry, last of the caretaker line, has spent her life hiding what her ancestors did. She weeps openly when you speak the truth aloud, and be"
+    },
+    {
+      "slot": "art-the-weeping-nave-cathedral-threshold-art",
+      "beat": "cathedral-threshold",
+      "brief": "The Broken Nave — Inside, the cathedral's nave is choked with grey rot, pews fused to the floor like melted wax. A pulse of contamination throbs from somewhere below, i"
+    },
+    {
+      "slot": "art-the-weeping-nave-crypt-approach-art",
+      "beat": "crypt-approach",
+      "brief": "The Crypt Stair — A narrow stair spirals down into darkness thick with rot. Something moves at the bottom, bones scraping stone, guarding a warded door."
+    },
+    {
+      "slot": "art-the-weeping-nave-crypt-guardians-art",
+      "beat": "crypt-guardians",
+      "brief": "The Bone Wardens — Skeletal remains and rot-bloated ghouls rise from alcoves to bar the way, animated by the same grief that stains the walls."
+    },
+    {
+      "slot": "art-the-weeping-nave-sealed-chamber-art",
+      "beat": "sealed-chamber",
+      "brief": "The Sealed Chamber — Forty skeletal pilgrims hang chained to the walls of this chamber, still weeping grey tears centuries on. At its heart stands a sealed tomb bearing Bi"
+    },
+    {
+      "slot": "art-the-weeping-nave-climax-confrontation-art",
+      "beat": "climax-confrontation",
+      "brief": "Bishop Corvane Rises — The tomb cracks open. What crawls out wears a bishop's rotted vestments over a wight's hollow hunger, and shadows peel from the walls to serve it stil"
+    },
+    {
+      "slot": "art-the-weeping-nave-final-choice-art",
+      "beat": "final-choice",
+      "brief": "The Last Word — With Corvane's undead form broken, the forty chained spirits turn their hollow eyes toward you, waiting for whatever comes next."
+    },
+    {
+      "slot": "art-the-weeping-nave-ending-mercy-art",
+      "beat": "ending-mercy",
+      "brief": "A Quiet Absolution — The chains dissolve to ash as forty names are spoken aloud for the first time in a century. The rot recedes from the stones like a tide going out. Mir"
+    },
+    {
+      "slot": "art-the-weeping-nave-ending-purge-art",
+      "beat": "ending-purge",
+      "brief": "Ashes and Salt — Warden fire roars through the crypt, and the pilgrims' bones crumble to nothing alongside Corvane's tomb. The contamination dies with them, but so doe"
+    },
+    {
+      "slot": "art-the-weeping-nave-ending-tragedy-art",
+      "beat": "ending-tragedy",
+      "brief": "What the Compact Wanted — The contamination is not destroyed but bottled, sold, spread by careless hands into a hundred other streets. The cathedral quarter's grief becomes the"
+    }
+  ]
+}

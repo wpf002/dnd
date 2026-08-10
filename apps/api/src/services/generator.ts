@@ -67,6 +67,7 @@ function buildPrompt(request: GenerationRequest): string {
     `Hard requirements the linter WILL enforce:`,
     `- 10 to 16 beats; at least 2 terminal ending beats, each reachable from the entry.`,
     `- Non-terminal, non-encounter beats have EXACTLY three options. Terminal and encounter beats have NO options.`,
+    `- The three options on a beat MUST genuinely differ. Options that all point at the same target with no "effects" and no "requiresCheck" are a false choice and WILL be rejected. Give at least two of the three a different target, a state change, or a check — a choice the player cannot lose or win differently is not a choice.`,
     `- Encounter beats set "encounter" to an id defined in "encounters"; every encounter's onVictory/onDefeat (and optional onFlee) name existing beats.`,
     `- Monster statblocks must come from this exact list: ${Object.keys(MONSTERS).join(', ')}.`,
     `- Encounters must be winnable by a level-${request.partyLevel} party of four; prefer 2-5 low-CR combatants over one huge one.`,

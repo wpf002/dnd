@@ -1,0 +1,895 @@
+{
+  "id": "the-weight-of-ash",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Weight of Ash",
+    "premise": "A stone fell from the sky and cracked the city of Greyhollow open. Now the quarantine wall seals a little tighter every hour, and the only way out is through whatever answered the stone's call.",
+    "tone": [
+      "survival-horror",
+      "urban-intrigue"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A grim, second-person present-tense narrator who lingers on decay and dwindling time.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are placed in on-screen danger."
+    },
+    "provenance": "flint"
+  },
+  "entry": "quarantine-line",
+  "beats": [
+    {
+      "id": "quarantine-line",
+      "kind": "threshold",
+      "title": "The Quarantine Line",
+      "prose": "Ash sifts down like grey snow over the checkpoint where Greyhollow's last open gate groans on failing hinges. Soldiers with cloth-wrapped faces turn away anyone without papers. A wounded refugee slumps against the barricade, unnoticed.",
+      "readAloud": "The gate will not stay open. Word is it closes a little more each hour, swallowed by whatever fell from the sky.",
+      "art": "art-the-weight-of-ash-quarantine-line-art",
+      "options": [
+        {
+          "id": "aid-refugee",
+          "label": "Help the wounded refugee at the barricade",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashfall-market",
+          "effects": [
+            {
+              "flag": "helped-refugee",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bribe-checkpoint",
+          "label": "Bribe the checkpoint guard with scavenged coin",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashfall-market",
+          "effects": []
+        },
+        {
+          "id": "sneak-sewer",
+          "label": "Slip through the flooded sewer grate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashfall-market",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "ashfall-market"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashfall-market",
+      "kind": "discovery",
+      "title": "The Ashfall Market",
+      "prose": "Beneath a sagging tarp roof, survivors trade rations and rumors. Someone whispers that Warden Iris Calloway, keeper of the last working seal-gate, hasn't been herself since the stone fell. Others speak of the Ashbound, a cult that treats the crater as a shrine.",
+      "art": "art-the-weight-of-ash-ashfall-market-art",
+      "options": [
+        {
+          "id": "gather-rumors",
+          "label": "Question the vendors about the crater",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wardens-office",
+          "effects": []
+        },
+        {
+          "id": "investigate-corruption",
+          "label": "Chase the whispers that the Warden is compromised",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wardens-office",
+          "effects": [
+            {
+              "flag": "exposed-corruption",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "seek-cult-contact",
+          "label": "Seek out an Ashbound trader rumored to know a back route",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashbound-parley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wardens-office",
+      "kind": "social",
+      "title": "The Warden's Office",
+      "prose": "Warden Iris Calloway sits behind a desk stacked with sealed reports, her eyes rimmed with grey dust that isn't quite ash. She speaks of the gate's closing measurements like a wound she can't stop describing.",
+      "art": "art-the-weight-of-ash-wardens-office-art",
+      "options": [
+        {
+          "id": "request-alliance",
+          "label": "Request the Warden's aid in reaching the crater",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "crossroads-choice",
+          "effects": [
+            {
+              "flag": "warden-trusts-player",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "confront-corruption",
+          "label": "Confront her about the corruption rumors",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "exposed-corruption",
+            "value": true
+          },
+          "target": "crossroads-choice",
+          "effects": [
+            {
+              "flag": "warden-trusts-player",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "bargain-refugee",
+          "label": "Remind her of the refugee you saved to earn favor",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "helped-refugee",
+            "value": true
+          },
+          "target": "crossroads-choice",
+          "effects": [
+            {
+              "flag": "warden-trusts-player",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crossroads-choice",
+      "kind": "decision",
+      "title": "Three Roads to the Crater",
+      "prose": "Beyond the office, the city splits into ruin. The Undercroft tunnels run beneath the rubble, Ashbound territory wraps the crater's edge, and the collapsing surface streets offer a desperate shortcut.",
+      "art": "art-the-weight-of-ash-crossroads-choice-art",
+      "options": [
+        {
+          "id": "undercroft-route",
+          "label": "Descend into the Undercroft tunnels",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "undercroft-tunnels",
+          "effects": []
+        },
+        {
+          "id": "cult-route",
+          "label": "Approach through Ashbound territory to negotiate passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashbound-parley",
+          "effects": []
+        },
+        {
+          "id": "direct-route",
+          "label": "Push straight through the collapsing streets",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stone-shard-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "acrobatics",
+            "dc": 14,
+            "onFailure": "undercroft-tunnels"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashbound-parley",
+      "kind": "social",
+      "title": "Parley with the Ashbound",
+      "prose": "Robed figures ring a shrine of fused glass and stone dust. Their speaker offers safe passage to the crater — for a price, or a pledge.",
+      "art": "art-the-weight-of-ash-ashbound-parley-art",
+      "options": [
+        {
+          "id": "join-cult",
+          "label": "Pledge shallow loyalty to the Ashbound",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stone-shard-chamber",
+          "effects": [
+            {
+              "flag": "cult-alliance",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-cult",
+          "label": "Refuse them outright",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ashbound-ambush",
+          "effects": []
+        },
+        {
+          "id": "bargain-info",
+          "label": "Trade information for passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stone-shard-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "ashbound-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashbound-ambush",
+      "kind": "conflict",
+      "title": "Zealots in the Ash",
+      "prose": "The Ashbound speaker's calm shatters into a snarl. Robed zealots close in, chanting the stone's name like a curse.",
+      "art": "art-the-weight-of-ash-ashbound-ambush-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ashbound-ambush",
+      "terminal": false
+    },
+    {
+      "id": "undercroft-tunnels",
+      "kind": "hazard",
+      "title": "The Undercroft",
+      "prose": "Ash-slurry drips through cracked ceilings. Somewhere below, something shuffles in the dark, disturbed by the falling stone's tremor.",
+      "art": "art-the-weight-of-ash-undercroft-tunnels-art",
+      "options": [
+        {
+          "id": "navigate-carefully",
+          "label": "Navigate the old maintenance path carefully",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "plague-ward-encounter",
+          "effects": []
+        },
+        {
+          "id": "force-door",
+          "label": "Force the rusted blast door open",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "plague-ward-encounter",
+          "effects": []
+        },
+        {
+          "id": "backtrack-surface",
+          "label": "Backtrack and risk the surface route instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stone-shard-chamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "plague-ward-encounter",
+      "kind": "conflict",
+      "title": "The Plague Ward",
+      "prose": "Rows of abandoned cots line a flooded ward. Shapes rise from the shadows between them, drawn by fresh footsteps.",
+      "art": "art-the-weight-of-ash-plague-ward-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "plague-ward",
+      "terminal": false
+    },
+    {
+      "id": "stone-shard-chamber",
+      "kind": "discovery",
+      "title": "The Shard Chamber",
+      "prose": "A fragment of the fallen stone rests in a crater of melted stone, humming with a wrongness that itches behind the eyes.",
+      "art": "art-the-weight-of-ash-stone-shard-chamber-art",
+      "options": [
+        {
+          "id": "take-shard",
+          "label": "Pry the shard free and pocket it",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gate-mechanism",
+          "effects": [
+            {
+              "flag": "have-shard",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-shard",
+          "label": "Leave the shard undisturbed and move on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gate-mechanism",
+          "effects": []
+        },
+        {
+          "id": "study-shard",
+          "label": "Study the shard's markings before deciding",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gate-mechanism",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 13,
+            "onFailure": "gate-mechanism"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gate-mechanism",
+      "kind": "puzzle",
+      "title": "The Shrinking Gate",
+      "prose": "The seal-gate's rune-locks have drifted out of alignment, closing by degrees. Whatever you decide, it must be soon.",
+      "art": "art-the-weight-of-ash-gate-mechanism-art",
+      "options": [
+        {
+          "id": "solve-runes",
+          "label": "Align the rune-locks yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-choice",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "wardens-betrayal"
+          }
+        },
+        {
+          "id": "call-allies",
+          "label": "Call on allies to hold the gate steady",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "warden-trusts-player",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "cult-alliance",
+                "value": true
+              }
+            ]
+          },
+          "target": "final-choice",
+          "effects": []
+        },
+        {
+          "id": "force-gate",
+          "label": "Force the mechanism with brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wardens-betrayal",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wardens-betrayal",
+      "kind": "conflict",
+      "title": "The Warden's Guardian",
+      "prose": "Iron footsteps echo as an animated suit of ceremonial armor blocks the gate, and behind it, something wearing the Warden's shape rises with hollow, hungry eyes.",
+      "art": "art-the-weight-of-ash-wardens-betrayal-art",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wardens-guardian",
+      "terminal": false
+    },
+    {
+      "id": "final-choice",
+      "kind": "decision",
+      "title": "The Last Hour",
+      "prose": "The gate groans, nearly shut. Whatever you carry, whatever you know, this is the moment it matters.",
+      "art": "art-the-weight-of-ash-final-choice-art",
+      "options": [
+        {
+          "id": "flee-with-shard",
+          "label": "Flee through the gate with the shard in hand",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "have-shard",
+            "value": true
+          },
+          "target": "ending-escape-shard",
+          "effects": []
+        },
+        {
+          "id": "seal-gate-sacrifice",
+          "label": "Stay behind to seal the gate and end the quarantine's spread",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-seal-sacrifice",
+          "effects": []
+        },
+        {
+          "id": "expose-warden",
+          "label": "Drag the truth of the Warden's corruption into the light",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "exposed-corruption",
+            "value": true
+          },
+          "target": "ending-expose-corruption",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-escape-shard",
+      "kind": "ending",
+      "title": "Out of the Ash",
+      "prose": "You clear the gate as it grinds shut behind you, the shard's weight cold against your ribs. Greyhollow is still sealed, still suffering, but you carry a piece of what struck it — and perhaps an answer to why.",
+      "art": "art-the-weight-of-ash-ending-escape-shard-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-seal-sacrifice",
+      "kind": "ending",
+      "title": "The Gate Holds",
+      "prose": "You brace the mechanism with everything you have as the last light of the outside world narrows to a seam, then nothing. The gate holds. Whether you hold with it is a story only the quiet city will tell.",
+      "art": "art-the-weight-of-ash-ending-seal-sacrifice-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-expose-corruption",
+      "kind": "ending",
+      "title": "The Warden Unmasked",
+      "prose": "You drag Iris Calloway's corruption into the market square's ashen light. The survivors riot, then rebuild under new leadership. The stone remains buried, but Greyhollow finally knows what it has been protecting.",
+      "art": "art-the-weight-of-ash-ending-expose-corruption-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-trapped-below",
+      "kind": "ending",
+      "title": "Swallowed by the Quarantine",
+      "prose": "The last measurement of the gate reads zero. Somewhere above, Greyhollow seals itself against the world, and you are left among the ash and the things that made it their home.",
+      "art": "art-the-weight-of-ash-ending-trapped-below-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "quarantine-line",
+      "to": "ashfall-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashfall-market",
+      "to": "wardens-office",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashfall-market",
+      "to": "ashbound-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wardens-office",
+      "to": "crossroads-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossroads-choice",
+      "to": "undercroft-tunnels",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossroads-choice",
+      "to": "ashbound-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossroads-choice",
+      "to": "stone-shard-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashbound-parley",
+      "to": "stone-shard-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashbound-parley",
+      "to": "ashbound-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashbound-ambush",
+      "to": "stone-shard-chamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "ashbound-ambush",
+      "to": "ending-trapped-below",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "ashbound-ambush",
+      "to": "crossroads-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "on flee"
+    },
+    {
+      "from": "undercroft-tunnels",
+      "to": "plague-ward-encounter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undercroft-tunnels",
+      "to": "stone-shard-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "plague-ward-encounter",
+      "to": "stone-shard-chamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "plague-ward-encounter",
+      "to": "ending-trapped-below",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "stone-shard-chamber",
+      "to": "gate-mechanism",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gate-mechanism",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gate-mechanism",
+      "to": "wardens-betrayal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wardens-betrayal",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory or flee"
+    },
+    {
+      "from": "wardens-betrayal",
+      "to": "ending-trapped-below",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-escape-shard",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-seal-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-expose-corruption",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "ashbound-ambush",
+      "title": "Zealots in the Ash",
+      "combatants": [
+        {
+          "id": "bandit-1",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-2",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-3",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "cult-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "stone-shard-chamber",
+      "onDefeat": "ending-trapped-below",
+      "onFlee": "crossroads-choice"
+    },
+    {
+      "id": "plague-ward",
+      "title": "The Plague Ward",
+      "combatants": [
+        {
+          "id": "ghoul-1",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ghoul-2",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ghoul-3",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ward-zombie",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "difficult",
+        "water"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 5
+      },
+      "onVictory": "stone-shard-chamber",
+      "onDefeat": "ending-trapped-below"
+    },
+    {
+      "id": "wardens-guardian",
+      "title": "The Warden's Guardian",
+      "combatants": [
+        {
+          "id": "ceremonial-armor",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "warden-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "warden-wight"
+      },
+      "onVictory": "final-choice",
+      "onDefeat": "ending-trapped-below",
+      "onFlee": "final-choice"
+    }
+  ]
+}

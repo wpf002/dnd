@@ -1,0 +1,878 @@
+{
+  "id": "the-weeping-nave",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Weeping Nave",
+    "premise": "In the quarantined cathedral quarter of Aldmarsh, a contamination born of an old massacre still spreads through stone and flesh alike, and the descendants of those who caused it are the ones left to pay for it.",
+    "tone": [
+      "gothic-horror",
+      "survival-horror"
+    ],
+    "tier": "local",
+    "partyLevel": 5,
+    "narrationVoice": "A somber, atmospheric narrator, speaking in measured tones weighted with dread, pity, and old guilt.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are present in this scenario; the sealed victims are described only as adult pilgrims."
+    },
+    "provenance": "flint"
+  },
+  "entry": "quarantine-gate",
+  "beats": [
+    {
+      "id": "quarantine-gate",
+      "kind": "threshold",
+      "title": "The Quarantine Line",
+      "prose": "Iron stakes and salt-lines ring the cathedral quarter of Aldmarsh. Beyond them, spires lean at wrong angles and a fine grey rot clings to every stone. Wardens in oiled leather pace the perimeter, torches guttering low despite the still air.",
+      "readAloud": "The salt-line hisses faintly where the rot touches it, and somewhere beyond the gate, bells that should be silent are ringing themselves hoarse.",
+      "art": "art-the-weeping-nave-quarantine-gate-art",
+      "options": [
+        {
+          "id": "negotiate-entry",
+          "label": "Present your writ and reason with the Warden captain",
+          "target": "warden-camp",
+          "effects": [
+            {
+              "flag": "trusted-by-wardens",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "contaminated-plaza"
+          }
+        },
+        {
+          "id": "sneak-entry",
+          "label": "Slip through a cracked sewer grate south of the gate",
+          "target": "contaminated-plaza",
+          "effects": [
+            {
+              "flag": "sneaked-in",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "bribe-entry",
+          "label": "Press coin into a tired guard's palm",
+          "target": "warden-camp",
+          "effects": [
+            {
+              "flag": "bribed-entry",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-camp",
+      "kind": "social",
+      "title": "The Warden's Camp",
+      "prose": "Captain Ilsevet Thorn commands from a scorched pavilion, salt-burners smoking at every corner. She has lost a patrol to the quarter already and does not trust easily, but she is desperate enough to talk.",
+      "art": "art-the-weeping-nave-warden-camp-art",
+      "options": [
+        {
+          "id": "ask-history",
+          "label": "Ask the captain about the cathedral's buried history",
+          "target": "archive-ruins",
+          "effects": [
+            {
+              "flag": "knows-history",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-patrol",
+          "label": "Ask about the patrol that vanished near the plaza",
+          "target": "contaminated-plaza",
+          "effects": []
+        },
+        {
+          "id": "offer-investigate",
+          "label": "Offer to go straight to the cathedral and find the source",
+          "target": "cathedral-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "contaminated-plaza",
+      "kind": "discovery",
+      "title": "The Weeping Plaza",
+      "prose": "Statues here weep a grey, viscous rot from stone eyes. The cobbles are cracked by root-like veins of contamination pulsing faintly, as if breathing, all leading toward the cathedral's broken doors.",
+      "art": "art-the-weeping-nave-contaminated-plaza-art",
+      "options": [
+        {
+          "id": "examine-statue",
+          "label": "Examine a weeping statue for clues to its origin",
+          "target": "archive-ruins",
+          "effects": []
+        },
+        {
+          "id": "follow-rot",
+          "label": "Follow the thickest vein of rot toward the cathedral",
+          "target": "cathedral-threshold",
+          "effects": []
+        },
+        {
+          "id": "investigate-shop",
+          "label": "Investigate a collapsed shop where lanternlight flickers",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sneaked-in",
+            "value": true
+          },
+          "target": "scavenger-den",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-ruins",
+      "kind": "discovery",
+      "title": "The Parish Archive",
+      "prose": "Among collapsed shelves and water-damaged ledgers, you find the truth: generations ago, Bishop Corvane sealed forty plague-touched pilgrims alive beneath the cathedral, calling it mercy. The rot is their unanswered grief made flesh.",
+      "art": "art-the-weeping-nave-archive-ruins-art",
+      "options": [
+        {
+          "id": "take-records",
+          "label": "Take the records straight to the cathedral",
+          "target": "cathedral-threshold",
+          "effects": []
+        },
+        {
+          "id": "seek-witness",
+          "label": "Seek out a descendant witness named in the ledger",
+          "target": "descendant-house",
+          "effects": []
+        },
+        {
+          "id": "study-wards",
+          "label": "Notice fresh boot-prints leading toward a scavenger camp",
+          "target": "scavenger-den",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "know-crypt-secret",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "scavenger-den",
+      "kind": "social",
+      "title": "The Ashen Compact",
+      "prose": "In a gutted chapel, scavengers under Cutter Rennick harvest the contamination itself, bottling grey ichor to sell as a reagent. Rennick offers you a cut of the profit if you'll look the other way.",
+      "art": "art-the-weeping-nave-scavenger-den-art",
+      "options": [
+        {
+          "id": "ally-scavengers",
+          "label": "Agree to split the contamination's essence with them",
+          "target": "cathedral-threshold",
+          "effects": [
+            {
+              "flag": "allied-scavengers",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "fight-scavengers",
+          "label": "Refuse Rennick and draw steel",
+          "target": "scavenger-ambush",
+          "effects": []
+        },
+        {
+          "id": "trick-scavengers",
+          "label": "Feign interest to pry information from them",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bribed-entry",
+            "value": true
+          },
+          "target": "descendant-house",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "deception",
+            "dc": 14,
+            "onFailure": "scavenger-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "scavenger-ambush",
+      "kind": "conflict",
+      "title": "Blades in the Ash",
+      "prose": "Rennick's crew was never going to let you walk away with their secret. Steel rasps free in the smoke-choked chapel.",
+      "art": "art-the-weeping-nave-scavenger-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "scavenger-ambush-fight",
+      "terminal": false
+    },
+    {
+      "id": "descendant-house",
+      "kind": "social",
+      "title": "Mireille's House",
+      "prose": "Mireille Vantry, last of the caretaker line, has spent her life hiding what her ancestors did. She weeps openly when you speak the truth aloud, and begs you to free the pilgrims rather than destroy them.",
+      "art": "art-the-weeping-nave-descendant-house-art",
+      "options": [
+        {
+          "id": "promise-mercy",
+          "label": "Promise to free the trapped souls with mercy",
+          "target": "cathedral-threshold",
+          "effects": [
+            {
+              "flag": "promised-mercy",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "demand-help",
+          "label": "Demand she guide you into the crypt herself",
+          "target": "cathedral-threshold",
+          "effects": [
+            {
+              "flag": "mireille-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-her",
+          "label": "Leave her to her guilt and go alone",
+          "target": "cathedral-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cathedral-threshold",
+      "kind": "threshold",
+      "title": "The Broken Nave",
+      "prose": "Inside, the cathedral's nave is choked with grey rot, pews fused to the floor like melted wax. A pulse of contamination throbs from somewhere below, in time with a heartbeat that should not exist.",
+      "art": "art-the-weeping-nave-cathedral-threshold-art",
+      "options": [
+        {
+          "id": "descend-crypt",
+          "label": "Descend directly into the crypt",
+          "target": "crypt-approach",
+          "effects": []
+        },
+        {
+          "id": "search-nave",
+          "label": "Search the nave for anything useful before descending",
+          "target": "crypt-approach",
+          "effects": []
+        },
+        {
+          "id": "pray-threshold",
+          "label": "Pray at the shattered altar before proceeding",
+          "target": "crypt-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "religion",
+            "dc": 12,
+            "onFailure": "crypt-approach"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crypt-approach",
+      "kind": "hazard",
+      "title": "The Crypt Stair",
+      "prose": "A narrow stair spirals down into darkness thick with rot. Something moves at the bottom, bones scraping stone, guarding a warded door.",
+      "art": "art-the-weeping-nave-crypt-approach-art",
+      "options": [
+        {
+          "id": "shortcut-history",
+          "label": "Use your knowledge of the old cathedral plans to slip past the guardians",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-history",
+            "value": true
+          },
+          "target": "sealed-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "history",
+            "dc": 12,
+            "onFailure": "crypt-guardians"
+          }
+        },
+        {
+          "id": "push-through",
+          "label": "Push through the crypt door and face what waits",
+          "target": "crypt-guardians",
+          "effects": []
+        },
+        {
+          "id": "disable-trap",
+          "label": "Carefully disable the warding trap on the inner door",
+          "target": "sealed-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight of hand",
+            "dc": 13,
+            "onFailure": "crypt-guardians"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crypt-guardians",
+      "kind": "conflict",
+      "title": "The Bone Wardens",
+      "prose": "Skeletal remains and rot-bloated ghouls rise from alcoves to bar the way, animated by the same grief that stains the walls.",
+      "art": "art-the-weeping-nave-crypt-guardians-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "crypt-guardians-fight",
+      "terminal": false
+    },
+    {
+      "id": "sealed-chamber",
+      "kind": "decision",
+      "title": "The Sealed Chamber",
+      "prose": "Forty skeletal pilgrims hang chained to the walls of this chamber, still weeping grey tears centuries on. At its heart stands a sealed tomb bearing Bishop Corvane's name, and the contamination pulses strongest here, as if waking.",
+      "art": "art-the-weeping-nave-sealed-chamber-art",
+      "options": [
+        {
+          "id": "warden-backup",
+          "label": "Send word for warden reinforcements before going further",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "trusted-by-wardens",
+            "value": true
+          },
+          "target": "climax-confrontation",
+          "effects": []
+        },
+        {
+          "id": "mireille-rite",
+          "label": "Let Mireille perform the rite of release at your side",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "mireille-ally",
+            "value": true
+          },
+          "target": "climax-confrontation",
+          "effects": []
+        },
+        {
+          "id": "proceed-alone",
+          "label": "Proceed alone into the tomb chamber",
+          "target": "climax-confrontation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "climax-confrontation",
+      "kind": "climax",
+      "title": "Bishop Corvane Rises",
+      "prose": "The tomb cracks open. What crawls out wears a bishop's rotted vestments over a wight's hollow hunger, and shadows peel from the walls to serve it still.",
+      "readAloud": "\"I saved this city,\" it rasps, in a voice like grinding stone. \"Someone always has to pay for mercy.\"",
+      "art": "art-the-weeping-nave-climax-confrontation-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "climax-confrontation-fight",
+      "terminal": false
+    },
+    {
+      "id": "final-choice",
+      "kind": "decision",
+      "title": "The Last Word",
+      "prose": "With Corvane's undead form broken, the forty chained spirits turn their hollow eyes toward you, waiting for whatever comes next.",
+      "art": "art-the-weeping-nave-final-choice-art",
+      "options": [
+        {
+          "id": "choice-mercy",
+          "label": "Speak the pilgrims' true names and release them in mercy",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "promised-mercy",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "know-crypt-secret",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-mercy",
+          "effects": []
+        },
+        {
+          "id": "choice-purge",
+          "label": "Call down warden fire to purge the crypt entirely",
+          "target": "ending-purge",
+          "effects": []
+        },
+        {
+          "id": "choice-compact",
+          "label": "Let the Ashen Compact harvest the contamination's power",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "allied-scavengers",
+            "value": true
+          },
+          "target": "ending-tragedy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-mercy",
+      "kind": "ending",
+      "title": "A Quiet Absolution",
+      "prose": "The chains dissolve to ash as forty names are spoken aloud for the first time in a century. The rot recedes from the stones like a tide going out. Mireille weeps, finally free of a debt that was never hers alone to carry. The cathedral quarter will heal slowly, but it will heal.",
+      "art": "art-the-weeping-nave-ending-mercy-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-purge",
+      "kind": "ending",
+      "title": "Ashes and Salt",
+      "prose": "Warden fire roars through the crypt, and the pilgrims' bones crumble to nothing alongside Corvane's tomb. The contamination dies with them, but so does any chance of an answer, a reckoning, or a name remembered. The quarter is safe. It is also, in a way that matters, a lie.",
+      "art": "art-the-weeping-nave-ending-purge-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-tragedy",
+      "kind": "ending",
+      "title": "What the Compact Wanted",
+      "prose": "The contamination is not destroyed but bottled, sold, spread by careless hands into a hundred other streets. The cathedral quarter's grief becomes the world's problem now, one vial at a time, and no one left standing here can call it a victory.",
+      "art": "art-the-weeping-nave-ending-tragedy-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "quarantine-gate",
+      "to": "warden-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "quarantine-gate",
+      "to": "contaminated-plaza",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-camp",
+      "to": "archive-ruins",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-camp",
+      "to": "contaminated-plaza",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-camp",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "contaminated-plaza",
+      "to": "archive-ruins",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "contaminated-plaza",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "contaminated-plaza",
+      "to": "scavenger-den",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-ruins",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-ruins",
+      "to": "descendant-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-ruins",
+      "to": "scavenger-den",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-den",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-den",
+      "to": "scavenger-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-den",
+      "to": "descendant-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-ambush",
+      "to": "descendant-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-ambush",
+      "to": "ending-tragedy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "scavenger-ambush",
+      "to": "contaminated-plaza",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "descendant-house",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cathedral-threshold",
+      "to": "crypt-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crypt-approach",
+      "to": "sealed-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crypt-approach",
+      "to": "crypt-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crypt-guardians",
+      "to": "sealed-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crypt-guardians",
+      "to": "ending-tragedy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crypt-guardians",
+      "to": "cathedral-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sealed-chamber",
+      "to": "climax-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-confrontation",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-confrontation",
+      "to": "ending-tragedy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-mercy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-purge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-tragedy",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "scavenger-ambush-fight",
+      "title": "Blades in the Ash",
+      "combatants": [
+        {
+          "id": "cutter-rennick",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "compact-bandits",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the ambush line and reach the chapel's rear exit"
+      },
+      "onVictory": "descendant-house",
+      "onDefeat": "ending-tragedy",
+      "onFlee": "contaminated-plaza"
+    },
+    {
+      "id": "crypt-guardians-fight",
+      "title": "The Bone Wardens",
+      "combatants": [
+        {
+          "id": "guardian-skeletons",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "guardian-ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "sealed-chamber",
+      "onDefeat": "ending-tragedy",
+      "onFlee": "cathedral-threshold"
+    },
+    {
+      "id": "climax-confrontation-fight",
+      "title": "Bishop Corvane Rises",
+      "combatants": [
+        {
+          "id": "bishop-corvane",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "shadow-servants",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "bishop-corvane"
+      },
+      "onVictory": "final-choice",
+      "onDefeat": "ending-tragedy",
+      "onFlee": "ending-tragedy"
+    }
+  ]
+}

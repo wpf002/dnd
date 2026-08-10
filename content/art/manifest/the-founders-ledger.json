@@ -1,0 +1,90 @@
+{
+  "adventure": "the-founders-ledger",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-founders-ledger-contract-briefing",
+      "beat": "midnight-contract",
+      "brief": "The Midnight Contract — Your franchise crew, Team Emberclaw, licensed under the Wyrmhold Consolidated banner, has one night to steal the Founder's Ledger before headquarters "
+    },
+    {
+      "slot": "art-the-founders-ledger-apprentice-alley",
+      "beat": "apprentice-meeting",
+      "brief": "The Apprentice's Grudge — Mira Thistlewood once drafted blueprints beside Aldermast before he cut her out of the firm entirely. She still keeps copies of everything and is happ"
+    },
+    {
+      "slot": "art-the-founders-ledger-clerk-office",
+      "beat": "clerk-bribe",
+      "brief": "A Willing Clerk — Dez, a mid-level records clerk, is drowning in franchise paperwork and more than willing to trade secrets for a fat purse of gold."
+    },
+    {
+      "slot": "art-the-founders-ledger-tower-facade",
+      "beat": "tower-approach",
+      "brief": "Wyrmhold Tower at Midnight — The tower rises over the district, its facade a maze of gargoyles that are actually alarm wards. The annual Ledger Audit gala is winding down inside, "
+    },
+    {
+      "slot": "art-the-founders-ledger-loading-dock-scene",
+      "beat": "loading-dock",
+      "brief": "The Loading Dock — Crates of enchanted quills and ledger-stock paper block the service entrance. A single guard watches the door, half-asleep."
+    },
+    {
+      "slot": "art-the-founders-ledger-gala-ballroom",
+      "beat": "gala-floor",
+      "brief": "The Audit Gala — Franchise executives mingle beneath crystal chandeliers, toasting a night that will end several careers by dawn. Blending in is easy; staying unnotice"
+    },
+    {
+      "slot": "art-the-founders-ledger-atrium-marvel",
+      "beat": "interior-atrium",
+      "brief": "Aldermast's Atrium — Aldermast built the atrium as both showcase and trap: mirrored floors, listening statues, and a spiral stair that only certain footsteps trigger. The "
+    },
+    {
+      "slot": "art-the-founders-ledger-auditor-desk",
+      "beat": "auditor-confrontation",
+      "brief": "The Night Auditor — Auditor Presque Voss guards the stair with a ledger of her own: appointments, complaints, and a suspicious eye for anyone dressed slightly too well fo"
+    },
+    {
+      "slot": "art-the-founders-ledger-vault-mechanism",
+      "beat": "vault-room",
+      "brief": "The Founder's Vault — The vault door is a puzzle-lock of interlocking gears, each keyed to a franchise crest. Aldermast built it to punish haste and reward patience, or ins"
+    },
+    {
+      "slot": "art-the-founders-ledger-corridor-guards-fight",
+      "beat": "corridor-guards",
+      "brief": "Guards in the Corridor — Your misstep echoes through the marble halls, and Wyrmhold security converges fast, blades drawn and boots pounding."
+    },
+    {
+      "slot": "art-the-founders-ledger-vault-guardians-fight",
+      "beat": "vault-guardians",
+      "brief": "The Vault Guardians Awaken — Aldermast's signature constructs, hollow suits of enchanted armor, rise from alcoves around the vault door, animated by the alarm you just tripped."
+    },
+    {
+      "slot": "art-the-founders-ledger-ledger-decision",
+      "beat": "ledger-secured",
+      "brief": "The Ledger in Hand — The Founder's Ledger hums against your palms, bound in dragonhide and stitched with every franchise contract ever signed. What you do with it next wil"
+    },
+    {
+      "slot": "art-the-founders-ledger-ending-liberation-art",
+      "beat": "ending-liberation",
+      "brief": "Every Franchise Free — You burn the Ledger's binding page by page in the tower's own furnace. Across the region, a thousand independent franchises wake up owning their own c"
+    },
+    {
+      "slot": "art-the-founders-ledger-ending-power-art",
+      "beat": "ending-power-grab",
+      "brief": "Emberclaw Ascendant — You rewrite the Ledger's terms in your own name. By sunrise, Team Emberclaw controls franchise rights across three provinces. Power suits you, though "
+    },
+    {
+      "slot": "art-the-founders-ledger-ending-rival-art",
+      "beat": "ending-rival",
+      "brief": "Sold to the Highest Bidder — Your clerk contact's rival buyer pays in gold and gratitude. The Ledger vanishes into a new corporation's vaults, and Team Emberclaw retires rich, if "
+    },
+    {
+      "slot": "art-the-founders-ledger-ending-captured-art",
+      "beat": "captured-ending",
+      "brief": "Caught in Aldermast's Design — The building does exactly what its architect intended: it holds you until Wyrmhold security arrives in force. Team Emberclaw's franchise license is re"
+    }
+  ]
+}

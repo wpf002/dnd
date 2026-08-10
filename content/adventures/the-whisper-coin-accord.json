@@ -1,0 +1,744 @@
+{
+  "id": "the-whisper-coin-accord",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Whisper Coin Accord",
+    "premise": "In the modern city of Duskmere, carved into rival night courts, a small brass token called the Whisper Coin has resurfaced — and the Ashen, Hollow, and Ember Courts all want it back quietly, before the century's Renewal Night decides who casts the deciding vote over the dark.",
+    "tone": [
+      "urban-intrigue",
+      "gothic-horror"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "A noir-tinged second-person narrator, atmospheric and wry, treating gothic horror as ordinary municipal business.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Keep threats aimed at adults; any mention of children stays entirely off-screen and undepicted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "midnight-summons",
+  "beats": [
+    {
+      "id": "midnight-summons",
+      "kind": "threshold",
+      "title": "A Sealed Data-Chit",
+      "prose": "Duskmere never truly sleeps; it just changes shift. At 12:14 a.m. a courier drone drops a sealed data-chit at your door — no sender, just three coordinates and one line: 'Something small has gone missing. Everyone wants it back quietly.' You're a Nightbroker, one of the few mortals trusted to walk between the city's rival night courts without a leash. The coordinates touch Ashen, Hollow, and Ember ground alike.",
+      "readAloud": "The chit hums warm in your palm. Three doors, three courts, one missing thing. Pick where the night begins.",
+      "art": "art-the-whisper-coin-accord-midnight-summons-rooftop",
+      "options": [
+        {
+          "id": "go-ashen",
+          "label": "Head into Ashen territory, the old cathedral district",
+          "target": "ashen-audience",
+          "effects": []
+        },
+        {
+          "id": "go-hollow",
+          "label": "Slip into the Hollow Court's night market under the highway",
+          "target": "hollow-market",
+          "effects": []
+        },
+        {
+          "id": "go-ember",
+          "label": "Visit the Ember Court's archive tower downtown",
+          "target": "ember-archive",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ashen-audience",
+      "kind": "social",
+      "title": "The Deconsecrated Cathedral",
+      "prose": "The Ashen Court holds court in a deconsecrated cathedral, its stained glass swapped for two-way mirrors. Lady Mireille Voss, centuries dead and immaculately dressed, receives you between sips of something that isn't wine. She admits, with practiced reluctance, that a small brass token — the Whisper Coin — has vanished from the vault beneath the nave, and she'd very much like it found before Renewal Night. She won't say why she needs it so badly.",
+      "art": "art-the-whisper-coin-accord-ashen-cathedral-audience",
+      "options": [
+        {
+          "id": "press-lady-voss",
+          "label": "Press her on why the coin matters so much",
+          "target": "shard-trail",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 13,
+            "onFailure": "shard-trail"
+          }
+        },
+        {
+          "id": "offer-alliance",
+          "label": "Offer to recover it exclusively for the Ashen Court",
+          "target": "shard-trail",
+          "effects": [
+            {
+              "flag": "ashen-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-leave",
+          "label": "Take the job without asking more, and leave",
+          "target": "shard-trail",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-market",
+      "kind": "discovery",
+      "title": "The Market Under the Highway",
+      "prose": "Beneath the elevated highway, strings of fairy lights and stranger lanterns illuminate stalls selling things that shouldn't be for sale. Thistle Wrenshaw, an exile with too many teeth and a salesman's smile, trades in secrets. For the price of your attention, she confirms the Whisper Coin is real, and that the Hollow Court wants it before Ashen or Ember do.",
+      "art": "art-the-whisper-coin-accord-hollow-market-lanterns",
+      "options": [
+        {
+          "id": "haggle-with-thistle",
+          "label": "Haggle for the coin's true purpose",
+          "target": "shard-trail",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 12,
+            "onFailure": "shard-trail"
+          }
+        },
+        {
+          "id": "trade-a-favor",
+          "label": "Trade a future favor for the Hollow Court's backing",
+          "target": "shard-trail",
+          "effects": [
+            {
+              "flag": "hollow-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "observe-quietly",
+          "label": "Buy nothing, just listen to the market's rumors",
+          "target": "shard-trail",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ember-archive",
+      "kind": "discovery",
+      "title": "The Archive Tower",
+      "prose": "The Ember Court's archive tower smells of scorched paper and old contracts. Cassian Rook, archivist and broker of debts, keeps the city's founding treaty — the Concord — under glass. He lets slip that the Whisper Coin was minted as the Concord's tie-breaker: whoever presents it at the Renewal casts the deciding vote. He offers you the restricted stacks, for a price.",
+      "art": "art-the-whisper-coin-accord-ember-archive-stacks",
+      "options": [
+        {
+          "id": "bribe-the-archivist",
+          "label": "Bribe Cassian for the Ember Court's confidence",
+          "target": "shard-trail",
+          "effects": [
+            {
+              "flag": "ember-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-the-old-treaty",
+          "label": "Read the sealed treaty pages yourself",
+          "target": "shard-trail",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "ember-scuffle"
+          }
+        },
+        {
+          "id": "slip-away-unnoticed",
+          "label": "Take only what he's given and go",
+          "target": "shard-trail",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ember-scuffle",
+      "kind": "conflict",
+      "title": "Alarm in the Stacks",
+      "prose": "Alarm wards flare violet as you're caught among the restricted stacks. Animated wardens — bound skeletal clerks, quill-quick and merciless — converge to eject you by force. You just need to break free, not win a war.",
+      "art": "art-the-whisper-coin-accord-ember-archive-alarm-wardens",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ember-scuffle-fight",
+      "terminal": false
+    },
+    {
+      "id": "shard-trail",
+      "kind": "discovery",
+      "title": "The Same Small Thing",
+      "prose": "Piece by piece, the truth comes together: all three courts want the same small thing, for the same reason, on the same night. The Whisper Coin isn't a treasure — it's a vote. Whoever holds it at the Assembly's Renewal decides who rules Duskmere's dark for the next century. It vanished from the Ashen vault days ago and hasn't surfaced in any court's hands. One name keeps coming up: an old fence called Sable, who deals in things nobody else will touch.",
+      "art": "art-the-whisper-coin-accord-shard-trail-nightmap",
+      "options": [
+        {
+          "id": "visit-old-sable",
+          "label": "Go find Old Sable, the relic-keeper",
+          "target": "relic-keeper",
+          "effects": []
+        },
+        {
+          "id": "call-in-a-favor",
+          "label": "Call in a favor from the court you've allied with",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "ashen-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "hollow-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "ember-ally",
+                "value": true
+              }
+            ]
+          },
+          "target": "relic-keeper",
+          "effects": []
+        },
+        {
+          "id": "go-directly-to-clocktower",
+          "label": "Skip the middleman and head straight for the old Clocktower Sanctuary",
+          "target": "clocktower-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "relic-keeper",
+      "kind": "social",
+      "title": "Old Sable's Pawnshop",
+      "prose": "Old Sable operates a pawnshop that only opens after 2 a.m., surrounded by things too strange to fence anywhere else. She confirms the coin passed through her hands once — sold to no one, because someone stole it back before the deal closed. She believes it's hidden in the Clocktower Sanctuary, the one patch of ground all three courts swore never to touch.",
+      "art": "art-the-whisper-coin-accord-relic-keeper-pawnshop",
+      "options": [
+        {
+          "id": "pay-the-price",
+          "label": "Pay Sable's price for a way past the Sanctuary's wards",
+          "target": "clocktower-approach",
+          "effects": [
+            {
+              "flag": "have-shortcut",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "trade-a-secret",
+          "label": "Trade her a secret you learned from your court contact",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "ashen-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "hollow-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "ember-ally",
+                "value": true
+              }
+            ]
+          },
+          "target": "clocktower-approach",
+          "effects": [
+            {
+              "flag": "have-shortcut",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-and-go-alone",
+          "label": "Refuse to pay and find your own way in",
+          "target": "clocktower-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "clocktower-approach",
+      "kind": "hazard",
+      "title": "The Frozen Face",
+      "prose": "The Clocktower Sanctuary looms at the city's dead center, its face frozen at a time no one remembers. Old wards — older than any of the three courts — still guard the threshold, indifferent to Ashen, Hollow, or Ember politics alike.",
+      "art": "art-the-whisper-coin-accord-clocktower-sanctuary-gate",
+      "options": [
+        {
+          "id": "disarm-the-wards",
+          "label": "Carefully disarm the old wards",
+          "target": "clocktower-sanctum",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "clocktower-alarm"
+          }
+        },
+        {
+          "id": "use-the-shortcut",
+          "label": "Use the shortcut you were given",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "have-shortcut",
+            "value": true
+          },
+          "target": "clocktower-sanctum",
+          "effects": []
+        },
+        {
+          "id": "force-the-gate",
+          "label": "Force the gate open and deal with the consequences",
+          "target": "clocktower-alarm",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "clocktower-alarm",
+      "kind": "conflict",
+      "title": "The Sanctuary Wakes",
+      "prose": "The Sanctuary's guardians wake at once — ghoulish keepers bound to the old stones long before any night court existed, alongside the animated bones of those who tried this before you.",
+      "art": "art-the-whisper-coin-accord-clocktower-guardians-wake",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "clocktower-guardian-fight",
+      "terminal": false
+    },
+    {
+      "id": "clocktower-sanctum",
+      "kind": "discovery",
+      "title": "A Coin of Black Glass",
+      "prose": "At the Sanctuary's heart, past a century of dust, the Whisper Coin waits on a plinth of black glass — smaller and plainer than all the fuss suggests. A thin brass disc, warm to the touch, humming faintly with the weight of a hundred years of quiet elections.",
+      "art": "art-the-whisper-coin-accord-clocktower-sanctum-coin",
+      "options": [
+        {
+          "id": "take-the-coin-and-go",
+          "label": "Take the coin and leave immediately",
+          "target": "renewal-night",
+          "effects": []
+        },
+        {
+          "id": "study-the-coin-first",
+          "label": "Study the coin's binding before you move",
+          "target": "renewal-night",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 13,
+            "onFailure": "renewal-night"
+          }
+        },
+        {
+          "id": "leave-it-behind",
+          "label": "Leave the coin where it lies and walk away from all three courts",
+          "target": "ending-walked-away",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "renewal-night",
+      "kind": "climax",
+      "title": "The Assembly Hall",
+      "prose": "Renewal Night arrives at the Assembly Hall, a converted opera house where Ashen, Hollow, and Ember delegates sit in uneasy rows beneath chandeliers of bone, bramble, and brass. The Whisper Coin sits warm in your pocket. All eyes turn to the Nightbroker. Whoever you hand it to will cast Duskmere's deciding vote for the next hundred years.",
+      "art": "art-the-whisper-coin-accord-renewal-night-assembly",
+      "options": [
+        {
+          "id": "present-coin-to-ashen",
+          "label": "Present the coin to the Ashen Court",
+          "target": "ending-ashen-ascendant",
+          "effects": []
+        },
+        {
+          "id": "present-coin-to-hollow",
+          "label": "Present the coin to the Hollow Court",
+          "target": "ending-hollow-freedom",
+          "effects": []
+        },
+        {
+          "id": "present-coin-to-ember",
+          "label": "Present the coin to the Ember Court",
+          "target": "ending-ember-bargain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-ashen-ascendant",
+      "kind": "ending",
+      "title": "A Colder Century",
+      "prose": "Lady Voss rises as the Assembly murmurs. With the Whisper Coin in Ashen hands, the Concord tilts toward the old dead nobility for a century more. Duskmere grows colder, stricter, and stranger under Ashen law — but it holds, and you're paid in favors that will outlast you. You've made history, whether or not history thanks you for it.",
+      "art": "art-the-whisper-coin-accord-ending-ashen-throne",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-hollow-freedom",
+      "kind": "ending",
+      "title": "A Wilder Duskmere",
+      "prose": "Thistle Wrenshaw laughs like breaking glass as the Hollow Court claims the vote. The old bindings that kept the fey-exiles leashed to the city's edges finally loosen. Duskmere grows wilder, greener, less predictable — and considerably more dangerous after dark. You helped write the next hundred years in green ink, for better or worse.",
+      "art": "art-the-whisper-coin-accord-ending-hollow-wildlands",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ember-bargain",
+      "kind": "ending",
+      "title": "A City of Contracts",
+      "prose": "Cassian Rook accepts the coin with the calm of a man collecting on an old debt. The Ember Court's contracts now bind every corner of Duskmere's night economy. The city runs smoother, meaner, and entirely on Ember's terms. Walking home at dawn, you wonder exactly what you just signed the whole city up for.",
+      "art": "art-the-whisper-coin-accord-ending-ember-ledger",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-walked-away",
+      "kind": "ending",
+      "title": "An Unresolved Balance",
+      "prose": "You leave the coin humming on its black glass plinth and walk out of the Clocktower Sanctuary without it. Renewal Night comes and goes without a deciding vote; the courts remain locked in their uneasy, unresolved balance — brittle, but unbroken. Duskmere keeps its secrets a little longer, and so, mostly, do you.",
+      "art": "art-the-whisper-coin-accord-ending-walked-away-dawn",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bound",
+      "kind": "ending",
+      "title": "A Very Long Debt",
+      "prose": "You don't walk away from this one. Whichever guardians caught you, they don't forget a Nightbroker who overreached. You wake in a windowless room with a new mark on your wrist and a very long debt to work off. Duskmere goes on deciding its own fate — without you.",
+      "art": "art-the-whisper-coin-accord-ending-bound-debtors-room",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "midnight-summons",
+      "to": "ashen-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midnight-summons",
+      "to": "hollow-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midnight-summons",
+      "to": "ember-archive",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ashen-audience",
+      "to": "shard-trail",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-market",
+      "to": "shard-trail",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ember-archive",
+      "to": "shard-trail",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ember-archive",
+      "to": "ember-scuffle",
+      "when": {
+        "op": "always"
+      },
+      "note": "Failed investigation check triggers wardens."
+    },
+    {
+      "from": "ember-scuffle",
+      "to": "shard-trail",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escape victory."
+    },
+    {
+      "from": "ember-scuffle",
+      "to": "ending-bound",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat."
+    },
+    {
+      "from": "shard-trail",
+      "to": "relic-keeper",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shard-trail",
+      "to": "clocktower-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "relic-keeper",
+      "to": "clocktower-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clocktower-approach",
+      "to": "clocktower-sanctum",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clocktower-approach",
+      "to": "clocktower-alarm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clocktower-alarm",
+      "to": "clocktower-sanctum",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat-all victory."
+    },
+    {
+      "from": "clocktower-alarm",
+      "to": "ending-bound",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat."
+    },
+    {
+      "from": "clocktower-sanctum",
+      "to": "renewal-night",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clocktower-sanctum",
+      "to": "ending-walked-away",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "renewal-night",
+      "to": "ending-ashen-ascendant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "renewal-night",
+      "to": "ending-hollow-freedom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "renewal-night",
+      "to": "ending-ember-bargain",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "ember-scuffle-fight",
+      "title": "Wardens of the Archive",
+      "combatants": [
+        {
+          "id": "archive-warden",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "shard-trail",
+      "onDefeat": "ending-bound"
+    },
+    {
+      "id": "clocktower-guardian-fight",
+      "title": "The Sanctuary Wakes",
+      "combatants": [
+        {
+          "id": "ghoul-keeper",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "bone-guard",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "clocktower-sanctum",
+      "onDefeat": "ending-bound"
+    }
+  ]
+}

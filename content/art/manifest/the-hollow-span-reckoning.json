@@ -1,0 +1,90 @@
+{
+  "adventure": "the-hollow-span-reckoning",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-span-reckoning-frontier-outpost-dawn",
+      "beat": "call-to-cross",
+      "brief": "The Envoy's Charge — The Aldergate Compact's council has one request: find out why the Hollow Span road has taken three envoys and returned none, and if possible, save the"
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-marsh-cairns",
+      "beat": "cairn-trailhead",
+      "brief": "The Trailhead Cairns — Stone cairns mark the causeway, each stacked by a different hand for a different missing traveler. Wagon ruts veer off the path and vanish into reeds."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-wayfarer-campfire",
+      "beat": "wayfarer-camp",
+      "brief": "The Wayfarer's Camp — Refugees and traders huddle around cookfires, trading half-true rumors about the Concord's warrens and the road's hunger. Tempers fray between those w"
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-rope-bridge-mist",
+      "beat": "shifting-span",
+      "brief": "The Shifting Span — A rope-and-plank bridge sways over a black chasm, warded stones humming faintly along its rails. Something below watches the crossing."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-narrows-ambush-scene",
+      "beat": "narrows-ambush",
+      "brief": "Ambush at the Narrows — Bandits loyal to no flag have been picking over the wreckage of past envoys, and they do not intend to share the road."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-wrecked-convoy",
+      "beat": "vanished-convoy",
+      "brief": "The Vanished Convoy — The envoy's wagon lies broken and looted, but the bodies are missing entirely, dragged off toward one of two territories bordering the road."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-forked-trail",
+      "beat": "diverging-paths",
+      "brief": "Two Paths Diverge — The trail splits: one way leads down into the kobold warren's toll-gate, the other through a goblin-held bramble gate. Both border the hidden seat of "
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-kobold-warren-gate",
+      "beat": "warren-toll",
+      "brief": "The Warren's Toll — Kobold toll-keepers swarm from tunnel mouths, more interested in driving off intruders than killing them outright."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-goblin-bramble-gate",
+      "beat": "bramble-gate",
+      "brief": "The Bramble Gate — Goblins and a lean, hungry wolf hold the thorned gate, snapping at anyone who tries to pass toward the hidden valley beyond."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-hidden-concord-hall",
+      "beat": "hidden-concord",
+      "brief": "The Hidden Concord — Beyond the gates lies a hollow valley where the Concord's elders keep the surviving envoy bound within warded stones, a hostage against the Compact's "
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-binding-stone-circle",
+      "beat": "binding-stones",
+      "brief": "The Binding Stones — The envoy sits motionless behind a ring of warded stones, bound by old Concord magic that answers to neither key nor blade."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-wight-guardian-vigil",
+      "beat": "hollow-vigil",
+      "brief": "The Hollow Span Guardian — A wight bound to the old wards rises with its shambling dead in tow, furious at the wards' disturbance, defending the valley whether or not you meant "
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-reckoning-crossroads",
+      "beat": "reckoning-choice",
+      "brief": "The Reckoning Choice — With the envoy free and the Concord watching, the moment has come to decide what the frontier's future will look like."
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-treaty-signing-dawn",
+      "beat": "treaty-restored",
+      "brief": "Treaty Restored — The envoy returns to the frontier alive, and with them a new treaty that finally names the road's tolls fairly. The Hollow Span becomes a route people"
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-frontier-retreat",
+      "beat": "frontier-alone",
+      "brief": "The Frontier Alone — You leave the valley without an accord. The frontier settlements brace for a colder, harder season, uncertain whether peace or war waits down the Holl"
+    },
+    {
+      "slot": "art-the-hollow-span-reckoning-broken-accord-ruins",
+      "beat": "broken-accord",
+      "brief": "The Broken Accord — Blood is spilled where words might have served, and the Hollow Span becomes a battle line rather than a road. The frontier's peace dies here, replaced"
+    }
+  ]
+}

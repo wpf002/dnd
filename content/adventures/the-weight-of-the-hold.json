@@ -1,0 +1,803 @@
+{
+  "id": "the-weight-of-the-hold",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Weight of the Hold",
+    "premise": "Deep beneath a drowned world of pressurised undersea holds, a shattered wreck called the Salt Countess drifts full of cargo nobody agrees on how to claim. Its scavenger crew has split into factions over the wreck, the cargo, and each other, and the party's choices will decide who survives the dive.",
+    "tone": [
+      "nautical",
+      "exploration"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A weathered dive-captain's log, terse and pressure-tight, punctuated by the groan of straining hulls.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children are present in this adventure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "wreck-threshold",
+  "beats": [
+    {
+      "id": "wreck-threshold",
+      "kind": "threshold",
+      "title": "The Airlock Above the Dark",
+      "prose": "Your diving bell locks against the drowned hulk of the Salt Countess, her ribs groaning under fathoms of black water. A pressure gauge ticks red. Somewhere inside, a fractured crew waits to greet you.",
+      "readAloud": "The bell's hatch hisses open onto a corridor of bent metal and drifting silt. Lantern-light catches on scratched warning glyphs: CARGO CLAIMED. DO NOT BREACH.",
+      "art": "art-the-weight-of-the-hold-wreck-threshold-art",
+      "options": [
+        {
+          "id": "enter-cautious",
+          "label": "Ease through the airlock, testing every seam for weakness.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-passage",
+          "effects": []
+        },
+        {
+          "id": "enter-bold",
+          "label": "Push straight in before the pressure differential worsens.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-passage",
+          "effects": []
+        },
+        {
+          "id": "enter-listening",
+          "label": "Pause to listen for voices or machinery beyond the hatch.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-passage",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "flooded-passage",
+      "kind": "transit",
+      "title": "The Drowned Corridor",
+      "prose": "Half-flooded and lit by failing glowglobes, the corridor tilts at a sickening angle. Debris drifts in the slow current: logbooks, tools, a single boot. Somewhere ahead, voices argue over the groan of stressed metal.",
+      "readAloud": "A woman's voice cuts through the water-muffled din: 'The cargo comes up whole or nobody comes up at all!'",
+      "art": "art-the-weight-of-the-hold-flooded-passage-art",
+      "options": [
+        {
+          "id": "follow-voices",
+          "label": "Follow the argument toward the crew's makeshift camp.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "crew-camp",
+          "effects": []
+        },
+        {
+          "id": "check-hull",
+          "label": "Inspect the buckling hull plates as you pass.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "crew-camp",
+          "effects": []
+        },
+        {
+          "id": "gather-flotsam",
+          "label": "Collect drifting logbooks that might explain the dispute.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "crew-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crew-camp",
+      "kind": "social",
+      "title": "A Crew at War With Itself",
+      "prose": "Three survivors of the Salt Countess have rigged a camp in a dry pocket of the wreck. Captain Ysolt wants the cargo intact and sellable. Quartermaster Brael wants everyone out alive, cargo be damned. Engineer Tam just wants the hull to stop screaming before it kills them all.",
+      "readAloud": "Ysolt eyes your dive suits hungrily. 'Salvagers. Good. Maybe you can settle this before the Countess settles it for us.'",
+      "art": "art-the-weight-of-the-hold-crew-camp-art",
+      "options": [
+        {
+          "id": "side-with-ysolt",
+          "label": "Ask Captain Ysolt what the cargo actually is.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-vault",
+          "effects": []
+        },
+        {
+          "id": "side-with-brael",
+          "label": "Ask Quartermaster Brael why she wants to abandon it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-vault",
+          "effects": []
+        },
+        {
+          "id": "side-with-tam",
+          "label": "Ask Engineer Tam how much longer the hull will hold.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cargo-vault",
+      "kind": "discovery",
+      "title": "The Sealed Hold",
+      "prose": "Deeper in, a reinforced vault door bears the shipping manifest in flaking paint. Behind it, whatever the crew is truly fighting over waits under its own trapped pocket of pressure. The door is not simply locked; it is sealed against the depths themselves.",
+      "readAloud": "The vault's brass wheel is cold under your glove. A gauge beside it reads dangerously high — open it wrong and the hold could implode, or explode outward into the corridor.",
+      "art": "art-the-weight-of-the-hold-cargo-vault-art",
+      "options": [
+        {
+          "id": "vault-manifest",
+          "label": "Read the manifest carefully and equalize the pressure by the book.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-aftermath",
+          "effects": [
+            {
+              "flag": "vault-opened-clean",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "vault-force",
+          "label": "Force the wheel open before the crew's argument turns violent.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-aftermath",
+          "effects": [
+            {
+              "flag": "vault-forced",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "vault-bargain",
+          "label": "Strike a bargain with Ysolt: her crew's help in exchange for a fair split.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-aftermath",
+          "effects": [
+            {
+              "flag": "vault-bargained",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-aftermath",
+      "kind": "decision",
+      "title": "What the Opening Costs",
+      "prose": "The vault's answer to your choice ripples through the crew immediately. Trust, suspicion, or debt now hangs in the water between you and them.",
+      "readAloud": "Water hisses through the equalizing seams as the door finally gives way.",
+      "art": "art-the-weight-of-the-hold-vault-aftermath-art",
+      "options": [
+        {
+          "id": "aftermath-clean",
+          "label": "The crew relaxes, trusting your careful hand.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-opened-clean",
+            "value": true
+          },
+          "target": "loyal-crew-path",
+          "effects": []
+        },
+        {
+          "id": "aftermath-forced",
+          "label": "The crew turns on you, certain you mean to steal the cargo outright.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-forced",
+            "value": true
+          },
+          "target": "crew-mutiny",
+          "effects": []
+        },
+        {
+          "id": "aftermath-bargained",
+          "label": "Ysolt holds you to your word, and Tam eyes you warily.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-bargained",
+            "value": true
+          },
+          "target": "engineer-alliance",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "loyal-crew-path",
+      "kind": "social",
+      "title": "An Uneasy Trust",
+      "prose": "With the vault open and no blood spilled, the crew works alongside you, hauling crates of strange ballast-marked containers toward the wreck's lower decks. But the ship itself has other plans.",
+      "readAloud": "A deep groan rolls through the hull, and Tam's face goes pale. 'That's not settling. That's failing.'",
+      "art": "art-the-weight-of-the-hold-loyal-crew-path-art",
+      "options": [
+        {
+          "id": "loyal-brace",
+          "label": "Help the crew shore up the failing bulkheads.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "pressure-hazard",
+          "effects": []
+        },
+        {
+          "id": "loyal-scout",
+          "label": "Scout ahead to find a faster route to the cargo core.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "pressure-hazard",
+          "effects": []
+        },
+        {
+          "id": "loyal-reassure",
+          "label": "Reassure the frightened crew while they finish loading.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "pressure-hazard",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "engineer-alliance",
+      "kind": "social",
+      "title": "The Bargain's Price",
+      "prose": "Tam pulls you aside from the others. 'You promised Ysolt a split. Fine. But promise me something too — get us out before this wreck folds in on itself.' Brael watches the exchange with narrowed eyes.",
+      "readAloud": "Tam presses a pressure-key into your hand. 'This opens the emergency vents. Use it wisely.'",
+      "art": "art-the-weight-of-the-hold-engineer-alliance-art",
+      "options": [
+        {
+          "id": "alliance-agree",
+          "label": "Agree to Tam's terms and pocket the pressure-key.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": []
+        },
+        {
+          "id": "alliance-question",
+          "label": "Press Tam about what's really down in the cargo core.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": []
+        },
+        {
+          "id": "alliance-reassure-brael",
+          "label": "Reassure Brael that the bargain protects everyone, not just Ysolt.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "pressure-hazard",
+      "kind": "hazard",
+      "title": "The Hull Sings a Warning Note",
+      "prose": "A rivet pops somewhere overhead, and water needles through the gap under crushing pressure. The whole corridor groans like a dying whale. You have seconds to act before something worse gives way.",
+      "readAloud": "Tam screams over the roar: 'Brace it or vent it — pick one, now!'",
+      "art": "art-the-weight-of-the-hold-pressure-hazard-art",
+      "options": [
+        {
+          "id": "brace-hull",
+          "label": "Throw your weight against the buckling plate.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "ending-lost-to-deep"
+          }
+        },
+        {
+          "id": "vent-pressure",
+          "label": "Wrench open the emergency vent valve.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": []
+        },
+        {
+          "id": "reroute-power",
+          "label": "Reroute auxiliary power to stabilize the bulkhead field.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "final-descent",
+      "kind": "transit",
+      "title": "Into the Cargo Core",
+      "prose": "Past the failing bulkheads, a stairwell spirals down into the ship's lowest hold — the true cargo core, sealed away even from the vault above. The water here is unnaturally still, and something moves in the dark below.",
+      "readAloud": "Your lanterns catch shapes drifting at the edge of the light: shapes that used to be crew.",
+      "art": "art-the-weight-of-the-hold-final-descent-art",
+      "options": [
+        {
+          "id": "descend-quiet",
+          "label": "Descend quietly, weapons ready.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-guardian",
+          "effects": []
+        },
+        {
+          "id": "descend-lanterns-dark",
+          "label": "Douse your lanterns and descend by feel alone.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-guardian",
+          "effects": []
+        },
+        {
+          "id": "descend-fast",
+          "label": "Descend quickly before the hull fails entirely.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cargo-guardian",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crew-mutiny",
+      "kind": "conflict",
+      "title": "Blades in the Flooded Dark",
+      "prose": "Convinced you mean to rob them, a knot of Ysolt's crew turns on you with cargo-hooks and stolen blades, cornering you in the narrow, water-choked passage.",
+      "art": "art-the-weight-of-the-hold-crew-mutiny-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "crew-mutiny-fight",
+      "terminal": false
+    },
+    {
+      "id": "cargo-guardian",
+      "kind": "conflict",
+      "title": "What the Cargo Core Kept",
+      "prose": "The cargo core is a graveyard of drowned sailors, reanimated by whatever the Salt Countess truly carried. They rise from the silt between you and the last unopened crate, and the hull is failing fast.",
+      "art": "art-the-weight-of-the-hold-cargo-guardian-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cargo-core-guardians",
+      "terminal": false
+    },
+    {
+      "id": "victory-aftermath",
+      "kind": "decision",
+      "title": "Surfacing With the Truth",
+      "prose": "With the guardians stilled and the crate finally open, the manner of your dive decides what you carry back to the surface — and what it costs you.",
+      "readAloud": "The last crate creaks open, and its contents change everything about what just happened here.",
+      "art": "art-the-weight-of-the-hold-victory-aftermath-art",
+      "options": [
+        {
+          "id": "victory-clean",
+          "label": "The cargo comes up clean, and so does the crew's trust in you.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-opened-clean",
+            "value": true
+          },
+          "target": "ending-triumph",
+          "effects": []
+        },
+        {
+          "id": "victory-forced",
+          "label": "The cargo comes up, but the crew that remains will never trust salvagers again.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-forced",
+            "value": true
+          },
+          "target": "ending-hollow-victory",
+          "effects": []
+        },
+        {
+          "id": "victory-bargained",
+          "label": "The cargo comes up split three ways, an alliance forged in debt.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-bargained",
+            "value": true
+          },
+          "target": "ending-hollow-victory",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-triumph",
+      "kind": "ending",
+      "title": "The Salt Countess Gives Up Her Prize",
+      "prose": "You surface with the cargo intact, the crew alive, and a story that will be told in every drowned-world port from here to the trench cities: the salvage that didn't cost a single life. Captain Ysolt shakes your hand; Brael, for once, doesn't argue.",
+      "art": "art-the-weight-of-the-hold-ending-triumph-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-hollow-victory",
+      "kind": "ending",
+      "title": "A Prize Paid in Trust",
+      "prose": "The cargo reaches the surface, but the crew that hauled it up is smaller, warier, and forever changed. Wealth follows you out of the depths, but so does the memory of what it cost to take it.",
+      "art": "art-the-weight-of-the-hold-ending-hollow-victory-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-crushed-hull",
+      "kind": "ending",
+      "title": "The Countess Closes Her Fist",
+      "prose": "The mutiny you provoked tears the crew apart before the hull does the same to all of you. The Salt Countess keeps her cargo and adds your dive bell to her collection of the drowned.",
+      "art": "art-the-weight-of-the-hold-ending-crushed-hull-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-lost-to-deep",
+      "kind": "ending",
+      "title": "Swallowed Whole",
+      "prose": "Whether to the failing hull or the guardians of the cargo core, the wreck ultimately wins. The Salt Countess settles deeper into the silt, one more secret added to her drowned hold, and no one is left to argue over what she carried.",
+      "art": "art-the-weight-of-the-hold-ending-lost-to-deep-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "wreck-threshold",
+      "to": "flooded-passage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-passage",
+      "to": "crew-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crew-camp",
+      "to": "cargo-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cargo-vault",
+      "to": "vault-aftermath",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-aftermath",
+      "to": "loyal-crew-path",
+      "when": {
+        "op": "eq",
+        "flag": "vault-opened-clean",
+        "value": true
+      }
+    },
+    {
+      "from": "vault-aftermath",
+      "to": "crew-mutiny",
+      "when": {
+        "op": "eq",
+        "flag": "vault-forced",
+        "value": true
+      }
+    },
+    {
+      "from": "vault-aftermath",
+      "to": "engineer-alliance",
+      "when": {
+        "op": "eq",
+        "flag": "vault-bargained",
+        "value": true
+      }
+    },
+    {
+      "from": "loyal-crew-path",
+      "to": "pressure-hazard",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "engineer-alliance",
+      "to": "final-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "pressure-hazard",
+      "to": "final-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "pressure-hazard",
+      "to": "ending-lost-to-deep",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-descent",
+      "to": "cargo-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crew-mutiny",
+      "to": "final-descent",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "crew-mutiny",
+      "to": "ending-crushed-hull",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat or flee"
+    },
+    {
+      "from": "cargo-guardian",
+      "to": "victory-aftermath",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "cargo-guardian",
+      "to": "ending-lost-to-deep",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "victory-aftermath",
+      "to": "ending-triumph",
+      "when": {
+        "op": "eq",
+        "flag": "vault-opened-clean",
+        "value": true
+      }
+    },
+    {
+      "from": "victory-aftermath",
+      "to": "ending-hollow-victory",
+      "when": {
+        "op": "eq",
+        "flag": "vault-forced",
+        "value": true
+      }
+    },
+    {
+      "from": "victory-aftermath",
+      "to": "ending-hollow-victory",
+      "when": {
+        "op": "eq",
+        "flag": "vault-bargained",
+        "value": true
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "crew-mutiny-fight",
+      "title": "Mutiny in the Flooded Passage",
+      "combatants": [
+        {
+          "id": "mutineer-leader",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "mutineer-thug",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "difficult",
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "final-descent",
+      "onDefeat": "ending-crushed-hull",
+      "onFlee": "ending-crushed-hull"
+    },
+    {
+      "id": "cargo-core-guardians",
+      "title": "The Drowned Watch",
+      "combatants": [
+        {
+          "id": "drowned-sailor",
+          "statblock": "zombie",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "drowned-first-mate",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "darkness",
+        "difficult",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the drowned crew to reach and open the last cargo crate before the hull fails."
+      },
+      "onVictory": "victory-aftermath",
+      "onDefeat": "ending-lost-to-deep"
+    }
+  ]
+}

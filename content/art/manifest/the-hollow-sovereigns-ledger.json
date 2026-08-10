@@ -1,0 +1,90 @@
+{
+  "adventure": "the-hollow-sovereigns-ledger",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-fading-road-vista",
+      "beat": "the-fading-road",
+      "brief": "The Fading Road — The road to Greymantle ends in a smear of gray nothing where a bridge should be. Locals say the town itself is being read out of existence, page by pa"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-greymantle-gatehouse",
+      "beat": "greymantle-gates",
+      "brief": "The Gates of Greymantle — Half the gatehouse is missing, not ruined but unwritten — a clean edge of absence. Frightened townsfolk cluster near what remains, arguing about a cul"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-archivist-camp-maps",
+      "beat": "archivist-camp",
+      "brief": "The Archivist's Camp — An old woman named Perrin Osk keeps a camp of salvaged maps and relic-lore, cataloguing everything Greymantle is about to lose. She knows the Vault Cu"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-town-square-emissary",
+      "beat": "town-square-social",
+      "brief": "The Square of Missing Names — In the square, a Vault Cult emissary preaches calm acceptance of the erasure while armed wardens watch the crowd. Three ways lead toward the ruins: th"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-smugglers-tunnel-passage",
+      "beat": "smugglers-tunnel",
+      "brief": "The Smugglers' Tunnel — A narrow cult tunnel runs beneath the square, half of it already unwritten at the far end, walls fading to nothing mid-stone."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-cult-emissary-vell",
+      "beat": "cult-negotiation",
+      "brief": "Words With the Emissary — The emissary, a gaunt man named Vell, speaks of the Hollow Sovereign as a mercy, not a monster. He is willing to trade information for cooperation, or"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-warden-spears-square",
+      "beat": "warden-assault",
+      "brief": "Spears in the Square — Cult wardens close in, spears leveled, alarm bells already ringing toward the ruins."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-vault-door-threshold",
+      "beat": "ruin-threshold",
+      "brief": "The Vault Threshold — The ruined vault door looms ahead, warded in old relic-script. Whatever path brought you here, this door is the last honest obstacle before the relic "
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-rune-locked-rings",
+      "beat": "relic-vault-puzzle",
+      "brief": "The Rune-Locked Door — Seven interlocking rings of relic-script guard the door, each ring a name of something the world has already forgotten."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-vault-guardians-rising",
+      "beat": "guardian-encounter",
+      "brief": "The Vault Guardians Wake — Animated armor and restless bones rise from alcoves as the vault begins to seal itself, stone grinding shut behind you."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-sovereign-antechamber-throne",
+      "beat": "confront-the-sovereign",
+      "brief": "The Sovereign's Antechamber — Beyond the guardians, the Hollow Sovereign waits on a throne built from six erased crowns, the seventh relic pulsing at its chest."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-hollow-sovereign-rising",
+      "beat": "sovereign-climax",
+      "brief": "The Hollow Sovereign — The Sovereign rises, wearing the shape of a king who is mostly absence now, the seventh relic the only solid thing about him."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-seventh-relic-exposed",
+      "beat": "the-last-choice",
+      "brief": "The Seventh Relic — With the Sovereign fallen, the seventh relic lies exposed and humming, still hungry, still able to unmake or remake in equal measure."
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-ending-seal-wardings",
+      "beat": "ending-seal",
+      "brief": "The Ledger Closed — You bind the seventh relic in old wardings and carry it beyond the reach of any crown. Greymantle stops fading. The world does not get everything back"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-ending-claim-new-crown",
+      "beat": "ending-claim",
+      "brief": "The New Sovereign — You take up the crown of erased kings. The relic's hunger is yours now, quiet and patient, and Greymantle watches you the way it once watched the thro"
+    },
+    {
+      "slot": "art-the-hollow-sovereigns-ledger-ending-lost-erasure",
+      "beat": "ending-lost",
+      "brief": "The Unwritten — Whether by shattered relic or by failure in the depths, the ledger writes itself without you. Greymantle fades from the map by morning, and no one is "
+    }
+  ]
+}

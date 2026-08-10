@@ -1,0 +1,852 @@
+{
+  "id": "the-unpaid-crown",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Unpaid Crown",
+    "premise": "When Baron Aldric of Veskmoor dies leaving a crushing war-debt owed to the rival Barony of Corrin, his estranged heir's succession hinges on a treaty that favors no one and a debt that cannot be paid honestly.",
+    "tone": [
+      "political-fantasy",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "a wry, atmospheric chronicler of court intrigue and old grudges",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No on-screen harm to children under any circumstance."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-veskmoor",
+  "beats": [
+    {
+      "id": "arrival-at-veskmoor",
+      "kind": "threshold",
+      "title": "Ashes at Veskmoor Keep",
+      "prose": "The funeral bells of Veskmoor toll over a keep already fracturing. Baron Aldric is dead, his debt to the Barony of Corrin unpaid, and his heir untested. You have been summoned to bear witness — or to intervene.",
+      "readAloud": "Black banners snap in the wind above Veskmoor's gate. Somewhere within, a ledger of blood and coin awaits a reckoning no one wants to make.",
+      "art": "art-the-unpaid-crown-arrival-veskmoor",
+      "options": [
+        {
+          "id": "opt-arrival-ledger",
+          "label": "Examine the ledger hall for the debt records",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-hall",
+          "effects": []
+        },
+        {
+          "id": "opt-arrival-shrine",
+          "label": "Request audience with the grieving heir at the shrine",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shrine-audience",
+          "effects": []
+        },
+        {
+          "id": "opt-arrival-barracks",
+          "label": "Speak with the garrison captain in the barracks",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "barracks-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-hall",
+      "kind": "discovery",
+      "title": "The Forged Ledger",
+      "prose": "Dust and candle-wax choke the ledger hall. The debt entries to Corrin have been altered — someone padded the sum, and recently.",
+      "art": "art-the-unpaid-crown-ledger-hall",
+      "options": [
+        {
+          "id": "opt-ledger-confront",
+          "label": "Confront the steward about the forged entries now",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "steward-showdown",
+          "effects": []
+        },
+        {
+          "id": "opt-ledger-copy",
+          "label": "Quietly copy the forged entries as evidence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "council-summons",
+          "effects": [
+            {
+              "flag": "has-evidence",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ledger-report",
+          "label": "Leave to report your findings to the heir",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shrine-audience",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shrine-audience",
+      "kind": "social",
+      "title": "The Grieving Heir",
+      "prose": "Lady Ysenne kneels before her father's shrine, more frightened than sorrowful. She needs allies, not mourners.",
+      "art": "art-the-unpaid-crown-shrine-audience",
+      "options": [
+        {
+          "id": "opt-shrine-pledge",
+          "label": "Pledge your sword to the heir's claim",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "council-summons",
+          "effects": [
+            {
+              "flag": "has-heir-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-shrine-demand",
+          "label": "Demand proof of the heir's legitimacy",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "council-summons",
+          "effects": []
+        },
+        {
+          "id": "opt-shrine-barracks",
+          "label": "Excuse yourself to speak with the garrison",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "barracks-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barracks-warning",
+      "kind": "social",
+      "title": "The Captain's Warning",
+      "prose": "Captainورs Dovrik warns that Corrin's envoys already ride for Veskmoor, and the garrison is split on whom to follow.",
+      "art": "art-the-unpaid-crown-barracks-warning",
+      "options": [
+        {
+          "id": "opt-barracks-rally",
+          "label": "Rally the garrison to the heir's banner",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "council-summons",
+          "effects": [
+            {
+              "flag": "has-guard-support",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-barracks-bribe",
+          "label": "Bribe the captain for his silence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "council-summons",
+          "effects": [
+            {
+              "flag": "has-bribed-captain",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-barracks-ledger",
+          "label": "Head to the ledger hall to check the records yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-hall",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "steward-showdown",
+      "kind": "conflict",
+      "title": "Blades in the Archive",
+      "prose": "The steward's hand goes to a hidden bell — and armed men pour from the archive shadows.",
+      "art": "art-the-unpaid-crown-steward-showdown",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "encounter-steward-guards",
+      "terminal": false
+    },
+    {
+      "id": "council-summons",
+      "kind": "decision",
+      "title": "The Baronial Council",
+      "prose": "The council gathers beneath the fractured seal of Veskmoor. Corrin's envoy waits at the gate. A decision on the debt must begin to take shape.",
+      "art": "art-the-unpaid-crown-council-summons",
+      "options": [
+        {
+          "id": "opt-council-advocate",
+          "label": "Advocate for the heir before the assembled barons",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-heir-trust",
+            "value": true
+          },
+          "target": "corrin-envoy",
+          "effects": []
+        },
+        {
+          "id": "opt-council-vault",
+          "label": "Slip away to search the treaty vault for a loophole",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "treaty-vault",
+          "effects": []
+        },
+        {
+          "id": "opt-council-land",
+          "label": "Propose settling the debt with border land outright",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "debt-reckoning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "treaty-vault",
+      "kind": "puzzle",
+      "title": "The Treaty Vault",
+      "prose": "Old parchment and older wax seals. Somewhere in this clause-tangled treaty lies a way out — or a way to make one.",
+      "art": "art-the-unpaid-crown-treaty-vault",
+      "options": [
+        {
+          "id": "opt-vault-decipher",
+          "label": "Decipher the treaty's true clause",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corrin-envoy",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "history",
+            "dc": 14,
+            "onFailure": "council-summons"
+          }
+        },
+        {
+          "id": "opt-vault-forge",
+          "label": "Alter the treaty's wording before anyone notices",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "debt-reckoning",
+          "effects": []
+        },
+        {
+          "id": "opt-vault-leave",
+          "label": "Leave the vault undisturbed, heeding the captain's warning",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-bribed-captain",
+            "value": true
+          },
+          "target": "corrin-envoy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "corrin-envoy",
+      "kind": "social",
+      "title": "Corrin's Envoy",
+      "prose": "The envoy of Corrin, cloaked in grey and silver, waits with a patience that feels like a blade held to the throat of the barony.",
+      "art": "art-the-unpaid-crown-corrin-envoy",
+      "options": [
+        {
+          "id": "opt-envoy-honest",
+          "label": "Negotiate honestly, presenting evidence of the forged debt",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-evidence",
+            "value": true
+          },
+          "target": "debt-reckoning",
+          "effects": []
+        },
+        {
+          "id": "opt-envoy-threaten",
+          "label": "Threaten the envoy with the garrison's strength",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-guard-support",
+            "value": true
+          },
+          "target": "debt-reckoning",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "intimidation",
+            "dc": 15,
+            "onFailure": "ending-warfare"
+          }
+        },
+        {
+          "id": "opt-envoy-bribe",
+          "label": "Bribe the envoy to delay the treaty's enforcement",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "debt-reckoning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "debt-reckoning",
+      "kind": "decision",
+      "title": "The Price of the Debt",
+      "prose": "A settlement must be named aloud before the council and the envoy both. Whatever you choose becomes Veskmoor's new truth.",
+      "art": "art-the-unpaid-crown-debt-reckoning",
+      "options": [
+        {
+          "id": "opt-debt-land",
+          "label": "Offer the border land of Ashmere to settle the debt",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-battle",
+          "effects": [
+            {
+              "flag": "resolution",
+              "value": "land"
+            }
+          ]
+        },
+        {
+          "id": "opt-debt-blood",
+          "label": "Offer the corrupt steward's life as a blood-price",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-battle",
+          "effects": [
+            {
+              "flag": "resolution",
+              "value": "blood"
+            }
+          ]
+        },
+        {
+          "id": "opt-debt-lies",
+          "label": "Present the altered treaty as the true one",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-battle",
+          "effects": [
+            {
+              "flag": "resolution",
+              "value": "lies"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "climax-battle",
+      "kind": "climax",
+      "title": "The Ashen Warden's Stand",
+      "prose": "Corrin's enforcers refuse the settlement and storm the hall, aiming to seize the heir's ancestral guardian before terms can be sealed.",
+      "art": "art-the-unpaid-crown-climax-battle",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "encounter-corrin-enforcers",
+      "terminal": false
+    },
+    {
+      "id": "resolution-choice",
+      "kind": "decision",
+      "title": "Sealing the Terms",
+      "prose": "With the enforcers routed, the terms you named must now be made real before the whole of Veskmoor.",
+      "art": "art-the-unpaid-crown-resolution-choice",
+      "options": [
+        {
+          "id": "opt-resolve-alliance",
+          "label": "Seal the peace with the land grant",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "resolution",
+            "value": "land"
+          },
+          "target": "ending-alliance",
+          "effects": []
+        },
+        {
+          "id": "opt-resolve-sacrifice",
+          "label": "Deliver the steward's head as promised",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "resolution",
+            "value": "blood"
+          },
+          "target": "ending-sacrifice",
+          "effects": []
+        },
+        {
+          "id": "opt-resolve-shadow",
+          "label": "Let the forged treaty stand unchallenged",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "resolution",
+            "value": "lies"
+          },
+          "target": "ending-shadow-rule",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-alliance",
+      "kind": "ending",
+      "title": "A Fragile Peace",
+      "prose": "Ashmere passes to Corrin under seal and witness. It costs Veskmoor land, but buys it years of uneasy, genuine peace, and Lady Ysenne rules with your name spoken as ally.",
+      "art": "art-the-unpaid-crown-ending-alliance",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sacrifice",
+      "kind": "ending",
+      "title": "The Blood Price Paid",
+      "prose": "The steward's head buys the debt's forgiveness, but the barons whisper of what you were willing to trade for peace. Veskmoor survives, hollowed and watchful.",
+      "art": "art-the-unpaid-crown-ending-sacrifice",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-shadow-rule",
+      "kind": "ending",
+      "title": "A Kingdom Built on Forgery",
+      "prose": "The false treaty holds — for now. Lady Ysenne rules atop a lie only you and the envoy know, a debt owed forever to your silence.",
+      "art": "art-the-unpaid-crown-ending-shadow-rule",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-warfare",
+      "kind": "ending",
+      "title": "The Baronies at War",
+      "prose": "Steel answers where words failed. Corrin's banners darken the passes, and Veskmoor burns behind you as the old feud becomes open war.",
+      "art": "art-the-unpaid-crown-ending-warfare",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-exile",
+      "kind": "ending",
+      "title": "Flight from the Ashen Hall",
+      "prose": "The Warden falls and the hall with it. You flee Veskmoor's ruin with nothing settled, exiles from a succession you could not save.",
+      "art": "art-the-unpaid-crown-ending-exile",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-at-veskmoor",
+      "to": "ledger-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-veskmoor",
+      "to": "shrine-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-veskmoor",
+      "to": "barracks-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-hall",
+      "to": "steward-showdown",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-hall",
+      "to": "council-summons",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-hall",
+      "to": "shrine-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shrine-audience",
+      "to": "council-summons",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shrine-audience",
+      "to": "barracks-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "barracks-warning",
+      "to": "council-summons",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "barracks-warning",
+      "to": "ledger-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "steward-showdown",
+      "to": "council-summons",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "steward-showdown",
+      "to": "ending-warfare",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "steward-showdown",
+      "to": "ledger-hall",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "council-summons",
+      "to": "corrin-envoy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-summons",
+      "to": "treaty-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-summons",
+      "to": "debt-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "treaty-vault",
+      "to": "corrin-envoy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "treaty-vault",
+      "to": "debt-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "treaty-vault",
+      "to": "council-summons",
+      "when": {
+        "op": "always"
+      },
+      "note": "check failure"
+    },
+    {
+      "from": "corrin-envoy",
+      "to": "debt-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "corrin-envoy",
+      "to": "ending-warfare",
+      "when": {
+        "op": "always"
+      },
+      "note": "check failure"
+    },
+    {
+      "from": "debt-reckoning",
+      "to": "climax-battle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-battle",
+      "to": "resolution-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "climax-battle",
+      "to": "ending-warfare",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "climax-battle",
+      "to": "ending-exile",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "resolution-choice",
+      "to": "ending-alliance",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "resolution-choice",
+      "to": "ending-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "resolution-choice",
+      "to": "ending-shadow-rule",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "encounter-steward-guards",
+      "title": "The Steward's Guards",
+      "combatants": [
+        {
+          "id": "corrupt-steward",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hall-guard",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "council-summons",
+      "onDefeat": "ending-warfare",
+      "onFlee": "ledger-hall"
+    },
+    {
+      "id": "encounter-corrin-enforcers",
+      "title": "The Ashen Warden's Last Stand",
+      "combatants": [
+        {
+          "id": "enforcer-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "enforcer-soldier",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "ashen-warden",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "ashen-warden"
+      },
+      "onVictory": "resolution-choice",
+      "onDefeat": "ending-warfare",
+      "onFlee": "ending-exile"
+    }
+  ]
+}

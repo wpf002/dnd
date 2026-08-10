@@ -1,0 +1,85 @@
+{
+  "adventure": "the-silent-ford",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-silent-ford-league-hall-overseer",
+      "beat": "league-hall",
+      "brief": "The League's Plea — The Overseer of the River League spreads three manifests across the table, each stamped 'lost beyond the tollhouse.' No wagon that took the old Ferry "
+    },
+    {
+      "slot": "art-the-silent-ford-guard-survivor-testimony",
+      "beat": "guard-testimony",
+      "brief": "The Guard's Ravings — The last guard to walk back alive sits wrapped in blankets, insisting no one believes him: lights beneath the river, a stone at the crossroads that 'a"
+    },
+    {
+      "slot": "art-the-silent-ford-tollhouse-ledger-room",
+      "beat": "tollhouse-records",
+      "brief": "The Ledger Room — Dusty manifests confirm the pattern: each lost wagon's last entry reads the same clerk's hand, 'paid the deep toll,' followed by nothing at all."
+    },
+    {
+      "slot": "art-the-silent-ford-river-road-trailhead",
+      "beat": "trailhead",
+      "brief": "The Ferry Road Trailhead — Past the last watchpost, the Ferry Road drops toward the river valley, splitting around a collapsed bridge, a weather-worn shrine, and the ruts of a c"
+    },
+    {
+      "slot": "art-the-silent-ford-sunken-bridge-crossing",
+      "beat": "sunken-bridge",
+      "brief": "The Sunken Bridge — The old stone bridge has slumped into the current, leaving only a treacherous ford and a few rotten rope-ends swinging over the gap."
+    },
+    {
+      "slot": "art-the-silent-ford-roadside-river-shrine",
+      "beat": "shrine-discovery",
+      "brief": "The Roadside Shrine — A weathered shrine to some half-forgotten river spirit stands choked with recent offerings: coins, ribbons, and a wagon-wheel spoke etched with a spir"
+    },
+    {
+      "slot": "art-the-silent-ford-abandoned-caravan-camp",
+      "beat": "abandoned-camp",
+      "brief": "The Abandoned Camp — Wagon frames lie stripped to their bones. Small clawed tracks circle the firepits and vanish into a burrow beneath an uprooted willow."
+    },
+    {
+      "slot": "art-the-silent-ford-ancient-toll-stone",
+      "beat": "toll-stone",
+      "brief": "The Ancient Toll-Stone — A crossroads stone, older than the League itself, is carved with a riddle in flowing script. Beneath it, a mechanism waits, patient as the river."
+    },
+    {
+      "slot": "art-the-silent-ford-kobold-ambush-scene",
+      "beat": "kobold-ambush",
+      "brief": "Ambush Beneath the Willow — The burrow erupts with kobolds defending their spoils, a goblin outrider barking orders from the treeline."
+    },
+    {
+      "slot": "art-the-silent-ford-ferryman-at-the-landing",
+      "beat": "ferryman-bargain",
+      "brief": "The Ferryman's Price — At a landing hidden behind reeds, a gaunt ferryman waits beside a boat that should not still float. He knows the river's secrets, but nothing from him"
+    },
+    {
+      "slot": "art-the-silent-ford-barrow-wight-guardian",
+      "beat": "barrow-wight",
+      "brief": "The Barrow Wight's Guard — Past the ferry landing, a sunken barrow guards the river's true crossing. A wight rises from the silt, zombies shambling at its call."
+    },
+    {
+      "slot": "art-the-silent-ford-cult-leader-confrontation",
+      "beat": "confrontation",
+      "brief": "The Cult of the Deep Toll — Beyond the barrow, a hidden shrine-hall opens onto the truth: a cult has been diverting caravans into flooded tunnels beneath the river, feeding them "
+    },
+    {
+      "slot": "art-the-silent-ford-ending-route-reopened-art",
+      "beat": "ending-route-reopened",
+      "brief": "The Route Reopened — With the shrine broken and the cult scattered, the Ferry Road reopens under League guard. Wagons roll again, and your names are carved beside the old "
+    },
+    {
+      "slot": "art-the-silent-ford-ending-deep-bargain-art",
+      "beat": "ending-deep-bargain",
+      "brief": "The Deep Bargain — The road reopens, wagons rolling smoothly past the barrow once more. Only you know the price paid to keep it so, and only you hear, some nights, the t"
+    },
+    {
+      "slot": "art-the-silent-ford-ending-league-fractured-art",
+      "beat": "ending-league-fractured",
+      "brief": "The League Fractured — You return with no answers and fewer allies. Millhaven and Carrow's Landing sever the old road entirely, trade routes fracturing around the valley for"
+    }
+  ]
+}

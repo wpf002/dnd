@@ -1,0 +1,756 @@
+{
+  "id": "the-hollow-span-reckoning",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Span Reckoning",
+    "premise": "On the frontier world of Calder's Reach, the trade road called the Hollow Span has swallowed every envoy sent to renew the treaty with the Concord of the Deep Warrens, and without a new accord the frontier settlements will fall to open war within the season.",
+    "tone": [
+      "exploration",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "A weathered frontier chronicler recounting the tale by lamplight, wry but respectful of the stakes.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Keep violence focused on adult combatants and political stakes; no children endangered on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "call-to-cross",
+  "beats": [
+    {
+      "id": "call-to-cross",
+      "kind": "threshold",
+      "title": "The Envoy's Charge",
+      "prose": "The Aldergate Compact's council has one request: find out why the Hollow Span road has taken three envoys and returned none, and if possible, save the fourth before the treaty deadline lapses.",
+      "readAloud": "Lantern-light gutters over the council table as the Warden-Speaker slides a worn map toward you. 'The road takes people now,' she says. 'We need someone who comes back.'",
+      "art": "art-the-hollow-span-reckoning-frontier-outpost-dawn",
+      "options": [
+        {
+          "id": "go-marsh-scout",
+          "label": "Take the scout's causeway through the reed marsh",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cairn-trailhead",
+          "effects": []
+        },
+        {
+          "id": "go-merchant-road",
+          "label": "Ride the merchant road toward the wayfarer camp",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wayfarer-camp",
+          "effects": []
+        },
+        {
+          "id": "go-bold-span",
+          "label": "Push straight for the Hollow Span bridge itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shifting-span",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cairn-trailhead",
+      "kind": "discovery",
+      "title": "The Trailhead Cairns",
+      "prose": "Stone cairns mark the causeway, each stacked by a different hand for a different missing traveler. Wagon ruts veer off the path and vanish into reeds.",
+      "readAloud": "Someone has been counting the lost. Four cairns. Four names scratched into river-stone.",
+      "art": "art-the-hollow-span-reckoning-marsh-cairns",
+      "options": [
+        {
+          "id": "continue-to-camp",
+          "label": "Detour to the wayfarer camp for fresher news",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wayfarer-camp",
+          "effects": []
+        },
+        {
+          "id": "push-to-narrows",
+          "label": "Press on toward the narrows where the tracks vanish",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "narrows-ambush",
+          "effects": []
+        },
+        {
+          "id": "examine-cairns",
+          "label": "Examine the cairns for clues to the convoy's fate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanished-convoy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wayfarer-camp",
+      "kind": "social",
+      "title": "The Wayfarer's Camp",
+      "prose": "Refugees and traders huddle around cookfires, trading half-true rumors about the Concord's warrens and the road's hunger. Tempers fray between those who blame the Concord and those who blame the Compact.",
+      "readAloud": "'The road doesn't take you,' an old muleteer mutters. 'Something down there decides who's worth keeping.'",
+      "art": "art-the-hollow-span-reckoning-wayfarer-campfire",
+      "options": [
+        {
+          "id": "trade-rumors",
+          "label": "Trade rumors with the refugees about the road",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cairn-trailhead",
+          "effects": []
+        },
+        {
+          "id": "press-onward-narrows",
+          "label": "Press onward toward the narrows despite the warnings",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "narrows-ambush",
+          "effects": []
+        },
+        {
+          "id": "gather-testimony",
+          "label": "Gather sworn testimony to use as evidence later",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanished-convoy",
+          "effects": [
+            {
+              "flag": "has-evidence",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shifting-span",
+      "kind": "hazard",
+      "title": "The Shifting Span",
+      "prose": "A rope-and-plank bridge sways over a black chasm, warded stones humming faintly along its rails. Something below watches the crossing.",
+      "readAloud": "The planks groan underfoot. Every third stone along the rail bears a sigil that was not carved by human hands.",
+      "art": "art-the-hollow-span-reckoning-rope-bridge-mist",
+      "options": [
+        {
+          "id": "careful-crossing",
+          "label": "Cross carefully, testing each plank",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanished-convoy",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "acrobatics",
+            "dc": 13,
+            "onFailure": "narrows-ambush"
+          }
+        },
+        {
+          "id": "cut-across-guardian",
+          "label": "Push past the warding sigils toward whatever guards the span",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-vigil",
+          "effects": []
+        },
+        {
+          "id": "retreat-to-camp",
+          "label": "Fall back to the wayfarer camp to regroup",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wayfarer-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "narrows-ambush",
+      "kind": "conflict",
+      "title": "Ambush at the Narrows",
+      "prose": "Bandits loyal to no flag have been picking over the wreckage of past envoys, and they do not intend to share the road.",
+      "art": "art-the-hollow-span-reckoning-narrows-ambush-scene",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "narrows-ambush-fight",
+      "terminal": false
+    },
+    {
+      "id": "vanished-convoy",
+      "kind": "discovery",
+      "title": "The Vanished Convoy",
+      "prose": "The envoy's wagon lies broken and looted, but the bodies are missing entirely, dragged off toward one of two territories bordering the road.",
+      "readAloud": "No blood pools where the fighting happened. Whoever took them wanted them alive.",
+      "art": "art-the-hollow-span-reckoning-wrecked-convoy",
+      "options": [
+        {
+          "id": "study-wreckage",
+          "label": "Study the wreckage for evidence of the attackers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "diverging-paths",
+          "effects": [
+            {
+              "flag": "has-evidence",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "follow-kobold-tracks",
+          "label": "Follow the drag-marks toward the warren tunnels",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "diverging-paths",
+          "effects": []
+        },
+        {
+          "id": "follow-goblin-signs",
+          "label": "Follow the broken banners toward the bramble thicket",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "diverging-paths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "diverging-paths",
+      "kind": "decision",
+      "title": "Two Paths Diverge",
+      "prose": "The trail splits: one way leads down into the kobold warren's toll-gate, the other through a goblin-held bramble gate. Both border the hidden seat of the Concord.",
+      "readAloud": "Two gates, two guardians, one road beyond them both.",
+      "art": "art-the-hollow-span-reckoning-forked-trail",
+      "options": [
+        {
+          "id": "enter-warren",
+          "label": "Enter the kobold warren's toll-gate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warren-toll",
+          "effects": []
+        },
+        {
+          "id": "enter-bramble",
+          "label": "Push through the goblin bramble gate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bramble-gate",
+          "effects": []
+        },
+        {
+          "id": "seek-concord-directly",
+          "label": "Use your evidence to bargain for safe passage straight to the Concord",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-evidence",
+            "value": true
+          },
+          "target": "hidden-concord",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warren-toll",
+      "kind": "conflict",
+      "title": "The Warren's Toll",
+      "prose": "Kobold toll-keepers swarm from tunnel mouths, more interested in driving off intruders than killing them outright.",
+      "art": "art-the-hollow-span-reckoning-kobold-warren-gate",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "warren-toll-fight",
+      "terminal": false
+    },
+    {
+      "id": "bramble-gate",
+      "kind": "conflict",
+      "title": "The Bramble Gate",
+      "prose": "Goblins and a lean, hungry wolf hold the thorned gate, snapping at anyone who tries to pass toward the hidden valley beyond.",
+      "art": "art-the-hollow-span-reckoning-goblin-bramble-gate",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bramble-gate-fight",
+      "terminal": false
+    },
+    {
+      "id": "hidden-concord",
+      "kind": "social",
+      "title": "The Hidden Concord",
+      "prose": "Beyond the gates lies a hollow valley where the Concord's elders keep the surviving envoy bound within warded stones, a hostage against the Compact's old betrayals.",
+      "readAloud": "'Your Compact promised us the eastern vale and gave us ash instead,' the eldest says. 'Convince me you are different.'",
+      "art": "art-the-hollow-span-reckoning-hidden-concord-hall",
+      "options": [
+        {
+          "id": "present-evidence",
+          "label": "Present the evidence and demand the envoy's release",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-evidence",
+            "value": true
+          },
+          "target": "binding-stones",
+          "effects": [
+            {
+              "flag": "showed-evidence",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-treaty",
+          "label": "Offer the Compact's treaty terms in good faith",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "binding-stones",
+          "effects": []
+        },
+        {
+          "id": "walk-away",
+          "label": "Refuse further talk and turn back to the frontier",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "frontier-alone",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "binding-stones",
+      "kind": "puzzle",
+      "title": "The Binding Stones",
+      "prose": "The envoy sits motionless behind a ring of warded stones, bound by old Concord magic that answers to neither key nor blade.",
+      "readAloud": "The envoy's eyes track you, alive but frozen mid-breath, held by wards older than either your peoples' quarrels.",
+      "art": "art-the-hollow-span-reckoning-binding-stone-circle",
+      "options": [
+        {
+          "id": "unlock-wards",
+          "label": "Study the warding sigils and attempt to unlock them",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "reckoning-choice",
+          "effects": [
+            {
+              "flag": "ritual-solved",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "hollow-vigil"
+          }
+        },
+        {
+          "id": "bypass-wards",
+          "label": "Search the stone ring for a hidden bypass",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "reckoning-choice",
+          "effects": []
+        },
+        {
+          "id": "force-wards",
+          "label": "Force the stones open with brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "reckoning-choice",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 15,
+            "onFailure": "hollow-vigil"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-vigil",
+      "kind": "climax",
+      "title": "The Hollow Span Guardian",
+      "prose": "A wight bound to the old wards rises with its shambling dead in tow, furious at the wards' disturbance, defending the valley whether or not you meant it harm.",
+      "art": "art-the-hollow-span-reckoning-wight-guardian-vigil",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hollow-vigil-fight",
+      "terminal": false
+    },
+    {
+      "id": "reckoning-choice",
+      "kind": "decision",
+      "title": "The Reckoning Choice",
+      "prose": "With the envoy free and the Concord watching, the moment has come to decide what the frontier's future will look like.",
+      "readAloud": "The elders and the envoy both wait on your word. Whatever you say next will outlive this valley.",
+      "art": "art-the-hollow-span-reckoning-reckoning-crossroads",
+      "options": [
+        {
+          "id": "forge-treaty",
+          "label": "Forge a lasting treaty between the frontier and the Concord",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "showed-evidence",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "ritual-solved",
+                "value": true
+              }
+            ]
+          },
+          "target": "treaty-restored",
+          "effects": []
+        },
+        {
+          "id": "withdraw-quietly",
+          "label": "Withdraw quietly, leaving the frontier to fend for itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "frontier-alone",
+          "effects": []
+        },
+        {
+          "id": "shatter-accord",
+          "label": "Shatter the old accord and claim the road by force",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "broken-accord",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "treaty-restored",
+      "kind": "ending",
+      "title": "Treaty Restored",
+      "prose": "The envoy returns to the frontier alive, and with them a new treaty that finally names the road's tolls fairly. The Hollow Span becomes a route people walk again, not a warning.",
+      "readAloud": "For the first time in a generation, a wagon crosses the Hollow Span and comes back the same day.",
+      "art": "art-the-hollow-span-reckoning-treaty-signing-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "frontier-alone",
+      "kind": "ending",
+      "title": "The Frontier Alone",
+      "prose": "You leave the valley without an accord. The frontier settlements brace for a colder, harder season, uncertain whether peace or war waits down the Hollow Span next.",
+      "readAloud": "No treaty, no war—just a long, uneasy quiet stretching out over the reeds.",
+      "art": "art-the-hollow-span-reckoning-frontier-retreat",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "broken-accord",
+      "kind": "ending",
+      "title": "The Broken Accord",
+      "prose": "Blood is spilled where words might have served, and the Hollow Span becomes a battle line rather than a road. The frontier's peace dies here, replaced by a war neither side will soon end.",
+      "readAloud": "Smoke rises from the valley behind you. Whatever comes next, it will not be peace.",
+      "art": "art-the-hollow-span-reckoning-broken-accord-ruins",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "narrows-ambush-fight",
+      "title": "Ambush at the Narrows",
+      "combatants": [
+        {
+          "id": "bandit-1",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-2",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-3",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-boss",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vanished-convoy",
+      "onDefeat": "broken-accord",
+      "onFlee": "wayfarer-camp"
+    },
+    {
+      "id": "warren-toll-fight",
+      "title": "The Warren's Toll",
+      "combatants": [
+        {
+          "id": "kobold-1",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kobold-2",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kobold-3",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kobold-4",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kobold-5",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "hidden-concord",
+      "onDefeat": "broken-accord",
+      "onFlee": "bramble-gate"
+    },
+    {
+      "id": "bramble-gate-fight",
+      "title": "The Bramble Gate",
+      "combatants": [
+        {
+          "id": "goblin-1",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "goblin-2",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "goblin-3",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "goblin-4",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "gate-wolf",
+          "statblock": "wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the goblin gate and reach the bramble tunnel beyond."
+      },
+      "onVictory": "hidden-concord",
+      "onDefeat": "broken-accord",
+      "onFlee": "warren-toll"
+    },
+    {
+      "id": "hollow-vigil-fight",
+      "title": "The Hollow Span Guardian",
+      "combatants": [
+        {
+          "id": "vigil-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "vigil-zombie-1",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "vigil-zombie-2",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "vertical"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "reckoning-choice",
+      "onDefeat": "broken-accord",
+      "onFlee": "hidden-concord"
+    }
+  ]
+}

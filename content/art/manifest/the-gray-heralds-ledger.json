@@ -1,0 +1,90 @@
+{
+  "adventure": "the-gray-heralds-ledger",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: mystery, anthology.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-gray-heralds-ledger-shop-arrival-art",
+      "beat": "shop-arrival",
+      "brief": "The Cabinet of Thistlewood & Co. — Bells of bone and brass chime as you step into a shop crammed with impossible objects: a compass that points to regret, a birdcage that hums lullabies"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-wicks-desk-art",
+      "beat": "wicks-desk",
+      "brief": "A Cluttered Desk — Wick's desk is a jumble of receipt stubs, half-finished sketches of relics, and a diary bookmarked at an entry describing a secret elopement. Yet the "
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-corvina-interview-art",
+      "beat": "corvina-interview",
+      "brief": "The Shopkeeper's Unease — Corvina's fingers drum against a locked ledger. She admits the shop's rarer stock arrives through suppliers she'd rather not name, and that Wick had g"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-docks-investigation-art",
+      "beat": "docks-investigation",
+      "brief": "Salt and Contradiction — Wick's coat lies snagged on a piling, soaked through with brine, though the night he vanished was dry and moonlit. A dockhand insists he watched Wick "
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-workshop-clue-art",
+      "beat": "workshop-clue",
+      "brief": "The Cracked Mirror — Behind a curtain in the back room sits a cracked mirror, its surface still faintly warm. A residue of shimmering dust clings to the frame — the unmist"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-hub-clues-art",
+      "beat": "hub-clues",
+      "brief": "Threads That Do Not Match — You lay the clues side by side: the too-fresh diary entry, the dry-night soaked coat, the mirror still warm with glamour. Whoever hid Wick's trail wan"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-corvina-confrontation-art",
+      "beat": "corvina-confrontation",
+      "brief": "A Shopkeeper Cornered — Corvina's composure cracks. She owed the smugglers of the sunken Gray Herald a debt she could not pay in coin, so she paid it in silence — and let a g"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-lighthouse-approach-art",
+      "beat": "lighthouse-approach",
+      "brief": "The Old Lighthouse — The disused lighthouse looms over a rocky cove, its lamp dark but its base lit from within by lantern-glow. Rope ladders and crates mark it as the smu"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-lighthouse-stealth-art",
+      "beat": "lighthouse-stealth",
+      "brief": "Through the Sea Cave — Cold water laps your boots as you creep through a tunnel beneath the lighthouse. Ahead, a lantern-lit cellar holds crates stamped with the Gray Herald"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-lighthouse-parley-art",
+      "beat": "lighthouse-parley",
+      "brief": "Terms at the Threshold — A smuggler broker steps out to parley, flanked by armed guards. \"Corvina sent you,\" he says flatly. \"Then Corvina knows the price of her silence.\""
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-front-door-clash-art",
+      "beat": "front-door-clash",
+      "brief": "Guards at the Gate — Steel rasps from scabbards as the lighthouse's guards spot you. There is no more talking to be done — only the door ahead, and the fight to reach it."
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-lighthouse-fight-art",
+      "beat": "lighthouse-fight",
+      "brief": "The Broker's Last Stand — Inside the lamp-room, the smuggling broker draws a curved blade, his bandits fanning out around crates of stolen relics. Wick huddles against the far "
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-ending-quiet-rescue-art",
+      "beat": "ending-quiet-rescue",
+      "brief": "A Rescue Unseen — No alarm ever sounds. You slip away with Wick through the sea cave, leaving the smugglers none the wiser. Corvina weeps with relief when you return hi"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-ending-bargain-art",
+      "beat": "ending-bargain",
+      "brief": "The Price of Silence — Coin changes hands, and Wick is returned, shaken but unharmed. The smugglers vanish into the night with their crates and their secrets intact. Corvina"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-ending-hero-rescue-art",
+      "beat": "ending-hero-rescue",
+      "brief": "The Gray Herald Exposed — Steel or ultimatum, the smuggling ring falls apart before you. Wick is freed, the watch is summoned, and the Gray Herald's stolen cargo is seized. Cor"
+    },
+    {
+      "slot": "art-the-gray-heralds-ledger-ending-captured-art",
+      "beat": "ending-captured",
+      "brief": "Two Prisoners Now — The fight turns against you, and the smugglers bind your hands alongside Wick's. Perhaps another retrieval crew will come looking someday — assuming C"
+    }
+  ]
+}

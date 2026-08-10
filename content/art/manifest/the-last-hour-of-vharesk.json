@@ -1,0 +1,90 @@
+{
+  "adventure": "the-last-hour-of-vharesk",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: epic-finale, cosmic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-hour-of-vharesk-shattered-gate",
+      "beat": "shattered-gate",
+      "brief": "The Shattered Gate — The bronze gates of Vharesk hang open, warped like melted wax. Beyond them, the capital's heart pulses with a sick violet light, visible even at midda"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-sunken-concourse",
+      "beat": "sunken-concourse",
+      "brief": "The Sunken Concourse — Once a grand plaza, the concourse has sunk into a bowl of stagnant, glowing mist. Statues of forgotten magistrates lean drowned to their waists in the"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-choir-undercroft",
+      "beat": "choir-undercroft",
+      "brief": "The Choir Undercroft — Beneath the concourse, a vaulted chamber holds the bones of a choir that once sang the Bloomheart to sleep every century. Their final inscriptions cov"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-cult-sentries",
+      "beat": "cult-sentries",
+      "brief": "The Cult Sentries — A knot of robed zealots and their captain guard the inner gate, chanting a countdown of their own devising."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-relic-cache",
+      "beat": "relic-cache",
+      "brief": "The Scholar's Cache — Hidden beneath a fallen statue's plinth, a cache of a dead scholar's tools and a single warding relic remain, untouched by the mist."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-ghast-hollow",
+      "beat": "ghast-hollow",
+      "brief": "The Ghast Hollow — The side chamber is a charnel hollow where the poison has raised the dead scholars into something hungry and quick."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-the-last-warden",
+      "beat": "the-last-warden",
+      "brief": "The Last Warden — In a fortified den beneath the ruins, a scarred survivor named Iyre Voss has held her post alone for weeks, waiting for someone worth trusting with wh"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-poison-tide",
+      "beat": "poison-tide",
+      "brief": "The Poison Tide — The mist surges higher, a rising tide of glowing toxin that eats at exposed skin and thought alike."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-bloomheart-antechamber",
+      "beat": "bloomheart-antechamber",
+      "brief": "The Bloomheart Antechamber — The Bloomheart fills the vaulted chamber ahead, a vast pulsing organ of root and light, its rhythm quickening toward some final beat. Cultists move li"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-choir-of-the-drowned",
+      "beat": "choir-of-the-drowned",
+      "brief": "The Choir of the Drowned — Spectral singers circle the Last Choir Key, a mechanism of bone and bronze fused into the chamber wall. It must be attuned before it can be turned."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-the-waking-heart",
+      "beat": "the-waking-heart",
+      "brief": "The Waking Heart — The Bloomheart's guardians rise from its roots — shadow, wight, and hobgoblin enforcer — to buy the last minutes their masters need."
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-last-lever",
+      "beat": "last-lever",
+      "brief": "The Last Lever — With the guardians fallen and the Key in hand, only one mechanism remains: the lever that will decide Vharesk's fate before the Bloomheart finishes it"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-ending-sealed-silence",
+      "beat": "ending-sealed-silence",
+      "brief": "Ending: Sealed Silence — The lever grinds home. The Bloomheart's light dims to embers and then to nothing. Vharesk will never wake again, and neither will its dead — but the p"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-ending-transformed-covenant",
+      "beat": "ending-transformed-covenant",
+      "brief": "Ending: The Transformed Covenant — The Key turns not to silence but to communion. The Bloomheart shudders, folds inward, and becomes something smaller, stranger, and almost gentle — a c"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-ending-consumed-city",
+      "beat": "ending-consumed-city",
+      "brief": "Ending: The Consumed City — The Bloomheart finishes its final beat before the lever is ever reached. Vharesk folds inward on itself, its ruins swallowed into a hunger with no nam"
+    },
+    {
+      "slot": "art-the-last-hour-of-vharesk-ending-burned-legacy",
+      "beat": "ending-burned-legacy",
+      "brief": "Ending: The Burned Legacy — One of you steps into the Heart's core and becomes the fire that unmakes it. The Bloomheart screams once, a sound like a city dying twice, and is gone"
+    }
+  ]
+}

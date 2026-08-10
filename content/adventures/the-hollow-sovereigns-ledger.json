@@ -1,0 +1,835 @@
+{
+  "id": "the-hollow-sovereigns-ledger",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Sovereign's Ledger",
+    "premise": "Seven relics have been quietly unmaking the world for a generation, and the town of Greymantle is the next line to be erased from the ledger of things that exist. A relic-touched tyrant called the Hollow Sovereign now stirs beneath the ruins, and someone must decide the fate of the last relic before it decides the fate of everyone else.",
+    "tone": [
+      "high-adventure",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "A measured, wry chronicler who treats the erasure of towns as an ongoing tragedy worth documenting carefully.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Any implied harm to children happens off-screen and is never described directly."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-fading-road",
+  "beats": [
+    {
+      "id": "the-fading-road",
+      "kind": "threshold",
+      "title": "The Fading Road",
+      "prose": "The road to Greymantle ends in a smear of gray nothing where a bridge should be. Locals say the town itself is being read out of existence, page by page, by something ancient stirring in the old ruins beyond it.",
+      "readAloud": "The mile-marker ahead simply isn't there anymore — not broken, not overgrown, just absent, as if it never was.",
+      "art": "art-the-hollow-sovereigns-ledger-fading-road-vista",
+      "options": [
+        {
+          "id": "opt-approach-gates",
+          "label": "Approach the town gates openly",
+          "target": "greymantle-gates",
+          "effects": []
+        },
+        {
+          "id": "opt-seek-archivist",
+          "label": "Seek out the old archivist camped in the hills",
+          "target": "archivist-camp",
+          "effects": []
+        },
+        {
+          "id": "opt-push-onward",
+          "label": "Push onward toward the ruins immediately, trusting speed over caution",
+          "target": "ruin-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "greymantle-gates",
+      "kind": "discovery",
+      "title": "The Gates of Greymantle",
+      "prose": "Half the gatehouse is missing, not ruined but unwritten — a clean edge of absence. Frightened townsfolk cluster near what remains, arguing about a cult in the square and a chapel full of old records.",
+      "art": "art-the-hollow-sovereigns-ledger-greymantle-gatehouse",
+      "options": [
+        {
+          "id": "opt-ask-townsfolk",
+          "label": "Ask the townsfolk about the silence spreading through Greymantle",
+          "target": "town-square-social",
+          "effects": []
+        },
+        {
+          "id": "opt-chapel-records",
+          "label": "Investigate the crumbling chapel records for clues",
+          "target": "town-square-social",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 12,
+            "onFailure": "town-square-social"
+          }
+        },
+        {
+          "id": "opt-seek-archivist-2",
+          "label": "Seek out the archivist's counsel before going further",
+          "target": "archivist-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archivist-camp",
+      "kind": "social",
+      "title": "The Archivist's Camp",
+      "prose": "An old woman named Perrin Osk keeps a camp of salvaged maps and relic-lore, cataloguing everything Greymantle is about to lose. She knows the Vault Cult below the ruins and the thing they serve.",
+      "readAloud": "\"Seven relics,\" Perrin says, tapping a map with six names already crossed out. \"This one is the last un-erased. Whatever you do here, do it on purpose.\"",
+      "art": "art-the-hollow-sovereigns-ledger-archivist-camp-maps",
+      "options": [
+        {
+          "id": "opt-help-archivist",
+          "label": "Offer to help decode the relic map",
+          "target": "town-square-social",
+          "effects": [
+            {
+              "flag": "archivist-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ask-location",
+          "label": "Ask directly about the relic's location, then move on",
+          "target": "town-square-social",
+          "effects": []
+        },
+        {
+          "id": "opt-decline-archivist",
+          "label": "Decline her warnings and head straight for the ruins",
+          "target": "ruin-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "town-square-social",
+      "kind": "social",
+      "title": "The Square of Missing Names",
+      "prose": "In the square, a Vault Cult emissary preaches calm acceptance of the erasure while armed wardens watch the crowd. Three ways lead toward the ruins: through cult tunnels, through cult words, or through cult spears.",
+      "art": "art-the-hollow-sovereigns-ledger-town-square-emissary",
+      "options": [
+        {
+          "id": "opt-infiltrate-tunnels",
+          "label": "Infiltrate the Vault Cult's smuggling tunnels",
+          "target": "smugglers-tunnel",
+          "effects": []
+        },
+        {
+          "id": "opt-negotiate-emissary",
+          "label": "Negotiate with the Cult's emissary in the square",
+          "target": "cult-negotiation",
+          "effects": []
+        },
+        {
+          "id": "opt-force-ruins",
+          "label": "Force your way toward the ruins",
+          "target": "warden-assault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "smugglers-tunnel",
+      "kind": "transit",
+      "title": "The Smugglers' Tunnel",
+      "prose": "A narrow cult tunnel runs beneath the square, half of it already unwritten at the far end, walls fading to nothing mid-stone.",
+      "art": "art-the-hollow-sovereigns-ledger-smugglers-tunnel-passage",
+      "options": [
+        {
+          "id": "opt-push-tunnel",
+          "label": "Push through the collapsing tunnel",
+          "target": "ruin-threshold",
+          "effects": []
+        },
+        {
+          "id": "opt-rest-tunnel",
+          "label": "Rest and get your bearings before continuing",
+          "target": "ruin-threshold",
+          "effects": []
+        },
+        {
+          "id": "opt-backtrack-tunnel",
+          "label": "Backtrack to warn the others in the square",
+          "target": "town-square-social",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "took-tunnel",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-negotiation",
+      "kind": "social",
+      "title": "Words With the Emissary",
+      "prose": "The emissary, a gaunt man named Vell, speaks of the Hollow Sovereign as a mercy, not a monster. He is willing to trade information for cooperation, or hostility for defiance.",
+      "art": "art-the-hollow-sovereigns-ledger-cult-emissary-vell",
+      "options": [
+        {
+          "id": "opt-bargain-passage",
+          "label": "Strike a bargain for safe passage",
+          "target": "ruin-threshold",
+          "effects": []
+        },
+        {
+          "id": "opt-threaten-cult",
+          "label": "Refuse and threaten them",
+          "target": "warden-assault",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-weakness",
+          "label": "Ask about the seventh relic's weakness",
+          "target": "ruin-threshold",
+          "effects": [
+            {
+              "flag": "learned-weakness",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-assault",
+      "kind": "conflict",
+      "title": "Spears in the Square",
+      "prose": "Cult wardens close in, spears leveled, alarm bells already ringing toward the ruins.",
+      "art": "art-the-hollow-sovereigns-ledger-warden-spears-square",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "wardens-alerted",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "encounter": "warden-skirmish",
+      "terminal": false
+    },
+    {
+      "id": "ruin-threshold",
+      "kind": "decision",
+      "title": "The Vault Threshold",
+      "prose": "The ruined vault door looms ahead, warded in old relic-script. Whatever path brought you here, this door is the last honest obstacle before the relic itself.",
+      "art": "art-the-hollow-sovereigns-ledger-vault-door-threshold",
+      "options": [
+        {
+          "id": "opt-force-door",
+          "label": "Force open the vault door",
+          "target": "relic-vault-puzzle",
+          "effects": []
+        },
+        {
+          "id": "opt-signal-allies",
+          "label": "Signal the archivist's allies for a diversion",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "archivist-ally",
+            "value": true
+          },
+          "target": "guardian-encounter",
+          "effects": []
+        },
+        {
+          "id": "opt-hidden-entrance",
+          "label": "Search for a hidden entrance using local lore",
+          "target": "relic-vault-puzzle",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "relic-vault-puzzle",
+      "kind": "puzzle",
+      "title": "The Rune-Locked Door",
+      "prose": "Seven interlocking rings of relic-script guard the door, each ring a name of something the world has already forgotten.",
+      "art": "art-the-hollow-sovereigns-ledger-rune-locked-rings",
+      "options": [
+        {
+          "id": "opt-decipher-runes",
+          "label": "Decipher the ancient runes with careful study",
+          "target": "guardian-encounter",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 15,
+            "onFailure": "guardian-encounter"
+          }
+        },
+        {
+          "id": "opt-tunnel-shortcut",
+          "label": "Use the smugglers' shortcut you learned",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "took-tunnel",
+            "value": true
+          },
+          "target": "guardian-encounter",
+          "effects": []
+        },
+        {
+          "id": "opt-force-lock",
+          "label": "Force the lock with brute strength",
+          "target": "guardian-encounter",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 14,
+            "onFailure": "guardian-encounter"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guardian-encounter",
+      "kind": "conflict",
+      "title": "The Vault Guardians Wake",
+      "prose": "Animated armor and restless bones rise from alcoves as the vault begins to seal itself, stone grinding shut behind you.",
+      "art": "art-the-hollow-sovereigns-ledger-vault-guardians-rising",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardians",
+      "terminal": false
+    },
+    {
+      "id": "confront-the-sovereign",
+      "kind": "decision",
+      "title": "The Sovereign's Antechamber",
+      "prose": "Beyond the guardians, the Hollow Sovereign waits on a throne built from six erased crowns, the seventh relic pulsing at its chest.",
+      "art": "art-the-hollow-sovereigns-ledger-sovereign-antechamber-throne",
+      "options": [
+        {
+          "id": "opt-exploit-weakness",
+          "label": "Exploit the weakness you learned from the cult",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-weakness",
+            "value": true
+          },
+          "target": "sovereign-climax",
+          "effects": []
+        },
+        {
+          "id": "opt-challenge-alerted",
+          "label": "Challenge the Sovereign, knowing the wardens already sounded the alarm",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "wardens-alerted",
+            "value": true
+          },
+          "target": "sovereign-climax",
+          "effects": []
+        },
+        {
+          "id": "opt-challenge-stealth",
+          "label": "Challenge the Sovereign while stealth still favors you",
+          "visibleWhen": {
+            "op": "not",
+            "clause": {
+              "op": "eq",
+              "flag": "wardens-alerted",
+              "value": true
+            }
+          },
+          "target": "sovereign-climax",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sovereign-climax",
+      "kind": "climax",
+      "title": "The Hollow Sovereign",
+      "prose": "The Sovereign rises, wearing the shape of a king who is mostly absence now, the seventh relic the only solid thing about him.",
+      "readAloud": "\"You cannot fight a subtraction,\" the Sovereign says, and the air around his voice simply isn't there.",
+      "art": "art-the-hollow-sovereigns-ledger-hollow-sovereign-rising",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sovereign-showdown",
+      "terminal": false
+    },
+    {
+      "id": "the-last-choice",
+      "kind": "decision",
+      "title": "The Seventh Relic",
+      "prose": "With the Sovereign fallen, the seventh relic lies exposed and humming, still hungry, still able to unmake or remake in equal measure.",
+      "art": "art-the-hollow-sovereigns-ledger-seventh-relic-exposed",
+      "options": [
+        {
+          "id": "opt-seal-relic",
+          "label": "Seal the relics away forever, sacrificing their power",
+          "target": "ending-seal",
+          "effects": []
+        },
+        {
+          "id": "opt-claim-relic",
+          "label": "Claim the Hollow Sovereign's crown for yourself",
+          "target": "ending-claim",
+          "effects": []
+        },
+        {
+          "id": "opt-shatter-relic",
+          "label": "Shatter the relic here and now, unleashing its raw energy",
+          "target": "ending-lost",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-seal",
+      "kind": "ending",
+      "title": "The Ledger Closed",
+      "prose": "You bind the seventh relic in old wardings and carry it beyond the reach of any crown. Greymantle stops fading. The world does not get everything back, but it stops losing more.",
+      "art": "art-the-hollow-sovereigns-ledger-ending-seal-wardings",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-claim",
+      "kind": "ending",
+      "title": "The New Sovereign",
+      "prose": "You take up the crown of erased kings. The relic's hunger is yours now, quiet and patient, and Greymantle watches you the way it once watched the throne you just emptied.",
+      "art": "art-the-hollow-sovereigns-ledger-ending-claim-new-crown",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-lost",
+      "kind": "ending",
+      "title": "The Unwritten",
+      "prose": "Whether by shattered relic or by failure in the depths, the ledger writes itself without you. Greymantle fades from the map by morning, and no one is quite sure it was ever there at all.",
+      "art": "art-the-hollow-sovereigns-ledger-ending-lost-erasure",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "the-fading-road",
+      "to": "greymantle-gates",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-fading-road",
+      "to": "archivist-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-fading-road",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "greymantle-gates",
+      "to": "town-square-social",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "greymantle-gates",
+      "to": "archivist-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archivist-camp",
+      "to": "town-square-social",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archivist-camp",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "town-square-social",
+      "to": "smugglers-tunnel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "town-square-social",
+      "to": "cult-negotiation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "town-square-social",
+      "to": "warden-assault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "smugglers-tunnel",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "smugglers-tunnel",
+      "to": "town-square-social",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-negotiation",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-negotiation",
+      "to": "warden-assault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-assault",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "onVictory"
+    },
+    {
+      "from": "warden-assault",
+      "to": "ending-lost",
+      "when": {
+        "op": "always"
+      },
+      "note": "onDefeat"
+    },
+    {
+      "from": "warden-assault",
+      "to": "town-square-social",
+      "when": {
+        "op": "always"
+      },
+      "note": "onFlee"
+    },
+    {
+      "from": "ruin-threshold",
+      "to": "relic-vault-puzzle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-threshold",
+      "to": "guardian-encounter",
+      "when": {
+        "op": "eq",
+        "flag": "archivist-ally",
+        "value": true
+      }
+    },
+    {
+      "from": "relic-vault-puzzle",
+      "to": "guardian-encounter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guardian-encounter",
+      "to": "confront-the-sovereign",
+      "when": {
+        "op": "always"
+      },
+      "note": "onVictory"
+    },
+    {
+      "from": "guardian-encounter",
+      "to": "ending-lost",
+      "when": {
+        "op": "always"
+      },
+      "note": "onDefeat"
+    },
+    {
+      "from": "guardian-encounter",
+      "to": "ruin-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "onFlee"
+    },
+    {
+      "from": "confront-the-sovereign",
+      "to": "sovereign-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sovereign-climax",
+      "to": "the-last-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "onVictory"
+    },
+    {
+      "from": "sovereign-climax",
+      "to": "ending-lost",
+      "when": {
+        "op": "always"
+      },
+      "note": "onDefeat"
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-seal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-claim",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-choice",
+      "to": "ending-lost",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "warden-skirmish",
+      "title": "Spears in the Square",
+      "combatants": [
+        {
+          "id": "warden-hobgoblins",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "warden-goblins",
+          "statblock": "goblin",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ruin-threshold",
+      "onDefeat": "ending-lost",
+      "onFlee": "town-square-social"
+    },
+    {
+      "id": "vault-guardians",
+      "title": "The Vault Guardians Wake",
+      "combatants": [
+        {
+          "id": "animated-guardians",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "restless-skeletons",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through to the inner sanctum before the collapsing vault seals shut."
+      },
+      "onVictory": "confront-the-sovereign",
+      "onDefeat": "ending-lost",
+      "onFlee": "ruin-threshold"
+    },
+    {
+      "id": "sovereign-showdown",
+      "title": "The Hollow Sovereign",
+      "combatants": [
+        {
+          "id": "hollow-sovereign",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sovereign-ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "sovereign-shadow",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "hollow-sovereign"
+      },
+      "onVictory": "the-last-choice",
+      "onDefeat": "ending-lost"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "adventure": "the-whisper-coin-accord",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: urban-intrigue, gothic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-whisper-coin-accord-midnight-summons-rooftop",
+      "beat": "midnight-summons",
+      "brief": "A Sealed Data-Chit — Duskmere never truly sleeps; it just changes shift. At 12:14 a.m. a courier drone drops a sealed data-chit at your door — no sender, just three coordi"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ashen-cathedral-audience",
+      "beat": "ashen-audience",
+      "brief": "The Deconsecrated Cathedral — The Ashen Court holds court in a deconsecrated cathedral, its stained glass swapped for two-way mirrors. Lady Mireille Voss, centuries dead and immacu"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-hollow-market-lanterns",
+      "beat": "hollow-market",
+      "brief": "The Market Under the Highway — Beneath the elevated highway, strings of fairy lights and stranger lanterns illuminate stalls selling things that shouldn't be for sale. Thistle Wrens"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ember-archive-stacks",
+      "beat": "ember-archive",
+      "brief": "The Archive Tower — The Ember Court's archive tower smells of scorched paper and old contracts. Cassian Rook, archivist and broker of debts, keeps the city's founding tre"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ember-archive-alarm-wardens",
+      "beat": "ember-scuffle",
+      "brief": "Alarm in the Stacks — Alarm wards flare violet as you're caught among the restricted stacks. Animated wardens — bound skeletal clerks, quill-quick and merciless — converge "
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-shard-trail-nightmap",
+      "beat": "shard-trail",
+      "brief": "The Same Small Thing — Piece by piece, the truth comes together: all three courts want the same small thing, for the same reason, on the same night. The Whisper Coin isn't a"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-relic-keeper-pawnshop",
+      "beat": "relic-keeper",
+      "brief": "Old Sable's Pawnshop — Old Sable operates a pawnshop that only opens after 2 a.m., surrounded by things too strange to fence anywhere else. She confirms the coin passed thro"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-clocktower-sanctuary-gate",
+      "beat": "clocktower-approach",
+      "brief": "The Frozen Face — The Clocktower Sanctuary looms at the city's dead center, its face frozen at a time no one remembers. Old wards — older than any of the three courts —"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-clocktower-guardians-wake",
+      "beat": "clocktower-alarm",
+      "brief": "The Sanctuary Wakes — The Sanctuary's guardians wake at once — ghoulish keepers bound to the old stones long before any night court existed, alongside the animated bones of"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-clocktower-sanctum-coin",
+      "beat": "clocktower-sanctum",
+      "brief": "A Coin of Black Glass — At the Sanctuary's heart, past a century of dust, the Whisper Coin waits on a plinth of black glass — smaller and plainer than all the fuss suggests. "
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-renewal-night-assembly",
+      "beat": "renewal-night",
+      "brief": "The Assembly Hall — Renewal Night arrives at the Assembly Hall, a converted opera house where Ashen, Hollow, and Ember delegates sit in uneasy rows beneath chandeliers of"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ending-ashen-throne",
+      "beat": "ending-ashen-ascendant",
+      "brief": "A Colder Century — Lady Voss rises as the Assembly murmurs. With the Whisper Coin in Ashen hands, the Concord tilts toward the old dead nobility for a century more. Dusk"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ending-hollow-wildlands",
+      "beat": "ending-hollow-freedom",
+      "brief": "A Wilder Duskmere — Thistle Wrenshaw laughs like breaking glass as the Hollow Court claims the vote. The old bindings that kept the fey-exiles leashed to the city's edges"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ending-ember-ledger",
+      "beat": "ending-ember-bargain",
+      "brief": "A City of Contracts — Cassian Rook accepts the coin with the calm of a man collecting on an old debt. The Ember Court's contracts now bind every corner of Duskmere's night "
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ending-walked-away-dawn",
+      "beat": "ending-walked-away",
+      "brief": "An Unresolved Balance — You leave the coin humming on its black glass plinth and walk out of the Clocktower Sanctuary without it. Renewal Night comes and goes without a decid"
+    },
+    {
+      "slot": "art-the-whisper-coin-accord-ending-bound-debtors-room",
+      "beat": "ending-bound",
+      "brief": "A Very Long Debt — You don't walk away from this one. Whichever guardians caught you, they don't forget a Nightbroker who overreached. You wake in a windowless room with"
+    }
+  ]
+}

@@ -1,0 +1,953 @@
+{
+  "id": "the-stitchroad-reckoning",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Stitchroad Reckoning",
+    "premise": "In a world where continents were magically grafted together after an ancient cataclysm, the newest crossing between two stitched lands has swallowed every expedition sent to map it. A lone survivor's cryptic warning offers the only reason anyone would dare the Stitchroad again.",
+    "tone": [
+      "exploration",
+      "high-adventure"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Third-person, vivid and atmospheric, leaning into wonder and dread at the seams between worlds.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen as victims or targets of violence."
+    },
+    "provenance": "flint"
+  },
+  "entry": "threshold-seamgate",
+  "beats": [
+    {
+      "id": "threshold-seamgate",
+      "kind": "threshold",
+      "title": "The Seamgate",
+      "prose": "The town of Seamgate clings to the raw border where two grafted continents were stitched together by the Old Cartographers' magic centuries ago. Ropey scars of fused stone and mismatched soil run through its streets. Beyond the town, the Stitchroad plunges into the crossing itself -- and every expedition sent down it in the last year has vanished without a trace.",
+      "readAloud": "Cold wind carries the smell of two different worlds at once: salt-brine from one horizon, dry cinder-dust from the other. Somewhere below the town, the seam groans like a wound that never quite closed.",
+      "art": "art-the-stitchroad-reckoning-seamgate-arrival",
+      "options": [
+        {
+          "id": "talk-to-lyra",
+          "label": "Seek out Lyra Vessport, the lone survivor of the last expedition",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "social-lyra-briefing",
+          "effects": []
+        },
+        {
+          "id": "inspect-seam-scar",
+          "label": "Examine the raw scar where the continents were stitched",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-seam-scar",
+          "effects": []
+        },
+        {
+          "id": "push-into-stitchroad",
+          "label": "Ignore the warnings and start down the Stitchroad immediately",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hazard-unstable-ground",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "social-lyra-briefing",
+      "kind": "social",
+      "title": "The Survivor's Warning",
+      "prose": "Lyra Vessport sits wrapped in blankets in the back room of the Two-World Inn, her left arm ending in a stump wrapped in seam-silver bandages. She is the only member of the last expedition to return, and she returned wrong -- speaking of a road that folds back on itself and a guardian that was once a person.",
+      "readAloud": "\"It doesn't lead where the maps say,\" Lyra whispers. \"It leads where it wants. But something out there is still alive, still waiting for someone to finish what we started.\"",
+      "art": "art-the-stitchroad-reckoning-lyra-briefing",
+      "options": [
+        {
+          "id": "ask-about-route",
+          "label": "Ask her what she remembers of the route itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-seam-scar",
+          "effects": []
+        },
+        {
+          "id": "ask-for-map",
+          "label": "Ask if she kept any fragment of the expedition's map",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-map-fragment",
+          "effects": []
+        },
+        {
+          "id": "head-into-stitchroad",
+          "label": "Thank her and head straight into the Stitchroad",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hazard-unstable-ground",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "met-lyra",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "discovery-seam-scar",
+      "kind": "discovery",
+      "title": "Where the Worlds Were Sewn",
+      "prose": "Up close, the seam is not a line but a wound of grafted matter -- rootwork from one continent fused mid-growth into basalt from another, rivers that run backward for a hundred feet before remembering which way is downhill. Strange stitch-sigils, half-magical and half-mechanical, still glow faintly along the fault.",
+      "readAloud": "The sigils pulse in a slow rhythm, like a heartbeat too large to belong to anything living -- and yet.",
+      "art": "art-the-stitchroad-reckoning-seam-scar",
+      "options": [
+        {
+          "id": "go-to-lyra",
+          "label": "Go find the survivor everyone's been talking about",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-lyra",
+            "value": false
+          },
+          "target": "social-lyra-briefing",
+          "effects": []
+        },
+        {
+          "id": "head-into-stitchroad-from-scar",
+          "label": "Follow the scar down into the Stitchroad itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hazard-unstable-ground",
+          "effects": []
+        },
+        {
+          "id": "search-for-clues",
+          "label": "Search the fused ground for anything the last expedition left behind",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-map-fragment",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "discovery-map-fragment",
+      "kind": "discovery",
+      "title": "A Torn Map",
+      "prose": "Half-buried in stitch-sand, or pressed into Lyra's trembling hand, a fragment of the expedition's map survives: inked in a cipher of overlapping alphabets from both continents, showing a shrine, a crossing, and a warning scrawled in a shaking hand -- 'It watches from the seam.'",
+      "readAloud": "The parchment feels warm, as though it remembers being carried by someone running.",
+      "art": "art-the-stitchroad-reckoning-map-fragment",
+      "options": [
+        {
+          "id": "go-to-lyra-from-map",
+          "label": "Bring the fragment to Lyra to ask what it means",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-lyra",
+            "value": false
+          },
+          "target": "social-lyra-briefing",
+          "effects": []
+        },
+        {
+          "id": "study-fragment",
+          "label": "Sit down and try to work out the cipher yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "puzzle-seam-cipher",
+          "effects": []
+        },
+        {
+          "id": "head-into-stitchroad-from-map",
+          "label": "Pocket the fragment and head into the Stitchroad now",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hazard-unstable-ground",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "has-map-fragment",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "puzzle-seam-cipher",
+      "kind": "puzzle",
+      "title": "The Overlapping Alphabets",
+      "prose": "The map fragment's script is two languages fused into one, letters from each continent grafted together the way the land itself was. Untangling it might reveal a safer path -- or at least tell you what waits at the shrine ahead.",
+      "readAloud": "Every third symbol seems to belong to neither alphabet, but to something new born entirely from the seam.",
+      "art": "art-the-stitchroad-reckoning-cipher-puzzle",
+      "options": [
+        {
+          "id": "decode-cipher",
+          "label": "Carefully decode the fused script",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-map-fragment",
+            "value": true
+          },
+          "target": "discovery-warden-shrine",
+          "effects": [
+            {
+              "flag": "has-seam-key",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 15,
+            "onFailure": "hazard-unstable-ground"
+          }
+        },
+        {
+          "id": "abandon-cipher",
+          "label": "Give up on the cipher and take the direct road instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hazard-unstable-ground",
+          "effects": []
+        },
+        {
+          "id": "ask-lyra-for-help",
+          "label": "Take the fragment back to Lyra for help",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-lyra",
+            "value": false
+          },
+          "target": "social-lyra-briefing",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hazard-unstable-ground",
+      "kind": "hazard",
+      "title": "The Shifting Fissure",
+      "prose": "The Stitchroad bucks and ripples beneath your feet where the graft is still settling after all these centuries. A fissure has opened ahead, venting cold light from whatever lies between the two fused worlds beneath the road.",
+      "readAloud": "The ground groans like something enormous rolling over in its sleep.",
+      "art": "art-the-stitchroad-reckoning-unstable-ground",
+      "options": [
+        {
+          "id": "leap-the-fissure",
+          "label": "Time the tremors and leap the fissure",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-warden-shrine",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "dc": 13,
+            "onFailure": "conflict-seam-wardens"
+          }
+        },
+        {
+          "id": "find-stable-route",
+          "label": "Take the slower, more stable path around the fissure",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-warden-shrine",
+          "effects": []
+        },
+        {
+          "id": "retreat-to-lyra",
+          "label": "Retreat to Seamgate to ask the survivor for better guidance",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-lyra",
+            "value": false
+          },
+          "target": "social-lyra-briefing",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "discovery-warden-shrine",
+      "kind": "discovery",
+      "title": "The Shrine of the Seam Wardens",
+      "prose": "A half-buried shrine straddles the exact line of the graft, its statues carved with faces from both continents merged into one. Glyphs crawl across its surface, and a mechanism -- clearly meant to be opened with a key -- sits at its heart.",
+      "readAloud": "The statues' merged faces seem to watch you, patient and ancient and not entirely stone.",
+      "art": "art-the-stitchroad-reckoning-warden-shrine",
+      "options": [
+        {
+          "id": "offer-key-to-shrine",
+          "label": "Fit the seam-key you decoded into the mechanism",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-seam-key",
+            "value": true
+          },
+          "target": "decision-the-crossing",
+          "effects": [
+            {
+              "flag": "freed-warden-spirit",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "examine-shrine-glyphs",
+          "label": "Study the glyphs to understand the mechanism without a key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "puzzle-warden-glyphs",
+          "effects": []
+        },
+        {
+          "id": "push-past-shrine",
+          "label": "Force your way past the shrine without solving anything",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "conflict-seam-wardens",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "conflict-seam-wardens",
+      "kind": "conflict",
+      "title": "The Shrine Wakes",
+      "prose": "The merged statues shudder and split apart into animated guardians of fused metal and living shadow, their forms neither wholly one continent's craft nor the other's. They do not seem interested in killing you outright -- only in keeping you from passing.",
+      "readAloud": "Stone hinges grind open where no hinges should exist, and shadows peel off the walls to stand upright.",
+      "art": "art-the-stitchroad-reckoning-seam-wardens-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-seam-wardens",
+      "terminal": false
+    },
+    {
+      "id": "puzzle-warden-glyphs",
+      "kind": "puzzle",
+      "title": "Reading the Merged Faces",
+      "prose": "The glyphs describe a covenant: the wardens were once living people from both continents, bound into the shrine to keep the seam from tearing further. Freeing the spirit trapped within requires understanding a ritual grammar built from two grammars fused together.",
+      "readAloud": "One glyph repeats over and over, worn smooth by centuries of hands tracing it: a plea, not a command.",
+      "art": "art-the-stitchroad-reckoning-warden-glyphs",
+      "options": [
+        {
+          "id": "solve-glyphs",
+          "label": "Piece together the ritual grammar and speak the covenant aloud",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "decision-the-crossing",
+          "effects": [
+            {
+              "flag": "freed-warden-spirit",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "religion",
+            "dc": 14,
+            "onFailure": "conflict-stitchroad-guardian"
+          }
+        },
+        {
+          "id": "force-the-mechanism",
+          "label": "Give up on the ritual and force the mechanism open",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "conflict-stitchroad-guardian",
+          "effects": []
+        },
+        {
+          "id": "retreat-and-regroup",
+          "label": "Step back from the shrine to regroup and reconsider",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "discovery-warden-shrine",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "decision-the-crossing",
+      "kind": "decision",
+      "title": "The Guarded Crossing",
+      "prose": "Ahead, the Stitchroad narrows to a single crossing point where the two continents' bedrock finally meets -- and it is held by armed guardians who once protected travelers, now turned bandits feeding on the crossing's isolation.",
+      "readAloud": "Firelight flickers from a barricade built of old expedition wagons, and voices argue over who gets first pick of the next batch of salvage.",
+      "art": "art-the-stitchroad-reckoning-the-crossing-decision",
+      "options": [
+        {
+          "id": "approach-openly",
+          "label": "Approach openly and be ready to fight your way through",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "conflict-stitchroad-guardian",
+          "effects": []
+        },
+        {
+          "id": "sneak-along-warden-path",
+          "label": "Use the freed warden spirit's guidance to slip past unseen",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "freed-warden-spirit",
+            "value": true
+          },
+          "target": "climax-the-open-seam",
+          "effects": []
+        },
+        {
+          "id": "negotiate-with-the-guardian",
+          "label": "Try to talk your way past by invoking the shrine's old covenant",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-the-open-seam",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "conflict-stitchroad-guardian",
+      "kind": "conflict",
+      "title": "The Crossing Barricade",
+      "prose": "The bandits holding the crossing were once its protectors, and they fight like it -- disciplined, coordinated, and utterly unwilling to let anyone else vanish into the seam on their watch, whatever the cost.",
+      "readAloud": "Their captain barks orders in a voice worn ragged from years of guarding a road nobody thanked them for guarding.",
+      "art": "art-the-stitchroad-reckoning-stitchroad-guardian-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-stitchroad-guardian",
+      "terminal": false
+    },
+    {
+      "id": "climax-the-open-seam",
+      "kind": "climax",
+      "title": "The Open Seam",
+      "prose": "Beyond the crossing, the Stitchroad ends at the seam itself: a vertical tear of light and dark where the two continents were never quite finished being joined. Through it, you can see fragments of a third, unstitched land drifting just out of reach -- and feel the whole graft trembling, ready to tear wider or heal shut, depending on what you do next.",
+      "readAloud": "The seam breathes. Somewhere inside it, something that might once have been an expedition calls out, faint and looping, still waiting to be found.",
+      "art": "art-the-stitchroad-reckoning-open-seam-climax",
+      "options": [
+        {
+          "id": "seal-the-seam",
+          "label": "Use everything you've learned to seal the seam shut for good",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-seam-sealed",
+          "effects": []
+        },
+        {
+          "id": "cross-through-to-new-lands",
+          "label": "Step through the seam into the unstitched land beyond",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-new-horizon",
+          "effects": []
+        },
+        {
+          "id": "sacrifice-self-to-stabilize",
+          "label": "Offer yourself as the seam's new warden to stabilize it forever",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "freed-warden-spirit",
+            "value": true
+          },
+          "target": "ending-heros-sacrifice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-seam-sealed",
+      "kind": "ending",
+      "title": "The Seam Sealed",
+      "prose": "With the last of the shrine's covenant and your own hard-won knowledge, you close the tear between the continents for good. The road stops swallowing travelers. Seamgate will remember your names as the ones who ended the disappearances -- though what waited on the other side remains forever unknown.",
+      "art": "art-the-stitchroad-reckoning-ending-seam-sealed",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-new-horizon",
+      "kind": "ending",
+      "title": "The Third Land",
+      "prose": "You step through the seam and find not a grave for lost expeditions, but a whole unstitched continent, raw and unclaimed, waiting on the other side of the tear. You are the first to return with proof it exists -- and the first reason anyone will ever have to try the crossing again on purpose.",
+      "art": "art-the-stitchroad-reckoning-ending-new-horizon",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-heros-sacrifice",
+      "kind": "ending",
+      "title": "The New Warden",
+      "prose": "You take up the freed spirit's old post, binding yourself into the shrine to hold the seam steady. It is not death, exactly -- more a patient watching, a covenant renewed. Travelers will cross safely now, never knowing whose vigilance makes it possible.",
+      "art": "art-the-stitchroad-reckoning-ending-heros-sacrifice",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-lost-to-the-seam",
+      "kind": "ending",
+      "title": "Lost to the Seam",
+      "prose": "The Stitchroad claims you as it claimed every expedition before, your names added to the list of those who tried and did not return. Somewhere in Seamgate, someone else will hear the survivor's warning and wonder if they should be the next to try.",
+      "art": "art-the-stitchroad-reckoning-ending-lost-seam",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "threshold-seamgate",
+      "to": "social-lyra-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "threshold-seamgate",
+      "to": "discovery-seam-scar",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "threshold-seamgate",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "social-lyra-briefing",
+      "to": "discovery-seam-scar",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "social-lyra-briefing",
+      "to": "discovery-map-fragment",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "social-lyra-briefing",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-seam-scar",
+      "to": "social-lyra-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-seam-scar",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-seam-scar",
+      "to": "discovery-map-fragment",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-map-fragment",
+      "to": "social-lyra-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-map-fragment",
+      "to": "puzzle-seam-cipher",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-map-fragment",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "puzzle-seam-cipher",
+      "to": "discovery-warden-shrine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "puzzle-seam-cipher",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "puzzle-seam-cipher",
+      "to": "social-lyra-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hazard-unstable-ground",
+      "to": "discovery-warden-shrine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hazard-unstable-ground",
+      "to": "conflict-seam-wardens",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hazard-unstable-ground",
+      "to": "social-lyra-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-warden-shrine",
+      "to": "decision-the-crossing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-warden-shrine",
+      "to": "puzzle-warden-glyphs",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "discovery-warden-shrine",
+      "to": "conflict-seam-wardens",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "conflict-seam-wardens",
+      "to": "puzzle-warden-glyphs",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "conflict-seam-wardens",
+      "to": "ending-lost-to-the-seam",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "conflict-seam-wardens",
+      "to": "hazard-unstable-ground",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "puzzle-warden-glyphs",
+      "to": "decision-the-crossing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "puzzle-warden-glyphs",
+      "to": "conflict-stitchroad-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "puzzle-warden-glyphs",
+      "to": "discovery-warden-shrine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decision-the-crossing",
+      "to": "conflict-stitchroad-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decision-the-crossing",
+      "to": "climax-the-open-seam",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "conflict-stitchroad-guardian",
+      "to": "climax-the-open-seam",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "conflict-stitchroad-guardian",
+      "to": "ending-lost-to-the-seam",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "conflict-stitchroad-guardian",
+      "to": "decision-the-crossing",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "climax-the-open-seam",
+      "to": "ending-seam-sealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-the-open-seam",
+      "to": "ending-new-horizon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-the-open-seam",
+      "to": "ending-heros-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "enc-seam-wardens",
+      "title": "The Shrine Wakes",
+      "combatants": [
+        {
+          "id": "armor-1",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "armor-2",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "shadow-1",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "shadow-2",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "puzzle-warden-glyphs",
+      "onDefeat": "ending-lost-to-the-seam",
+      "onFlee": "hazard-unstable-ground"
+    },
+    {
+      "id": "enc-stitchroad-guardian",
+      "title": "The Crossing Barricade",
+      "combatants": [
+        {
+          "id": "hobgoblin-1",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-2",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-3",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-captain-1",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "climax-the-open-seam",
+      "onDefeat": "ending-lost-to-the-seam",
+      "onFlee": "decision-the-crossing"
+    }
+  ]
+}

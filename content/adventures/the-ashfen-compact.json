@@ -1,0 +1,938 @@
+{
+  "id": "the-ashfen-compact",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ashfen Compact",
+    "premise": "In the mist-choked city of Veylmoor, a secret society's decades-old crime refuses to stay drowned, and the last of the family they destroyed still pays the price.",
+    "tone": [
+      "gothic-horror",
+      "urban-intrigue"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A somber, atmospheric narrator who lingers on fog, candlelight, guttering lanterns, and old guilt.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No depiction of harm to children, even off-screen references should remain vague."
+    },
+    "provenance": "flint"
+  },
+  "entry": "sealed-invitation",
+  "beats": [
+    {
+      "id": "sealed-invitation",
+      "kind": "threshold",
+      "title": "The Sealed Letter",
+      "prose": "A letter arrives at your door past midnight, its wax seal pressed with an ashen sigil you do not recognize. It names you by a title you've never held and bids you come to the old Chapterhouse on Verrow Street, where the fog never lifts.",
+      "readAloud": "The wax cracks like a small bone beneath your thumb. Inside, a single line of copperplate script: 'The Compact remembers what the city forgets. Come tonight.'",
+      "art": "art-the-ashfen-compact-sealed-invitation-art",
+      "options": [
+        {
+          "id": "opt-follow-invitation",
+          "label": "Follow the invitation into the mist",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mist-bound-streets",
+          "effects": []
+        },
+        {
+          "id": "opt-investigate-messenger",
+          "label": "Investigate the messenger before going",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mist-bound-streets",
+          "effects": []
+        },
+        {
+          "id": "opt-burn-letter",
+          "label": "Burn the letter and go looking for the Compact yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mist-bound-streets",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mist-bound-streets",
+      "kind": "transit",
+      "title": "Streets of Veylmoor",
+      "prose": "Veylmoor's fog rolls thick between leaning tenements and drowned streetlamps. Shapes move at the edges of sight. Somewhere a bell tolls the hour wrong, twice.",
+      "readAloud": "The mist tastes of salt and rust. Your footsteps vanish into it as soon as you make them.",
+      "art": "art-the-ashfen-compact-mist-bound-streets-art",
+      "options": [
+        {
+          "id": "opt-shadow-alley",
+          "label": "Take the shadowed alley shortcut",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "initiation-rite",
+          "effects": []
+        },
+        {
+          "id": "opt-main-thoroughfare",
+          "label": "Walk the main thoroughfare, watching the fog",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "initiation-rite",
+          "effects": []
+        },
+        {
+          "id": "opt-lantern-vendor",
+          "label": "Pause to question a mist-lantern vendor",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "initiation-rite",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 12,
+            "onFailure": "initiation-rite"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "initiation-rite",
+      "kind": "social",
+      "title": "The Chapterhouse Doors",
+      "prose": "Robed figures wait beneath a mural of a drowning man. Their leader, Elder Cassian Thorne, extends a hand marked with old scars and older ink, welcoming you to the Ashfen Compact.",
+      "readAloud": "'We keep the city's secrets so the city need not carry them,' Thorne says. 'Will you carry one with us?'",
+      "art": "art-the-ashfen-compact-initiation-rite-art",
+      "options": [
+        {
+          "id": "opt-swear-oath",
+          "label": "Swear the oath and join the Compact",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-whispers",
+          "effects": [
+            {
+              "flag": "joined-compact",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-observe-quietly",
+          "label": "Play along without swearing, observing quietly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-whispers",
+          "effects": [
+            {
+              "flag": "joined-compact",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-demand",
+          "label": "Refuse the oath and demand answers about the rumors",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-whispers",
+          "effects": [
+            {
+              "flag": "joined-compact",
+              "value": false
+            },
+            {
+              "flag": "defiant",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-whispers",
+      "kind": "discovery",
+      "title": "The Whispering Archive",
+      "prose": "Beneath the Chapterhouse, a vault of ledgers and locked drawers hums with old paper and older secrets. One ledger, bound in waterlogged leather, bears the name Hollowmere in fading ink.",
+      "readAloud": "The entry is dated thirty years past: 'The Hollowmere matter concluded at the harbor. The tide keeps its own counsel.'",
+      "art": "art-the-ashfen-compact-archive-whispers-art",
+      "options": [
+        {
+          "id": "opt-read-ledger",
+          "label": "Read the ledger in full",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mara-hollowmere",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-copy-pages",
+          "label": "Copy pages hastily and leave before you're noticed",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mara-hollowmere",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-restricted-vault",
+          "label": "Use your membership to slip into the restricted vault",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "joined-compact",
+            "value": true
+          },
+          "target": "mara-hollowmere",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mara-hollowmere",
+      "kind": "social",
+      "title": "The Last Hollowmere",
+      "prose": "In a rented room above a shuttered fish market, you find Mara Hollowmere—thin, hollow-eyed, aging in ways that make no sense. She says her family's ghosts have started visiting her dreams again.",
+      "readAloud": "'They drowned my grandfather to seal a bargain,' Mara says. 'And something in me has been paying the debt ever since.'",
+      "art": "art-the-ashfen-compact-mara-hollowmere-art",
+      "options": [
+        {
+          "id": "opt-promise-help",
+          "label": "Promise to help her uncover the truth",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": [
+            {
+              "flag": "promised-mara",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-warn-flee",
+          "label": "Warn her to flee the city while she still can",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": [
+            {
+              "flag": "promised-mara",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "opt-report-mara",
+          "label": "Report her to the Compact elders instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": [
+            {
+              "flag": "promised-mara",
+              "value": false
+            },
+            {
+              "flag": "betrayed-mara",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choose-approach",
+      "kind": "decision",
+      "title": "A Path Through the Fog",
+      "prose": "Three threads pull at you: the drowned harbor where the old wrong was done, the elders who ordered it, and a wardstone rumored to bind restless spirits.",
+      "readAloud": "Somewhere below the city, the tide keeps rising toward an old debt.",
+      "art": "art-the-ashfen-compact-choose-approach-art",
+      "options": [
+        {
+          "id": "opt-go-harbor",
+          "label": "Investigate the old harbor where the drowning happened",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "harbor-secret",
+          "effects": []
+        },
+        {
+          "id": "opt-go-confront",
+          "label": "Confront the Compact elders directly with what you know",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "confront-elders",
+          "effects": []
+        },
+        {
+          "id": "opt-go-wardstone",
+          "label": "Seek the ritual wardstone said to bind restless spirits",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ritual-wardstone",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "harbor-secret",
+      "kind": "discovery",
+      "title": "The Drowned Harbor",
+      "prose": "Rotted pilings claw up from black water. A sunken warehouse leans half-submerged, and an old dockmaster still haunts the pier, muttering about a night thirty years gone.",
+      "readAloud": "'They took him out past the breakwater,' the dockmaster rasps. 'Weighted him down with the Compact's own coin. I still hear him some nights.'",
+      "art": "art-the-ashfen-compact-harbor-secret-art",
+      "options": [
+        {
+          "id": "opt-search-warehouse",
+          "label": "Search the sunken warehouse for evidence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-tide-hazard",
+          "effects": []
+        },
+        {
+          "id": "opt-question-dockmaster",
+          "label": "Question the old dockmaster further",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-tide-hazard",
+          "effects": []
+        },
+        {
+          "id": "opt-bring-findings",
+          "label": "Take what you've learned straight to the elders",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-elders",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-tide-hazard",
+      "kind": "hazard",
+      "title": "The Rising Tide",
+      "prose": "The water in the warehouse begins to churn and rise unnaturally, cold hands of foam grasping at your ankles. Something old and drowned stirs beneath the surface.",
+      "readAloud": "The mist over the water thickens into a shape with a face you half-recognize from a portrait in the ledger.",
+      "art": "art-the-ashfen-compact-drowned-tide-hazard-art",
+      "options": [
+        {
+          "id": "opt-wade-through",
+          "label": "Wade straight through the rising water",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wight-rises",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 13,
+            "onFailure": "wight-rises"
+          }
+        },
+        {
+          "id": "opt-climb-pier",
+          "label": "Climb along the rotting pier beams",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wight-rises",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "acrobatics",
+            "dc": 12,
+            "onFailure": "wight-rises"
+          }
+        },
+        {
+          "id": "opt-call-out",
+          "label": "Call out to the mist, daring it to show itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wight-rises",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wight-rises",
+      "kind": "conflict",
+      "title": "The Drowned Patriarch",
+      "prose": "Josiah Hollowmere rises from the black water, wight-pale and furious, flanked by two bloated shapes that were once his killers' hired hands. He does not recognize mercy anymore.",
+      "readAloud": "'Thirty years,' the wight hisses, water pouring from its mouth like an unending confession. 'Thirty years unanswered.'",
+      "art": "art-the-ashfen-compact-wight-rises-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wight-rises-encounter",
+      "terminal": false
+    },
+    {
+      "id": "ritual-wardstone",
+      "kind": "puzzle",
+      "title": "The Wardstone",
+      "prose": "In a hidden shrine beneath the harbor road, you find the wardstone—a carved basalt disc humming with old, contained grief. It could bind a spirit, shatter to unleash one, or simply be carried away.",
+      "readAloud": "Runes spiral across the stone's face, worn smooth by thirty years of trembling hands.",
+      "art": "art-the-ashfen-compact-ritual-wardstone-art",
+      "options": [
+        {
+          "id": "opt-bind-spirit",
+          "label": "Use the wardstone to bind the wight's spirit permanently",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-elders",
+          "effects": [
+            {
+              "flag": "wardstone-choice",
+              "value": "bound"
+            }
+          ]
+        },
+        {
+          "id": "opt-shatter-stone",
+          "label": "Shatter the wardstone, freeing the spirit's rage upon the Compact",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-elders",
+          "effects": [
+            {
+              "flag": "wardstone-choice",
+              "value": "shattered"
+            }
+          ]
+        },
+        {
+          "id": "opt-give-to-mara",
+          "label": "Take the wardstone to Mara instead, unused",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-elders",
+          "effects": [
+            {
+              "flag": "wardstone-choice",
+              "value": "given-mara"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-elders",
+      "kind": "social",
+      "title": "The Elders' Reckoning",
+      "prose": "Elder Thorne and the inner circle receive you in the Chapterhouse's sealed hall, candlelight flickering against portraits of the drowned. Whatever you know, they can see it in your face.",
+      "readAloud": "'Careful,' Thorne murmurs. 'Some debts are best left to the tide.'",
+      "art": "art-the-ashfen-compact-confront-elders-art",
+      "options": [
+        {
+          "id": "opt-present-evidence",
+          "label": "Present the evidence and demand they confess",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "elders-guard",
+          "effects": []
+        },
+        {
+          "id": "opt-threaten-expose",
+          "label": "Threaten to expose them publicly",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "defiant",
+            "value": true
+          },
+          "target": "elders-guard",
+          "effects": []
+        },
+        {
+          "id": "opt-offer-silence",
+          "label": "Offer silence in exchange for protection for Mara",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-choice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "elders-guard",
+      "kind": "conflict",
+      "title": "Blades in the Candlelight",
+      "prose": "Thorne's expression hardens. Robes fall away to reveal steel as the Compact's hidden enforcers close in around you, determined that tonight's secrets stay buried with the last ones.",
+      "readAloud": "'You should have taken the coin,' the guard-captain says, drawing a blade already dark with old use.",
+      "art": "art-the-ashfen-compact-elders-guard-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "elders-guard-encounter",
+      "terminal": false
+    },
+    {
+      "id": "final-choice",
+      "kind": "decision",
+      "title": "The Weight of the Truth",
+      "prose": "The mist outside the Chapterhouse seems to hold its breath. Everything you've learned, freed or bound, promised or betrayed, now comes to a single reckoning.",
+      "readAloud": "The city waits, indifferent, for whatever you decide to do with its oldest, wettest secret.",
+      "art": "art-the-ashfen-compact-final-choice-art",
+      "options": [
+        {
+          "id": "opt-expose-compact",
+          "label": "Expose the Compact's crime to all of Veylmoor",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "ending-truth-exposed",
+          "effects": []
+        },
+        {
+          "id": "opt-let-continue",
+          "label": "Let the Compact continue, its secrets sealed once more",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-compact-preserved",
+          "effects": []
+        },
+        {
+          "id": "opt-free-mara",
+          "label": "Use the wardstone's gift to break Mara's curse and free her",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "promised-mara",
+                "value": true
+              },
+              {
+                "op": "neq",
+                "flag": "betrayed-mara",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "wardstone-choice",
+                "value": "given-mara"
+              }
+            ]
+          },
+          "target": "ending-mara-freed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-truth-exposed",
+      "kind": "ending",
+      "title": "The Tide Remembers",
+      "prose": "By dawn, broadsheets across Veylmoor carry the Hollowmere name and the Compact's crime. The Chapterhouse burns not with fire but with ruin—reputations drowned as surely as Josiah once was. Mara stands in the grey light, finally believed.",
+      "readAloud": "For the first time in thirty years, the mist over the harbor seems to thin, just a little.",
+      "art": "art-the-ashfen-compact-ending-truth-exposed-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-compact-preserved",
+      "kind": "ending",
+      "title": "What the Fog Keeps",
+      "prose": "The Chapterhouse doors close behind you, its secrets undisturbed. Somewhere below the city, the tide still murmurs an old man's name, and somewhere above, Mara Hollowmere keeps aging in ways no physician can explain.",
+      "readAloud": "The mist does not lift over Veylmoor tonight, or any night after.",
+      "art": "art-the-ashfen-compact-ending-compact-preserved-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-mara-freed",
+      "kind": "ending",
+      "title": "A Debt Repaid",
+      "prose": "The wardstone's old grief passes from Mara like a held breath finally released. She will still carry her family's memory, but no longer its curse. The Compact's secrets remain buried, but at least one debt has finally been paid.",
+      "readAloud": "For the first time since you met her, Mara Hollowmere looks her true age—and smiles like it.",
+      "art": "art-the-ashfen-compact-ending-mara-freed-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "sealed-invitation",
+      "to": "mist-bound-streets",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mist-bound-streets",
+      "to": "initiation-rite",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "initiation-rite",
+      "to": "archive-whispers",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-whispers",
+      "to": "mara-hollowmere",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mara-hollowmere",
+      "to": "choose-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choose-approach",
+      "to": "harbor-secret",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choose-approach",
+      "to": "confront-elders",
+      "when": {
+        "op": "eq",
+        "flag": "knows-truth",
+        "value": true
+      }
+    },
+    {
+      "from": "choose-approach",
+      "to": "ritual-wardstone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "harbor-secret",
+      "to": "drowned-tide-hazard",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "harbor-secret",
+      "to": "confront-elders",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-tide-hazard",
+      "to": "wight-rises",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wight-rises",
+      "to": "ritual-wardstone",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "wight-rises",
+      "to": "ending-compact-preserved",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "wight-rises",
+      "to": "confront-elders",
+      "when": {
+        "op": "always"
+      },
+      "note": "on flee"
+    },
+    {
+      "from": "ritual-wardstone",
+      "to": "confront-elders",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-elders",
+      "to": "elders-guard",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-elders",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "elders-guard",
+      "to": "final-choice",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "elders-guard",
+      "to": "ending-compact-preserved",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat"
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-truth-exposed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-compact-preserved",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-choice",
+      "to": "ending-mara-freed",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "wight-rises-encounter",
+      "title": "The Drowned Patriarch's Wrath",
+      "combatants": [
+        {
+          "id": "vengeful-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "risen-thrall-1",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "risen-thrall-2",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "fog",
+        "difficult",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ritual-wardstone",
+      "onDefeat": "ending-compact-preserved",
+      "onFlee": "confront-elders"
+    },
+    {
+      "id": "elders-guard-encounter",
+      "title": "Enforcers of the Compact",
+      "combatants": [
+        {
+          "id": "guard-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "guard-1",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "guard-2",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "final-choice",
+      "onDefeat": "ending-compact-preserved"
+    }
+  ]
+}

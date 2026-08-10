@@ -1,0 +1,850 @@
+{
+  "id": "the-hollow-toll",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Toll",
+    "premise": "A wrong turn through unnatural fog strands the party in a cursed domain bound to an old betrayal, where the dead still pay a debt the living refuse to remember.",
+    "tone": [
+      "gothic-horror",
+      "high-adventure"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A somber, atmospheric narrator who lingers on decay and half-remembered guilt.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are harmed or threatened on-screen anywhere in this adventure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-wrong-turn",
+  "beats": [
+    {
+      "id": "the-wrong-turn",
+      "kind": "threshold",
+      "title": "The Wrong Turn",
+      "prose": "A bank of unnatural fog swallows the road behind you. Ahead, the trees are wrong somehow — too still, too old. You have crossed into somewhere that was not on any map.",
+      "readAloud": "The mist tastes of iron and old candle-smoke. Somewhere a bell tolls once, though you see no tower.",
+      "art": "art-the-hollow-toll-wrong-turn",
+      "options": [
+        {
+          "id": "push-through-the-mist",
+          "label": "Push forward through the mist",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-village-of-hollow-mourning",
+          "effects": []
+        },
+        {
+          "id": "track-the-old-road",
+          "label": "Try to track the old road back the way you came",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-village-of-hollow-mourning",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 13,
+            "onFailure": "ambush-at-the-crossroads"
+          }
+        },
+        {
+          "id": "follow-the-lantern-light",
+          "label": "Follow a distant, swaying lantern light",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-buried-chapel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-village-of-hollow-mourning",
+      "kind": "discovery",
+      "title": "The Village of Hollow Mourning",
+      "prose": "Shuttered houses lean against each other like mourners at a grave. No smoke rises from any chimney, yet you feel watched from every window.",
+      "art": "art-the-hollow-toll-village-mourning",
+      "options": [
+        {
+          "id": "speak-with-the-locals",
+          "label": "Speak with the few locals you can find",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-keeper-of-tolls",
+          "effects": []
+        },
+        {
+          "id": "search-the-empty-houses",
+          "label": "Search the empty houses for answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-buried-chapel",
+          "effects": []
+        },
+        {
+          "id": "press-toward-the-manor",
+          "label": "Press on toward the distant manor",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ambush-at-the-crossroads",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-buried-chapel",
+      "kind": "discovery",
+      "title": "The Buried Chapel",
+      "prose": "Half-sunk into the earth, a small chapel holds a crumbling diary and an altar stained dark with something older than paint.",
+      "art": "art-the-hollow-toll-buried-chapel",
+      "options": [
+        {
+          "id": "read-the-old-diary",
+          "label": "Read the old diary by candlelight",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-sealed-crypt",
+          "effects": [
+            {
+              "flag": "learned-old-wrong",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "pray-at-the-altar",
+          "label": "Kneel and pray at the altar",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-grieving-widow",
+          "effects": []
+        },
+        {
+          "id": "leave-the-chapel",
+          "label": "Leave the chapel undisturbed",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-keeper-of-tolls",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-keeper-of-tolls",
+      "kind": "social",
+      "title": "The Keeper of Tolls",
+      "prose": "A pale figure in a tollkeeper's coat waits at a bridge that leads nowhere. 'Everyone pays here,' he says. 'The question is only what.'",
+      "art": "art-the-hollow-toll-keeper-tolls",
+      "options": [
+        {
+          "id": "pay-the-toll-with-a-memory",
+          "label": "Pay the toll with a cherished memory",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-grieving-widow",
+          "effects": []
+        },
+        {
+          "id": "refuse-and-demand-answers",
+          "label": "Refuse to pay and demand answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ambush-at-the-crossroads",
+          "effects": []
+        },
+        {
+          "id": "ask-about-the-old-wrong",
+          "label": "Ask him about the old wrong done here",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-sealed-crypt",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ambush-at-the-crossroads",
+      "kind": "conflict",
+      "title": "Ambush at the Crossroads",
+      "prose": "Bones stir beneath the crossroads stones. The dead rise, jaws clacking with a hunger older than memory.",
+      "art": "art-the-hollow-toll-crossroads-ambush",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "encounter-crossroads-ambush",
+      "terminal": false
+    },
+    {
+      "id": "the-sealed-crypt",
+      "kind": "puzzle",
+      "title": "The Sealed Crypt",
+      "prose": "A crypt door is bound shut with rune-carved iron. Something within it hums, waiting to be understood or broken.",
+      "art": "art-the-hollow-toll-sealed-crypt",
+      "options": [
+        {
+          "id": "decipher-the-runes",
+          "label": "Carefully decipher the warding runes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-grieving-widow",
+          "effects": [
+            {
+              "flag": "crypt-opened",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "the-collapsing-vault"
+          }
+        },
+        {
+          "id": "force-the-door",
+          "label": "Force the crypt door open by strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-collapsing-vault",
+          "effects": []
+        },
+        {
+          "id": "seek-another-way",
+          "label": "Seek another way around the crypt",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-grieving-widow",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-grieving-widow",
+      "kind": "social",
+      "title": "The Grieving Widow",
+      "prose": "A woman in tattered mourning clothes tends a grave that never fills. She has waited generations for someone to listen.",
+      "art": "art-the-hollow-toll-grieving-widow",
+      "options": [
+        {
+          "id": "offer-to-help-her",
+          "label": "Offer to help her set things right",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-choice-of-mercy",
+          "effects": [
+            {
+              "flag": "widow-alliance",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "interrogate-her-about-the-past",
+          "label": "Interrogate her about the past",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-choice-of-mercy",
+          "effects": []
+        },
+        {
+          "id": "dismiss-her-and-leave",
+          "label": "Dismiss her grief and move on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-choice-of-mercy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-choice-of-mercy",
+      "kind": "decision",
+      "title": "The Choice of Mercy",
+      "prose": "The truth of the domain's curse is close now: a lord who broke an oath to save himself, and a debt the dead have paid ever since. What will you do with what you know?",
+      "art": "art-the-hollow-toll-choice-mercy",
+      "options": [
+        {
+          "id": "show-mercy-to-the-cursed-lord",
+          "label": "Resolve to show the cursed lord mercy",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-old-wrong",
+            "value": true
+          },
+          "target": "the-collapsing-vault",
+          "effects": [
+            {
+              "flag": "showed-mercy",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "strike-down-the-cursed-lords-servants",
+          "label": "Strike down the cursed lord's remaining servants",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-wight-of-broken-oaths",
+          "effects": [
+            {
+              "flag": "broke-oath",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "try-to-bargain",
+          "label": "Try to bargain for a way to end the curse",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-collapsing-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-wight-of-broken-oaths",
+      "kind": "conflict",
+      "title": "The Wight of Broken Oaths",
+      "prose": "A knight who once swore loyalty and broke it rises from the crypt floor, its blade still gleaming with unfinished business.",
+      "art": "art-the-hollow-toll-wight-oath",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "encounter-wight-oath",
+      "terminal": false
+    },
+    {
+      "id": "the-collapsing-vault",
+      "kind": "hazard",
+      "title": "The Collapsing Vault",
+      "prose": "The ground shudders. Stone dust rains down as the vault beneath the manor begins to fold in on itself, the curse-bearer's throne visible through the widening cracks.",
+      "art": "art-the-hollow-toll-collapsing-vault",
+      "options": [
+        {
+          "id": "brace-the-support-beams",
+          "label": "Brace the failing support beams",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-curse-bearer-confrontation",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 13,
+            "onFailure": "the-lords-final-guard"
+          }
+        },
+        {
+          "id": "use-the-crypt-relic-to-calm-the-vault",
+          "label": "Use what you found in the crypt to calm the vault",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "crypt-opened",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "showed-mercy",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-curse-bearer-confrontation",
+          "effects": []
+        },
+        {
+          "id": "flee-through-the-collapsing-passage",
+          "label": "Flee through the collapsing passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-lords-final-guard",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-lords-final-guard",
+      "kind": "conflict",
+      "title": "The Lord's Final Guard",
+      "prose": "The last defenders of the cursed lord's honor bar your path amid falling stone, fighting not for victory but for time.",
+      "art": "art-the-hollow-toll-lords-guard",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "encounter-lords-guard",
+      "terminal": false
+    },
+    {
+      "id": "the-curse-bearer-confrontation",
+      "kind": "climax",
+      "title": "The Curse-Bearer's Confrontation",
+      "prose": "At last you stand before the cursed lord himself, bound to his throne by chains of guilt and regret. He looks at you, and for the first time in centuries, someone looks back.",
+      "art": "art-the-hollow-toll-curse-confrontation",
+      "options": [
+        {
+          "id": "offer-the-widows-forgiveness",
+          "label": "Offer the widow's forgiveness in her name",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "widow-alliance",
+            "value": true
+          },
+          "target": "the-domain-released",
+          "effects": []
+        },
+        {
+          "id": "destroy-the-curse-bearer-outright",
+          "label": "Destroy the curse-bearer outright",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "broke-oath",
+            "value": true
+          },
+          "target": "the-domain-consumes",
+          "effects": []
+        },
+        {
+          "id": "bind-the-curse-bearer-to-eternal-service",
+          "label": "Bind the curse-bearer to eternal service instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-endless-toll",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-domain-released",
+      "kind": "ending",
+      "title": "The Domain Released",
+      "prose": "The chains of guilt shatter. Fog lifts from the valley for the first time in generations, and the road home reappears beneath your feet, though you carry the weight of what you witnessed.",
+      "art": "art-the-hollow-toll-domain-released",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-domain-consumes",
+      "kind": "ending",
+      "title": "The Domain Consumes",
+      "prose": "The curse does not break so much as it spreads, and you feel its cold hunger settle into your own bones. You leave the domain, but some part of you remains bound to it forever.",
+      "art": "art-the-hollow-toll-domain-consumes",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-endless-toll",
+      "kind": "ending",
+      "title": "The Endless Toll",
+      "prose": "The old wrong is neither forgiven nor destroyed, only postponed. The domain settles into an uneasy quiet, and somewhere, the tollkeeper waits for the next travelers to lose their way.",
+      "art": "art-the-hollow-toll-endless-toll",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "the-wrong-turn",
+      "to": "the-village-of-hollow-mourning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-wrong-turn",
+      "to": "ambush-at-the-crossroads",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-wrong-turn",
+      "to": "the-buried-chapel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-village-of-hollow-mourning",
+      "to": "the-keeper-of-tolls",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-village-of-hollow-mourning",
+      "to": "the-buried-chapel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-village-of-hollow-mourning",
+      "to": "ambush-at-the-crossroads",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-chapel",
+      "to": "the-sealed-crypt",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-chapel",
+      "to": "the-grieving-widow",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-chapel",
+      "to": "the-keeper-of-tolls",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-keeper-of-tolls",
+      "to": "the-grieving-widow",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-keeper-of-tolls",
+      "to": "ambush-at-the-crossroads",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-keeper-of-tolls",
+      "to": "the-sealed-crypt",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ambush-at-the-crossroads",
+      "to": "the-sealed-crypt",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ambush-at-the-crossroads",
+      "to": "the-endless-toll",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-sealed-crypt",
+      "to": "the-grieving-widow",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-sealed-crypt",
+      "to": "the-collapsing-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-grieving-widow",
+      "to": "the-choice-of-mercy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-choice-of-mercy",
+      "to": "the-collapsing-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-choice-of-mercy",
+      "to": "the-wight-of-broken-oaths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-wight-of-broken-oaths",
+      "to": "the-collapsing-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-wight-of-broken-oaths",
+      "to": "the-endless-toll",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-collapsing-vault",
+      "to": "the-curse-bearer-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-collapsing-vault",
+      "to": "the-lords-final-guard",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-lords-final-guard",
+      "to": "the-curse-bearer-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-lords-final-guard",
+      "to": "the-domain-consumes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-lords-final-guard",
+      "to": "the-endless-toll",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-curse-bearer-confrontation",
+      "to": "the-domain-released",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-curse-bearer-confrontation",
+      "to": "the-domain-consumes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-curse-bearer-confrontation",
+      "to": "the-endless-toll",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "encounter-crossroads-ambush",
+      "title": "Ambush at the Crossroads",
+      "combatants": [
+        {
+          "id": "skeleton-1",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-sealed-crypt",
+      "onDefeat": "the-endless-toll"
+    },
+    {
+      "id": "encounter-wight-oath",
+      "title": "The Wight of Broken Oaths",
+      "combatants": [
+        {
+          "id": "wight-1",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "skeleton-guard",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-collapsing-vault",
+      "onDefeat": "the-endless-toll"
+    },
+    {
+      "id": "encounter-lords-guard",
+      "title": "The Lord's Final Guard",
+      "combatants": [
+        {
+          "id": "ghoul-1",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-1",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-curse-bearer-confrontation",
+      "onDefeat": "the-domain-consumes",
+      "onFlee": "the-endless-toll"
+    }
+  ]
+}

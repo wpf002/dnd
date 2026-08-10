@@ -1,0 +1,90 @@
+{
+  "adventure": "the-midnight-audit",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, beginner-classic.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-midnight-audit-bad-contract-scene",
+      "beat": "bad-contract",
+      "brief": "The Terms of Service — Your crew signed with the Gray Ledger Trading Company for coin you badly needed. The fine print, you now realize, binds your souls to the firm if its "
+    },
+    {
+      "slot": "art-the-midnight-audit-office-arrival-scene",
+      "beat": "office-arrival",
+      "brief": "Inside the Branch — The lobby smells of stale coffee and older magic. Fluorescent wards flicker overhead. A directory board lists departments that shouldn't exist: Collec"
+    },
+    {
+      "slot": "art-the-midnight-audit-records-room-scene",
+      "beat": "records-room",
+      "brief": "Filing Cabinets of the Damned — Rows of cabinets hum faintly, each drawer labeled with a debtor's name in fading ink. Somewhere in here is the building's true floor plan, drawn by an"
+    },
+    {
+      "slot": "art-the-midnight-audit-night-clerk-scene",
+      "beat": "night-clerk",
+      "brief": "The Last Employee — A gaunt clerk named Perrin Aldwyn hunches over a desk, chained by contract to this office long after the sun should have set him free. He watches you "
+    },
+    {
+      "slot": "art-the-midnight-audit-vault-approach-scene",
+      "beat": "vault-approach",
+      "brief": "The Long Hallway — A corridor stretches toward the vault, its floor tiled in a pattern that itches at the eye. The architect who built this place, one Torvain Wrey, was "
+    },
+    {
+      "slot": "art-the-midnight-audit-warded-door-scene",
+      "beat": "warded-door",
+      "brief": "The Sigil-Locked Door — A door etched with interlocking wards bars the way to the vault chamber. The sigils shift when looked at directly, rearranging themselves like a contr"
+    },
+    {
+      "slot": "art-the-midnight-audit-architect-ghost-scene",
+      "beat": "architect-ghost",
+      "brief": "The Architect's Regret — A translucent figure paces a service closet, muttering measurements to no one. Torvain Wrey built every trap in this building to protect a firm he cam"
+    },
+    {
+      "slot": "art-the-midnight-audit-goblin-ambush-scene",
+      "beat": "goblin-ambush",
+      "brief": "Guards on the Payroll — Three goblin enforcers in ill-fitting Concern uniforms spill out of a side office, crossbows raised. They're underpaid, overworked, and thrilled for a"
+    },
+    {
+      "slot": "art-the-midnight-audit-vault-chamber-scene",
+      "beat": "vault-chamber",
+      "brief": "The Ledger Vault — The vault chamber holds a single iron lectern, and upon it, chained in silver wire, rests the Sable Ledger itself. Every debt the Concern ever wrote i"
+    },
+    {
+      "slot": "art-the-midnight-audit-guardian-encounter-scene",
+      "beat": "guardian-encounter",
+      "brief": "The Suit of Perpetual Renewal — A hulking suit of animated armor unfolds from an alcove, flanked by two skeletal auditors clicking their finger-bones like tally counters. They were b"
+    },
+    {
+      "slot": "art-the-midnight-audit-night-audit-scene",
+      "beat": "night-audit",
+      "brief": "The Night Audit Arrives — Midnight strikes. The building groans as the true Night Audit convenes: skeletal auditors and a lumbering zombie accountant shamble in to reconcile ev"
+    },
+    {
+      "slot": "art-the-midnight-audit-escape-choice-scene",
+      "beat": "escape-choice",
+      "brief": "The Last Exit — Alarms wail and the wards begin to fail as dawn's first hint touches the horizon. Every corridor back to freedom is collapsing behind you, one clause "
+    },
+    {
+      "slot": "art-the-midnight-audit-ending-triumph-scene",
+      "beat": "ending-triumph",
+      "brief": "Contract Void — You burst into the cold morning air with the Sable Ledger under your arm. By dawn, the Gray Ledger Trading Company's branch office is a smoking husk o"
+    },
+    {
+      "slot": "art-the-midnight-audit-ending-expose-scene",
+      "beat": "ending-expose",
+      "brief": "The Firm Exposed — You and Perrin the clerk vanish into the alleys together, evidence in hand. Within a week, pamphlets detailing the Concern's soul-debts paper the city"
+    },
+    {
+      "slot": "art-the-midnight-audit-ending-bittersweet-scene",
+      "beat": "ending-bittersweet",
+      "brief": "Free, But Owing — You escape with your lives but not the ledger. Somewhere behind you, the Concern's accountants are already re-filing your names under 'Outstanding.' Y"
+    },
+    {
+      "slot": "art-the-midnight-audit-ending-defeat-scene",
+      "beat": "ending-defeat",
+      "brief": "Filed and Forgotten — The building's defenders overwhelm you. Your names are inked into the Sable Ledger's final page, and the branch office gains four new permanent employ"
+    }
+  ]
+}

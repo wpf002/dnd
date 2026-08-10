@@ -1,0 +1,939 @@
+{
+  "id": "the-last-guest-of-aurelane",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Guest of Aurelane",
+    "premise": "The resort city of Aurelane never lets its guests leave — until the one night a year the Farewell Gala thins its wards, and a single object called the Departure Key can buy a way out, if it can be stolen from the building its own architect designed to stop exactly this.",
+    "tone": [
+      "heist",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "A honey-voiced resort announcer who never stops smiling, even when describing the guests who never checked out",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen; any references to families are handled off-page."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-gala",
+  "beats": [
+    {
+      "id": "arrival-gala",
+      "kind": "threshold",
+      "title": "The Farewell Gala",
+      "prose": "Lanterns of captured starlight drift over the Grand Terminus ballroom. Tonight is the one night Aurelane's wards thin — the Farewell Gala, when the resort pretends its guests might actually go home. You know better. You've heard the rumors of a Departure Key, an object the architect Ozren Vantal built into his masterpiece before he vanished. Somewhere in this glittering trap is your only way out.",
+      "readAloud": "Champagne flutes chime like distant bells. Above the dance floor, the ceiling shows a painted sky that has never once matched the real one outside.",
+      "art": "art-the-last-guest-of-aurelane-grand-ballroom-gala",
+      "options": [
+        {
+          "id": "talk-to-concierge",
+          "label": "Corner the resort's concierge for answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "talk-concierge",
+          "effects": []
+        },
+        {
+          "id": "slip-into-corridors",
+          "label": "Slip away into the service corridors",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "service-corridors",
+          "effects": []
+        },
+        {
+          "id": "approach-the-host",
+          "label": "Approach the Warden who hosts this gala",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "host-audience",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "talk-concierge",
+      "kind": "social",
+      "title": "The Concierge's Smile",
+      "prose": "The concierge, a pale man named Farel with too many pockets, answers every question with another question, but a slip of the tongue mentions 'the Key' and 'the architect's study' before he catches himself.",
+      "art": "art-the-last-guest-of-aurelane-concierge-desk",
+      "options": [
+        {
+          "id": "ask-about-key",
+          "label": "Press him about the Departure Key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "architects-study",
+          "effects": []
+        },
+        {
+          "id": "ask-about-warden",
+          "label": "Ask what the Warden really wants",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "host-audience",
+          "effects": []
+        },
+        {
+          "id": "slip-away",
+          "label": "Excuse yourself before he grows suspicious",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "service-corridors",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "service-corridors",
+      "kind": "discovery",
+      "title": "Behind the Velvet",
+      "prose": "Past the gilded doors, the resort's bones show: bare stone, humming sconces, and staff who move like clockwork. A locked archive door promises answers, but every footstep echoes further than it should.",
+      "art": "art-the-last-guest-of-aurelane-service-corridor-shadows",
+      "options": [
+        {
+          "id": "pick-lock-archive",
+          "label": "Pick the archive lock and slip through",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "patrol-encounter"
+          }
+        },
+        {
+          "id": "continue-search",
+          "label": "Search further, even if it means noise",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "architects-study",
+          "effects": [
+            {
+              "flag": "staff-suspicious",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "retreat-to-gala",
+          "label": "Retreat and rejoin the audience with the Warden",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "host-audience",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "host-audience",
+      "kind": "social",
+      "title": "The Warden's Welcome",
+      "prose": "Warden Selessa Thorn greets you with a warmth that never reaches her eyes. She speaks of Aurelane as a 'family' no one truly leaves, and studies your party as though deciding how you'll be remembered — or preserved.",
+      "art": "art-the-last-guest-of-aurelane-warden-audience-hall",
+      "options": [
+        {
+          "id": "press-for-truth",
+          "label": "Press her directly about the Departure Key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-warden",
+          "effects": []
+        },
+        {
+          "id": "play-along",
+          "label": "Play the grateful guest and gather clues quietly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "architects-study",
+          "effects": []
+        },
+        {
+          "id": "excuse-yourself",
+          "label": "Excuse yourself back into the corridors",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "service-corridors",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "met-warden",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "architects-study",
+      "kind": "discovery",
+      "title": "Vantal's Study",
+      "prose": "Dust-caked blueprints cover every wall of the architect's abandoned study. Ozren Vantal designed Aurelane to hold its guests forever — and left, half-mad with guilt, a single flaw: the Departure Key, hidden in the Terminus vault.",
+      "art": "art-the-last-guest-of-aurelane-architect-study-blueprints",
+      "options": [
+        {
+          "id": "study-blueprints",
+          "label": "Study the vault mechanism in detail",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-mechanism",
+          "effects": []
+        },
+        {
+          "id": "pocket-key-fragment",
+          "label": "Pocket a fragment and head straight for the vault",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-vault",
+          "effects": []
+        },
+        {
+          "id": "report-findings",
+          "label": "Bring your findings straight to the Warden",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-warden",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "has-blueprints",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-warden",
+      "kind": "decision",
+      "title": "A Question of Leverage",
+      "prose": "Whatever you know now, it changes how the Warden looks at you — as a threat, a bargaining chip, or an opportunity. The choice of how to press her is yours, and it will not be undone.",
+      "art": "art-the-last-guest-of-aurelane-warden-confrontation",
+      "options": [
+        {
+          "id": "demand-release",
+          "label": "Demand she open the wards herself",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "staff-suspicious",
+            "value": false
+          },
+          "target": "warden-standoff",
+          "effects": []
+        },
+        {
+          "id": "negotiate-terms",
+          "label": "Offer her something she wants in trade",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bribe-doorman",
+          "effects": []
+        },
+        {
+          "id": "flee-confrontation",
+          "label": "Break off and head for the vault yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bribe-doorman",
+      "kind": "social",
+      "title": "A Price for Passage",
+      "prose": "A weary doorman named Coss has watched guests vanish for thirty years. He hates Aurelane more than he fears it — for the right price, or the right promise, he'll help you move unseen.",
+      "art": "art-the-last-guest-of-aurelane-doorman-bribe",
+      "options": [
+        {
+          "id": "offer-coin",
+          "label": "Offer him enough coin to vanish himself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-vault",
+          "effects": [
+            {
+              "flag": "recruited-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-secret",
+          "label": "Offer him a secret way out for himself and others",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-mechanism",
+          "effects": [
+            {
+              "flag": "recruited-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "decline-help",
+          "label": "Decline his help and go it alone",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-vault",
+      "kind": "discovery",
+      "title": "The Vault Antechamber",
+      "prose": "Beyond a final door, brass gears the size of wagon wheels turn behind glass. The Departure Key rests somewhere within this mechanism, guarded by Vantal's last, cruelest joke of an invention.",
+      "art": "art-the-last-guest-of-aurelane-archive-vault-door",
+      "options": [
+        {
+          "id": "examine-vault-door",
+          "label": "Examine the vault mechanism directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-mechanism",
+          "effects": []
+        },
+        {
+          "id": "search-side-chamber",
+          "label": "Search a side chamber for the architect's notes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "architects-study",
+          "effects": []
+        },
+        {
+          "id": "retreat-to-gala",
+          "label": "Slip back toward the gala to reconsider",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "talk-concierge",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-mechanism",
+      "kind": "puzzle",
+      "title": "The Clockwork Lock",
+      "prose": "The vault is a puzzle of gears, mirrors, and false floors — Vantal's final design, meant to keep the Key from anyone clever enough to reach it. It hums as though it recognizes you.",
+      "art": "art-the-last-guest-of-aurelane-vault-mechanism-puzzle",
+      "options": [
+        {
+          "id": "use-blueprints-shortcut",
+          "label": "Use the architect's blueprints to bypass the gears entirely",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-blueprints",
+            "value": true
+          },
+          "target": "escape-terminus",
+          "effects": [
+            {
+              "flag": "key-stolen",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "force-mechanism",
+          "label": "Force the mechanism open by brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "escape-terminus",
+          "effects": [
+            {
+              "flag": "key-stolen",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 15,
+            "onFailure": "patrol-encounter"
+          }
+        },
+        {
+          "id": "trigger-alarm-bypass",
+          "label": "Carefully rewire the wards to disarm the alarm",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "escape-terminus",
+          "effects": [
+            {
+              "flag": "key-stolen",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "warden-standoff"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "patrol-encounter",
+      "kind": "conflict",
+      "title": "Clockwork Patrol",
+      "prose": "Suits of animated livery-armor round the corner, brass faces blank and gleaming. They do not shout. They simply advance, gears whirring, to herd you back where you belong.",
+      "art": "art-the-last-guest-of-aurelane-corridor-patrol-fight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "patrol-encounter-fight",
+      "terminal": false
+    },
+    {
+      "id": "warden-standoff",
+      "kind": "conflict",
+      "title": "The Warden's Enforcers",
+      "prose": "Selessa Thorn's smile finally cracks. Her bandit-captain enforcer and a pair of hobgoblin bruisers step between you and the vault, and for the first time tonight, Aurelane shows its teeth.",
+      "art": "art-the-last-guest-of-aurelane-warden-standoff-battle",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "warden-standoff-fight",
+      "terminal": false
+    },
+    {
+      "id": "escape-terminus",
+      "kind": "decision",
+      "title": "The Departure Key",
+      "prose": "The Key rests warm and impossible in your hand — a sliver of hinge-metal that should not exist, humming with the promise of an exit. The wards are thinning. Dawn, and choice, are almost here.",
+      "art": "art-the-last-guest-of-aurelane-terminus-departure-hall",
+      "options": [
+        {
+          "id": "slip-through-alone",
+          "label": "Slip through the thinning ward alone, Key in hand",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-freedom",
+          "effects": []
+        },
+        {
+          "id": "signal-the-guests",
+          "label": "Signal every trapped guest and lead a mass escape",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "recruited-ally",
+            "value": true
+          },
+          "target": "ending-mass-exodus",
+          "effects": []
+        },
+        {
+          "id": "claim-the-mantle",
+          "label": "Use the Key to claim the Warden's mantle instead",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-warden",
+            "value": true
+          },
+          "target": "ending-become-warden",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "key-stolen",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-freedom",
+      "kind": "ending",
+      "title": "Free at Last",
+      "prose": "The ward parts like a curtain of warm smoke, and beyond it is a road, an ordinary road, leading away from Aurelane's painted sky. You walk it without looking back, the Key already dissolving to ash in your pocket.",
+      "readAloud": "Behind you, the lanterns of the Farewell Gala dim one by one, as though the city itself is disappointed to see you go.",
+      "art": "art-the-last-guest-of-aurelane-dawn-departure",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-mass-exodus",
+      "kind": "ending",
+      "title": "The Grand Exodus",
+      "prose": "Word spreads through the resort like wildfire. Guests who forgot they were prisoners remember all at once, and a river of people pours toward the thinning ward. Aurelane cannot hold what no longer believes in its walls.",
+      "readAloud": "Coss the doorman is the last through, laughing like a man who has waited thirty years for this single joke to land.",
+      "art": "art-the-last-guest-of-aurelane-guests-exodus-dawn",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-become-warden",
+      "kind": "ending",
+      "title": "The New Warden",
+      "prose": "You do not leave. You close your hand around the Key and feel Aurelane's wards answer to you instead, Selessa Thorn's tired relief evident as she finally, finally passes the burden on. The resort has a new host now, and new rules to write.",
+      "readAloud": "Somewhere, the painted sky above the ballroom shifts subtly to match your reflection in the glass.",
+      "art": "art-the-last-guest-of-aurelane-new-warden-throne",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-trapped-forever",
+      "kind": "ending",
+      "title": "Guest of Aurelane, Forever",
+      "prose": "The clockwork hands close around you before the ward finishes thinning. Selessa's smile returns, sad and permanent, as staff lead you gently, irresistibly, back toward the gala that will never, ever end.",
+      "readAloud": "A new name is already being embroidered onto a fresh set of resort linens, waiting for you in a room that always knew you'd stay.",
+      "art": "art-the-last-guest-of-aurelane-eternal-guest-suite",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-gala",
+      "to": "talk-concierge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-gala",
+      "to": "service-corridors",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-gala",
+      "to": "host-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "talk-concierge",
+      "to": "architects-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "talk-concierge",
+      "to": "host-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "talk-concierge",
+      "to": "service-corridors",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "service-corridors",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "service-corridors",
+      "to": "architects-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "service-corridors",
+      "to": "host-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "service-corridors",
+      "to": "patrol-encounter",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed stealth check"
+    },
+    {
+      "from": "host-audience",
+      "to": "confront-warden",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "host-audience",
+      "to": "architects-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "host-audience",
+      "to": "service-corridors",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "architects-study",
+      "to": "vault-mechanism",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "architects-study",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "architects-study",
+      "to": "confront-warden",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-warden",
+      "to": "warden-standoff",
+      "when": {
+        "op": "eq",
+        "flag": "staff-suspicious",
+        "value": false
+      }
+    },
+    {
+      "from": "confront-warden",
+      "to": "bribe-doorman",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-warden",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bribe-doorman",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bribe-doorman",
+      "to": "vault-mechanism",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "vault-mechanism",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "architects-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "talk-concierge",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-mechanism",
+      "to": "escape-terminus",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-mechanism",
+      "to": "patrol-encounter",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed strength check"
+    },
+    {
+      "from": "vault-mechanism",
+      "to": "warden-standoff",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed investigation check"
+    },
+    {
+      "from": "patrol-encounter",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "patrol-encounter",
+      "to": "ending-trapped-forever",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "warden-standoff",
+      "to": "vault-mechanism",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "warden-standoff",
+      "to": "ending-trapped-forever",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "warden-standoff",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "escape-terminus",
+      "to": "ending-freedom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "escape-terminus",
+      "to": "ending-mass-exodus",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "escape-terminus",
+      "to": "ending-become-warden",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "patrol-encounter-fight",
+      "title": "Clockwork Patrol",
+      "combatants": [
+        {
+          "id": "livery-armor-1",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "livery-armor-2",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "archive-vault",
+      "onDefeat": "ending-trapped-forever"
+    },
+    {
+      "id": "warden-standoff-fight",
+      "title": "The Warden's Enforcers",
+      "combatants": [
+        {
+          "id": "thorn-enforcer",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "resort-guard-1",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "resort-guard-2",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-mechanism",
+      "onDefeat": "ending-trapped-forever",
+      "onFlee": "archive-vault"
+    }
+  ]
+}

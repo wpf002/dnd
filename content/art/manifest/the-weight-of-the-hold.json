@@ -1,0 +1,90 @@
+{
+  "adventure": "the-weight-of-the-hold",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: nautical, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-weight-of-the-hold-wreck-threshold-art",
+      "beat": "wreck-threshold",
+      "brief": "The Airlock Above the Dark — Your diving bell locks against the drowned hulk of the Salt Countess, her ribs groaning under fathoms of black water. A pressure gauge ticks red. Some"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-flooded-passage-art",
+      "beat": "flooded-passage",
+      "brief": "The Drowned Corridor — Half-flooded and lit by failing glowglobes, the corridor tilts at a sickening angle. Debris drifts in the slow current: logbooks, tools, a single boot"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-crew-camp-art",
+      "beat": "crew-camp",
+      "brief": "A Crew at War With Itself — Three survivors of the Salt Countess have rigged a camp in a dry pocket of the wreck. Captain Ysolt wants the cargo intact and sellable. Quartermaster"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-cargo-vault-art",
+      "beat": "cargo-vault",
+      "brief": "The Sealed Hold — Deeper in, a reinforced vault door bears the shipping manifest in flaking paint. Behind it, whatever the crew is truly fighting over waits under its o"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-vault-aftermath-art",
+      "beat": "vault-aftermath",
+      "brief": "What the Opening Costs — The vault's answer to your choice ripples through the crew immediately. Trust, suspicion, or debt now hangs in the water between you and them."
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-loyal-crew-path-art",
+      "beat": "loyal-crew-path",
+      "brief": "An Uneasy Trust — With the vault open and no blood spilled, the crew works alongside you, hauling crates of strange ballast-marked containers toward the wreck's lower d"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-engineer-alliance-art",
+      "beat": "engineer-alliance",
+      "brief": "The Bargain's Price — Tam pulls you aside from the others. 'You promised Ysolt a split. Fine. But promise me something too — get us out before this wreck folds in on itself"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-pressure-hazard-art",
+      "beat": "pressure-hazard",
+      "brief": "The Hull Sings a Warning Note — A rivet pops somewhere overhead, and water needles through the gap under crushing pressure. The whole corridor groans like a dying whale. You have sec"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-final-descent-art",
+      "beat": "final-descent",
+      "brief": "Into the Cargo Core — Past the failing bulkheads, a stairwell spirals down into the ship's lowest hold — the true cargo core, sealed away even from the vault above. The wat"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-crew-mutiny-art",
+      "beat": "crew-mutiny",
+      "brief": "Blades in the Flooded Dark — Convinced you mean to rob them, a knot of Ysolt's crew turns on you with cargo-hooks and stolen blades, cornering you in the narrow, water-choked pass"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-cargo-guardian-art",
+      "beat": "cargo-guardian",
+      "brief": "What the Cargo Core Kept — The cargo core is a graveyard of drowned sailors, reanimated by whatever the Salt Countess truly carried. They rise from the silt between you and the "
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-victory-aftermath-art",
+      "beat": "victory-aftermath",
+      "brief": "Surfacing With the Truth — With the guardians stilled and the crate finally open, the manner of your dive decides what you carry back to the surface — and what it costs you."
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-ending-triumph-art",
+      "beat": "ending-triumph",
+      "brief": "The Salt Countess Gives Up Her Prize — You surface with the cargo intact, the crew alive, and a story that will be told in every drowned-world port from here to the trench cities: the salva"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-ending-hollow-victory-art",
+      "beat": "ending-hollow-victory",
+      "brief": "A Prize Paid in Trust — The cargo reaches the surface, but the crew that hauled it up is smaller, warier, and forever changed. Wealth follows you out of the depths, but so do"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-ending-crushed-hull-art",
+      "beat": "ending-crushed-hull",
+      "brief": "The Countess Closes Her Fist — The mutiny you provoked tears the crew apart before the hull does the same to all of you. The Salt Countess keeps her cargo and adds your dive bell to"
+    },
+    {
+      "slot": "art-the-weight-of-the-hold-ending-lost-to-deep-art",
+      "beat": "ending-lost-to-deep",
+      "brief": "Swallowed Whole — Whether to the failing hull or the guardians of the cargo core, the wreck ultimately wins. The Salt Countess settles deeper into the silt, one more se"
+    }
+  ]
+}

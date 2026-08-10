@@ -430,6 +430,270 @@
       ],
       "partyLevel": 5,
       "beats": 16
+    },
+    {
+      "id": "the-stitchroad-reckoning",
+      "title": "The Stitchroad Reckoning",
+      "inspiredBy": "High Rollers: Aerois",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "high-adventure"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-hollow-sovereigns-ledger",
+      "title": "The Hollow Sovereign's Ledger",
+      "inspiredBy": "The Adventure Zone: Balance",
+      "source": "community",
+      "tone": [
+        "high-adventure",
+        "mystery"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-two-wrens-of-emberlatch",
+      "title": "The Two Wrens of Emberlatch",
+      "inspiredBy": "The Adventure Zone: Amnesty",
+      "source": "community",
+      "tone": [
+        "mystery",
+        "whimsical-fey"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-last-guest-of-aurelane",
+      "title": "The Last Guest of Aurelane",
+      "inspiredBy": "The Adventure Zone: Steeplechase",
+      "source": "community",
+      "tone": [
+        "heist",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-radiant-rift",
+      "title": "The Radiant Rift",
+      "inspiredBy": "NADDPOD: Bahumia",
+      "source": "community",
+      "tone": [
+        "high-adventure",
+        "beginner-classic"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-silent-ford",
+      "title": "The Silent Ford",
+      "inspiredBy": "NADDPOD: Trinyvale",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 15
+    },
+    {
+      "id": "the-weight-of-the-hold",
+      "title": "The Weight of the Hold",
+      "inspiredBy": "The Adventure Zone: Ethersea",
+      "source": "community",
+      "tone": [
+        "nautical",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-weight-of-ash",
+      "title": "The Weight of Ash",
+      "inspiredBy": "Dungeons of Drakkenheim",
+      "source": "community",
+      "tone": [
+        "survival-horror",
+        "urban-intrigue"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-last-hour-of-vharesk",
+      "title": "The Last Hour of Vharesk",
+      "inspiredBy": "Fate of Drakkenheim",
+      "source": "community",
+      "tone": [
+        "epic-finale",
+        "cosmic-horror"
+      ],
+      "partyLevel": 8,
+      "beats": 16
+    },
+    {
+      "id": "the-weeping-nave",
+      "title": "The Weeping Nave",
+      "inspiredBy": "Shadows of Drakkenheim",
+      "source": "community",
+      "tone": [
+        "gothic-horror",
+        "survival-horror"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-unpaid-crown",
+      "title": "The Unpaid Crown",
+      "inspiredBy": "NADDPOD: Eldermourne",
+      "source": "community",
+      "tone": [
+        "political-fantasy",
+        "exploration"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-midnight-audit",
+      "title": "The Midnight Audit",
+      "inspiredBy": "Acquisitions Incorporated: The C Team",
+      "source": "community",
+      "tone": [
+        "heist",
+        "beginner-classic"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-founders-ledger",
+      "title": "The Founder's Ledger",
+      "inspiredBy": "Acquisitions Incorporated",
+      "source": "community",
+      "tone": [
+        "heist",
+        "high-adventure"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ashgrave-vault",
+      "title": "The Ashgrave Vault",
+      "inspiredBy": "Oxventure",
+      "source": "community",
+      "tone": [
+        "heist",
+        "urban-intrigue"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-gray-heralds-ledger",
+      "title": "The Gray Herald's Ledger",
+      "inspiredBy": "Relics and Rarities",
+      "source": "community",
+      "tone": [
+        "mystery",
+        "anthology"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-hollow-span-reckoning",
+      "title": "The Hollow Span Reckoning",
+      "inspiredBy": "Into the Mother Lands",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "political-fantasy"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ashfen-wager",
+      "title": "The Ashfen Wager",
+      "inspiredBy": "RollPlay: Court of Swords",
+      "source": "community",
+      "tone": [
+        "survival-horror",
+        "gothic-horror"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-ashfen-compact",
+      "title": "The Ashfen Compact",
+      "inspiredBy": "The Black Dice Society",
+      "source": "community",
+      "tone": [
+        "gothic-horror",
+        "urban-intrigue"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-hollow-bell-frontier",
+      "title": "The Hollow Bell Frontier",
+      "inspiredBy": "Girls, Guts, Glory",
+      "source": "community",
+      "tone": [
+        "high-adventure",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-cisterns-quiet-bargain",
+      "title": "The Cistern's Quiet Bargain",
+      "inspiredBy": "Rivals of Waterdeep",
+      "source": "community",
+      "tone": [
+        "urban-intrigue",
+        "political-fantasy"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-hollow-toll",
+      "title": "The Hollow Toll",
+      "inspiredBy": "Dice, Camera, Action!",
+      "source": "community",
+      "tone": [
+        "gothic-horror",
+        "high-adventure"
+      ],
+      "partyLevel": 4,
+      "beats": 15
+    },
+    {
+      "id": "the-whisper-coin-accord",
+      "title": "The Whisper Coin Accord",
+      "inspiredBy": "LA by Night",
+      "source": "community",
+      "tone": [
+        "urban-intrigue",
+        "gothic-horror"
+      ],
+      "partyLevel": 5,
+      "beats": 16
     }
   ]
 }

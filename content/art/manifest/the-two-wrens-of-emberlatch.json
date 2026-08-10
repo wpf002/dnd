@@ -1,0 +1,90 @@
+{
+  "adventure": "the-two-wrens-of-emberlatch",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: mystery, whimsical-fey.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-arrival-in-emberlatch",
+      "beat": "arrival-in-emberlatch",
+      "brief": "The Bell That Didn't Ring — Emberlatch clings to a fold of the mountain where the frost never quite melts, its shingled roofs huddled beneath a belltower that has gone silent for"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-constable-briefing",
+      "beat": "constable-briefing",
+      "brief": "A Watch-House Full of Contradictions — Constable Marrow spreads out a ledger of witness statements, each one crossed out and rewritten. A miller swears Wren left by the north gate at dusk; "
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-coppice-household",
+      "beat": "coppice-household",
+      "brief": "The Coppice Household — Wren's older brother Bram paces a kitchen gone cold, a half-carved wooden sparrow in his hands. He mentions, almost in passing, a private childhood na"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-the-contradiction",
+      "beat": "the-contradiction",
+      "brief": "Two Sets of Footprints — Standing where the boot-prints diverge, you can see it plainly now: one trail climbs toward the old quarry road on the mountain's shoulder, the other "
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-marens-warning",
+      "beat": "marens-warning",
+      "brief": "What Maren Ash Knows — Maren Ash's cottage smells of dried thorn-apple and something colder, older. She listens to the contradictions without surprise. \"Emberlatch was built"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-mountain-approach",
+      "beat": "mountain-approach",
+      "brief": "The Quarry Road's Sentinel — The quarry road narrows between cairns of stacked stone, each one etched with thorn-and-bell sigils. At the road's end, a suit of ancient armor stands"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-river-approach",
+      "beat": "river-approach",
+      "brief": "Trappers in the Reeds — Below the river mill, the reeds grow thick and unnaturally tall, and someone has strung snare-lines through the mud. Shapes move between the stalks — "
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-cinder-guardian-fight",
+      "beat": "cinder-guardian-fight",
+      "brief": "The Guardian of the Cinderdoor — The animated armor lunges to life at last, bone-ward sentries rising from beneath the cairns to flank it — the mountain's oldest promise, given rusted"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-river-guardian-fight",
+      "beat": "river-guardian-fight",
+      "brief": "Ambush in the Reeds — The trappers spring their snares in earnest now, laughing as a wolf circles wide to cut off retreat. This is a game to them — but the stakes are entir"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-cinder-door-threshold",
+      "beat": "cinder-door-threshold",
+      "brief": "The Cinderdoor — Behind the guardian's post, or beneath the reeds' tangle, the mountain opens onto a door of black glass veined with ember-light, warm to the touch des"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-sparrow-court-arrival",
+      "beat": "sparrow-court-arrival",
+      "brief": "The Sparrow Court — Beyond the door lies a hollow the size of a valley, lit by no sun you recognize, filled with impossible orchards and a court of fey exiles who fled a "
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-the-warden-audience",
+      "beat": "the-warden-audience",
+      "brief": "A Choice Beneath the Mountain — The truth spills out: Wren stumbled through a weak seam in the Cinderdoor and chose to stay, tending a dying orchard that keeps the whole hollow breat"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-mirror-pool-puzzle",
+      "beat": "mirror-pool-puzzle",
+      "brief": "The Mirror Pool — At the orchard's heart lies a still black pool that shows two reflections where there should be one: two Wrens, identical down to the chipped tooth an"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-ending-reunion-restored",
+      "beat": "ending-reunion-restored",
+      "brief": "The Bell Rings Again — The false glamour peels away like frost off glass, and the real Wren gasps back into her own skin, disoriented but whole. The echo — grateful, tearful"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-ending-thornecho-freed",
+      "beat": "ending-thornecho-freed",
+      "brief": "Two Sparrows, One Sky — Speaking Wren's true-name does more than call her home — it unbinds the echo from having to mimic anyone at all. Both Wrens step from the pool, distin"
+    },
+    {
+      "slot": "art-the-two-wrens-of-emberlatch-ending-lost-in-glass",
+      "beat": "ending-lost-in-glass",
+      "brief": "The Wrong Reflection — The choice is made too quickly, or too late, or simply wrong — and the pool closes over the real Wren's reflection with a sound like a held breath fin"
+    }
+  ]
+}

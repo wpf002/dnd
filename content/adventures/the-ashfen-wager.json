@@ -1,0 +1,1031 @@
+{
+  "id": "the-ashfen-wager",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ashfen Wager",
+    "premise": "In a grey purgatorial waste ruled by a fractured Card Court, the only way out is a Last Door that seals a little more with every passing hour, and the four Suit-Wardens will each demand their price before it shuts for good.",
+    "tone": [
+      "survival-horror",
+      "gothic-horror"
+    ],
+    "tier": "local",
+    "partyLevel": 5,
+    "narrationVoice": "A patient, whispering second-person narrator who counts the hours aloud",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear in this scenario."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-the-ashfen",
+  "beats": [
+    {
+      "id": "arrival-at-the-ashfen",
+      "kind": "threshold",
+      "title": "Arrival at the Ashfen",
+      "prose": "Grey ash falls like slow snow over a horizon of broken card-standards. Far off, a black arch of a door stands ajar, its edges already crumbling shut like a closing fist.",
+      "readAloud": "You wake on cinder-soft ground beneath a sky the color of old parchment. Somewhere behind you, a door made of black iron and playing-card lacquer grinds a fraction narrower.",
+      "art": "art-the-ashfen-wager-arrival-ashfen",
+      "options": [
+        {
+          "id": "opt-approach-herald",
+          "label": "Approach the cloaked Herald of Cards",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "herald-of-cards",
+          "effects": []
+        },
+        {
+          "id": "opt-inspect-door",
+          "label": "Walk toward the shrinking Last Door",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "closing-door-warning",
+          "effects": []
+        },
+        {
+          "id": "opt-search-dunes",
+          "label": "Search the ash dunes for shelter and answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "widows-vigil",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "herald-of-cards",
+      "kind": "social",
+      "title": "The Herald of Cards",
+      "prose": "A figure of lacquered bone and tattered suits bows low, face a blank playing-card mask. 'Welcome, wager-born,' it rasps. 'The Court sees all debts.'",
+      "art": "art-the-ashfen-wager-herald-of-cards",
+      "options": [
+        {
+          "id": "opt-ask-door",
+          "label": "Ask about the Last Door's closing",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "closing-door-warning",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-court",
+          "label": "Ask about the Card Court's four Wardens",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-coins",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-toll",
+          "label": "Ask what toll the waste demands each hour",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "closing-door-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "closing-door-warning",
+      "kind": "hazard",
+      "title": "The Closing Door",
+      "prose": "Up close the Last Door is a wound in the world, seams of gilt card-stock knitting shut. Each hour it narrows by a hand's width, and the waste seems to notice you noticing.",
+      "art": "art-the-ashfen-wager-closing-door",
+      "options": [
+        {
+          "id": "opt-rush-door",
+          "label": "Rush the Last Door immediately, half-shut as it is",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "last-door-climax",
+          "effects": [
+            {
+              "flag": "door-seal",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "id": "opt-seek-wardens",
+          "label": "Seek the Suit-Wardens for a key to hold the door",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-coins",
+          "effects": []
+        },
+        {
+          "id": "opt-rest-plan",
+          "label": "Make camp and plan, though the door seals further",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-swords",
+          "effects": [
+            {
+              "flag": "door-seal",
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "door-seal",
+          "value": 1
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-of-coins",
+      "kind": "social",
+      "title": "The Warden of Coins",
+      "prose": "A gaunt woman sits at a table of stacked ashen coins, shuffling a deck that never ends. 'Everyone wagers something here,' she says. 'Question is what you can bear to lose.'",
+      "art": "art-the-ashfen-wager-warden-coins",
+      "options": [
+        {
+          "id": "opt-pay-memory",
+          "label": "Pay the Warden's wager with a cherished memory",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "coin-wager-puzzle",
+          "effects": [
+            {
+              "flag": "paid-memory",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-fight",
+          "label": "Refuse to wager and draw steel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-swords",
+          "effects": []
+        },
+        {
+          "id": "opt-attempt-cheat",
+          "label": "Attempt to cheat the Warden's card game",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "coin-wager-puzzle",
+          "effects": [
+            {
+              "flag": "cheated-coins",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "coin-wager-puzzle",
+      "kind": "puzzle",
+      "title": "The Endless Hand",
+      "prose": "Cards fan across the table, each face a shard of some traveler's regret. The Warden waits, patient as rust, for you to play.",
+      "art": "art-the-ashfen-wager-coin-wager-puzzle",
+      "options": [
+        {
+          "id": "opt-play-honest",
+          "label": "Play the hand honestly, trusting fate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-swords",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 13,
+            "onFailure": "duel-with-the-sword-warden"
+          }
+        },
+        {
+          "id": "opt-play-cheat-trick",
+          "label": "Play a marked card from your sleeve",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-swords",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight-of-hand",
+            "dc": 15,
+            "onFailure": "duel-with-the-sword-warden"
+          }
+        },
+        {
+          "id": "opt-fold-early",
+          "label": "Fold and forfeit, fleeing the table",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "jesters-bargain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-of-swords",
+      "kind": "social",
+      "title": "The Warden of Swords",
+      "prose": "A towering figure of notched blades bars the path, voice like grinding whetstone. 'Oath, blood, or flight,' it says. 'Choose swiftly. The hour turns.'",
+      "art": "art-the-ashfen-wager-warden-swords",
+      "options": [
+        {
+          "id": "opt-swear-oath",
+          "label": "Swear an oath of service to the Warden of Swords",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-suit-choice",
+          "effects": [
+            {
+              "flag": "oath-swords",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-challenge-duel",
+          "label": "Challenge the Warden to single combat",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "duel-with-the-sword-warden",
+          "effects": []
+        },
+        {
+          "id": "opt-slip-away",
+          "label": "Slip away toward the flooded hourglass chamber",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-hourglass",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "duel-with-the-sword-warden",
+      "kind": "conflict",
+      "title": "Duel at the Broken Standard",
+      "prose": "Steel rings against the ash-choked wind as the Warden's honor guard closes in, eager to spill blood before the door finishes shutting.",
+      "art": "art-the-ashfen-wager-duel-sword-warden",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sword-warden-duel",
+      "terminal": false
+    },
+    {
+      "id": "jesters-bargain",
+      "kind": "social",
+      "title": "The Jester's Bargain",
+      "prose": "A ragged figure in bell-hung motley grins from atop a listing signpost. 'I know a shortcut,' he sings, 'for a small, small price.'",
+      "art": "art-the-ashfen-wager-jesters-bargain",
+      "options": [
+        {
+          "id": "opt-trust-jester",
+          "label": "Trust the Jester's offer of a hidden shortcut",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-suit-choice",
+          "effects": [
+            {
+              "flag": "jester-trust",
+              "value": "trusted"
+            }
+          ]
+        },
+        {
+          "id": "opt-betray-jester",
+          "label": "Betray the Jester and steal his shortcut map",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-hourglass",
+          "effects": [
+            {
+              "flag": "jester-trust",
+              "value": "betrayed"
+            }
+          ]
+        },
+        {
+          "id": "opt-ignore-jester",
+          "label": "Ignore the Jester and press on alone",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "widows-vigil",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "flooded-hourglass",
+      "kind": "hazard",
+      "title": "The Flooded Hourglass",
+      "prose": "A cracked glass chamber the size of a cathedral fills slowly with black sand-water, rising toward a ceiling of frozen seconds.",
+      "art": "art-the-ashfen-wager-flooded-hourglass",
+      "options": [
+        {
+          "id": "opt-wade-through",
+          "label": "Wade through the rising sand-water",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ghast-nest",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "dc": 13,
+            "onFailure": "ending-sacrificed-in-waste"
+          }
+        },
+        {
+          "id": "opt-climb-around",
+          "label": "Climb the crumbling ledge around the flood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ghast-nest",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 14,
+            "onFailure": "ending-sacrificed-in-waste"
+          }
+        },
+        {
+          "id": "opt-turn-back",
+          "label": "Turn back toward the Widow's vigil",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "widows-vigil",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "door-seal",
+          "value": 3
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "widows-vigil",
+      "kind": "discovery",
+      "title": "The Widow's Vigil",
+      "prose": "Bound in ribbons of card-stock, a weeping woman kneels before a shrine of stacked queens. 'They took my name,' she whispers. 'Will you take my place, or set me free?'",
+      "art": "art-the-ashfen-wager-widows-vigil",
+      "options": [
+        {
+          "id": "opt-help-widow",
+          "label": "Help free the Widow from her binding cards",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-suit-choice",
+          "effects": [
+            {
+              "flag": "helped-widow",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-question-widow",
+          "label": "Question the Widow about the Court's secrets",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ghast-nest",
+          "effects": []
+        },
+        {
+          "id": "opt-leave-widow",
+          "label": "Leave the Widow to her fate and move on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warden-of-coins",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghast-nest",
+      "kind": "conflict",
+      "title": "The Ghast Nest",
+      "prose": "Beyond the flood, a charnel hollow seethes with grey shapes that were once wager-losers, hungry and patient as the waste itself.",
+      "art": "art-the-ashfen-wager-ghast-nest",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ghast-nest-fight",
+      "terminal": false
+    },
+    {
+      "id": "final-suit-choice",
+      "kind": "decision",
+      "title": "The Final Suit",
+      "prose": "At the crossroads of the waste, three Court sigils burn faint in the ash: a Coin, a Sword, a Cup. Whichever you honor will shape the key you carry to the Last Door.",
+      "art": "art-the-ashfen-wager-final-suit-choice",
+      "options": [
+        {
+          "id": "opt-choose-coins",
+          "label": "Align with the Suit of Coins for a bribed passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "last-door-climax",
+          "effects": [
+            {
+              "flag": "suit-chosen",
+              "value": "coins"
+            }
+          ]
+        },
+        {
+          "id": "opt-choose-swords",
+          "label": "Align with the Suit of Swords for a forged passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "last-door-climax",
+          "effects": [
+            {
+              "flag": "suit-chosen",
+              "value": "swords"
+            }
+          ]
+        },
+        {
+          "id": "opt-choose-cups",
+          "label": "Align with the Suit of Cups for a mourned passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "last-door-climax",
+          "effects": [
+            {
+              "flag": "suit-chosen",
+              "value": "cups"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "last-door-climax",
+      "kind": "climax",
+      "title": "The Last Door",
+      "prose": "The Door is a sliver now, ash-light bleeding through its shrinking seam. Every choice you have made stands behind you like a hand of cards laid face up.",
+      "art": "art-the-ashfen-wager-last-door-climax",
+      "options": [
+        {
+          "id": "opt-end-escape",
+          "label": "Force the Last Door open and escape the waste",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "lte",
+                "flag": "door-seal",
+                "value": 2
+              },
+              {
+                "op": "or",
+                "clauses": [
+                  {
+                    "op": "eq",
+                    "flag": "suit-chosen",
+                    "value": "coins"
+                  },
+                  {
+                    "op": "eq",
+                    "flag": "paid-memory",
+                    "value": true
+                  },
+                  {
+                    "op": "eq",
+                    "flag": "helped-widow",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          },
+          "target": "ending-escape-free",
+          "effects": []
+        },
+        {
+          "id": "opt-end-bound",
+          "label": "Bind yourself to the Card Court to hold the door open for others",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "suit-chosen",
+                "value": "swords"
+              },
+              {
+                "op": "eq",
+                "flag": "oath-swords",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-bound-to-court",
+          "effects": []
+        },
+        {
+          "id": "opt-end-sacrifice",
+          "label": "Sacrifice your escape to seal the waste forever",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "gte",
+                "flag": "door-seal",
+                "value": 3
+              },
+              {
+                "op": "eq",
+                "flag": "suit-chosen",
+                "value": "cups"
+              },
+              {
+                "op": "eq",
+                "flag": "cheated-coins",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "jester-trust",
+                "value": "betrayed"
+              }
+            ]
+          },
+          "target": "ending-sacrificed-in-waste",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-escape-free",
+      "kind": "ending",
+      "title": "Free of the Waste",
+      "prose": "The Door yields with a shriek of tearing card-stock. You stumble through into ordinary grey dawn, the Ashfen sealing shut behind you forever, taking its Court and its debts with it.",
+      "art": "art-the-ashfen-wager-ending-escape-free",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bound-to-court",
+      "kind": "ending",
+      "title": "The New Warden",
+      "prose": "You take up the sword-hilt scepter offered to you, feeling your old name flake away like ash. Somewhere far off, the Door will open again for someone else, someday, because you now hold it shut.",
+      "art": "art-the-ashfen-wager-ending-bound-to-court",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sacrificed-in-waste",
+      "kind": "ending",
+      "title": "Sealed in Ash",
+      "prose": "The waste closes over you like a hand folding shut around a losing hand of cards. The Last Door seals with a final, gentle click, and the Ashfen is quiet once more.",
+      "art": "art-the-ashfen-wager-ending-sacrificed",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-at-the-ashfen",
+      "to": "herald-of-cards",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-the-ashfen",
+      "to": "closing-door-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-the-ashfen",
+      "to": "widows-vigil",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "herald-of-cards",
+      "to": "closing-door-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "herald-of-cards",
+      "to": "warden-of-coins",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "closing-door-warning",
+      "to": "last-door-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "closing-door-warning",
+      "to": "warden-of-coins",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "closing-door-warning",
+      "to": "warden-of-swords",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-of-coins",
+      "to": "coin-wager-puzzle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-of-coins",
+      "to": "warden-of-swords",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coin-wager-puzzle",
+      "to": "warden-of-swords",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coin-wager-puzzle",
+      "to": "duel-with-the-sword-warden",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coin-wager-puzzle",
+      "to": "jesters-bargain",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-of-swords",
+      "to": "final-suit-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-of-swords",
+      "to": "duel-with-the-sword-warden",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-of-swords",
+      "to": "flooded-hourglass",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duel-with-the-sword-warden",
+      "to": "final-suit-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duel-with-the-sword-warden",
+      "to": "ending-sacrificed-in-waste",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duel-with-the-sword-warden",
+      "to": "flooded-hourglass",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "jesters-bargain",
+      "to": "final-suit-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "jesters-bargain",
+      "to": "flooded-hourglass",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "jesters-bargain",
+      "to": "widows-vigil",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-hourglass",
+      "to": "ghast-nest",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-hourglass",
+      "to": "ending-sacrificed-in-waste",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-hourglass",
+      "to": "widows-vigil",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-vigil",
+      "to": "final-suit-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-vigil",
+      "to": "ghast-nest",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "widows-vigil",
+      "to": "warden-of-coins",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghast-nest",
+      "to": "final-suit-choice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghast-nest",
+      "to": "ending-sacrificed-in-waste",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghast-nest",
+      "to": "warden-of-swords",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-suit-choice",
+      "to": "last-door-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "last-door-climax",
+      "to": "ending-escape-free",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "last-door-climax",
+      "to": "ending-bound-to-court",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "last-door-climax",
+      "to": "ending-sacrificed-in-waste",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "sword-warden-duel",
+      "title": "Duel at the Broken Standard",
+      "combatants": [
+        {
+          "id": "sword-warden",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "honor-guard",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "final-suit-choice",
+      "onDefeat": "ending-sacrificed-in-waste",
+      "onFlee": "flooded-hourglass"
+    },
+    {
+      "id": "ghast-nest-fight",
+      "title": "The Ghast Nest",
+      "combatants": [
+        {
+          "id": "nest-ghast",
+          "statblock": "ghast",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "nest-ghoul",
+          "statblock": "ghoul",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "final-suit-choice",
+      "onDefeat": "ending-sacrificed-in-waste",
+      "onFlee": "warden-of-swords"
+    }
+  ]
+}

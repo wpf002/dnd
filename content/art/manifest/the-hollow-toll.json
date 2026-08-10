@@ -1,0 +1,85 @@
+{
+  "adventure": "the-hollow-toll",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: gothic-horror, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-toll-wrong-turn",
+      "beat": "the-wrong-turn",
+      "brief": "The Wrong Turn — A bank of unnatural fog swallows the road behind you. Ahead, the trees are wrong somehow — too still, too old. You have crossed into somewhere that wa"
+    },
+    {
+      "slot": "art-the-hollow-toll-village-mourning",
+      "beat": "the-village-of-hollow-mourning",
+      "brief": "The Village of Hollow Mourning — Shuttered houses lean against each other like mourners at a grave. No smoke rises from any chimney, yet you feel watched from every window."
+    },
+    {
+      "slot": "art-the-hollow-toll-buried-chapel",
+      "beat": "the-buried-chapel",
+      "brief": "The Buried Chapel — Half-sunk into the earth, a small chapel holds a crumbling diary and an altar stained dark with something older than paint."
+    },
+    {
+      "slot": "art-the-hollow-toll-keeper-tolls",
+      "beat": "the-keeper-of-tolls",
+      "brief": "The Keeper of Tolls — A pale figure in a tollkeeper's coat waits at a bridge that leads nowhere. 'Everyone pays here,' he says. 'The question is only what.'"
+    },
+    {
+      "slot": "art-the-hollow-toll-crossroads-ambush",
+      "beat": "ambush-at-the-crossroads",
+      "brief": "Ambush at the Crossroads — Bones stir beneath the crossroads stones. The dead rise, jaws clacking with a hunger older than memory."
+    },
+    {
+      "slot": "art-the-hollow-toll-sealed-crypt",
+      "beat": "the-sealed-crypt",
+      "brief": "The Sealed Crypt — A crypt door is bound shut with rune-carved iron. Something within it hums, waiting to be understood or broken."
+    },
+    {
+      "slot": "art-the-hollow-toll-grieving-widow",
+      "beat": "the-grieving-widow",
+      "brief": "The Grieving Widow — A woman in tattered mourning clothes tends a grave that never fills. She has waited generations for someone to listen."
+    },
+    {
+      "slot": "art-the-hollow-toll-choice-mercy",
+      "beat": "the-choice-of-mercy",
+      "brief": "The Choice of Mercy — The truth of the domain's curse is close now: a lord who broke an oath to save himself, and a debt the dead have paid ever since. What will you do wit"
+    },
+    {
+      "slot": "art-the-hollow-toll-wight-oath",
+      "beat": "the-wight-of-broken-oaths",
+      "brief": "The Wight of Broken Oaths — A knight who once swore loyalty and broke it rises from the crypt floor, its blade still gleaming with unfinished business."
+    },
+    {
+      "slot": "art-the-hollow-toll-collapsing-vault",
+      "beat": "the-collapsing-vault",
+      "brief": "The Collapsing Vault — The ground shudders. Stone dust rains down as the vault beneath the manor begins to fold in on itself, the curse-bearer's throne visible through the w"
+    },
+    {
+      "slot": "art-the-hollow-toll-lords-guard",
+      "beat": "the-lords-final-guard",
+      "brief": "The Lord's Final Guard — The last defenders of the cursed lord's honor bar your path amid falling stone, fighting not for victory but for time."
+    },
+    {
+      "slot": "art-the-hollow-toll-curse-confrontation",
+      "beat": "the-curse-bearer-confrontation",
+      "brief": "The Curse-Bearer's Confrontation — At last you stand before the cursed lord himself, bound to his throne by chains of guilt and regret. He looks at you, and for the first time in centur"
+    },
+    {
+      "slot": "art-the-hollow-toll-domain-released",
+      "beat": "the-domain-released",
+      "brief": "The Domain Released — The chains of guilt shatter. Fog lifts from the valley for the first time in generations, and the road home reappears beneath your feet, though you ca"
+    },
+    {
+      "slot": "art-the-hollow-toll-domain-consumes",
+      "beat": "the-domain-consumes",
+      "brief": "The Domain Consumes — The curse does not break so much as it spreads, and you feel its cold hunger settle into your own bones. You leave the domain, but some part of you re"
+    },
+    {
+      "slot": "art-the-hollow-toll-endless-toll",
+      "beat": "the-endless-toll",
+      "brief": "The Endless Toll — The old wrong is neither forgiven nor destroyed, only postponed. The domain settles into an uneasy quiet, and somewhere, the tollkeeper waits for the "
+    }
+  ]
+}

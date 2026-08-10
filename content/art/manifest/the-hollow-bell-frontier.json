@@ -1,0 +1,90 @@
+{
+  "adventure": "the-hollow-bell-frontier",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-bell-frontier-sixnail-crossing-art",
+      "beat": "sixnail-crossing",
+      "brief": "The Crossing at Harvest's Edge — Sixnail Crossing sprawls where two dead riverbeds meet, its shanties strung with charms to two gods who no longer speak to each other. Grain-gold bann"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-gathering-threads-art",
+      "beat": "gathering-the-threads",
+      "brief": "Threads of a Divine Grudge — Piece by piece the town's fear takes shape: cultists in mourning-black have been buying up bell-metal and bribing gravediggers, all in service of waki"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-hollowmarket-trail-art",
+      "beat": "hollowmarket-trail",
+      "brief": "Trail Through the Hollowmarket — Stalls of bell-metal trinkets and mourning charms crowd the lane leading toward the old chapel road. Black-sashed cultists watch the crowd a little to"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-cult-ambush-art",
+      "beat": "cult-ambush",
+      "brief": "Ambush in the Hollowmarket — Black sashes converge, hatchets and a snarling enforcer between you and the chapel road."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-bell-ruins-approach-art",
+      "beat": "bell-ruins-approach",
+      "brief": "Approach to the Hollow Bell Ruins — A collapsed bridge and a slope of rubble bar the way down into the ruined chapel grounds, where the humming grows loud enough to feel in your teeth."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-hollow-bell-chapel-art",
+      "beat": "hollow-bell-chapel",
+      "brief": "The Hollow Bell Chapel — Inside the ruined chapel a cracked bell hangs over a ritual circle scrawled in soot and old blood. Ledgers of debt owed between brothers line the wall"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-ledger-of-grudges-art",
+      "beat": "ledger-of-grudges",
+      "brief": "The Ledger of Grudges — A sealed case holds the true accounting of what Orune believes he is owed — and perhaps a way to settle the debt on your own terms."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-confront-cult-leader-art",
+      "beat": "confront-cult-leader",
+      "brief": "Face to Face with the Grudge-Priest — The grudge-priest stands before the cracked bell, robes stitched with unpaid debts. She smiles like someone who has already won the argument."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-cult-champion-fight-art",
+      "beat": "cult-champion-fight",
+      "brief": "The Grudge-Priest's Guard — The priest laughs and calls her guard from the shadows between the pews — steel, bone, and a captain who has clearly done this before."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-choice-of-debts-art",
+      "beat": "the-choice-of-debts",
+      "brief": "The Choice of Debts — The bell hangs cracked and humming above you, Orune's presence pressing at the seams of the world. Whatever you do next will decide how — or whether —"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-gods-wrath-manifests-art",
+      "beat": "gods-wrath-manifests",
+      "brief": "The God's Wrath Manifests — The cracked bell splits wide and Orune's fury pours through — shapes of hunger and old debt given terrible form. You must hold your ground while the c"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-aftermath-storm-art",
+      "beat": "aftermath-of-the-storm",
+      "brief": "Aftermath of the Storm — The chapel is silent but for settling dust and a bell that no longer hums. What happens now depends on the debt you chose to settle."
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-ending-uneasy-peace-art",
+      "beat": "ending-uneasy-peace",
+      "brief": "An Uneasy Peace — Orune sleeps in silver chains beneath a rebuilt chapel, and Kest's banners fly a little brighter for it. Sixnail Crossing survives, watchful, its two "
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-ending-broken-bell-art",
+      "beat": "ending-broken-bell",
+      "brief": "The Broken Bell — Without its anchor, Orune's grudge unravels into the wind and the valley reshapes itself overnight — new rivers, new hills, a town forced to remake it"
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-ending-gods-champion-art",
+      "beat": "ending-gods-champion",
+      "brief": "The God's Champion — You rode Orune's fury like a storm given purpose, and the debt was paid in the cultists' own coin. Sixnail Crossing whispers your name now with equal "
+    },
+    {
+      "slot": "art-the-hollow-bell-frontier-ending-frontier-burns-art",
+      "beat": "ending-frontier-burns",
+      "brief": "The Frontier Burns — The grudge went unanswered when it mattered most. Sixnail Crossing burns beneath a hollow, ringing sky, and the debt between two gods is paid in a cur"
+    }
+  ]
+}

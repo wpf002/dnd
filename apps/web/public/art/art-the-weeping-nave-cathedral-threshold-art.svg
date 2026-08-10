@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#241f1a"/><stop offset="1" stop-color="#151210"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="48"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="230.6171612692997" width="800" height="219.3828387307003" fill="#0e0c0a"/>
+  <rect y="204.6171612692997" width="800" height="52" fill="#a08a5a" opacity="0.10"/>
+  <rect y="222.6171612692997" width="800" height="16" fill="#a08a5a" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><rect x="44.28346302360296" y="159.2145985364914" width="26" height="245.7854014635086"/><rect x="36.28346302360296" y="147.2145985364914" width="42" height="12"/><rect x="165.8675728412345" y="196.91277841106057" width="26" height="208.08722158893943"/><rect x="157.8675728412345" y="184.91277841106057" width="42" height="12"/><rect x="264.52285098377615" y="191.83681891299784" width="26" height="213.16318108700216"/><rect x="256.52285098377615" y="179.83681891299784" width="42" height="12"/><rect x="379.49827877804637" y="179.08308098092675" width="26" height="225.91691901907325"/><rect x="371.49827877804637" y="167.08308098092675" width="42" height="12"/><rect x="493.41431422159076" y="202.01231421902776" width="26" height="202.98768578097224"/><rect x="485.41431422159076" y="190.01231421902776" width="42" height="12"/><rect x="605.4627550393343" y="211.4511296711862" width="26" height="193.5488703288138"/><rect x="597.4627550393343" y="199.4511296711862" width="42" height="12"/><rect x="718.8149755587801" y="160.76103555969894" width="26" height="244.23896444030106"/><rect x="710.8149755587801" y="148.76103555969894" width="42" height="12"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

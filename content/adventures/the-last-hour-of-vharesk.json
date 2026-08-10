@@ -1,0 +1,739 @@
+{
+  "id": "the-last-hour-of-vharesk",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Hour of Vharesk",
+    "premise": "In the poisoned heart of the fallen capital Vharesk, a god-organ called the Bloomheart is hours from hatching a hunger that will unmake the world. One mechanism remains that might stop it — the Last Choir Key — and the party has until the toxic tide reaches the palace to decide its fate.",
+    "tone": [
+      "epic-finale",
+      "cosmic-horror"
+    ],
+    "tier": "national",
+    "partyLevel": 8,
+    "narrationVoice": "A grim, elegiac second-person narrator who speaks as if recording the last testimony of a dying city.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen; any references to the young of Vharesk remain off-page and are only spoken of in memory."
+    },
+    "provenance": "flint"
+  },
+  "entry": "shattered-gate",
+  "beats": [
+    {
+      "id": "shattered-gate",
+      "kind": "threshold",
+      "title": "The Shattered Gate",
+      "prose": "The bronze gates of Vharesk hang open, warped like melted wax. Beyond them, the capital's heart pulses with a sick violet light, visible even at midday. The air tastes of copper and rot. Somewhere below, the Bloomheart is waking, and you have perhaps three hours before it finishes.",
+      "readAloud": "The city does not welcome you. It merely fails to stop you.",
+      "art": "art-the-last-hour-of-vharesk-shattered-gate",
+      "options": [
+        {
+          "id": "approach-concourse",
+          "label": "Cross the open Sunken Concourse",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sunken-concourse",
+          "effects": []
+        },
+        {
+          "id": "slip-undercroft",
+          "label": "Slip through the hidden Choir Undercroft",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choir-undercroft",
+          "effects": []
+        },
+        {
+          "id": "confront-sentries",
+          "label": "Confront the cult sentries barring the inner gate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-sentries",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sunken-concourse",
+      "kind": "transit",
+      "title": "The Sunken Concourse",
+      "prose": "Once a grand plaza, the concourse has sunk into a bowl of stagnant, glowing mist. Statues of forgotten magistrates lean drowned to their waists in the poison fog.",
+      "art": "art-the-last-hour-of-vharesk-sunken-concourse",
+      "options": [
+        {
+          "id": "push-forward",
+          "label": "Push straight through the mist toward the palace",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "skill": "Constitution Saving Throw",
+            "dc": 14,
+            "onFailure": "poison-tide"
+          }
+        },
+        {
+          "id": "search-ruins",
+          "label": "Search the drowned statues for supplies",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "relic-cache",
+          "effects": []
+        },
+        {
+          "id": "backtrack-undercroft",
+          "label": "Backtrack toward the Choir Undercroft",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choir-undercroft",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-undercroft",
+      "kind": "discovery",
+      "title": "The Choir Undercroft",
+      "prose": "Beneath the concourse, a vaulted chamber holds the bones of a choir that once sang the Bloomheart to sleep every century. Their final inscriptions cover the walls in fading gold.",
+      "art": "art-the-last-hour-of-vharesk-choir-undercroft",
+      "options": [
+        {
+          "id": "study-inscriptions",
+          "label": "Study the choir's final inscriptions",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "learned-key-lore",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "ghast-hollow"
+          }
+        },
+        {
+          "id": "side-chamber",
+          "label": "Investigate a sealed side chamber",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ghast-hollow",
+          "effects": []
+        },
+        {
+          "id": "push-onward",
+          "label": "Leave the bones behind and press onward",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-sentries",
+      "kind": "conflict",
+      "title": "The Cult Sentries",
+      "prose": "A knot of robed zealots and their captain guard the inner gate, chanting a countdown of their own devising.",
+      "art": "art-the-last-hour-of-vharesk-cult-sentries",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-sentries-fight",
+      "terminal": false
+    },
+    {
+      "id": "relic-cache",
+      "kind": "discovery",
+      "title": "The Scholar's Cache",
+      "prose": "Hidden beneath a fallen statue's plinth, a cache of a dead scholar's tools and a single warding relic remain, untouched by the mist.",
+      "art": "art-the-last-hour-of-vharesk-relic-cache",
+      "options": [
+        {
+          "id": "take-ward-relic",
+          "label": "Take the warding relic",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "relic-found",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-nothing-move-on",
+          "label": "Leave the relics untouched and move on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": []
+        },
+        {
+          "id": "detour-warden",
+          "label": "Follow strange tracks toward a hidden den",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-last-warden",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghast-hollow",
+      "kind": "conflict",
+      "title": "The Ghast Hollow",
+      "prose": "The side chamber is a charnel hollow where the poison has raised the dead scholars into something hungry and quick.",
+      "art": "art-the-last-hour-of-vharesk-ghast-hollow",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hollow-ghasts",
+      "terminal": false
+    },
+    {
+      "id": "the-last-warden",
+      "kind": "social",
+      "title": "The Last Warden",
+      "prose": "In a fortified den beneath the ruins, a scarred survivor named Iyre Voss has held her post alone for weeks, waiting for someone worth trusting with what she knows.",
+      "art": "art-the-last-hour-of-vharesk-the-last-warden",
+      "options": [
+        {
+          "id": "persuade-warden",
+          "label": "Persuade Iyre to join you at the Heart",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "ally-recruited",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "bloomheart-antechamber"
+          }
+        },
+        {
+          "id": "trade-info",
+          "label": "Trade information about the Last Choir Key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "learned-key-lore",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-warden",
+          "label": "Leave her to her post and press on alone",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "poison-tide",
+      "kind": "hazard",
+      "title": "The Poison Tide",
+      "prose": "The mist surges higher, a rising tide of glowing toxin that eats at exposed skin and thought alike.",
+      "art": "art-the-last-hour-of-vharesk-poison-tide",
+      "options": [
+        {
+          "id": "climb-high-ground",
+          "label": "Climb to higher, drier ruins",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "poison-exposure",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Acrobatics",
+            "dc": 14,
+            "onFailure": "bloomheart-antechamber"
+          }
+        },
+        {
+          "id": "use-relic-ward",
+          "label": "Use the warding relic to purify a path",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "relic-found",
+            "value": true
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "poison-exposure",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "push-through-mist",
+          "label": "Push straight through the toxic mist",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bloomheart-antechamber",
+          "effects": [
+            {
+              "flag": "poison-exposure",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bloomheart-antechamber",
+      "kind": "discovery",
+      "title": "The Bloomheart Antechamber",
+      "prose": "The Bloomheart fills the vaulted chamber ahead, a vast pulsing organ of root and light, its rhythm quickening toward some final beat. Cultists move like ants at its base.",
+      "art": "art-the-last-hour-of-vharesk-bloomheart-antechamber",
+      "options": [
+        {
+          "id": "enter-choir-chamber",
+          "label": "Enter the Choir chamber to reach the Key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choir-of-the-drowned",
+          "effects": []
+        },
+        {
+          "id": "circle-round",
+          "label": "Circle around and strike the guardians directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-waking-heart",
+          "effects": []
+        },
+        {
+          "id": "study-heart",
+          "label": "Study the Bloomheart's pulsations for a weakness",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choir-of-the-drowned",
+          "effects": [
+            {
+              "flag": "heart-weakness-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Arcana",
+            "dc": 15,
+            "onFailure": "the-waking-heart"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-of-the-drowned",
+      "kind": "puzzle",
+      "title": "The Choir of the Drowned",
+      "prose": "Spectral singers circle the Last Choir Key, a mechanism of bone and bronze fused into the chamber wall. It must be attuned before it can be turned.",
+      "art": "art-the-last-hour-of-vharesk-choir-of-the-drowned",
+      "options": [
+        {
+          "id": "align-key-lore",
+          "label": "Align the Key using the inscriptions you learned",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-key-lore",
+            "value": true
+          },
+          "target": "the-waking-heart",
+          "effects": [
+            {
+              "flag": "key-attuned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "force-key",
+          "label": "Force the Key's mechanism by brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-waking-heart",
+          "effects": [
+            {
+              "flag": "key-attuned",
+              "value": false
+            }
+          ],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "Athletics",
+            "dc": 16,
+            "onFailure": "the-waking-heart"
+          }
+        },
+        {
+          "id": "improvise-song",
+          "label": "Improvise the drowned choir's song from memory",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-waking-heart",
+          "effects": [
+            {
+              "flag": "key-attuned",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Performance",
+            "dc": 14,
+            "onFailure": "the-waking-heart"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-waking-heart",
+      "kind": "climax",
+      "title": "The Waking Heart",
+      "prose": "The Bloomheart's guardians rise from its roots — shadow, wight, and hobgoblin enforcer — to buy the last minutes their masters need.",
+      "art": "art-the-last-hour-of-vharesk-the-waking-heart",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "heart-guardians",
+      "terminal": false
+    },
+    {
+      "id": "last-lever",
+      "kind": "decision",
+      "title": "The Last Lever",
+      "prose": "With the guardians fallen and the Key in hand, only one mechanism remains: the lever that will decide Vharesk's fate before the Bloomheart finishes its final beat.",
+      "art": "art-the-last-hour-of-vharesk-last-lever",
+      "options": [
+        {
+          "id": "seal-heart",
+          "label": "Seal the Bloomheart in silence forever",
+          "visibleWhen": {
+            "op": "not",
+            "clause": {
+              "op": "eq",
+              "flag": "poison-exposure",
+              "value": true
+            }
+          },
+          "target": "ending-sealed-silence",
+          "effects": []
+        },
+        {
+          "id": "transform-heart",
+          "label": "Attempt to transform the Bloomheart into a covenant",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "key-attuned",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "ally-recruited",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "heart-weakness-known",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-transformed-covenant",
+          "effects": []
+        },
+        {
+          "id": "sacrifice-self",
+          "label": "Burn the Heart out from within, at terrible cost",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-burned-legacy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-sealed-silence",
+      "kind": "ending",
+      "title": "Ending: Sealed Silence",
+      "prose": "The lever grinds home. The Bloomheart's light dims to embers and then to nothing. Vharesk will never wake again, and neither will its dead — but the poison recedes, and somewhere beyond the walls, the living exhale for the first time in years.",
+      "art": "art-the-last-hour-of-vharesk-ending-sealed-silence",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-transformed-covenant",
+      "kind": "ending",
+      "title": "Ending: The Transformed Covenant",
+      "prose": "The Key turns not to silence but to communion. The Bloomheart shudders, folds inward, and becomes something smaller, stranger, and almost gentle — a covenant instead of a hunger, bound to whoever stands here when it wakes. Vharesk will grow again, changed, under new and watchful roots.",
+      "art": "art-the-last-hour-of-vharesk-ending-transformed-covenant",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-consumed-city",
+      "kind": "ending",
+      "title": "Ending: The Consumed City",
+      "prose": "The Bloomheart finishes its final beat before the lever is ever reached. Vharesk folds inward on itself, its ruins swallowed into a hunger with no name. Somewhere far away, the sky over the world briefly turns the color of old bruises, and then it is over.",
+      "art": "art-the-last-hour-of-vharesk-ending-consumed-city",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-burned-legacy",
+      "kind": "ending",
+      "title": "Ending: The Burned Legacy",
+      "prose": "One of you steps into the Heart's core and becomes the fire that unmakes it. The Bloomheart screams once, a sound like a city dying twice, and is gone. Vharesk is ash and silence now, but it is only ash — and the survivors will tell your name for as long as anyone remembers to speak of Vharesk at all.",
+      "art": "art-the-last-hour-of-vharesk-ending-burned-legacy",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "cult-sentries-fight",
+      "title": "The Cult Sentries",
+      "combatants": [
+        {
+          "id": "captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandit-guards",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "sunken-concourse",
+      "onDefeat": "poison-tide",
+      "onFlee": "sunken-concourse"
+    },
+    {
+      "id": "hollow-ghasts",
+      "title": "The Ghast Hollow",
+      "combatants": [
+        {
+          "id": "ghasts",
+          "statblock": "ghast",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the hollow to the far archway leading to the antechamber."
+      },
+      "onVictory": "bloomheart-antechamber",
+      "onDefeat": "ending-consumed-city",
+      "onFlee": "sunken-concourse"
+    },
+    {
+      "id": "heart-guardians",
+      "title": "The Waking Heart's Guardians",
+      "combatants": [
+        {
+          "id": "shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "wight-lord",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-enforcer",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "last-lever",
+      "onDefeat": "ending-consumed-city",
+      "onFlee": "ending-consumed-city"
+    }
+  ]
+}

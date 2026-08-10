@@ -1,0 +1,678 @@
+{
+  "id": "the-gray-heralds-ledger",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Gray Herald's Ledger",
+    "premise": "A curiosity shop that commissions retrievals hires the party to find a missing apprentice, but every piece of evidence about his disappearance contradicts the last.",
+    "tone": [
+      "mystery",
+      "anthology"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A wry, precise antiquarian narrator who savors irony and lingers on small telling details.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ]
+    },
+    "provenance": "flint"
+  },
+  "entry": "shop-arrival",
+  "beats": [
+    {
+      "id": "shop-arrival",
+      "kind": "threshold",
+      "title": "The Cabinet of Thistlewood & Co.",
+      "prose": "Bells of bone and brass chime as you step into a shop crammed with impossible objects: a compass that points to regret, a birdcage that hums lullabies. Madam Corvina Thistlewood, proprietor and commissioner of retrievals, wrings her hands. Her apprentice, Wick Halloway, vanished three nights ago. His diary claims he eloped. His coat was found soaked in seawater the same night. A dockhand swears he saw Wick boarding a carriage out of town at the exact hour another witness places him drowning at the pier. Something does not add up, and Corvina wants answers before her creditors or the watch come sniffing.",
+      "readAloud": "\"Everyone agrees on when he vanished,\" Corvina says. \"No one agrees on how. Find the truth in the contradiction, and find my apprentice.\"",
+      "art": "art-the-gray-heralds-ledger-shop-arrival-art",
+      "options": [
+        {
+          "id": "opt-desk",
+          "label": "Examine Wick's desk for clues",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wicks-desk",
+          "effects": []
+        },
+        {
+          "id": "opt-corvina",
+          "label": "Question Madam Corvina directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corvina-interview",
+          "effects": []
+        },
+        {
+          "id": "opt-docks",
+          "label": "Head to the docks where Wick was last seen",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "docks-investigation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wicks-desk",
+      "kind": "discovery",
+      "title": "A Cluttered Desk",
+      "prose": "Wick's desk is a jumble of receipt stubs, half-finished sketches of relics, and a diary bookmarked at an entry describing a secret elopement. Yet the ink of that entry is fresher than the pages around it, as if written after the fact.",
+      "art": "art-the-gray-heralds-ledger-wicks-desk-art",
+      "options": [
+        {
+          "id": "opt-read-diary",
+          "label": "Read the diary aloud, entry by entry",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": []
+        },
+        {
+          "id": "opt-search-compartment",
+          "label": "Search for a hidden compartment beneath the desk",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": []
+        },
+        {
+          "id": "opt-to-corvina",
+          "label": "Go ask Corvina why the ink looks so new",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corvina-interview",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "corvina-interview",
+      "kind": "social",
+      "title": "The Shopkeeper's Unease",
+      "prose": "Corvina's fingers drum against a locked ledger. She admits the shop's rarer stock arrives through suppliers she'd rather not name, and that Wick had grown curious about them lately — perhaps too curious.",
+      "art": "art-the-gray-heralds-ledger-corvina-interview-art",
+      "options": [
+        {
+          "id": "opt-press-ring",
+          "label": "Press her about a pawned ring found in Wick's things",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "docks-investigation"
+          }
+        },
+        {
+          "id": "opt-ask-suppliers",
+          "label": "Ask about the shop's mysterious suppliers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": [
+            {
+              "flag": "knows-smugglers",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-to-docks",
+          "label": "Excuse yourself to inspect the docks",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "docks-investigation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "docks-investigation",
+      "kind": "discovery",
+      "title": "Salt and Contradiction",
+      "prose": "Wick's coat lies snagged on a piling, soaked through with brine, though the night he vanished was dry and moonlit. A dockhand insists he watched Wick board an outbound carriage at the very hour the harbor-master logs him falling into the water.",
+      "art": "art-the-gray-heralds-ledger-docks-investigation-art",
+      "options": [
+        {
+          "id": "opt-track-footprints",
+          "label": "Track footprints in the wet sand",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 13,
+            "onFailure": "hub-clues"
+          }
+        },
+        {
+          "id": "opt-ask-dockhand",
+          "label": "Ask the dockhand to describe the carriage in detail",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": []
+        },
+        {
+          "id": "opt-to-workshop",
+          "label": "Return to the shop to examine Wick's workshop",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "workshop-clue",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "workshop-clue",
+      "kind": "discovery",
+      "title": "The Cracked Mirror",
+      "prose": "Behind a curtain in the back room sits a cracked mirror, its surface still faintly warm. A residue of shimmering dust clings to the frame — the unmistakable signature of a glamour, the kind that can conjure a false double to be seen in two places at once.",
+      "art": "art-the-gray-heralds-ledger-workshop-clue-art",
+      "options": [
+        {
+          "id": "opt-study-mirror",
+          "label": "Study the cracked mirror fragment",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "hub-clues"
+          }
+        },
+        {
+          "id": "opt-pocket-fragment",
+          "label": "Pocket a shard of the mirror for later",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hub-clues",
+          "effects": []
+        },
+        {
+          "id": "opt-to-docks2",
+          "label": "Head to the docks to compare notes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "docks-investigation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hub-clues",
+      "kind": "decision",
+      "title": "Threads That Do Not Match",
+      "prose": "You lay the clues side by side: the too-fresh diary entry, the dry-night soaked coat, the mirror still warm with glamour. Whoever hid Wick's trail wanted every version of events to be technically true — and technically impossible.",
+      "art": "art-the-gray-heralds-ledger-hub-clues-art",
+      "options": [
+        {
+          "id": "opt-confront",
+          "label": "Lay out the contradictions before Corvina",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corvina-confrontation",
+          "effects": []
+        },
+        {
+          "id": "opt-lighthouse",
+          "label": "Head straight for the old lighthouse where the ring's boats dock",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lighthouse-approach",
+          "effects": []
+        },
+        {
+          "id": "opt-more-clues",
+          "label": "Dig deeper at the docks before moving on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "docks-investigation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "corvina-confrontation",
+      "kind": "social",
+      "title": "A Shopkeeper Cornered",
+      "prose": "Corvina's composure cracks. She owed the smugglers of the sunken Gray Herald a debt she could not pay in coin, so she paid it in silence — and let a glamour double cover for Wick's disappearance while they held him as leverage.",
+      "art": "art-the-gray-heralds-ledger-corvina-confrontation-art",
+      "options": [
+        {
+          "id": "opt-persuade",
+          "label": "Persuade her to help you rescue Wick",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lighthouse-approach",
+          "effects": [
+            {
+              "flag": "corvina-ally",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 14,
+            "onFailure": "lighthouse-approach"
+          }
+        },
+        {
+          "id": "opt-reveal-knowledge",
+          "label": "Confront her with proof of the smuggling ring",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-smugglers",
+            "value": true
+          },
+          "target": "lighthouse-approach",
+          "effects": [
+            {
+              "flag": "full-confession",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ultimatum",
+          "label": "Give her an ultimatum and walk out",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lighthouse-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lighthouse-approach",
+      "kind": "threshold",
+      "title": "The Old Lighthouse",
+      "prose": "The disused lighthouse looms over a rocky cove, its lamp dark but its base lit from within by lantern-glow. Rope ladders and crates mark it as the smugglers' den — and Wick's likely prison.",
+      "art": "art-the-gray-heralds-ledger-lighthouse-approach-art",
+      "options": [
+        {
+          "id": "opt-storm",
+          "label": "Storm the front door",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "front-door-clash",
+          "effects": []
+        },
+        {
+          "id": "opt-sneak",
+          "label": "Sneak in through the sea cave",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lighthouse-stealth",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "front-door-clash"
+          }
+        },
+        {
+          "id": "opt-negotiate",
+          "label": "Use Corvina's leverage to negotiate",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "corvina-ally",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "full-confession",
+                "value": true
+              }
+            ]
+          },
+          "target": "lighthouse-parley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lighthouse-stealth",
+      "kind": "discovery",
+      "title": "Through the Sea Cave",
+      "prose": "Cold water laps your boots as you creep through a tunnel beneath the lighthouse. Ahead, a lantern-lit cellar holds crates stamped with the Gray Herald's seal — and, chained to a post, a very much alive and very confused Wick Halloway.",
+      "art": "art-the-gray-heralds-ledger-lighthouse-stealth-art",
+      "options": [
+        {
+          "id": "opt-free-wick",
+          "label": "Free Wick immediately and slip away",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-quiet-rescue",
+          "effects": []
+        },
+        {
+          "id": "opt-search-tower",
+          "label": "Search the tower for evidence of the wider ring first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "front-door-clash",
+          "effects": []
+        },
+        {
+          "id": "opt-signal-raid",
+          "label": "Signal the rest of the party to storm the tower now",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "lighthouse-fight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lighthouse-parley",
+      "kind": "social",
+      "title": "Terms at the Threshold",
+      "prose": "A smuggler broker steps out to parley, flanked by armed guards. \"Corvina sent you,\" he says flatly. \"Then Corvina knows the price of her silence.\"",
+      "art": "art-the-gray-heralds-ledger-lighthouse-parley-art",
+      "options": [
+        {
+          "id": "opt-pay",
+          "label": "Offer payment for Wick's release",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-bargain",
+          "effects": []
+        },
+        {
+          "id": "opt-threaten",
+          "label": "Threaten to expose the smugglers to the watch",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-hero-rescue",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "intimidation",
+            "dc": 15,
+            "onFailure": "front-door-clash"
+          }
+        },
+        {
+          "id": "opt-trick",
+          "label": "Trick the broker into releasing him quietly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-quiet-rescue",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "deception",
+            "dc": 14,
+            "onFailure": "front-door-clash"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "front-door-clash",
+      "kind": "conflict",
+      "title": "Guards at the Gate",
+      "prose": "Steel rasps from scabbards as the lighthouse's guards spot you. There is no more talking to be done — only the door ahead, and the fight to reach it.",
+      "art": "art-the-gray-heralds-ledger-front-door-clash-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "front-door-battle",
+      "terminal": false
+    },
+    {
+      "id": "lighthouse-fight",
+      "kind": "climax",
+      "title": "The Broker's Last Stand",
+      "prose": "Inside the lamp-room, the smuggling broker draws a curved blade, his bandits fanning out around crates of stolen relics. Wick huddles against the far wall, watching to see if his rescue was real this time.",
+      "art": "art-the-gray-heralds-ledger-lighthouse-fight-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "lighthouse-battle",
+      "terminal": false
+    },
+    {
+      "id": "ending-quiet-rescue",
+      "kind": "ending",
+      "title": "A Rescue Unseen",
+      "prose": "No alarm ever sounds. You slip away with Wick through the sea cave, leaving the smugglers none the wiser. Corvina weeps with relief when you return him, and quietly begins repaying her debt in ways that don't involve apprentices as collateral. The contradiction in the evidence, it turns out, was simply a lie well told — and you told a better one.",
+      "art": "art-the-gray-heralds-ledger-ending-quiet-rescue-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bargain",
+      "kind": "ending",
+      "title": "The Price of Silence",
+      "prose": "Coin changes hands, and Wick is returned, shaken but unharmed. The smugglers vanish into the night with their crates and their secrets intact. Corvina's shop survives, though you suspect this will not be the last retrieval this arrangement demands of you.",
+      "art": "art-the-gray-heralds-ledger-ending-bargain-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-hero-rescue",
+      "kind": "ending",
+      "title": "The Gray Herald Exposed",
+      "prose": "Steel or ultimatum, the smuggling ring falls apart before you. Wick is freed, the watch is summoned, and the Gray Herald's stolen cargo is seized. Corvina's shop earns a reputation for retrievals that end in justice rather than compromise — and so, it seems, do you.",
+      "art": "art-the-gray-heralds-ledger-ending-hero-rescue-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-captured",
+      "kind": "ending",
+      "title": "Two Prisoners Now",
+      "prose": "The fight turns against you, and the smugglers bind your hands alongside Wick's. Perhaps another retrieval crew will come looking someday — assuming Corvina can afford to hire one after this. The contradiction in the evidence remains unsolved, filed away with the rest of the shop's unclaimed curiosities.",
+      "art": "art-the-gray-heralds-ledger-ending-captured-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "front-door-battle",
+      "title": "Guards at the Lighthouse Gate",
+      "combatants": [
+        {
+          "id": "hobgoblins",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "goblins",
+          "statblock": "goblin",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "The party pushes past the smugglers' guards to reach the lighthouse's inner door before the alarm bell tolls."
+      },
+      "onVictory": "lighthouse-fight",
+      "onDefeat": "ending-captured",
+      "onFlee": "lighthouse-approach"
+    },
+    {
+      "id": "lighthouse-battle",
+      "title": "The Broker's Last Stand",
+      "combatants": [
+        {
+          "id": "bandit-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bandits",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ending-hero-rescue",
+      "onDefeat": "ending-captured"
+    }
+  ]
+}

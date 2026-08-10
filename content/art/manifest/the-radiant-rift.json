@@ -1,0 +1,90 @@
+{
+  "adventure": "the-radiant-rift",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, beginner-classic.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-radiant-rift-guild-summons-hall",
+      "beat": "guild-summons",
+      "brief": "The Guildmaster's Summons — A brass bell rings three times across the Concord Plaza — the signal for an urgent commission. Guildmaster Orlaine Vess waits atop the Suncrest Steps,"
+    },
+    {
+      "slot": "art-the-radiant-rift-guild-archive-details",
+      "beat": "guild-details",
+      "brief": "In the Guild Archive — Orlaine leads you into the sunlit archive, scrolls of guild history stacked to the rafters. She lays out what little is known: the breach opened near "
+    },
+    {
+      "slot": "art-the-radiant-rift-road-to-old-vaults",
+      "beat": "road-to-vaults",
+      "brief": "The Long Road to the Old Vaults — The road out of Suncrest Vale winds past terraced guildhalls and sun-bright banners before dipping into scrubland where the old stone Vaults slump int"
+    },
+    {
+      "slot": "art-the-radiant-rift-kobold-camp-parley",
+      "beat": "kobold-camp",
+      "brief": "The Warren at the Tree Line — A ring of cookfires and crude banners marks a kobold warband camped just outside the Vaults. Their chieftain, a wiry kobold in a patchwork guild-cloak"
+    },
+    {
+      "slot": "art-the-radiant-rift-kobold-camp-clash",
+      "beat": "kobold-skirmish",
+      "brief": "Ash and Spears — Words fail. Spears rattle against shields as the kobold warband surges forward, more frightened of the breach behind them than of you."
+    },
+    {
+      "slot": "art-the-radiant-rift-vault-breach-chasm",
+      "beat": "vault-breach",
+      "brief": "The Breach — Up close, the fissure is worse than described: a jagged wound in the hillside weeping grey ash that never settles, and a low hum that vibrates in your"
+    },
+    {
+      "slot": "art-the-radiant-rift-goblin-ambush-tunnel",
+      "beat": "goblin-ambush",
+      "brief": "Goblins in the Ash-Fog — A band of goblins, faces wrapped against the ash, spring from the fog the moment you cross the threshold, clearly guarding something they were paid — "
+    },
+    {
+      "slot": "art-the-radiant-rift-sigil-lock-door",
+      "beat": "sigil-lock",
+      "brief": "The Sigil-Locked Door — Beyond the ambush, a stone door bars the way, ringed with the same half-erased guild sigils seen outside. Whatever seals this door was meant to keep s"
+    },
+    {
+      "slot": "art-the-radiant-rift-heart-of-the-maw",
+      "beat": "heart-of-maw",
+      "brief": "The Heart of the Maw — Beyond the door lies the Founders' Crypt, its ceiling cracked open into a churning rift of ash and ember light. At its center hangs a relic — the firs"
+    },
+    {
+      "slot": "art-the-radiant-rift-seal-or-harness-altar",
+      "beat": "seal-or-harness",
+      "brief": "Seal, Harness, or Walk Away — The corrupted seal offers three futures: bind the rift shut forever, bend its raw power to the guilds' use, or leave it be and let tomorrow's guildfol"
+    },
+    {
+      "slot": "art-the-radiant-rift-final-stand-seal-ritual",
+      "beat": "final-stand-seal",
+      "brief": "The Sealing Ritual — You begin the old rite. A guild-warden construct rises to anchor the ritual's threads of light, but the rift answers with a surge of ash-risen dead de"
+    },
+    {
+      "slot": "art-the-radiant-rift-final-stand-harness-core",
+      "beat": "final-stand-harness",
+      "brief": "The Binding Descent — You step toward the rift's core to bind its power into something new. The chamber's corrupted guardians — ghoulish remnants of the first guild — rise "
+    },
+    {
+      "slot": "art-the-radiant-rift-ending-ignored-sunset",
+      "beat": "ending-ignored",
+      "brief": "A Quiet Afternoon — You decline the summons and return to your usual business. Weeks later, word spreads that the Guildhall Vaults collapsed entirely, swallowing three st"
+    },
+    {
+      "slot": "art-the-radiant-rift-ending-retreat-battered",
+      "beat": "ending-retreat",
+      "brief": "A Battered Withdrawal — Bruised and outmatched, you pull back from the Vaults. The breach remains, contained for now by hastily reinforced guild wards, but everyone in Suncre"
+    },
+    {
+      "slot": "art-the-radiant-rift-ending-sealed-dawn",
+      "beat": "ending-sealed",
+      "brief": "The Vaults Made Whole — The last sigil closes with a sound like a held breath finally released. The rift seals, the ash-light fades, and sunlight pours back into the Founders"
+    },
+    {
+      "slot": "art-the-radiant-rift-ending-harnessed-embers",
+      "beat": "ending-harnessed",
+      "brief": "A New Guild Relic — The rift's power bends, reluctantly, into a smoldering ember-seal now humming quietly in your hands. The breach closes — but something of its hunger l"
+    }
+  ]
+}

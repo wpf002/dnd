@@ -1,0 +1,843 @@
+{
+  "id": "the-ashgrave-vault",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ashgrave Vault",
+    "premise": "In the threadbare Duchy of Marrowfen, where even successful thieves barely eat, a crew is hired to steal the Mourning Seal from Tallow Hall during the one night its halls are full of drunken nobles — a building designed by a paranoid architect who built the place to betray thieves exactly like them.",
+    "tone": [
+      "heist",
+      "urban-intrigue"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Wry, world-weary noir narrator with dark humor about poverty, debt, and bad decisions",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Keep violence consequence-driven and non-graphic; no children in danger on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "smoky-offer",
+  "beats": [
+    {
+      "id": "smoky-offer",
+      "kind": "threshold",
+      "title": "A Job in the Gutterlight",
+      "prose": "The Gutterlight tavern smells of tallow smoke and cheap ale. Nessa Vell, fence and fixer to half the desperate thieves in Marrowfen, slides a folded scrap of paper across the table: a sketch of Tallow Hall and a single word underlined twice — TONIGHT. She wants the Duchess's Mourning Seal, the wax-and-iron thing that can forgive a duchy's worth of debt, lifted during the Widow's Vigil, when the hall is fullest and, she swears, the guards are drunkest.",
+      "readAloud": "\"Everyone's poor in this duchy, love,\" Nessa says, \"except whoever's holding that seal. Tonight, that's us.\"",
+      "art": "art-the-ashgrave-vault-smoky-offer-art",
+      "options": [
+        {
+          "id": "take-the-coin",
+          "label": "Take the coin and ask no questions",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "casing-the-hall",
+          "effects": []
+        },
+        {
+          "id": "ask-about-object",
+          "label": "Ask what makes this seal worth the risk",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "casing-the-hall",
+          "effects": []
+        },
+        {
+          "id": "push-for-cut",
+          "label": "Push for a bigger cut before agreeing",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "casing-the-hall",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "casing-the-hall",
+      "kind": "discovery",
+      "title": "Casing Tallow Hall",
+      "prose": "Tallow Hall looms over Backalley Row, all narrow windows and too-clever brickwork. It was designed decades ago by Master Corvin Ashgrave, a paranoid genius who reportedly built every trap he could think of into his own masterpiece — then got locked in an asylum for insisting thieves would come for it someday. He was right.",
+      "art": "art-the-ashgrave-vault-casing-hall-art",
+      "options": [
+        {
+          "id": "scout-sewers",
+          "label": "Study the sewer grates beneath the hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-plan",
+          "effects": [
+            {
+              "flag": "scout-focus",
+              "value": "sewers"
+            }
+          ]
+        },
+        {
+          "id": "scout-guestlist",
+          "label": "Watch the Widow's Vigil guest list arrive",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-plan",
+          "effects": [
+            {
+              "flag": "scout-focus",
+              "value": "masquerade"
+            }
+          ]
+        },
+        {
+          "id": "scout-roofline",
+          "label": "Map the rooftops and gutters above",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-plan",
+          "effects": [
+            {
+              "flag": "scout-focus",
+              "value": "roof"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-plan",
+      "kind": "decision",
+      "title": "Choosing the Crew",
+      "prose": "Back at the safehouse, the crew argues over who comes along tonight. Every choice is a debt someone will collect on later — that's how it works in Marrowfen.",
+      "art": "art-the-ashgrave-vault-the-plan-art",
+      "options": [
+        {
+          "id": "bring-locksmith",
+          "label": "Bring old Pello Fitch, Ashgrave's former apprentice",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-approach",
+          "effects": [
+            {
+              "flag": "crew-pick",
+              "value": "locksmith"
+            }
+          ]
+        },
+        {
+          "id": "bring-charmer",
+          "label": "Bring Sable, who can charm a guard as easily as a lock",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-approach",
+          "effects": [
+            {
+              "flag": "crew-pick",
+              "value": "charmer"
+            }
+          ]
+        },
+        {
+          "id": "bring-strongman",
+          "label": "Bring Grix, whose fists solve most problems",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-approach",
+          "effects": [
+            {
+              "flag": "crew-pick",
+              "value": "strongman"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-approach",
+      "kind": "hazard",
+      "title": "Into Tallow Hall",
+      "prose": "The Widow's Vigil is in full, mournful swing. Candlelight and off-key dirges spill from the windows while the night watch — underpaid, overworked, and none too sharp — makes its rounds.",
+      "art": "art-the-ashgrave-vault-hall-approach-art",
+      "options": [
+        {
+          "id": "use-scouted-route",
+          "label": "Use the route you scouted",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "scout-focus",
+                "value": "sewers"
+              },
+              {
+                "op": "eq",
+                "flag": "scout-focus",
+                "value": "masquerade"
+              },
+              {
+                "op": "eq",
+                "flag": "scout-focus",
+                "value": "roof"
+              }
+            ]
+          },
+          "target": "inside-tallow-hall",
+          "effects": []
+        },
+        {
+          "id": "push-forward-blind",
+          "label": "Push forward and trust your luck",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "inside-tallow-hall",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "entry-fight"
+          }
+        },
+        {
+          "id": "pull-back-replan",
+          "label": "Pull back and reconsider the plan",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-plan",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "entry-fight",
+      "kind": "conflict",
+      "title": "Caught by the Patrol",
+      "prose": "Boots crunch on gravel behind you. The patrol has noticed — and they'd rather beat a confession out of you than fill out paperwork.",
+      "art": "art-the-ashgrave-vault-entry-fight-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hall-sentries",
+      "terminal": false
+    },
+    {
+      "id": "inside-tallow-hall",
+      "kind": "discovery",
+      "title": "The Vigil's Shadow",
+      "prose": "Inside, the hall is a maze of mourning drapes and candle smoke. Somewhere above, the vault holding the Mourning Seal waits behind whatever nightmare Ashgrave dreamed up for it.",
+      "art": "art-the-ashgrave-vault-inside-hall-art",
+      "options": [
+        {
+          "id": "search-stewards-office",
+          "label": "Search the steward's office for the vault plans",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-vault-room",
+          "effects": [
+            {
+              "flag": "prep",
+              "value": "plans"
+            }
+          ]
+        },
+        {
+          "id": "scout-exit-route",
+          "label": "Scout a clean route back out first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-vault-room",
+          "effects": [
+            {
+              "flag": "prep",
+              "value": "exit"
+            }
+          ]
+        },
+        {
+          "id": "head-straight-vault",
+          "label": "Head straight for the vault, boldly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-vault-room",
+          "effects": [
+            {
+              "flag": "prep",
+              "value": "bold"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-vault-room",
+      "kind": "puzzle",
+      "title": "Ashgrave's Puzzle Lock",
+      "prose": "The vault door is a brass riddle of dials and levers, engraved with a warning in Ashgrave's cramped hand: 'A thief who thinks like me deserves what's inside.' It hums faintly, like it's waiting.",
+      "art": "art-the-ashgrave-vault-vault-room-art",
+      "options": [
+        {
+          "id": "use-the-plans",
+          "label": "Use the plans to bypass the mechanism",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "prep",
+            "value": "plans"
+          },
+          "target": "seal-in-hand",
+          "effects": []
+        },
+        {
+          "id": "solve-the-riddle",
+          "label": "Puzzle out the architect's riddle",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seal-in-hand",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "vault-fight"
+          }
+        },
+        {
+          "id": "force-the-mechanism",
+          "label": "Force the mechanism open",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seal-in-hand",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 15,
+            "onFailure": "vault-fight"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-fight",
+      "kind": "conflict",
+      "title": "Bone Sentinels Awaken",
+      "prose": "The dials click wrong, and the wall panels grind open. Ashgrave built his guardians from bone and stolen armor, and they've been waiting a long, patient time for this.",
+      "art": "art-the-ashgrave-vault-vault-fight-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bone-sentinels",
+      "terminal": false
+    },
+    {
+      "id": "seal-in-hand",
+      "kind": "discovery",
+      "title": "The Mourning Seal",
+      "prose": "The seal sits in a velvet cradle, small and unremarkable for something that could unmake a duchy's debts. Somewhere in the hall, the music has stopped.",
+      "art": "art-the-ashgrave-vault-seal-hand-art",
+      "options": [
+        {
+          "id": "use-scouted-exit",
+          "label": "Slip out your scouted route",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "prep",
+            "value": "exit"
+          },
+          "target": "clean-escape",
+          "effects": []
+        },
+        {
+          "id": "fight-to-doors",
+          "label": "Fight your way to the doors",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-fight",
+          "effects": []
+        },
+        {
+          "id": "seek-the-duchess",
+          "label": "Seek out the Duchess herself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "duchess-confrontation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "final-fight",
+      "kind": "conflict",
+      "title": "Captain Dallow's Last Stand",
+      "prose": "Captain Rooke Dallow blocks the grand stair with two guards at his back, sword already drawn. He hasn't been paid in weeks, but tonight he's decided to care anyway.",
+      "art": "art-the-ashgrave-vault-final-fight-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "final-guards",
+      "terminal": false
+    },
+    {
+      "id": "duchess-confrontation",
+      "kind": "climax",
+      "title": "Face to Face with the Duchess",
+      "prose": "Duchess Ilvara Marrow stands alone in the mourning hall, veil lifted, staring at the seal in your hand like it's the only honest thing left in her duchy.",
+      "art": "art-the-ashgrave-vault-duchess-confrontation-art",
+      "options": [
+        {
+          "id": "offer-mercy",
+          "label": "Offer her the seal in exchange for mercy",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "crew-pick",
+                "value": "locksmith"
+              },
+              {
+                "op": "eq",
+                "flag": "crew-pick",
+                "value": "charmer"
+              },
+              {
+                "op": "eq",
+                "flag": "crew-pick",
+                "value": "strongman"
+              }
+            ]
+          },
+          "target": "dukes-mercy-ending",
+          "effects": []
+        },
+        {
+          "id": "threaten-silence",
+          "label": "Threaten her into silence and keep the seal",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "betrayal-ending",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "intimidation",
+            "dc": 14,
+            "onFailure": "captured-ending"
+          }
+        },
+        {
+          "id": "smash-the-seal",
+          "label": "Smash the seal before her eyes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "captured-ending",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "clean-escape",
+      "kind": "ending",
+      "title": "A Clean Getaway",
+      "prose": "You're three streets away before the alarm bell finally rings. Nessa pays you a fraction of what the seal is worth — crime never pays well in Marrowfen — but you're alive, unshackled, and richer than yesterday. That'll do.",
+      "art": "art-the-ashgrave-vault-clean-escape-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "bloody-escape",
+      "kind": "ending",
+      "title": "Blood on the Cobbles",
+      "prose": "You stumble out of Tallow Hall bruised, bleeding, and short a few friends' good graces, but the seal is in your coat. Nessa pays you, wincing at the state of you. Word gets around Marrowfen fast: don't cross that crew.",
+      "art": "art-the-ashgrave-vault-bloody-escape-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "captured-ending",
+      "kind": "ending",
+      "title": "The Duchy's Mercy",
+      "prose": "Marrowfen's dungeons are as shabby as everything else in the duchy — damp, underfunded, and full of thieves who thought they had a clever plan. You'll have plenty of company to compare notes with.",
+      "art": "art-the-ashgrave-vault-captured-ending-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "dukes-mercy-ending",
+      "kind": "ending",
+      "title": "An Uneasy Pardon",
+      "prose": "The Duchess takes the seal back with trembling hands and, against all reason, lets you walk free. 'Marrowfen has enough debts,' she murmurs. 'I won't add yours to the pile.' Nessa is furious you didn't deliver it — but you sleep easier than she does.",
+      "art": "art-the-ashgrave-vault-dukes-mercy-ending-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "betrayal-ending",
+      "kind": "ending",
+      "title": "The Seal for Silence",
+      "prose": "The Duchess's composure cracks under your threats. You leave with the seal and her silence, both bought at the price of her trust. Nessa is delighted. You're not entirely sure you are.",
+      "art": "art-the-ashgrave-vault-betrayal-ending-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "smoky-offer",
+      "to": "casing-the-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "casing-the-hall",
+      "to": "the-plan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-plan",
+      "to": "the-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-approach",
+      "to": "inside-tallow-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-approach",
+      "to": "entry-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-approach",
+      "to": "the-plan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "entry-fight",
+      "to": "inside-tallow-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "entry-fight",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "entry-fight",
+      "to": "the-plan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "inside-tallow-hall",
+      "to": "the-vault-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-vault-room",
+      "to": "seal-in-hand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-vault-room",
+      "to": "vault-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-fight",
+      "to": "seal-in-hand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-fight",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-in-hand",
+      "to": "clean-escape",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-in-hand",
+      "to": "final-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-in-hand",
+      "to": "duchess-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-fight",
+      "to": "bloody-escape",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-fight",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-fight",
+      "to": "duchess-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duchess-confrontation",
+      "to": "dukes-mercy-ending",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duchess-confrontation",
+      "to": "betrayal-ending",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "duchess-confrontation",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "hall-sentries",
+      "title": "The Grounds Patrol",
+      "combatants": [
+        {
+          "id": "patrol-guards",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Slip past the patrol to the servants' door before they raise the alarm."
+      },
+      "onVictory": "inside-tallow-hall",
+      "onDefeat": "captured-ending",
+      "onFlee": "the-plan"
+    },
+    {
+      "id": "bone-sentinels",
+      "title": "Ashgrave's Bone Sentinels",
+      "combatants": [
+        {
+          "id": "skeleton-guard",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "iron-warden",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "seal-in-hand",
+      "onDefeat": "captured-ending"
+    },
+    {
+      "id": "final-guards",
+      "title": "Captain Dallow's Stand",
+      "combatants": [
+        {
+          "id": "captain-dallow",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hall-guard",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "bloody-escape",
+      "onDefeat": "captured-ending",
+      "onFlee": "duchess-confrontation"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ashfen-compact",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: gothic-horror, urban-intrigue.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ashfen-compact-sealed-invitation-art",
+      "beat": "sealed-invitation",
+      "brief": "The Sealed Letter — A letter arrives at your door past midnight, its wax seal pressed with an ashen sigil you do not recognize. It names you by a title you've never held "
+    },
+    {
+      "slot": "art-the-ashfen-compact-mist-bound-streets-art",
+      "beat": "mist-bound-streets",
+      "brief": "Streets of Veylmoor — Veylmoor's fog rolls thick between leaning tenements and drowned streetlamps. Shapes move at the edges of sight. Somewhere a bell tolls the hour wrong"
+    },
+    {
+      "slot": "art-the-ashfen-compact-initiation-rite-art",
+      "beat": "initiation-rite",
+      "brief": "The Chapterhouse Doors — Robed figures wait beneath a mural of a drowning man. Their leader, Elder Cassian Thorne, extends a hand marked with old scars and older ink, welcomin"
+    },
+    {
+      "slot": "art-the-ashfen-compact-archive-whispers-art",
+      "beat": "archive-whispers",
+      "brief": "The Whispering Archive — Beneath the Chapterhouse, a vault of ledgers and locked drawers hums with old paper and older secrets. One ledger, bound in waterlogged leather, bears"
+    },
+    {
+      "slot": "art-the-ashfen-compact-mara-hollowmere-art",
+      "beat": "mara-hollowmere",
+      "brief": "The Last Hollowmere — In a rented room above a shuttered fish market, you find Mara Hollowmere—thin, hollow-eyed, aging in ways that make no sense. She says her family's gh"
+    },
+    {
+      "slot": "art-the-ashfen-compact-choose-approach-art",
+      "beat": "choose-approach",
+      "brief": "A Path Through the Fog — Three threads pull at you: the drowned harbor where the old wrong was done, the elders who ordered it, and a wardstone rumored to bind restless spirit"
+    },
+    {
+      "slot": "art-the-ashfen-compact-harbor-secret-art",
+      "beat": "harbor-secret",
+      "brief": "The Drowned Harbor — Rotted pilings claw up from black water. A sunken warehouse leans half-submerged, and an old dockmaster still haunts the pier, muttering about a night"
+    },
+    {
+      "slot": "art-the-ashfen-compact-drowned-tide-hazard-art",
+      "beat": "drowned-tide-hazard",
+      "brief": "The Rising Tide — The water in the warehouse begins to churn and rise unnaturally, cold hands of foam grasping at your ankles. Something old and drowned stirs beneath t"
+    },
+    {
+      "slot": "art-the-ashfen-compact-wight-rises-art",
+      "beat": "wight-rises",
+      "brief": "The Drowned Patriarch — Josiah Hollowmere rises from the black water, wight-pale and furious, flanked by two bloated shapes that were once his killers' hired hands. He does n"
+    },
+    {
+      "slot": "art-the-ashfen-compact-ritual-wardstone-art",
+      "beat": "ritual-wardstone",
+      "brief": "The Wardstone — In a hidden shrine beneath the harbor road, you find the wardstone—a carved basalt disc humming with old, contained grief. It could bind a spirit, sha"
+    },
+    {
+      "slot": "art-the-ashfen-compact-confront-elders-art",
+      "beat": "confront-elders",
+      "brief": "The Elders' Reckoning — Elder Thorne and the inner circle receive you in the Chapterhouse's sealed hall, candlelight flickering against portraits of the drowned. Whatever you"
+    },
+    {
+      "slot": "art-the-ashfen-compact-elders-guard-art",
+      "beat": "elders-guard",
+      "brief": "Blades in the Candlelight — Thorne's expression hardens. Robes fall away to reveal steel as the Compact's hidden enforcers close in around you, determined that tonight's secrets "
+    },
+    {
+      "slot": "art-the-ashfen-compact-final-choice-art",
+      "beat": "final-choice",
+      "brief": "The Weight of the Truth — The mist outside the Chapterhouse seems to hold its breath. Everything you've learned, freed or bound, promised or betrayed, now comes to a single rec"
+    },
+    {
+      "slot": "art-the-ashfen-compact-ending-truth-exposed-art",
+      "beat": "ending-truth-exposed",
+      "brief": "The Tide Remembers — By dawn, broadsheets across Veylmoor carry the Hollowmere name and the Compact's crime. The Chapterhouse burns not with fire but with ruin—reputations"
+    },
+    {
+      "slot": "art-the-ashfen-compact-ending-compact-preserved-art",
+      "beat": "ending-compact-preserved",
+      "brief": "What the Fog Keeps — The Chapterhouse doors close behind you, its secrets undisturbed. Somewhere below the city, the tide still murmurs an old man's name, and somewhere ab"
+    },
+    {
+      "slot": "art-the-ashfen-compact-ending-mara-freed-art",
+      "beat": "ending-mara-freed",
+      "brief": "A Debt Repaid — The wardstone's old grief passes from Mara like a held breath finally released. She will still carry her family's memory, but no longer its curse. The"
+    }
+  ]
+}

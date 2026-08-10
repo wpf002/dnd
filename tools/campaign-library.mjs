@@ -240,7 +240,7 @@ async function worker() {
       if (!result.ok) {
         if (result.kind === 'call-failed') stats.callFail++;
         else stats.lintFail++;
-        console.log(`  FAIL  ${id}  (${result.kind}, ${result.attempts} attempt(s), ${secs}s)`);
+        console.log(`  FAIL  ${e.t}  (${result.kind}, ${result.attempts} attempt(s), ${secs}s)`);
         console.log(`        ${String(result.errors[0] ?? '').slice(0, 140)}`);
         continue;
       }
@@ -284,7 +284,7 @@ async function worker() {
       );
     } catch (err) {
       stats.callFail++;
-      console.log(`  ERROR ${id}  ${String(err.message).slice(0, 140)}`);
+      console.log(`  ERROR ${e.t}  ${String(err.message).slice(0, 140)}`);
     }
   }
 }

@@ -1,0 +1,926 @@
+{
+  "id": "the-two-wrens-of-emberlatch",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Two Wrens of Emberlatch",
+    "premise": "In the mountain town of Emberlatch, a bell-ringer's apprentice named Wren Coppice has vanished — yet every witness swears she was in two places at once, and the town's oldest secret, a hidden refuge for fey exiles, may hold the truth behind the impossible evidence.",
+    "tone": [
+      "mystery",
+      "whimsical-fey"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "wry, wondrous, and quietly unsettling, like a folktale told by lantern-light",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Wren Coppice is a young adult apprentice, not a child; no depiction of harm to children occurs."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-in-emberlatch",
+  "beats": [
+    {
+      "id": "arrival-in-emberlatch",
+      "kind": "threshold",
+      "title": "The Bell That Didn't Ring",
+      "prose": "Emberlatch clings to a fold of the mountain where the frost never quite melts, its shingled roofs huddled beneath a belltower that has gone silent for the first time in forty years. Wren Coppice, the bell-ringer's apprentice, vanished three nights ago — and the stories about her leaving don't agree with each other at all.",
+      "readAloud": "The bell has not rung in three days. In its silence, the whole town seems to be holding its breath.",
+      "art": "art-the-two-wrens-of-emberlatch-arrival-in-emberlatch",
+      "options": [
+        {
+          "id": "opt-talk-constable",
+          "label": "Seek out Constable Ansell Marrow at the watch-house",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "constable-briefing",
+          "effects": []
+        },
+        {
+          "id": "opt-talk-family",
+          "label": "Visit the Coppice household to speak with Wren's kin",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "coppice-household",
+          "effects": []
+        },
+        {
+          "id": "opt-seek-maren",
+          "label": "Seek out Maren Ash, the town's herb-witch, who knows things others don't say aloud",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "marens-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "constable-briefing",
+      "kind": "social",
+      "title": "A Watch-House Full of Contradictions",
+      "prose": "Constable Marrow spreads out a ledger of witness statements, each one crossed out and rewritten. A miller swears Wren left by the north gate at dusk; a baker swears she bought bread at the very same hour. Two boot-prints, identical in every scuff and nail-mark, lead both toward the mountain and away toward the river — at once.",
+      "readAloud": "\"I've kept this ledger thirty years,\" Marrow says, \"and never once needed to write 'and also' after a witness's name.\"",
+      "art": "art-the-two-wrens-of-emberlatch-constable-briefing",
+      "options": [
+        {
+          "id": "opt-ask-witnesses",
+          "label": "Press him on how the contradictory sightings could both be true",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-contradiction",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-family-ref",
+          "label": "Ask him to point you toward Wren's family",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "coppice-household",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-fey-rumors",
+          "label": "Ask if he's ever heard the old rumors about the mountain's hollow places",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "marens-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "coppice-household",
+      "kind": "social",
+      "title": "The Coppice Household",
+      "prose": "Wren's older brother Bram paces a kitchen gone cold, a half-carved wooden sparrow in his hands. He mentions, almost in passing, a private childhood name Wren answered to only within the family — a name she'd never tell a stranger, and one he's terrified she might now need someone else to speak.",
+      "readAloud": "\"Everyone in town calls her Wren,\" Bram says. \"But her true-name, the one our grandmother gave her — I don't think anyone outside this house has ever heard it.\"",
+      "art": "art-the-two-wrens-of-emberlatch-coppice-household",
+      "options": [
+        {
+          "id": "opt-ask-sigil",
+          "label": "Ask Bram to tell you Wren's private true-name",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-contradiction",
+          "effects": [
+            {
+              "flag": "know-true-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ask-constable-ref",
+          "label": "Ask whether the constable has questioned the household properly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "constable-briefing",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-herb-witch-ref",
+          "label": "Ask if Maren Ash has been by to offer any charms",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "marens-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-contradiction",
+      "kind": "decision",
+      "title": "Two Sets of Footprints",
+      "prose": "Standing where the boot-prints diverge, you can see it plainly now: one trail climbs toward the old quarry road on the mountain's shoulder, the other winds down toward the river mill. Both are unmistakably Wren's. Both are three days fresh. Neither is a copy of the other — they are each, impossibly, first-generation truth.",
+      "readAloud": "The frost has kept both trails crisp and whole, as if the girl who made them walked two directions at the very same moment.",
+      "art": "art-the-two-wrens-of-emberlatch-the-contradiction",
+      "options": [
+        {
+          "id": "opt-choose-mountain",
+          "label": "Follow the trail up toward the old quarry road",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mountain-approach",
+          "effects": []
+        },
+        {
+          "id": "opt-choose-river",
+          "label": "Follow the trail down toward the river mill",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "river-approach",
+          "effects": []
+        },
+        {
+          "id": "opt-seek-maren-again",
+          "label": "Bring the impossible evidence to Maren Ash before choosing",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "marens-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "marens-warning",
+      "kind": "social",
+      "title": "What Maren Ash Knows",
+      "prose": "Maren Ash's cottage smells of dried thorn-apple and something colder, older. She listens to the contradictions without surprise. \"Emberlatch was built on a door,\" she says at last, \"and doors like that let more than one thing through at a time. There's a whole drowning world tucked under this mountain, child, and it's been borrowing our shadows for longer than the town has had a name.\"",
+      "readAloud": "\"The Sparrow Court doesn't steal people,\" Maren says. \"It echoes them. And sometimes the echo forgets which one it is.\"",
+      "art": "art-the-two-wrens-of-emberlatch-marens-warning",
+      "options": [
+        {
+          "id": "opt-go-mountain",
+          "label": "Head for the quarry road she says hides the old threshold",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mountain-approach",
+          "effects": []
+        },
+        {
+          "id": "opt-go-river",
+          "label": "Head for the river mill she says hides a second way in",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "river-approach",
+          "effects": []
+        },
+        {
+          "id": "opt-request-charm",
+          "label": "Ask her to guide you straight to the door herself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-door-threshold",
+          "effects": [
+            {
+              "flag": "maren-guided",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mountain-approach",
+      "kind": "hazard",
+      "title": "The Quarry Road's Sentinel",
+      "prose": "The quarry road narrows between cairns of stacked stone, each one etched with thorn-and-bell sigils. At the road's end, a suit of ancient armor stands fused with lichen and root, its visor tracking your approach with a patience that is not remotely mechanical.",
+      "readAloud": "The armor's joints grind like millstones as it turns to face you, though nothing living moves inside it.",
+      "art": "art-the-two-wrens-of-emberlatch-mountain-approach",
+      "options": [
+        {
+          "id": "opt-sneak-past",
+          "label": "Use Maren's guiding charm to slip past the sentinel unseen",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "maren-guided",
+            "value": true
+          },
+          "target": "cinder-door-threshold",
+          "effects": []
+        },
+        {
+          "id": "opt-confront-guardian",
+          "label": "Approach the animated guardian directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-guardian-fight",
+          "effects": []
+        },
+        {
+          "id": "opt-search-hidden-trail",
+          "label": "Search the cairns for a hidden trail around the guardian",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-door-threshold",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 14,
+            "onFailure": "cinder-guardian-fight"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "river-approach",
+      "kind": "hazard",
+      "title": "Trappers in the Reeds",
+      "prose": "Below the river mill, the reeds grow thick and unnaturally tall, and someone has strung snare-lines through the mud. Shapes move between the stalks — quick, green-skinned, and grinning — accompanied by the low growl of something larger padding at their heels.",
+      "readAloud": "A giggle threads through the reeds, high and delighted, entirely at odds with the snare wire glinting at your ankles.",
+      "art": "art-the-two-wrens-of-emberlatch-river-approach",
+      "options": [
+        {
+          "id": "opt-confront-trappers",
+          "label": "Push through and confront the trappers directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "river-guardian-fight",
+          "effects": []
+        },
+        {
+          "id": "opt-sneak-through-reeds",
+          "label": "Try to slip through the reeds unseen",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-door-threshold",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "river-guardian-fight"
+          }
+        },
+        {
+          "id": "opt-ask-miller",
+          "label": "Ask the miller, who watches nervously from his door, for another way past",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-door-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cinder-guardian-fight",
+      "kind": "conflict",
+      "title": "The Guardian of the Cinderdoor",
+      "prose": "The animated armor lunges to life at last, bone-ward sentries rising from beneath the cairns to flank it — the mountain's oldest promise, given rusted shape.",
+      "art": "art-the-two-wrens-of-emberlatch-cinder-guardian-fight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "guardian-of-cinderdoor",
+      "terminal": false
+    },
+    {
+      "id": "river-guardian-fight",
+      "kind": "conflict",
+      "title": "Ambush in the Reeds",
+      "prose": "The trappers spring their snares in earnest now, laughing as a wolf circles wide to cut off retreat. This is a game to them — but the stakes are entirely real.",
+      "art": "art-the-two-wrens-of-emberlatch-river-guardian-fight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "reed-trappers",
+      "terminal": false
+    },
+    {
+      "id": "cinder-door-threshold",
+      "kind": "threshold",
+      "title": "The Cinderdoor",
+      "prose": "Behind the guardian's post, or beneath the reeds' tangle, the mountain opens onto a door of black glass veined with ember-light, warm to the touch despite the cold stone around it. Sigils older than Emberlatch itself ring its frame, half-worn, half-remembered.",
+      "readAloud": "Light moves behind the glass like something breathing on the other side of a very thin wall.",
+      "art": "art-the-two-wrens-of-emberlatch-cinder-door-threshold",
+      "options": [
+        {
+          "id": "opt-open-door",
+          "label": "Open the door and step through",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sparrow-court-arrival",
+          "effects": []
+        },
+        {
+          "id": "opt-study-sigils",
+          "label": "Study the sigils before crossing",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sparrow-court-arrival",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 12,
+            "onFailure": "sparrow-court-arrival"
+          }
+        },
+        {
+          "id": "opt-knock-announce",
+          "label": "Knock and announce yourselves properly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sparrow-court-arrival",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sparrow-court-arrival",
+      "kind": "discovery",
+      "title": "The Sparrow Court",
+      "prose": "Beyond the door lies a hollow the size of a valley, lit by no sun you recognize, filled with impossible orchards and a court of fey exiles who fled a dying realm called the Withered Bough generations ago. At its heart, the Hollow Warden, Tamsin Fen, rises to meet you — flanked by a cluster of Nettle-Kin who eye your arrival with open suspicion.",
+      "readAloud": "\"You've come about the echo,\" Tamsin Fen says, not quite a question. \"We were afraid someone would, eventually.\"",
+      "art": "art-the-two-wrens-of-emberlatch-sparrow-court-arrival",
+      "options": [
+        {
+          "id": "opt-ask-warden",
+          "label": "Ask Tamsin Fen directly what happened to Wren",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-warden-audience",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-nettlekin",
+          "label": "Ask why the Nettle-Kin look so unhappy about your presence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-warden-audience",
+          "effects": []
+        },
+        {
+          "id": "opt-explore-court",
+          "label": "Ask to see where Wren has been kept",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-warden-audience",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-warden-audience",
+      "kind": "decision",
+      "title": "A Choice Beneath the Mountain",
+      "prose": "The truth spills out: Wren stumbled through a weak seam in the Cinderdoor and chose to stay, tending a dying orchard that keeps the whole hollow breathing — while a fey echo, gentle and half-formed, was sent back wearing her face so no one in Emberlatch would grieve. The Nettle-Kin want the door sealed forever, echo and all, before outsiders learn the Sparrow Court exists. Tamsin Fen wants your discretion instead.",
+      "readAloud": "\"Every choice here costs someone something,\" Tamsin Fen says. \"I only ask that you choose knowing that.\"",
+      "art": "art-the-two-wrens-of-emberlatch-the-warden-audience",
+      "options": [
+        {
+          "id": "opt-pledge-warden",
+          "label": "Pledge Emberlatch's discretion to Tamsin Fen and the Sparrow Court",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mirror-pool-puzzle",
+          "effects": [
+            {
+              "flag": "warden-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-side-nettlekin",
+          "label": "Side with the Nettle-Kin's demand that the door be sealed for good",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mirror-pool-puzzle",
+          "effects": [
+            {
+              "flag": "warden-trust",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "opt-stay-neutral",
+          "label": "Refuse to take a side and press on toward the mirror pool where the truth can be tested",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mirror-pool-puzzle",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mirror-pool-puzzle",
+      "kind": "puzzle",
+      "title": "The Mirror Pool",
+      "prose": "At the orchard's heart lies a still black pool that shows two reflections where there should be one: two Wrens, identical down to the chipped tooth and the ink-stain on her thumb, both looking back at you with the exact same frightened hope.",
+      "readAloud": "Both reflections speak at once, in perfect unison: \"Please. Choose right.\"",
+      "art": "art-the-two-wrens-of-emberlatch-mirror-pool-puzzle",
+      "options": [
+        {
+          "id": "opt-iron-nail",
+          "label": "Press a cold iron nail to both reflections and let it break the false glamour",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-reunion-restored",
+          "effects": []
+        },
+        {
+          "id": "opt-name-echo",
+          "label": "Speak the private true-name Bram gave you to call the real Wren home",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "know-true-name",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "warden-trust",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-thornecho-freed",
+          "effects": []
+        },
+        {
+          "id": "opt-trust-instinct",
+          "label": "Trust your instincts and choose without proof",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-reunion-restored",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 14,
+            "onFailure": "ending-lost-in-glass"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-reunion-restored",
+      "kind": "ending",
+      "title": "The Bell Rings Again",
+      "prose": "The false glamour peels away like frost off glass, and the real Wren gasps back into her own skin, disoriented but whole. The echo — grateful, tearful, formless once more — dissolves back into the orchard's light with a whispered thanks. Within the week, Emberlatch's bell rings out over the valley again, and no one in town ever learns quite how close they came to losing her twice over.",
+      "readAloud": "The bell tolls at dusk, clear and true, and for the first time in three days the whole town breathes out at once.",
+      "art": "art-the-two-wrens-of-emberlatch-ending-reunion-restored",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-thornecho-freed",
+      "kind": "ending",
+      "title": "Two Sparrows, One Sky",
+      "prose": "Speaking Wren's true-name does more than call her home — it unbinds the echo from having to mimic anyone at all. Both Wrens step from the pool, distinct now, the echo blinking at a face and a future entirely her own. With Tamsin Fen's blessing and the Nettle-Kin's wary tolerance, Emberlatch quietly gains a second Wren-shaped citizen, and the Sparrow Court gains its first honest ambassador to the world above.",
+      "readAloud": "\"I don't have to be her anymore,\" the echo says, wondering, as if trying out a new coat. \"I get to just be.\"",
+      "art": "art-the-two-wrens-of-emberlatch-ending-thornecho-freed",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-lost-in-glass",
+      "kind": "ending",
+      "title": "The Wrong Reflection",
+      "prose": "The choice is made too quickly, or too late, or simply wrong — and the pool closes over the real Wren's reflection with a sound like a held breath finally released. The echo walks home in her place, none the wiser, while somewhere beneath the mountain an orchard keeps growing around a girl the surface world has already, quietly, forgotten.",
+      "readAloud": "The pool goes still and dark, and something in the silence afterward feels permanent.",
+      "art": "art-the-two-wrens-of-emberlatch-ending-lost-in-glass",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-in-emberlatch",
+      "to": "constable-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-in-emberlatch",
+      "to": "coppice-household",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-in-emberlatch",
+      "to": "marens-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "constable-briefing",
+      "to": "the-contradiction",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "constable-briefing",
+      "to": "coppice-household",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "constable-briefing",
+      "to": "marens-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coppice-household",
+      "to": "the-contradiction",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coppice-household",
+      "to": "constable-briefing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "coppice-household",
+      "to": "marens-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-contradiction",
+      "to": "mountain-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-contradiction",
+      "to": "river-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-contradiction",
+      "to": "marens-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "marens-warning",
+      "to": "mountain-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "marens-warning",
+      "to": "river-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "marens-warning",
+      "to": "cinder-door-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mountain-approach",
+      "to": "cinder-door-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "sneak or successful search"
+    },
+    {
+      "from": "mountain-approach",
+      "to": "cinder-guardian-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "river-approach",
+      "to": "cinder-door-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "successful sneak or miller's help"
+    },
+    {
+      "from": "river-approach",
+      "to": "river-guardian-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cinder-guardian-fight",
+      "to": "cinder-door-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "cinder-guardian-fight",
+      "to": "ending-lost-in-glass",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "river-guardian-fight",
+      "to": "cinder-door-threshold",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "river-guardian-fight",
+      "to": "ending-lost-in-glass",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "river-guardian-fight",
+      "to": "river-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "cinder-door-threshold",
+      "to": "sparrow-court-arrival",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sparrow-court-arrival",
+      "to": "the-warden-audience",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-warden-audience",
+      "to": "mirror-pool-puzzle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-pool-puzzle",
+      "to": "ending-reunion-restored",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-pool-puzzle",
+      "to": "ending-thornecho-freed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-pool-puzzle",
+      "to": "ending-lost-in-glass",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "guardian-of-cinderdoor",
+      "title": "The Guardian of the Cinderdoor",
+      "combatants": [
+        {
+          "id": "animated-warden",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bone-ward",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "cinder-door-threshold",
+      "onDefeat": "ending-lost-in-glass"
+    },
+    {
+      "id": "reed-trappers",
+      "title": "Trappers in the Reeds",
+      "combatants": [
+        {
+          "id": "reed-trapper",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "trapper-wolf",
+          "statblock": "wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "difficult",
+        "fog"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the reeds and reach the cave mouth beyond before the trappers encircle you."
+      },
+      "onVictory": "cinder-door-threshold",
+      "onDefeat": "ending-lost-in-glass",
+      "onFlee": "river-approach"
+    }
+  ]
+}

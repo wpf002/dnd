@@ -1,0 +1,90 @@
+{
+  "adventure": "the-cisterns-quiet-bargain",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: urban-intrigue, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-cisterns-quiet-bargain-entry-salt-row-art",
+      "beat": "entry-salt-row",
+      "brief": "Three Petitioners, One Secret — Old Ferro slides three names across a stained table in Salt Row: Matron Ilsa Corvain of the Tinkers' Guild, Deacon Ashur Vey of the Drowned Bell, and "
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-guild-hall-art",
+      "beat": "guild-hall",
+      "brief": "Matron Corvain's Ledger — The guild hall smells of solder and lamp oil. Matron Corvain, hands stained black from her forges, admits she needs the Cistern Warden's seal to legal"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-drowned-bell-temple-art",
+      "beat": "drowned-bell-temple",
+      "brief": "Deacon Vey's Confession — Beneath the temple's cracked bell, Deacon Vey confesses the seal once bound a small spirit that keeps the ward's cisterns from souring during floods. "
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-thale-manor-art",
+      "beat": "thale-manor",
+      "brief": "Steward Oswick's Offer — Steward Oswick receives you in an empty parlor, Lord Thale's portrait gathering dust. She wants the seal to quietly fold the ward's water rights into "
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ward-archive-art",
+      "beat": "ward-archive",
+      "brief": "The Waterlogged Archive — Musty survey maps and half-drowned ledgers hold the seal's last known resting place: a sealed vault beneath the old cistern-house, forgotten since bef"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-seal-vault-approach-art",
+      "beat": "seal-vault-approach",
+      "brief": "The Cistern-House Vault — Rusted pipes and standing water lead to a vault door sealed since the last flood generation. Something still guards it—old wards, or older bones."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-vault-guardians-art",
+      "beat": "vault-guardians",
+      "brief": "The Wardens Below — The vault's guardians never left—brittle skeletons in warden's sashes, and something darker clinging to the shadows between them."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-seal-in-hand-art",
+      "beat": "seal-in-hand",
+      "brief": "The Warden's Seal — The seal is smaller than expected—tin, tarnished, warm to the touch. Faint inscriptions ring its edge, older than any of the three powers who want it."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-oswick-ultimatum-art",
+      "beat": "oswick-ultimatum",
+      "brief": "Oswick's Enforcers — Steward Oswick's hired blades block the alley ahead. She's tired of waiting quietly and wants the seal now, one way or another."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-mercenary-ambush-art",
+      "beat": "mercenary-ambush",
+      "brief": "Blades in the Alley — Oswick's enforcers close in, steel ringing off wet cobblestones. You don't need to beat them—just get clear with the seal."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-decision-final-art",
+      "beat": "decision-final",
+      "brief": "The Seal in Your Hand — The seal's weight is more than tin. Whoever holds it decides who controls the ward's water for a generation—or whether anyone does at all."
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ending-guild-rule-art",
+      "beat": "ending-guild-rule",
+      "brief": "The Guild's Water — Matron Corvain grips the seal like a promise kept. The wards' cisterns will run under guild oversight now—fairer than the manor, harder-edged than the"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ending-temple-rule-art",
+      "beat": "ending-temple-rule",
+      "brief": "The Bell Endures — Deacon Vey seals the vault properly this time, the old binding renewed under the Drowned Bell's care. The water stays sweet, the spirit stays quiet, a"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ending-independent-ward-art",
+      "beat": "ending-independent-ward",
+      "brief": "No One's Seal — You burn the claim ledgers in a rain barrel and let the truth of the binding spread through Salt Row's gossip instead of its courts. No single power g"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ending-oswick-rule-art",
+      "beat": "ending-oswick-rule",
+      "brief": "The Absentee Lord's Hand — Oswick takes the seal with a satisfied nod and folds the ward's water into Lord Thale's distant estate. The wards get a new landlord who has never onc"
+    },
+    {
+      "slot": "art-the-cisterns-quiet-bargain-ending-defeat-art",
+      "beat": "ending-defeat",
+      "brief": "Lost Beneath the Wards — Between old bones and hired blades, the ward finally claims something back. The seal is never found again, and the three powers quietly go on wanting "
+    }
+  ]
+}

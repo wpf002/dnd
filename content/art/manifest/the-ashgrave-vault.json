@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ashgrave-vault",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, urban-intrigue.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ashgrave-vault-smoky-offer-art",
+      "beat": "smoky-offer",
+      "brief": "A Job in the Gutterlight — The Gutterlight tavern smells of tallow smoke and cheap ale. Nessa Vell, fence and fixer to half the desperate thieves in Marrowfen, slides a folded s"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-casing-hall-art",
+      "beat": "casing-the-hall",
+      "brief": "Casing Tallow Hall — Tallow Hall looms over Backalley Row, all narrow windows and too-clever brickwork. It was designed decades ago by Master Corvin Ashgrave, a paranoid g"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-the-plan-art",
+      "beat": "the-plan",
+      "brief": "Choosing the Crew — Back at the safehouse, the crew argues over who comes along tonight. Every choice is a debt someone will collect on later — that's how it works in Mar"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-hall-approach-art",
+      "beat": "the-approach",
+      "brief": "Into Tallow Hall — The Widow's Vigil is in full, mournful swing. Candlelight and off-key dirges spill from the windows while the night watch — underpaid, overworked, and"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-entry-fight-art",
+      "beat": "entry-fight",
+      "brief": "Caught by the Patrol — Boots crunch on gravel behind you. The patrol has noticed — and they'd rather beat a confession out of you than fill out paperwork."
+    },
+    {
+      "slot": "art-the-ashgrave-vault-inside-hall-art",
+      "beat": "inside-tallow-hall",
+      "brief": "The Vigil's Shadow — Inside, the hall is a maze of mourning drapes and candle smoke. Somewhere above, the vault holding the Mourning Seal waits behind whatever nightmare A"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-vault-room-art",
+      "beat": "the-vault-room",
+      "brief": "Ashgrave's Puzzle Lock — The vault door is a brass riddle of dials and levers, engraved with a warning in Ashgrave's cramped hand: 'A thief who thinks like me deserves what's "
+    },
+    {
+      "slot": "art-the-ashgrave-vault-vault-fight-art",
+      "beat": "vault-fight",
+      "brief": "Bone Sentinels Awaken — The dials click wrong, and the wall panels grind open. Ashgrave built his guardians from bone and stolen armor, and they've been waiting a long, patie"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-seal-hand-art",
+      "beat": "seal-in-hand",
+      "brief": "The Mourning Seal — The seal sits in a velvet cradle, small and unremarkable for something that could unmake a duchy's debts. Somewhere in the hall, the music has stopped"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-final-fight-art",
+      "beat": "final-fight",
+      "brief": "Captain Dallow's Last Stand — Captain Rooke Dallow blocks the grand stair with two guards at his back, sword already drawn. He hasn't been paid in weeks, but tonight he's decided t"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-duchess-confrontation-art",
+      "beat": "duchess-confrontation",
+      "brief": "Face to Face with the Duchess — Duchess Ilvara Marrow stands alone in the mourning hall, veil lifted, staring at the seal in your hand like it's the only honest thing left in her duc"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-clean-escape-art",
+      "beat": "clean-escape",
+      "brief": "A Clean Getaway — You're three streets away before the alarm bell finally rings. Nessa pays you a fraction of what the seal is worth — crime never pays well in Marrowfe"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-bloody-escape-art",
+      "beat": "bloody-escape",
+      "brief": "Blood on the Cobbles — You stumble out of Tallow Hall bruised, bleeding, and short a few friends' good graces, but the seal is in your coat. Nessa pays you, wincing at the s"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-captured-ending-art",
+      "beat": "captured-ending",
+      "brief": "The Duchy's Mercy — Marrowfen's dungeons are as shabby as everything else in the duchy — damp, underfunded, and full of thieves who thought they had a clever plan. You'll"
+    },
+    {
+      "slot": "art-the-ashgrave-vault-dukes-mercy-ending-art",
+      "beat": "dukes-mercy-ending",
+      "brief": "An Uneasy Pardon — The Duchess takes the seal back with trembling hands and, against all reason, lets you walk free. 'Marrowfen has enough debts,' she murmurs. 'I won't "
+    },
+    {
+      "slot": "art-the-ashgrave-vault-betrayal-ending-art",
+      "beat": "betrayal-ending",
+      "brief": "The Seal for Silence — The Duchess's composure cracks under your threats. You leave with the seal and her silence, both bought at the price of her trust. Nessa is delighted."
+    }
+  ]
+}

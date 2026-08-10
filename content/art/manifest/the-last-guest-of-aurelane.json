@@ -1,0 +1,90 @@
+{
+  "adventure": "the-last-guest-of-aurelane",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-guest-of-aurelane-grand-ballroom-gala",
+      "beat": "arrival-gala",
+      "brief": "The Farewell Gala — Lanterns of captured starlight drift over the Grand Terminus ballroom. Tonight is the one night Aurelane's wards thin — the Farewell Gala, when the re"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-concierge-desk",
+      "beat": "talk-concierge",
+      "brief": "The Concierge's Smile — The concierge, a pale man named Farel with too many pockets, answers every question with another question, but a slip of the tongue mentions 'the Key'"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-service-corridor-shadows",
+      "beat": "service-corridors",
+      "brief": "Behind the Velvet — Past the gilded doors, the resort's bones show: bare stone, humming sconces, and staff who move like clockwork. A locked archive door promises answers"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-warden-audience-hall",
+      "beat": "host-audience",
+      "brief": "The Warden's Welcome — Warden Selessa Thorn greets you with a warmth that never reaches her eyes. She speaks of Aurelane as a 'family' no one truly leaves, and studies your "
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-architect-study-blueprints",
+      "beat": "architects-study",
+      "brief": "Vantal's Study — Dust-caked blueprints cover every wall of the architect's abandoned study. Ozren Vantal designed Aurelane to hold its guests forever — and left, half-"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-warden-confrontation",
+      "beat": "confront-warden",
+      "brief": "A Question of Leverage — Whatever you know now, it changes how the Warden looks at you — as a threat, a bargaining chip, or an opportunity. The choice of how to press her is y"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-doorman-bribe",
+      "beat": "bribe-doorman",
+      "brief": "A Price for Passage — A weary doorman named Coss has watched guests vanish for thirty years. He hates Aurelane more than he fears it — for the right price, or the right pro"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-archive-vault-door",
+      "beat": "archive-vault",
+      "brief": "The Vault Antechamber — Beyond a final door, brass gears the size of wagon wheels turn behind glass. The Departure Key rests somewhere within this mechanism, guarded by Vanta"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-vault-mechanism-puzzle",
+      "beat": "vault-mechanism",
+      "brief": "The Clockwork Lock — The vault is a puzzle of gears, mirrors, and false floors — Vantal's final design, meant to keep the Key from anyone clever enough to reach it. It hum"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-corridor-patrol-fight",
+      "beat": "patrol-encounter",
+      "brief": "Clockwork Patrol — Suits of animated livery-armor round the corner, brass faces blank and gleaming. They do not shout. They simply advance, gears whirring, to herd you b"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-warden-standoff-battle",
+      "beat": "warden-standoff",
+      "brief": "The Warden's Enforcers — Selessa Thorn's smile finally cracks. Her bandit-captain enforcer and a pair of hobgoblin bruisers step between you and the vault, and for the first t"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-terminus-departure-hall",
+      "beat": "escape-terminus",
+      "brief": "The Departure Key — The Key rests warm and impossible in your hand — a sliver of hinge-metal that should not exist, humming with the promise of an exit. The wards are thi"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-dawn-departure",
+      "beat": "ending-freedom",
+      "brief": "Free at Last — The ward parts like a curtain of warm smoke, and beyond it is a road, an ordinary road, leading away from Aurelane's painted sky. You walk it without "
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-guests-exodus-dawn",
+      "beat": "ending-mass-exodus",
+      "brief": "The Grand Exodus — Word spreads through the resort like wildfire. Guests who forgot they were prisoners remember all at once, and a river of people pours toward the thin"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-new-warden-throne",
+      "beat": "ending-become-warden",
+      "brief": "The New Warden — You do not leave. You close your hand around the Key and feel Aurelane's wards answer to you instead, Selessa Thorn's tired relief evident as she fina"
+    },
+    {
+      "slot": "art-the-last-guest-of-aurelane-eternal-guest-suite",
+      "beat": "ending-trapped-forever",
+      "brief": "Guest of Aurelane, Forever — The clockwork hands close around you before the ward finishes thinning. Selessa's smile returns, sad and permanent, as staff lead you gently, irresist"
+    }
+  ]
+}

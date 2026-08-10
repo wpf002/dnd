@@ -1,0 +1,820 @@
+{
+  "id": "the-founders-ledger",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Founder's Ledger",
+    "premise": "Team Emberclaw, a franchised adventuring crew, has one night to steal the Founder's Ledger from Wyrmhold Tower before headquarters uses it to dissolve every independent franchise. The tower was designed by a retired adventurer who built it specifically to stop heists like this one.",
+    "tone": [
+      "heist",
+      "high-adventure"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "A wry corporate-noir narrator who treats franchise bureaucracy with the same gravity as ancient prophecy, layering dry humor over genuine heist tension.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen in danger or otherwise."
+    },
+    "provenance": "flint"
+  },
+  "entry": "midnight-contract",
+  "beats": [
+    {
+      "id": "midnight-contract",
+      "kind": "threshold",
+      "title": "The Midnight Contract",
+      "prose": "Your franchise crew, Team Emberclaw, licensed under the Wyrmhold Consolidated banner, has one night to steal the Founder's Ledger before headquarters uses it to dissolve every independent franchise, including yours. The tower that holds it was designed by Corvin Aldermast, a retired adventurer who built the place specifically to stop crews like yours. Dawn seals the new vault forever.",
+      "readAloud": "The contract lies open on the table: one signature, one impossible building, one night.",
+      "art": "art-the-founders-ledger-contract-briefing",
+      "options": [
+        {
+          "id": "opt-apprentice",
+          "label": "Track down Aldermast's estranged apprentice",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "apprentice-meeting",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "apprentice"
+            }
+          ]
+        },
+        {
+          "id": "opt-clerk",
+          "label": "Bribe a Wyrmhold records clerk for intel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "clerk-bribe",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "clerk"
+            }
+          ]
+        },
+        {
+          "id": "opt-blind",
+          "label": "Skip the prep and move on the tower now",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "blind"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "apprentice-meeting",
+      "kind": "social",
+      "title": "The Apprentice's Grudge",
+      "prose": "Mira Thistlewood once drafted blueprints beside Aldermast before he cut her out of the firm entirely. She still keeps copies of everything and is happy to help anyone who might embarrass her old mentor.",
+      "art": "art-the-founders-ledger-apprentice-alley",
+      "options": [
+        {
+          "id": "opt-passage",
+          "label": "Ask about secret maintenance passages",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "knows-passage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-guards",
+          "label": "Ask about the guard rotation schedule",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "knows-guards",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-leverage",
+          "label": "Ask for leverage against the night auditor",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "has-leverage",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "clerk-bribe",
+      "kind": "social",
+      "title": "A Willing Clerk",
+      "prose": "Dez, a mid-level records clerk, is drowning in franchise paperwork and more than willing to trade secrets for a fat purse of gold.",
+      "art": "art-the-founders-ledger-clerk-office",
+      "options": [
+        {
+          "id": "opt-blueprints",
+          "label": "Buy the maintenance blueprints",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "knows-passage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-vaultcode",
+          "label": "Buy the vault's failsafe code",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "knows-vault-code",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-silence",
+          "label": "Buy a guard's willingness to look away",
+          "target": "tower-approach",
+          "effects": [
+            {
+              "flag": "guard-bribed",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tower-approach",
+      "kind": "transit",
+      "title": "Wyrmhold Tower at Midnight",
+      "prose": "The tower rises over the district, its facade a maze of gargoyles that are actually alarm wards. The annual Ledger Audit gala is winding down inside, giving you one last window before the doors seal.",
+      "art": "art-the-founders-ledger-tower-facade",
+      "options": [
+        {
+          "id": "opt-dock",
+          "label": "Slip in through the loading dock",
+          "target": "loading-dock",
+          "effects": []
+        },
+        {
+          "id": "opt-gala",
+          "label": "Walk in with the departing gala crowd",
+          "target": "gala-floor",
+          "effects": []
+        },
+        {
+          "id": "opt-valet",
+          "label": "Bribe the valet for a service entrance key",
+          "target": "gala-floor",
+          "effects": [
+            {
+              "flag": "guard-bribed",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "loading-dock",
+      "kind": "hazard",
+      "title": "The Loading Dock",
+      "prose": "Crates of enchanted quills and ledger-stock paper block the service entrance. A single guard watches the door, half-asleep.",
+      "art": "art-the-founders-ledger-loading-dock-scene",
+      "options": [
+        {
+          "id": "opt-rotation",
+          "label": "Time your entry using the known guard rotation",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-guards",
+            "value": true
+          },
+          "target": "interior-atrium",
+          "effects": []
+        },
+        {
+          "id": "opt-pick",
+          "label": "Pick the loading dock lock",
+          "target": "interior-atrium",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "thieves' tools",
+            "dc": 13,
+            "onFailure": "corridor-guards"
+          }
+        },
+        {
+          "id": "opt-force",
+          "label": "Force the door open",
+          "target": "interior-atrium",
+          "effects": [
+            {
+              "flag": "alarm",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 15,
+            "onFailure": "corridor-guards"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gala-floor",
+      "kind": "social",
+      "title": "The Audit Gala",
+      "prose": "Franchise executives mingle beneath crystal chandeliers, toasting a night that will end several careers by dawn. Blending in is easy; staying unnoticed is not.",
+      "art": "art-the-founders-ledger-gala-ballroom",
+      "options": [
+        {
+          "id": "opt-mingle",
+          "label": "Mingle and drift toward the private stair",
+          "target": "interior-atrium",
+          "effects": []
+        },
+        {
+          "id": "opt-charm",
+          "label": "Charm a passing auditor for a keycard",
+          "target": "interior-atrium",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "corridor-guards"
+          }
+        },
+        {
+          "id": "opt-distract",
+          "label": "Stage a distraction near the dessert table",
+          "target": "interior-atrium",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight of hand",
+            "dc": 12,
+            "onFailure": "corridor-guards"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "interior-atrium",
+      "kind": "discovery",
+      "title": "Aldermast's Atrium",
+      "prose": "Aldermast built the atrium as both showcase and trap: mirrored floors, listening statues, and a spiral stair that only certain footsteps trigger. The vault lies three floors up, past the night auditor's desk.",
+      "art": "art-the-founders-ledger-atrium-marvel",
+      "options": [
+        {
+          "id": "opt-passage2",
+          "label": "Slip through the secret passage",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-passage",
+            "value": true
+          },
+          "target": "vault-room",
+          "effects": []
+        },
+        {
+          "id": "opt-bluff",
+          "label": "Bluff past the night auditor at the front desk",
+          "target": "auditor-confrontation",
+          "effects": []
+        },
+        {
+          "id": "opt-bribedguard",
+          "label": "Walk past the bribed guard's post",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "guard-bribed",
+            "value": true
+          },
+          "target": "vault-room",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "auditor-confrontation",
+      "kind": "social",
+      "title": "The Night Auditor",
+      "prose": "Auditor Presque Voss guards the stair with a ledger of her own: appointments, complaints, and a suspicious eye for anyone dressed slightly too well for midnight.",
+      "art": "art-the-founders-ledger-auditor-desk",
+      "options": [
+        {
+          "id": "opt-pitch",
+          "label": "Pitch her a franchise proposal to buy time",
+          "target": "vault-room",
+          "effects": []
+        },
+        {
+          "id": "opt-threaten",
+          "label": "Hint that you know about her expense reports",
+          "target": "vault-room",
+          "effects": []
+        },
+        {
+          "id": "opt-alarmknown",
+          "label": "Slip past while the alarms are already blaring",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "alarm",
+            "value": true
+          },
+          "target": "corridor-guards",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-room",
+      "kind": "puzzle",
+      "title": "The Founder's Vault",
+      "prose": "The vault door is a puzzle-lock of interlocking gears, each keyed to a franchise crest. Aldermast built it to punish haste and reward patience, or insider knowledge.",
+      "art": "art-the-founders-ledger-vault-mechanism",
+      "options": [
+        {
+          "id": "opt-disarm",
+          "label": "Carefully disarm the pressure-plate mechanism",
+          "target": "ledger-secured",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "sleight of hand",
+            "dc": 14,
+            "onFailure": "vault-guardians"
+          }
+        },
+        {
+          "id": "opt-insider",
+          "label": "Use your insider knowledge to bypass the lock",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "has-leverage",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "knows-vault-code",
+                "value": true
+              }
+            ]
+          },
+          "target": "ledger-secured",
+          "effects": []
+        },
+        {
+          "id": "opt-forcevault",
+          "label": "Force the vault open loudly",
+          "target": "vault-guardians",
+          "effects": [
+            {
+              "flag": "alarm",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "corridor-guards",
+      "kind": "conflict",
+      "title": "Guards in the Corridor",
+      "prose": "Your misstep echoes through the marble halls, and Wyrmhold security converges fast, blades drawn and boots pounding.",
+      "art": "art-the-founders-ledger-corridor-guards-fight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "corridor-guards-encounter",
+      "terminal": false
+    },
+    {
+      "id": "vault-guardians",
+      "kind": "conflict",
+      "title": "The Vault Guardians Awaken",
+      "prose": "Aldermast's signature constructs, hollow suits of enchanted armor, rise from alcoves around the vault door, animated by the alarm you just tripped.",
+      "art": "art-the-founders-ledger-vault-guardians-fight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardians-encounter",
+      "terminal": false
+    },
+    {
+      "id": "ledger-secured",
+      "kind": "decision",
+      "title": "The Ledger in Hand",
+      "prose": "The Founder's Ledger hums against your palms, bound in dragonhide and stitched with every franchise contract ever signed. What you do with it next will outlast the night.",
+      "art": "art-the-founders-ledger-ledger-decision",
+      "options": [
+        {
+          "id": "opt-liberate",
+          "label": "Destroy the Ledger to free every franchise",
+          "target": "ending-liberation",
+          "effects": []
+        },
+        {
+          "id": "opt-power",
+          "label": "Claim the Ledger to elevate your own franchise",
+          "target": "ending-power-grab",
+          "effects": []
+        },
+        {
+          "id": "opt-sell",
+          "label": "Sell the Ledger to your clerk contact's rival buyer",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "approach",
+            "value": "clerk"
+          },
+          "target": "ending-rival",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-liberation",
+      "kind": "ending",
+      "title": "Every Franchise Free",
+      "prose": "You burn the Ledger's binding page by page in the tower's own furnace. Across the region, a thousand independent franchises wake up owning their own contracts for the first time. Team Emberclaw becomes a legend: broke, hunted by Wyrmhold's lawyers, and utterly free.",
+      "art": "art-the-founders-ledger-ending-liberation-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-power-grab",
+      "kind": "ending",
+      "title": "Emberclaw Ascendant",
+      "prose": "You rewrite the Ledger's terms in your own name. By sunrise, Team Emberclaw controls franchise rights across three provinces. Power suits you, though some nights you wonder who's coming to steal it from you next.",
+      "art": "art-the-founders-ledger-ending-power-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-rival",
+      "kind": "ending",
+      "title": "Sold to the Highest Bidder",
+      "prose": "Your clerk contact's rival buyer pays in gold and gratitude. The Ledger vanishes into a new corporation's vaults, and Team Emberclaw retires rich, if a little uneasy about what they've unleashed.",
+      "art": "art-the-founders-ledger-ending-rival-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "captured-ending",
+      "kind": "ending",
+      "title": "Caught in Aldermast's Design",
+      "prose": "The building does exactly what its architect intended: it holds you until Wyrmhold security arrives in force. Team Emberclaw's franchise license is revoked before the sun rises, and Corvin Aldermast, watching from a courtyard, allows himself a small, satisfied smile.",
+      "art": "art-the-founders-ledger-ending-captured-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "midnight-contract",
+      "to": "apprentice-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midnight-contract",
+      "to": "clerk-bribe",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midnight-contract",
+      "to": "tower-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "apprentice-meeting",
+      "to": "tower-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clerk-bribe",
+      "to": "tower-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tower-approach",
+      "to": "loading-dock",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tower-approach",
+      "to": "gala-floor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loading-dock",
+      "to": "interior-atrium",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loading-dock",
+      "to": "corridor-guards",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gala-floor",
+      "to": "interior-atrium",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gala-floor",
+      "to": "corridor-guards",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "interior-atrium",
+      "to": "vault-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "interior-atrium",
+      "to": "auditor-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "auditor-confrontation",
+      "to": "vault-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "auditor-confrontation",
+      "to": "corridor-guards",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-room",
+      "to": "ledger-secured",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-room",
+      "to": "vault-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "corridor-guards",
+      "to": "interior-atrium",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "corridor-guards",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "vault-guardians",
+      "to": "ledger-secured",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "vault-guardians",
+      "to": "captured-ending",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "ledger-secured",
+      "to": "ending-liberation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-secured",
+      "to": "ending-power-grab",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-secured",
+      "to": "ending-rival",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "corridor-guards-encounter",
+      "title": "Corridor Security Sweep",
+      "combatants": [
+        {
+          "id": "hobgoblin-squad",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "bandit-squad",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "interior-atrium",
+      "onDefeat": "captured-ending"
+    },
+    {
+      "id": "vault-guardians-encounter",
+      "title": "The Vault Guardians Awaken",
+      "combatants": [
+        {
+          "id": "sentinel-armors",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ledger-secured",
+      "onDefeat": "captured-ending"
+    }
+  ]
+}

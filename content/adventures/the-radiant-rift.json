@@ -1,0 +1,739 @@
+{
+  "id": "the-radiant-rift",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Radiant Rift",
+    "premise": "In sunlit Suncrest Vale, city of a hundred adventuring guilds, a fissure of ancient blight has torn open beneath the Guildhall Vaults. It will swallow the shining city within days — and choosing to look away is a choice all its own.",
+    "tone": [
+      "high-adventure",
+      "beginner-classic"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "A warm, encouraging guide who cheers clever plans and treats failure as the start of a better story.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No on-screen harm to children; guild NPCs are all adults."
+    },
+    "provenance": "flint"
+  },
+  "entry": "guild-summons",
+  "beats": [
+    {
+      "id": "guild-summons",
+      "kind": "threshold",
+      "title": "The Guildmaster's Summons",
+      "prose": "A brass bell rings three times across the Concord Plaza — the signal for an urgent commission. Guildmaster Orlaine Vess waits atop the Suncrest Steps, her ceremonial sash askew, sunlight glinting off worry lines she usually hides well.",
+      "readAloud": "\"The old Vaults beneath the Guildhall have cracked open,\" Orlaine says without preamble. \"Something ashen and hungry breathes down there now. Every guild in the Vale will feel it if it isn't stopped — and soon.\"",
+      "art": "art-the-radiant-rift-guild-summons-hall",
+      "options": [
+        {
+          "id": "ask-for-details",
+          "label": "Ask the Guildmaster for more details before deciding",
+          "target": "guild-details",
+          "effects": []
+        },
+        {
+          "id": "accept-immediately",
+          "label": "Accept the quest at once and rally your gear",
+          "target": "road-to-vaults",
+          "effects": []
+        },
+        {
+          "id": "decline-quest",
+          "label": "Decline — the Vaults are not your problem today",
+          "target": "ending-ignored",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guild-details",
+      "kind": "social",
+      "title": "In the Guild Archive",
+      "prose": "Orlaine leads you into the sunlit archive, scrolls of guild history stacked to the rafters. She lays out what little is known: the breach opened near the old Founders' Crypt, and kobold scouts from the eastern warrens have been seen near the tunnel mouth.",
+      "readAloud": "\"Ask what you need,\" she says. \"But ask quickly. The cracks widen by the hour.\"",
+      "art": "art-the-radiant-rift-guild-archive-details",
+      "options": [
+        {
+          "id": "ask-about-founder",
+          "label": "Ask about the Founders' Crypt and what lies within",
+          "target": "road-to-vaults",
+          "effects": [
+            {
+              "flag": "learned-founder-lore",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-about-threat",
+          "label": "Ask what exactly is coming out of the breach",
+          "target": "road-to-vaults",
+          "effects": []
+        },
+        {
+          "id": "ready-to-go",
+          "label": "You've heard enough — set out immediately",
+          "target": "road-to-vaults",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "road-to-vaults",
+      "kind": "transit",
+      "title": "The Long Road to the Old Vaults",
+      "prose": "The road out of Suncrest Vale winds past terraced guildhalls and sun-bright banners before dipping into scrubland where the old stone Vaults slump into the hillside like a forgotten tooth.",
+      "readAloud": "Smoke-grey haze curls from a fissure in the hillside ahead, utterly wrong beneath such a cheerful sky.",
+      "art": "art-the-radiant-rift-road-to-old-vaults",
+      "options": [
+        {
+          "id": "travel-direct",
+          "label": "March straight for the breach",
+          "target": "vault-breach",
+          "effects": []
+        },
+        {
+          "id": "scout-kobold-camp",
+          "label": "Circle wide to scout the kobold camp first",
+          "target": "kobold-camp",
+          "effects": []
+        },
+        {
+          "id": "travel-cautious",
+          "label": "Approach carefully, watching the tree line",
+          "target": "vault-breach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kobold-camp",
+      "kind": "social",
+      "title": "The Warren at the Tree Line",
+      "prose": "A ring of cookfires and crude banners marks a kobold warband camped just outside the Vaults. Their chieftain, a wiry kobold in a patchwork guild-cloak, eyes you warily from atop a supply crate.",
+      "readAloud": "\"You smell like guildfolk,\" the chieftain hisses. \"Guildfolk owe us for the ash that ruins our warrens. What do you offer?\"",
+      "art": "art-the-radiant-rift-kobold-camp-parley",
+      "options": [
+        {
+          "id": "negotiate-passage",
+          "label": "Offer supplies in exchange for safe passage and their aid",
+          "target": "vault-breach",
+          "effects": [
+            {
+              "flag": "met-kobolds",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "kobold-skirmish"
+          }
+        },
+        {
+          "id": "intimidate-kobolds",
+          "label": "Demand they clear out of your way",
+          "target": "kobold-skirmish",
+          "effects": []
+        },
+        {
+          "id": "sneak-past-camp",
+          "label": "Slip past the camp without being seen",
+          "target": "vault-breach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kobold-skirmish",
+      "kind": "conflict",
+      "title": "Ash and Spears",
+      "prose": "Words fail. Spears rattle against shields as the kobold warband surges forward, more frightened of the breach behind them than of you.",
+      "readAloud": "The chieftain shrieks a battle cry that's really a plea for someone, anyone, to make the ash-smoke stop.",
+      "art": "art-the-radiant-rift-kobold-camp-clash",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "kobold-skirmish",
+      "terminal": false
+    },
+    {
+      "id": "vault-breach",
+      "kind": "discovery",
+      "title": "The Breach",
+      "prose": "Up close, the fissure is worse than described: a jagged wound in the hillside weeping grey ash that never settles, and a low hum that vibrates in your teeth. Old guild sigils, half-erased, ring the opening.",
+      "readAloud": "Somewhere far below, something enormous seems to be breathing.",
+      "art": "art-the-radiant-rift-vault-breach-chasm",
+      "options": [
+        {
+          "id": "investigate-breach",
+          "label": "Study the breach's edges for clues before entering",
+          "target": "goblin-ambush",
+          "effects": []
+        },
+        {
+          "id": "recall-founder-history",
+          "label": "Recall what you learned about the Founders' Crypt",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-founder-lore",
+            "value": true
+          },
+          "target": "goblin-ambush",
+          "effects": []
+        },
+        {
+          "id": "gather-evidence",
+          "label": "Collect samples of the strange ash to bring back",
+          "target": "goblin-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "goblin-ambush",
+      "kind": "conflict",
+      "title": "Goblins in the Ash-Fog",
+      "prose": "A band of goblins, faces wrapped against the ash, spring from the fog the moment you cross the threshold, clearly guarding something they were paid — or scared — into protecting.",
+      "readAloud": "\"Nobody down! Nobody down!\" one goblin keeps shouting, as if repeating an order it barely understands.",
+      "art": "art-the-radiant-rift-goblin-ambush-tunnel",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "goblin-ambush",
+      "terminal": false
+    },
+    {
+      "id": "sigil-lock",
+      "kind": "puzzle",
+      "title": "The Sigil-Locked Door",
+      "prose": "Beyond the ambush, a stone door bars the way, ringed with the same half-erased guild sigils seen outside. Whatever seals this door was meant to keep something in, not out.",
+      "readAloud": "Faint light pulses within the carved grooves, waiting for the right hands — or enough force — to answer.",
+      "art": "art-the-radiant-rift-sigil-lock-door",
+      "options": [
+        {
+          "id": "align-runes-carefully",
+          "label": "Carefully align the runes in the old guild sequence",
+          "target": "heart-of-maw",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 13,
+            "onFailure": "heart-of-maw"
+          }
+        },
+        {
+          "id": "force-the-door",
+          "label": "Force the door open through sheer strength",
+          "target": "heart-of-maw",
+          "effects": []
+        },
+        {
+          "id": "search-alternate-route",
+          "label": "Search the walls for a hidden alternate route",
+          "target": "heart-of-maw",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "heart-of-maw",
+      "kind": "discovery",
+      "title": "The Heart of the Maw",
+      "prose": "Beyond the door lies the Founders' Crypt, its ceiling cracked open into a churning rift of ash and ember light. At its center hangs a relic — the first guild seal ever forged, now corrupted and pulsing like a wound.",
+      "readAloud": "The air itself seems to lean toward the relic, hungry, waiting for someone to decide its fate.",
+      "art": "art-the-radiant-rift-heart-of-the-maw",
+      "options": [
+        {
+          "id": "examine-relic",
+          "label": "Examine the corrupted seal closely",
+          "target": "seal-or-harness",
+          "effects": []
+        },
+        {
+          "id": "invoke-kobold-aid",
+          "label": "Call on your kobold allies to help brace the chamber",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-kobolds",
+            "value": true
+          },
+          "target": "seal-or-harness",
+          "effects": []
+        },
+        {
+          "id": "steel-yourself",
+          "label": "Steel yourself and step toward the rift's heart",
+          "target": "seal-or-harness",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "seal-or-harness",
+      "kind": "decision",
+      "title": "Seal, Harness, or Walk Away",
+      "prose": "The corrupted seal offers three futures: bind the rift shut forever, bend its raw power to the guilds' use, or leave it be and let tomorrow's guildfolk inherit the problem.",
+      "readAloud": "Whatever you choose here, the Vale will remember it.",
+      "art": "art-the-radiant-rift-seal-or-harness-altar",
+      "options": [
+        {
+          "id": "attempt-seal",
+          "label": "Perform the old rite to seal the rift shut",
+          "target": "final-stand-seal",
+          "effects": []
+        },
+        {
+          "id": "attempt-harness",
+          "label": "Bend the rift's power into a new guild relic",
+          "target": "final-stand-harness",
+          "effects": []
+        },
+        {
+          "id": "abandon-vault",
+          "label": "Abandon the Vault and let the guilds sort it out later",
+          "target": "ending-retreat",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "final-stand-seal",
+      "kind": "climax",
+      "title": "The Sealing Ritual",
+      "prose": "You begin the old rite. A guild-warden construct rises to anchor the ritual's threads of light, but the rift answers with a surge of ash-risen dead determined to break the circle before it closes.",
+      "readAloud": "\"Hold the line!\" you shout, as the guild-warden's stone hands begin weaving the final sigils.",
+      "art": "art-the-radiant-rift-final-stand-seal-ritual",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "final-stand-seal",
+      "terminal": false
+    },
+    {
+      "id": "final-stand-harness",
+      "kind": "climax",
+      "title": "The Binding Descent",
+      "prose": "You step toward the rift's core to bind its power into something new. The chamber's corrupted guardians — ghoulish remnants of the first guild — rise to stop anyone from claiming what festers here.",
+      "readAloud": "The rift's light flares brighter with every step you take toward its center.",
+      "art": "art-the-radiant-rift-final-stand-harness-core",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "final-stand-harness",
+      "terminal": false
+    },
+    {
+      "id": "ending-ignored",
+      "kind": "ending",
+      "title": "A Quiet Afternoon",
+      "prose": "You decline the summons and return to your usual business. Weeks later, word spreads that the Guildhall Vaults collapsed entirely, swallowing three streets of Suncrest Vale. The Concord survives, diminished, and no one ever mentions that you were asked first.",
+      "readAloud": "Sometimes the story that never happened to you is the loudest one of all.",
+      "art": "art-the-radiant-rift-ending-ignored-sunset",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-retreat",
+      "kind": "ending",
+      "title": "A Battered Withdrawal",
+      "prose": "Bruised and outmatched, you pull back from the Vaults. The breach remains, contained for now by hastily reinforced guild wards, but everyone in Suncrest Vale knows the danger is only sleeping. Perhaps another party, better prepared, will finish what you started.",
+      "readAloud": "The Guildmaster thanks you for trying. It is not quite the same as thanking you for succeeding.",
+      "art": "art-the-radiant-rift-ending-retreat-battered",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sealed",
+      "kind": "ending",
+      "title": "The Vaults Made Whole",
+      "prose": "The last sigil closes with a sound like a held breath finally released. The rift seals, the ash-light fades, and sunlight pours back into the Founders' Crypt for the first time in centuries. Suncrest Vale's guilds will tell this story for generations.",
+      "readAloud": "Guildmaster Orlaine meets you at the surface with tears in her eyes and a new sash already being embroidered in your honor.",
+      "art": "art-the-radiant-rift-ending-sealed-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-harnessed",
+      "kind": "ending",
+      "title": "A New Guild Relic",
+      "prose": "The rift's power bends, reluctantly, into a smoldering ember-seal now humming quietly in your hands. The breach closes — but something of its hunger lingers in the relic, and the guilds of Suncrest Vale will need to decide, carefully, what to do with power that was never meant to be tamed.",
+      "readAloud": "Orlaine studies the ember-seal with equal parts awe and worry. \"We'll need new laws for this,\" she murmurs.",
+      "art": "art-the-radiant-rift-ending-harnessed-embers",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "guild-summons",
+      "to": "guild-details",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guild-summons",
+      "to": "road-to-vaults",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guild-summons",
+      "to": "ending-ignored",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guild-details",
+      "to": "road-to-vaults",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "road-to-vaults",
+      "to": "vault-breach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "road-to-vaults",
+      "to": "kobold-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-camp",
+      "to": "vault-breach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-camp",
+      "to": "kobold-skirmish",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-skirmish",
+      "to": "vault-breach",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "kobold-skirmish",
+      "to": "ending-retreat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat or flee"
+    },
+    {
+      "from": "vault-breach",
+      "to": "goblin-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "goblin-ambush",
+      "to": "sigil-lock",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "goblin-ambush",
+      "to": "ending-retreat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat or flee"
+    },
+    {
+      "from": "sigil-lock",
+      "to": "heart-of-maw",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "heart-of-maw",
+      "to": "seal-or-harness",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-or-harness",
+      "to": "final-stand-seal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-or-harness",
+      "to": "final-stand-harness",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "seal-or-harness",
+      "to": "ending-retreat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-stand-seal",
+      "to": "ending-sealed",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "final-stand-seal",
+      "to": "ending-retreat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat or flee"
+    },
+    {
+      "from": "final-stand-harness",
+      "to": "ending-harnessed",
+      "when": {
+        "op": "always"
+      },
+      "note": "on victory"
+    },
+    {
+      "from": "final-stand-harness",
+      "to": "ending-retreat",
+      "when": {
+        "op": "always"
+      },
+      "note": "on defeat or flee"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "kobold-skirmish",
+      "title": "Ash and Spears",
+      "combatants": [
+        {
+          "id": "kobold-warband",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "vault-breach",
+      "onDefeat": "ending-retreat",
+      "onFlee": "ending-retreat"
+    },
+    {
+      "id": "goblin-ambush",
+      "title": "Goblins in the Ash-Fog",
+      "combatants": [
+        {
+          "id": "goblin-raiders",
+          "statblock": "goblin",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "sigil-lock",
+      "onDefeat": "ending-retreat",
+      "onFlee": "ending-retreat"
+    },
+    {
+      "id": "final-stand-seal",
+      "title": "The Sealing Ritual",
+      "combatants": [
+        {
+          "id": "guild-warden",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": false
+        },
+        {
+          "id": "risen-zombies",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "risen-skeletons",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "guild-warden"
+      },
+      "onVictory": "ending-sealed",
+      "onDefeat": "ending-retreat",
+      "onFlee": "ending-retreat"
+    },
+    {
+      "id": "final-stand-harness",
+      "title": "The Binding Descent",
+      "combatants": [
+        {
+          "id": "maw-ghouls",
+          "statblock": "ghoul",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the corrupted guardians to touch the rift's pulsing core and bind its power."
+      },
+      "onVictory": "ending-harnessed",
+      "onDefeat": "ending-retreat",
+      "onFlee": "ending-retreat"
+    }
+  ]
+}

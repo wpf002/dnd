@@ -1,0 +1,866 @@
+{
+  "id": "the-hollow-bell-frontier",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Bell Frontier",
+    "premise": "In the raucous boomtown of Sixnail Crossing, two estranged godling brothers have let their ancient grudge boil over, and a cult means to wake the vengeful one from beneath a cracked bell before the whole valley is claimed as payment on a divine debt.",
+    "tone": [
+      "high-adventure",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, weather-beaten campfire storyteller who treats gods like unruly neighbors and danger like good gossip.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Keep threats to adults, livestock, and property; no children placed in on-screen danger."
+    },
+    "provenance": "flint"
+  },
+  "entry": "sixnail-crossing",
+  "beats": [
+    {
+      "id": "sixnail-crossing",
+      "kind": "threshold",
+      "title": "The Crossing at Harvest's Edge",
+      "prose": "Sixnail Crossing sprawls where two dead riverbeds meet, its shanties strung with charms to two gods who no longer speak to each other. Grain-gold banners for Kest the Reaping Star snap beside black mourning-cloth for his brother Orune, the Hollow Bell. Something in the ground is humming wrong today, and everyone pretends not to notice.",
+      "readAloud": "The wind smells of turned earth and old iron. Somewhere below the boardwalks, a bell that shouldn't be able to ring is ringing anyway.",
+      "art": "art-the-hollow-bell-frontier-sixnail-crossing-art",
+      "options": [
+        {
+          "id": "seek-warden",
+          "label": "Seek out the Harvest Warden for counsel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-the-threads",
+          "effects": [
+            {
+              "flag": "met-warden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ask-rumors",
+          "label": "Wander the market and listen to nervous whispers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-the-threads",
+          "effects": [
+            {
+              "flag": "know-rumors",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "pray-shrine",
+          "label": "Pray at the cracked shrine where the two gods once spoke as one",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-the-threads",
+          "effects": [
+            {
+              "flag": "omen-seen",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gathering-the-threads",
+      "kind": "discovery",
+      "title": "Threads of a Divine Grudge",
+      "prose": "Piece by piece the town's fear takes shape: cultists in mourning-black have been buying up bell-metal and bribing gravediggers, all in service of waking Orune fully into the world to collect an ancient debt from his brother — paid in Sixnail Crossing's blood, if need be.",
+      "art": "art-the-hollow-bell-frontier-gathering-threads-art",
+      "options": [
+        {
+          "id": "press-warden-ledger",
+          "label": "Press the Warden to open the ledger of grudges",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-warden",
+            "value": true
+          },
+          "target": "ledger-of-grudges",
+          "effects": []
+        },
+        {
+          "id": "head-to-hollowmarket",
+          "label": "Follow whispers into the Hollowmarket",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollowmarket-trail",
+          "effects": []
+        },
+        {
+          "id": "rally-allies-first",
+          "label": "Gather what allies you can before moving on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollowmarket-trail",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollowmarket-trail",
+      "kind": "transit",
+      "title": "Trail Through the Hollowmarket",
+      "prose": "Stalls of bell-metal trinkets and mourning charms crowd the lane leading toward the old chapel road. Black-sashed cultists watch the crowd a little too closely.",
+      "art": "art-the-hollow-bell-frontier-hollowmarket-trail-art",
+      "options": [
+        {
+          "id": "sneak-through-stalls",
+          "label": "Sneak through the stalls toward the chapel road",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bell-ruins-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "cult-ambush"
+          }
+        },
+        {
+          "id": "push-through-crowd",
+          "label": "Push boldly through the crowd toward the cultists' wagon",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-ambush",
+          "effects": []
+        },
+        {
+          "id": "gather-info-first",
+          "label": "Gather info from a hooded informant first",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "know-rumors",
+            "value": true
+          },
+          "target": "ledger-of-grudges",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-ambush",
+      "kind": "conflict",
+      "title": "Ambush in the Hollowmarket",
+      "prose": "Black sashes converge, hatchets and a snarling enforcer between you and the chapel road.",
+      "art": "art-the-hollow-bell-frontier-cult-ambush-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-ambush-encounter",
+      "terminal": false
+    },
+    {
+      "id": "bell-ruins-approach",
+      "kind": "hazard",
+      "title": "Approach to the Hollow Bell Ruins",
+      "prose": "A collapsed bridge and a slope of rubble bar the way down into the ruined chapel grounds, where the humming grows loud enough to feel in your teeth.",
+      "art": "art-the-hollow-bell-frontier-bell-ruins-approach-art",
+      "options": [
+        {
+          "id": "trust-omen",
+          "label": "Trust the shrine's omen to find safe footing across the ruined bridge",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "omen-seen",
+            "value": true
+          },
+          "target": "hollow-bell-chapel",
+          "effects": []
+        },
+        {
+          "id": "careful-climb",
+          "label": "Carefully climb down through the rubble",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-bell-chapel",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "dc": 12,
+            "onFailure": "hollow-bell-chapel"
+          }
+        },
+        {
+          "id": "force-way-through",
+          "label": "Force your way through debris with sheer strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-bell-chapel",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 12,
+            "onFailure": "hollow-bell-chapel"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-bell-chapel",
+      "kind": "discovery",
+      "title": "The Hollow Bell Chapel",
+      "prose": "Inside the ruined chapel a cracked bell hangs over a ritual circle scrawled in soot and old blood. Ledgers of debt owed between brothers line the walls like scripture.",
+      "art": "art-the-hollow-bell-frontier-hollow-bell-chapel-art",
+      "options": [
+        {
+          "id": "study-altar",
+          "label": "Study the ritual altar for its purpose",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-of-grudges",
+          "effects": []
+        },
+        {
+          "id": "search-vestry",
+          "label": "Search the vestry for the bellkeeper's notes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-of-grudges",
+          "effects": []
+        },
+        {
+          "id": "listen-to-echoes",
+          "label": "Listen to the echoes of old arguments between gods",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-of-grudges",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "learned-ritual",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-of-grudges",
+      "kind": "puzzle",
+      "title": "The Ledger of Grudges",
+      "prose": "A sealed case holds the true accounting of what Orune believes he is owed — and perhaps a way to settle the debt on your own terms.",
+      "art": "art-the-hollow-bell-frontier-ledger-of-grudges-art",
+      "options": [
+        {
+          "id": "decipher-ledger",
+          "label": "Decipher the ledger's divine calculus",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-cult-leader",
+          "effects": [
+            {
+              "flag": "has-key-fragment",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "confront-cult-leader"
+          }
+        },
+        {
+          "id": "force-the-lock",
+          "label": "Force open the sealed ledger case",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-cult-leader",
+          "effects": []
+        },
+        {
+          "id": "commune-bellkeeper-ghost",
+          "label": "Commune with the bellkeeper's lingering ghost",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-cult-leader",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "religion",
+            "dc": 13,
+            "onFailure": "confront-cult-leader"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-cult-leader",
+      "kind": "social",
+      "title": "Face to Face with the Grudge-Priest",
+      "prose": "The grudge-priest stands before the cracked bell, robes stitched with unpaid debts. She smiles like someone who has already won the argument.",
+      "art": "art-the-hollow-bell-frontier-confront-cult-leader-art",
+      "options": [
+        {
+          "id": "expose-ritual-flaw",
+          "label": "Expose the flaw you learned in their ritual",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-ritual",
+            "value": true
+          },
+          "target": "cult-champion-fight",
+          "effects": []
+        },
+        {
+          "id": "demand-surrender",
+          "label": "Demand the priest surrender the bell",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-champion-fight",
+          "effects": []
+        },
+        {
+          "id": "offer-a-bargain",
+          "label": "Offer a bargain in the gods' own coin",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-champion-fight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-champion-fight",
+      "kind": "conflict",
+      "title": "The Grudge-Priest's Guard",
+      "prose": "The priest laughs and calls her guard from the shadows between the pews — steel, bone, and a captain who has clearly done this before.",
+      "art": "art-the-hollow-bell-frontier-cult-champion-fight-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-champion-encounter",
+      "terminal": false
+    },
+    {
+      "id": "the-choice-of-debts",
+      "kind": "decision",
+      "title": "The Choice of Debts",
+      "prose": "The bell hangs cracked and humming above you, Orune's presence pressing at the seams of the world. Whatever you do next will decide how — or whether — this debt gets paid.",
+      "art": "art-the-hollow-bell-frontier-choice-of-debts-art",
+      "options": [
+        {
+          "id": "bind-the-god",
+          "label": "Attempt to bind the god within the bell using the fragment",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-key-fragment",
+            "value": true
+          },
+          "target": "gods-wrath-manifests",
+          "effects": [
+            {
+              "flag": "god-bound",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "destroy-the-bell",
+          "label": "Shatter the bell to sever its anchor to the world",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gods-wrath-manifests",
+          "effects": [
+            {
+              "flag": "god-destroyed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "unleash-the-god",
+          "label": "Unleash the god's fury upon your foes",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gods-wrath-manifests",
+          "effects": [
+            {
+              "flag": "god-unleashed",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gods-wrath-manifests",
+      "kind": "climax",
+      "title": "The God's Wrath Manifests",
+      "prose": "The cracked bell splits wide and Orune's fury pours through — shapes of hunger and old debt given terrible form. You must hold your ground while the choice you made takes hold.",
+      "art": "art-the-hollow-bell-frontier-gods-wrath-manifests-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "gods-wrath-encounter",
+      "terminal": false
+    },
+    {
+      "id": "aftermath-of-the-storm",
+      "kind": "decision",
+      "title": "Aftermath of the Storm",
+      "prose": "The chapel is silent but for settling dust and a bell that no longer hums. What happens now depends on the debt you chose to settle.",
+      "art": "art-the-hollow-bell-frontier-aftermath-storm-art",
+      "options": [
+        {
+          "id": "seal-with-chains",
+          "label": "Seal the bound god in silver chains beneath the chapel",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "god-bound",
+            "value": true
+          },
+          "target": "ending-uneasy-peace",
+          "effects": []
+        },
+        {
+          "id": "let-valley-reshape",
+          "label": "Let the valley reshape itself in the god's absence",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "god-destroyed",
+            "value": true
+          },
+          "target": "ending-broken-bell",
+          "effects": []
+        },
+        {
+          "id": "ride-the-fury",
+          "label": "Ride the god's fury as its chosen champion",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "god-unleashed",
+            "value": true
+          },
+          "target": "ending-gods-champion",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-uneasy-peace",
+      "kind": "ending",
+      "title": "An Uneasy Peace",
+      "prose": "Orune sleeps in silver chains beneath a rebuilt chapel, and Kest's banners fly a little brighter for it. Sixnail Crossing survives, watchful, its two gods still not speaking — but at least no longer screaming.",
+      "art": "art-the-hollow-bell-frontier-ending-uneasy-peace-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-broken-bell",
+      "kind": "ending",
+      "title": "The Broken Bell",
+      "prose": "Without its anchor, Orune's grudge unravels into the wind and the valley reshapes itself overnight — new rivers, new hills, a town forced to remake its maps. Strange, but free.",
+      "art": "art-the-hollow-bell-frontier-ending-broken-bell-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-gods-champion",
+      "kind": "ending",
+      "title": "The God's Champion",
+      "prose": "You rode Orune's fury like a storm given purpose, and the debt was paid in the cultists' own coin. Sixnail Crossing whispers your name now with equal parts gratitude and fear.",
+      "art": "art-the-hollow-bell-frontier-ending-gods-champion-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-frontier-burns",
+      "kind": "ending",
+      "title": "The Frontier Burns",
+      "prose": "The grudge went unanswered when it mattered most. Sixnail Crossing burns beneath a hollow, ringing sky, and the debt between two gods is paid in a currency no one wanted to spend.",
+      "art": "art-the-hollow-bell-frontier-ending-frontier-burns-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "sixnail-crossing",
+      "to": "gathering-the-threads",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gathering-the-threads",
+      "to": "ledger-of-grudges",
+      "when": {
+        "op": "eq",
+        "flag": "met-warden",
+        "value": true
+      }
+    },
+    {
+      "from": "gathering-the-threads",
+      "to": "hollowmarket-trail",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollowmarket-trail",
+      "to": "bell-ruins-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollowmarket-trail",
+      "to": "cult-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollowmarket-trail",
+      "to": "ledger-of-grudges",
+      "when": {
+        "op": "eq",
+        "flag": "know-rumors",
+        "value": true
+      }
+    },
+    {
+      "from": "cult-ambush",
+      "to": "bell-ruins-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "ending-frontier-burns",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "hollowmarket-trail",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "bell-ruins-approach",
+      "to": "hollow-bell-chapel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-bell-chapel",
+      "to": "ledger-of-grudges",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-of-grudges",
+      "to": "confront-cult-leader",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-cult-leader",
+      "to": "cult-champion-fight",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-champion-fight",
+      "to": "the-choice-of-debts",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "cult-champion-fight",
+      "to": "ending-frontier-burns",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "cult-champion-fight",
+      "to": "confront-cult-leader",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flee"
+    },
+    {
+      "from": "the-choice-of-debts",
+      "to": "gods-wrath-manifests",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gods-wrath-manifests",
+      "to": "aftermath-of-the-storm",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "gods-wrath-manifests",
+      "to": "ending-frontier-burns",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "aftermath-of-the-storm",
+      "to": "ending-uneasy-peace",
+      "when": {
+        "op": "eq",
+        "flag": "god-bound",
+        "value": true
+      }
+    },
+    {
+      "from": "aftermath-of-the-storm",
+      "to": "ending-broken-bell",
+      "when": {
+        "op": "eq",
+        "flag": "god-destroyed",
+        "value": true
+      }
+    },
+    {
+      "from": "aftermath-of-the-storm",
+      "to": "ending-gods-champion",
+      "when": {
+        "op": "eq",
+        "flag": "god-unleashed",
+        "value": true
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "cult-ambush-encounter",
+      "title": "Ambush in the Hollowmarket",
+      "combatants": [
+        {
+          "id": "bandit-thug",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-enforcer",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "bell-ruins-approach",
+      "onDefeat": "ending-frontier-burns",
+      "onFlee": "hollowmarket-trail"
+    },
+    {
+      "id": "cult-champion-encounter",
+      "title": "The Grudge-Priest's Guard",
+      "combatants": [
+        {
+          "id": "bandit-captain-guard",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bone-guardian",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through the grudge-priest's guard to reach the inner sanctum and the cracked bell."
+      },
+      "onVictory": "the-choice-of-debts",
+      "onDefeat": "ending-frontier-burns",
+      "onFlee": "confront-cult-leader"
+    },
+    {
+      "id": "gods-wrath-encounter",
+      "title": "The God's Wrath Manifests",
+      "combatants": [
+        {
+          "id": "wrath-wight",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "grudge-shadow",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "aftermath-of-the-storm",
+      "onDefeat": "ending-frontier-burns"
+    }
+  ]
+}

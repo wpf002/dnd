@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ashfen-wager",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: survival-horror, gothic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ashfen-wager-arrival-ashfen",
+      "beat": "arrival-at-the-ashfen",
+      "brief": "Arrival at the Ashfen — Grey ash falls like slow snow over a horizon of broken card-standards. Far off, a black arch of a door stands ajar, its edges already crumbling shut l"
+    },
+    {
+      "slot": "art-the-ashfen-wager-herald-of-cards",
+      "beat": "herald-of-cards",
+      "brief": "The Herald of Cards — A figure of lacquered bone and tattered suits bows low, face a blank playing-card mask. 'Welcome, wager-born,' it rasps. 'The Court sees all debts.'"
+    },
+    {
+      "slot": "art-the-ashfen-wager-closing-door",
+      "beat": "closing-door-warning",
+      "brief": "The Closing Door — Up close the Last Door is a wound in the world, seams of gilt card-stock knitting shut. Each hour it narrows by a hand's width, and the waste seems to"
+    },
+    {
+      "slot": "art-the-ashfen-wager-warden-coins",
+      "beat": "warden-of-coins",
+      "brief": "The Warden of Coins — A gaunt woman sits at a table of stacked ashen coins, shuffling a deck that never ends. 'Everyone wagers something here,' she says. 'Question is what "
+    },
+    {
+      "slot": "art-the-ashfen-wager-coin-wager-puzzle",
+      "beat": "coin-wager-puzzle",
+      "brief": "The Endless Hand — Cards fan across the table, each face a shard of some traveler's regret. The Warden waits, patient as rust, for you to play."
+    },
+    {
+      "slot": "art-the-ashfen-wager-warden-swords",
+      "beat": "warden-of-swords",
+      "brief": "The Warden of Swords — A towering figure of notched blades bars the path, voice like grinding whetstone. 'Oath, blood, or flight,' it says. 'Choose swiftly. The hour turns.'"
+    },
+    {
+      "slot": "art-the-ashfen-wager-duel-sword-warden",
+      "beat": "duel-with-the-sword-warden",
+      "brief": "Duel at the Broken Standard — Steel rings against the ash-choked wind as the Warden's honor guard closes in, eager to spill blood before the door finishes shutting."
+    },
+    {
+      "slot": "art-the-ashfen-wager-jesters-bargain",
+      "beat": "jesters-bargain",
+      "brief": "The Jester's Bargain — A ragged figure in bell-hung motley grins from atop a listing signpost. 'I know a shortcut,' he sings, 'for a small, small price.'"
+    },
+    {
+      "slot": "art-the-ashfen-wager-flooded-hourglass",
+      "beat": "flooded-hourglass",
+      "brief": "The Flooded Hourglass — A cracked glass chamber the size of a cathedral fills slowly with black sand-water, rising toward a ceiling of frozen seconds."
+    },
+    {
+      "slot": "art-the-ashfen-wager-widows-vigil",
+      "beat": "widows-vigil",
+      "brief": "The Widow's Vigil — Bound in ribbons of card-stock, a weeping woman kneels before a shrine of stacked queens. 'They took my name,' she whispers. 'Will you take my place, "
+    },
+    {
+      "slot": "art-the-ashfen-wager-ghast-nest",
+      "beat": "ghast-nest",
+      "brief": "The Ghast Nest — Beyond the flood, a charnel hollow seethes with grey shapes that were once wager-losers, hungry and patient as the waste itself."
+    },
+    {
+      "slot": "art-the-ashfen-wager-final-suit-choice",
+      "beat": "final-suit-choice",
+      "brief": "The Final Suit — At the crossroads of the waste, three Court sigils burn faint in the ash: a Coin, a Sword, a Cup. Whichever you honor will shape the key you carry to "
+    },
+    {
+      "slot": "art-the-ashfen-wager-last-door-climax",
+      "beat": "last-door-climax",
+      "brief": "The Last Door — The Door is a sliver now, ash-light bleeding through its shrinking seam. Every choice you have made stands behind you like a hand of cards laid face u"
+    },
+    {
+      "slot": "art-the-ashfen-wager-ending-escape-free",
+      "beat": "ending-escape-free",
+      "brief": "Free of the Waste — The Door yields with a shriek of tearing card-stock. You stumble through into ordinary grey dawn, the Ashfen sealing shut behind you forever, taking i"
+    },
+    {
+      "slot": "art-the-ashfen-wager-ending-bound-to-court",
+      "beat": "ending-bound-to-court",
+      "brief": "The New Warden — You take up the sword-hilt scepter offered to you, feeling your old name flake away like ash. Somewhere far off, the Door will open again for someone "
+    },
+    {
+      "slot": "art-the-ashfen-wager-ending-sacrificed",
+      "beat": "ending-sacrificed-in-waste",
+      "brief": "Sealed in Ash — The waste closes over you like a hand folding shut around a losing hand of cards. The Last Door seals with a final, gentle click, and the Ashfen is qu"
+    }
+  ]
+}
