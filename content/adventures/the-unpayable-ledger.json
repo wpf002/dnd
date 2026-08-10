@@ -1,0 +1,604 @@
+{
+  "id": "the-unpayable-ledger",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Unpayable Ledger",
+    "premise": "A mercenary company is owed a fortune by a duchy shattered by civil war, and the regent's chancellor offers to settle the debt with a forged succession decree instead of honest coin.",
+    "tone": [
+      "political-fantasy",
+      "high-adventure"
+    ],
+    "tier": "regional",
+    "partyLevel": 6,
+    "narrationVoice": "A weary company chronicler recounting hard choices made for coin, honor, and a broken duchy's future.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No violence against or endangerment of children is depicted at any point in this adventure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "summons-at-grey-keep",
+  "beats": [
+    {
+      "id": "summons-at-grey-keep",
+      "kind": "threshold",
+      "title": "Summons to the Grey Keep",
+      "prose": "Six months unpaid, the Ashen Ledger Company has camped outside the shattered capital of Duchy Vaelmark long enough. A runner arrives bearing the seal of Chancellor Ondrei Vess, regent since old Duke Aldric died without a clear heir: the company is summoned to the Grey Keep to discuss 'a settlement of accounts.'",
+      "art": "art-the-unpayable-ledger-grey-keep-audience-hall",
+      "options": [
+        {
+          "id": "attend-audience-openly",
+          "label": "Attend the Chancellor's audience as invited",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chancellor-offer",
+          "effects": []
+        },
+        {
+          "id": "demand-payment-now",
+          "label": "Storm the audience hall and demand the company's back pay outright",
+          "target": "chancellor-offer",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Intimidation",
+            "dc": 13,
+            "onFailure": "forced-standoff"
+          }
+        },
+        {
+          "id": "scout-the-keep-first",
+          "label": "Send scouts to learn the keep's secrets before walking in blind",
+          "target": "investigate-the-keep",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "chancellor-offer"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chancellor-offer",
+      "kind": "social",
+      "title": "The Chancellor's Proposal",
+      "prose": "Chancellor Vess is gaunt, precise, and afraid. The treasury is empty. He offers full payment, and a bonus in Threnholt gold, if the company will help forge a ducal decree naming the foreign-backed Lady Miriel Draeus as legitimate heir — quietly erasing the claim of Cassian Thorne, the late Duke's acknowledged bastard son.",
+      "art": "art-the-unpayable-ledger-chancellor-vess-offer",
+      "options": [
+        {
+          "id": "agree-to-forge",
+          "label": "Agree to help forge the succession decree",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "forge-the-treaty",
+          "effects": []
+        },
+        {
+          "id": "refuse-corruption",
+          "label": "Refuse and demand an honest reckoning of the debt",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "honest-stand",
+          "effects": []
+        },
+        {
+          "id": "feign-agreement",
+          "label": "Feign agreement while secretly hunting for proof of the true heir",
+          "target": "seek-proof",
+          "effects": [
+            {
+              "flag": "learned-forgery",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "investigate-the-keep",
+      "kind": "discovery",
+      "title": "Shadows in the Grey Keep",
+      "prose": "Your scouts return with grim news: ledgers in the under-cellars speak of a forged decree already half-prepared, and of gold promised by the Kingdom of Threnholt to whoever seats Lady Miriel on the ducal throne.",
+      "art": "art-the-unpayable-ledger-keep-shadowed-corridors",
+      "options": [
+        {
+          "id": "confront-with-findings",
+          "label": "Confront the Chancellor with what the scouts found",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chancellor-offer",
+          "effects": []
+        },
+        {
+          "id": "seek-honest-path",
+          "label": "Bring the findings to the company's own officers instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "honest-stand",
+          "effects": []
+        },
+        {
+          "id": "pursue-proof-alone",
+          "label": "Slip away quietly to pursue independent proof of the true heir",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seek-proof",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "learned-forgery",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "honest-stand",
+      "kind": "decision",
+      "title": "A Company Divided",
+      "prose": "The officers gather around a map scarred with old campaign markers. Forgery is easy money and a hangman's noose waiting to happen. There must be another way to see the company paid — and the duchy left standing.",
+      "art": "art-the-unpayable-ledger-company-officers-debate",
+      "options": [
+        {
+          "id": "hunt-for-proof",
+          "label": "Seek hard proof of the true heir's legitimacy",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seek-proof",
+          "effects": []
+        },
+        {
+          "id": "open-miriel-talks",
+          "label": "Open negotiations with the rival claimant, Lady Miriel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "miriel-parley",
+          "effects": []
+        },
+        {
+          "id": "seize-by-force",
+          "label": "Rally the company and seize the treasury by force",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "forced-standoff",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "forge-the-treaty",
+      "kind": "decision",
+      "title": "The Forger's Hand",
+      "prose": "Vess's clerks hand over the blank decree and the stolen ducal seal. The ink is mixed, the wax is warm. All that remains is the signing — and the company's name bound forever to the lie.",
+      "art": "art-the-unpayable-ledger-forged-ducal-seal",
+      "options": [
+        {
+          "id": "complete-the-forgery",
+          "label": "Carry out the forgery and doom the true line",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-corrupt-duchy",
+          "effects": []
+        },
+        {
+          "id": "change-of-heart",
+          "label": "Destroy the decree in a sudden change of heart",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "seek-proof",
+          "effects": []
+        },
+        {
+          "id": "sell-the-forgery",
+          "label": "Sell the forged decree to Lady Miriel's faction instead, for double the gold",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corrupt-bargain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "seek-proof",
+      "kind": "discovery",
+      "title": "The Cathedral Archive",
+      "prose": "Beneath the cracked dome of Vaelmark Cathedral, the old birth registries are said to hold the truth of Cassian Thorne's blood — if anyone can find them before the Chancellor's agents do.",
+      "art": "art-the-unpayable-ledger-cathedral-archive-search",
+      "options": [
+        {
+          "id": "search-archive-by-day",
+          "label": "Search the cathedral archive openly, by day",
+          "target": "climax-council",
+          "effects": [
+            {
+              "flag": "found-proof",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 15,
+            "onFailure": "archive-ambush"
+          }
+        },
+        {
+          "id": "bribe-the-clerk",
+          "label": "Bribe a clerk for the hidden birth records",
+          "target": "climax-council",
+          "effects": [
+            {
+              "flag": "found-proof",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "break-into-vault",
+          "label": "Break into the vault after dark and take the records by force",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "archive-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-ambush",
+      "kind": "conflict",
+      "title": "Guardians of the Vault",
+      "prose": "Steel rings against stone as the vault's guardians rouse to meet the intruders. Records or no, the company will have to fight its way out.",
+      "art": "art-the-unpayable-ledger-vault-guardians-clash",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "found-proof",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "encounter": "archive-guards",
+      "terminal": false
+    },
+    {
+      "id": "miriel-parley",
+      "kind": "social",
+      "title": "The Claimant's Camp",
+      "prose": "Lady Miriel Draeus receives you in a tent hung with Threnholt banners, her foreign guards watching every move. She wants the throne, and she is willing to pay for the company's neutrality — or its sword.",
+      "art": "art-the-unpayable-ledger-lady-miriel-camp",
+      "options": [
+        {
+          "id": "broker-fair-treaty",
+          "label": "Use your knowledge of the forgery as leverage to broker a fair treaty",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "learned-forgery",
+            "value": true
+          },
+          "target": "climax-council",
+          "effects": [
+            {
+              "flag": "treaty-brokered",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "demand-gold-upfront",
+          "label": "Demand gold upfront as insurance before committing to anything",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "corrupt-bargain",
+          "effects": []
+        },
+        {
+          "id": "reject-foreign-backing",
+          "label": "Reject her foreign backing and walk away",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-council",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "corrupt-bargain",
+      "kind": "decision",
+      "title": "Gold for Silence",
+      "prose": "Coin changes hands in a back room, and with it, a piece of the company's honor. The question now is how far down this road you are willing to walk.",
+      "art": "art-the-unpayable-ledger-gold-for-silence",
+      "options": [
+        {
+          "id": "take-the-gold",
+          "label": "Take the gold and abandon the duchy to its fate",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-corrupt-duchy",
+          "effects": []
+        },
+        {
+          "id": "double-cross-briber",
+          "label": "Try to double-cross the briber for even more",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "forced-standoff",
+          "effects": []
+        },
+        {
+          "id": "come-clean",
+          "label": "Have second thoughts and bring evidence of the scheme to the council",
+          "target": "climax-council",
+          "effects": [
+            {
+              "flag": "found-proof",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "forced-standoff",
+      "kind": "conflict",
+      "title": "Blades at the Gate",
+      "prose": "Whatever path led here, it has ended in drawn steel at the Grey Keep's gate. The Chancellor's hired guards will not stand aside.",
+      "art": "art-the-unpayable-ledger-keep-gate-standoff",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "keep-gate-clash",
+      "terminal": false
+    },
+    {
+      "id": "climax-council",
+      "kind": "climax",
+      "title": "The Ducal Council",
+      "prose": "The surviving lords and officers of Vaelmark gather in the cracked council chamber. Every faction watches the mercenary captain who has meddled so deeply in the duchy's fate. The final word may well be yours.",
+      "art": "art-the-unpayable-ledger-ducal-council-chamber",
+      "options": [
+        {
+          "id": "support-cassian",
+          "label": "Support Cassian Thorne as the true, proven Duke",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "found-proof",
+            "value": true
+          },
+          "target": "ending-cassian-duke",
+          "effects": []
+        },
+        {
+          "id": "champion-treaty",
+          "label": "Champion the power-sharing treaty with Lady Miriel",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "treaty-brokered",
+            "value": true
+          },
+          "target": "ending-treaty-peace",
+          "effects": []
+        },
+        {
+          "id": "let-corruption-stand",
+          "label": "Let the corrupt bargain stand and take the payout",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-corrupt-duchy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-cassian-duke",
+      "kind": "ending",
+      "title": "The Bastard's Crown",
+      "prose": "With proof of his blood laid bare before the council, Cassian Thorne is raised as the rightful Duke of Vaelmark. The Ashen Ledger Company is paid in full from a treasury newly secured — and remembered, for once, as the mercenaries who chose truth over gold.",
+      "art": "art-the-unpayable-ledger-cassian-crowned-duke",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-treaty-peace",
+      "kind": "ending",
+      "title": "A Fragile Peace",
+      "prose": "The treaty holds. Lady Miriel and the remnants of the old ducal line share power under terms brokered in good faith, and Threnholt's gold pays old debts without a single forged seal. Vaelmark is battered, but it stands, and so does the company's word.",
+      "art": "art-the-unpayable-ledger-treaty-signing-peace",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-corrupt-duchy",
+      "kind": "ending",
+      "title": "The Duchy Sold",
+      "prose": "The forged decree stands unchallenged, Cassian Thorne vanishes into exile or worse, and the Ashen Ledger Company is paid in full — in gold that will never quite wash the ink from its hands. Vaelmark belongs to Threnholt in all but name.",
+      "art": "art-the-unpayable-ledger-duchy-sold-in-shadow",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-company-broken",
+      "kind": "ending",
+      "title": "The Ledger Closed",
+      "prose": "Blades crossed one time too many, and the company paid for it in blood and chains. Scattered, captured, or fled into the hills, the Ashen Ledger Company's account with Duchy Vaelmark closes unpaid and unfinished.",
+      "art": "art-the-unpayable-ledger-company-scattered-defeat",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "archive-guards",
+      "title": "Guardians of the Cathedral Vault",
+      "combatants": [
+        {
+          "id": "skeleton-guard",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "vault-captain",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "climax-council",
+      "onDefeat": "ending-company-broken",
+      "onFlee": "honest-stand"
+    },
+    {
+      "id": "keep-gate-clash",
+      "title": "Blades at the Grey Keep Gate",
+      "combatants": [
+        {
+          "id": "guard-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "keep-guard",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "climax-council",
+      "onDefeat": "ending-company-broken",
+      "onFlee": "ending-company-broken"
+    }
+  ]
+}

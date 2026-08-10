@@ -1,0 +1,85 @@
+{
+  "adventure": "the-unpayable-ledger",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: political-fantasy, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-unpayable-ledger-grey-keep-audience-hall",
+      "beat": "summons-at-grey-keep",
+      "brief": "Summons to the Grey Keep — Six months unpaid, the Ashen Ledger Company has camped outside the shattered capital of Duchy Vaelmark long enough. A runner arrives bearing the seal "
+    },
+    {
+      "slot": "art-the-unpayable-ledger-chancellor-vess-offer",
+      "beat": "chancellor-offer",
+      "brief": "The Chancellor's Proposal — Chancellor Vess is gaunt, precise, and afraid. The treasury is empty. He offers full payment, and a bonus in Threnholt gold, if the company will help "
+    },
+    {
+      "slot": "art-the-unpayable-ledger-keep-shadowed-corridors",
+      "beat": "investigate-the-keep",
+      "brief": "Shadows in the Grey Keep — Your scouts return with grim news: ledgers in the under-cellars speak of a forged decree already half-prepared, and of gold promised by the Kingdom of"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-company-officers-debate",
+      "beat": "honest-stand",
+      "brief": "A Company Divided — The officers gather around a map scarred with old campaign markers. Forgery is easy money and a hangman's noose waiting to happen. There must be anoth"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-forged-ducal-seal",
+      "beat": "forge-the-treaty",
+      "brief": "The Forger's Hand — Vess's clerks hand over the blank decree and the stolen ducal seal. The ink is mixed, the wax is warm. All that remains is the signing — and the compa"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-cathedral-archive-search",
+      "beat": "seek-proof",
+      "brief": "The Cathedral Archive — Beneath the cracked dome of Vaelmark Cathedral, the old birth registries are said to hold the truth of Cassian Thorne's blood — if anyone can find the"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-vault-guardians-clash",
+      "beat": "archive-ambush",
+      "brief": "Guardians of the Vault — Steel rings against stone as the vault's guardians rouse to meet the intruders. Records or no, the company will have to fight its way out."
+    },
+    {
+      "slot": "art-the-unpayable-ledger-lady-miriel-camp",
+      "beat": "miriel-parley",
+      "brief": "The Claimant's Camp — Lady Miriel Draeus receives you in a tent hung with Threnholt banners, her foreign guards watching every move. She wants the throne, and she is willin"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-gold-for-silence",
+      "beat": "corrupt-bargain",
+      "brief": "Gold for Silence — Coin changes hands in a back room, and with it, a piece of the company's honor. The question now is how far down this road you are willing to walk."
+    },
+    {
+      "slot": "art-the-unpayable-ledger-keep-gate-standoff",
+      "beat": "forced-standoff",
+      "brief": "Blades at the Gate — Whatever path led here, it has ended in drawn steel at the Grey Keep's gate. The Chancellor's hired guards will not stand aside."
+    },
+    {
+      "slot": "art-the-unpayable-ledger-ducal-council-chamber",
+      "beat": "climax-council",
+      "brief": "The Ducal Council — The surviving lords and officers of Vaelmark gather in the cracked council chamber. Every faction watches the mercenary captain who has meddled so dee"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-cassian-crowned-duke",
+      "beat": "ending-cassian-duke",
+      "brief": "The Bastard's Crown — With proof of his blood laid bare before the council, Cassian Thorne is raised as the rightful Duke of Vaelmark. The Ashen Ledger Company is paid in f"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-treaty-signing-peace",
+      "beat": "ending-treaty-peace",
+      "brief": "A Fragile Peace — The treaty holds. Lady Miriel and the remnants of the old ducal line share power under terms brokered in good faith, and Threnholt's gold pays old deb"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-duchy-sold-in-shadow",
+      "beat": "ending-corrupt-duchy",
+      "brief": "The Duchy Sold — The forged decree stands unchallenged, Cassian Thorne vanishes into exile or worse, and the Ashen Ledger Company is paid in full — in gold that will n"
+    },
+    {
+      "slot": "art-the-unpayable-ledger-company-scattered-defeat",
+      "beat": "ending-company-broken",
+      "brief": "The Ledger Closed — Blades crossed one time too many, and the company paid for it in blood and chains. Scattered, captured, or fled into the hills, the Ashen Ledger Compa"
+    }
+  ]
+}

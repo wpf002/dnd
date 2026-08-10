@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ledger-of-lost-luck",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: mystery, high-adventure.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ledger-of-lost-luck-arrival-art",
+      "beat": "arrival-at-fortunes-weir",
+      "brief": "Arrival at Fortune's Weir — The town of Fortune's Weir is built on a floodplain of spent luck, its streets paved with dull, exhausted Lots that once granted someone a miracle. Th"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-vanishing-scene-art",
+      "beat": "vanishing-scene",
+      "brief": "The Locked Office — Ossandra's office is untouched dust save for a chalk circle of spent Lots and a chair knocked backward — evidence of a struggle. Yet the door was lock"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ledger-hall-art",
+      "beat": "ledgerkeepers-hall",
+      "brief": "The Ledgerkeepers' Guildhall — The Guildhall's clerks mint and mind the town's Lots. A senior ledgerkeeper claims Ossandra left at dawn to settle a debt outside the walls — and prod"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-chapel-gate-art",
+      "beat": "hollow-chapel-gate",
+      "brief": "The Hollow Chapel — The Hollow Chapel worships the Unspent — luck never cashed in. Its gaunt custodian insists Ossandra came here at midnight to burn her fortune in penan"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-weigh-evidence-art",
+      "beat": "weigh-the-evidence",
+      "brief": "Three Truths, One Lie — A struggle with no forced entry. A gate-log signed in wet ink for a dawn already three days past. A ritual burning of luck that smells of nothing burn"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-confront-truth-art",
+      "beat": "confront-the-truth",
+      "brief": "The Confrontation — Armed with a theory, you must decide how to bring the truth to whoever holds it. Fortune's Weir does not forgive a wrong accusation easily, but it for"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-peaceful-resolution-art",
+      "beat": "peaceful-resolution",
+      "brief": "A Quiet Reckoning — Face to face, the truth comes out plainer than the evidence ever let on — a debt, a disguise, a desperate bit of theater involving borrowed luck. What"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-lucky-gambit-art",
+      "beat": "lucky-gambit",
+      "brief": "A Wager Against Fate — You could spend a hoarded Lot to tilt fate itself, forcing a slip of the tongue or a stumble of guilt from your quarry — but a wasted Lot in this town"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-confrontation-fight-art",
+      "beat": "encounter-confrontation",
+      "brief": "The Enforcers Close In — Whoever you've accused doesn't intend to answer for it quietly. Hired blades spill from the shadows, luck-blessed blades gleaming with borrowed favor."
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-climax-showdown-art",
+      "beat": "climax-showdown",
+      "brief": "The Truth Laid Bare — With the enforcers dealt with, the truth of Ossandra Vell's vanishing stands exposed before the whole town, and Fortune's Weir waits to see what kind "
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-mercy-art",
+      "beat": "ending-mercy",
+      "brief": "A Debt Forgiven — You let them walk free, luck and all. Fortune's Weir will remember you as either fools or saints — likely both, depending on who's spending the story."
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-reparation-art",
+      "beat": "ending-reparation",
+      "brief": "Paid in Full — Ossandra pays her staged debt back in hard Lots, and the town's ledgers balance once more. You leave richer, if a little colder for it."
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-justice-art",
+      "beat": "ending-justice",
+      "brief": "By the Book — The truth goes before the Weir's magistrates exactly as you found it, contradictions and all. Justice here is slow, but for once, it is honest."
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-vengeance-art",
+      "beat": "ending-vengeance",
+      "brief": "Fate's Own Hand — You settle the matter yourselves, luck and blade together. Fortune's Weir will spend this story for years, and not always kindly toward you."
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-captured-art",
+      "beat": "ending-captured",
+      "brief": "Luck Runs Out — The enforcers overwhelm you, and Fortune's Weir adds your names to its long list of unresolved vanishings. Perhaps someone else will find contradictor"
+    },
+    {
+      "slot": "art-the-ledger-of-lost-luck-ending-escaped-art",
+      "beat": "ending-escaped-empty-handed",
+      "brief": "The Mystery Unspent — You break away before the fight turns fatal, but the truth slips from your grasp with you. Ossandra Vell remains three contradictions and no answer, f"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#181a20"/><stop offset="1" stop-color="#0c0d12"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="69"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feComposite operator="over" in2="SourceGraphic"/></filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect y="234.08745976164937" width="800" height="215.91254023835063" fill="#08090c"/>
+  <rect y="208.08745976164937" width="800" height="52" fill="#5a6a8a" opacity="0.10"/>
+  <rect y="226.08745976164937" width="800" height="16" fill="#5a6a8a" opacity="0.14"/>
+  <g fill="rgba(6,8,9,0.88)"><path d="M0 450 L0 279 L57.59991908445954 236.6322883903049 L115.19983816891909 282.4859860171564 L163.91398939304054 260.1857858626172 L212.628140617162 283.27090177871287 L241.46124316379428 258.2733506427612 L270.29434571042657 282.91527264844626 L321.2856681458652 254.8332946547307 L372.27699058130383 275.80223715351894 L421.7945334967226 266.1333945961669 L471.3120764121413 275.07572302082554 L505.91210880316794 249.307421204634 L540.5121411941946 273.1645227163099 L576.7549438681453 242.5256059083622 L612.9977465420961 275.74101761123165 L643.9468189980835 251.76942663243972 L674.8958914540708 282.8744199560024 L730.5692166183144 266.67281756270677 L786.242541782558 277.3467441624962 L835.2787952311337 236.55352856591344 L884.3150486797094 283.5175300720148 L800 450 Z"/></g>
+  <rect width="800" height="450" fill="transparent" filter="url(#grain)"/>
+  <rect width="800" height="450" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="6"/>
+</svg>

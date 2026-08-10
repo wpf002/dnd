@@ -1,0 +1,717 @@
+{
+  "id": "the-tideglass-bell",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Tideglass Bell",
+    "premise": "A patron with no discernible history hires the party to carry a strange, faintly humming bell to a village that only exists at low tide. The commission has no obvious connection to anything — until the bell starts answering back.",
+    "tone": [
+      "anthology",
+      "exploration"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Warm, curious, and a little wry — like a storyteller recounting one bright afternoon's strange errand among many.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No violence toward or endangerment of children is depicted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "strange-commission",
+  "beats": [
+    {
+      "id": "strange-commission",
+      "kind": "threshold",
+      "title": "The Odd Commission",
+      "prose": "A robed stranger called Old Cael offers you a locked, velvet-wrapped bell and a single instruction: carry it to Bellhaven, a village that appears only at low tide, and ring it once you arrive. The pay is generous. The reason is not given.",
+      "readAloud": "\"Ask no questions of the sea,\" Cael says, pressing the bundle into your hands, \"and it will ask none of you.\"",
+      "art": "art-the-tideglass-bell-the-commission-letter",
+      "options": [
+        {
+          "id": "accept-plainly",
+          "label": "Accept the commission without question",
+          "target": "prepare-journey",
+          "effects": []
+        },
+        {
+          "id": "press-for-truth",
+          "label": "Press Cael for the truth behind the bell",
+          "target": "prepare-journey",
+          "effects": [
+            {
+              "flag": "know-secret",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 13,
+            "onFailure": "bandit-ambush"
+          }
+        },
+        {
+          "id": "haggle-pay",
+          "label": "Haggle for a higher fee before agreeing",
+          "target": "prepare-journey",
+          "effects": [
+            {
+              "flag": "greedy",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "prepare-journey",
+      "kind": "discovery",
+      "title": "Market-Day Preparations",
+      "prose": "Before the road, you have time to prepare in the bright, bustling market square, full of travelers bound for a dozen short journeys of their own.",
+      "art": "art-the-tideglass-bell-market-day-prep",
+      "options": [
+        {
+          "id": "recruit-mira",
+          "label": "Recruit the itinerant cartographer Mira",
+          "target": "river-crossing",
+          "effects": [
+            {
+              "flag": "companion-mira",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "buy-case",
+          "label": "Buy a sturdy waterproof case for the bell",
+          "target": "river-crossing",
+          "effects": [
+            {
+              "flag": "protected-bell",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 10,
+            "onFailure": "river-crossing"
+          }
+        },
+        {
+          "id": "travel-light",
+          "label": "Skip preparations and travel light and fast",
+          "target": "river-crossing",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "river-crossing",
+      "kind": "transit",
+      "title": "The Wide River",
+      "prose": "The road to Bellhaven crosses a broad, lazy river. A ferry waits at the crossing, but there are other ways over — and other risks.",
+      "art": "art-the-tideglass-bell-the-wide-river",
+      "options": [
+        {
+          "id": "take-ferry",
+          "label": "Pay the toll and take the ferry",
+          "target": "tide-village-arrival",
+          "effects": []
+        },
+        {
+          "id": "ford-river",
+          "label": "Ford the river yourselves to save the coin",
+          "target": "tide-village-arrival",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 12,
+            "onFailure": "bandit-ambush"
+          }
+        },
+        {
+          "id": "smugglers-path",
+          "label": "Follow rumors of an old smugglers' path",
+          "target": "bandit-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bandit-ambush",
+      "kind": "conflict",
+      "title": "Ambush on the Coast Road",
+      "prose": "Steel glints from the brush. Whoever they are, they clearly know what you're carrying.",
+      "art": "art-the-tideglass-bell-ambush-on-the-road",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bandit-ambush",
+      "terminal": false
+    },
+    {
+      "id": "tide-village-arrival",
+      "kind": "discovery",
+      "title": "Bellhaven at Low Tide",
+      "prose": "The village rises from the wet sand as the tide recedes — rope bridges, driftwood roofs, and windows shuttered against the returning sea.",
+      "art": "art-the-tideglass-bell-village-at-low-tide",
+      "options": [
+        {
+          "id": "seek-warden",
+          "label": "Seek out the village warden immediately",
+          "target": "warden-meeting",
+          "effects": []
+        },
+        {
+          "id": "explore-flats",
+          "label": "Explore the tide-flats before the water returns",
+          "target": "warden-meeting",
+          "effects": [
+            {
+              "flag": "found-clue",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "perception",
+            "dc": 12,
+            "onFailure": "warden-meeting"
+          }
+        },
+        {
+          "id": "mira-shortcut",
+          "label": "Let Mira guide you through a hidden shortcut to the bell chamber",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "companion-mira",
+            "value": true
+          },
+          "target": "bell-chamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-meeting",
+      "kind": "social",
+      "title": "The Old Warden",
+      "prose": "Warden Thess receives you in a driftwood hall hung with tide-charts older than the village itself.",
+      "art": "art-the-tideglass-bell-the-old-warden",
+      "options": [
+        {
+          "id": "show-letter",
+          "label": "Show her the commission letter plainly",
+          "target": "bell-chamber",
+          "effects": []
+        },
+        {
+          "id": "warn-spirit",
+          "label": "Warn her the bell holds a trapped tide-spirit",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "know-secret",
+            "value": true
+          },
+          "target": "bell-chamber",
+          "effects": [
+            {
+              "flag": "warden-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-split",
+          "label": "Offer to split any reward evenly with the village",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "greedy",
+            "value": true
+          },
+          "target": "bell-chamber",
+          "effects": [
+            {
+              "flag": "warden-ally",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bell-chamber",
+      "kind": "puzzle",
+      "title": "The Humming Bell",
+      "prose": "In a sea-cave beneath the village, the bell hums louder with every step, as though it recognizes the place.",
+      "art": "art-the-tideglass-bell-the-humming-bell",
+      "options": [
+        {
+          "id": "ring-bell",
+          "label": "Ring the bell as instructed",
+          "target": "ghost-keeper",
+          "effects": []
+        },
+        {
+          "id": "examine-bell",
+          "label": "Examine the bell for a way to free what's inside first",
+          "target": "free-the-spirit",
+          "effects": [
+            {
+              "flag": "freed-spirit",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 14,
+            "onFailure": "ghost-keeper"
+          }
+        },
+        {
+          "id": "use-preparations",
+          "label": "Use what you found or prepared to unlatch it safely",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "found-clue",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "protected-bell",
+                "value": true
+              }
+            ]
+          },
+          "target": "free-the-spirit",
+          "effects": [
+            {
+              "flag": "freed-spirit",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghost-keeper",
+      "kind": "conflict",
+      "title": "The Cave Guardian Awakens",
+      "prose": "The bell's toll wakes something bound to guard it — shifting shadows and rattling bones surge from the dark water.",
+      "art": "art-the-tideglass-bell-shadows-in-the-cave",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ghost-keeper",
+      "terminal": false
+    },
+    {
+      "id": "free-the-spirit",
+      "kind": "discovery",
+      "title": "The Tide-Spirit Freed",
+      "prose": "The bell cracks open like an egg, and a shape of moving water and starlight rises, blinking as if waking from a long sleep.",
+      "art": "art-the-tideglass-bell-the-tide-spirit-freed",
+      "options": [
+        {
+          "id": "ask-why",
+          "label": "Ask the spirit why it was ever imprisoned",
+          "target": "the-truth-revealed",
+          "effects": []
+        },
+        {
+          "id": "let-it-go",
+          "label": "Simply thank it and let it depart",
+          "target": "ending-tide-freed",
+          "effects": []
+        },
+        {
+          "id": "stay-with-it",
+          "label": "Offer to stay and help it find its place again",
+          "target": "ending-new-guardian",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "freed-spirit",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-truth-revealed",
+      "kind": "decision",
+      "title": "The Spirit's Tale",
+      "prose": "The spirit says Old Cael's family bound it generations ago to steady the tides for profit — and Cael means to bind it again.",
+      "art": "art-the-tideglass-bell-the-spirits-tale",
+      "options": [
+        {
+          "id": "confront-cael",
+          "label": "Return at once to confront Old Cael",
+          "target": "ending-confront-cael",
+          "effects": []
+        },
+        {
+          "id": "call-warden",
+          "label": "Send word to Warden Thess, who already stands with you",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-ally",
+            "value": true
+          },
+          "target": "ending-new-guardian",
+          "effects": []
+        },
+        {
+          "id": "become-guardian",
+          "label": "Choose to become the tide's guardian yourself",
+          "target": "ending-tide-freed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-confront-cael",
+      "kind": "ending",
+      "title": "The Reckoning",
+      "prose": "You find Old Cael waiting, unsurprised, as if he always knew the bell would answer someone honest enough to ask. Whatever comes next, the truth is loose in the world now — and so is the tide.",
+      "art": "art-the-tideglass-bell-ending-confrontation",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-new-guardian",
+      "kind": "ending",
+      "title": "Bellhaven's New Guardian",
+      "prose": "The spirit settles into the village's old bell-tower, no longer a prisoner but a neighbor. Bellhaven will rise with the tide for a long, long time to come, and it will remember your names.",
+      "art": "art-the-tideglass-bell-ending-village-guardian",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-tide-freed",
+      "kind": "ending",
+      "title": "Out to Open Water",
+      "prose": "The spirit dissolves into foam and starlight, free at last, and the sea itself seems to sigh in relief. You walk away lighter, the strange commission finally, fully finished.",
+      "art": "art-the-tideglass-bell-ending-open-tide",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-captured",
+      "kind": "ending",
+      "title": "Taken on the Road",
+      "prose": "The ambushers overwhelm you before the bell ever reaches the sea. Whoever sent them now has both the bell and your names — and Bellhaven never learns what almost came for it.",
+      "art": "art-the-tideglass-bell-ending-captured-courier",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-lost-to-tide",
+      "kind": "ending",
+      "title": "Swallowed by the Cave",
+      "prose": "The guardian proves too much. The cave floods with the returning tide, and Bellhaven wakes the next morning to a bell that never rang and visitors who never left.",
+      "art": "art-the-tideglass-bell-ending-swallowed-cave",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "strange-commission",
+      "to": "prepare-journey",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "strange-commission",
+      "to": "bandit-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "insight check failure"
+    },
+    {
+      "from": "prepare-journey",
+      "to": "river-crossing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "river-crossing",
+      "to": "tide-village-arrival",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "river-crossing",
+      "to": "bandit-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bandit-ambush",
+      "to": "tide-village-arrival",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "bandit-ambush",
+      "to": "ending-captured",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "tide-village-arrival",
+      "to": "warden-meeting",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tide-village-arrival",
+      "to": "bell-chamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "Mira shortcut"
+    },
+    {
+      "from": "warden-meeting",
+      "to": "bell-chamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-chamber",
+      "to": "ghost-keeper",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-chamber",
+      "to": "free-the-spirit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ghost-keeper",
+      "to": "the-truth-revealed",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "ghost-keeper",
+      "to": "ending-lost-to-tide",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "free-the-spirit",
+      "to": "the-truth-revealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "free-the-spirit",
+      "to": "ending-tide-freed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "free-the-spirit",
+      "to": "ending-new-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-truth-revealed",
+      "to": "ending-confront-cael",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-truth-revealed",
+      "to": "ending-new-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-truth-revealed",
+      "to": "ending-tide-freed",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "bandit-ambush",
+      "title": "Ambush on the Coast Road",
+      "combatants": [
+        {
+          "id": "coast-bandits",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "tide-village-arrival",
+      "onDefeat": "ending-captured"
+    },
+    {
+      "id": "ghost-keeper",
+      "title": "The Cave Guardian Awakens",
+      "combatants": [
+        {
+          "id": "shadow-guardians",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "restless-bones",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-truth-revealed",
+      "onDefeat": "ending-lost-to-tide"
+    }
+  ]
+}

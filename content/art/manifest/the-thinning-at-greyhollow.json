@@ -1,0 +1,90 @@
+{
+  "adventure": "the-thinning-at-greyhollow",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: cosmic-horror, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-thinning-at-greyhollow-town-gates",
+      "beat": "town-gates",
+      "brief": "The Gates of Greyhollow — The road ends at a leaning gate hung with iron bells that do not ring in this wind. Beyond it, Greyhollow sits under a fog that pools instead of drift"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-tavern-common-room",
+      "beat": "tavern-common-room",
+      "brief": "The Guttered Candle — The tavern is warm and too quiet. A hunched archivist named Hollis Vane nurses a drink alone in the corner, and a knot of locals falls silent whenever"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-archivist-study",
+      "beat": "archivist-study",
+      "brief": "Hollis Vane's Study — Hollis's study is stacked with ledgers older than the town charter should allow. He shows you a page listing the founding families and the sealing rit"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-tavern-informant",
+      "beat": "tavern-informant",
+      "brief": "The Hollow Sky Whisperers — A retired quarrier named Feyla tells you, in a voice gone thin with dread, about a group calling themselves the Hollow Sky who meet in the old mill ou"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-unspeakable-truth",
+      "beat": "the-unspeakable-truth",
+      "brief": "A Fact That Should Not Be Knowable — Hollis's voice drops to almost nothing as he finally says it: the rift is not a wound in the world. It is a fold in the mind of something vast and dre"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-cult-hideout-entrance",
+      "beat": "cult-hideout-entrance",
+      "brief": "The Old Mill — The mill's wheel turns though the stream beneath it ran dry a decade ago. Firelight leaks between warped boards, and a chant rises and falls in a rhyt"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-cult-ambush",
+      "beat": "cult-ambush",
+      "brief": "The Hollow Sky Rises — Robed figures spill from the shadows of the mill, chanting shifting to shouting as steel comes out. Their leader, a scarred zealot who calls himself t"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-cult-ritual-chamber",
+      "beat": "cult-ritual-chamber",
+      "brief": "The Ritual Chamber — The mill's grinding floor has been cleared and chalked with a spiral that hurts to look at directly. At its center, a captured sliver of the rift hove"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-rift-tear-encounter",
+      "beat": "rift-tear-encounter",
+      "brief": "A Seam Bursts Open — The disrupted ritual doesn't die quietly. The shard cracks, and for a moment the mill floor is not a floor at all — shapes of pure absence pour out, h"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-well-lights",
+      "beat": "well-lights",
+      "brief": "Lights in the Well — The town well glows faintly green, and shapes move at its lip — vermin and burrowing things drawn up from below by whatever warmth or wrongness the th"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-chapel-exterior",
+      "beat": "chapel-exterior",
+      "brief": "The Sealed Chapel — The chapel squats at the town's lowest point, its doors bound in iron chains stamped with the founders' sigils. The chains hum faintly, and mortar dus"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-sealed-chapel-climax",
+      "beat": "sealed-chapel-climax",
+      "brief": "What the Seal Actually Holds — Inside, the rift is not a hole in a wall but a hole in the air itself, patient and enormous, folded so many times over that it barely fits inside the "
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-ending-true-seal",
+      "beat": "ending-true-seal",
+      "brief": "The Dream Holds — You do not fight the rift so much as remind it — gently, precisely, using the very fact it never meant to reveal — why it agreed to sleep in the first"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-ending-blind-seal",
+      "beat": "ending-blind-seal",
+      "brief": "A Held Breath — The chains bite shut without understanding, and the rift subsides — for now. Greyhollow wakes to ordinary fog and ordinary fear, no wiser than before,"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-ending-catastrophe",
+      "beat": "ending-catastrophe",
+      "brief": "The Dreamer Stirs — The seal fails — broken by ritual, by violence, or by your own hand — and for one endless instant Greyhollow is laid bare as what it always was: a hel"
+    },
+    {
+      "slot": "art-the-thinning-at-greyhollow-ending-flee",
+      "beat": "ending-flee",
+      "brief": "Outrunning a Thought — You leave Greyhollow behind at speed, the fog thinning against your back like fingers losing their grip. You will never know whether the seal held, wh"
+    }
+  ]
+}

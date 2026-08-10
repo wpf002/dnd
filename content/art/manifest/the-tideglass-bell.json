@@ -1,0 +1,85 @@
+{
+  "adventure": "the-tideglass-bell",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: anthology, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-tideglass-bell-the-commission-letter",
+      "beat": "strange-commission",
+      "brief": "The Odd Commission — A robed stranger called Old Cael offers you a locked, velvet-wrapped bell and a single instruction: carry it to Bellhaven, a village that appears only"
+    },
+    {
+      "slot": "art-the-tideglass-bell-market-day-prep",
+      "beat": "prepare-journey",
+      "brief": "Market-Day Preparations — Before the road, you have time to prepare in the bright, bustling market square, full of travelers bound for a dozen short journeys of their own."
+    },
+    {
+      "slot": "art-the-tideglass-bell-the-wide-river",
+      "beat": "river-crossing",
+      "brief": "The Wide River — The road to Bellhaven crosses a broad, lazy river. A ferry waits at the crossing, but there are other ways over — and other risks."
+    },
+    {
+      "slot": "art-the-tideglass-bell-ambush-on-the-road",
+      "beat": "bandit-ambush",
+      "brief": "Ambush on the Coast Road — Steel glints from the brush. Whoever they are, they clearly know what you're carrying."
+    },
+    {
+      "slot": "art-the-tideglass-bell-village-at-low-tide",
+      "beat": "tide-village-arrival",
+      "brief": "Bellhaven at Low Tide — The village rises from the wet sand as the tide recedes — rope bridges, driftwood roofs, and windows shuttered against the returning sea."
+    },
+    {
+      "slot": "art-the-tideglass-bell-the-old-warden",
+      "beat": "warden-meeting",
+      "brief": "The Old Warden — Warden Thess receives you in a driftwood hall hung with tide-charts older than the village itself."
+    },
+    {
+      "slot": "art-the-tideglass-bell-the-humming-bell",
+      "beat": "bell-chamber",
+      "brief": "The Humming Bell — In a sea-cave beneath the village, the bell hums louder with every step, as though it recognizes the place."
+    },
+    {
+      "slot": "art-the-tideglass-bell-shadows-in-the-cave",
+      "beat": "ghost-keeper",
+      "brief": "The Cave Guardian Awakens — The bell's toll wakes something bound to guard it — shifting shadows and rattling bones surge from the dark water."
+    },
+    {
+      "slot": "art-the-tideglass-bell-the-tide-spirit-freed",
+      "beat": "free-the-spirit",
+      "brief": "The Tide-Spirit Freed — The bell cracks open like an egg, and a shape of moving water and starlight rises, blinking as if waking from a long sleep."
+    },
+    {
+      "slot": "art-the-tideglass-bell-the-spirits-tale",
+      "beat": "the-truth-revealed",
+      "brief": "The Spirit's Tale — The spirit says Old Cael's family bound it generations ago to steady the tides for profit — and Cael means to bind it again."
+    },
+    {
+      "slot": "art-the-tideglass-bell-ending-confrontation",
+      "beat": "ending-confront-cael",
+      "brief": "The Reckoning — You find Old Cael waiting, unsurprised, as if he always knew the bell would answer someone honest enough to ask. Whatever comes next, the truth is loo"
+    },
+    {
+      "slot": "art-the-tideglass-bell-ending-village-guardian",
+      "beat": "ending-new-guardian",
+      "brief": "Bellhaven's New Guardian — The spirit settles into the village's old bell-tower, no longer a prisoner but a neighbor. Bellhaven will rise with the tide for a long, long time to "
+    },
+    {
+      "slot": "art-the-tideglass-bell-ending-open-tide",
+      "beat": "ending-tide-freed",
+      "brief": "Out to Open Water — The spirit dissolves into foam and starlight, free at last, and the sea itself seems to sigh in relief. You walk away lighter, the strange commission "
+    },
+    {
+      "slot": "art-the-tideglass-bell-ending-captured-courier",
+      "beat": "ending-captured",
+      "brief": "Taken on the Road — The ambushers overwhelm you before the bell ever reaches the sea. Whoever sent them now has both the bell and your names — and Bellhaven never learns "
+    },
+    {
+      "slot": "art-the-tideglass-bell-ending-swallowed-cave",
+      "beat": "ending-lost-to-tide",
+      "brief": "Swallowed by the Cave — The guardian proves too much. The cave floods with the returning tide, and Bellhaven wakes the next morning to a bell that never rang and visitors who"
+    }
+  ]
+}

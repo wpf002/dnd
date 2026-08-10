@@ -826,6 +826,78 @@
       ],
       "partyLevel": 2,
       "beats": 15
+    },
+    {
+      "id": "the-tideglass-bell",
+      "title": "The Tideglass Bell",
+      "inspiredBy": "TablePop",
+      "source": "community",
+      "tone": [
+        "anthology",
+        "exploration"
+      ],
+      "partyLevel": 3,
+      "beats": 15
+    },
+    {
+      "id": "the-humming-claim",
+      "title": "The Humming Claim",
+      "inspiredBy": "Fools Gold: Into the Bellowing Wilds",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "whimsical-fey"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-thinning-at-greyhollow",
+      "title": "The Thinning at Greyhollow",
+      "inspiredBy": "HyperRPG: Kollok",
+      "source": "community",
+      "tone": [
+        "cosmic-horror",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ledger-of-lost-luck",
+      "title": "The Ledger of Lost Luck",
+      "inspiredBy": "The Lucky Die",
+      "source": "community",
+      "tone": [
+        "mystery",
+        "high-adventure"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-unpayable-ledger",
+      "title": "The Unpayable Ledger",
+      "inspiredBy": "The Chain of Acheron",
+      "source": "community",
+      "tone": [
+        "political-fantasy",
+        "high-adventure"
+      ],
+      "partyLevel": 6,
+      "beats": 15
+    },
+    {
+      "id": "beyond-the-last-line",
+      "title": "Beyond the Last Line",
+      "inspiredBy": "The West Marches Campaign",
+      "source": "community",
+      "tone": [
+        "west-marches",
+        "exploration"
+      ],
+      "partyLevel": 3,
+      "beats": 16
     }
   ]
 }

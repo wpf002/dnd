@@ -1,0 +1,90 @@
+{
+  "adventure": "beyond-the-last-line",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: west-marches, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-beyond-the-last-line-edge-of-the-map-post",
+      "beat": "edge-of-the-map",
+      "brief": "Where the Map Ends — The last surveyor's post marks the edge of Hollow Ford's charts. Beyond it, the trail forks into unmarked wilderness, and the only guidance left is ru"
+    },
+    {
+      "slot": "art-beyond-the-last-line-cartographer-shack-fragment",
+      "beat": "cartographer-warning",
+      "brief": "The Cartographer's Shack — An aging mapmaker named Idra Voss keeps a shack full of half-finished charts. She warns you that the last expedition to chase the 'cinder vein' rumor "
+    },
+    {
+      "slot": "art-beyond-the-last-line-ambush-felled-trees",
+      "beat": "logging-road-ambush",
+      "brief": "Ambush on the Logging Road — Felled trees block the road. Before you can turn back, figures rise from the brush with drawn blades."
+    },
+    {
+      "slot": "art-beyond-the-last-line-river-crossing-current",
+      "beat": "river-crossing",
+      "brief": "The Cold River — A wide, fast river cuts across the only clear path forward. The water looks brutally cold, and something moves beneath the surface."
+    },
+    {
+      "slot": "art-beyond-the-last-line-wolf-den-shadows",
+      "beat": "wolf-den",
+      "brief": "Into the Wolf Den — The safer path leads straight through a den of territorial wolves, eyes glinting from the shadows of the underbrush."
+    },
+    {
+      "slot": "art-beyond-the-last-line-frontier-campfire-night",
+      "beat": "wilderness-camp",
+      "brief": "Camp at the Frontier's Edge — You make camp beneath a canopy of unfamiliar trees. Firelight reveals two paths onward: a crumbling ruin to the north, and strange lights flickering i"
+    },
+    {
+      "slot": "art-beyond-the-last-line-ruin-sealed-doorway",
+      "beat": "cinder-ruin-entrance",
+      "brief": "The Sealed Ruin — Moss-choked stones form the entrance to a ruin far older than Hollow Ford. A sealed door bars the way, etched with symbols none of you recognize."
+    },
+    {
+      "slot": "art-beyond-the-last-line-ruin-star-dial",
+      "beat": "ruin-puzzle",
+      "brief": "The Star-Etched Dial — A stone dial etched with constellations blocks the inner passage. Somewhere beneath the dust, a mechanism waits to be solved or broken."
+    },
+    {
+      "slot": "art-beyond-the-last-line-ruin-bone-guardians",
+      "beat": "undead-guardians",
+      "brief": "Guardians of the Ruin — Bones stir in the dark as the disturbed mechanism wakes ancient guardians meant to keep intruders from the sanctum beyond."
+    },
+    {
+      "slot": "art-beyond-the-last-line-grove-glowing-lights",
+      "beat": "cult-grove",
+      "brief": "The Glowing Grove — Pale lights drift between the trees of a hidden grove. Robed figures move among the glow, tending something that hums faintly beneath the earth."
+    },
+    {
+      "slot": "art-beyond-the-last-line-grove-choir-standoff",
+      "beat": "cult-confrontation",
+      "brief": "The Verdant Choir — The robed figures call themselves the Verdant Choir, sworn to guard the humming vein beneath the grove from those who would tear it free. They watch y"
+    },
+    {
+      "slot": "art-beyond-the-last-line-grove-clash-idol",
+      "beat": "cult-encounter",
+      "brief": "Clash at the Grove — Steel rings out among the trees as the Verdant Choir's guardians and their bound idol rise to defend the vein."
+    },
+    {
+      "slot": "art-beyond-the-last-line-cinder-vein-chamber",
+      "beat": "cinder-vein-climax",
+      "brief": "The Cinder Vein — Deep beneath root and stone, the cinder vein pulses with a faint, humming light, warm to the touch and unlike any ore you have seen. What you do with "
+    },
+    {
+      "slot": "art-beyond-the-last-line-ending-triumph-return",
+      "beat": "ending-triumph",
+      "brief": "The Frontier's New Wealth — You return to Hollow Ford bearing the cinder vein's secret, and the frontier town begins to grow into something greater. The wilderness beyond the map"
+    },
+    {
+      "slot": "art-beyond-the-last-line-ending-pact-handshake",
+      "beat": "ending-pact",
+      "brief": "An Uneasy Alliance — The Verdant Choir and Hollow Ford strike an uneasy pact: the vein stays guarded, its power shared carefully between town and grove. It is not the endi"
+    },
+    {
+      "slot": "art-beyond-the-last-line-ending-doom-wilderness",
+      "beat": "ending-doom",
+      "brief": "Lost Beyond the Map — The wilderness beyond Hollow Ford claims another party. Perhaps, someday, another group of fools will follow your footsteps into the unmapped dark and"
+    }
+  ]
+}

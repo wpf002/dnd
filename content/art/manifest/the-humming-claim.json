@@ -1,0 +1,90 @@
+{
+  "adventure": "the-humming-claim",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, whimsical-fey.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-humming-claim-tumble-forks-street",
+      "beat": "tumble-forks-arrival",
+      "brief": "Tumble Forks — Tin roofs hum in harmony with the veins beneath them, and every saloon sign chimes when the wind is right. The town is dying of quiet gold and loud lo"
+    },
+    {
+      "slot": "art-the-humming-claim-guild-hall-interior",
+      "beat": "guild-hall",
+      "brief": "The Miners' Guild — The guildmaster, a one-eared woman named Ottilie Cask, keeps a jar of ringing nuggets on her desk that hum louder the closer danger draws. She's burie"
+    },
+    {
+      "slot": "art-the-humming-claim-cabin-interior-clues",
+      "beat": "prospectors-cabin",
+      "brief": "Mabel's Cabin — The cabin smells of tallow and burnt paper. A journal lies open on the table, its last entries scrawled faster and faster, as if the writer's hand wer"
+    },
+    {
+      "slot": "art-the-humming-claim-trailhead-sign-post",
+      "beat": "trailhead-warning",
+      "brief": "The Widow's Grade — A leaning signpost, its letters etched by claw or chisel, reads: TURN BACK, IT SINGS FOR YOU TOO. Beyond it, the trail vanishes into a canyon where th"
+    },
+    {
+      "slot": "art-the-humming-claim-river-of-song",
+      "beat": "singing-river-crossing",
+      "brief": "The Chord River — A river of quicksilver water sings in shifting harmonies, and each note seems to tug at the stones beneath your boots. Fording it wrong could sweep yo"
+    },
+    {
+      "slot": "art-the-humming-claim-grove-of-chimes",
+      "beat": "chime-grove",
+      "brief": "The Chime Grove — Bells of frozen dew hang from silver branches, ringing without wind. Something small and bright watches you from the hollow of an upturned root, grinn"
+    },
+    {
+      "slot": "art-the-humming-claim-cuckoo-court-clearing",
+      "beat": "gilt-cuckoo-bargain",
+      "brief": "The Gilt Cuckoo's Bargain — The fey unfolds into something man-sized, feathered in gold leaf, its voice a chorus of stolen mining-camp songs. It calls itself the Gilt Cuckoo, kee"
+    },
+    {
+      "slot": "art-the-humming-claim-ambush-claim-stakes",
+      "beat": "claim-jumpers-ambush",
+      "brief": "Ambush at the Claim Stakes — Rival prospectors, driven half-mad by the canyon's noise, burst from the rocks with pickaxes and stolen guns, howling over a claim that was never thei"
+    },
+    {
+      "slot": "art-the-humming-claim-vein-puzzle-chamber",
+      "beat": "resonant-vein-puzzle",
+      "brief": "The Resonant Vein — The canyon narrows into a wall of gold-shot rock that hums a shifting, layered chord. Somewhere in that pattern is a path through; get it wrong and th"
+    },
+    {
+      "slot": "art-the-humming-claim-lost-camp-remains",
+      "beat": "lost-camp",
+      "brief": "The Lost Camp — Tents long collapsed, tools rusted with strange verdigris, and bones picked clean by something patient. This is where the other expeditions ended. A l"
+    },
+    {
+      "slot": "art-the-humming-claim-guardian-armor-clash",
+      "beat": "guardian-of-the-deep-claim",
+      "brief": "The Guardian of the Deep Claim — At the mine's throat stands a suit of armor fused with gold ore, animated by the canyon's own restless noise, flanked by rattling bones that were once"
+    },
+    {
+      "slot": "art-the-humming-claim-heart-of-mountain-chamber",
+      "beat": "the-heart-of-the-mountain",
+      "brief": "The Heart of the Mountain — Past the guardian's ruin lies the source of it all: a cavern where veins of gold pulse and sing in a single vast, aching chord, and pale echoes of the"
+    },
+    {
+      "slot": "art-the-humming-claim-golden-boom-epilogue",
+      "beat": "ending-golden-boom",
+      "brief": "The Golden Boom — The vein is claimed, and Tumble Forks roars back to life louder than ever, its streets ringing with new fortune. But at night, some swear the gold sti"
+    },
+    {
+      "slot": "art-the-humming-claim-freed-chorus-epilogue",
+      "beat": "ending-freed-chorus",
+      "brief": "The Freed Chorus — The trapped echoes rise into the sky like a flock of silver birds, and the canyon falls into a gentler, kinder hum. Tumble Forks survives on smaller f"
+    },
+    {
+      "slot": "art-the-humming-claim-sealed-mountain-epilogue",
+      "beat": "ending-sealed-mountain",
+      "brief": "The Sealed Mountain — You bring the vein down in a roar of gold dust and silence. The Widow's Grade falls quiet at last. Tumble Forks will have to find its fortune elsewher"
+    },
+    {
+      "slot": "art-the-humming-claim-swallowed-wilderness-epilogue",
+      "beat": "ending-swallowed-by-wilderness",
+      "brief": "Swallowed by the Wilderness — The canyon's song rises to a deafening chord, and the last thing you hear is your own name sung back at you in a stranger's voice. Somewhere in Tumble"
+    }
+  ]
+}

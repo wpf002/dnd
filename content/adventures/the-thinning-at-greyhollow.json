@@ -1,0 +1,655 @@
+{
+  "id": "the-thinning-at-greyhollow",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Thinning at Greyhollow",
+    "premise": "In the fog-bound town of Greyhollow, a rift sealed by the founding families generations ago is thinning, and the truth of what it actually contains is a fact the world itself conspires to keep buried.",
+    "tone": [
+      "cosmic-horror",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A measured, uneasy chronicler who lets silence do the frightening work",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No violence toward or endangerment of children is ever depicted, referenced graphically, or used as stakes."
+    },
+    "provenance": "flint"
+  },
+  "entry": "town-gates",
+  "beats": [
+    {
+      "id": "town-gates",
+      "kind": "threshold",
+      "title": "The Gates of Greyhollow",
+      "prose": "The road ends at a leaning gate hung with iron bells that do not ring in this wind. Beyond it, Greyhollow sits under a fog that pools instead of drifting, thick in the hollows and thin over the rooftops, as though something beneath the town is breathing it out. A crier's notice, half-dissolved by damp, begs travelers to report any 'doubling' of familiar faces to the town hall.",
+      "readAloud": "The fog does not move with the wind. It moves like it is listening.",
+      "art": "art-the-thinning-at-greyhollow-town-gates",
+      "options": [
+        {
+          "id": "enter-tavern",
+          "label": "Head for the lit windows of the tavern",
+          "target": "tavern-common-room",
+          "effects": []
+        },
+        {
+          "id": "approach-chapel",
+          "label": "Go directly to the old sealed chapel",
+          "target": "chapel-exterior",
+          "effects": []
+        },
+        {
+          "id": "investigate-fog-well",
+          "label": "Investigate the strange lights rising from the town well",
+          "target": "well-lights",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tavern-common-room",
+      "kind": "social",
+      "title": "The Guttered Candle",
+      "prose": "The tavern is warm and too quiet. A hunched archivist named Hollis Vane nurses a drink alone in the corner, and a knot of locals falls silent whenever the word 'rift' comes up. Someone has chalked a tally of days on the wall above the bar; the number is very large and keeps being erased and rewritten smaller.",
+      "readAloud": "Hollis Vane looks up at you the way a man looks up when he has been waiting for someone, anyone, to ask the right question.",
+      "art": "art-the-thinning-at-greyhollow-tavern-common-room",
+      "options": [
+        {
+          "id": "talk-to-hollis",
+          "label": "Sit with Hollis and ask what he knows",
+          "target": "archivist-study",
+          "effects": []
+        },
+        {
+          "id": "ask-locals-about-cult",
+          "label": "Press the locals about their fear of the word 'rift'",
+          "target": "tavern-informant",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "Persuasion",
+            "dc": 12,
+            "onFailure": "chapel-exterior"
+          }
+        },
+        {
+          "id": "leave-to-chapel",
+          "label": "Give up on the tavern and head for the chapel",
+          "target": "chapel-exterior",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archivist-study",
+      "kind": "discovery",
+      "title": "Hollis Vane's Study",
+      "prose": "Hollis's study is stacked with ledgers older than the town charter should allow. He shows you a page listing the founding families and the sealing rite they performed, but every third line has been scratched out by a hand that was, according to the ink, his own. 'I don't remember writing over it,' he admits. 'I don't remember why I would need to.'",
+      "readAloud": "'Ask me the wrong question,' Hollis says quietly, 'and I may not remember answering it either.'",
+      "art": "art-the-thinning-at-greyhollow-archivist-study",
+      "options": [
+        {
+          "id": "press-for-truth",
+          "label": "Press Hollis for the unredacted truth about the seal",
+          "target": "the-unspeakable-truth",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Insight",
+            "dc": 15,
+            "onFailure": "chapel-exterior"
+          }
+        },
+        {
+          "id": "accept-partial-lore-leave",
+          "label": "Accept what fragments he'll give and move on to the chapel",
+          "target": "chapel-exterior",
+          "effects": []
+        },
+        {
+          "id": "ask-about-cult-instead",
+          "label": "Ask instead about the townsfolk who fear the word 'rift'",
+          "target": "tavern-informant",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tavern-informant",
+      "kind": "discovery",
+      "title": "The Hollow Sky Whisperers",
+      "prose": "A retired quarrier named Feyla tells you, in a voice gone thin with dread, about a group calling themselves the Hollow Sky who meet in the old mill outside town. 'They don't want to close the rift,' she says. 'They want to introduce themselves to whatever's on the other side.'",
+      "readAloud": "'They think it's a god,' Feyla whispers. 'I think that's worse than if it were.'",
+      "art": "art-the-thinning-at-greyhollow-tavern-informant",
+      "options": [
+        {
+          "id": "learn-cult-location",
+          "label": "Get directions to the mill where the Hollow Sky gathers",
+          "target": "cult-hideout-entrance",
+          "effects": []
+        },
+        {
+          "id": "return-to-archivist",
+          "label": "Bring this back to Hollis and ask what he makes of it",
+          "target": "archivist-study",
+          "effects": []
+        },
+        {
+          "id": "head-to-chapel",
+          "label": "Set the cult aside and go to the chapel yourself",
+          "target": "chapel-exterior",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-cult",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-unspeakable-truth",
+      "kind": "discovery",
+      "title": "A Fact That Should Not Be Knowable",
+      "prose": "Hollis's voice drops to almost nothing as he finally says it: the rift is not a wound in the world. It is a fold in the mind of something vast and dreaming, and Greyhollow — every street, every face, every one of your own memories of arriving here — exists only within that dream. The founders did not seal a monster. They sealed a doubt, so the dreamer would not wake and notice its dream was thin. It is starting to notice anyway.",
+      "readAloud": "'We are not sealing a door,' Hollis says. 'We are sealing a thought. And thoughts, once had, are very hard to unhave.'",
+      "art": "art-the-thinning-at-greyhollow-unspeakable-truth",
+      "options": [
+        {
+          "id": "resolve-to-seal-with-knowledge",
+          "label": "Carry this knowledge to the chapel and face the seal yourself",
+          "target": "chapel-exterior",
+          "effects": []
+        },
+        {
+          "id": "seek-out-the-cult",
+          "label": "Go stop the Hollow Sky before they wake the dreamer on purpose",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-cult",
+            "value": true
+          },
+          "target": "cult-hideout-entrance",
+          "effects": []
+        },
+        {
+          "id": "flee-in-horror",
+          "label": "Walk out of Greyhollow and never look back",
+          "target": "ending-flee",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-truth",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-hideout-entrance",
+      "kind": "threshold",
+      "title": "The Old Mill",
+      "prose": "The mill's wheel turns though the stream beneath it ran dry a decade ago. Firelight leaks between warped boards, and a chant rises and falls in a rhythm that makes your teeth ache. A side door hangs slightly open, unguarded, inviting.",
+      "readAloud": "The chant is not in any language. It is in the shape a language leaves behind after everyone who spoke it has forgotten why.",
+      "art": "art-the-thinning-at-greyhollow-cult-hideout-entrance",
+      "options": [
+        {
+          "id": "sneak-inside",
+          "label": "Slip through the side door unseen",
+          "target": "cult-ritual-chamber",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "cult-ambush"
+          }
+        },
+        {
+          "id": "confront-the-cult-directly",
+          "label": "Kick in the front door and confront them outright",
+          "target": "cult-ambush",
+          "effects": []
+        },
+        {
+          "id": "abandon-and-return-to-chapel",
+          "label": "Decide this isn't worth the risk and head for the chapel instead",
+          "target": "chapel-exterior",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-ambush",
+      "kind": "conflict",
+      "title": "The Hollow Sky Rises",
+      "prose": "Robed figures spill from the shadows of the mill, chanting shifting to shouting as steel comes out. Their leader, a scarred zealot who calls himself the First Waker, grins as though your arrival was foretold rather than unfortunate.",
+      "art": "art-the-thinning-at-greyhollow-cult-ambush",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-ambush",
+      "terminal": false
+    },
+    {
+      "id": "cult-ritual-chamber",
+      "kind": "decision",
+      "title": "The Ritual Chamber",
+      "prose": "The mill's grinding floor has been cleared and chalked with a spiral that hurts to look at directly. At its center, a captured sliver of the rift hovers like a shard of black glass, and the cultists are chanting it wider, syllable by syllable.",
+      "readAloud": "The shard pulses in time with your own heartbeat, and you cannot tell anymore which one is copying the other.",
+      "art": "art-the-thinning-at-greyhollow-cult-ritual-chamber",
+      "options": [
+        {
+          "id": "disrupt-the-ritual",
+          "label": "Break the chalked spiral and disrupt the chant",
+          "target": "chapel-exterior",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "dc": 14,
+            "onFailure": "rift-tear-encounter"
+          }
+        },
+        {
+          "id": "join-the-ritual",
+          "label": "Add your voice to the chant and see what answers",
+          "target": "ending-catastrophe",
+          "effects": []
+        },
+        {
+          "id": "flee-the-chamber",
+          "label": "Grab what evidence you can and flee before it finishes",
+          "target": "chapel-exterior",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rift-tear-encounter",
+      "kind": "hazard",
+      "title": "A Seam Bursts Open",
+      "prose": "The disrupted ritual doesn't die quietly. The shard cracks, and for a moment the mill floor is not a floor at all — shapes of pure absence pour out, hungry for the shape of things that are real.",
+      "art": "art-the-thinning-at-greyhollow-rift-tear-encounter",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "rift-tear-encounter",
+      "terminal": false
+    },
+    {
+      "id": "well-lights",
+      "kind": "hazard",
+      "title": "Lights in the Well",
+      "prose": "The town well glows faintly green, and shapes move at its lip — vermin and burrowing things drawn up from below by whatever warmth or wrongness the thinning rift is leaking into the earth. They scatter toward you as much as from you, as if drawn.",
+      "art": "art-the-thinning-at-greyhollow-well-lights",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "well-lights",
+      "terminal": false
+    },
+    {
+      "id": "chapel-exterior",
+      "kind": "discovery",
+      "title": "The Sealed Chapel",
+      "prose": "The chapel squats at the town's lowest point, its doors bound in iron chains stamped with the founders' sigils. The chains hum faintly, and mortar dust sifts from around the doorframe as though the building itself is exhaling. Whatever you've learned or left unlearned, this is where it will matter.",
+      "readAloud": "The chains are not straining outward. They are straining inward, as if the seal is trying to hold something in that no longer wants to leave — or hold the town in from something that no longer wants to stay out.",
+      "art": "art-the-thinning-at-greyhollow-chapel-exterior",
+      "options": [
+        {
+          "id": "study-the-glyphs-first",
+          "label": "Study the sealing glyphs on the chains before entering",
+          "target": "sealed-chapel-climax",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Arcana",
+            "dc": 13,
+            "onFailure": "well-lights"
+          }
+        },
+        {
+          "id": "enter-directly",
+          "label": "Cut the chains and enter without delay",
+          "target": "sealed-chapel-climax",
+          "effects": []
+        },
+        {
+          "id": "wait-and-watch",
+          "label": "Wait in the fog and watch for what the thinning has drawn here",
+          "target": "sealed-chapel-climax",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "well-lights"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sealed-chapel-climax",
+      "kind": "climax",
+      "title": "What the Seal Actually Holds",
+      "prose": "Inside, the rift is not a hole in a wall but a hole in the air itself, patient and enormous, folded so many times over that it barely fits inside the small stone room. Everything you know about Greyhollow — its cobbles, its people, your own footsteps on its streets — suddenly feels provisional, like a held breath. The chains want a decision, not a delay.",
+      "readAloud": "It does not reach for you. It simply notices you, the way you might notice you'd forgotten a word, and the noticing alone nearly unmakes the floor beneath your feet.",
+      "art": "art-the-thinning-at-greyhollow-sealed-chapel-climax",
+      "options": [
+        {
+          "id": "attempt-a-true-seal",
+          "label": "Use what you now know to reweave the seal properly",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "ending-true-seal",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Arcana",
+            "dc": 16,
+            "onFailure": "ending-catastrophe"
+          }
+        },
+        {
+          "id": "attempt-a-quick-rough-seal",
+          "label": "Hammer the chains shut the crude, fast way and hope it holds",
+          "target": "ending-blind-seal",
+          "effects": []
+        },
+        {
+          "id": "let-the-rift-tear-open",
+          "label": "Cut the chains fully and let it open",
+          "target": "ending-catastrophe",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-true-seal",
+      "kind": "ending",
+      "title": "The Dream Holds",
+      "prose": "You do not fight the rift so much as remind it — gently, precisely, using the very fact it never meant to reveal — why it agreed to sleep in the first place. The chains cool. The fog over Greyhollow lifts by morning, and Hollis burns his ledgers, not out of fear but out of mercy: some things a town should get to forget it ever nearly knew. You leave carrying a truth no one else will ever be able to verify, or unknow.",
+      "readAloud": "Somewhere behind your eyes, something enormous exhales, and goes back to dreaming something kinder.",
+      "art": "art-the-thinning-at-greyhollow-ending-true-seal",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-blind-seal",
+      "kind": "ending",
+      "title": "A Held Breath",
+      "prose": "The chains bite shut without understanding, and the rift subsides — for now. Greyhollow wakes to ordinary fog and ordinary fear, no wiser than before, its danger merely postponed to whichever unlucky soul stands where you're standing in another generation. You ride out with your coin and your scars, and try very hard not to wonder what you almost learned.",
+      "art": "art-the-thinning-at-greyhollow-ending-blind-seal",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-catastrophe",
+      "kind": "ending",
+      "title": "The Dreamer Stirs",
+      "prose": "The seal fails — broken by ritual, by violence, or by your own hand — and for one endless instant Greyhollow is laid bare as what it always was: a held thought, thinning to nothing. Streets fold like paper. Faces you spoke to an hour ago blur and are unwritten. Whether you survive the instant or not, the town you walked into no longer quite exists to walk back out of.",
+      "readAloud": "You have time to understand, at last, exactly what the seal was for — and no time at all to do anything with the understanding.",
+      "art": "art-the-thinning-at-greyhollow-ending-catastrophe",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-flee",
+      "kind": "ending",
+      "title": "Outrunning a Thought",
+      "prose": "You leave Greyhollow behind at speed, the fog thinning against your back like fingers losing their grip. You will never know whether the seal held, whether Hollis found someone braver, whether the town is even still there to check on. Some nights you will wake certain you can still hear the chant, faint, from very far away, and you will not be sure if you are remembering it or being remembered by it.",
+      "art": "art-the-thinning-at-greyhollow-ending-flee",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "cult-ambush",
+      "to": "cult-ritual-chamber",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter victory"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "ending-catastrophe",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter defeat"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "chapel-exterior",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter flee"
+    },
+    {
+      "from": "rift-tear-encounter",
+      "to": "chapel-exterior",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter victory"
+    },
+    {
+      "from": "rift-tear-encounter",
+      "to": "ending-catastrophe",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter defeat"
+    },
+    {
+      "from": "well-lights",
+      "to": "chapel-exterior",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter victory"
+    },
+    {
+      "from": "well-lights",
+      "to": "ending-catastrophe",
+      "when": {
+        "op": "always"
+      },
+      "note": "Encounter defeat"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "cult-ambush",
+      "title": "The Hollow Sky Rises",
+      "combatants": [
+        {
+          "id": "zealot-one",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "first-waker",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "cult-ritual-chamber",
+      "onDefeat": "ending-catastrophe",
+      "onFlee": "chapel-exterior"
+    },
+    {
+      "id": "rift-tear-encounter",
+      "title": "A Seam Bursts Open",
+      "combatants": [
+        {
+          "id": "seam-shadow",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hungry-thing",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "chapel-exterior",
+      "onDefeat": "ending-catastrophe"
+    },
+    {
+      "id": "well-lights",
+      "title": "Lights in the Well",
+      "combatants": [
+        {
+          "id": "rift-rat",
+          "statblock": "giant-rat",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "scavenger-kobold",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "dim-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "chapel-exterior",
+      "onDefeat": "ending-catastrophe"
+    }
+  ]
+}

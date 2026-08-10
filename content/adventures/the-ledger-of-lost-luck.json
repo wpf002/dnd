@@ -1,0 +1,818 @@
+{
+  "id": "the-ledger-of-lost-luck",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ledger of Lost Luck",
+    "premise": "In Fortune's Weir, where minted luck called Lots buys favor from fate itself, the vanished tallykeeper Ossandra Vell has left behind three testimonies that cannot all be true. The party must untangle which luck was spent, which was stolen, and which was never real at all.",
+    "tone": [
+      "mystery",
+      "high-adventure"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A wry, omniscient chronicler who treats luck as a living, bribable thing.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child characters are placed in danger at any point in this adventure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-fortunes-weir",
+  "beats": [
+    {
+      "id": "arrival-at-fortunes-weir",
+      "kind": "threshold",
+      "title": "Arrival at Fortune's Weir",
+      "prose": "The town of Fortune's Weir is built on a floodplain of spent luck, its streets paved with dull, exhausted Lots that once granted someone a miracle. Three days ago the guild tallykeeper Ossandra Vell vanished from her locked office above the Luck-Exchange. Three witnesses swear three different, mutually impossible things.",
+      "readAloud": "Copper light glints off gutters full of dead luck-coins as you enter the Weir. Somewhere a bell tolls the hour no one trusts anymore.",
+      "art": "art-the-ledger-of-lost-luck-arrival-art",
+      "options": [
+        {
+          "id": "go-to-vanishing-scene",
+          "label": "Go directly to the scene of the vanishing",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanishing-scene",
+          "effects": []
+        },
+        {
+          "id": "go-to-ledgerkeepers",
+          "label": "Visit the Ledgerkeepers' Guildhall first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledgerkeepers-hall",
+          "effects": []
+        },
+        {
+          "id": "go-to-chapel",
+          "label": "Visit the Hollow Chapel first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-chapel-gate",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vanishing-scene",
+      "kind": "discovery",
+      "title": "The Locked Office",
+      "prose": "Ossandra's office is untouched dust save for a chalk circle of spent Lots and a chair knocked backward — evidence of a struggle. Yet the door was locked from the inside and the window bars are unbent.",
+      "readAloud": "The room smells of burnt luck, sharp as scorched sugar. A single unspent Lot rolls off the desk and does not stop rolling.",
+      "art": "art-the-ledger-of-lost-luck-vanishing-scene-art",
+      "options": [
+        {
+          "id": "scene-to-ledger",
+          "label": "Head to the Ledgerkeepers' Guildhall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledgerkeepers-hall",
+          "effects": []
+        },
+        {
+          "id": "scene-to-chapel",
+          "label": "Head to the Hollow Chapel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-chapel-gate",
+          "effects": []
+        },
+        {
+          "id": "scene-to-weigh",
+          "label": "You've seen enough — weigh the evidence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "weigh-the-evidence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "clue-scene",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledgerkeepers-hall",
+      "kind": "social",
+      "title": "The Ledgerkeepers' Guildhall",
+      "prose": "The Guildhall's clerks mint and mind the town's Lots. A senior ledgerkeeper claims Ossandra left at dawn to settle a debt outside the walls — and produces a gate-log bearing her signature, written in ink that hasn't fully dried.",
+      "readAloud": "Rows of luck-vaults hum faintly, as if counting themselves. The clerk's smile is a fraction too steady.",
+      "art": "art-the-ledger-of-lost-luck-ledger-hall-art",
+      "options": [
+        {
+          "id": "ledger-to-scene",
+          "label": "Return to the vanishing scene",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanishing-scene",
+          "effects": []
+        },
+        {
+          "id": "ledger-to-chapel",
+          "label": "Head to the Hollow Chapel",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-chapel-gate",
+          "effects": []
+        },
+        {
+          "id": "ledger-to-weigh",
+          "label": "Weigh the evidence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "weigh-the-evidence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "clue-ledger",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-chapel-gate",
+      "kind": "social",
+      "title": "The Hollow Chapel",
+      "prose": "The Hollow Chapel worships the Unspent — luck never cashed in. Its gaunt custodian insists Ossandra came here at midnight to burn her fortune in penance, and shows scorch marks as proof, though the ash smells wrong for Lots.",
+      "readAloud": "Hooded penitents murmur numbers that never resolve into totals. The custodian's eyes never quite meet yours.",
+      "art": "art-the-ledger-of-lost-luck-chapel-gate-art",
+      "options": [
+        {
+          "id": "chapel-to-scene",
+          "label": "Return to the vanishing scene",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vanishing-scene",
+          "effects": []
+        },
+        {
+          "id": "chapel-to-ledger",
+          "label": "Head to the Ledgerkeepers' Guildhall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledgerkeepers-hall",
+          "effects": []
+        },
+        {
+          "id": "chapel-to-weigh",
+          "label": "Weigh the evidence",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "weigh-the-evidence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "clue-chapel",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "weigh-the-evidence",
+      "kind": "puzzle",
+      "title": "Three Truths, One Lie",
+      "prose": "A struggle with no forced entry. A gate-log signed in wet ink for a dawn already three days past. A ritual burning of luck that smells of nothing burnt at all. Only one theory can survive contact with all three.",
+      "readAloud": "You lay the three accounts side by side like cards in a losing hand, searching for the one that was never truly dealt.",
+      "art": "art-the-ledger-of-lost-luck-weigh-evidence-art",
+      "options": [
+        {
+          "id": "theory-staged",
+          "label": "Conclude she staged her own disappearance",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-the-truth",
+          "effects": [
+            {
+              "flag": "theory",
+              "value": "staged"
+            }
+          ]
+        },
+        {
+          "id": "theory-chapel",
+          "label": "Conclude the Hollow Chapel abducted her",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-the-truth",
+          "effects": [
+            {
+              "flag": "theory",
+              "value": "chapel"
+            }
+          ]
+        },
+        {
+          "id": "theory-ledger",
+          "label": "Conclude the Ledgerkeepers silenced her over a scandal",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "clue-scene",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "clue-ledger",
+                "value": true
+              }
+            ]
+          },
+          "target": "confront-the-truth",
+          "effects": [
+            {
+              "flag": "theory",
+              "value": "ledger"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-the-truth",
+      "kind": "decision",
+      "title": "The Confrontation",
+      "prose": "Armed with a theory, you must decide how to bring the truth to whoever holds it. Fortune's Weir does not forgive a wrong accusation easily, but it forgives a right one even less.",
+      "readAloud": "Your theory sits heavy as a loaded die in your pocket. It's time to roll it.",
+      "art": "art-the-ledger-of-lost-luck-confront-truth-art",
+      "options": [
+        {
+          "id": "confront-peacefully",
+          "label": "Confront peacefully, offering a chance to explain",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "peaceful-resolution",
+          "effects": []
+        },
+        {
+          "id": "confront-storm",
+          "label": "Storm in and demand answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "encounter-confrontation",
+          "effects": []
+        },
+        {
+          "id": "confront-gambit",
+          "label": "Wager a Lot on a gambit to force a confession",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "clue-chapel",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "clue-ledger",
+                "value": true
+              }
+            ]
+          },
+          "target": "lucky-gambit",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "peaceful-resolution",
+      "kind": "social",
+      "title": "A Quiet Reckoning",
+      "prose": "Face to face, the truth comes out plainer than the evidence ever let on — a debt, a disguise, a desperate bit of theater involving borrowed luck. What you do with that truth is yours to choose.",
+      "readAloud": "\"You found me,\" they say, not quite ashamed. \"What now?\"",
+      "art": "art-the-ledger-of-lost-luck-peaceful-resolution-art",
+      "options": [
+        {
+          "id": "peace-mercy",
+          "label": "Accept the explanation and let them go",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-mercy",
+          "effects": []
+        },
+        {
+          "id": "peace-reparation",
+          "label": "Demand reparation paid in Lots",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "theory",
+            "value": "staged"
+          },
+          "target": "ending-reparation",
+          "effects": []
+        },
+        {
+          "id": "peace-justice",
+          "label": "Report the truth to the authorities regardless",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-justice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lucky-gambit",
+      "kind": "hazard",
+      "title": "A Wager Against Fate",
+      "prose": "You could spend a hoarded Lot to tilt fate itself, forcing a slip of the tongue or a stumble of guilt from your quarry — but a wasted Lot in this town is a debt fate remembers.",
+      "readAloud": "The coin warms in your palm as if it knows it's about to be spent.",
+      "art": "art-the-ledger-of-lost-luck-lucky-gambit-art",
+      "options": [
+        {
+          "id": "gambit-wager",
+          "label": "Wager the Lot on a bold gambit",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "climax-showdown",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "deception",
+            "dc": 14,
+            "onFailure": "encounter-confrontation"
+          }
+        },
+        {
+          "id": "gambit-safe",
+          "label": "Play it safe and regroup with allies",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledgerkeepers-hall",
+          "effects": []
+        },
+        {
+          "id": "gambit-abandon",
+          "label": "Abandon subtlety and confront them directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "encounter-confrontation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "encounter-confrontation",
+      "kind": "conflict",
+      "title": "The Enforcers Close In",
+      "prose": "Whoever you've accused doesn't intend to answer for it quietly. Hired blades spill from the shadows, luck-blessed blades gleaming with borrowed favor.",
+      "readAloud": "Steel rings against stone, and somewhere a Lot cracks in half — someone's luck just ran out.",
+      "art": "art-the-ledger-of-lost-luck-confrontation-fight-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "confrontation-fight",
+      "terminal": false
+    },
+    {
+      "id": "climax-showdown",
+      "kind": "climax",
+      "title": "The Truth Laid Bare",
+      "prose": "With the enforcers dealt with, the truth of Ossandra Vell's vanishing stands exposed before the whole town, and Fortune's Weir waits to see what kind of justice you'll spend your hard-won luck on.",
+      "readAloud": "The crowd murmurs like a purse full of coins about to be spent one way or another.",
+      "art": "art-the-ledger-of-lost-luck-climax-showdown-art",
+      "options": [
+        {
+          "id": "showdown-mercy",
+          "label": "Show mercy and let them go free",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-mercy",
+          "effects": []
+        },
+        {
+          "id": "showdown-justice",
+          "label": "Demand justice through the town's courts",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-justice",
+          "effects": []
+        },
+        {
+          "id": "showdown-vengeance",
+          "label": "Take matters into your own hands",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-vengeance",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-mercy",
+      "kind": "ending",
+      "title": "A Debt Forgiven",
+      "prose": "You let them walk free, luck and all. Fortune's Weir will remember you as either fools or saints — likely both, depending on who's spending the story.",
+      "art": "art-the-ledger-of-lost-luck-ending-mercy-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-reparation",
+      "kind": "ending",
+      "title": "Paid in Full",
+      "prose": "Ossandra pays her staged debt back in hard Lots, and the town's ledgers balance once more. You leave richer, if a little colder for it.",
+      "art": "art-the-ledger-of-lost-luck-ending-reparation-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-justice",
+      "kind": "ending",
+      "title": "By the Book",
+      "prose": "The truth goes before the Weir's magistrates exactly as you found it, contradictions and all. Justice here is slow, but for once, it is honest.",
+      "art": "art-the-ledger-of-lost-luck-ending-justice-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-vengeance",
+      "kind": "ending",
+      "title": "Fate's Own Hand",
+      "prose": "You settle the matter yourselves, luck and blade together. Fortune's Weir will spend this story for years, and not always kindly toward you.",
+      "art": "art-the-ledger-of-lost-luck-ending-vengeance-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-captured",
+      "kind": "ending",
+      "title": "Luck Runs Out",
+      "prose": "The enforcers overwhelm you, and Fortune's Weir adds your names to its long list of unresolved vanishings. Perhaps someone else will find contradictory evidence of your fate.",
+      "art": "art-the-ledger-of-lost-luck-ending-captured-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-escaped-empty-handed",
+      "kind": "ending",
+      "title": "The Mystery Unspent",
+      "prose": "You break away before the fight turns fatal, but the truth slips from your grasp with you. Ossandra Vell remains three contradictions and no answer, forever haunting Fortune's Weir's ledgers.",
+      "art": "art-the-ledger-of-lost-luck-ending-escaped-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-at-fortunes-weir",
+      "to": "vanishing-scene",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-fortunes-weir",
+      "to": "ledgerkeepers-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-fortunes-weir",
+      "to": "hollow-chapel-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vanishing-scene",
+      "to": "ledgerkeepers-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vanishing-scene",
+      "to": "hollow-chapel-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vanishing-scene",
+      "to": "weigh-the-evidence",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledgerkeepers-hall",
+      "to": "vanishing-scene",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledgerkeepers-hall",
+      "to": "hollow-chapel-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledgerkeepers-hall",
+      "to": "weigh-the-evidence",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-chapel-gate",
+      "to": "vanishing-scene",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-chapel-gate",
+      "to": "ledgerkeepers-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-chapel-gate",
+      "to": "weigh-the-evidence",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "weigh-the-evidence",
+      "to": "confront-the-truth",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-the-truth",
+      "to": "peaceful-resolution",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-the-truth",
+      "to": "encounter-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-the-truth",
+      "to": "lucky-gambit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "peaceful-resolution",
+      "to": "ending-mercy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "peaceful-resolution",
+      "to": "ending-reparation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "peaceful-resolution",
+      "to": "ending-justice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lucky-gambit",
+      "to": "climax-showdown",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lucky-gambit",
+      "to": "ledgerkeepers-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lucky-gambit",
+      "to": "encounter-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "encounter-confrontation",
+      "to": "climax-showdown",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "encounter-confrontation",
+      "to": "ending-captured",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "encounter-confrontation",
+      "to": "ending-escaped-empty-handed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-showdown",
+      "to": "ending-mercy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-showdown",
+      "to": "ending-justice",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "climax-showdown",
+      "to": "ending-vengeance",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "confrontation-fight",
+      "title": "The Enforcers Close In",
+      "combatants": [
+        {
+          "id": "enforcer-blade-one",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "enforcer-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "climax-showdown",
+      "onDefeat": "ending-captured",
+      "onFlee": "ending-escaped-empty-handed"
+    }
+  ]
+}

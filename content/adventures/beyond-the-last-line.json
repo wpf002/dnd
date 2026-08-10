@@ -1,0 +1,969 @@
+{
+  "id": "beyond-the-last-line",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "Beyond the Last Line",
+    "premise": "Past the frontier town of Hollow Ford, the map runs out and only rumor remains: a vanished expedition, a grove that glows at night, and a vein of strange silver ore said to hum like a struck bell. The party must go where no map has been drawn.",
+    "tone": [
+      "west-marches",
+      "exploration"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "A weathered frontier scout speaking directly to the listener in low, practical second person, equal parts warning and wonder.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-screen in danger; any references to families are handled off-page."
+    },
+    "provenance": "flint"
+  },
+  "entry": "edge-of-the-map",
+  "beats": [
+    {
+      "id": "edge-of-the-map",
+      "kind": "threshold",
+      "title": "Where the Map Ends",
+      "prose": "The last surveyor's post marks the edge of Hollow Ford's charts. Beyond it, the trail forks into unmarked wilderness, and the only guidance left is rumor.",
+      "art": "art-beyond-the-last-line-edge-of-the-map-post",
+      "options": [
+        {
+          "id": "take-logging-road",
+          "label": "Take the logging road toward the ridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "logging-road-ambush",
+          "effects": []
+        },
+        {
+          "id": "follow-river",
+          "label": "Follow the river downstream",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "river-crossing",
+          "effects": []
+        },
+        {
+          "id": "visit-cartographer",
+          "label": "Stop by the cartographer's shack first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cartographer-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cartographer-warning",
+      "kind": "discovery",
+      "title": "The Cartographer's Shack",
+      "prose": "An aging mapmaker named Idra Voss keeps a shack full of half-finished charts. She warns you that the last expedition to chase the 'cinder vein' rumor never returned, and presses a torn map fragment into your hands.",
+      "art": "art-beyond-the-last-line-cartographer-shack-fragment",
+      "options": [
+        {
+          "id": "road-after-map",
+          "label": "Head out via the logging road",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "logging-road-ambush",
+          "effects": []
+        },
+        {
+          "id": "river-after-map",
+          "label": "Head out along the river",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "river-crossing",
+          "effects": []
+        },
+        {
+          "id": "press-rumors",
+          "label": "Press her for the darker rumors circling the frontier",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 12,
+            "onFailure": "logging-road-ambush"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "has-map",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "logging-road-ambush",
+      "kind": "conflict",
+      "title": "Ambush on the Logging Road",
+      "prose": "Felled trees block the road. Before you can turn back, figures rise from the brush with drawn blades.",
+      "art": "art-beyond-the-last-line-ambush-felled-trees",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "logging-road-ambush",
+      "terminal": false
+    },
+    {
+      "id": "river-crossing",
+      "kind": "hazard",
+      "title": "The Cold River",
+      "prose": "A wide, fast river cuts across the only clear path forward. The water looks brutally cold, and something moves beneath the surface.",
+      "art": "art-beyond-the-last-line-river-crossing-current",
+      "options": [
+        {
+          "id": "swim-river",
+          "label": "Swim across the cold current",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "wolf-den"
+          }
+        },
+        {
+          "id": "search-ford",
+          "label": "Search upstream for a safer ford",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wolf-den",
+          "effects": []
+        },
+        {
+          "id": "build-raft",
+          "label": "Build a quick raft from deadwood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": [
+            {
+              "flag": "lost-time",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wolf-den",
+      "kind": "conflict",
+      "title": "Into the Wolf Den",
+      "prose": "The safer path leads straight through a den of territorial wolves, eyes glinting from the shadows of the underbrush.",
+      "art": "art-beyond-the-last-line-wolf-den-shadows",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wolf-den",
+      "terminal": false
+    },
+    {
+      "id": "wilderness-camp",
+      "kind": "social",
+      "title": "Camp at the Frontier's Edge",
+      "prose": "You make camp beneath a canopy of unfamiliar trees. Firelight reveals two paths onward: a crumbling ruin to the north, and strange lights flickering in a distant grove.",
+      "art": "art-beyond-the-last-line-frontier-campfire-night",
+      "options": [
+        {
+          "id": "scout-ruin",
+          "label": "Scout toward the old ruin at dawn",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-ruin-entrance",
+          "effects": []
+        },
+        {
+          "id": "investigate-lights",
+          "label": "Investigate strange lights in the grove",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-grove",
+          "effects": []
+        },
+        {
+          "id": "question-trapper",
+          "label": "Question a wandering trapper about the cinder vein",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-grove",
+          "effects": [
+            {
+              "flag": "trapper-info",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 12,
+            "onFailure": "cinder-ruin-entrance"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cinder-ruin-entrance",
+      "kind": "threshold",
+      "title": "The Sealed Ruin",
+      "prose": "Moss-choked stones form the entrance to a ruin far older than Hollow Ford. A sealed door bars the way, etched with symbols none of you recognize.",
+      "art": "art-beyond-the-last-line-ruin-sealed-doorway",
+      "options": [
+        {
+          "id": "force-door",
+          "label": "Force the sealed door",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ruin-puzzle",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "undead-guardians"
+          }
+        },
+        {
+          "id": "hidden-passage",
+          "label": "Search for a hidden side passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ruin-puzzle",
+          "effects": []
+        },
+        {
+          "id": "retreat-to-camp",
+          "label": "Retreat and rejoin the group at camp",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ruin-puzzle",
+      "kind": "puzzle",
+      "title": "The Star-Etched Dial",
+      "prose": "A stone dial etched with constellations blocks the inner passage. Somewhere beneath the dust, a mechanism waits to be solved or broken.",
+      "art": "art-beyond-the-last-line-ruin-star-dial",
+      "options": [
+        {
+          "id": "use-map-fragment",
+          "label": "Solve the dial using the map fragment",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-map",
+            "value": true
+          },
+          "target": "cinder-vein-climax",
+          "effects": []
+        },
+        {
+          "id": "force-mechanism",
+          "label": "Force the mechanism with brute strength",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-vein-climax",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 14,
+            "onFailure": "undead-guardians"
+          }
+        },
+        {
+          "id": "retreat-puzzle",
+          "label": "Retreat rather than risk the puzzle",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undead-guardians",
+      "kind": "conflict",
+      "title": "Guardians of the Ruin",
+      "prose": "Bones stir in the dark as the disturbed mechanism wakes ancient guardians meant to keep intruders from the sanctum beyond.",
+      "art": "art-beyond-the-last-line-ruin-bone-guardians",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "undead-guardians",
+      "terminal": false
+    },
+    {
+      "id": "cult-grove",
+      "kind": "discovery",
+      "title": "The Glowing Grove",
+      "prose": "Pale lights drift between the trees of a hidden grove. Robed figures move among the glow, tending something that hums faintly beneath the earth.",
+      "art": "art-beyond-the-last-line-grove-glowing-lights",
+      "options": [
+        {
+          "id": "approach-openly",
+          "label": "Approach openly and announce yourselves",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-confrontation",
+          "effects": []
+        },
+        {
+          "id": "observe-hidden",
+          "label": "Observe from hiding first",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-confrontation",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 12,
+            "onFailure": "cult-confrontation"
+          }
+        },
+        {
+          "id": "leave-undisturbed",
+          "label": "Leave the grove undisturbed and report back to camp",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wilderness-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-confrontation",
+      "kind": "decision",
+      "title": "The Verdant Choir",
+      "prose": "The robed figures call themselves the Verdant Choir, sworn to guard the humming vein beneath the grove from those who would tear it free. They watch you warily, hands near their weapons.",
+      "art": "art-beyond-the-last-line-grove-choir-standoff",
+      "options": [
+        {
+          "id": "negotiate-truce",
+          "label": "Negotiate for a truce with the Verdant Choir",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cinder-vein-climax",
+          "effects": [
+            {
+              "flag": "grove-peace",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "persuasion",
+            "dc": 13,
+            "onFailure": "cult-encounter"
+          }
+        },
+        {
+          "id": "attack-cultists",
+          "label": "Attack the cultists before they can react",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cult-encounter",
+          "effects": []
+        },
+        {
+          "id": "reveal-trapper-secret",
+          "label": "Reveal the trapper's secret leverage over the Choir",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "trapper-info",
+            "value": true
+          },
+          "target": "cinder-vein-climax",
+          "effects": [
+            {
+              "flag": "grove-peace",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-encounter",
+      "kind": "conflict",
+      "title": "Clash at the Grove",
+      "prose": "Steel rings out among the trees as the Verdant Choir's guardians and their bound idol rise to defend the vein.",
+      "art": "art-beyond-the-last-line-grove-clash-idol",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-encounter",
+      "terminal": false
+    },
+    {
+      "id": "cinder-vein-climax",
+      "kind": "climax",
+      "title": "The Cinder Vein",
+      "prose": "Deep beneath root and stone, the cinder vein pulses with a faint, humming light, warm to the touch and unlike any ore you have seen. What you do with it will shape the frontier's future.",
+      "art": "art-beyond-the-last-line-cinder-vein-chamber",
+      "options": [
+        {
+          "id": "claim-vein",
+          "label": "Claim the cinder vein's power for the town's future",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-triumph",
+          "effects": []
+        },
+        {
+          "id": "forge-pact",
+          "label": "Forge a lasting pact with the Verdant Choir to guard it together",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "grove-peace",
+            "value": true
+          },
+          "target": "ending-pact",
+          "effects": []
+        },
+        {
+          "id": "control-raw-magic",
+          "label": "Try to control the vein's raw magic yourself",
+          "visibleWhen": {
+            "op": "not",
+            "clause": {
+              "op": "eq",
+              "flag": "lost-time",
+              "value": true
+            }
+          },
+          "target": "ending-triumph",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 15,
+            "onFailure": "ending-doom"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-triumph",
+      "kind": "ending",
+      "title": "The Frontier's New Wealth",
+      "prose": "You return to Hollow Ford bearing the cinder vein's secret, and the frontier town begins to grow into something greater. The wilderness beyond the map remains vast, but a little less unknown for what you carried home.",
+      "art": "art-beyond-the-last-line-ending-triumph-return",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-pact",
+      "kind": "ending",
+      "title": "An Uneasy Alliance",
+      "prose": "The Verdant Choir and Hollow Ford strike an uneasy pact: the vein stays guarded, its power shared carefully between town and grove. It is not the ending anyone expected, but it may be the one the frontier needs.",
+      "art": "art-beyond-the-last-line-ending-pact-handshake",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-doom",
+      "kind": "ending",
+      "title": "Lost Beyond the Map",
+      "prose": "The wilderness beyond Hollow Ford claims another party. Perhaps, someday, another group of fools will follow your footsteps into the unmapped dark and find out what became of you.",
+      "art": "art-beyond-the-last-line-ending-doom-wilderness",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "edge-of-the-map",
+      "to": "logging-road-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "edge-of-the-map",
+      "to": "river-crossing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "edge-of-the-map",
+      "to": "cartographer-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cartographer-warning",
+      "to": "logging-road-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cartographer-warning",
+      "to": "river-crossing",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cartographer-warning",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      },
+      "note": "successful persuasion check"
+    },
+    {
+      "from": "cartographer-warning",
+      "to": "logging-road-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed persuasion check"
+    },
+    {
+      "from": "river-crossing",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      },
+      "note": "successful swim or raft"
+    },
+    {
+      "from": "river-crossing",
+      "to": "wolf-den",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed swim or upstream search"
+    },
+    {
+      "from": "logging-road-ambush",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "logging-road-ambush",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "logging-road-ambush",
+      "to": "river-crossing",
+      "when": {
+        "op": "always"
+      },
+      "note": "fled the fight"
+    },
+    {
+      "from": "wolf-den",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wolf-den",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wilderness-camp",
+      "to": "cinder-ruin-entrance",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wilderness-camp",
+      "to": "cult-grove",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cinder-ruin-entrance",
+      "to": "ruin-puzzle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cinder-ruin-entrance",
+      "to": "undead-guardians",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed to force the door"
+    },
+    {
+      "from": "cinder-ruin-entrance",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-puzzle",
+      "to": "cinder-vein-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ruin-puzzle",
+      "to": "undead-guardians",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed to force the mechanism"
+    },
+    {
+      "from": "ruin-puzzle",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undead-guardians",
+      "to": "cinder-vein-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undead-guardians",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-grove",
+      "to": "cult-confrontation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-grove",
+      "to": "wilderness-camp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-confrontation",
+      "to": "cinder-vein-climax",
+      "when": {
+        "op": "always"
+      },
+      "note": "truce or secret leverage"
+    },
+    {
+      "from": "cult-confrontation",
+      "to": "cult-encounter",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-encounter",
+      "to": "cinder-vein-climax",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-encounter",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-encounter",
+      "to": "cult-grove",
+      "when": {
+        "op": "always"
+      },
+      "note": "fled the fight"
+    },
+    {
+      "from": "cinder-vein-climax",
+      "to": "ending-triumph",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cinder-vein-climax",
+      "to": "ending-pact",
+      "when": {
+        "op": "always"
+      },
+      "note": "requires grove-peace"
+    },
+    {
+      "from": "cinder-vein-climax",
+      "to": "ending-doom",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed arcana check"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "logging-road-ambush",
+      "title": "Ambush on the Logging Road",
+      "combatants": [
+        {
+          "id": "bandit-crew",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "wilderness-camp",
+      "onDefeat": "ending-doom",
+      "onFlee": "river-crossing"
+    },
+    {
+      "id": "wolf-den",
+      "title": "The Wolf Den",
+      "combatants": [
+        {
+          "id": "wolf-pair",
+          "statblock": "wolf",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "alpha-wolf",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "open"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "wilderness-camp",
+      "onDefeat": "ending-doom"
+    },
+    {
+      "id": "undead-guardians",
+      "title": "Guardians of the Ruin",
+      "combatants": [
+        {
+          "id": "bone-guard",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "shambler",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Push past the shambling guardians to reach the inner sanctum door."
+      },
+      "onVictory": "cinder-vein-climax",
+      "onDefeat": "ending-doom"
+    },
+    {
+      "id": "cult-encounter",
+      "title": "Clash at the Grove",
+      "combatants": [
+        {
+          "id": "choir-guard",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "choir-captain",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "corrupt-idol",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-heavy",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "corrupt-idol"
+      },
+      "onVictory": "cinder-vein-climax",
+      "onDefeat": "ending-doom",
+      "onFlee": "cult-grove"
+    }
+  ]
+}
