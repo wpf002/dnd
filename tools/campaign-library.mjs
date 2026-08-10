@@ -35,6 +35,7 @@
  * pass rate across every run, which is a far larger sample than a bespoke
  * benchmark script.
  */
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -254,6 +255,18 @@ async function worker() {
       }
       writeFileSync(join(ADVENTURES, `${id}.json`), JSON.stringify(graph, null, 2) + '\n');
       writeManifest(id, e, graph);
+      // Render this adventure's frames immediately. The library runs for
+      // ~2 hours; a separate art pass afterwards means every intermediate
+      // state has adventures whose art slots have no file, which is a real
+      // gap (the app renders a bare gradient) and not merely a red test.
+      try {
+        execFileSync('node', [join(root, 'tools/generate-placeholder-art.mjs')], {
+          cwd: root,
+          stdio: 'ignore',
+        });
+      } catch {
+        // Art is cosmetic and regenerable — never fail a built adventure on it.
+      }
       index.generated.push({
         id,
         title: graph.metadata.title,
