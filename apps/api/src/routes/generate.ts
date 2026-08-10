@@ -33,11 +33,21 @@ export function registerGenerateRoutes(
     try {
       const result = await generateAdventure(flint(), telemetry, request.body);
       if (!result.ok) {
-        // Fail loudly: the errors are the response body, not a vague 500.
-        return reply.code(422).send({
-          error: 'generation failed the linter after 3 attempts',
+        // Fail loudly, and accurately. This message used to hardcode "failed
+        // the linter after 3 attempts" regardless of what happened, which
+        // misdiagnosed a provider refusal as a content-quality failure and
+        // reported an attempt count that was never measured.
+        const transport = result.kind === 'call-failed';
+        return reply.code(transport ? 502 : 422).send({
+          error: transport
+            ? `provider call failed after ${result.attempts} attempt(s) — no graph was produced`
+            : `generation failed the linter after ${result.attempts} attempt(s)`,
+          kind: result.kind,
           attempts: result.attempts,
-          lintErrors: result.errors,
+          // Only a lint failure has lint errors; a transport failure has a
+          // provider message, and conflating them is what caused the
+          // confusion in the first place.
+          ...(transport ? { providerError: result.errors } : { lintErrors: result.errors }),
         });
       }
       // A passing graph becomes a playable session immediately.

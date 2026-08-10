@@ -37,6 +37,14 @@ export interface GenerationSuccess {
 export interface GenerationFailure {
   ok: false;
   attempts: number;
+  /**
+   * Why it failed. The distinction matters to the caller and to the
+   * benchmark: `lint-failed` means the model produced a graph the linter
+   * rejected — a real generation-quality datapoint. `call-failed` means we
+   * never got a graph at all (transport, credentials, provider refusal), and
+   * must NOT be scored as a generation miss.
+   */
+  kind: 'lint-failed' | 'call-failed';
   /** The last attempt's errors — the loud part of "fail loudly". */
   errors: string[];
 }
@@ -105,6 +113,7 @@ export async function generateAdventure(
     return {
       ok: false,
       attempts: result.attempts,
+      kind: result.kind === 'call-failed' ? 'call-failed' : 'lint-failed',
       errors: result.errors.length ? result.errors : [result.error?.message ?? 'generation failed'],
     };
   }
