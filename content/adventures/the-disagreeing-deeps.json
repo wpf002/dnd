@@ -1,0 +1,727 @@
+{
+  "id": "the-disagreeing-deeps",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Disagreeing Deeps",
+    "premise": "Beneath the market town of Cinderhollow lies an undercity raised in a single night by the wizard Thessamund Vare, and every level of it insists the whole was built for a different purpose. Descend to the Foundation Vault and inscribe the Codicil, and the argument ends in whatever answer you write.",
+    "tone": [
+      "megadungeon",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 6,
+    "narrationVoice": "Second-person present, dry and archival, like a survey report written by a cartographer who has stopped sleeping.",
+    "contentLimits": {
+      "exclude": [
+        "on-screen harm to children"
+      ],
+      "note": "Children of the Tallow Choir appear only as distant voices and as absences; never depict them in danger on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-sunken-stair",
+  "beats": [
+    {
+      "id": "the-sunken-stair",
+      "kind": "threshold",
+      "title": "The Sunken Stair",
+      "prose": "The stair begins in a Cinderhollow root-cellar and does not stop. Thirty steps down, the masonry changes character entirely: granary chutes fitted with prison bolts, almshouse benches carved with inventory numbers. Someone has scratched THIS WAS A SHELTER into the lintel, and someone else has crossed it out and written THIS WAS A SENTENCE beneath it. Both hands look recent.",
+      "readAloud": "Warm bread-smell above. Below, the draft comes up cold and smells of tallow, wet ledger-paper, and turned soil — three smells that have no business sharing a stairwell.",
+      "art": "art-the-disagreeing-deeps-sunken-stair-art",
+      "options": [
+        {
+          "id": "stair-to-market",
+          "label": "Follow the tallow-smell toward candlelight and voices.",
+          "target": "tallow-market",
+          "effects": []
+        },
+        {
+          "id": "stair-to-well",
+          "label": "Investigate the stone well shaft that hums when you exhale.",
+          "target": "the-listening-well",
+          "effects": []
+        },
+        {
+          "id": "stair-to-cistern",
+          "label": "Climb straight down the flooded tithe-cistern.",
+          "target": "cistern-tithe",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-listening-well",
+      "kind": "discovery",
+      "title": "The Listening Well",
+      "prose": "A dry well ringed with brass ears, each ear labeled with a level number in Vare's cramped hand. Speak into it and the well answers in the voice of whatever tier your words fall toward. The eleventh ear repeats one word over and over — a name, half-swallowed, belonging to something that guards the bottom.",
+      "readAloud": "The brass is warm. The well says, in a voice like a hinge apologizing: \"...bell... bellhouse... I was made to keep, not to bar. Do not make me bar.\"",
+      "art": "art-the-disagreeing-deeps-listening-well-art",
+      "options": [
+        {
+          "id": "well-listen-for-name",
+          "label": "Kneel and listen until the eleventh ear gives up the whole name.",
+          "target": "cistern-tithe",
+          "effects": [
+            {
+              "flag": "wardens-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 14,
+            "onFailure": "hollow-shaft"
+          }
+        },
+        {
+          "id": "well-to-market",
+          "label": "Carry the fragment to the candle-keepers and ask what it means.",
+          "target": "tallow-market",
+          "effects": []
+        },
+        {
+          "id": "well-to-shaft",
+          "label": "Leave the ears alone; take the great cable shaft down.",
+          "target": "hollow-shaft",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tallow-market",
+      "kind": "social",
+      "title": "The Tallow Market",
+      "prose": "Level One is a vaulted granary turned bazaar, lit by ten thousand candles the Tallow Choir refuses to let gutter. Their speaker, Mother Quillion Aske, will tell you plainly: Vare built this place as a refuge against a disaster the surface has forgotten to have yet. Somewhere behind a curtain, children are being taught a hymn; you hear only the hymn.",
+      "readAloud": "\"Refuge,\" says Aske, trimming a wick with her thumbnail. \"Not prison, not seed-bin, not archive. Refuge. The lower tiers are simply wrong, and being wrong for four hundred years has made them loud.\"",
+      "art": "art-the-disagreeing-deeps-tallow-market-art",
+      "options": [
+        {
+          "id": "market-pledge-candle",
+          "label": "Pledge a candle to the Choir and take their creed and their rites.",
+          "target": "hollow-shaft",
+          "effects": [
+            {
+              "flag": "choir-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "market-buy-cistern-route",
+          "label": "Trade for the wet route down through the tithe-cistern.",
+          "target": "cistern-tithe",
+          "effects": []
+        },
+        {
+          "id": "market-to-well",
+          "label": "Ask Aske about the brass ears, and go back to the well.",
+          "target": "the-listening-well",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cistern-tithe",
+      "kind": "conflict",
+      "title": "The Tithe-Cistern",
+      "prose": "The cistern is a drowned granary silo, chest-deep and rising as some unseen sluice opens above. Its permanent tenants — rats grown fat on grain that was never eaten and two pale collectors who insist on their tithe in flesh — need only keep you here until the water does the arguing. The iron ladder to the lower sluice is twenty feet off and getting further.",
+      "readAloud": "Somewhere overhead a valve turns with the patience of clockwork. The water comes up over your belt. The collectors do not swim; they simply walk, and wait.",
+      "art": "art-the-disagreeing-deeps-cistern-tithe-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cistern-swarm",
+      "terminal": false
+    },
+    {
+      "id": "hollow-shaft",
+      "kind": "transit",
+      "title": "The Hollow Shaft",
+      "prose": "A single vertical shaft threads all known levels, strung with counterweighted cables that still run on a schedule nobody set. Painted rungs mark the tiers: GRANARY, INTAKE, ARCHIVE, GARDEN, and below them a rung scraped bare. Each level's paint has been overpainted by the level beneath it.",
+      "readAloud": "The cable shudders, then hauls upward past you carrying an empty basket, a folded uniform, and a seed packet — the undercity moving its evidence around.",
+      "art": "art-the-disagreeing-deeps-hollow-shaft-art",
+      "options": [
+        {
+          "id": "shaft-to-ledger",
+          "label": "Step off at INTAKE, where lamplight shows a turnstile of brass.",
+          "target": "ledger-gate",
+          "effects": []
+        },
+        {
+          "id": "shaft-ride-past",
+          "label": "Ride the cable past INTAKE and drop at GARDEN.",
+          "target": "the-sown-garden",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 14,
+            "onFailure": "spore-tide"
+          }
+        },
+        {
+          "id": "shaft-side-passage",
+          "label": "Squeeze into the fungal side-passage venting warm spores.",
+          "target": "spore-tide",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-gate",
+      "kind": "social",
+      "title": "The Ledger Gate",
+      "prose": "Level Four is Intake, and Intake is run by the Auditors of the Ninth Rung — small, tidy, spectacled clerks descended from the labor Vare conscripted and never released. Chief Auditor Grettivan Oam presents the founding writ: this place is a prison, you are undocumented, and undocumented is a category with a remedy. He is polite. The remedy is not.",
+      "readAloud": "\"Refuge,\" Oam repeats, as if tasting spoiled milk. \"Refuges do not have bolt-holes on the inside of every door. Sign here, or be shelved.\"",
+      "art": "art-the-disagreeing-deeps-ledger-gate-art",
+      "options": [
+        {
+          "id": "ledger-sign-as-staff",
+          "label": "Sign the intake ledger as visiting staff and take Oam's brass badges.",
+          "target": "cell-block-of-quiet-names",
+          "effects": [
+            {
+              "flag": "ledger-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ledger-forge-writ",
+          "label": "Forge a release writ from a blank in the pigeonhole.",
+          "target": "cell-block-of-quiet-names",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "auditor-sweep"
+          }
+        },
+        {
+          "id": "ledger-refuse",
+          "label": "Refuse the ledger outright and be catalogued as contraband.",
+          "target": "auditor-sweep",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cell-block-of-quiet-names",
+      "kind": "puzzle",
+      "title": "The Cell Block of Quiet Names",
+      "prose": "Two hundred cells, all unlocked, all empty, each door plated with a name. The plates are hinged so they can be read from inside. Read in order, the names spell nothing; read from the last cell backward, they spell a sentence in Vare's hand, and the one blank plate marks a cell containing a keystone of black granite with a socket cut for a thumb.",
+      "readAloud": "The block is warm and smells of clean linen. Someone has left every door open, as though the argument here was settled long ago and nobody wanted to be the one to say so.",
+      "art": "art-the-disagreeing-deeps-cell-block-art",
+      "options": [
+        {
+          "id": "cells-read-backward",
+          "label": "Read the names backward and lift the keystone from the blank cell.",
+          "target": "the-sown-garden",
+          "effects": [
+            {
+              "flag": "keystone-taken",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cells-leave-stone",
+          "label": "Leave the stone where it lies and follow the linen-carts down.",
+          "target": "spore-tide",
+          "effects": []
+        },
+        {
+          "id": "cells-trip-alarm",
+          "label": "Ring the block alarm on purpose to see who still answers it.",
+          "target": "auditor-sweep",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "auditor-sweep",
+      "kind": "conflict",
+      "title": "Sweep of the Ninth Rung",
+      "prose": "Bells in threes. The Auditors do not fight so much as file: invigilators herd, brass vergers block, and dust-knit clerks of long-dead shifts come up the corridors with intake forms held like shields. Their goal is containment, not slaughter; the corridor mouth at the far end is unbolted for exactly ninety seconds.",
+      "readAloud": "\"Do not resist,\" the invigilator recites, unrolling a form the length of a man. \"Resistance is a subsection.\"",
+      "art": "art-the-disagreeing-deeps-auditor-sweep-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "clerical-purge",
+      "terminal": false
+    },
+    {
+      "id": "the-sown-garden",
+      "kind": "social",
+      "title": "The Sown Garden",
+      "prose": "Level Seven is soil, forty feet deep and lit by hanging fungus-lamps. The Sown tend it: long-lived, grey-gummed gardeners who eat only what has already stopped. Their eldest, Warden-of-Rows Hesk Mulliver, explains that the undercity is a seed vault, that people are the seed, and that the surface is merely a season currently in progress.",
+      "readAloud": "Mulliver presses a black seed into your palm. \"Refuge is what a seed vault feels like from the inside. Prison is what it feels like from the door. We are the only tier that has read the label.\"",
+      "art": "art-the-disagreeing-deeps-sown-garden-art",
+      "options": [
+        {
+          "id": "garden-accept-seed",
+          "label": "Take a seed under the tongue and be counted among the rows.",
+          "target": "foundation-vault",
+          "effects": [
+            {
+              "flag": "sown-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "garden-harvest-errand",
+          "label": "Bargain for passage by harvesting from the bloom-choked lower vent.",
+          "target": "spore-tide",
+          "effects": []
+        },
+        {
+          "id": "garden-refuse-creed",
+          "label": "Refuse the creed and walk to the seam unaided.",
+          "target": "foundation-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "spore-tide",
+      "kind": "hazard",
+      "title": "The Spore Tide",
+      "prose": "The vent breathes. Every ninth minute a warm tide of yellow spores rolls uphill through the passage, and every surface it touches sprouts a small crop of remembered opinions: mouths of fungus muttering shelter, sentence, seed, archive, over and over, in the voices of workers long since composted.",
+      "readAloud": "The spores taste of bread crust. When they clear, your lantern-light shows a hairline seam in the floor, ruled straight as a pen-stroke, running deeper than the level should allow.",
+      "art": "art-the-disagreeing-deeps-spore-tide-art",
+      "options": [
+        {
+          "id": "spores-wade-through",
+          "label": "Hold your breath and wade the bloom toward the ruled seam.",
+          "target": "foundation-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 15,
+            "onFailure": "the-sown-garden"
+          }
+        },
+        {
+          "id": "spores-to-garden",
+          "label": "Back out and take the gardeners' tended path instead.",
+          "target": "the-sown-garden",
+          "effects": []
+        },
+        {
+          "id": "spores-to-shaft",
+          "label": "Retreat to the cable shaft and rethink the descent.",
+          "target": "hollow-shaft",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "foundation-vault",
+      "kind": "decision",
+      "title": "The Foundation Vault",
+      "prose": "Below the last painted rung, the undercity stops pretending to be architecture. A single round chamber, a plinth, and on the plinth the Codicil: a slab of blank deed-stone with Thessamund Vare's signature already dry at the bottom and the purpose-line left empty for four hundred years. Something enormous stands against the far wall in the shape of a bell-hung suit of armour, and it has just begun to turn its head.",
+      "readAloud": "The seal on the plinth is not a lock. It is a question, cut in letters a hand deep: FOR WHAT WAS THIS MADE? Below it, room for one line.",
+      "art": "art-the-disagreeing-deeps-foundation-vault-art",
+      "options": [
+        {
+          "id": "vault-force-seal",
+          "label": "Break the seal by force and let the Warden come.",
+          "target": "warden-bellhouse",
+          "effects": []
+        },
+        {
+          "id": "vault-keystone-rite",
+          "label": "Set the black keystone in the socket and open it by candle-rite.",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "keystone-taken",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "choir-favor",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-inscribing",
+          "effects": []
+        },
+        {
+          "id": "vault-speak-name",
+          "label": "Speak the Warden's whole name and order it to stand aside.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "wardens-name",
+            "value": true
+          },
+          "target": "the-inscribing",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Intimidation",
+            "dc": 15,
+            "onFailure": "warden-bellhouse"
+          }
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-bellhouse",
+      "kind": "climax",
+      "title": "Bellhouse, Who Keeps the Line Empty",
+      "prose": "It was a caretaker once. Four centuries of contradictory orders have hollowed it into something cold that keeps only one rule: the purpose-line stays blank. Its bells ring the hours of a shift that ended before Cinderhollow had a name, and the ringing peels shadows off the walls to fight beside it. Silence the bells and the Codicil is yours.",
+      "readAloud": "\"IF IT IS WRITTEN,\" says Bellhouse, in the voice from the eleventh brass ear, \"THEN IT IS FINISHED. I WAS NOT BUILT TO BE FINISHED.\"",
+      "art": "art-the-disagreeing-deeps-warden-bellhouse-art",
+      "options": [],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "warden-of-the-codicil",
+      "terminal": false
+    },
+    {
+      "id": "the-inscribing",
+      "kind": "decision",
+      "title": "The Inscribing",
+      "prose": "The stylus is bone and fits any hand. Ink is not required; the deed-stone takes the intent. Above you, five levels of certainty hold their breath — candles guttering in the granary, pens hovering over ledgers, gardeners standing in their rows — because whatever you write becomes true retroactively, all the way up.",
+      "readAloud": "One line. Four hundred years of argument, and the stone will only ever hold one line.",
+      "art": "art-the-disagreeing-deeps-inscribing-art",
+      "options": [
+        {
+          "id": "inscribe-refuge",
+          "label": "Write: THIS WAS MADE FOR SHELTER.",
+          "target": "ending-refuge",
+          "effects": []
+        },
+        {
+          "id": "inscribe-sentence",
+          "label": "Write: THIS WAS MADE TO HOLD WHAT MUST BE HELD.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ledger-favor",
+            "value": true
+          },
+          "target": "ending-ledger",
+          "effects": []
+        },
+        {
+          "id": "inscribe-seed",
+          "label": "Write: THIS WAS MADE TO KEEP US UNTIL PLANTING.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sown-favor",
+            "value": true
+          },
+          "target": "ending-seed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-refuge",
+      "kind": "ending",
+      "title": "Ending: The Shelter Admitted",
+      "prose": "Whether you wrote the word or the undercity wrote it over you, the answer settles as SHELTER, and the whole descent rearranges itself politely to agree. Bolts turn outward. Ledgers reclassify inmates as guests, four centuries late. The Tallow Choir's candles go out all at once — no longer needed, since every corridor now lights itself for arrivals — and Mother Aske weeps at the waste of good wick. Cinderhollow above will not notice for a generation, and then it will notice all at once, when the season the Sown warned about finally turns and there is, improbably, room for everyone.",
+      "readAloud": "The last thing the deep does before it becomes hospitable is ring one bell, softly, the way a house does when someone comes home.",
+      "art": "art-the-disagreeing-deeps-ending-refuge-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ledger",
+      "kind": "ending",
+      "title": "Ending: The Sentence Upheld",
+      "prose": "The undercity becomes what Intake always insisted it was: a place built to hold. The granary's benches grow numbers, the garden's rows grow fences, and the Auditors of the Ninth Rung file upward with immense satisfaction and a very great deal of blank paperwork. Your names go on plates, hinged to be read from the inside. It is not cruelty; it is category. The comfort — and Chief Auditor Oam offers it sincerely, over decent tea — is that a prison this thorough will still be standing when whatever it was built against arrives, and that its doors, being doors, can be argued with again.",
+      "readAloud": "Oam blots the line, holds it to the lamp, and nods. \"Documented at last. You have no idea what a relief it is to be a place with a purpose.\"",
+      "art": "art-the-disagreeing-deeps-ending-ledger-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-seed",
+      "kind": "ending",
+      "title": "Ending: The Planting Deferred",
+      "prose": "SEED VAULT, says the stone, and the deep exhales soil. Levels fold into cold dry order: the market becomes a granary again, the cells become drawers, the garden spreads until it is the whole idea of the place. Warden-of-Rows Mulliver files your names among the varieties worth keeping and sets the count for a season yet to come. You may walk out — the vault keeps, it does not confine — but you will carry a black seed under the tongue and the certainty that somewhere below Cinderhollow, patient as arithmetic, something is waiting for the surface to need replanting.",
+      "readAloud": "The bells go quiet. In the dark below, ten thousand labelled drawers close in sequence, like a held breath being organised.",
+      "art": "art-the-disagreeing-deeps-ending-seed-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "cistern-tithe",
+      "to": "hollow-shaft",
+      "when": {
+        "op": "always"
+      },
+      "note": "Survived the rising tithe; reached the lower sluice."
+    },
+    {
+      "from": "cistern-tithe",
+      "to": "tallow-market",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fished out by Choir wick-divers, minus gear and dignity."
+    },
+    {
+      "from": "cistern-tithe",
+      "to": "the-listening-well",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fled up the overflow into the well shaft."
+    },
+    {
+      "from": "auditor-sweep",
+      "to": "the-sown-garden",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escaped down the linen chute past Intake."
+    },
+    {
+      "from": "auditor-sweep",
+      "to": "ending-ledger",
+      "when": {
+        "op": "always"
+      },
+      "note": "Contained, catalogued, shelved."
+    },
+    {
+      "from": "warden-bellhouse",
+      "to": "the-inscribing",
+      "when": {
+        "op": "always"
+      },
+      "note": "Bellhouse silenced; the Codicil is unguarded."
+    },
+    {
+      "from": "warden-bellhouse",
+      "to": "ending-refuge",
+      "when": {
+        "op": "always"
+      },
+      "note": "Overcome; the Choir carries you up and the deep answers for you."
+    },
+    {
+      "from": "warden-bellhouse",
+      "to": "spore-tide",
+      "when": {
+        "op": "always"
+      },
+      "note": "Withdrew into the fungal vents to regroup."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "cistern-swarm",
+      "title": "The Tithe Comes Due",
+      "combatants": [
+        {
+          "id": "grain-rats",
+          "statblock": "giant-rat",
+          "count": 6,
+          "hostile": true
+        },
+        {
+          "id": "tithe-collectors",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "hollow-shaft",
+      "onDefeat": "tallow-market",
+      "onFlee": "the-listening-well"
+    },
+    {
+      "id": "clerical-purge",
+      "title": "Containment of Undocumented Persons",
+      "combatants": [
+        {
+          "id": "invigilator",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "brass-vergers",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "dust-clerks",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "the-sown-garden",
+      "onDefeat": "ending-ledger"
+    },
+    {
+      "id": "warden-of-the-codicil",
+      "title": "Silence the Bells",
+      "combatants": [
+        {
+          "id": "bellhouse-warden",
+          "statblock": "wight",
+          "count": 1,
+          "hpOverride": 62,
+          "hostile": true
+        },
+        {
+          "id": "verger-shells",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "peeled-shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "open",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "bellhouse-warden"
+      },
+      "onVictory": "the-inscribing",
+      "onDefeat": "ending-refuge",
+      "onFlee": "spore-tide"
+    }
+  ]
+}

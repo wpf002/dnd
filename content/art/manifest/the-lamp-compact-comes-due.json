@@ -1,0 +1,90 @@
+{
+  "adventure": "the-lamp-compact-comes-due",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: infernal-war, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-lamp-compact-comes-due-brass-writ-at-low-water",
+      "beat": "low-water-summons",
+      "brief": "Low Water at the Coinbridge — The Umberflow drops three feet in a single night, exposing mudflats no living Weirwright has ever surveyed. Under the Coinbridge, a brass plate the si"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-quaymoot-chamber-of-denial",
+      "beat": "quaymoot-in-denial",
+      "brief": "The Quaymoot Takes No Questions — The council chamber smells of beeswax and river damp. First Sluicewarden Marda Colquin gavels through harbour tariffs while the word 'compact' is stru"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-the-drowned-lamp-taproom",
+      "beat": "lampless-tavern",
+      "brief": "The Drowned Lamp — Hessa Ninefingers keeps a tavern for soldiers who came back from a war the city does not acknowledge, which means she keeps a tavern for people with n"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-advocate-in-the-counting-parlour",
+      "beat": "advocates-offer",
+      "brief": "Sorrel Quill-of-Cinders, Advocate — The counting parlour above the fish market has no fire, yet the ink steams in its well. Sorrel Quill-of-Cinders is thin, courteous, and slightly out o"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-tide-gate-of-the-weirwrights",
+      "beat": "weirwright-locks",
+      "brief": "The Tide-Gate of the Weirwrights — Underwright Tobin Ferrule tends the great tide-gate the way a physician tends a patient he expects to outlive him. The gate's tally-wheel counts somet"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-tally-sergeant-in-the-cut",
+      "beat": "revenue-collectors",
+      "brief": "Collectors in the Cut — They come along the Tanner's Cut where the walls are close and the water is knee-deep: Tally-Sergeant Grumn Vasse with a muster book chained to his wr"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-descent-through-the-sunken-lock",
+      "beat": "descent-sunken-lock",
+      "brief": "Down Through the Sunken Lock — Past the gate the stair goes down further than the river bed has any right to allow, and the air changes from cold damp to hot damp to something that "
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-the-burning-undermarch",
+      "beat": "the-cinder-march",
+      "brief": "The Undermarch, Burning — The ceiling is the underside of Cadence Weir: foundation piles, sewer arches, the pale keels of moored barges seen from beneath. Below that hangs a sk"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-no-mans-ember-flats",
+      "beat": "no-mans-ember",
+      "brief": "No One's Ember — Between the lines the ground is grey powder over red heat, and it breathes. Every few minutes the smoke-ceiling sheds a slow rain of burning paper — d"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-trench-outpost-of-the-lampless",
+      "beat": "lampless-outpost",
+      "brief": "Outpost Fourteen-and-a-Half — Sergeant Ibbet Nailhand commands nine soldiers, one working lamp and a trench revetted with bales of expired paperwork. Nobody here has a name; they h"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-raid-on-the-graveworks",
+      "beat": "graveworks-skirmish",
+      "brief": "Raid on the Graveworks — The graveworks is where lapsed accounts are re-enlisted. A pale standard-bearer in the rags of a Cadence Weir uniform walks the rows, and behind it th"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-vault-of-the-lamp-compact",
+      "beat": "ledger-vault",
+      "brief": "The Vault of the Lamp Compact — The counting house is a bunker of black brass sunk into the slag, and the Compact lies open on a lectern inside it: two vellum sheets, a hundred years"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-audit-of-flames-counting-house",
+      "beat": "audit-of-flames",
+      "brief": "The Audit of Flames — The lectern rises on brass legs and the counting house closes its shutters like a mouth. Vaskarel does not attend in person — an archduke does not att"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-ashes-of-the-lamp-compact",
+      "beat": "ending-ledger-burned",
+      "brief": "Ashes of the Lamp Compact — The lectern splits and the vellum goes up in a white sheet of flame that smells of every year it recorded. Below, in the trenches, the lamps gutter — "
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-amended-articles-signed-at-dawn",
+      "beat": "ending-terms-rewritten",
+      "brief": "Amended Articles, Signed at Dawn — You come up at low water with a signature page, a witness, and enough leverage to make the Quaymoot admit — in closed session, in language no minute-t"
+    },
+    {
+      "slot": "art-the-lamp-compact-comes-due-lanterns-carried-down-the-locks",
+      "beat": "ending-the-tithe-collected",
+      "brief": "Lamps Carried Down the Locks — The book closes on you, and the clerks are very gentle about it, because a struggling entry smudges. Somewhere above, the river settles back into its "
+    }
+  ]
+}

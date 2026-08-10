@@ -1,0 +1,738 @@
+{
+  "id": "four-wounds-of-the-corrun-vale",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "Four Wounds of the Corrun Vale",
+    "premise": "The Slowmarrow River runs low through the Corrun Vale, and four elemental cults have each cracked open a piece of the valley at once. The reeve of Marrowford can spare you time enough to mend maybe two of them before the cults meet at the confluence.",
+    "tone": [
+      "sandbox",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "A weathered valley guide speaking in second person, present tense: dry, concrete, fond of mud and weather detail, quietly unimpressed by cult pageantry.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Valley children are always described as already evacuated upriver; any threat to them stays off-screen and unrealized."
+    },
+    "provenance": "flint"
+  },
+  "entry": "lowwater-ferry",
+  "beats": [
+    {
+      "id": "lowwater-ferry",
+      "kind": "threshold",
+      "title": "Lowwater Ferry",
+      "prose": "The Slowmarrow is a brown, sulking thing this season, shrunk back from its banks so far that the ferry landing at Lowwater stands on dry cracked mud like a pier over a floor. Hesk Vainer, ferrywoman, sits on an upturned crate with the snapped ferry chain across her knees and swears at it patiently. From here you can count the valley's troubles on one hand: a smear of smoke on the eastern terraces, a grey plume of quarry dust to the south, the mill-vanes at Whistlecrown turning in a wind nobody else can feel, and upriver the ugly gap in the Marrowford weir where somebody has been at the sluice gates with hammers.",
+      "readAloud": "\"Four,\" Hesk says without looking up. \"Four separate flavors of lunatic, all come to bloom in one summer. Reeve's in the chalk hall pretending she can fix three. She can fix two. Maybe.\"",
+      "art": "art-four-wounds-of-the-corrun-vale-ferry-at-lowwater",
+      "options": [
+        {
+          "id": "help-hesk-splice",
+          "label": "Sit down and help Hesk splice the ferry chain before you ask her anything",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": [
+            {
+              "flag": "ferryman-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "walk-straight-to-hall",
+          "label": "Leave the chain and walk straight up to the chalk hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": []
+        },
+        {
+          "id": "take-the-downriver-boat",
+          "label": "Decide this valley is not your wound to bind, and take the downriver boat",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-downriver-silence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chalk-hall-council",
+      "kind": "social",
+      "title": "The Chalk Hall",
+      "prose": "Marrowford's council hall has a slate floor, and Reeve Adalie Thorn has drawn the whole vale on it in chalk: river, weir, terraces, ridge road, quarry. She marks the four wounds with four hard taps. The Drowning Choir has taken the weir and means to let the pent water go all at once. The Ember Kiln is burning the orchard terraces to feed something they call the Bright Appetite. Out on the ridge, the Hollow Breath has begun stealing voices at Whistlecrown mill. Under Grindle Quarry, the Deepset are prising up a keystone that holds the hillside above three hamlets. The children of all four went upriver to Thistlebrook two days ago; the reeve made sure of that first.",
+      "readAloud": "\"I will not lie to you and call it a choice of duty,\" Thorn says. \"It is a choice of arithmetic. You have days, not weeks. Pick your two and I will hold the rest with prayers and buckets.\"",
+      "art": "art-four-wounds-of-the-corrun-vale-chalk-hall-map",
+      "options": [
+        {
+          "id": "ride-to-weir",
+          "label": "Ride upriver to the broken weir and the Drowning Choir",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "weir-mended",
+            "value": true
+          },
+          "target": "broken-weir",
+          "effects": []
+        },
+        {
+          "id": "climb-to-terraces",
+          "label": "Climb east to the burning orchard terraces",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "fire-quenched",
+            "value": true
+          },
+          "target": "ember-terraces",
+          "effects": []
+        },
+        {
+          "id": "take-ridge-road",
+          "label": "Take the ridge road south and find the surveyor who knows the high country",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-road-survey",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ridge-road-survey",
+      "kind": "social",
+      "title": "Cobbet's Waystone",
+      "prose": "The ridge road runs the spine of the vale, and Bram Cobbet has set his surveying tripod beside a waystone worn smooth by two centuries of hands. He has been mapping the cults the way he maps drainage: by where their traffic goes. All four lines converge, he shows you, on the gravel spit at the confluence where the Slowmarrow takes in the Thin Fork. Four cults, one dark of the moon, one rite. From the waystone you can see both southern wounds at once: the mill-vanes at Whistlecrown turning wrong, and the white gash of Grindle Quarry with its ant-line of lantern-bearers going down.",
+      "readAloud": "\"They are not rivals,\" Cobbet says, tapping his chalk on the four converging lines. \"That is the part your reeve keeps refusing to hear. They are four hands on one throat, and the fingers close at the confluence.\"",
+      "art": "art-four-wounds-of-the-corrun-vale-ridge-waystone",
+      "options": [
+        {
+          "id": "to-whistlecrown",
+          "label": "Follow the wrong wind to Whistlecrown mill",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "breath-returned",
+            "value": true
+          },
+          "target": "whistlecrown-mill",
+          "effects": []
+        },
+        {
+          "id": "to-grindle-quarry",
+          "label": "Descend the switchbacks to Grindle Quarry",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "quarry-sealed",
+            "value": true
+          },
+          "target": "grindle-quarry",
+          "effects": []
+        },
+        {
+          "id": "back-to-chalk-hall",
+          "label": "Carry Cobbet's map back down to the chalk hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-conclave",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "broken-weir",
+      "kind": "discovery",
+      "title": "The Broken Weir",
+      "prose": "Above Marrowford the Slowmarrow has been made to hold its breath. The Drowning Choir have jammed the weir's sluice gates shut with oak wedges and iron, and behind them the river has swollen into a flat green lake that presses on the old stonework with a sound like a held note. Choir wardens in oilcloth stand the gate-walk singing in three parts, keeping time with a hammer. The masonry is already weeping through two courses. Whatever they intend, the weir will do it for them within the day if nobody intervenes.",
+      "readAloud": "The song is not loud. It is patient. Water sweats through the joints in rhythm with it, and you understand, without being told, that they are singing the stone into agreeing to fail.",
+      "art": "art-four-wounds-of-the-corrun-vale-broken-weir-sluice",
+      "options": [
+        {
+          "id": "charge-the-sluice",
+          "label": "Go straight up the gate-walk and take the sluice off them",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "weir-siege-fight",
+          "effects": []
+        },
+        {
+          "id": "brace-with-hesks-chain",
+          "label": "Use Hesk's ferry chain to brace the failing courses from below, out of sight",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ferryman-ally",
+            "value": true
+          },
+          "target": "nightfall-tally",
+          "effects": [
+            {
+              "flag": "weir-mended",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "weir-siege-fight"
+          }
+        },
+        {
+          "id": "withdraw-from-weir",
+          "label": "Note the wedges, the guard count, the weeping joints — and withdraw to the chalk hall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "weir-siege-fight",
+      "kind": "conflict",
+      "title": "Four Rounds on the Gate-Walk",
+      "prose": "The gate-walk is a plank road two paces wide with a green lake shoving at one elbow and a forty-foot drop at the other. The choir stops singing and starts swinging. You do not have to kill them all — you have to hold the walk long enough for Marrowford's sluice crew to hammer the wedges out and let the river down gently. Somebody below is counting the strokes aloud. Four rounds of held ground and the pressure goes out of the stone.",
+      "art": "art-four-wounds-of-the-corrun-vale-weir-siege-melee",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "weir-mended",
+          "value": true
+        }
+      ],
+      "encounter": "weir-siege",
+      "terminal": false
+    },
+    {
+      "id": "ember-terraces",
+      "kind": "hazard",
+      "title": "The Ember Terraces",
+      "prose": "Six generations of orchard climb the eastern slope in dry-stone terraces, and the Ember Kiln is walking uphill through them with torches, methodically, terrace by terrace. The smoke lies in the cuttings like water in a ditch; you taste burnt apple wood and something sweeter and worse under it. At the crown of the slope they have built a ring of kiln-bricks around a man-shaped effigy of scorched plate and wire that stands in the fire without burning, and the acolytes feed it fruitwood in armfuls. The wind is turning. When it turns fully, the fire takes the whole east slope and Marrowford's winter with it.",
+      "readAloud": "A kobold acolyte with soot-rimmed eyes trots past without seeing you, arms full of blossom-wood, singing a counting song about how many orchards make a hunger full.",
+      "art": "art-four-wounds-of-the-corrun-vale-ember-terraces-smoke",
+      "options": [
+        {
+          "id": "charge-the-kiln-ring",
+          "label": "Cut uphill through the smoke and break the kiln ring itself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "kiln-ring-fight",
+          "effects": []
+        },
+        {
+          "id": "cut-a-firebreak",
+          "label": "Ignore the cult and cut a firebreak along the old irrigation channel before the wind turns",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "nightfall-tally",
+          "effects": [
+            {
+              "flag": "fire-quenched",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Survival",
+            "dc": 14,
+            "onFailure": "kiln-ring-fight"
+          }
+        },
+        {
+          "id": "withdraw-from-terraces",
+          "label": "Fall back down the switchbacks to the chalk hall with what you have seen",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kiln-ring-fight",
+      "kind": "conflict",
+      "title": "The Bright Appetite",
+      "prose": "Inside the brick ring the heat has a shape to it. The effigy turns its blank scorched faceplate toward you and takes one step, and every acolyte in the ring howls delight and reaches for a burning brand. The acolytes are children of the ash and will scatter the moment their idol does; the effigy is the fire's actual hinge. Break the effigy and the Bright Appetite has nothing left to be hungry with.",
+      "art": "art-four-wounds-of-the-corrun-vale-kiln-ring-effigy",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "fire-quenched",
+          "value": true
+        }
+      ],
+      "encounter": "kiln-ring",
+      "terminal": false
+    },
+    {
+      "id": "whistlecrown-mill",
+      "kind": "puzzle",
+      "title": "Whistlecrown Mill",
+      "prose": "The mill stands on the bald crown of the ridge and its four vanes turn steadily in perfectly still air. Inside, the millstones are gone. In their place, on the round oak floor, sit two hundred stoppered clay jars arranged in a spiral, and each jar breathes. The Hollow Breath have been taking voices from the ridge hamlets — the shepherd who cannot call his dogs, the singer who opens her mouth and produces weather. Nailed to the king-post is a ledger in a small crabbed hand, listing each jar, each donor, and the order in which they must be opened at the confluence.",
+      "readAloud": "You hold a jar up. Something inside it says a word in a voice you half recognize, then apologizes, then says the word again.",
+      "art": "art-four-wounds-of-the-corrun-vale-whistlecrown-mill-vanes",
+      "options": [
+        {
+          "id": "descend-to-shrine",
+          "label": "Follow the spiral down the stair beneath the millstone floor, where the wind comes from",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "unbreath-shrine-fight",
+          "effects": []
+        },
+        {
+          "id": "read-the-breath-ledger",
+          "label": "Work the ledger backwards and open the jars in reverse order to send the voices home",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "nightfall-tally",
+          "effects": [
+            {
+              "flag": "breath-returned",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 15,
+            "onFailure": "unbreath-shrine-fight"
+          }
+        },
+        {
+          "id": "leave-mill-for-ridge",
+          "label": "Take the ledger and go back to Cobbet's waystone to think",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-road-survey",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "unbreath-shrine-fight",
+      "kind": "conflict",
+      "title": "The Unbreath Below",
+      "prose": "Below the mill floor the ridge is hollow, a chalk bubble where the wind arrives from nowhere and leaves in every direction. The Hollow Breath keep their harvesters here: flat, thin, lightless things that peel off the walls and come for the air in your chest. You cannot kill a room's worth of them, and you do not need to. What you need is to get the crate of jars up the spiral stair and out into daylight where the voices can find their owners.",
+      "art": "art-four-wounds-of-the-corrun-vale-unbreath-shrine-jars",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "breath-returned",
+          "value": true
+        }
+      ],
+      "encounter": "breath-thieves",
+      "terminal": false
+    },
+    {
+      "id": "grindle-quarry",
+      "kind": "discovery",
+      "title": "Grindle Quarry",
+      "prose": "Grindle is a white staircase cut down into the hill, and it is busy in the wrong way. The Deepset have dug past the working face into a natural gallery where a single limestone pillar — the keystone, Cobbet called it, the one column the whole saddle of hillside leans on — stands wrapped in scaffolding and prayer-rope. Overseer Grull Tack keeps the crews at it in shifts, and the crews are not all breathing. Every so often the ground gives a small dry cough and a fan of dust drifts off the quarry lip toward the three hamlets in the shadow of the saddle.",
+      "readAloud": "A quarryman's iron spike lies at your feet, four feet of it, still warm from someone's hand. Drive that into the keystone's fault at the right angle, Cobbet said, and the hill will hold itself for another hundred years out of pure stubbornness.",
+      "art": "art-four-wounds-of-the-corrun-vale-grindle-quarry-pit",
+      "options": [
+        {
+          "id": "descend-the-gallery",
+          "label": "Take the spike and go down into the gallery past whatever is working there",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "keystone-descent-fight",
+          "effects": []
+        },
+        {
+          "id": "bargain-with-grull",
+          "label": "Walk up to Overseer Grull Tack in the open and make him a better offer than the conclave gave him",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "nightfall-tally",
+          "effects": [
+            {
+              "flag": "quarry-sealed",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "keystone-descent-fight"
+          }
+        },
+        {
+          "id": "leave-quarry-for-ridge",
+          "label": "Count the shifts, mark the fault line, and climb back to the ridge road",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-road-survey",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "keystone-descent-fight",
+      "kind": "conflict",
+      "title": "The Keystone Gallery",
+      "prose": "The gallery smells of wet chalk and old marrow. Grull's night shift comes at you out of the scaffolding in the lamp-shadow — dry, unhurried, incurious labor that does not stop for pain — and the roof coughs grit down the back of your neck every dozen heartbeats. Fighting the whole shift is a way to die politely. Getting to the pillar and driving the spike home into the fault is a way to save three hamlets and leave.",
+      "art": "art-four-wounds-of-the-corrun-vale-keystone-descent-cavern",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "quarry-sealed",
+          "value": true
+        }
+      ],
+      "encounter": "keystone-descent",
+      "terminal": false
+    },
+    {
+      "id": "nightfall-tally",
+      "kind": "decision",
+      "title": "Nightfall Tally",
+      "prose": "You come back to a fire, wherever you have made it, and do the arithmetic the reeve warned you about. What you mended is mended. What you left is still out there in the dark doing what it does, and the moon is going thin as a fish-bone. Somewhere south, Cobbet's four chalk lines are drawing together on a gravel spit at the confluence, and whatever the cults intend to make there, they will make it out of the wounds you did not close.",
+      "readAloud": "Hesk arrives at your fire with cold potatoes and no comfort. \"Two,\" she says. \"That was always the number. You want to argue with it, argue at the confluence.\"",
+      "art": "art-four-wounds-of-the-corrun-vale-nightfall-camp-tally",
+      "options": [
+        {
+          "id": "return-to-hall",
+          "label": "Go back down to the chalk hall and take on another wound in the north",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chalk-hall-council",
+          "effects": []
+        },
+        {
+          "id": "return-to-ridge",
+          "label": "Go back up to Cobbet's waystone and take on another wound in the south",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ridge-road-survey",
+          "effects": []
+        },
+        {
+          "id": "go-to-confluence",
+          "label": "Stop patching. Walk to the gravel spit at the confluence and end it there",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "knows-conclave"
+          },
+          "target": "confluence-conclave-fight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confluence-conclave-fight",
+      "kind": "climax",
+      "title": "The Conclave at the Confluence",
+      "prose": "The gravel spit where the Thin Fork gives itself to the Slowmarrow is lit by lanterns set in the water. Four small delegations stand at four points of a scratched circle, and in the middle of it Choirmaster Vurl Osselen of the Drowning Choir holds the whole ugly bargain together with his voice alone — one rite, four wounds, one valley folded up and drunk. Every wound you closed is a gap in his circle. Every wound you left is a rope in his hand. When he sees you he does not stop singing; he simply changes key, and his wardens come off the gravel at you with the lantern-light swinging.",
+      "readAloud": "\"You have been very busy,\" Osselen says, pleasantly, over the water. \"And still only twice as busy as you needed to be half as much.\"",
+      "art": "art-four-wounds-of-the-corrun-vale-confluence-conclave-rite",
+      "options": [],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "confluence-conclave",
+      "terminal": false
+    },
+    {
+      "id": "ending-vale-holds",
+      "kind": "ending",
+      "title": "The Vale Holds",
+      "prose": "Osselen goes down on wet gravel with his song unfinished, and the circle he scratched there is only a scratch. The other three delegations do what small cults do when the big one fails: they discover urgent business elsewhere. In the grey morning the Slowmarrow comes back to its proper level and its proper noise. What you mended stays mended: a weir, an orchard, a hillside, a hall full of returned voices — whichever two of those you chose, the vale counts them out loud for years afterward, and it counts the ones you could not reach too, honestly, without blaming you. Reeve Thorn adds your names to the chalk floor, and nobody washes that part off. Hesk runs the ferry again on a chain with a splice in it that she will point out to every passenger until she dies.",
+      "art": "art-four-wounds-of-the-corrun-vale-ending-vale-holds-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-vale-unmade",
+      "kind": "ending",
+      "title": "The Vale Unmade",
+      "prose": "You are carried out of it — by water, by smoke, by a hand under each arm — and from a high place you watch the Corrun Vale finish the sentence the cults began. It is not sudden. That is the cruelty of it: it takes three days, and every hour of those three days somebody is doing something brave and insufficient with a bucket or a rope. The children of the vale are already at Thistlebrook and stay there; that much held. When you can walk again, Cobbet finds you and unrolls a new map with four fewer lines on it and one enormous new one, and asks, without irony, whether you would care to help him survey what is left.",
+      "art": "art-four-wounds-of-the-corrun-vale-ending-vale-unmade-flood",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-downriver-silence",
+      "kind": "ending",
+      "title": "Downriver Silence",
+      "prose": "The boat goes with the current, which is the only easy thing in the Corrun Vale this year. Behind you the smoke on the terraces stands up straighter, and at the last bend you hear the weir let go — a long, low, almost gentle sound, like a held note released by someone who has been waiting all summer to release it. You do not look back, and afterwards you tell the story with the four wounds in it and the reeve and the chalk floor, and you always stop the story at the ferry landing, because that is where you stopped.",
+      "art": "art-four-wounds-of-the-corrun-vale-ending-downriver-silence-boat",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "weir-siege",
+      "title": "Holding the Gate-Walk",
+      "combatants": [
+        {
+          "id": "choir-wardens",
+          "statblock": "hobgoblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "sluice-hammerers",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "nightfall-tally",
+      "onDefeat": "ending-vale-unmade"
+    },
+    {
+      "id": "kiln-ring",
+      "title": "Breaking the Bright Appetite",
+      "combatants": [
+        {
+          "id": "pyre-effigy",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hpOverride": 33,
+          "hostile": true
+        },
+        {
+          "id": "ash-acolytes",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "fog",
+        "vertical"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "pyre-effigy"
+      },
+      "onVictory": "nightfall-tally",
+      "onDefeat": "ending-vale-unmade",
+      "onFlee": "ember-terraces"
+    },
+    {
+      "id": "breath-thieves",
+      "title": "Carrying the Jars Up",
+      "combatants": [
+        {
+          "id": "harvesters",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "wind",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "nightfall-tally",
+      "onDefeat": "ending-vale-unmade",
+      "onFlee": "nightfall-tally"
+    },
+    {
+      "id": "keystone-descent",
+      "title": "The Spike and the Pillar",
+      "combatants": [
+        {
+          "id": "night-shift",
+          "statblock": "skeleton",
+          "count": 5,
+          "hostile": true
+        },
+        {
+          "id": "overseer-grull-tack",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach the wrapped keystone pillar and drive the quarryman's iron spike into the fault line"
+      },
+      "onVictory": "nightfall-tally",
+      "onDefeat": "ending-vale-unmade",
+      "onFlee": "grindle-quarry"
+    },
+    {
+      "id": "confluence-conclave",
+      "title": "The Circle on the Gravel Spit",
+      "combatants": [
+        {
+          "id": "choirmaster-vurl-osselen",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "lantern-wardens",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "hollow-breath-attendant",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "fog",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ending-vale-holds",
+      "onDefeat": "ending-vale-unmade"
+    }
+  ]
+}

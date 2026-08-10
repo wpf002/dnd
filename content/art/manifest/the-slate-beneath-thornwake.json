@@ -1,0 +1,90 @@
+{
+  "adventure": "the-slate-beneath-thornwake",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: beginner-classic, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-slate-beneath-thornwake-belfry-lantern-quad",
+      "beat": "bell-at-midnight",
+      "brief": "The Bell at Midnight — Thornwake Academy hires third-year apprentices for the dull jobs: hall patrol, cellar inventory, chasing rumors. Tonight the great brass bell in the b"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-quad-list-of-thefts",
+      "beat": "quad-of-questions",
+      "brief": "A Quad Full of Questions — Under the lantern, Merrow's list makes an odd shape: everything taken is small, iron or brass, and everything was taken from a room with a floor drain"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-toolshed-empty-hooks",
+      "beat": "groundskeepers-shed",
+      "brief": "Bristle Damm's Shed — Bristle Damm is a broad, sour man with chalk on his knuckles and a grudge against the Academy's paperwork. Nineteen tools gone in eleven nights, he sa"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-library-unbound-ledger",
+      "beat": "library-of-loose-pages",
+      "brief": "The Library of Loose Pages — Master Osrin Peale keeps the Academy's records unbound so that corrections can be slipped in without shame. Three pages are missing from the founder's"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-east-stair-chalk-heels",
+      "beat": "dormitory-sleepwalk",
+      "brief": "The East Stair Sleepwalkers — Night Prefect Nell Ashgrove meets you halfway up with a ledger of her own: four students walked in their sleep toward the cellar door this week, and e"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-cellar-stair-coal-dust",
+      "beat": "cellar-stair",
+      "brief": "Down the Kitchen Cellar Stair — Below the kitchens the Academy stops being a school and becomes an old fortified house: rough steps, coal warrens, a floor that slopes toward a drain "
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-coal-warren-rat-rush",
+      "beat": "rat-warren",
+      "brief": "Scuffle in the Coal Warren — The coal warren is a low arcade of brick pillars, ankle-deep grit, and rat-runs bored through the mortar. Something has trained the rats to guard the "
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-tik-tallow-metal-cathedral",
+      "beat": "kobold-parley",
+      "brief": "Tik-Tallow, Collector of Small Metals — The thief is a soot-black kobold in a coat sewn from oven mitts, sitting cross-legged before a cathedral of nails, keys, buckles, and one brass bell c"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-chalk-line-threshold-door",
+      "beat": "chalk-sealed-door",
+      "brief": "The Door That Says Please — At the warren's end stands a schoolroom door where no schoolroom should be, its threshold ringed by a chalk line drawn a hundred times over a hundred "
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-silent-classroom-wide-slate",
+      "beat": "silent-room",
+      "brief": "The Room on No Floor Plan — Inside is a classroom kept in perfect order: nine desks, nine chairs, a lectern, and a slate that runs the whole width of the far wall. Every surface "
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-drill-dummies-marching-line",
+      "beat": "bone-monitors",
+      "brief": "The Monitors Take Attendance — The drill dummies step off their stands in unison, and the old bones bound into the practice armour clatter into a marching line — the Academy's first"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-name-written-and-erased",
+      "beat": "name-on-the-slate",
+      "brief": "Corvin Slate — The name on the wall is Corvin Slate: an assistant master of the founding year, scraped out of the roster, walled into a room, and forgotten so thorou"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-chalk-dust-three-shadows",
+      "beat": "the-erasing",
+      "brief": "The Erasing — Chalk dust rises off every surface at once and the lamps gutter to coals. Out of the slate step three flat, grey shapes: two half-formed echoes of stu"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-ending-roster-corrected",
+      "beat": "ending-lesson-learned",
+      "brief": "Ending: The Roster Corrected — The shadow comes apart into ordinary chalk dust, and the room stops insisting on itself: nine desks, a slate, a drain, nothing more. Master Peale writ"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-ending-quiet-bargain-doorway",
+      "beat": "ending-quiet-bargain",
+      "brief": "Ending: A Quiet Bargain — You give ground rather than be unmade, and in the doorway you strike a deal instead: the room may keep its name and its metal, and in exchange it keep"
+    },
+    {
+      "slot": "art-the-slate-beneath-thornwake-ending-bricked-doorway",
+      "beat": "ending-bell-silent",
+      "brief": "Ending: The Bell Goes Quiet — You come up the kitchen stair coughing chalk, and the door is bricked over before dawn on Proctor Merrow's order. The Academy moves its dormitories to"
+    }
+  ]
+}

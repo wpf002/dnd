@@ -1,0 +1,662 @@
+{
+  "id": "the-quiet-room-under-kettlewick",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Quiet Room Under Kettlewick",
+    "premise": "The Deepdrift mine outside Kettlewick Hollow has begun swallowing its own crews, and the trouble ends at a stone room older than the mountain — a room whose floor is a lid.",
+    "tone": [
+      "beginner-classic",
+      "cosmic-horror"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Second-person present, plainspoken and patient, like a village elder recounting the season the lamps burned blue.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Missing and endangered persons in this adventure are all adult miners; keep youngsters offstage and safe."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-kettlewick",
+  "beats": [
+    {
+      "id": "arrival-at-kettlewick",
+      "kind": "threshold",
+      "title": "Arrival at Kettlewick Hollow",
+      "prose": "Kettlewick Hollow is thirty slate roofs wedged into a fold of the Grinnel Ridge, and every one of them is quiet. Ore carts stand loaded and forgotten on the tipple. The Ashen Ledger Mining Concern's pay-shed is padlocked. What sound there is comes from below: a slow, patient knocking in the rock, three beats and a rest, three beats and a rest, as regular as a heart that has learned patience. Nine miners of the Deepdrift's night crew walked in eleven days ago and did not walk out. The townsfolk have stopped saying so out loud.",
+      "readAloud": "The knocking is not loud. That is the worst of it. It is exactly as loud as it needs to be, and no louder.",
+      "art": "art-the-quiet-room-under-kettlewick-kettlewick-slate-roofs",
+      "options": [
+        {
+          "id": "arrival-to-tavern",
+          "label": "Warm your hands at the Tallow Lantern and let the locals talk.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-tallow-lantern",
+          "effects": []
+        },
+        {
+          "id": "arrival-to-foreman",
+          "label": "Go straight to the company office and find whoever is still in charge.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "foreman-marrow",
+          "effects": []
+        },
+        {
+          "id": "arrival-to-minemouth",
+          "label": "Follow the knocking uphill to the mine mouth itself.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-deepdrift-mouth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-tallow-lantern",
+      "kind": "social",
+      "title": "The Tallow Lantern",
+      "prose": "Bett Orrow keeps the Tallow Lantern with the shutters barred at noon and a lamp burning in every corner. Her drinkers are day-shift men who will not go down anymore. They tell you the night crew came up once — the first night — and stood in the yard facing the shaft, holding hands, saying nothing, until dawn sent them back down. They tell you the company store still sells pale-glass prospector lanterns whose light steadies in bad air. Bett will part with one for six silver and a promise you will come back up and say what you saw.",
+      "readAloud": "\"Take the pale glass,\" Bett says. \"Tallow lies to you down there. Pale glass only shows what's standing.\"",
+      "art": "art-the-quiet-room-under-kettlewick-tallow-lantern-barred-shutters",
+      "options": [
+        {
+          "id": "tavern-buy-lantern",
+          "label": "Buy the pale-glass lantern and swear Bett's promise.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "foreman-marrow",
+          "effects": [
+            {
+              "flag": "star-lantern",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "tavern-to-widows",
+          "label": "Ask where the night crew's kin are keeping vigil.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "widows-row",
+          "effects": []
+        },
+        {
+          "id": "tavern-to-minemouth",
+          "label": "Leave the talking behind and climb to the mine.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-deepdrift-mouth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "foreman-marrow",
+      "kind": "social",
+      "title": "Foreman Selwyn Marrow",
+      "prose": "Selwyn Marrow has not slept. He has the Deepdrift's survey rolls spread across his desk and he keeps flattening them, as if the paper has been arguing with him. The rolls show a fault the company blasted through at the ninth level — and beyond the fault, drawn in the surveyor's neat hand and then scratched over twice, a rectangular void the drill logs insist is not natural. Marrow wears the ring of shaft keys on his belt and his hand keeps closing over them. \"There's a door down there,\" he says. \"Iron-strapped, older than the Concern, older than the county. Somebody locked it from this side.\"",
+      "art": "art-the-quiet-room-under-kettlewick-marrow-survey-rolls",
+      "options": [
+        {
+          "id": "marrow-persuade-keys",
+          "label": "Convince Marrow to hand over the shaft keys.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-deepdrift-mouth",
+          "effects": [
+            {
+              "flag": "foremans-key",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "widows-row"
+          }
+        },
+        {
+          "id": "marrow-ask-crew",
+          "label": "Ask him who the missing nine were, and go speak to their people.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "widows-row",
+          "effects": []
+        },
+        {
+          "id": "marrow-to-minemouth",
+          "label": "Take the survey roll and go down without his blessing.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-deepdrift-mouth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "widows-row",
+      "kind": "discovery",
+      "title": "Widows' Row",
+      "prose": "Four cottages at the end of Kettlewick lean on one another for warmth, and in each of them a grown woman or man sits up with a lamp and waits. Hanna Quill, whose wife Ester swung a hammer on the night crew, will talk. Since the eleventh day, she says, everyone on the Row dreams the same dream: a floor of dressed stone with a seam in it, and a voice under the seam that is not asking to be let out — it is asking to be *joined*. In the dream the voice gives its name so politely that you wake with it already in your mouth. Hanna writes it on your palm rather than say it: **ULLAMETH**.",
+      "readAloud": "\"It isn't hungry,\" Hanna says. \"That's what frightens me. It's lonely, and it's very, very old, and it has decided we'll do.\"",
+      "art": "art-the-quiet-room-under-kettlewick-widows-row-lamps",
+      "options": [
+        {
+          "id": "widows-learn-name",
+          "label": "Have Hanna spell the dream-name out for you, and keep it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-deepdrift-mouth",
+          "effects": [
+            {
+              "flag": "heard-the-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "widows-to-marrow",
+          "label": "Take what you've learned back to Foreman Marrow.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "foreman-marrow",
+          "effects": []
+        },
+        {
+          "id": "widows-to-tavern",
+          "label": "Return to the Tallow Lantern to outfit yourselves properly.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-tallow-lantern",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-deepdrift-mouth",
+      "kind": "threshold",
+      "title": "The Deepdrift Mouth",
+      "prose": "The adit is a black mouth framed in creosoted timber, breathing out air that is warmer than it has any right to be. Someone has chalked a tally on the header beam — nine strokes, then a tenth started and abandoned. Three ways down present themselves: the main drift, sloping into the dark on rusted rail; the cage lift, its cable still taut and humming faintly, as if something below keeps testing the weight; and a prospector's crawl to the left, a hand-cut squeeze that predates the Concern's tidy timbering by a century at least.",
+      "art": "art-the-quiet-room-under-kettlewick-deepdrift-adit-timbers",
+      "options": [
+        {
+          "id": "mouth-main-drift",
+          "label": "Walk the main drift down the rail.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "rat-choked-gallery",
+          "effects": []
+        },
+        {
+          "id": "mouth-cage-lift",
+          "label": "Ride the cage lift to the flooded ninth level.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "flooded-lift-shaft",
+          "effects": []
+        },
+        {
+          "id": "mouth-old-crawl",
+          "label": "Squeeze into the prospector's crawl and follow the old workings.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-singing-vein",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rat-choked-gallery",
+      "kind": "conflict",
+      "title": "The Gnawed Gallery",
+      "prose": "Two hundred feet down, the main drift opens into a timbered gallery that stinks of wet fur and spoiled lamp oil. The rats here are the size of terriers and they do not scatter from light; they sit up in rows and watch, and behind them two kobold scavengers in stolen company oilskins hiss instructions in a tongue that has picked up the knocking rhythm. Somebody has stacked the gallery's props into a barricade — pointing inward, as if to keep the deep side *out*. The iron ladder to the next level glints at the far end, past all of it.",
+      "art": "art-the-quiet-room-under-kettlewick-gnawed-gallery-barricade",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "gallery-swarm",
+      "terminal": false
+    },
+    {
+      "id": "flooded-lift-shaft",
+      "kind": "hazard",
+      "title": "The Flooded Ninth",
+      "prose": "The cage stops with a shudder in water up to your thighs — black water, still as poured glass, and warm. Tallow flames gutter and turn blue here. Under the surface you can see the ninth level's rail running on into a submerged gallery, and beyond the gallery, a dry ledge where the rock changes: dressed stone, jointed, laid by hands. The knocking arrives through the water rather than the air, and the water carries it into your bones. Something drifts past your knee and does not touch you, which is somehow worse.",
+      "readAloud": "The water is warm as a held breath. It has been waiting down here in the dark, being warm, for eleven days.",
+      "art": "art-the-quiet-room-under-kettlewick-flooded-ninth-blue-flame",
+      "options": [
+        {
+          "id": "flooded-use-lantern",
+          "label": "Raise the pale-glass lantern and wade the submerged gallery by its steady light.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "star-lantern",
+            "value": true
+          },
+          "target": "the-singing-vein",
+          "effects": []
+        },
+        {
+          "id": "flooded-dive-sump",
+          "label": "Dive the sump blind and swim for the dry ledge.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-singing-vein",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "the-hollow-crew"
+          }
+        },
+        {
+          "id": "flooded-timber-stair",
+          "label": "Back out and take the dry timbered stair that switchbacks deeper.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-hollow-crew",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-singing-vein",
+      "kind": "puzzle",
+      "title": "The Singing Vein",
+      "prose": "The old workings end at a face of quartz shot through with a metal nobody in Kettlewick has a name for — grey, faintly warm, and humming. A ring of glyphs has been chiselled around the vein, and they are not decoration: they are instructions, cut by three different hands across what must be centuries, each hand correcting the last. The gist, as far as you can read it, is a rite of *closing*: strike the vein in a counter-rhythm to the knocking and the seam below draws shut. Beneath the glyph ring, scratched again and again by someone with a broken chisel, is a single word — the polite name the dreams give.",
+      "art": "art-the-quiet-room-under-kettlewick-singing-vein-glyph-ring",
+      "options": [
+        {
+          "id": "vein-learn-rite",
+          "label": "Work out the counter-rhythm by tapping the vein with hammer and wedge.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-strapped-door",
+          "effects": [
+            {
+              "flag": "knows-seal-rite",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "the-hollow-crew"
+          }
+        },
+        {
+          "id": "vein-copy-name",
+          "label": "Copy the scratched word into your journal, letter by letter.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-strapped-door",
+          "effects": [
+            {
+              "flag": "heard-the-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "vein-press-on",
+          "label": "Leave the vein alone — nothing good comes of reading the walls — and press on.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-strapped-door",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-hollow-crew",
+      "kind": "conflict",
+      "title": "The Hollow Crew",
+      "prose": "You find four of the night crew standing in a side-cut, facing the wall, hands linked. When your light touches them they turn together, and their lamps are out, and they have been out for days. Two of them are only bodies now, moving on borrowed patience. The other two are not bodies at all — flat, boneless smears of miner-shape that peel off the wall and come at you across the floor. They do not roar. They keep the knocking rhythm with their feet, three beats and a rest, and they will keep it until you are gone or joined.",
+      "readAloud": "Ester Quill's hammer is still in her hand. Her grip is perfect. Her eyes are elsewhere entirely.",
+      "art": "art-the-quiet-room-under-kettlewick-hollow-crew-linked-hands",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hollow-crew-vigil",
+      "terminal": false
+    },
+    {
+      "id": "the-strapped-door",
+      "kind": "decision",
+      "title": "The Iron-Strapped Door",
+      "prose": "Past the blasted fault, the Concern's timbering stops and the mountain becomes architecture. A door stands in dressed stone, oak strapped with iron that has not rusted, and every strap is stamped with the same glyph ring you saw at the vein. The lock is company-pattern — recent, absurd, someone's grandfather's attempt to hold shut a thing that was already shut. It has been locked from this side. From the far side comes the knocking, closer now, and under it a courteous murmur that seems to be enumerating your names in the order it intends to use them.",
+      "art": "art-the-quiet-room-under-kettlewick-iron-strapped-door-glyphs",
+      "options": [
+        {
+          "id": "door-use-key",
+          "label": "Turn Marrow's shaft key in the company lock and open the door.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "foremans-key",
+            "value": true
+          },
+          "target": "the-quiet-room",
+          "effects": []
+        },
+        {
+          "id": "door-force-it",
+          "label": "Set a pry bar under the strap and force it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-quiet-room",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "dc": 15,
+            "onFailure": "the-hollow-crew"
+          }
+        },
+        {
+          "id": "door-turn-back",
+          "label": "Turn back, drop the adit timbers, and bury the Deepdrift from above.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-carried-home",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-quiet-room",
+      "kind": "discovery",
+      "title": "The Quiet Room",
+      "prose": "The room beyond is thirty feet square and empty, and it is the emptiest place any of you have ever stood. No shrine, no bones, no treasure — only dressed stone laid by masons who worked before there were mountains here to work in, and a floor with one long seam down its middle. The floor is a lid. Five of the night crew kneel around the seam with their ears to it, breathing in the knocking rhythm, and among them stands a dry grey thing in a shaft-sinker's coat, a hundred years dead, still holding a survey lamp. When it speaks, the murmur under the floor speaks with it, and it says that the loneliness below is very old and very reasonable, and that Kettlewick will do nicely, and would you care to kneel.",
+      "readAloud": "The seam in the floor is a finger's width wide. Nothing comes out of it. Everything, you understand suddenly, is waiting to be invited in.",
+      "art": "art-the-quiet-room-under-kettlewick-quiet-room-seam-floor",
+      "options": [
+        {
+          "id": "quiet-perform-rite",
+          "label": "Beat the counter-rhythm from the singing vein against the stone and close the seam.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-seal-rite",
+            "value": true
+          },
+          "target": "the-starless-choir",
+          "effects": []
+        },
+        {
+          "id": "quiet-speak-name",
+          "label": "Say ULLAMETH aloud — refuse it politely, by its own polite name.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "heard-the-name",
+            "value": true
+          },
+          "target": "the-starless-choir",
+          "effects": []
+        },
+        {
+          "id": "quiet-withdraw",
+          "label": "Take hold of whoever will still be led and carry them out.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-carried-home",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-starless-choir",
+      "kind": "climax",
+      "title": "The Starless Choir",
+      "prose": "The grey thing in the shaft-sinker's coat straightens, and the courtesy goes out of the murmur all at once. Cobb Wickery — the sinker who locked this door and then could not make himself leave — lifts his dead lamp, and its light is a cold that eats the edges of things. Two of the kneelers rise between you and the seam, hollow and obedient. The floor begins to knock in earnest. End Wickery and the choir has no throat; the seam stays a seam.",
+      "readAloud": "\"I stayed,\" Wickery says, and his voice is a hundred voices politely agreeing. \"I stayed so long that staying is all I am. Stay with me.\"",
+      "art": "art-the-quiet-room-under-kettlewick-cobb-wickery-cold-lamp",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "starless-choir",
+      "terminal": false
+    },
+    {
+      "id": "ending-the-seal-holds",
+      "kind": "ending",
+      "title": "Ending: The Seal Holds",
+      "prose": "Wickery comes apart like a struck lamp-mantle, and the knocking stops mid-beat — three beats and no rest, forever after, in the ear of everyone who heard it. The seam narrows to a hairline. The kneelers wake blinking and cannot say where eleven days went. You bring five of the nine up the ladder into a grey Kettlewick dawn, and Bett Orrow keeps her lamps burning anyway, and Foreman Marrow signs the Deepdrift closed and pours concrete down the cage shaft with his own hands. The Ashen Ledger Concern will litigate for years. Hanna Quill will thank you, and then ask you, quietly, whether you also still hear the name when the house is silent. You will lie to her, kindly. Below, in a room thirty feet square, something patient begins counting again from the beginning.",
+      "art": "art-the-quiet-room-under-kettlewick-ending-concrete-in-the-shaft",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-carried-home",
+      "kind": "ending",
+      "title": "Ending: Carried Home",
+      "prose": "You come up out of the Deepdrift with whoever would take a hand, and you drop the adit timbers behind you, and the mountain closes its mouth on a swallowed word. It is not a victory and nobody in Kettlewick pretends it is. Ester Quill sits in her wife's kitchen and taps the table — three beats and a rest — and will not be talked out of it. Marrow burns the survey rolls and the glyph ring goes on humming under a hundred feet of slate. The town thins out by spring: to the coast, to the cities, anywhere the ground is quiet. You leave a letter with Bett Orrow describing the door, the seam, and the counter-rhythm cut into the singing vein, in case someone braver comes asking. The knocking, they say, can still be heard on still nights, faint and courteous, from a hollow that no longer has anyone left to invite.",
+      "art": "art-the-quiet-room-under-kettlewick-ending-emptied-slate-town",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-town-empties",
+      "kind": "ending",
+      "title": "Ending: The Hollow Joins",
+      "prose": "The dark takes your lamps one by one, and the last thing anyone decides is that kneeling is not so much to ask. Weeks later a Concern inspector rides into Kettlewick Hollow and finds thirty slate roofs, doors standing open, kettles set neatly on cold stoves, and not one living soul above ground. The tipple carts are still loaded. In the pay-shed, a tally has been chalked on the header beam and continued in an unhurried hand: nine strokes, then thirteen, then forty, then figures that stop being numbers. From the adit comes a sound the inspector will spend the rest of his life describing badly — three beats and a rest, in a great many voices, all of them content at last, and all of them still learning the song.",
+      "art": "art-the-quiet-room-under-kettlewick-ending-open-doors-cold-stoves",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "gallery-swarm",
+      "title": "The Gnawed Gallery",
+      "combatants": [
+        {
+          "id": "gnaw-rats",
+          "statblock": "giant-rat",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "oilskin-scavengers",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Push through the barricade and reach the iron ladder at the far end of the gallery."
+      },
+      "onVictory": "flooded-lift-shaft",
+      "onDefeat": "ending-carried-home",
+      "onFlee": "the-deepdrift-mouth"
+    },
+    {
+      "id": "hollow-crew-vigil",
+      "title": "The Hollow Crew",
+      "combatants": [
+        {
+          "id": "borrowed-bodies",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "peeled-miners",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-strapped-door",
+      "onDefeat": "ending-the-town-empties",
+      "onFlee": "the-singing-vein"
+    },
+    {
+      "id": "starless-choir",
+      "title": "The Starless Choir",
+      "combatants": [
+        {
+          "id": "cobb-wickery",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "kneelers",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "open",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "cobb-wickery"
+      },
+      "onVictory": "ending-the-seal-holds",
+      "onDefeat": "ending-the-town-empties",
+      "onFlee": "ending-carried-home"
+    }
+  ]
+}

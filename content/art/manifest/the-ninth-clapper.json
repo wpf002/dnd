@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ninth-clapper",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: urban-intrigue, whimsical-fey.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ninth-clapper-nightside-terminal-arrivals",
+      "beat": "nightside-terminal",
+      "brief": "Nightside Terminal, 3:12 A.M. — Veyrmoor does not sleep; it merely dims. The Nightside Terminal smells of wet concrete, cardamom, and ozone from the trams. Three people are waiting f"
+    },
+    {
+      "slot": "art-the-ninth-clapper-bureau-of-small-hours-desk",
+      "beat": "bureau-offer",
+      "brief": "The Bureau of Small Hours — Deputy Registrar Odile Vantch does not blink often enough. She speaks of the ninth bell of Marrowgate Tower the way one speaks of a plumbing fault: a "
+    },
+    {
+      "slot": "art-the-ninth-clapper-noodle-window-fixer",
+      "beat": "syndicate-offer",
+      "brief": "The Noodle Window — Kesh Oroloi of the Filament Syndicate sells metered sleep by the quarter-hour: coin in the slot, dream for twelve minutes, wake refreshed and slightly"
+    },
+    {
+      "slot": "art-the-ninth-clapper-mothkeeper-lantern-alley",
+      "beat": "mothkeeper-alley",
+      "brief": "The Mothkeeper's Alley — The lantern is held by Sable Lampwick, who is mostly a coat, a courtesy, and a great many moths. She lights the alley lamps of a city that hasn't need"
+    },
+    {
+      "slot": "art-the-ninth-clapper-tram-ledger-stacks",
+      "beat": "records-of-small-hours",
+      "brief": "Ledger Stacks, Sub-Level Four — Nine decades of tram tickets, sorted by hour rather than date, because the Bureau believes hours are the only real unit. Somewhere in the drifts is th"
+    },
+    {
+      "slot": "art-the-ninth-clapper-nightshift-filing-remnants",
+      "beat": "archive-nightshift",
+      "brief": "The Night Shift Objects — Empty clerical plate unfolds from the coat-stands, gauntlets full of rubber stamps. Two dry things that used to be overdue-notice clerks rise from bet"
+    },
+    {
+      "slot": "art-the-ninth-clapper-sleepwalk-courier-chase",
+      "beat": "courier-trail",
+      "brief": "The Sleepwalkers' Route — At 3:40 the sleepwalkers come out — office cleaners, bakers, insomniac clerks — walking the old tram lines with their eyes half-shut, dreaming Mirrenv"
+    },
+    {
+      "slot": "art-the-ninth-clapper-quiet-and-sons-pawnshop",
+      "beat": "quiet-and-sons",
+      "brief": "Quiet & Sons, Open All Night — Ambrose Quiet buys sleep, keepsakes, and inconvenient bronze. Lot 909 sits in a velvet tray beneath the counter: a clapper the length of a thumb, warm"
+    },
+    {
+      "slot": "art-the-ninth-clapper-pawnshop-collectors-brawl",
+      "beat": "pawnshop-scuffle",
+      "brief": "Collection in Progress — Foreman Dessa Trell decides the paperwork can wait and the witnesses cannot. Her collectors put their shoulders into the aisles of clocks and cutlery."
+    },
+    {
+      "slot": "art-the-ninth-clapper-mirrorline-tram-window",
+      "beat": "mirrorline-crossing",
+      "brief": "The Mirrorline — The 4 A.M. tram takes a curve it isn't supposed to and the windows stop reflecting. Beyond the glass lies Mirrenveyr: the same metropolis, dreamed sli"
+    },
+    {
+      "slot": "art-the-ninth-clapper-thistlewharf-revel-barge",
+      "beat": "thistlewharf-revel",
+      "brief": "The Marquess of Quiet Streets — Thistlewharf is a revel on a moored barge of borrowed sleep: dancers in tram-conductor coats, a band of glass bottles, cake made of remembered cake. B"
+    },
+    {
+      "slot": "art-the-ninth-clapper-carillon-stair-shades",
+      "beat": "carillon-watch",
+      "brief": "The Carillon Stair — Nine landings, no railing, and the stairwell lit by eight ringing bells. The Bureau keeps a Silence on this stair — cast shadows peeled off lamplighte"
+    },
+    {
+      "slot": "art-the-ninth-clapper-bell-tower-of-nine-chamber",
+      "beat": "bell-tower-of-nine",
+      "brief": "The Ninth Landing — Both cities meet in this room. The ninth bell hangs mute and enormous, its throat empty, waiting for a thumb of bronze. Odile Vantch stands with a cru"
+    },
+    {
+      "slot": "art-the-ninth-clapper-ending-two-cities-one-street",
+      "beat": "ending-ninth-chime",
+      "brief": "Ending: The Ninth Chime — One note, low enough to feel in the teeth of both cities. Veyrmoor's night shift stops mid-motion and dreams standing up; Mirrenveyr's paper boats com"
+    },
+    {
+      "slot": "art-the-ninth-clapper-ending-crucible-and-form",
+      "beat": "ending-melted-hush",
+      "brief": "Ending: Stamped and Sealed — Bronze goes into the crucible; the ninth bell keeps its silence by ordinance, permanently. Veyrmoor wakes to another productive dawn that isn't quite "
+    },
+    {
+      "slot": "art-the-ninth-clapper-ending-clapper-in-pocket",
+      "beat": "ending-third-shift",
+      "brief": "Ending: The Third Shift — You walk out of Marrowgate Tower with a thumb of warm bronze and three powers obliged to be polite to you. The Bureau grants a licence it insists it n"
+    }
+  ]
+}

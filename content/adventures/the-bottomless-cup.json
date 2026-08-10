@@ -1,0 +1,776 @@
+{
+  "id": "the-bottomless-cup",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Bottomless Cup",
+    "premise": "A famous tavern is built atop the Gullet, a dungeon shaft whose successive levels each keep meticulous records proving the place was built for something entirely different. Descend far enough and the levels stop merely disagreeing — they start arguing back.",
+    "tone": [
+      "megadungeon",
+      "anthology"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A wry cellar-keeper's confidence that cools, level by level, into the hushed dread of a clerk reading a ledger that should not balance.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The Gullet's lower archives reference apprentices and foundlings only as names on rolls; no minor is ever shown in danger on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-bottomless-cup",
+  "beats": [
+    {
+      "id": "the-bottomless-cup",
+      "kind": "threshold",
+      "title": "The Bottomless Cup",
+      "prose": "The taproom is built like a doughnut: benches, barrels and a bar-ring all facing inward toward a black circle of masonry twenty feet across. That is the Gullet. A brass rail keeps drunks from the edge; a winch-cage hangs above it on chains thick as a man's wrist. Delvers drink here for luck, and the house sells them chalk, lamp oil and rope at a robbery's markup. Mother Quillon Vane, landlady, watches from behind a ledger the size of a door. Somewhere below, faint as a rumour, something is counting.",
+      "readAloud": "\"Rule one,\" says Mother Vane without looking up. \"Whatever the walls down there tell you this place was built for — they're all telling the truth. That's the trouble.\"",
+      "art": "art-the-bottomless-cup-taproom-ring-above-the-gullet",
+      "options": [
+        {
+          "id": "opt-approach-vane",
+          "label": "Buy Mother Vane a drink and ask what her ledger says.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "landladys-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-visit-winch",
+          "label": "Cross to the winch-house and inspect the descent gear.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-winch-house",
+          "effects": []
+        },
+        {
+          "id": "opt-descend-now",
+          "label": "Climb the brass rail and take the fixed ladder down at once.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "larder-level",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "landladys-ledger",
+      "kind": "social",
+      "title": "Mother Vane's Ledger",
+      "prose": "Vane's ledger is a descent-book: names, dates, depths, and a column headed PURPOSE CLAIMED. Granary, it reads, forty times. Then Gaol, thirty. Then Seminary, nineteen. Then a single line in another hand entirely, and after it nothing but ruled emptiness. She keeps her thumb over that line while she talks, the way a woman covers a wound.",
+      "readAloud": "\"Four mouths down, everyone comes back with a different story and the same handwriting. Fifth mouth, nobody comes back at all — and the ledger still gets written in.\"",
+      "art": "art-the-bottomless-cup-descent-book-purpose-claimed",
+      "options": [
+        {
+          "id": "opt-copy-ledger",
+          "label": "Ask leave to copy the PURPOSE CLAIMED column into your own notebook.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-winch-house",
+          "effects": [
+            {
+              "flag": "has-ledger",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ask-fifth",
+          "label": "Move her thumb aside and ask about the fifth mouth.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-winch-house",
+          "effects": [
+            {
+              "flag": "warned-fifth",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-leave-bar",
+          "label": "Thank her, pocket the chalk you didn't pay for, and take the ladder.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "larder-level",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-winch-house",
+      "kind": "discovery",
+      "title": "The Winch-House",
+      "prose": "A shed of grease and geared oak clings to the shaft's lip. The house cage descends on a drum marked in old depths: LARDER, GAOL, CHAPEL, and a fourth notch scratched out and re-scratched a dozen times. A thin cartographer named Bastis Grell sits among his own failed maps, redrawing the same stair for the ninth time because, he says, it keeps changing what it was for.",
+      "readAloud": "\"Look at my third level,\" Grell whispers, spreading vellum. \"Same corridor. Sheaf-carvings one hour, cell-doors the next. I have started drawing it as an argument rather than a place.\"",
+      "art": "art-the-bottomless-cup-greased-drum-and-failed-maps",
+      "options": [
+        {
+          "id": "opt-own-rope",
+          "label": "Rig your own line and anchors rather than trust the house cage.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "larder-level",
+          "effects": [
+            {
+              "flag": "rope-secured",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "larder-level"
+          }
+        },
+        {
+          "id": "opt-cage-deep",
+          "label": "Bribe the winch-boy's grandmother to run the cage past the third mouth entirely.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warned-fifth",
+            "value": true
+          },
+          "target": "the-dissenting-stair",
+          "effects": []
+        },
+        {
+          "id": "opt-recruit-grell",
+          "label": "Trade Grell a promise of corrections for his keys and his notes.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "larder-level",
+          "effects": [
+            {
+              "flag": "rival-ally",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "larder-level",
+      "kind": "discovery",
+      "title": "First Mouth: The Larder",
+      "prose": "Sixty feet down the shaft opens into vaulted bays, every keystone carved with a bound sheaf of wheat. Chutes angle away, glazed smooth by centuries of pouring grain. Brass measures still hang on their hooks, each stamped GULLET GRANARY, FIRST STORE. Everything here insists, patiently and in triplicate, that the shaft was dug to feed a city. The chaff underfoot is a hundred years dry, and it moves when nothing has stepped on it.",
+      "readAloud": "The bays smell of old bread and older grease. Behind the third measure-hook, someone has scratched: IT WAS NEVER FOR GRAIN. Beneath that, in a neater hand: IT WAS. BOTH.",
+      "art": "art-the-bottomless-cup-sheaf-keystones-and-grain-chutes",
+      "options": [
+        {
+          "id": "opt-record-granary",
+          "label": "Chalk the sheaf-mark and enter it in your notes: GRANARY.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tithe-of-the-larder",
+          "effects": [
+            {
+              "flag": "claim-granary",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-slide-chute",
+          "label": "Pry a chute cover and slide straight to the next mouth.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-gaol-level",
+          "effects": []
+        },
+        {
+          "id": "opt-follow-squeak",
+          "label": "Follow the squeaking into the deep bays.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tithe-of-the-larder",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tithe-of-the-larder",
+      "kind": "conflict",
+      "title": "The Larder Takes Its Tithe",
+      "prose": "The chaff erupts. Rats the size of terriers pour from a burst measure-bin, and behind them come two kobold tithe-takers in aprons stitched from grain-sacks, ringing a little bell and shouting the same word over and over: WEIGHED, WEIGHED, WEIGHED. They do not want you dead. They want you counted, and they will happily count pieces. Hold the bay mouth until the bell-shift ends and the swarm loses interest.",
+      "art": "art-the-bottomless-cup-chaff-swarm-and-bell-ringers",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "granary-vermin",
+      "terminal": false
+    },
+    {
+      "id": "the-gaol-level",
+      "kind": "discovery",
+      "title": "Second Mouth: The Gaol",
+      "prose": "The stair ends in a corridor of iron doors, each with a slot, a number, and a slate. The same keystones are here — but the sheaves are chiselled into shackles, cut over the old carving so exactly that either the mason was a genius or the stone changed its mind. Every slate bears a tally: strokes in fives, thousands of them, and a name at the bottom. The doors are all unlocked. They open inward, which is the wrong way for a cell, and the right way for a store.",
+      "readAloud": "A draught moves down the corridor and every slate rattles at once, like a room of prisoners clearing their throats to speak in chorus.",
+      "art": "art-the-bottomless-cup-shackle-keystones-inward-doors",
+      "options": [
+        {
+          "id": "opt-read-tallies",
+          "label": "Sit with a lamp and actually read the tallies.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tally-of-names",
+          "effects": []
+        },
+        {
+          "id": "opt-record-gaol",
+          "label": "Chalk the shackle-mark and enter it in your notes: PRISON.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chapel-of-swallowed-sun",
+          "effects": [
+            {
+              "flag": "claim-gaol",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-warden-stair",
+          "label": "Take the warden's stair down without touching a single door.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chapel-of-swallowed-sun",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tally-of-names",
+      "kind": "puzzle",
+      "title": "The Tally of Names",
+      "prose": "The tallies are not sentences served. They are portions issued: one stroke per ration, one slate per mouth fed. The names at the bottom are not prisoners but keepers — and three of them are names you have seen chalked on the taproom's beer-slate upstairs, spelled the old way. Whoever ran this level was feeding people it also counted, and counting people it also locked in, and the stone has been recarved to make each version tidy.",
+      "art": "art-the-bottomless-cup-slate-tallies-and-old-spellings",
+      "options": [
+        {
+          "id": "opt-match-ledger",
+          "label": "Lay your copied PURPOSE CLAIMED column against the slates and match the hands.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-ledger",
+            "value": true
+          },
+          "target": "chapel-of-swallowed-sun",
+          "effects": [
+            {
+              "flag": "claim-gaol",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-count-aloud",
+          "label": "Count the strokes aloud until the pattern breaks.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chapel-of-swallowed-sun",
+          "effects": [
+            {
+              "flag": "claim-gaol",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "chapel-of-swallowed-sun"
+          }
+        },
+        {
+          "id": "opt-leave-unnamed",
+          "label": "Wipe the slates clean, leave the dead unnamed, and go down fast.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-dissenting-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chapel-of-swallowed-sun",
+      "kind": "discovery",
+      "title": "Third Mouth: The Chapel of the Swallowed Sun",
+      "prose": "A drum-shaped hall, gilt flaking from a ceiling boss carved as a sun going down a throat. Reading-desks in rings. Racks of scroll-cases, most empty, each labelled in a script that changes tense as you read it. Here the keystones show neither sheaf nor shackle but an open mouth — and the hall insists, with hymnals and rotas and a seating plan, that the Gullet was sunk as a seminary, so that scholars might study something at the correct depth. Lamps burn in the aisles. Somebody trimmed them this week.",
+      "readAloud": "From the far aisle, a dry voice: \"You are standing in the nave. Please do not chalk the nave. We have had to re-render it four times this century and the walls remember badly enough already.\"",
+      "art": "art-the-bottomless-cup-swallowed-sun-boss-and-desk-rings",
+      "options": [
+        {
+          "id": "opt-record-chapel",
+          "label": "Chalk the mouth-mark and enter it in your notes: TEMPLE.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "concordance-parley",
+          "effects": [
+            {
+              "flag": "claim-chapel",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-meet-archivists",
+          "label": "Answer the dry voice and meet whoever trims these lamps.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "concordance-parley",
+          "effects": []
+        },
+        {
+          "id": "opt-grell-key",
+          "label": "Use Grell's keys on the vestry door and slip past unseen.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "rival-ally",
+            "value": true
+          },
+          "target": "the-dissenting-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "concordance-parley",
+      "kind": "social",
+      "title": "The Concordance of Depths",
+      "prose": "Nine hobgoblins in scholar's leather, spectacles lashed on with cord, led by Scrivener-Prime Vokath Ilm, who has a quill behind each ear and a tally-hammer at her belt. The Concordance does not garrison the Gullet; it edits it. Every generation, they say, the shaft's lower work rewrites the upper work's purpose, and if nobody arbitrates, the rewriting comes up the stair and into the taproom, and then into the town, and then people begin to remember having been built for things.",
+      "readAloud": "\"We are not liars,\" says Vokath Ilm. \"We are the reason your landlady's grandmother remembers being a barmaid and not a bushel. Swear our oath and you may go down as a witness. Refuse, and you go down as evidence.\"",
+      "art": "art-the-bottomless-cup-spectacled-scriveners-tally-hammer",
+      "options": [
+        {
+          "id": "opt-swear-oath",
+          "label": "Swear the Concordance's oath: record faithfully, decide nothing alone.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-dissenting-stair",
+          "effects": [
+            {
+              "flag": "pact-concordance",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-trade-ledger",
+          "label": "Trade your copy of Vane's PURPOSE CLAIMED column for their counterweight lift.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-ledger",
+            "value": true
+          },
+          "target": "the-dissenting-stair",
+          "effects": [
+            {
+              "flag": "pact-concordance",
+              "value": true
+            },
+            {
+              "flag": "claim-chapel",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-oath",
+          "label": "Refuse to be edited, and walk out through the sealed arch they guard.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wardens-of-the-untruth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-dissenting-stair",
+      "kind": "hazard",
+      "title": "Fourth Mouth: The Dissenting Stair",
+      "prose": "Below the chapel the disagreement stops being a matter of records. Treads are grain-chute one moment, cell-step the next, pew-rail the third; the risers change height under your boots and the walls exchange carvings when your lamp swings away. Dust falls upward through one landing. Somewhere below, a hammer strikes stone in a slow, patient, correcting rhythm, and every strike makes the stair a little more certain that you were built to be carried down it.",
+      "readAloud": "Your own chalk-marks reappear ahead of you, in your handwriting, saying things you did not write.",
+      "art": "art-the-bottomless-cup-stair-that-changes-its-mind",
+      "options": [
+        {
+          "id": "opt-line-descent",
+          "label": "Ignore the treads entirely — go down on a fixed line, trusting rope or counterweight over stone.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "rope-secured",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "pact-concordance",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-founders-remnant",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "wardens-of-the-untruth"
+          }
+        },
+        {
+          "id": "opt-argue-stair",
+          "label": "Read your notes aloud to the stair and make the levels agree on at least one thing.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "claim-granary",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "claim-gaol",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "claim-chapel",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-founders-remnant",
+          "effects": []
+        },
+        {
+          "id": "opt-walk-honest",
+          "label": "Walk it step by honest step and let whatever guards the bottom notice you.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wardens-of-the-untruth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wardens-of-the-untruth",
+      "kind": "conflict",
+      "title": "Wardens of the Untruth",
+      "prose": "The landing's centrepiece is a plinth-suit of fluted armour with a charter riveted across its breast — the Gullet's founding purpose, in letters deep enough to hold rainwater, and every clause of it a later forgery. It steps down off the plinth. Three chalk-white clerks unfold from the reading-benches around it, jaws working. The suit is the argument; smash the charter it wears and the clerks lose the sentence they were finishing.",
+      "art": "art-the-bottomless-cup-riveted-charter-armour",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wardens-of-the-untruth-enc",
+      "terminal": false
+    },
+    {
+      "id": "the-founders-remnant",
+      "kind": "climax",
+      "title": "Fifth Mouth: The First Digger",
+      "prose": "The fifth mouth is not a level. It is the bottom of a well — a true well, shaft-round, ringed with the original tool-marks, and dry as a throat. On its floor sits Hessa Dowl, First Digger, wearing a hundred years of ledger-paper like mail. She dug down here to reach water and found instead that the stone would agree to be anything asked of it; every level above is a lie she permitted so nobody would come back for the last few feet. Two of her scribes rise from the ring-wall. Something under the flagstones is very nearly awake, and she would rather kill you than let the argument end.",
+      "readAloud": "\"Granary. Gaol. Seminary.\" The dead woman's voice is patient as marl. \"Every one of them true, and every one of them a lid. Put your notes down, delver, and I will let you be one of the true things.\"",
+      "art": "art-the-bottomless-cup-dry-well-first-digger",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "founders-remnant-enc",
+      "terminal": false
+    },
+    {
+      "id": "the-hollow-purpose",
+      "kind": "decision",
+      "title": "The Hollow Purpose",
+      "prose": "Hessa Dowl comes apart into loose leaves of ledger-paper, and the well floor is left showing what she sat on: a capstone, tool-marked, with a handhold. Beneath it, water — black, still, and rising a finger's width every time you look away. The Gullet was dug for a well. Everything above was a lid, and each lid was written as a purpose so that people would keep the shaft busy and never reach the bottom. Now you have three things in your hands: a capstone, a notebook, and a rope back up to a taproom full of drinkers who have been sitting on this for generations.",
+      "readAloud": "Far above, faint through five mouths of stone, you can hear the Bottomless Cup laughing at some joke, and the winch-drum turning, and somebody betting on you.",
+      "art": "art-the-bottomless-cup-capstone-and-black-water",
+      "options": [
+        {
+          "id": "opt-seal-the-well",
+          "label": "Re-seat the capstone, collapse the stair behind you, and let the lids keep their lie.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-shaft-sealed",
+          "effects": []
+        },
+        {
+          "id": "opt-publish-charter",
+          "label": "Carry the notebook up and publish every purpose, forgery and all, on Vane's own slate.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-charter-published",
+          "effects": []
+        },
+        {
+          "id": "opt-lift-capstone",
+          "label": "Lift the capstone and let the water decide what the Gullet was for.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-cup-refilled",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-shaft-sealed",
+      "kind": "ending",
+      "title": "Ending: The Lid Held",
+      "prose": "You wedge the capstone home with Dowl's own tools, and bring the fourth mouth down behind you in a slide of chute-and-cell-and-pew. Grell redraws his maps with a blank fifth page and sleeps for two days. The Concordance sends a hamper of pears and a receipt. Upstairs, the Bottomless Cup is exactly as it was: the winch turns, the chalk sells at robbery prices, and the keystones argue in a whisper nobody has to answer. You have saved a town by leaving it a liar, and you will drink here for free forever, in a room that will never once ask what you found.",
+      "art": "art-the-bottomless-cup-wedged-capstone-quiet-taproom",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-charter-published",
+      "kind": "ending",
+      "title": "Ending: The Slate Rewritten",
+      "prose": "You chalk it all onto Vane's beer-slate: granary, gaol, seminary, well, and the forger's hand under each. The taproom goes very quiet, then very loud. Vokath Ilm arrives within the hour to argue, and stays to arbitrate, because an argument conducted in daylight is one the stone cannot win alone. Threshwick becomes the only town on the road that knows precisely what it is standing on, and the Gullet — deprived of secrecy, its lids all named — settles into being a hole with a history and a queue. Mother Vane charges admission. You get a percentage and a headache.",
+      "art": "art-the-bottomless-cup-beer-slate-full-of-truth",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-cup-refilled",
+      "kind": "ending",
+      "title": "Ending: The Cup Refilled",
+      "prose": "The capstone lifts easier than it has any right to, and the well remembers its purpose all at once. Water climbs the five mouths in a single grey breath — through chapel, gaol and larder, floating the slates, the scroll-cases, the brass measures, the loose leaves of a dead digger's mail. The Bottomless Cup's floor bulges, cracks and becomes a spring, and the drinkers scatter laughing and screaming into the street. Nothing drowns that could not swim or climb. By morning Threshwick has the sweetest water in the county and no dungeon at all, and every carving down there agrees, at last, on one thing: it was a well. It was always a well.",
+      "art": "art-the-bottomless-cup-spring-bursting-the-taproom-floor",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "granary-vermin",
+      "title": "The Larder Takes Its Tithe",
+      "combatants": [
+        {
+          "id": "measure-bin-rats",
+          "statblock": "giant-rat",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "tithe-taker-bell",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "tithe-taker-hook",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-gaol-level",
+      "onDefeat": "larder-level",
+      "onFlee": "the-gaol-level"
+    },
+    {
+      "id": "wardens-of-the-untruth-enc",
+      "title": "Wardens of the Untruth",
+      "combatants": [
+        {
+          "id": "warden-prime",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "chalk-clerks",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "unstable",
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "warden-prime"
+      },
+      "onVictory": "the-founders-remnant",
+      "onDefeat": "ending-cup-refilled",
+      "onFlee": "the-dissenting-stair"
+    },
+    {
+      "id": "founders-remnant-enc",
+      "title": "Hessa Dowl, First Digger",
+      "combatants": [
+        {
+          "id": "hessa-dowl",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bound-scribes",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "sump-labourer",
+          "statblock": "zombie",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "water"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-hollow-purpose",
+      "onDefeat": "ending-cup-refilled",
+      "onFlee": "the-dissenting-stair"
+    }
+  ]
+}

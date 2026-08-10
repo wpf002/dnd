@@ -1,0 +1,864 @@
+{
+  "id": "the-sundered-road-beneath-the-cleft-moon",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Sundered Road Beneath the Cleft Moon",
+    "premise": "In the salt-crowned desert city of Vhaskar-Adun, where the moon hangs split into a bright half and a hungry one, a letter arrives from a caravan that vanished on the Sundered Road — dated eleven years from now. The Lamplit Chancery will pay anyone willing to walk that road again before the dark half finishes swallowing the bright.",
+    "tone": [
+      "exploration",
+      "cosmic-horror"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Dry, patient, and faintly astronomical — a caravan-master's voice describing distances that should not exist, with long pauses where the desert answers.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The lost caravan contains only adults; any young apprentices are described as already sent home before departure."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crown-gate-of-salt",
+  "beats": [
+    {
+      "id": "crown-gate-of-salt",
+      "kind": "threshold",
+      "title": "The Crown Gate of Salt",
+      "prose": "Vhaskar-Adun wears its walls like a diadem: nine spurs of white salt-brick, each topped with a lamp that never gutters. Tonight the lamps are turned outward, away from the city, because the Cleft Moon is high — one half pale as bone, the other a smooth absence that stars refuse to cross. Chancellor-Astronomer Ilbeth Nurraq waits beneath the gate arch with a lacquered case and the expression of a woman who has already rehearsed her grief. Inside the case is a letter on caravan vellum, in the hand of Sefa Anwal, cartographer, who left with the Ninefold Caravan three months ago and never returned. The letter arrived yesterday. It is dated eleven years from now. 'The Sundered Road,' Ilbeth says, 'has begun to give things back. I would like to know what else it intends to return.'",
+      "readAloud": "The lamps face outward, into the erg, as though the city were the thing being watched. Ilbeth lifts the case. 'Nineteen caravans in forty years. No survivors, no wreckage, no bones. And now — post.'",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-crown-gate-vigil",
+      "options": [
+        {
+          "id": "opt-read-the-letter",
+          "label": "Read Sefa's letter aloud, word for impossible word, and pocket it.",
+          "target": "chancery-orrery-vault",
+          "effects": [
+            {
+              "flag": "dated-letter",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-seek-caravaneers",
+          "label": "Go down to the Bazaar of Cracked Glass and find someone who knows the road.",
+          "target": "bazaar-of-cracked-glass",
+          "effects": []
+        },
+        {
+          "id": "opt-question-chancellor",
+          "label": "Press Ilbeth on what the Chancery has hidden about the dark half.",
+          "target": "chancery-orrery-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 14,
+            "onFailure": "bazaar-of-cracked-glass"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bazaar-of-cracked-glass",
+      "kind": "social",
+      "title": "The Bazaar of Cracked Glass",
+      "prose": "Below the Crown Gate the market runs on desert-glass: shards, lenses, mirrors sold by weight and by luck. Salt-Kin caravaneers squat under awnings and argue about which stars have moved. One of them, Ruhal ibn-Sefret, has walked the first forty miles of the Sundered Road eleven times and turned back eleven times, and is the only guide in the city who will name a price. 'Past the inverted milestones, distance stops agreeing with itself,' he says, tapping a mirror-scarred cheek. 'I will take you as far as my nerve. My nerve is expensive.' Around him, hawkers sell mirrored waterskins that supposedly keep the dark half from reading your shadow.",
+      "readAloud": "Ruhal spits glass dust. 'You want the honest map? Here.' He draws a straight line in the sand, then wipes half of it away with his thumb. 'That is the honest map.'",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-bazaar-cracked-glass",
+      "options": [
+        {
+          "id": "opt-hire-ruhal",
+          "label": "Hire Ruhal ibn-Sefret as guide and pay his ruinous price.",
+          "target": "the-sundered-road",
+          "effects": [
+            {
+              "flag": "guide-hired",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-buy-mirrored-skins",
+          "label": "Buy mirrored waterskins and salt-charms instead, and travel unguided.",
+          "target": "the-sundered-road",
+          "effects": []
+        },
+        {
+          "id": "opt-to-orrery",
+          "label": "Ask leave to see the Chancery's orrery vault before departing.",
+          "target": "chancery-orrery-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chancery-orrery-vault",
+      "kind": "discovery",
+      "title": "The Orrery Vault",
+      "prose": "Under the Chancery, in a room chilled by evaporating brine, a brass orrery grinds through its slow argument with the sky. Vhaskar-Adun's moon is rendered as two spheres on one arm: the pale Sister, and the Second Half, which the makers rendered as a hollow cage — because nothing they cast would stay put inside it. Wax tablets record the split's widening, year by year, and beside them the Chancery's suppressed observation: the dark half does not orbit the city. It orbits the Well of Nine Mouths, four hundred miles out on the Sundered Road, and it is descending. A drawer holds the correspondence of nineteen caravans, and every letter in it is dated later than the day it arrived.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-orrery-vault-lenses",
+      "options": [
+        {
+          "id": "opt-chart-the-cleft",
+          "label": "Copy the descent tables and learn the Chancery's name for the Second Half.",
+          "target": "the-sundered-road",
+          "effects": [
+            {
+              "flag": "moon-lore",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-steal-a-lens",
+          "label": "Pocket a tuned observation lens and slip back up to the market.",
+          "target": "bazaar-of-cracked-glass",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 14,
+            "onFailure": "bazaar-of-cracked-glass"
+          }
+        },
+        {
+          "id": "opt-depart-at-once",
+          "label": "Read nothing further. Take the road while the pale half still leads.",
+          "target": "the-sundered-road",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-sundered-road",
+      "kind": "transit",
+      "title": "Out Along the Sundered Road",
+      "prose": "The road is real for the first day: paved with fused sand, wide enough for six camels abreast, laid by a dynasty nobody can name. On the second day the paving continues but the milestones begin to disagree with the sun. By the third, the caravan-lanterns cast two shadows for every walker — one behind, ordinary, and one thin and forward-leaning, as if pulled toward the dark half of the moon. Water tastes faintly of glass. At night the erg makes a sound like a held breath being slowly measured out.",
+      "readAloud": "You count your own shadows and get the wrong answer twice.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-sundered-road-dusk",
+      "options": [
+        {
+          "id": "opt-follow-star-lines",
+          "label": "Follow Ruhal's star-lines, walking only when the pale half leads.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "guide-hired",
+            "value": true
+          },
+          "target": "the-inverted-milestone",
+          "effects": []
+        },
+        {
+          "id": "opt-march-by-day",
+          "label": "March by day and shelter at night, whatever the heat costs.",
+          "target": "singing-dunes",
+          "effects": []
+        },
+        {
+          "id": "opt-march-by-moonlight",
+          "label": "Make time by moonlight, second shadows be damned.",
+          "target": "caravan-of-vacant-eyes",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "singing-dunes",
+      "kind": "hazard",
+      "title": "The Singing Dunes",
+      "prose": "A mirror-storm comes up out of a cloudless sky: not sand but glass, sheared into flakes thin as fish scales, rising in a wall four hundred feet high. It sings. The note is single, sustained, and structured — it has grammar in it. Every flake that touches skin leaves a hairline reflection that keeps showing a version of you standing slightly farther away than you are. Ruhal, if he is here, ties everyone wrist to wrist and begins shouting numbers, because counting is the only thing the song cannot copy.",
+      "readAloud": "The storm sings one note for eleven minutes. When it stops, you understand three words of it, and wish you did not.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-singing-dunes-mirror",
+      "options": [
+        {
+          "id": "opt-shelter-mirror-lee",
+          "label": "Dig into the lee of a dune and wait the singing out.",
+          "target": "the-inverted-milestone",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 13,
+            "onFailure": "caravan-of-vacant-eyes"
+          }
+        },
+        {
+          "id": "opt-press-through",
+          "label": "Walk straight through the glass and take the marks it leaves.",
+          "target": "the-inverted-milestone",
+          "effects": [
+            {
+              "flag": "mirror-mark",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-listen-to-song",
+          "label": "Unstop your ears and listen for the grammar in the note.",
+          "target": "caravan-of-vacant-eyes",
+          "effects": [
+            {
+              "flag": "mirror-mark",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "caravan-of-vacant-eyes",
+      "kind": "conflict",
+      "title": "The Ninefold Caravan, Returning",
+      "prose": "They come along the road in perfect marching order: drovers, water-bearers, two lens-grinders, walking the wrong way with the patience of a tide. The Ninefold Caravan is coming home. Their eyes are polished sockets of desert glass and their mouths move in the storm's single note. They do not attack so much as absorb — a hand closes on a wrist and the wrist begins to agree with them. The column is one hundred and forty paces long. If you can hold your ground while it passes, it will pass.",
+      "readAloud": "The lead drover's beard is white with salt. His ledger is still under his arm, and the ink in it is still wet.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-vacant-caravan-column",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vacant-caravan",
+      "terminal": false
+    },
+    {
+      "id": "the-inverted-milestone",
+      "kind": "discovery",
+      "title": "The Inverted Milestones",
+      "prose": "Here the road's markers begin to count down instead of up, and the numerals face away from the city. Carved beneath each figure is a line of the same script the storm was singing, and the lines form a schedule. Rubbed with charcoal, the seventh stone reads plainly: distance from the Well is not measured in leagues here but in returns — how many times a thing has come back. Beyond the stones, the horizon has a notch in it, and the notch is the exact shape of the moon's missing half. The sand around each milestone is swept clean, recently, by something with a great many small feet.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-inverted-milestone-stone",
+      "options": [
+        {
+          "id": "opt-read-the-stones",
+          "label": "Read the countdown and reckon how many returns remain.",
+          "target": "two-shadows-fork",
+          "effects": []
+        },
+        {
+          "id": "opt-charcoal-rubbing",
+          "label": "Take charcoal rubbings of every stone — a map that can be carried home.",
+          "target": "two-shadows-fork",
+          "effects": [
+            {
+              "flag": "map-fragment",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-follow-swept-sand",
+          "label": "Follow the swept sand straight toward the notch in the horizon.",
+          "target": "well-of-nine-mouths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "two-shadows-fork",
+      "kind": "decision",
+      "title": "Where Two Shadows Part",
+      "prose": "The road forks, though the Chancery maps swear it does not. One branch descends into a tunnel of fused glass, roofed by the storm's leavings, cool and blue and utterly without echo. The other climbs a ridge that faces the Cleft Moon squarely; walkers on that ridge are said to arrive before they set out. And there is a third way, which is not a road at all: your forward shadow stands away from your feet here, thin as a drawn wire, pointing off across open erg, waiting to be followed.",
+      "readAloud": "Ruhal's nerve ends at this fork. He says so, honestly, and sits down in the sand facing the city. 'I will keep the water. Come back and it is yours.'",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-two-shadows-fork-art",
+      "options": [
+        {
+          "id": "opt-glass-tunnels",
+          "label": "Take the echoless glass tunnel beneath the erg.",
+          "target": "well-of-nine-mouths",
+          "effects": []
+        },
+        {
+          "id": "opt-moon-ridge",
+          "label": "Climb the moon-facing ridge, where lamps burn in a glasshouse.",
+          "target": "choir-in-the-glasshouse",
+          "effects": []
+        },
+        {
+          "id": "opt-follow-second-shadow",
+          "label": "Follow your own forward shadow out across trackless sand.",
+          "target": "the-returned-cartographer",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Survival",
+            "dc": 16,
+            "onFailure": "choir-in-the-glasshouse"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "well-of-nine-mouths",
+      "kind": "puzzle",
+      "title": "The Well of Nine Mouths",
+      "prose": "It is not a well but a socket: a ring of nine stone mouths set into bedrock, each carved mid-word, arranged around a shaft that goes down past any lamp's patience. Eight mouths breathe out, warm and salt-smelling. The ninth breathes in. Above, the Second Half hangs so low it has parallax — you can see around its edge, and behind it there is no black sky, only more edge. Cut into the rim, in nineteen different hands, are nineteen sets of instructions for the same operation. Most are wrong. Two agree. The operation requires a name spoken into the ninth mouth at the moment the pale half touches the notch.",
+      "readAloud": "The ninth mouth inhales. Your lamp flame leans into it and, for a heartbeat, so do you.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-well-nine-mouths",
+      "options": [
+        {
+          "id": "opt-speak-the-name",
+          "label": "Speak the Chancery's name for the Second Half into the ninth mouth.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "moon-lore",
+            "value": true
+          },
+          "target": "the-returned-cartographer",
+          "effects": []
+        },
+        {
+          "id": "opt-descend-on-rope",
+          "label": "Rig a rope and descend the shaft toward the lamplight below.",
+          "target": "choir-in-the-glasshouse",
+          "effects": []
+        },
+        {
+          "id": "opt-drop-lamp-and-listen",
+          "label": "Drop a lit lamp and time the silence to measure what is down there.",
+          "target": "the-returned-cartographer",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "dc": 15,
+            "onFailure": "choir-in-the-glasshouse"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-in-the-glasshouse",
+      "kind": "conflict",
+      "title": "The Choir in the Glasshouse",
+      "prose": "The glasshouse is a caravanserai turned inside out: every wall a lens, every lens aimed at the dark half, and inside it the Choir of the Second Half rehearses the storm's single note in nine parts. They wear mirror masks ground from milestone glass so the moon can find their faces in a crowd. Their hierophant, Vessel-Warden Qas Oleth, greets you courteously, offers water, and explains that the road takes no one — the road only shortens, and someone must keep tuning the lenses so that the shortening lands on the Well and not on the city. Then he asks for your faces, and the asking is not really a question. Break Oleth's tuning-baton and the lenses fall out of true; the choir cannot sing what it cannot aim.",
+      "readAloud": "Nine mirror masks turn as one, and in each of them you are standing a little farther away.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-glasshouse-choir-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "choir-marked",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "encounter": "glasshouse-choir",
+      "terminal": false
+    },
+    {
+      "id": "the-returned-cartographer",
+      "kind": "social",
+      "title": "Sefa Anwal, Cartographer",
+      "prose": "She is sitting at the base of the Well with her instruments laid out in order, and she has been sitting there, by her reckoning, for eleven years. Sefa Anwal is thin, calm, sunburnt on one side only, and her left eye is a milestone-glass sphere that shows the erg as it will look. She has mapped the whole shortening: the Second Half is not descending on Vhaskar-Adun, it is being drawn down by the Well, and the Well was dug — by the same dynasty that paved the road — as a mouth to speak the thing's name back at it and hold it in place. Nineteen caravans came to relieve the vigil and nineteen caravans were absorbed into the singing before they understood the job. 'The letters go out backward,' she says. 'It is the only post the road allows. I have been writing to you for eleven years and you are three months late.' Her hand does not shake, but she cannot stand up. Someone has to hold the ninth mouth open. Someone else has to speak.",
+      "readAloud": "'You are not here to rescue me,' Sefa says gently. 'You are here to relieve me. Sit down and I will teach you the name.'",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-cartographer-in-glass",
+      "options": [
+        {
+          "id": "opt-show-dated-letter",
+          "label": "Show her the letter — her own hand, dated eleven years from now — and take the vigil from her.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "dated-letter",
+            "value": true
+          },
+          "target": "vigil-at-the-cleft",
+          "effects": [
+            {
+              "flag": "sefa-freed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-carry-the-map-home",
+          "label": "Refuse the vigil. Take her map and your rubbings and run for the city.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "map-fragment",
+            "value": true
+          },
+          "target": "ending-the-cartographers-map",
+          "effects": []
+        },
+        {
+          "id": "opt-learn-the-name",
+          "label": "Learn the name from her lips and go down to the ninth mouth together.",
+          "target": "vigil-at-the-cleft",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vigil-at-the-cleft",
+      "kind": "climax",
+      "title": "Vigil at the Cleft",
+      "prose": "The pale half touches the notch. The Well inhales hard enough to pull grit up out of the shaft, and what comes up with it is the vigil's old relief: Warden-Anchor Belloq Tass, first of the nineteen, still crowned in salt, still wearing the dynasty's mirror-mail, with four of his drovers dry-walking behind him and one thin forward shadow that moves on its own. They are not here to stop the naming. They are here to take the speaker's place, and they cannot be reasoned out of forty years of habit. Sefa Anwal kneels at the ninth mouth with both arms inside it, holding it open, and she cannot defend herself. Keep her breathing until the name is spoken and the Second Half is nailed back into its socket.",
+      "readAloud": "Sefa's voice comes out of the stone, doubled, arriving slightly before she speaks. 'Whatever happens — do not let go of me.'",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-cleft-vigil-art",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cleft-vigil",
+      "terminal": false
+    },
+    {
+      "id": "ending-the-road-sealed",
+      "kind": "ending",
+      "title": "Ending: The Road Sealed, The Moon Held",
+      "prose": "The name goes into the ninth mouth and the desert answers by going quiet — truly quiet, no held breath, no grammar in the wind. Above, the Second Half stops. It does not depart; it does not brighten; it simply consents to stay where it is, an absence with a fixed address, four hundred miles from anybody's children. The milestones' countdown halts at nine. Sefa Anwal comes up out of the Well with both arms intact and eleven years she will never be paid back, and she draws the last honest map of the Sundered Road: a straight line to the Well, and then a small careful circle where nobody should go. The Lamplit Chancery turns its lamps inward again. In Vhaskar-Adun, mirror-glass drops to worthless overnight, and the Salt-Kin sing a road-song with a new last verse in it, about a vigil that was relieved on time — three months late, but on time.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-ending-sealed-road",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-longer-night",
+      "kind": "ending",
+      "title": "Ending: The Longer Night",
+      "prose": "The singing takes you in mid-argument, the way it took nineteen caravans, and the erg accepts one more column of walkers who face the wrong way with excellent posture. Distance stops disagreeing; there is only the note, and the note has room in it. Somewhere behind you the ninth mouth closes, unspoken, and the Second Half resumes its long, patient descent toward the Well — and then, when the Well is full, toward the salt crown of Vhaskar-Adun, where the lamps still face outward and no longer know why. Years from now a letter reaches Chancellor-Astronomer Ilbeth Nurraq in your handwriting, warning her not to send you. She reads it, files it, and dates the next expedition for spring. The road gives things back. It has never once given back the right thing.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-ending-longer-night",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-cartographers-map",
+      "kind": "ending",
+      "title": "Ending: The Cartographer's Map",
+      "prose": "You walk out of the erg with rubbings, instruments, and Sefa Anwal's eleven years of measurements rolled in oilcloth — and without Sefa Anwal, who did not argue, and who was still holding the ninth mouth open when the notch swallowed the pale half behind you. Vhaskar-Adun makes you rich for it. The Chancery publishes the descent tables; the Salt-Kin learn where the road shortens and route around it; the mirror-glass trade collapses and reforms twice. It is the finest survey of the Sundered Road ever made, and every copy of it carries the same footnote in Sefa's hand: the vigil requires a speaker, and the vigil is not optional. Each year the countdown on the milestones drops by one, and each year the Chancery sends someone new to relieve a post that nobody has yet managed to reach in time. Your name is on the map. It is also, quietly, on the schedule.",
+      "art": "art-the-sundered-road-beneath-the-cleft-moon-ending-map-return",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "crown-gate-of-salt",
+      "to": "chancery-orrery-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crown-gate-of-salt",
+      "to": "bazaar-of-cracked-glass",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bazaar-of-cracked-glass",
+      "to": "the-sundered-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bazaar-of-cracked-glass",
+      "to": "chancery-orrery-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancery-orrery-vault",
+      "to": "the-sundered-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancery-orrery-vault",
+      "to": "bazaar-of-cracked-glass",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-sundered-road",
+      "to": "the-inverted-milestone",
+      "when": {
+        "op": "eq",
+        "flag": "guide-hired",
+        "value": true
+      },
+      "note": "Ruhal's star-lines skip the mirror-storm entirely."
+    },
+    {
+      "from": "the-sundered-road",
+      "to": "singing-dunes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-sundered-road",
+      "to": "caravan-of-vacant-eyes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "singing-dunes",
+      "to": "the-inverted-milestone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "singing-dunes",
+      "to": "caravan-of-vacant-eyes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "singing-dunes",
+      "to": "ending-the-longer-night",
+      "when": {
+        "op": "eq",
+        "flag": "mirror-mark",
+        "value": true
+      },
+      "note": "Optional grim shortcut: if the party lingers in the glass and the marks ripen, the singing claims them here."
+    },
+    {
+      "from": "caravan-of-vacant-eyes",
+      "to": "the-inverted-milestone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "caravan-of-vacant-eyes",
+      "to": "singing-dunes",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "caravan-of-vacant-eyes",
+      "to": "ending-the-longer-night",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-inverted-milestone",
+      "to": "two-shadows-fork",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-inverted-milestone",
+      "to": "well-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "two-shadows-fork",
+      "to": "well-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "two-shadows-fork",
+      "to": "choir-in-the-glasshouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "two-shadows-fork",
+      "to": "the-returned-cartographer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "well-of-nine-mouths",
+      "to": "the-returned-cartographer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "well-of-nine-mouths",
+      "to": "choir-in-the-glasshouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "well-of-nine-mouths",
+      "to": "vigil-at-the-cleft",
+      "when": {
+        "op": "eq",
+        "flag": "choir-marked",
+        "value": true
+      },
+      "note": "Branded by the Choir, the party is drawn straight down the shaft when the pale half touches the notch."
+    },
+    {
+      "from": "choir-in-the-glasshouse",
+      "to": "the-returned-cartographer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-in-the-glasshouse",
+      "to": "well-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-in-the-glasshouse",
+      "to": "ending-the-longer-night",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-returned-cartographer",
+      "to": "vigil-at-the-cleft",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-returned-cartographer",
+      "to": "ending-the-cartographers-map",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-returned-cartographer",
+      "to": "ending-the-road-sealed",
+      "when": {
+        "op": "eq",
+        "flag": "sefa-freed",
+        "value": true
+      },
+      "note": "If Sefa has already been formally relieved, a decisive naming can end the vigil without a fight."
+    },
+    {
+      "from": "vigil-at-the-cleft",
+      "to": "ending-the-road-sealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vigil-at-the-cleft",
+      "to": "ending-the-longer-night",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "vacant-caravan",
+      "title": "The Column That Walks Backward",
+      "combatants": [
+        {
+          "id": "hollow-drovers",
+          "statblock": "zombie",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "glass-eyed-lensgrinders",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "dim-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-inverted-milestone",
+      "onDefeat": "ending-the-longer-night",
+      "onFlee": "singing-dunes"
+    },
+    {
+      "id": "glasshouse-choir",
+      "title": "Nine Parts, One Note",
+      "combatants": [
+        {
+          "id": "vessel-warden-qas-oleth",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hpOverride": 55,
+          "hostile": true
+        },
+        {
+          "id": "mask-bearers",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "cleft-shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "vessel-warden-qas-oleth"
+      },
+      "onVictory": "the-returned-cartographer",
+      "onDefeat": "ending-the-longer-night",
+      "onFlee": "well-of-nine-mouths"
+    },
+    {
+      "id": "cleft-vigil",
+      "title": "The Old Relief Comes Up the Shaft",
+      "combatants": [
+        {
+          "id": "warden-anchor-belloq-tass",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "dry-walking-drovers",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "forward-shadow",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sefa-anwal",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hpOverride": 30,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "sefa-anwal"
+      },
+      "onVictory": "ending-the-road-sealed",
+      "onDefeat": "ending-the-longer-night"
+    }
+  ]
+}

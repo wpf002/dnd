@@ -1,0 +1,767 @@
+{
+  "id": "the-tithe-of-grauvane",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Tithe of Grauvane",
+    "premise": "Seventy years ago three failing villages sold a well-warden named Maren Vess to the castle above them, and she was bricked alive into its cistern to buy an end to the mist. The mist has come back, sealing the valley, and Maren has come back with it — collecting the tithe that was never truly paid.",
+    "tone": [
+      "gothic-horror",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "A hushed valley chronicler reading from a water-stained parish register, patient with grief and unwilling to soften a fact.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of Thistlewick are spoken of and kept off-stage; all threat to them remains implied and averted."
+    },
+    "provenance": "flint"
+  },
+  "entry": "mist-toll-gate",
+  "beats": [
+    {
+      "id": "mist-toll-gate",
+      "kind": "threshold",
+      "title": "The Toll Gate at Grauvane Mouth",
+      "prose": "The valley road ends in a wall of standing mist that does not drift. A toll-house leans beside it, roof furred with green, and the toll-post is scratched top to bottom with names — some crossed out, some scratched over so hard the wood is torn. Beyond and above, half-drowned in white, the black tooth of Castle Mournspire. There is no toll-keeper. There is a slate on the counter, and on it, in fresh chalk: FOURTEEN LEFT IN THISTLEWICK. COUNT AGAIN AT DUSK.",
+      "readAloud": "The mist has an edge, like a curtain. When you push a hand into it, the hand comes back cold and smelling of well-water.",
+      "art": "art-the-tithe-of-grauvane-toll-gate-in-the-standing-mist",
+      "options": [
+        {
+          "id": "opt-descend-thistlewick",
+          "label": "Walk down into Thistlewick and find whoever is doing the counting.",
+          "target": "thistlewick-square",
+          "effects": []
+        },
+        {
+          "id": "opt-boundary-stones",
+          "label": "Follow the old boundary stones uphill along the mist's edge.",
+          "target": "hollow-road",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "survival",
+            "dc": 13,
+            "onFailure": "mist-choir-ambush"
+          }
+        },
+        {
+          "id": "opt-roadside-chapel",
+          "label": "Take the crossroads path to the hedge-chapel whose bell you can hear tolling flat.",
+          "target": "nettles-chapel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thistlewick-square",
+      "kind": "social",
+      "title": "Thistlewick, Counting Its Own",
+      "prose": "Fourteen adults, and the little ones shut safe in the loft of the granary with the ladder pulled up. Reeve Odric Camm stands in the square with a wax tablet, calling names, marking, calling again. Widow Halcyon Brey sits on the well-cover — the well is dry, has been dry since the mist first lifted seventy years back — and says, without looking up, \"You're too late to be strangers. She takes one a night now. Used to be one a generation.\" The village bell hangs in a frame of new timber. Its clapper has been wrapped in sacking.",
+      "readAloud": "\"Don't ask us what we did,\" says the reeve, marking his tablet. \"Ask us what we were promised.\"",
+      "art": "art-the-tithe-of-grauvane-thistlewick-square-roll-call",
+      "options": [
+        {
+          "id": "opt-reeve-ledger",
+          "label": "Press Reeve Camm about the parish ledger he keeps sliding under his coat.",
+          "target": "the-drowned-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-widow-chapel",
+          "label": "Let Widow Brey walk you to Sister Nettle's chapel and hear the older story.",
+          "target": "nettles-chapel",
+          "effects": []
+        },
+        {
+          "id": "opt-ring-bell",
+          "label": "Unwrap the clapper and ring the bell — the old warding peal, if anyone still remembers it.",
+          "target": "hollow-road",
+          "effects": [
+            {
+              "flag": "bells-rung",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "performance",
+            "dc": 12,
+            "onFailure": "mist-choir-ambush"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-drowned-ledger",
+      "kind": "discovery",
+      "title": "The Drowned Ledger",
+      "prose": "The reeve's back room smells of mould and boiled turnip. The parish ledger has swollen to twice its width; whole years have run together into blue-black clouds. But the page for the Dry Year survives, written in three different hands, signed by three villages. It is not a tax record. It is a bill of sale, and the goods are a person: one well-warden, delivered to Castle Mournspire, in exchange for the lifting of the mist. Beneath the signatures someone has written later, small and steady: SHE WAS NOT ASKED.",
+      "art": "art-the-tithe-of-grauvane-swollen-parish-ledger-page",
+      "options": [
+        {
+          "id": "opt-take-ledger",
+          "label": "Take the ledger — the castle should be made to read its own signature.",
+          "target": "nettles-chapel",
+          "effects": [
+            {
+              "flag": "has-ledger",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-press-name",
+          "label": "Make Camm say the warden's name aloud, here, in front of his neighbours.",
+          "target": "nettles-chapel",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "intimidation",
+            "dc": 13,
+            "onFailure": "thistlewick-square"
+          }
+        },
+        {
+          "id": "opt-leave-for-road",
+          "label": "Leave the paper to rot and start up the mist road while there is light.",
+          "target": "hollow-road",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "nettles-chapel",
+      "kind": "social",
+      "title": "Sister Nettle's Hedge-Chapel",
+      "prose": "A chapel of wattle and hawthorn, its bell cracked, its floor a mosaic of river pebbles laid in the shape of a spiral well. Sister Nettle Vane is ninety if she is a day and pours tea with both hands. \"My grandmother held the bucket,\" she says. \"That is the whole of my inheritance. They walled Maren Vess into the cistern under Mournspire because a warden's name binds water, and they wanted the water bound to their bargain. She kept the mist off us for seventy years out of spite and love, both, and now she is done. She wants her name back off that page and out of our mouths, or she wants us in there with her.\"",
+      "readAloud": "\"Maren Vess,\" says Sister Nettle, and the tea in every cup trembles once. \"There. Now you carry it too.\"",
+      "art": "art-the-tithe-of-grauvane-hedge-chapel-pebble-spiral",
+      "options": [
+        {
+          "id": "opt-hear-confession",
+          "label": "Sit and hear all of it — the name, the bargain, and what a warden's absolution requires.",
+          "target": "hollow-road",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ask-orchard",
+          "label": "Ask about the drowned orchard between here and the castle wall.",
+          "target": "shrouded-orchard",
+          "effects": []
+        },
+        {
+          "id": "opt-sleep-in-chapel",
+          "label": "Refuse the story and sleep in the chapel until the mist thins.",
+          "target": "mist-choir-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-road",
+      "kind": "transit",
+      "title": "The Hollow Road",
+      "prose": "The switchback road to Mournspire climbs through mist so thick the valley below is only a rumour of rooftops. Drifts of it pool in the ditches and stir when nothing has moved. Twice you pass a wayside marker with a bucket-and-rope carved on it; both buckets have been chiselled out. Somewhere up-slope, thin and multiple, something is singing a counting-song with the numbers missing.",
+      "art": "art-the-tithe-of-grauvane-switchback-road-in-white-mist",
+      "options": [
+        {
+          "id": "opt-orchard-gate",
+          "label": "Turn aside through the orchard gate, where the mist lies lower.",
+          "target": "shrouded-orchard",
+          "effects": []
+        },
+        {
+          "id": "opt-walk-under-peal",
+          "label": "Walk openly while the bell's peal still hangs over the road.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bells-rung",
+            "value": true
+          },
+          "target": "castle-gate",
+          "effects": []
+        },
+        {
+          "id": "opt-drainage-ditch",
+          "label": "Crawl the stone drainage ditch that runs straight to the castle outwall.",
+          "target": "castle-gate",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "mist-choir-ambush"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mist-choir-ambush",
+      "kind": "conflict",
+      "title": "The Mist Choir",
+      "prose": "The singing resolves into shapes: three flat darknesses standing in the white, each one shaped like a person bent over a bucket. They are the ones already collected — the crossed-out names from the toll-post — and they do not want to fight so much as to include you. Their cold reaches ahead of them. Living light drives them back; standing still does not. You need only outlast them until the mist rolls off the slope.",
+      "readAloud": "One of them turns its head, and the mist behind it shows a face you have not met yet, mouthing: count again at dusk.",
+      "art": "art-the-tithe-of-grauvane-three-flat-shadows-in-fog",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "mist-touched",
+          "value": true
+        }
+      ],
+      "encounter": "enc-mist-choir",
+      "terminal": false
+    },
+    {
+      "id": "shrouded-orchard",
+      "kind": "puzzle",
+      "title": "The Drowned Orchard",
+      "prose": "Hawthorns stand in six inches of standing water that has no source and no outlet. Every tree is knotted with rags: hundreds of them, tied in a pattern that repeats — over, under, over, then a gap. The gaps line up. Walk the gaps and you are walking a path. At the centre stands a stone that is not a stone but a well-lid, upside down, and beneath it, in the water, letters cut backwards so they read true to whoever lies below.",
+      "art": "art-the-tithe-of-grauvane-hawthorns-knotted-with-rags",
+      "options": [
+        {
+          "id": "opt-read-knots",
+          "label": "Read the knot-language and tie the answering knot — a warden's safe-conduct.",
+          "target": "castle-gate",
+          "effects": [
+            {
+              "flag": "hawthorn-token",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 14,
+            "onFailure": "castle-gate"
+          }
+        },
+        {
+          "id": "opt-lift-well-lid",
+          "label": "Lift the inverted well-lid and read the backwards letters.",
+          "target": "castle-gate",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-climb-orchard-wall",
+          "label": "Ignore the pattern; go over the orchard's far wall and up to the gate.",
+          "target": "castle-gate",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "acrobatics",
+            "dc": 12,
+            "onFailure": "mist-choir-ambush"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "castle-gate",
+      "kind": "threshold",
+      "title": "The Gate of Castle Mournspire",
+      "prose": "Mournspire's gate stands open and has for years; nobody comes up and nobody comes down. In the gatehouse a single retainer in a rusted breastplate, Warden Gost, sits with a crossbow across his knees and a bucket of clean water at his feet, which he changes every hour. \"House rule,\" he says. \"She doesn't like stale water. Neither do I, any more.\" Somewhere deep beneath the keep, water is being drawn: a rope creaking on a windlass, over and over, though the cistern has been sealed since the Dry Year.",
+      "art": "art-the-tithe-of-grauvane-open-gate-and-water-bucket",
+      "options": [
+        {
+          "id": "opt-show-token",
+          "label": "Show Gost the answering knot and be taken to his master.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "hawthorn-token",
+            "value": true
+          },
+          "target": "castellans-vigil",
+          "effects": []
+        },
+        {
+          "id": "opt-speak-the-name",
+          "label": "Say \"Maren Vess\" at the gate and watch what the household does.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-name",
+            "value": true
+          },
+          "target": "castellans-vigil",
+          "effects": []
+        },
+        {
+          "id": "opt-cistern-outfall",
+          "label": "Say nothing; climb the cistern outfall in the curtain wall and go under the keep.",
+          "target": "cistern-stair",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "athletics",
+            "dc": 13,
+            "onFailure": "tithe-boneyard"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "castellans-vigil",
+      "kind": "social",
+      "title": "The Castellan's Vigil",
+      "prose": "Castellan Emeric Ilsandor, last of a line that has run out of both money and heirs, keeps his vigil in a hall with the tapestries taken down and stacked. He has not slept in nine days. \"I did not do it,\" he says immediately, and then, more honestly: \"I have kept doing it. Every year I bricked the arch tighter and told the valley the mist was weather.\" On the table: a signet, a mason's trowel, and a written confession with no one left to receive it. He will give any of the three to someone going down. He will not go down himself; he says he cannot, and he is not lying.",
+      "readAloud": "\"She asks the same question through the wall every night,\" he says. \"Not 'why'. She asks 'who signed'.\"",
+      "art": "art-the-tithe-of-grauvane-sleepless-castellan-and-signet",
+      "options": [
+        {
+          "id": "opt-present-ledger",
+          "label": "Lay the parish ledger before him and make him sign the confession beside the villages.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-ledger",
+            "value": true
+          },
+          "target": "cistern-stair",
+          "effects": [
+            {
+              "flag": "castellan-absolved",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-demand-truth",
+          "label": "Demand the whole account of the Dry Year, including what his family bound and how.",
+          "target": "cistern-stair",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 14,
+            "onFailure": "cistern-stair"
+          }
+        },
+        {
+          "id": "opt-take-key-alone",
+          "label": "Take his cellar key without argument and go down before you lose the nerve.",
+          "target": "cistern-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cistern-stair",
+      "kind": "hazard",
+      "title": "The Cistern Stair",
+      "prose": "Below the kitchens the stair turns twice and enters water. The water is cold enough to steal breath and clean enough to drink, which is the worst thing about it. Seventy years of mason's work scars the walls: course upon course of brick laid over brick, each layer a different decade's mortar, all of it walling one arch. Written in charcoal at the waterline, at a height a kneeling woman could reach, the same three words in a hand that never learned to write neatly: WHO SIGNED IT.",
+      "art": "art-the-tithe-of-grauvane-flooded-brick-walled-arch",
+      "options": [
+        {
+          "id": "opt-descend-quiet",
+          "label": "Descend quietly; the water is undisturbed and nothing has marked you yet.",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "mist-touched",
+            "value": true
+          },
+          "target": "the-walled-well",
+          "effects": []
+        },
+        {
+          "id": "opt-wade-flooded",
+          "label": "Wade the flooded stair to the arch, cold be damned.",
+          "target": "the-walled-well",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "dc": 13,
+            "onFailure": "tithe-boneyard"
+          }
+        },
+        {
+          "id": "opt-break-brickwork",
+          "label": "Take the trowel to the newest courses and break the arch open loudly.",
+          "target": "tithe-boneyard",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tithe-boneyard",
+      "kind": "conflict",
+      "title": "The Tithes Between the Walls",
+      "prose": "The broken courses spill a cavity, and the cavity spills its contents: the ones sent up the hill after Maren and quietly added to the wall so the accounting would balance. Two of them have kept enough hunger to stand; three are only frames of bone and mortar-dust, walking because the wall told them to. They do not guard the arch. They block the way back. The only useful direction is forward, through them, to the black mouth of the true cistern.",
+      "art": "art-the-tithe-of-grauvane-cavity-of-mortar-bound-dead",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-tithe-boneyard",
+      "terminal": false
+    },
+    {
+      "id": "the-walled-well",
+      "kind": "decision",
+      "title": "The Walled Well",
+      "prose": "The cistern is a vaulted drum of stone, and at its centre is a well within a well: a shaft ringed by seventy years of brick, with a windlass above it that turns, slowly, with no hand on the crank. The rope goes down. Something on the other end is drawing water for a valley that never came to collect it. When you step onto the lip, the turning stops. A voice comes up the shaft, patient as a tide, and it is not asking to be freed. It is asking to be answered.",
+      "readAloud": "\"Say who signed it,\" the well says. \"Then say my name. Get them in the right order.\"",
+      "art": "art-the-tithe-of-grauvane-windlass-turning-over-black-shaft",
+      "options": [
+        {
+          "id": "opt-name-and-absolution",
+          "label": "Name her aloud and lower the signed confession down the rope — the debt owned, the name returned.",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-name",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "castellan-absolved",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-name-returned",
+          "effects": []
+        },
+        {
+          "id": "opt-break-the-shaft",
+          "label": "Break the brick ring and haul up whatever is on the end of that rope.",
+          "target": "the-name-returned",
+          "effects": []
+        },
+        {
+          "id": "opt-refuse-tithe",
+          "label": "Refuse the whole accounting, cut the rope, and climb back toward the light.",
+          "target": "ending-name-inherited",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-name-returned",
+      "kind": "climax",
+      "title": "Maren Vess, Warden of Grauvane",
+      "prose": "She comes up hand over hand, and she is not a drowned woman but a dry one — every drop of her given to the valley, seventy years of it, until nothing was left but the binding and the grudge. Two of the wall-dead climb after her, mortar cracking from their ribs. The water in the drum begins to rise and remember. If she is to be ended, it must be her: the frames behind her will stand as long as the warden does, and fall the instant she is answered or unmade.",
+      "readAloud": "\"Fourteen left in Thistlewick,\" says Maren Vess, almost kindly. \"I know all their names. Do you know mine?\"",
+      "art": "art-the-tithe-of-grauvane-dry-warden-rising-on-the-rope",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-walled-bride",
+      "terminal": false
+    },
+    {
+      "id": "ending-mist-lifted",
+      "kind": "ending",
+      "title": "Ending: The Valley Un-Sealed",
+      "prose": "The rope goes slack. The rising water finds the old outfall and leaves, taking the standing mist with it in one long grey exhalation, and for the first time in seventy years Grauvane can see its own sky. Sister Nettle re-cuts the bucket-and-rope on every wayside marker. Reeve Camm reads the bill of sale aloud in the square with all fourteen present and the ladder down from the granary loft, and the villages begin the ugly, ordinary work of owning what they did. Castellan Ilsandor sleeps, then wakes, then starts unbricking the arch himself, course by course, so the well can be a well again. The toll-post names are not crossed out any more. They are carved deeper, and read every spring.",
+      "art": "art-the-tithe-of-grauvane-grauvane-under-open-sky",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-name-inherited",
+      "kind": "ending",
+      "title": "Ending: The Name Passes On",
+      "prose": "You leave the cistern alive, and the mist lets you go, and that is the price. Behind you the windlass resumes its patient turning; ahead of you the toll-post has fresh scratches, and among them, in a hand you almost recognise, your own names. Thistlewick counts thirteen at dusk. The bargain has simply found new signatories: the valley will hold for another lifetime, quiet and green at the edges, and somewhere below the keep a warden keeps drawing water for people who will never come down to thank her — and now she has company who understand exactly how it happened.",
+      "art": "art-the-tithe-of-grauvane-fresh-names-on-the-toll-post",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-valley-swallowed",
+      "kind": "ending",
+      "title": "Ending: The Tide That Kept Its Word",
+      "prose": "The water remembers everything at once. It comes up the cistern stair, out of the dry wells, out of the drowned orchard, and the mist comes down to meet it until valley and sky are one white throat. Later travellers find Grauvane Mouth walled off by a pale curtain that has an edge you can touch, and a toll-post so densely scratched that the wood has gone soft as bread. The granary loft was empty when the water came, its ladder down and its little ones long since carried over the ridge by Widow Brey — the one mercy in the accounting. Everyone who signed, and everyone who kept signing, is accounted for.",
+      "art": "art-the-tithe-of-grauvane-white-throat-of-the-flooded-valley",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "mist-choir-ambush",
+      "to": "shrouded-orchard",
+      "when": {
+        "op": "always"
+      },
+      "note": "Choir outlasted; the mist rolls off toward the orchard."
+    },
+    {
+      "from": "mist-choir-ambush",
+      "to": "hollow-road",
+      "when": {
+        "op": "always"
+      },
+      "note": "Withdrawal back down the switchbacks."
+    },
+    {
+      "from": "mist-choir-ambush",
+      "to": "ending-name-inherited",
+      "when": {
+        "op": "always"
+      },
+      "note": "Collected by the choir."
+    },
+    {
+      "from": "tithe-boneyard",
+      "to": "the-walled-well",
+      "when": {
+        "op": "always"
+      },
+      "note": "Pushed through to the true cistern."
+    },
+    {
+      "from": "tithe-boneyard",
+      "to": "cistern-stair",
+      "when": {
+        "op": "always"
+      },
+      "note": "Driven back up the flooded stair."
+    },
+    {
+      "from": "tithe-boneyard",
+      "to": "ending-valley-swallowed",
+      "when": {
+        "op": "always"
+      },
+      "note": "The wall finishes its accounting."
+    },
+    {
+      "from": "the-name-returned",
+      "to": "ending-mist-lifted",
+      "when": {
+        "op": "always"
+      },
+      "note": "The warden answered or unmade."
+    },
+    {
+      "from": "the-name-returned",
+      "to": "ending-name-inherited",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escape upward at the usual price."
+    },
+    {
+      "from": "the-name-returned",
+      "to": "ending-valley-swallowed",
+      "when": {
+        "op": "always"
+      },
+      "note": "The water remembers."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "enc-mist-choir",
+      "title": "The Mist Choir",
+      "combatants": [
+        {
+          "id": "crossed-out-names",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "shrouded-orchard",
+      "onDefeat": "ending-name-inherited",
+      "onFlee": "hollow-road"
+    },
+    {
+      "id": "enc-tithe-boneyard",
+      "title": "The Tithes Between the Walls",
+      "combatants": [
+        {
+          "id": "hungering-tithes",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "mortar-frames",
+          "statblock": "skeleton",
+          "count": 3,
+          "hpOverride": 9,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "water",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Force a path forward and step through the black mouth of the true cistern."
+      },
+      "onVictory": "the-walled-well",
+      "onDefeat": "ending-valley-swallowed",
+      "onFlee": "cistern-stair"
+    },
+    {
+      "id": "enc-walled-bride",
+      "title": "Maren Vess and the Wall-Dead",
+      "combatants": [
+        {
+          "id": "maren-vess",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "climbing-wall-dead",
+          "statblock": "skeleton",
+          "count": 2,
+          "hpOverride": 10,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "vertical",
+        "darkness",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "maren-vess"
+      },
+      "onVictory": "ending-mist-lifted",
+      "onDefeat": "ending-valley-swallowed",
+      "onFlee": "ending-name-inherited"
+    }
+  ]
+}

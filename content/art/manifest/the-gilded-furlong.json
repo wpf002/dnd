@@ -1,0 +1,90 @@
+{
+  "adventure": "the-gilded-furlong",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: whimsical-fey, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-gilded-furlong-crooked-gate",
+      "beat": "crooked-gate",
+      "brief": "The Gate at the Crooked Mile — There is no road here, and yet there is a gate: a scrolled iron arch spelling THE GILDED FURLONG in letters that rearrange themselves when you blink. "
+    },
+    {
+      "slot": "art-the-gilded-furlong-midway-lamps",
+      "beat": "midway-lamps",
+      "brief": "The Midway of Many Lamps — Every lamp along the midway is a glass belly full of pale moths, and the moths beat in time with that looping laugh. Hollow Ferry's people are here — "
+    },
+    {
+      "slot": "art-the-gilded-furlong-small-fates-tent",
+      "beat": "tent-small-fates",
+      "brief": "Auntie Sump and the Small Fates — Auntie Sump is a hedge-witch with pond water in a chipped bowl and a hundred paper doors sewn to her tent wall, one for every promise made on these gr"
+    },
+    {
+      "slot": "art-the-gilded-furlong-silent-carousel",
+      "beat": "carousel-held-breath",
+      "brief": "The Carousel of Held Breath — It turns, and it is utterly silent, and every rider is caught mid-laugh with their breath still un-let-out. Chief among them is Pell Tarrow, the farri"
+    },
+    {
+      "slot": "art-the-gilded-furlong-writ-service",
+      "beat": "clerk-writ-beat",
+      "brief": "Service of the Writ — They come out of the ticket booth's shadow in single file: small clerks in paper masks, each carrying a rolled writ and a pen sharpened to a needle, l"
+    },
+    {
+      "slot": "art-the-gilded-furlong-backstage-tireless",
+      "beat": "backstage-tireless",
+      "brief": "Backstage of the Tireless Twelve — Twelve performers dance in the sawdust behind the big top and have not stopped since Tuesday: a contortionist folded past comfort, stilt-walkers whose"
+    },
+    {
+      "slot": "art-the-gilded-furlong-thin-glass-corridor",
+      "beat": "mirror-corridor",
+      "brief": "The Corridor of Thin Glass — The hall of mirrors is where the Broker keeps the seam. Here the glass is thin as a promise: some panes show you a stranger's reflection, some show th"
+    },
+    {
+      "slot": "art-the-gilded-furlong-hollow-reflections",
+      "beat": "thin-mirror-beat",
+      "brief": "What Wears Your Reflection — Two of the reflections step out of true and thin themselves into the lamplight, flat as spilled ink, wearing the outlines of people who paid their tol"
+    },
+    {
+      "slot": "art-the-gilded-furlong-ringmistress-wagon",
+      "beat": "ringmistress-wagon",
+      "brief": "Mother Quillon's Wagon — The ringmistress's wagon smells of pomade and cold tea. Marigold Quillon is a broad, tired woman in a coat of moth-eaten gold who cannot stop smiling;"
+    },
+    {
+      "slot": "art-the-gilded-furlong-lantern-no-moths",
+      "beat": "lantern-of-her-laugh",
+      "brief": "The Lantern With No Moths — In the middle of the empty ring hangs a plain tin lantern, and inside it is not a flame but a laugh: three notes, folded over and over, burning withou"
+    },
+    {
+      "slot": "art-the-gilded-furlong-brokers-parlour",
+      "beat": "brokers-parlour",
+      "brief": "The Parlour of Sweet Terms — Thistlewick Vane holds court in a striped parlour tent furnished entirely in things people described carelessly: a chair 'to die for', a cake 'worth i"
+    },
+    {
+      "slot": "art-the-gilded-furlong-final-encore-ring",
+      "beat": "final-encore",
+      "brief": "The Final Encore — The ring fills of its own accord: Hollow Ferry in the stands, applauding politely and unable to stop; the Tireless Twelve staggering their steps; Moth"
+    },
+    {
+      "slot": "art-the-gilded-furlong-sawdust-champions",
+      "beat": "champions-beat",
+      "brief": "Sawdust and Stilts — Vane steps back with the delighted expression of a man watching a wager pay out, and the Furlong defends its own paperwork. The Effigy of Terms lumber"
+    },
+    {
+      "slot": "art-the-gilded-furlong-ending-lamps-out",
+      "beat": "ending-lamps-relit",
+      "brief": "Ending: The Lamps Give It Back — You end it the way it began — with words, said properly. The last laugh goes back into Marigold Quillon's keyhole chest, three notes and then a fourth"
+    },
+    {
+      "slot": "art-the-gilded-furlong-ending-new-ringmistress",
+      "beat": "ending-new-ringmaster",
+      "brief": "Ending: The New Ringmistress — You sign, and the applause is enormous, and it is the last honest sound you will hear for a while. Marigold Quillon's smile finally falls off her face"
+    },
+    {
+      "slot": "art-the-gilded-furlong-ending-endless-encore",
+      "beat": "ending-endless-encore",
+      "brief": "Ending: Absolutely Final Encore — The band starts again. Whatever you meant to say is somehow already part of the act: your fumbles get laughs, your wounds get bandaged between numbers"
+    }
+  ]
+}

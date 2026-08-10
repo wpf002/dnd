@@ -1,0 +1,653 @@
+{
+  "id": "the-sugarglass-debt",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Sugarglass Debt",
+    "premise": "In a storybook country curdled into nightmare, the village of Thistlewick still pays for a bargain its grandparents broke with the Godmother in the Wood. A party of outsiders is drawn in to settle the old wrong before the curse swallows what's left of the land.",
+    "tone": [
+      "gothic-horror",
+      "whimsical-fey"
+    ],
+    "tier": "local",
+    "partyLevel": 5,
+    "narrationVoice": "a wry, melancholic storybook narrator whose cheerful cadence keeps curdling into dread",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The old wrong involves a childhood bargain broken decades ago; no harm to children is ever shown on-screen, only its lingering adult consequences."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crooked-signpost",
+  "beats": [
+    {
+      "id": "crooked-signpost",
+      "kind": "threshold",
+      "title": "The Crooked Signpost",
+      "prose": "A signpost stands bent at the border of Thistlewick Vale, its painted letters weeping down the wood like candle wax. Three roads split from here: one into a huddled village, one into a wood gone the color of old bruises, one down toward a broken bridge where a toll was once collected.",
+      "art": "art-the-sugarglass-debt-crooked-signpost-img",
+      "options": [
+        {
+          "id": "go-village",
+          "label": "Walk into the village of Thistlewick",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "thistlewick-square",
+          "effects": []
+        },
+        {
+          "id": "go-forest",
+          "label": "Follow the crow-cries into the Hollow Wood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-wood-path",
+          "effects": []
+        },
+        {
+          "id": "go-bridge",
+          "label": "Investigate the ruined toll bridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-bridge-ruins",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thistlewick-square",
+      "kind": "discovery",
+      "title": "Thistlewick Square",
+      "prose": "Shutters are nailed closed and the well in the square is capped with iron. A gaunt woman sweeping ash from her step tells you the mayor still keeps office, though grief has hollowed him like a gourd.",
+      "art": "art-the-sugarglass-debt-thistlewick-square-img",
+      "options": [
+        {
+          "id": "see-mayor",
+          "label": "Seek out the weeping mayor",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "weeping-mayor",
+          "effects": []
+        },
+        {
+          "id": "to-forest",
+          "label": "Head out to the Hollow Wood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-wood-path",
+          "effects": []
+        },
+        {
+          "id": "to-bridge",
+          "label": "Walk down to the toll bridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-bridge-ruins",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-wood-path",
+      "kind": "transit",
+      "title": "The Hollow Wood",
+      "prose": "The trees here have faces pressed into their bark, mouths open in permanent silent song. A wall of black briar rises ahead, and somewhere beyond it something sweet is burning.",
+      "art": "art-the-sugarglass-debt-hollow-wood-path-img",
+      "options": [
+        {
+          "id": "to-briars",
+          "label": "Push on toward the briar wall",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-briars-hazard",
+          "effects": []
+        },
+        {
+          "id": "back-village",
+          "label": "Turn back to the village",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "thistlewick-square",
+          "effects": []
+        },
+        {
+          "id": "cut-bridge",
+          "label": "Cut east to the toll bridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-bridge-ruins",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "toll-bridge-ruins",
+      "kind": "hazard",
+      "title": "The Toll Bridge Ruins",
+      "prose": "A stone bridge, half-collapsed, spans a ravine of black water. A rotted tollbooth still stands sentinel, its ledger-slot stuffed with claw marks. Something is nesting in the wreckage.",
+      "art": "art-the-sugarglass-debt-toll-bridge-ruins-img",
+      "options": [
+        {
+          "id": "search-ruins",
+          "label": "Search the ruins for records",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "buried-ledger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "goblin-tollkeepers"
+          }
+        },
+        {
+          "id": "back-village-2",
+          "label": "Return to the village",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "thistlewick-square",
+          "effects": []
+        },
+        {
+          "id": "into-wood",
+          "label": "Head into the Hollow Wood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "hollow-wood-path",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "toll-briars-hazard",
+      "kind": "hazard",
+      "title": "The Briar Wall",
+      "prose": "The briars are warm to the touch and hum a lullaby that makes your teeth ache. Somewhere beyond them, a grove waits that the wood itself seems desperate to hide.",
+      "art": "art-the-sugarglass-debt-toll-briars-hazard-img",
+      "options": [
+        {
+          "id": "force-briars",
+          "label": "Force a path through the thorns",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "godmothers-grove-edge",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "dc": 14,
+            "onFailure": "shadow-guardians"
+          }
+        },
+        {
+          "id": "back-village-3",
+          "label": "Turn back to the village",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "thistlewick-square",
+          "effects": []
+        },
+        {
+          "id": "to-bridge-2",
+          "label": "Go to the toll bridge instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "toll-bridge-ruins",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "weeping-mayor",
+      "kind": "social",
+      "title": "The Weeping Mayor",
+      "prose": "Mayor Corrin Vell sits behind a desk stacked with unpaid tithes to a power he won't name aloud. His eyes are red-rimmed but dry now, as if he has run out of the water for tears.",
+      "art": "art-the-sugarglass-debt-weeping-mayor-img",
+      "options": [
+        {
+          "id": "ask-old-wrong",
+          "label": "Ask about the old wrong done to the Godmother",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "buried-ledger",
+          "effects": []
+        },
+        {
+          "id": "ask-godmother",
+          "label": "Ask about the Godmother in the Wood",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "godmothers-grove-edge",
+          "effects": []
+        },
+        {
+          "id": "rash-end",
+          "label": "Try to end the curse without the Godmother's leave",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "curse-consumes-you",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "met-mayor",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "buried-ledger",
+      "kind": "discovery",
+      "title": "The Buried Ledger",
+      "prose": "Beneath rotten floorboards or brittle bridge-planks, you find a leather ledger. Generations ago, Thistlewick promised the Godmother a yearly toll of a child's laughter freely given. When the year came, the villagers hid their children away and paid her with counterfeit joy instead. She has been collecting the debt in curses ever since.",
+      "art": "art-the-sugarglass-debt-buried-ledger-img",
+      "options": [
+        {
+          "id": "tell-mayor",
+          "label": "Seek out the mayor to explain the ledger",
+          "visibleWhen": {
+            "op": "unset",
+            "flag": "met-mayor"
+          },
+          "target": "weeping-mayor",
+          "effects": []
+        },
+        {
+          "id": "to-grove",
+          "label": "Head to the Godmother's grove",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "godmothers-grove-edge",
+          "effects": []
+        },
+        {
+          "id": "confront-tollkeepers",
+          "label": "Confront the tollkeepers guarding the bridge",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "goblin-tollkeepers",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "found-ledger",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "godmothers-grove-edge",
+      "kind": "puzzle",
+      "title": "The Grove's Edge",
+      "prose": "Sugarglass icicles hang from black branches, chiming like wind-bells over a ring of standing stones. Something in the grove watches without eyes, and demands you prove you belong here before you pass.",
+      "art": "art-the-sugarglass-debt-godmothers-grove-edge-img",
+      "options": [
+        {
+          "id": "solve-riddle",
+          "label": "Solve the riddle of thorns",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "godmother-in-the-wood",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "arcana",
+            "dc": 15,
+            "onFailure": "shadow-guardians"
+          }
+        },
+        {
+          "id": "offer-tribute",
+          "label": "Offer the buried ledger as tribute",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "found-ledger"
+          },
+          "target": "godmother-in-the-wood",
+          "effects": [
+            {
+              "flag": "tribute-given",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "force-grove",
+          "label": "Force your way through the guardians",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "shadow-guardians",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shadow-guardians",
+      "kind": "conflict",
+      "title": "The Grove's Watchers",
+      "prose": "Shapes peel off the standing stones like ink lifting from paper, and the grove goes cold as grave-dirt.",
+      "art": "art-the-sugarglass-debt-shadow-guardians-img",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "shadow-guardians",
+      "terminal": false
+    },
+    {
+      "id": "goblin-tollkeepers",
+      "kind": "conflict",
+      "title": "The Tollkeepers",
+      "prose": "From the wreckage of the tollbooth spill goblins in patchwork coats, led by a scarred hobgoblin who still, absurdly, demands a toll before you may cross.",
+      "art": "art-the-sugarglass-debt-goblin-tollkeepers-img",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "goblin-tollkeepers",
+      "terminal": false
+    },
+    {
+      "id": "godmother-in-the-wood",
+      "kind": "social",
+      "title": "The Godmother in the Wood",
+      "prose": "She is stitched together from storybook things: a crown of thorned sugar, a smile too wide, eyes like wells with no bottom. 'You have found my ledger,' she says, or perhaps only your bones hear it. 'Now. What will you pay me, that Thistlewick would not?'",
+      "art": "art-the-sugarglass-debt-godmother-in-the-wood-img",
+      "options": [
+        {
+          "id": "pay-toll",
+          "label": "Offer to pay the true toll yourselves",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "reckoning-decision",
+          "effects": [
+            {
+              "flag": "chose-payment",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "demand-lift",
+          "label": "Demand she lift the curse without payment",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "reckoning-decision",
+          "effects": [
+            {
+              "flag": "chose-defiance",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "new-bargain",
+          "label": "Use the ledger's truth to strike a new bargain",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "tribute-given"
+          },
+          "target": "reckoning-decision",
+          "effects": [
+            {
+              "flag": "chose-bargain",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "reckoning-decision",
+      "kind": "decision",
+      "title": "The Reckoning",
+      "prose": "The grove holds its breath. Whatever you chose to offer, the Godmother now waits to see it made real, and the vale itself seems to lean in to listen.",
+      "art": "art-the-sugarglass-debt-reckoning-decision-img",
+      "options": [
+        {
+          "id": "end-toll-paid",
+          "label": "Accept the burden of the old debt",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "chose-payment"
+          },
+          "target": "ending-toll-paid",
+          "effects": []
+        },
+        {
+          "id": "end-curse-broken",
+          "label": "Shatter the bargain and unmake the curse",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "chose-defiance"
+          },
+          "target": "ending-curse-broken",
+          "effects": []
+        },
+        {
+          "id": "end-new-bargain",
+          "label": "Seal the new bargain with the Godmother",
+          "visibleWhen": {
+            "op": "set",
+            "flag": "chose-bargain"
+          },
+          "target": "ending-new-bargain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-toll-paid",
+      "kind": "ending",
+      "title": "The Toll Paid",
+      "prose": "You give her what Thistlewick withheld: a true and willing joy, freely offered, taken from your own hearts rather than stolen from a child. The curse lifts from the vale like fog burning off at dawn, but something in each of you stays a little colder, a little quieter, for the rest of your days. Thistlewick sings again. You do not, quite, anymore.",
+      "art": "art-the-sugarglass-debt-ending-toll-paid-img",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-curse-broken",
+      "kind": "ending",
+      "title": "The Bargain Shattered",
+      "prose": "You refuse to pay her anything at all, and instead tear the old bargain out by its roots, ledger and grove and all. The Godmother's shriek unmakes the standing stones. The curse breaks, but so does whatever kept the vale's nightmares penned in one place — Thistlewick is free, and utterly unprotected, and the wood beyond it is stranger than ever. Freedom, it turns out, is its own kind of debt.",
+      "art": "art-the-sugarglass-debt-ending-curse-broken-img",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-new-bargain",
+      "kind": "ending",
+      "title": "A Fairer Bargain",
+      "prose": "Ledger in hand, you name the old lie for what it was, and the Godmother — who is nothing if not a creature of contracts — agrees to strike a new and honest bargain in its place. Thistlewick will pay a small, true, willingly-given toll each year, openly, forever. The vale wakes from its nightmare slowly, like a sleeper unsure the dream has really ended. You are the debt-holders now, and she will remember your names.",
+      "art": "art-the-sugarglass-debt-ending-new-bargain-img",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "curse-consumes-you",
+      "kind": "ending",
+      "title": "The Curse Collects",
+      "prose": "You reached for the vale's oldest wound without her leave, or fell to what guards it, and the debt comes due on you instead. The sugarglass wood closes over the vale a little tighter, and Thistlewick's bells toll once, for strangers who almost helped, and did not.",
+      "art": "art-the-sugarglass-debt-curse-consumes-you-img",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "shadow-guardians",
+      "title": "The Grove's Watchers",
+      "combatants": [
+        {
+          "id": "shadows",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "godmother-in-the-wood",
+      "onDefeat": "curse-consumes-you",
+      "onFlee": "hollow-wood-path"
+    },
+    {
+      "id": "goblin-tollkeepers",
+      "title": "The Tollkeepers",
+      "combatants": [
+        {
+          "id": "goblins",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "hobgoblin-captain",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "buried-ledger",
+      "onDefeat": "curse-consumes-you",
+      "onFlee": "toll-bridge-ruins"
+    }
+  ]
+}

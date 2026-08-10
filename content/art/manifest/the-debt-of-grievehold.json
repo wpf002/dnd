@@ -1,0 +1,85 @@
+{
+  "adventure": "the-debt-of-grievehold",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: political-fantasy, gothic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-debt-of-grievehold-gate-of-open-mourning",
+      "beat": "gates-of-grievehold",
+      "brief": "The Gates of Grievehold — Grievehold squats on a spur of black slate above the Sablemarch valley, and its gate has been left open — which is worse than a siege. Nine days ago V"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-chancellor-in-inverted-banners",
+      "beat": "black-antechamber",
+      "brief": "The Black Antechamber — Chancellor Vessana Mour receives you in a room hung with the dark lord's confiscated banners, all turned inside out for mourning. She is small, grey, "
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-bier-of-salted-oak",
+      "beat": "lying-in-state",
+      "brief": "Lying In State — They have laid Varkoth Ashfell on a bier of salted oak in the chapel of his own conquests, and the frost that always followed him has not left the roo"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-tiltyard-under-black-snow",
+      "beat": "wardens-yard",
+      "brief": "The Warden-General's Yard — Ulcaster Bregh drills three hundred soldiers in the frozen tilt-yard, and every one of them knows he is the dead lord's unacknowledged son. He is enor"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-gallery-of-filled-harnesses",
+      "beat": "hall-of-tallow-armors",
+      "brief": "The Hall of Tallow Armours — The long gallery is lined with Varkoth's parade harnesses, each filled to the gorget with grey tallow so the empty steel would not rattle in the wind."
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-nine-plates-of-cold-iron",
+      "beat": "iron-codicil",
+      "brief": "The Iron Codicil — The treaty hangs in the strong-room: nine plates of cold iron, chained, each engraved in the Concord's needle-script. The bulk is tedious — grain tall"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-auditor-behind-coffin-ledger",
+      "beat": "auditors-ledger",
+      "brief": "The Auditor's Counting-House — The counting-house has been the Concord's since before Varkoth's grandmother. Auditor Cinder-Nine sits behind a ledger the length of a coffin, and the"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-sweating-stair-of-memory",
+      "beat": "weeping-stair",
+      "brief": "The Weeping Stair — Below the new fortress lies the one Varkoth built first, and its single stair descends through rock that sweats. The moisture is warm and tastes of ot"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-reliquary-with-living-coal",
+      "beat": "cinder-vault",
+      "brief": "The Cinder Vault — At the stair's root is a round room of unmortared slate, and in its centre a reliquary of glass and lead holds a single coal that burns without consum"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-broken-lamps-in-barrack-spine",
+      "beat": "garrison-mutiny",
+      "brief": "The Garrison Decides — The Concord pays in advance, and two of Ulcaster's sergeants have already been paid. They catch you in the barrack-spine where the corridor narrows an"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-empty-throne-before-dawn",
+      "beat": "succession-council",
+      "brief": "The Council of the Ninth Night — They convene in the throne hall an hour before dawn: Chancellor Vessana with her keys, Warden-General Ulcaster with his three hundred, Auditor Cinder-"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-auditor-unfolding-in-throne-hall",
+      "beat": "the-reckoning",
+      "brief": "The Reckoning in the Throat — Cinder-Nine closes the ledger, and closing it is the violence. The magistrate's grey falls away from something that has been collecting on behalf of t"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-dawn-over-sablemarch-valley",
+      "beat": "crown-of-quiet-ash",
+      "brief": "Crown of Quiet Ash — The Auditor comes apart into loose paper and cold, and the ledger-shades go out like blown lamps. What is left on the flagstones is a heap of parchmen"
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-signed-schedule-in-tidy-hand",
+      "beat": "the-ledger-balanced",
+      "brief": "The Ledger Balanced — The Fourth Codicil is performed as written, and it is performed politely. Chancellor Vessana takes the crown at dawn and, in her first act, signs the "
+    },
+    {
+      "slot": "art-the-debt-of-grievehold-wagons-on-the-grey-west-road",
+      "beat": "the-fortress-unmade",
+      "brief": "The Fortress Unmade — The collection is completed at dawn, and the collector is thorough. Grievehold's claimants are entered as assets: the Chancellor's keys, the Warden-Ge"
+    }
+  ]
+}

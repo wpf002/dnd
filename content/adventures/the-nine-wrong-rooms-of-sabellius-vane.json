@@ -1,0 +1,774 @@
+{
+  "id": "the-nine-wrong-rooms-of-sabellius-vane",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Nine Wrong Rooms of Sabellius Vane",
+    "premise": "On the Night of Tallies, when the Ombrine Trust's ledgers reset and its strongrooms fold into one another, a crew of four must lift the Quiet Bell — an object that un-happens the last hour — from a building designed by an architect who anticipated exactly this attempt.",
+    "tone": [
+      "heist",
+      "urban-intrigue"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "Dry and conspiratorial second person, like a fence in a back room describing a job that has already gone wrong once and may go wrong again.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The Trust employs no minors; apprentice clerks are all adults. Keep all peril to adult characters and to architecture."
+    },
+    "provenance": "flint"
+  },
+  "entry": "rooftop-ingress",
+  "beats": [
+    {
+      "id": "rooftop-ingress",
+      "kind": "threshold",
+      "title": "Rooftop Ingress",
+      "prose": "The Ombrine Reliquary has no windows on the street and eleven on the roof, and every one of them looks down into a different room than it did last month. Rain beads on lead flashing. Below you, through a skylight etched with a running tally of everything the Trust has ever held, a corridor breathes like a lung. Your fence, Halbeck Wry, said the Quiet Bell sits nine wrong rooms deep, and that Sabellius Vane built those rooms specifically to be robbed — once, badly, by someone he wanted to meet.",
+      "readAloud": "The city's bells count eleven. The Reliquary does not answer them. On the Night of Tallies, the building is deaf on purpose.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-rooftop-ingress",
+      "options": [
+        {
+          "id": "drop-skylight",
+          "label": "Cut the tally-skylight and drop straight into the antechamber.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "antechamber-of-tallies",
+          "effects": []
+        },
+        {
+          "id": "service-flue",
+          "label": "Squeeze down the clerks' service flue toward the sound of arguing voices.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mirror-clerks-parlor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "gallery-of-standing-armor"
+          }
+        },
+        {
+          "id": "auditor-sash",
+          "label": "Walk in through the audit hatch wearing forged Trust sashes.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "antechamber-of-tallies",
+          "effects": [
+            {
+              "flag": "posing-as-auditor",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "antechamber-of-tallies",
+      "kind": "discovery",
+      "title": "The Antechamber of Tallies",
+      "prose": "A long room whose walls are a single continuous column of figures, chalked, inked, burned, and in one place stitched. The figures are current: one of them updates as you watch, ticking from 'four persons unaccounted' to 'four persons pending'. Three doors. The left one hums with reflected candlelight. The centre door is set into a brass scale-plate on the floor. The right one stands open on a gallery of empty suits of ceremonial plate, all of them facing away.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-antechamber-of-tallies",
+      "options": [
+        {
+          "id": "to-parlor",
+          "label": "Take the left door, toward the reflected candlelight.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mirror-clerks-parlor",
+          "effects": []
+        },
+        {
+          "id": "to-scale",
+          "label": "Step onto the scale-plate and open the centre door.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "room-of-constant-weight",
+          "effects": []
+        },
+        {
+          "id": "to-gallery",
+          "label": "Slip right, through the gallery of turned-away armour.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-standing-armor",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mirror-clerks-parlor",
+      "kind": "social",
+      "title": "The Parlour of Mirror-Clerks",
+      "prose": "Grivane Ost sits at a desk facing a mirror, and so does Grivane Ost. One of them is the night registrar of the Ombrine Trust; the other is what the Trust does with registrars who resign. They are arguing about whether you exist yet. On the desk lies a brass ballast token, stamped with a weight nobody could carry, and a visitors' book with your descriptions already in it in a careful hand.",
+      "readAloud": "\"He isn't entered,\" says the mirror. \"He is standing there,\" says the man. \"Standing,\" says the mirror, \"is not a category the Trust recognises.\"",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-mirror-clerks-parlor",
+      "options": [
+        {
+          "id": "flash-the-sash",
+          "label": "Show the forged sash and demand the ballast token for the audit.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "posing-as-auditor",
+            "value": true
+          },
+          "target": "room-of-constant-weight",
+          "effects": [
+            {
+              "flag": "has-clerk-token",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "trade-a-name",
+          "label": "Offer the reflection something it lacks: a name of your own to enter.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cartographers-cell",
+          "effects": [
+            {
+              "flag": "has-clerk-token",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 14,
+            "onFailure": "gallery-of-standing-armor"
+          }
+        },
+        {
+          "id": "slip-past-argument",
+          "label": "Let the two Grivanes argue and walk out the far door.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "room-of-constant-weight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "room-of-constant-weight",
+      "kind": "puzzle",
+      "title": "The Room of Constant Weight",
+      "prose": "A vaulted cube with no exit but the one behind you — until the floor's great brass scale is satisfied. Vane's rule, chiselled overhead: NOTHING LEAVES THIS ROOM HEAVIER OR LIGHTER THAN IT ARRIVED. Four sandbags hang from chains at absurd heights. When one of you shifts a foot, the far wall grinds open a finger's width and shuts again, like a mouth deciding.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-room-of-constant-weight",
+      "options": [
+        {
+          "id": "token-swap",
+          "label": "Set the clerk's brass token on the plate; let the ledger carry your weight for you.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-clerk-token",
+            "value": true
+          },
+          "target": "stair-that-descends-upward",
+          "effects": []
+        },
+        {
+          "id": "solve-substitution",
+          "label": "Work the arithmetic of substitution — sand out, crew in, to the ounce.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stair-that-descends-upward",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "drowned-strongroom"
+          }
+        },
+        {
+          "id": "break-the-scale",
+          "label": "Smash the scale-plate and force the wall while it gapes.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-standing-armor",
+          "effects": [
+            {
+              "flag": "alarm-tallied",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gallery-of-standing-armor",
+      "kind": "conflict",
+      "title": "The Gallery of Standing Armour",
+      "prose": "Ceremonial plate lines a gallery that is longer than the building. The suits are hollow, and the Trust pays a stipend to each of them. They do not attack intruders; they attack imbalance — anything the ledger cannot account for. Which is you. The far door is a hundred feet away and closing at the speed of a slow reader.",
+      "readAloud": "Gauntlets turn first. Then helms. Then, with a sound like an audit being filed, the whole gallery steps off its plinths at once.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-gallery-of-standing-armor",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "armor-gallery-watch",
+      "terminal": false
+    },
+    {
+      "id": "stair-that-descends-upward",
+      "kind": "transit",
+      "title": "The Stair That Descends Upward",
+      "prose": "You go down. The rain gets louder above and also below. Halfway along, a landing offers three ways: a doorway weeping ledger-water; a low cell door with a candle burning behind it and a map pinned to the inside; and a magnificent vault portal of nine locks, so obviously the treasury that Halbeck's voice in your memory says, flatly, 'no.'",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-stair-that-descends-upward",
+      "options": [
+        {
+          "id": "to-drowned",
+          "label": "Push through the weeping doorway.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-strongroom",
+          "effects": []
+        },
+        {
+          "id": "to-cell",
+          "label": "Knock, politely, at the cell with the candle.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cartographers-cell",
+          "effects": []
+        },
+        {
+          "id": "to-nine-locks",
+          "label": "Trust your eyes: work the vault of nine locks.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-false-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-strongroom",
+      "kind": "hazard",
+      "title": "The Drowned Strongroom",
+      "prose": "A strongroom filled to the ceiling with cold water that tastes of iron gall ink. Inside it, suspended, float the Trust's unpaid debts: coins, contracts, a wedding ring, a rowboat. The current moves in columns, left to right, top to bottom, reading. There is a sluice wheel at hip height and a black hole in the far wall through which the current pours toward somewhere with lamplight and voices.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-drowned-strongroom",
+      "options": [
+        {
+          "id": "swim-the-current",
+          "label": "Breathe deep and swim the reading-current to its final line.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-heart",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "the-false-vault"
+          }
+        },
+        {
+          "id": "open-the-sluice",
+          "label": "Crank the sluice and ride the flood into the lamplight.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "rival-crew-in-the-margin",
+          "effects": [
+            {
+              "flag": "alarm-tallied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "back-to-cell",
+          "label": "Back out, dripping, and try the cell with the candle.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cartographers-cell",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cartographers-cell",
+      "kind": "discovery",
+      "title": "The Cartographer's Cell",
+      "prose": "Ismene Ply has been inside the Reliquary for six weeks and has not been caught, because she has not left. Her cell walls are papered with a map of the strongrooms drawn in nine overlapping hands — hers, growing steadier. She wants the Bell too, but she wants Vane's plans more, and she has forged a bell-shaped nothing wrapped in lead to leave in its place. 'The building only objects,' she says, 'when the tally changes.'",
+      "readAloud": "\"You're the fourth crew,\" says Ismene, not looking up. \"The others are on the wall. Not as names. As corrections.\"",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-cartographers-cell",
+      "options": [
+        {
+          "id": "take-her-terms",
+          "label": "Shake on it: her map, her forgery, her cut.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "rival-crew-in-the-margin",
+          "effects": [
+            {
+              "flag": "knows-true-vault",
+              "value": true
+            },
+            {
+              "flag": "ismene-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "copy-the-map",
+          "label": "Copy the map and leave her out of it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-false-vault",
+          "effects": [
+            {
+              "flag": "knows-true-vault",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "rival-crew-in-the-margin"
+          }
+        },
+        {
+          "id": "refuse-maps",
+          "label": "Refuse the map. Follow weight instead of ink, down to where the ledger is written.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ledger-heart",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rival-crew-in-the-margin",
+      "kind": "conflict",
+      "title": "The Margin",
+      "prose": "The margin is the gap between strongrooms: a scaffolded seam of unfinished floor where Vane left his workings visible. Vessel Krance and three of the Sallowgate crew are here already, roping a strongbox they will never get out, and they have decided that four rivals are a simpler problem than nine locks. Above and below, the seam creaks — the whole margin is a page being turned.",
+      "readAloud": "\"Nothing personal,\" Krance says, drawing a hand-axe. \"There's one door out and the Trust only tallies survivors.\"",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-rival-crew-in-the-margin",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "margin-crew",
+      "terminal": false
+    },
+    {
+      "id": "the-false-vault",
+      "kind": "decision",
+      "title": "The Vault of Nine Locks",
+      "prose": "Nine locks, nine keyholes, nine different centuries of craft, and beneath the ninth, small as a signature, the architect's mark: S.V., and a line of numbers that is not a number — it is a floor plan folded into figures. This vault is a compliment. It is also bait: whatever is behind it has been fed, and recently, and it is counting under its breath.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-the-false-vault",
+      "options": [
+        {
+          "id": "open-anyway",
+          "label": "Nine locks is a challenge, not a warning. Open it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-standing-armor",
+          "effects": [
+            {
+              "flag": "alarm-tallied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-the-signature",
+          "label": "Read the signature as a plan and walk to where the real strongroom is folded.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-true-vault",
+            "value": true
+          },
+          "target": "ledger-heart",
+          "effects": []
+        },
+        {
+          "id": "retreat-stair",
+          "label": "Leave it shut. Back up the stair and take another room.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stair-that-descends-upward",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-heart",
+      "kind": "puzzle",
+      "title": "The Ledger-Heart",
+      "prose": "The Reliquary's accounting is not kept in a book. It is kept in a room-sized clockwork of pens, each nib resting on a running strip of vellum, writing what the building currently contains. Four pens are writing about you right now, in the margin, in red. Behind the mechanism, a crawlway the height of a kneeling clerk leads toward a sound you have heard only in stories: a bell that does not ring so much as unsay.",
+      "readAloud": "One pen pauses. It scratches out the word 'four'. It waits, nib trembling, for a new number.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-ledger-heart",
+      "options": [
+        {
+          "id": "write-yourselves-out",
+          "label": "Guide the red pens' hands: write tonight's alarm out of the tally.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "alarm-tallied",
+            "value": true
+          },
+          "target": "the-quiet-bell-chamber",
+          "effects": [
+            {
+              "flag": "alarm-tallied",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "cut-the-spine",
+          "label": "Cut the vellum spine and take the crawlway while the pens hunt for their place.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-quiet-bell-chamber",
+          "effects": []
+        },
+        {
+          "id": "back-to-ismene",
+          "label": "This needs a cartographer. Go back for Ismene's wall.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "cartographers-cell",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-quiet-bell-chamber",
+      "kind": "decision",
+      "title": "The Quiet Bell",
+      "prose": "The ninth wrong room is small and plain and warm, like a kitchen. On a leather cushion sits a hand-bell of grey metal, and around it the air is thin with hours that have already been spent twice. Pinned to the cushion is a note in the architect's hand: I BUILT NINE ROOMS SO THAT WHOEVER REACHED THE NINTH WOULD BE WORTH TALKING TO. RING IT AND WE TALK. LIFT IT AND WE TALK ANYWAY. — S.V.",
+      "readAloud": "The bell has no clapper. It does not need one. It is not for ringing forward.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-the-quiet-bell-chamber",
+      "options": [
+        {
+          "id": "shroud-and-lift",
+          "label": "Shroud the bell in ledger-paper and lift it. Talk on the way out.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "the-architect-unspent",
+          "effects": []
+        },
+        {
+          "id": "ring-it-now",
+          "label": "Ring it. Un-happen the night before the night can catch you.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-bell-rung",
+          "effects": []
+        },
+        {
+          "id": "place-the-forgery",
+          "label": "Set Ismene's lead forgery on the cushion so the tally never changes.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ismene-allied",
+            "value": true
+          },
+          "target": "ending-clean-lift",
+          "effects": [
+            {
+              "flag": "forgery-placed",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-architect-unspent",
+      "kind": "climax",
+      "title": "The Architect Unspent",
+      "prose": "The kitchen-warmth goes out of the room. Sabellius Vane died forty years ago and has not spent a single one of them: he had himself entered into his own ledger as an asset held in trust, and the Trust is scrupulous. He comes up the crawlway wearing his own drafting apron, two tally-shades unpeeling from the walls behind him, delighted, genuinely delighted, to have visitors at last.",
+      "readAloud": "\"Nine rooms,\" says the dead architect, warmly. \"Nine. And you brought your own paper. Sit down. No? Then we'll do it the other way.\"",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-the-architect-unspent",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "architect-unspent-fight",
+      "terminal": false
+    },
+    {
+      "id": "ending-clean-lift",
+      "kind": "ending",
+      "title": "Ending: A Tally Unchanged",
+      "prose": "You come out onto the wet lead of the roof at the fag-end of the Night of Tallies with a grey bell wrapped in a stolen ledger, and behind you the Reliquary's figures do not so much as tick, because as far as the building knows it still holds exactly what it held. Halbeck Wry weeps a little when he sees it and offers less than he promised. Somewhere below, a cushion holds a lump of lead, and an argument between two Grivane Osts continues into a morning neither of them will be blamed for. You have an hour in your pocket that has not been used. That is a dangerous thing to own, and the Ombrine Trust has centuries of practice in getting things back.",
+      "readAloud": "The city's bells count four. This time, the Reliquary answers.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-clean-lift",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bell-rung",
+      "kind": "ending",
+      "title": "Ending: The Hour That Kept Its Change",
+      "prose": "You ring a bell with no clapper and the last hour comes apart like wet paper. You are on the roof again in the rain, dry-mouthed, whole, with the skylight uncut beneath you — and one detail wrong: the running tally now reads 'four persons held.' The Bell spent your escape to buy back your mistakes, and the building took the difference in the only currency it recognises. You will rob the Reliquary tonight. You have always been about to rob the Reliquary tonight. Nine rooms down, an architect sets out an extra cup and waits for the guests he knows are coming, again, for the first time.",
+      "readAloud": "The city's bells count eleven. They will count eleven for a long while yet.",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-bell-rung",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-cataloged",
+      "kind": "ending",
+      "title": "Ending: Entered, Filed, Held",
+      "prose": "The Trust does not kill thieves; killing is wasteful and hard to account for. You wake in a strongroom that is a very good imitation of a room you have slept in before, with a brass token on your chest stamped with your own weight to the ounce. Somewhere a pen writes 'four assets, acquired, condition fair.' Ismene Ply's map gains four new corrections in a careful hand, and the Quiet Bell sits on its cushion, warm, patient, waiting for a crew good enough to reach the ninth room — which, the register notes drily, you very nearly were.",
+      "readAloud": "\"Standing,\" says the mirror, satisfied at last, \"is not a category the Trust recognises. Held, however, is.\"",
+      "art": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-cataloged",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "the-quiet-bell-chamber",
+      "to": "ending-clean-lift",
+      "when": {
+        "op": "eq",
+        "flag": "forgery-placed",
+        "value": true
+      },
+      "note": "The swap keeps the tally constant, so the strongrooms never object to your leaving."
+    },
+    {
+      "from": "the-architect-unspent",
+      "to": "ending-clean-lift",
+      "when": {
+        "op": "always"
+      },
+      "note": "Vane put down; the crawlway is open and the roof is four rooms of running away."
+    },
+    {
+      "from": "gallery-of-standing-armor",
+      "to": "stair-that-descends-upward",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "rival-crew-in-the-margin",
+      "to": "ledger-heart",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "armor-gallery-watch",
+      "title": "The Turned-Away Plate",
+      "combatants": [
+        {
+          "id": "hall-warden",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hpOverride": 27,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Get every member of the crew through the slowly closing far door at the gallery's end; the plate will not follow past the threshold."
+      },
+      "onVictory": "stair-that-descends-upward",
+      "onDefeat": "ending-cataloged",
+      "onFlee": "antechamber-of-tallies"
+    },
+    {
+      "id": "margin-crew",
+      "title": "Vessel Krance and the Sallowgate Four",
+      "combatants": [
+        {
+          "id": "vessel-krance",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sallowgate-hands",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "unstable",
+        "cover-light",
+        "vertical"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "ledger-heart",
+      "onDefeat": "ending-cataloged",
+      "onFlee": "the-false-vault"
+    },
+    {
+      "id": "architect-unspent-fight",
+      "title": "Sabellius Vane, Held In Trust",
+      "combatants": [
+        {
+          "id": "sabellius-vane",
+          "statblock": "wight",
+          "count": 1,
+          "hpOverride": 45,
+          "hostile": true
+        },
+        {
+          "id": "tally-shades",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "ending-clean-lift",
+      "onDefeat": "ending-cataloged",
+      "onFlee": "ending-bell-rung"
+    }
+  ]
+}

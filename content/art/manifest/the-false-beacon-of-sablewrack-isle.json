@@ -1,0 +1,85 @@
+{
+  "adventure": "the-false-beacon-of-sablewrack-isle",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: beginner-classic, nautical.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-thraskmoor-landing",
+      "beat": "wreck-light-landing",
+      "brief": "Wreck-Light Landing — The coaster Coldfinch will not tie up. She noses the shingle at Thraskmoor Landing long enough for you to jump, then backs off into the rain. Thraskmo"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-quillow-ledger",
+      "beat": "harbormistress-ledger",
+      "brief": "Marra Quillow's Ledger — Marra Quillow has been harbormistress for eleven years and has the handwriting of a woman who expects to be doubted. Her ledger records every hull los"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-salvage-tent",
+      "beat": "salvagers-tent",
+      "brief": "Kellin Ashgrave's Spoil — The tent smells of wet rope and hot pitch. Kellin Ashgrave sorts salvage by weight with a fish-scale and a stub of chalk: brass fittings here, bolts o"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-keel-strewn-strand",
+      "beat": "keel-strewn-strand",
+      "brief": "The Keel-Strewn Strand — Low tide lays the whole ugly account out for you. Three hulls in three stages of ruin: the herring-boat Grey Marrow gone to ribs, the trader Sunder's "
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-scavenger-gully",
+      "beat": "kobold-scavenger-line",
+      "brief": "The Scavenger Line — The drag-trail ends at a gully where a bucket-line of small scaled folk — wrack-kobolds, the islanders call them, drake-tenders and hull-pickers — are"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-brooding-hollow",
+      "beat": "drake-hollow-nest",
+      "brief": "The Brooding Hollow — Above the gully the cliff opens into a warm hollow that stinks of sulphur and fish. A storm-drake the length of a longboat lies coiled over a clutch o"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-black-tooth-ridge",
+      "beat": "black-tooth-ridge",
+      "brief": "The Ridge Above the Tooth — The ridge is a knife of wet basalt with the whole storm leaning on it. From the top you can see everything: the wreck-field, the tent, Thraskmoor's ni"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-lantern-deckhouse",
+      "beat": "the-lantern-wreck",
+      "brief": "The Keeper's Log Aboard the Lantern — The packet's deckhouse is canted but sound, and someone has already searched it badly. Under a bench you find what they missed: a keeper's log, older "
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-drowned-stair",
+      "beat": "drowned-stair",
+      "brief": "The Drowned Stair — The cleft at the Tooth's foot is a throat. Every seventh wave fills it to the ceiling and empties it again, and between waves you can see them: cut st"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-cut-steps-ambush",
+      "beat": "tide-warden-ambush",
+      "brief": "Ambush on the Cut Steps — Halfway down, lanterns unhood above and below you. Three of them, oilskinned, with boarding axes and a net — Denn from the salvage tent among them, an"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-flooded-lamp-room",
+      "beat": "the-flooded-lamp-room",
+      "brief": "The Room at the Bottom — It is a lamp room, whole and drowned. The quake took the headland but not the lantern-house: it slid down entire and settled upright on the seabed, an"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-vesk-tarrow-stand",
+      "beat": "the-false-beacon",
+      "brief": "The False Beacon — The stair-door bangs and Vesk Tarrow comes in out of the water with two wreck-hands behind him. He was a light-keeper's apprentice once; he says so, p"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-ending-true-light",
+      "beat": "ending-true-light",
+      "brief": "Ending: The True Light — The cradle-harness comes apart in a gout of steam and the green flame goes out, and for one moment the drowned lamp room is completely dark and comple"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-ending-stoppered-cleft",
+      "beat": "ending-leave-the-isle",
+      "brief": "Ending: The Coast Takes Its Own Measures — You come up out of the cleft with a stolen bell, a keeper's log, and a story too strange for any court — and it turns out that is enough. Quillow's le"
+    },
+    {
+      "slot": "art-the-false-beacon-of-sablewrack-isle-ending-tide-took-us",
+      "beat": "ending-tide-took-us",
+      "brief": "Ending: What the Seventh Wave Kept — The sea does not argue; it arrives. It takes the stair, the gully, the argument, and you, and it puts you down somewhere with your lungs full of Sable"
+    }
+  ]
+}

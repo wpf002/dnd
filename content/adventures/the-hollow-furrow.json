@@ -1,0 +1,630 @@
+{
+  "id": "the-hollow-furrow",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Furrow",
+    "premise": "In the barley vale of Hollow Furrow, nothing and no one is older than nine years — and the sleeping thing in the vault beneath the fields is the farmer that grew them all. Learning this makes you legible to it.",
+    "tone": [
+      "cosmic-horror",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Hushed, patient, and pastoral — a harvest-time storyteller who describes wheat, weather, and gravestones in exactly the same gentle tone, and never raises their voice even when the arithmetic stops working.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of the vale appear only at a distance and are always led safely away before anything happens."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-hollow-furrow",
+  "beats": [
+    {
+      "id": "arrival-at-hollow-furrow",
+      "kind": "threshold",
+      "title": "Arrival at Hollow Furrow",
+      "prose": "The road drops out of the pine hills into a bowl of gold. Barley to the horizon, every stalk the same height, every field the same size, hedged in stone walls whose lichen has not yet decided which way to grow. A signpost reads HOLLOW FURROW — 1 MILE, and beneath it, in fresher paint, POP. 214. Somebody has painted that number over another number, and over another, and the layers are all the same thickness. The air smells of cut grain and, faintly, of wet slate breathing.",
+      "readAloud": "Nothing here is old. Not the walls, not the wagon ruts, not the crow that watches you from a post and does not fly away when you pass. Just below hearing, something enormous exhales in time with the wind through the barley.",
+      "art": "art-the-hollow-furrow-vale-gate",
+      "options": [
+        {
+          "id": "go-to-fair",
+          "label": "Follow the wagons down to the harvest fair on the green.",
+          "target": "the-harvest-fair",
+          "effects": []
+        },
+        {
+          "id": "go-to-graves",
+          "label": "Climb the ridge path to the burying ground overlooking the fields.",
+          "target": "the-empty-graveyard",
+          "effects": []
+        },
+        {
+          "id": "go-to-mill",
+          "label": "Trace the millrace upstream to the grain mill and its account books.",
+          "target": "the-mill-ledger",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-harvest-fair",
+      "kind": "social",
+      "title": "The Harvest Fair",
+      "prose": "Trestle tables, sheaf-dollies, a fiddler with new strings. Warden Selm Achree keeps order in a coat too large for him, and greets every single villager by name without hesitation — two hundred and fourteen names, offered like a rehearsed psalm. Mothers walk the smallest children home early, and nobody says why. When you ask about last year's fair, three separate people describe the same rainstorm, in the same words, and each thinks they are remembering it themselves.",
+      "readAloud": "\"Good harvest, this one,\" says the Warden. \"Same as the last. Same as the one before that.\" He laughs, and then stops laughing, and looks at the barley as though it had spoken.",
+      "art": "art-the-hollow-furrow-harvest-fair",
+      "options": [
+        {
+          "id": "press-the-warden",
+          "label": "Press Warden Achree for the vale's history before the rainstorm.",
+          "target": "the-listening-chapel",
+          "effects": [
+            {
+              "flag": "warden-ally",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "the-scarecrow-line"
+          }
+        },
+        {
+          "id": "ask-about-well",
+          "label": "Ask the fairgoers about the sealed well nobody draws water from.",
+          "target": "beneath-the-well",
+          "effects": []
+        },
+        {
+          "id": "slip-to-graves",
+          "label": "Slip away up the ridge to read the gravestones yourself.",
+          "target": "the-empty-graveyard",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-empty-graveyard",
+      "kind": "discovery",
+      "title": "The Ridge of Identical Dates",
+      "prose": "Sixty-one stones, weathered to precisely the same degree, arranged in furrows rather than rows. Every stone carries a different name and the same date of death: the ninth of Sheaf, nine years ago. The grass over each grave is the same length. A gravedigger's spade leans against the wall, edge bright, handle unworn, as if it has dug nothing and always been here.",
+      "art": "art-the-hollow-furrow-ridge-graves",
+      "options": [
+        {
+          "id": "copy-the-dates",
+          "label": "Copy every inscription and reckon the arithmetic of it.",
+          "target": "the-mill-ledger",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 12,
+            "onFailure": "the-scarecrow-line"
+          }
+        },
+        {
+          "id": "open-a-grave",
+          "label": "Take the bright spade and open the nearest grave.",
+          "target": "the-scarecrow-line",
+          "effects": []
+        },
+        {
+          "id": "seek-the-deaconess",
+          "label": "Take your questions down to the chapel that keeps the vale's records.",
+          "target": "the-listening-chapel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-mill-ledger",
+      "kind": "puzzle",
+      "title": "The Miller's Repeating Ledger",
+      "prose": "Miller Habb Orrow keeps beautiful books. Nine years of grain weights, all in the same hand, all in the same ink — and if you set the pages side by side, every year is the same seven days of entries copied forward, fifty-two times over, with the weekdays quietly relabelled. Habb has never noticed. When you point at two identical columns, his eyes slide off them like water off oiled canvas, and he cheerfully offers you cider.",
+      "readAloud": "\"That's my hand, sure enough,\" says Habb, tapping an entry dated four years hence. \"Don't know why I'd write it yet. Suppose I will.\"",
+      "art": "art-the-hollow-furrow-mill-ledger",
+      "options": [
+        {
+          "id": "read-aloud-ledger",
+          "label": "Read the repeating columns aloud until Habb hears what he has written.",
+          "target": "the-man-who-was-two",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "pocket-the-page",
+          "label": "Tear out one page, pocket it, and say nothing to anyone.",
+          "target": "beneath-the-well",
+          "effects": [
+            {
+              "flag": "knows-truth",
+              "value": true
+            },
+            {
+              "flag": "kept-silence",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "burn-the-ledger",
+          "label": "Put the ledger in the mill's furnace and let the vale keep its comfort.",
+          "target": "the-scarecrow-line",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-scarecrow-line",
+      "kind": "conflict",
+      "title": "The Scarecrow Line",
+      "prose": "The barley moves against the wind. Along the boundary between two fields stand the vale's scarecrows — straw bodies bound over old harrow-blades and rusted breastplates, faces of sacking with the seams stitched inward. One by one they step down off their poles, not hurrying, spreading to herd you back toward the road. Far off across the field, a stile in the wall marks the only gap in the hedgerow.",
+      "readAloud": "They do not scream. They rustle, the way a full field rustles, and the rustle has words in it that you decline to understand.",
+      "art": "art-the-hollow-furrow-scarecrow-line",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "scarecrow-line",
+      "terminal": false
+    },
+    {
+      "id": "beneath-the-well",
+      "kind": "transit",
+      "title": "The Well Nobody Draws From",
+      "prose": "It stands in a barley field with a wide bare ring around it where nothing will grow. The wellhead is capped with an iron collar cast in one seamless piece — no hinge, no seam, no maker's mark — and warm to the touch on a cold morning. Drop a stone and you hear it strike, then strike again much later, then a third time as though something caught it and set it down.",
+      "art": "art-the-hollow-furrow-sealed-well",
+      "options": [
+        {
+          "id": "climb-the-shaft",
+          "label": "Squeeze past the collar and climb down the shaft's old handholds.",
+          "target": "the-fallow-stair",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "the-fallow-stair"
+          }
+        },
+        {
+          "id": "seek-deaconess-first",
+          "label": "Go up to the chapel first and ask what the collar was made to hold shut.",
+          "target": "the-listening-chapel",
+          "effects": []
+        },
+        {
+          "id": "use-chime-seed-here",
+          "label": "Sound the chime-seed against the iron collar and let it open properly.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-vault-key",
+            "value": true
+          },
+          "target": "the-seedvault-door",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-listening-chapel",
+      "kind": "social",
+      "title": "The Listening Chapel",
+      "prose": "A low chapel of dry stone, no god named on its lintel, only a carved furrow. Deaconess Ivry Pell holds the noon listening: the congregation kneels with ears to the flagstones for a hundred heartbeats, then rises and speaks of the weather. Ivry alone looks tired in a way nobody in this vale should be able to look. In her reliquary sits a chime-seed — a barley grain of grey metal the size of a fist, humming a note you feel in your teeth.",
+      "readAloud": "\"I have kept the parish rolls nine years,\" Ivry says quietly. \"I have never buried anyone I did not first see written down. Please do not ask me who wrote them.\"",
+      "art": "art-the-hollow-furrow-listening-chapel",
+      "options": [
+        {
+          "id": "ask-ivry-for-seed",
+          "label": "Tell Ivry what you have worked out and ask her for the chime-seed.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-truth",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "warden-ally",
+                "value": true
+              }
+            ]
+          },
+          "target": "beneath-the-well",
+          "effects": [
+            {
+              "flag": "has-vault-key",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "attend-the-listening",
+          "label": "Kneel with the congregation and listen to the flagstones for a hundred heartbeats.",
+          "target": "the-man-who-was-two",
+          "effects": []
+        },
+        {
+          "id": "rob-the-reliquary",
+          "label": "Take the chime-seed from the reliquary while the parish has its ears to the floor.",
+          "target": "the-seedvault-door",
+          "effects": [
+            {
+              "flag": "has-vault-key",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 14,
+            "onFailure": "the-scarecrow-line"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-man-who-was-two",
+      "kind": "discovery",
+      "title": "The Man Who Was Two",
+      "prose": "In the lane behind the smithy, two men in the same patched coat stand looking at one another. Both are Yarrin Deld, cottager, thirty-one years old, with the same scar on the same thumb. Both remember getting it on the same morning. Neither is angry; both are politely, horribly embarrassed, like guests who have arrived on the wrong day. Neighbours pass and greet exactly one of them, choosing differently each time.",
+      "readAloud": "\"There's been a mistake in the sowing,\" one Yarrin says, and both nod, and neither knows what they meant by it.",
+      "art": "art-the-hollow-furrow-two-farmers",
+      "options": [
+        {
+          "id": "question-both-yarrins",
+          "label": "Question both Yarrins about the rainstorm and the ninth of Sheaf.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "the-seedvault-door",
+          "effects": []
+        },
+        {
+          "id": "bring-them-to-ivry",
+          "label": "Walk them both up to the chapel and set them before Ivry Pell.",
+          "target": "the-listening-chapel",
+          "effects": []
+        },
+        {
+          "id": "follow-the-walking-one",
+          "label": "Follow whichever Yarrin turns and walks, unhurried, toward the sealed well.",
+          "target": "beneath-the-well",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-seedvault-door",
+      "kind": "puzzle",
+      "title": "The Seedvault Door",
+      "prose": "Below the water table the shaft widens into a chamber of grey unmortared stone that is not stone. The door is a disc six feet across, ringed with barley glyphs, and in its centre a mouth-shaped socket sized exactly for the chime-seed. Around the frame, words have been cut by someone in a hurry: WHAT IS PLANTED HERE MUST NOT BE TOLD ITS NAME. The disc is warm. When you speak, it repeats your last word back some minutes later, patiently, as if practising.",
+      "art": "art-the-hollow-furrow-seedvault-door",
+      "options": [
+        {
+          "id": "sound-the-seed",
+          "label": "Set the chime-seed in the socket and let the door open of its own accord.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-vault-key",
+            "value": true
+          },
+          "target": "the-dream-furrow",
+          "effects": []
+        },
+        {
+          "id": "force-the-disc",
+          "label": "Lever the disc with crowbar and piton, glyphs be damned.",
+          "target": "the-fallow-stair",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "the-fallow-stair"
+          }
+        },
+        {
+          "id": "answer-with-truth",
+          "label": "Answer the door aloud: nothing above is older than nine years, and everything above was grown.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-truth",
+            "value": true
+          },
+          "target": "the-dream-furrow",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-fallow-stair",
+      "kind": "hazard",
+      "title": "The Fallow Stair",
+      "prose": "A stair spirals down through soil that has never seen a plough, and the soil is full of shapes: outlines of people lying folded like seed in a husk, unfinished, waiting for a season. Your lantern throws four shadows where there should be one, and then the extra shadows stop matching your movements. Above, far up the shaft, daylight is a coin. The stair keeps going down, and down is the only direction that is not closing.",
+      "readAloud": "The cold does not come from the air. It comes off your own silhouette, which has turned to face you.",
+      "art": "art-the-hollow-furrow-fallow-stair",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "fallow-stair",
+      "terminal": false
+    },
+    {
+      "id": "the-dream-furrow",
+      "kind": "discovery",
+      "title": "The Dream Furrow",
+      "prose": "The vault is a field. Under a ceiling of root and pale light, furrows run away into dark, and in the furrows lie people — villagers, unfinished and finished, breathing in unison. A woman half-grown holds a spade she has not yet used. Sixty-one plots lie fallow with headstones already carved. And at the far end, the sower: a slow immensity of folded grey plates and quiet mouths, dreaming the vale into being one week at a time because a week is all it can hold. It does not know it is dreaming. It has never been told its name, and the name is Hollow Furrow. You are standing in its harvest, holding its arithmetic, and it has just noticed that something in the crop is thinking.",
+      "readAloud": "Two hundred and fourteen chests rise. Two hundred and fourteen chests fall. Yours does not match, and that is how it finds you.",
+      "art": "art-the-hollow-furrow-dream-furrow",
+      "options": [
+        {
+          "id": "speak-the-name",
+          "label": "Speak the vale's name back to the sower and make it know itself.",
+          "target": "the-quiet-yield",
+          "effects": []
+        },
+        {
+          "id": "withdraw-in-silence",
+          "label": "Burn the page, tell no one, and climb back to a valley that must never learn this.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "kept-silence",
+            "value": true
+          },
+          "target": "ending-the-valley-forgets",
+          "effects": []
+        },
+        {
+          "id": "call-down-the-warden",
+          "label": "Send for Warden Achree, so a man of the vale stands witness to what tends it.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-ally",
+            "value": true
+          },
+          "target": "the-quiet-yield",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-truth",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-quiet-yield",
+      "kind": "climax",
+      "title": "The Quiet Yield",
+      "prose": "The sower stirs, and its stirring sends up its keepers. From the first furrow rises the thing the vale calls its First Harvest — a husk grown nine years ago and never taken in, grey-lipped, wearing a warden's oversized coat that has waited a long time for its owner. Two lesser husks unfold from the seed-rows beside it, and the whole field begins to inhale in time with them. Unmake the First Harvest and the dream loses its hands; leave it standing and the vale is resown before dawn, with your faces in the furrows.",
+      "readAloud": "\"Good harvest,\" the husk says, in Selm Achree's voice, nine years before Selm Achree learned to speak.",
+      "art": "art-the-hollow-furrow-quiet-yield",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "quiet-yield",
+      "terminal": false
+    },
+    {
+      "id": "ending-sealed-again",
+      "kind": "ending",
+      "title": "Ending: The Collar Recast",
+      "prose": "The First Harvest comes apart into loose straw and old iron, and the sower's furrows go still — not dead, only fallow, dreaming shallower. You climb out at dawn with the chime-seed spent to slag and jam the iron collar shut with the gravedigger's bright spade. Above, the fair is being taken down; the Warden greets two hundred and fourteen people by name, and one of them is Yarrin Deld, and only one. The barley will come in the same as last year. It always does. You leave with a copied page you will never show anyone, and every rainstorm for the rest of your life will smell of wet slate.",
+      "readAloud": "The vale is safe because the vale is ignorant. You keep it that way. That is the whole of the mercy available.",
+      "art": "art-the-hollow-furrow-collar-recast",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-valley-forgets",
+      "kind": "ending",
+      "title": "Ending: The Valley Forgets, and You Do Not",
+      "prose": "You climb out of the well and let the collar cool behind you. The page burns easily. You tell Ivry Pell nothing; you tell the Warden less. By harvest's end the vale has folded over your visit like water over a stone — Habb does not remember selling you cider, the second Yarrin is simply gone and unmissed, and the children run home early without knowing why. Nine years from now the same rainstorm will be remembered in the same words by the same number of people. You alone carry the arithmetic out of the valley, and you will never again be able to look at a field of grain without counting.",
+      "art": "art-the-hollow-furrow-valley-forgets",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-yield-wakes",
+      "kind": "ending",
+      "title": "Ending: The Yield Wakes",
+      "prose": "The husks bear you down into the furrow, and the sower — told its name at last, made to know itself — begins to think properly for the first time in nine years. Above, the fair goes quiet mid-fiddle-note. Two hundred and fourteen people turn to face the sealed well in perfect time, and Ivry Pell leads the smallest ones over the ridge and away down the pine road while there is still a road. By spring, Hollow Furrow's walls are the same age they always were, its barley stands the same height, and its population sign has been repainted: POP. 218. Four of the names are yours, and they are being remembered by people who have never met you.",
+      "readAloud": "Good harvest, this one. Same as the last.",
+      "art": "art-the-hollow-furrow-yield-wakes",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "scarecrow-line",
+      "title": "Herded by the Scarecrows",
+      "combatants": [
+        {
+          "id": "harrow-scarecrows",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the line and get over the stile in the far hedgerow; the scarecrows will not cross a field boundary."
+      },
+      "onVictory": "beneath-the-well",
+      "onDefeat": "the-listening-chapel",
+      "onFlee": "the-harvest-fair"
+    },
+    {
+      "id": "fallow-stair",
+      "title": "Your Own Shadows on the Fallow Stair",
+      "combatants": [
+        {
+          "id": "unsown-shadows",
+          "statblock": "shadow",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "the-dream-furrow",
+      "onDefeat": "the-listening-chapel",
+      "onFlee": "beneath-the-well"
+    },
+    {
+      "id": "quiet-yield",
+      "title": "The First Harvest",
+      "combatants": [
+        {
+          "id": "first-harvest-husk",
+          "statblock": "ghast",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "seed-row-husks",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "dim-light",
+        "fog"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "first-harvest-husk"
+      },
+      "onVictory": "ending-sealed-again",
+      "onDefeat": "ending-the-yield-wakes",
+      "onFlee": "ending-the-valley-forgets"
+    }
+  ]
+}

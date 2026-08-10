@@ -1,0 +1,90 @@
+{
+  "adventure": "the-tidewrights-pin",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: urban-intrigue, heist.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-tidewrights-pin-tap-room-three-envelopes",
+      "beat": "crooked-lantern-tap",
+      "brief": "The Crooked Lantern Tap — Rain hammers the slates above the Crooked Lantern, and three sealed envelopes reach your table inside a single hour: wax the green of the Salt & Sail "
+    },
+    {
+      "slot": "art-the-tidewrights-pin-back-booth-three-buyers",
+      "beat": "three-buyers",
+      "brief": "Three Buyers, One Booth — They come to the back booth in shifts, none acknowledging the others' damp footprints. Factor Vessa Quill of the Salt & Sail Compact offers guild pape"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-gutter-line-crossing",
+      "beat": "rooftop-run",
+      "brief": "Gutter Lines Over Chandler's Row — Ambercleft is two cities: the ledger-city of counting halls at street level, and the rope-and-slate city above it, where cargo hooks swing between gab"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-chalk-market-tail-figure",
+      "beat": "chalk-market-tail",
+      "brief": "The Chalk Market Tail — Under the awnings, gossip is cheaper than salt. The pin is not in the Counting Hall vault as all three buyers believe — Under-Clerk Halbin Torrow wear"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-gulls-nest-rooftop-scuffle",
+      "beat": "gulls-nest-ambush",
+      "brief": "Scuffle at the Gulls' Nest — Chalk squeals on slate — three marks at once — and roost-bravos of the Cormorant Court come over the ridge tiles with weighted cords and short hooks. "
+    },
+    {
+      "slot": "art-the-tidewrights-pin-tide-gate-undercroft",
+      "beat": "undercroft-tide-gate",
+      "brief": "The Undercroft Tide Gate — Beneath the Custom House quarter runs the old undercroft, a brick throat that swallows the harbor twice a day. The iron tide gate stands half-shut and"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-wax-chandler-seal-forge",
+      "beat": "wax-and-whisper",
+      "brief": "Wax and Whisper — Mistress Ovine Plait's chandlery smells of tallow and secrets; she pours candles for the guilds and impressions for everyone else. On her bench sit tw"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-boarding-house-under-clerk",
+      "beat": "halbins-boarding-house",
+      "brief": "Torrow's Narrow Room — Halbin Torrow rents a third-floor room above a rope-walk: one bunk, one shelf of copied ledgers, one kettle. He is thirty years of careful handwriting"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-counting-hall-night-desks",
+      "beat": "counting-hall-floor",
+      "brief": "The Counting Hall by Night — Forty desks in rows, each with its shuttered lamp, each ledger chained to its own iron ring. At the north end a brass wicket guards the strongroom sta"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-strongroom-brass-wardens",
+      "beat": "strongroom-wardens",
+      "brief": "The Brass Wardens — The wicket bell rings once, thin and final, and the alcove suits come down off their pegs: two harnesses of green-black brass, moving with the patienc"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-excise-adjutant-lamplit-desk",
+      "beat": "sabbs-offer",
+      "brief": "Adjutant Sabb's Lamp — Excise men take you without ceremony to a room with one desk, one lamp, and Ondrei Sabb, who does not look up from his blotter. The Tithe-House does n"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-chain-house-winch-tower",
+      "beat": "chainhouse-climb",
+      "brief": "Climbing to the Chain-House — The chain-house squats on the harbor mole: a winch tower where a single stamped pin can drop the great chain and open Ambercleft to any hull that pays"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-chain-house-lantern-standoff",
+      "beat": "chain-house-standoff",
+      "brief": "Standoff in the Winch Loft — The loft is all wind and lamp-swing: the drum, the pawl, the chain going down into black water. Vail Tarn of the Cormorant Court comes up the roost-li"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-ending-quiet-ledger-dawn",
+      "beat": "ending-quiet-ledger",
+      "brief": "Ending: The Quiet Ledger — Dawn finds the chain still up, the loft swept, and Halbin Torrow signing a new watch-book in a hand that has stopped shaking. The pin goes back to its"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-ending-harbor-chain-falls",
+      "beat": "ending-chain-and-tide",
+      "brief": "Ending: Chain and Tide — The pawl goes over. The great chain runs out with a sound like a city clearing its throat, and by the turn of the tide there are eleven hulls in the r"
+    },
+    {
+      "slot": "art-the-tidewrights-pin-ending-pin-in-your-palm",
+      "beat": "ending-third-hand",
+      "brief": "Ending: The Third Hand — In the end the pin sits in a palm that no faction planned for: yours, or Sabb's, or whichever bidder shouted highest into the rain. Three powers who e"
+    }
+  ]
+}

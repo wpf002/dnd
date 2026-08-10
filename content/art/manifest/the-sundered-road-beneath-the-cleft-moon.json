@@ -1,0 +1,85 @@
+{
+  "adventure": "the-sundered-road-beneath-the-cleft-moon",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, cosmic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-crown-gate-vigil",
+      "beat": "crown-gate-of-salt",
+      "brief": "The Crown Gate of Salt — Vhaskar-Adun wears its walls like a diadem: nine spurs of white salt-brick, each topped with a lamp that never gutters. Tonight the lamps are turned o"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-bazaar-cracked-glass",
+      "beat": "bazaar-of-cracked-glass",
+      "brief": "The Bazaar of Cracked Glass — Below the Crown Gate the market runs on desert-glass: shards, lenses, mirrors sold by weight and by luck. Salt-Kin caravaneers squat under awnings and"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-orrery-vault-lenses",
+      "beat": "chancery-orrery-vault",
+      "brief": "The Orrery Vault — Under the Chancery, in a room chilled by evaporating brine, a brass orrery grinds through its slow argument with the sky. Vhaskar-Adun's moon is rende"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-sundered-road-dusk",
+      "beat": "the-sundered-road",
+      "brief": "Out Along the Sundered Road — The road is real for the first day: paved with fused sand, wide enough for six camels abreast, laid by a dynasty nobody can name. On the second day th"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-singing-dunes-mirror",
+      "beat": "singing-dunes",
+      "brief": "The Singing Dunes — A mirror-storm comes up out of a cloudless sky: not sand but glass, sheared into flakes thin as fish scales, rising in a wall four hundred feet high. "
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-vacant-caravan-column",
+      "beat": "caravan-of-vacant-eyes",
+      "brief": "The Ninefold Caravan, Returning — They come along the road in perfect marching order: drovers, water-bearers, two lens-grinders, walking the wrong way with the patience of a tide. The "
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-inverted-milestone-stone",
+      "beat": "the-inverted-milestone",
+      "brief": "The Inverted Milestones — Here the road's markers begin to count down instead of up, and the numerals face away from the city. Carved beneath each figure is a line of the same "
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-two-shadows-fork-art",
+      "beat": "two-shadows-fork",
+      "brief": "Where Two Shadows Part — The road forks, though the Chancery maps swear it does not. One branch descends into a tunnel of fused glass, roofed by the storm's leavings, cool and"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-well-nine-mouths",
+      "beat": "well-of-nine-mouths",
+      "brief": "The Well of Nine Mouths — It is not a well but a socket: a ring of nine stone mouths set into bedrock, each carved mid-word, arranged around a shaft that goes down past any lam"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-glasshouse-choir-art",
+      "beat": "choir-in-the-glasshouse",
+      "brief": "The Choir in the Glasshouse — The glasshouse is a caravanserai turned inside out: every wall a lens, every lens aimed at the dark half, and inside it the Choir of the Second Half r"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-cartographer-in-glass",
+      "beat": "the-returned-cartographer",
+      "brief": "Sefa Anwal, Cartographer — She is sitting at the base of the Well with her instruments laid out in order, and she has been sitting there, by her reckoning, for eleven years. Sef"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-cleft-vigil-art",
+      "beat": "vigil-at-the-cleft",
+      "brief": "Vigil at the Cleft — The pale half touches the notch. The Well inhales hard enough to pull grit up out of the shaft, and what comes up with it is the vigil's old relief: W"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-ending-sealed-road",
+      "beat": "ending-the-road-sealed",
+      "brief": "Ending: The Road Sealed, The Moon Held — The name goes into the ninth mouth and the desert answers by going quiet — truly quiet, no held breath, no grammar in the wind. Above, the Second Half"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-ending-longer-night",
+      "beat": "ending-the-longer-night",
+      "brief": "Ending: The Longer Night — The singing takes you in mid-argument, the way it took nineteen caravans, and the erg accepts one more column of walkers who face the wrong way with e"
+    },
+    {
+      "slot": "art-the-sundered-road-beneath-the-cleft-moon-ending-map-return",
+      "beat": "ending-the-cartographers-map",
+      "brief": "Ending: The Cartographer's Map — You walk out of the erg with rubbings, instruments, and Sefa Anwal's eleven years of measurements rolled in oilcloth — and without Sefa Anwal, who did"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "adventure": "the-hollow-run",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, heist.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-run-dockside-ultimatum",
+      "beat": "dockside-ultimatum",
+      "brief": "The Ledger Comes Due — The freighter Gray Larkspur sits low at her moorings, hull groaning under debts nobody can pay. A broker in a rain-slick coat wants an answer by sundo"
+    },
+    {
+      "slot": "art-the-hollow-run-broker-deal",
+      "beat": "broker-deal",
+      "brief": "Ink and Interest — Broker Vessic Calloway lays out the contract: the Run, or the ship is seized within the week. He seems to know more about the route than he admits."
+    },
+    {
+      "slot": "art-the-hollow-run-loan-shark-office",
+      "beat": "loan-shark-office",
+      "brief": "A Second Vulture — Financier Orsa Dreth is happy to buy the debt — for a price that trades one noose for another, and a whispered condition: she wants proof of what's re"
+    },
+    {
+      "slot": "art-the-hollow-run-harbor-tavern",
+      "beat": "harbor-tavern",
+      "brief": "The Survivor's Warning — Old Mirren lost her whole crew to the Hollow Run and came back alone, half-mad and muttering about a beacon that sings. She presses a hand-drawn map i"
+    },
+    {
+      "slot": "art-the-hollow-run-chart-room",
+      "beat": "chart-room",
+      "brief": "Plotting the Impossible Course — Charts spread across the galley table. Three ways into the Hollow Run present themselves: through the fog banks unseen, through Saltspire's watch with"
+    },
+    {
+      "slot": "art-the-hollow-run-fog-transit",
+      "beat": "fog-transit",
+      "brief": "Into the Grey — The fog swallows the horizon whole. Somewhere in it, something old is listening to the creak of your hull."
+    },
+    {
+      "slot": "art-the-hollow-run-saltspire-port",
+      "beat": "saltspire-port",
+      "brief": "The Watch at Saltspire — Saltspire's port-wardens are underpaid, overworked, and very interested in the weight of your coin purse."
+    },
+    {
+      "slot": "art-the-hollow-run-drowned-choir-ambush",
+      "beat": "drowned-choir-ambush",
+      "brief": "The Drowned Choir — The strait's namesake becomes horribly clear: shapes rise from the black water, still wearing the tatters of sailors who never made it through."
+    },
+    {
+      "slot": "art-the-hollow-run-signal-beacon",
+      "beat": "signal-beacon",
+      "brief": "The Singing Light — A cracked lighthouse rises from a reef that shouldn't exist on any chart, its lamp pulsing with a rhythm too regular to be natural."
+    },
+    {
+      "slot": "art-the-hollow-run-decode-beacon",
+      "beat": "decode-beacon",
+      "brief": "What the Light Is Saying — The beacon isn't a warning. It's a summons, coded in pulses of light — and it's calling ships toward something that wants them to arrive."
+    },
+    {
+      "slot": "art-the-hollow-run-confront-cult-decision",
+      "beat": "confront-cult-decision",
+      "brief": "The Ledgerless Congregation — The signal leads to a cult of ruined sailors who worship the thing beneath the Hollow Run, luring ships to feed it in exchange for calm passage for th"
+    },
+    {
+      "slot": "art-the-hollow-run-cult-ambush",
+      "beat": "cult-ambush",
+      "brief": "The Congregation Rises — Robed figures pour from the wreck-shrine, and their captain draws a blade that's more coral than steel."
+    },
+    {
+      "slot": "art-the-hollow-run-hollow-run-passage",
+      "beat": "hollow-run-passage",
+      "brief": "The Heart of the Run — Beyond the shrine, the true Hollow Run opens: a passage where the water itself seems to hold its breath, waiting to see if you're worth swallowing."
+    },
+    {
+      "slot": "art-the-hollow-run-ending-triumphant-return",
+      "beat": "ending-triumphant-return",
+      "brief": "Debt Paid in Salt — The Gray Larkspur breaks free of the Hollow Run into open water, hold full of recovered cargo and a story nobody will quite believe. The ledger is cle"
+    },
+    {
+      "slot": "art-the-hollow-run-ending-sacrifice-escape",
+      "beat": "ending-sacrifice-escape",
+      "brief": "What the Run Takes — You make it out — barely, and not with everything you brought in. The ship is battered, the cargo lost to the deep, but the crew is alive and breathin"
+    },
+    {
+      "slot": "art-the-hollow-run-ending-debt-consumed",
+      "beat": "ending-debt-consumed",
+      "brief": "Added to the Choir — The Hollow Run keeps its record perfect. The Gray Larkspur joins the wrecks below, her crew's names added to whatever ledger the deep keeps for those "
+    }
+  ]
+}

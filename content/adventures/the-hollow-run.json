@@ -1,0 +1,820 @@
+{
+  "id": "the-hollow-run",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hollow Run",
+    "premise": "A debt-ridden freighter crew is offered one desperate chance to clear their ledger: complete the Hollow Run, a smugglers' route through strange ports that has swallowed every ship that's tried it, and discover why — and whether there's still a reason to try again.",
+    "tone": [
+      "exploration",
+      "heist"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, weathered dockhand narrator with a fondness for gallows humor and salt-air similes.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No on-screen harm to children under any circumstance."
+    },
+    "provenance": "flint"
+  },
+  "entry": "dockside-ultimatum",
+  "beats": [
+    {
+      "id": "dockside-ultimatum",
+      "kind": "threshold",
+      "title": "The Ledger Comes Due",
+      "prose": "The freighter Gray Larkspur sits low at her moorings, hull groaning under debts nobody can pay. A broker in a rain-slick coat wants an answer by sundown: run the Hollow Run, or lose the ship.",
+      "readAloud": "Rain drums on the deck as the broker taps a folded contract against his palm. 'Every crew that's tried the Hollow Run vanished. But debts don't care about odds, Captain. Do we have a deal?'",
+      "art": "art-the-hollow-run-dockside-ultimatum",
+      "options": [
+        {
+          "id": "meet-the-broker",
+          "label": "Hear the broker's terms directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "broker-deal",
+          "effects": []
+        },
+        {
+          "id": "seek-a-rival-lender",
+          "label": "Look for a rival financier to buy out the debt instead",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "loan-shark-office",
+          "effects": []
+        },
+        {
+          "id": "find-a-survivor",
+          "label": "Track down the one person rumored to have come back from the Run",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "harbor-tavern",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "broker-deal",
+      "kind": "social",
+      "title": "Ink and Interest",
+      "prose": "Broker Vessic Calloway lays out the contract: the Run, or the ship is seized within the week. He seems to know more about the route than he admits.",
+      "art": "art-the-hollow-run-broker-deal",
+      "options": [
+        {
+          "id": "sign-terms",
+          "label": "Sign the contract and take the assignment",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "press-calloway",
+          "label": "Press Calloway on why he's so eager for this specific crew",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "demand-collateral",
+          "label": "Demand equipment and coin up front as collateral",
+          "target": "chart-room",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "loan-shark-office",
+      "kind": "social",
+      "title": "A Second Vulture",
+      "prose": "Financier Orsa Dreth is happy to buy the debt — for a price that trades one noose for another, and a whispered condition: she wants proof of what's really out on the Hollow Run.",
+      "art": "art-the-hollow-run-loan-shark-office",
+      "options": [
+        {
+          "id": "accept-dreths-terms",
+          "label": "Accept Dreth's buyout and her strange condition",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "negotiate-dreth",
+          "label": "Try to negotiate better terms",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "walk-away-from-dreth",
+          "label": "Walk away and go back to Calloway's deal instead",
+          "target": "chart-room",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "harbor-tavern",
+      "kind": "discovery",
+      "title": "The Survivor's Warning",
+      "prose": "Old Mirren lost her whole crew to the Hollow Run and came back alone, half-mad and muttering about a beacon that sings. She presses a hand-drawn map into your hands before you even ask.",
+      "art": "art-the-hollow-run-harbor-tavern",
+      "options": [
+        {
+          "id": "ask-mirren-details",
+          "label": "Ask Mirren everything she remembers about the Run",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "buy-mirren-a-drink",
+          "label": "Buy her a drink and let her talk at her own pace",
+          "target": "chart-room",
+          "effects": []
+        },
+        {
+          "id": "take-the-map-and-go",
+          "label": "Take the map and leave before she says something you can't unhear",
+          "target": "chart-room",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "survivor-lead",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chart-room",
+      "kind": "decision",
+      "title": "Plotting the Impossible Course",
+      "prose": "Charts spread across the galley table. Three ways into the Hollow Run present themselves: through the fog banks unseen, through Saltspire's watch with the right bribe, or straight through the strait sailors call the Drowned Choir.",
+      "art": "art-the-hollow-run-chart-room",
+      "options": [
+        {
+          "id": "plan-stealth-fog",
+          "label": "Slip through the fog banks unseen",
+          "target": "fog-transit",
+          "effects": []
+        },
+        {
+          "id": "plan-bribe-wardens",
+          "label": "Bribe the Saltspire port-wardens for safe passage",
+          "target": "saltspire-port",
+          "effects": []
+        },
+        {
+          "id": "plan-brave-strait",
+          "label": "Sail straight through the Drowned Choir strait",
+          "target": "drowned-choir-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "fog-transit",
+      "kind": "transit",
+      "title": "Into the Grey",
+      "prose": "The fog swallows the horizon whole. Somewhere in it, something old is listening to the creak of your hull.",
+      "art": "art-the-hollow-run-fog-transit",
+      "options": [
+        {
+          "id": "navigate-by-stars",
+          "label": "Navigate by dead reckoning and gut instinct",
+          "target": "signal-beacon",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Survival",
+            "dc": 13,
+            "onFailure": "drowned-choir-ambush"
+          }
+        },
+        {
+          "id": "follow-survivor-map",
+          "label": "Follow Old Mirren's hand-drawn map",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "survivor-lead",
+            "value": true
+          },
+          "target": "signal-beacon",
+          "effects": []
+        },
+        {
+          "id": "push-through-recklessly",
+          "label": "Push through at full speed and hope",
+          "target": "signal-beacon",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Acrobatics",
+            "dc": 12,
+            "onFailure": "drowned-choir-ambush"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "saltspire-port",
+      "kind": "social",
+      "title": "The Watch at Saltspire",
+      "prose": "Saltspire's port-wardens are underpaid, overworked, and very interested in the weight of your coin purse.",
+      "art": "art-the-hollow-run-saltspire-port",
+      "options": [
+        {
+          "id": "pay-bribe",
+          "label": "Pay the bribe outright",
+          "target": "signal-beacon",
+          "effects": [
+            {
+              "flag": "warden-bribed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "negotiate-favor",
+          "label": "Trade a favor instead of coin",
+          "target": "signal-beacon",
+          "effects": [
+            {
+              "flag": "warden-bribed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-and-sneak",
+          "label": "Refuse to pay and try to slip past unseen",
+          "target": "drowned-choir-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-choir-ambush",
+      "kind": "conflict",
+      "title": "The Drowned Choir",
+      "prose": "The strait's namesake becomes horribly clear: shapes rise from the black water, still wearing the tatters of sailors who never made it through.",
+      "art": "art-the-hollow-run-drowned-choir-ambush",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "drowned-choir-encounter",
+      "terminal": false
+    },
+    {
+      "id": "signal-beacon",
+      "kind": "discovery",
+      "title": "The Singing Light",
+      "prose": "A cracked lighthouse rises from a reef that shouldn't exist on any chart, its lamp pulsing with a rhythm too regular to be natural.",
+      "art": "art-the-hollow-run-signal-beacon",
+      "options": [
+        {
+          "id": "examine-beacon-mechanism",
+          "label": "Examine the beacon's inner workings",
+          "target": "decode-beacon",
+          "effects": []
+        },
+        {
+          "id": "listen-for-transmission",
+          "label": "Listen closely to the pulsing signal",
+          "target": "decode-beacon",
+          "effects": []
+        },
+        {
+          "id": "search-wreckage-nearby",
+          "label": "Search the wreckage scattered around the reef",
+          "target": "decode-beacon",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "decode-beacon",
+      "kind": "puzzle",
+      "title": "What the Light Is Saying",
+      "prose": "The beacon isn't a warning. It's a summons, coded in pulses of light — and it's calling ships toward something that wants them to arrive.",
+      "art": "art-the-hollow-run-decode-beacon",
+      "options": [
+        {
+          "id": "use-survivor-map",
+          "label": "Cross-reference the pattern against Old Mirren's map",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "survivor-lead",
+            "value": true
+          },
+          "target": "confront-cult-decision",
+          "effects": [
+            {
+              "flag": "beacon-decoded",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "attempt-cipher-solo",
+          "label": "Work out the cipher yourselves",
+          "target": "confront-cult-decision",
+          "effects": [
+            {
+              "flag": "beacon-decoded",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 15,
+            "onFailure": "cult-ambush"
+          }
+        },
+        {
+          "id": "rally-crew-effort",
+          "label": "Rally the whole crew to puzzle it out together",
+          "target": "confront-cult-decision",
+          "effects": [
+            {
+              "flag": "beacon-decoded",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-cult-decision",
+      "kind": "decision",
+      "title": "The Ledgerless Congregation",
+      "prose": "The signal leads to a cult of ruined sailors who worship the thing beneath the Hollow Run, luring ships to feed it in exchange for calm passage for themselves. They know you're coming.",
+      "art": "art-the-hollow-run-confront-cult-decision",
+      "options": [
+        {
+          "id": "negotiate-with-cult",
+          "label": "Try to negotiate a truce with the congregation",
+          "target": "hollow-run-passage",
+          "effects": [
+            {
+              "flag": "cult-negotiated",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "sneak-heist-cargo",
+          "label": "Sneak in and steal back what they've taken from other crews",
+          "target": "hollow-run-passage",
+          "effects": []
+        },
+        {
+          "id": "fight-cult-directly",
+          "label": "Fight your way through them",
+          "target": "cult-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "eq",
+        "flag": "beacon-decoded",
+        "value": true
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cult-ambush",
+      "kind": "conflict",
+      "title": "The Congregation Rises",
+      "prose": "Robed figures pour from the wreck-shrine, and their captain draws a blade that's more coral than steel.",
+      "art": "art-the-hollow-run-cult-ambush",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cult-ambush-encounter",
+      "terminal": false
+    },
+    {
+      "id": "hollow-run-passage",
+      "kind": "climax",
+      "title": "The Heart of the Run",
+      "prose": "Beyond the shrine, the true Hollow Run opens: a passage where the water itself seems to hold its breath, waiting to see if you're worth swallowing.",
+      "art": "art-the-hollow-run-hollow-run-passage",
+      "options": [
+        {
+          "id": "brave-storm-together",
+          "label": "Push through the heart of the Run together",
+          "target": "ending-triumphant-return",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "skill": "Endurance",
+            "dc": 14,
+            "onFailure": "ending-sacrifice-escape"
+          }
+        },
+        {
+          "id": "use-warden-safe-lane",
+          "label": "Use the safe lane the Saltspire wardens marked for you",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-bribed",
+            "value": true
+          },
+          "target": "ending-triumphant-return",
+          "effects": []
+        },
+        {
+          "id": "invoke-cult-truce",
+          "label": "Invoke the truce the congregation swore to honor",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "cult-negotiated",
+            "value": true
+          },
+          "target": "ending-triumphant-return",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-triumphant-return",
+      "kind": "ending",
+      "title": "Debt Paid in Salt",
+      "prose": "The Gray Larkspur breaks free of the Hollow Run into open water, hold full of recovered cargo and a story nobody will quite believe. The ledger is cleared, and for the first time in years, the crew sails without owing anyone a thing.",
+      "art": "art-the-hollow-run-ending-triumphant-return",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sacrifice-escape",
+      "kind": "ending",
+      "title": "What the Run Takes",
+      "prose": "You make it out — barely, and not with everything you brought in. The ship is battered, the cargo lost to the deep, but the crew is alive and breathing free air. The debt remains, but so do you, and that's a start.",
+      "art": "art-the-hollow-run-ending-sacrifice-escape",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-debt-consumed",
+      "kind": "ending",
+      "title": "Added to the Choir",
+      "prose": "The Hollow Run keeps its record perfect. The Gray Larkspur joins the wrecks below, her crew's names added to whatever ledger the deep keeps for those who tried and failed.",
+      "art": "art-the-hollow-run-ending-debt-consumed",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "dockside-ultimatum",
+      "to": "broker-deal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "dockside-ultimatum",
+      "to": "loan-shark-office",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "dockside-ultimatum",
+      "to": "harbor-tavern",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "broker-deal",
+      "to": "chart-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loan-shark-office",
+      "to": "chart-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "harbor-tavern",
+      "to": "chart-room",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chart-room",
+      "to": "fog-transit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chart-room",
+      "to": "saltspire-port",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chart-room",
+      "to": "drowned-choir-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "fog-transit",
+      "to": "signal-beacon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "fog-transit",
+      "to": "drowned-choir-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "navigation failure"
+    },
+    {
+      "from": "saltspire-port",
+      "to": "signal-beacon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "saltspire-port",
+      "to": "drowned-choir-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "sneak past wardens fails"
+    },
+    {
+      "from": "drowned-choir-ambush",
+      "to": "signal-beacon",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "drowned-choir-ambush",
+      "to": "ending-debt-consumed",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "drowned-choir-ambush",
+      "to": "chart-room",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "signal-beacon",
+      "to": "decode-beacon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decode-beacon",
+      "to": "confront-cult-decision",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "decode-beacon",
+      "to": "cult-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "cipher failure"
+    },
+    {
+      "from": "confront-cult-decision",
+      "to": "hollow-run-passage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-cult-decision",
+      "to": "cult-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "cult-ambush",
+      "to": "hollow-run-passage",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "ending-debt-consumed",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "cult-ambush",
+      "to": "confront-cult-decision",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "hollow-run-passage",
+      "to": "ending-triumphant-return",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-run-passage",
+      "to": "ending-sacrifice-escape",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "drowned-choir-encounter",
+      "title": "The Drowned Choir",
+      "combatants": [
+        {
+          "id": "sunken-skeletons",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "drowned-ghoul",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "fog",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "signal-beacon",
+      "onDefeat": "ending-debt-consumed",
+      "onFlee": "chart-room"
+    },
+    {
+      "id": "cult-ambush-encounter",
+      "title": "The Congregation Rises",
+      "combatants": [
+        {
+          "id": "cult-bandits",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "cult-leader",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Break through the congregation's line and reach the passage beyond the shrine."
+      },
+      "onVictory": "hollow-run-passage",
+      "onDefeat": "ending-debt-consumed",
+      "onFlee": "confront-cult-decision"
+    }
+  ]
+}

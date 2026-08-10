@@ -1,0 +1,636 @@
+{
+  "id": "winter-of-the-stone-king",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "Winter of the Stone King",
+    "premise": "Smoke rises from the steadings of the Hrafnmark as the ogre-lords of Hrimgard come down from the ice to take tribute in flesh and grain. Four wanderers must rally the frontier, court the barrow-dead, and climb to the giant-hold before the whole north is eaten by winter.",
+    "tone": [
+      "high-adventure",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "A weathered skald telling the tale over a peat fire — plain, muscular sentences, sharp cold detail, and second person when the choice comes to you.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of the steadings are always spoken of as already sheltered, sent ahead, or safely hidden; any threat to them stays off-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "ash-on-the-north-wind",
+  "beats": [
+    {
+      "id": "ash-on-the-north-wind",
+      "kind": "threshold",
+      "title": "Ash on the North Wind",
+      "prose": "The party crests the last ridge of the Hrafnmark trade-road at dusk. Below, the fjord lies black and unfrozen, but the wind carries grey flakes that are not snow. Three smoke-columns stand in the north like crooked pillars: an outfarm, a hay-barn, and something larger. In the churned road-mud are footprints the length of a shield, each pressed deep enough to hold a boot upright. Whatever walks here does not bother to hide.",
+      "readAloud": "Ash settles on your sleeves, warm for a heartbeat before it dies. Somewhere north a bell is being rung badly, by someone in a hurry.",
+      "art": "art-winter-of-the-stone-king-ash-ridge-dusk",
+      "options": [
+        {
+          "id": "opt-ride-to-steading",
+          "label": "Ride hard for Broken-Oar Steading, where the bell is ringing.",
+          "target": "steading-of-broken-oars",
+          "effects": []
+        },
+        {
+          "id": "opt-follow-smoke",
+          "label": "Ignore the bell and follow the giant-tracks north up the Wolf Road.",
+          "target": "wolf-road",
+          "effects": []
+        },
+        {
+          "id": "opt-seek-herder",
+          "label": "Cut across the high pasture toward a herder's fire on the slope.",
+          "target": "shepherds-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "steading-of-broken-oars",
+      "kind": "social",
+      "title": "Broken-Oar Steading",
+      "prose": "Broken-Oar is a ring of turf longhouses behind a palisade of ship-timbers, half of them scorched. The gate-thanes let you in past wagons already loaded for flight; the young and the old have been sent south by boat since the first raid, and the steading has the hollow feel of a house with its heart moved out. Jarl Skuld Ironbraid meets you in the yard with a bandaged arm and a tally-stick of names she will not read aloud. The ogres of Hrimgard came at the dark of the moon and demanded a tribute of grain, iron, and thralls, to be delivered at the ice-gate before the first hard freeze. Ash-Wolf raiders — human, opportunist, worse in some ways — collect it on their behalf.",
+      "readAloud": "\"You have swords and no fields to lose,\" Skuld says. \"That makes you either luck or another kind of raid. Which?\"",
+      "art": "art-winter-of-the-stone-king-broken-oar-yard",
+      "options": [
+        {
+          "id": "opt-attend-council",
+          "label": "Speak in the longhouse council tonight.",
+          "target": "the-longhouse-council",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-barrow",
+          "label": "Ask about the old barrow under the steading's cairn-field.",
+          "target": "barrow-of-the-first-jarl",
+          "effects": []
+        },
+        {
+          "id": "opt-leave-north",
+          "label": "Take supplies and go north at once by the Wolf Road.",
+          "target": "wolf-road",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-longhouse-council",
+      "kind": "decision",
+      "title": "The Longhouse Council",
+      "prose": "Sixty voices under a smoke-blackened roof. Half the freeholders want to pay the tribute and survive the winter; half want to burn the tribute-barn and die with dry eyes. Skuld's cousin Havar argues that a muster of ninety spears could hold the fjord mouth but never the ice-stair. An old net-mender named Brynn says only one thing, twice: that Hallvard Cairn-Maker, the first jarl, swore an oath against the giant-holds and was buried with the iron that carried it.",
+      "readAloud": "The fire pops. Every face turns to you, because strangers can say what neighbours cannot.",
+      "art": "art-winter-of-the-stone-king-longhouse-council-fire",
+      "options": [
+        {
+          "id": "opt-swear-muster",
+          "label": "Swear the muster-oath: the steading fights, and you lead the vanguard.",
+          "target": "wolf-road",
+          "effects": [
+            {
+              "flag": "council-rallied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-go-quiet",
+          "label": "Advise them to load the boats and hide; you will go north alone.",
+          "target": "wolf-road",
+          "effects": [
+            {
+              "flag": "council-rallied",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "opt-follow-brynn",
+          "label": "Follow Brynn out to the cairn-field and hear about Hallvard's oath.",
+          "target": "barrow-of-the-first-jarl",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wolf-road",
+      "kind": "transit",
+      "title": "The Wolf Road",
+      "prose": "The Wolf Road is not a road but a chain of frozen tarns and wind-scoured saddles running north between black scree slopes. Cairns mark it every bowshot; three in a row have been kicked flat by something that stepped over them. Frost rimes your eyelashes by mid-morning. Ahead the road forks: the old marked way past a great toppled cairn, a rib of ridge leading to a squat watchtower, and a switchback goat-track climbing to the summer pastures.",
+      "readAloud": "The wind stops all at once, the way it does when something upwind is listening.",
+      "art": "art-winter-of-the-stone-king-wolf-road-cairns",
+      "options": [
+        {
+          "id": "opt-past-cairn",
+          "label": "Press on past the toppled cairn — the fastest line north.",
+          "target": "cairn-wolves-beat",
+          "effects": []
+        },
+        {
+          "id": "opt-to-watchtower",
+          "label": "Take the ridge-rib to the frozen watchtower.",
+          "target": "frozen-watchtower",
+          "effects": []
+        },
+        {
+          "id": "opt-to-pasture",
+          "label": "Climb the goat-track toward the pasture fires.",
+          "target": "shepherds-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cairn-wolves-beat",
+      "kind": "conflict",
+      "title": "The Toppled Cairn",
+      "prose": "The cairn's stones lie scattered over a frozen tarn, and the ice between them is scored with claw-marks and old blood. The pack has been fed on raid-leavings all autumn; it is bold, big, and it lets you come well onto the ice before it shows itself. There is no winning ground here — only the far shore, two hundred feet of groaning ice away, and the shelter of the boulder-throat beyond it.",
+      "art": "art-winter-of-the-stone-king-toppled-cairn-ice",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cairn-wolves",
+      "terminal": false
+    },
+    {
+      "id": "frozen-watchtower",
+      "kind": "discovery",
+      "title": "The Frozen Watchtower",
+      "prose": "The tower is old frontier work, two storeys of drystone with an ice-plugged well and a beacon-basket long since robbed of its oil. Ash-Wolf raiders have been using it as a way-station: tally-marks on the lintel, a cache of stolen seed-grain, and a hide map weighted with knucklebones. The map shows the tribute route — a camp in the birch hollow below, then the ice-stair to Hrimgard's gate — and, drawn in a shakier hand, a second way up: a chimney of black rock the herders call the Smoke-Hole.",
+      "readAloud": "From the tower top you can see it: the giant-hold, a shelf of ice and stonework hung on the mountain's shoulder, with cook-fires the size of houses.",
+      "art": "art-winter-of-the-stone-king-frozen-watchtower-map",
+      "options": [
+        {
+          "id": "opt-hit-camp",
+          "label": "Descend on the raider camp in the birch hollow.",
+          "target": "raider-camp-beat",
+          "effects": []
+        },
+        {
+          "id": "opt-take-icestair",
+          "label": "Strike straight for the ice-stair and begin the climb.",
+          "target": "climb-to-hrimgard",
+          "effects": []
+        },
+        {
+          "id": "opt-detour-barrow",
+          "label": "Turn back south to the cairn-field barrow named on the map.",
+          "target": "barrow-of-the-first-jarl",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "raider-camp-beat",
+      "kind": "conflict",
+      "title": "The Ash-Wolf Camp",
+      "prose": "Six hide tents in a birch hollow, a tribute-sled heaped with sacks, and a picket line where four bound thralls from the outfarms sit roped wrist-to-wrist in the snow. Kethra Nine-Nails runs this camp with a horn on her belt and a habit of cutting her losses — meaning the rope, and the people on it, if the fight turns. Get the captives loose and out of the hollow and the camp is broken, whatever else happens.",
+      "art": "art-winter-of-the-stone-king-birch-hollow-camp",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "raiders-broken",
+          "value": true
+        }
+      ],
+      "encounter": "raider-camp",
+      "terminal": false
+    },
+    {
+      "id": "shepherds-warning",
+      "kind": "social",
+      "title": "Aslief Goat-Sister",
+      "prose": "The pasture fire belongs to Aslief Goat-Sister, who has summered under Hrimgard's shadow for thirty years and speaks of the ogre-lords the way other folk speak of weather. She feeds you curds and blood-sausage and tells you what the steadings will not: the Stone King, Vorgul Thighbone, is not gathering tribute for winter. He is gathering it to move — to bring his whole hold down off the ice and take the fjord for good, because something further north has driven his kin out of the high holds. Ignore him and there will be no Hrafnmark by spring.",
+      "readAloud": "\"You can go home,\" Aslief says, scraping her pot. \"There'll be a home to go to for maybe a year. I'd not call that a choice, but people make it.\"",
+      "art": "art-winter-of-the-stone-king-pasture-fire-aslief",
+      "options": [
+        {
+          "id": "opt-ask-old-oath",
+          "label": "Ask what the first jarl's oath was, and where he lies.",
+          "target": "barrow-of-the-first-jarl",
+          "effects": []
+        },
+        {
+          "id": "opt-icestair-with-aslief",
+          "label": "Have Aslief point out the ice-stair and start climbing.",
+          "target": "climb-to-hrimgard",
+          "effects": []
+        },
+        {
+          "id": "opt-goat-path",
+          "label": "Ask her to guide you by the freed thralls' goat-path, straight to the ice-gate.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "raiders-broken",
+            "value": true
+          },
+          "target": "gate-of-the-giant-hold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barrow-of-the-first-jarl",
+      "kind": "puzzle",
+      "title": "Barrow of Hallvard Cairn-Maker",
+      "prose": "The barrow is a green hump in a field of leaning stones, its door-slab carved with a giant's hand pinned by an iron nail. Inside, cold and dry, Hallvard sits upright in his boat-grave with his shield rotted to a ring of nails and his oath-iron across his knees: a broad grey blade, unrusted, its fuller cut with the naming-rite of every giant-hold he ever burned. The wall-carvings tell the rest — how the holds were bound by weregild, not slaughter, and how a blade offered back to a giant-king is a debt spoken in the only tongue they honour.",
+      "readAloud": "The barrow air tastes of iron filings. Behind you, quite politely, the door-slab grinds an inch closer to shut.",
+      "art": "art-winter-of-the-stone-king-barrow-oath-iron",
+      "options": [
+        {
+          "id": "opt-take-blade",
+          "label": "Lift the oath-iron from the dead jarl's knees.",
+          "target": "barrow-guardian-beat",
+          "effects": [
+            {
+              "flag": "barrow-blade",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-copy-carvings",
+          "label": "Leave the grave-goods; copy the weregild carvings by lamplight.",
+          "target": "climb-to-hrimgard",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "History",
+            "dc": 13,
+            "onFailure": "barrow-guardian-beat"
+          }
+        },
+        {
+          "id": "opt-leave-barrow",
+          "label": "Reseal the door and go back to the high pasture.",
+          "target": "shepherds-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barrow-guardian-beat",
+      "kind": "conflict",
+      "title": "The Oath Still Stands",
+      "prose": "Hallvard stands. He does not roar; he simply rises, and the nails of his rotted shield lift with him, and the cairn-thralls buried at his feet come up out of the floor like men wading from a river. He has held this oath for two hundred winters and he will test any hand that reaches for it. Hold the barrow mouth until the dawn-light crawls down the entry passage and touches the boat-grave — then the dead will judge you worthy and lie down again.",
+      "art": "art-winter-of-the-stone-king-barrow-wight-rising",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "barrow-guardian",
+      "terminal": false
+    },
+    {
+      "id": "climb-to-hrimgard",
+      "kind": "hazard",
+      "title": "The Ice-Stair",
+      "prose": "The ice-stair is a giant's staircase: two hundred treads, each as high as your chest, cut into a frozen waterfall and slick with meltwater that refreezes as you climb. Wind comes down it in slabs. Halfway up, a fissure opens west into the Smoke-Hole — a black volcanic chimney that stinks of sulphur and vents warm air, said to come out inside the hold itself. Below you, the whole Hrafnmark lies out like a map: fjord, steadings, and the long road home.",
+      "readAloud": "Your rope goes stiff as bone. Somewhere above, something enormous laughs, and ice sifts down onto your shoulders.",
+      "art": "art-winter-of-the-stone-king-ice-stair-climb",
+      "options": [
+        {
+          "id": "opt-climb-stair",
+          "label": "Take the open stair, wind and all, to the ice-gate.",
+          "target": "gate-of-the-giant-hold",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "shepherds-warning"
+          }
+        },
+        {
+          "id": "opt-smoke-hole",
+          "label": "Squeeze into the Smoke-Hole and follow the warm air up.",
+          "target": "gate-of-the-giant-hold",
+          "effects": []
+        },
+        {
+          "id": "opt-turn-back",
+          "label": "Turn back. This is not your frontier, and the rope is not long enough.",
+          "target": "ending-long-winter",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gate-of-the-giant-hold",
+      "kind": "decision",
+      "title": "The Ice-Gate of Hrimgard",
+      "prose": "Hrimgard's gate is a slab of blue ice framed in whalebone and set in a wall of drystone blocks the size of byres. A door-thane leans on a shaft of sharpened larch and watches you come with the bored patience of something that has never once had to run. Beyond the gate the hold is all motion: sledges being loaded, hide tents struck, a whole people packing to come down the mountain. Vorgul Thighbone means to leave by the next dark moon, and everything you do in the next hour decides whether he leaves as a neighbour, a conqueror, or not at all.",
+      "readAloud": "The door-thane's voice comes down like gravel poured off a roof. \"Small ones. Say the thing you came to say, and say it once.\"",
+      "art": "art-winter-of-the-stone-king-ice-gate-whalebone",
+      "options": [
+        {
+          "id": "opt-weregild-oath",
+          "label": "Set Hallvard's oath-iron in the snow and speak the weregild.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "barrow-blade",
+            "value": true
+          },
+          "target": "ending-oath-of-stone",
+          "effects": []
+        },
+        {
+          "id": "opt-force-gate",
+          "label": "Break the gate and fight your way to the Stone King's seat.",
+          "target": "hall-of-the-stone-king",
+          "effects": []
+        },
+        {
+          "id": "opt-muster-signal",
+          "label": "Raise the muster-horn signal and go over the wall while the spears hit the gate.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "council-rallied",
+            "value": true
+          },
+          "target": "hall-of-the-stone-king",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hall-of-the-stone-king",
+      "kind": "climax",
+      "title": "The Hall of the Stone King",
+      "prose": "Vorgul Thighbone's hall is a cave roofed with the ribs of some drowned leviathan, floored in trampled snow, hung with the shields of forty steadings. He sits on a seat of stacked millstones with a thigh-bone club across his lap, flanked by his thane-guard and the pale hall-hound that eats what he leaves. He does not rise for you. Bring him down and the migration comes apart before it ever reaches the fjord; leave him standing and nothing else in this hall matters.",
+      "readAloud": "\"So the little south sends four,\" Vorgul says, and the roof-bones hum with it. \"Good. Four I can carry out myself.\"",
+      "art": "art-winter-of-the-stone-king-stone-king-hall",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ogre-court",
+      "terminal": false
+    },
+    {
+      "id": "ending-frontier-held",
+      "kind": "ending",
+      "title": "The Frontier Holds",
+      "prose": "Vorgul Thighbone falls across his own millstone seat and the hall empties around him — thanes first, then families, then the sledges, streaming north up the ice to whatever drove them south in the first place. It takes the Hrafnmark eleven days to believe it. Skuld Ironbraid has the shields taken down from the rib-roof and returned steading by steading, and the tally-stick she would not read aloud is burned in the longhouse fire with the names spoken properly at last. The outfarms are rebuilt by thaw. Aslief Goat-Sister brings her herd up to the old pasture and finds the ice-stair empty, the gate open, the hold silent — and, cut fresh above the whalebone lintel, four small marks that are not giant-work. Somewhere further north, something is still pushing the holds off the ice. That is next winter's tale. This winter, the frontier holds.",
+      "art": "art-winter-of-the-stone-king-ending-frontier-held-thaw",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-long-winter",
+      "kind": "ending",
+      "title": "The Long Winter",
+      "prose": "You go south, and the going is easy, and that is the worst of it. The Hrafnmark pays: grain, iron, and hands to carry them. Broken-Oar's palisade comes down in the spring to make sledge-runners for the descent, and by midsummer the fjord mouth is a giant-hold anchorage with a ring of turf houses left standing to farm for it. Skuld Ironbraid is not killed; she is simply no longer asked. The boats that went south in autumn do not come back, and their people learn a new coast and a new name for home. Years later a skald in a warm hall asks you about the smoke-columns you saw from that ridge, and you find you can describe the ash exactly — how it was warm for a heartbeat before it died — and nothing else at all. Ignoring a thing that size was never not a choice. It was only ever a cheap one.",
+      "art": "art-winter-of-the-stone-king-ending-long-winter-fjord",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-oath-of-stone",
+      "kind": "ending",
+      "title": "Oath of Stone",
+      "prose": "You lay Hallvard's oath-iron in the snow with the naming-rite turned upward, and speak the weregild the barrow-walls taught you: a debt owed, a debt returned, hold to hold. Vorgul Thighbone comes out of his hall to look at the blade that burned three of his grandmothers' holds, and stands over it a long time. Then he sets his thigh-bone club beside it and names his own price — winter pasture on the seaward slopes, the fishing of the outer skerries, and the road south left open, because what is coming down out of the high ice will not be bargained with. The Hrafnmark spends a hard, loud, litigious spring learning to share a fjord with ogres. Nobody is happy. The steadings stand, the sledges pass under truce-poles, and when the first frost-blackened thing does come down the Wolf Road in autumn, the horns that answer it are giant and human both.",
+      "art": "art-winter-of-the-stone-king-ending-oath-of-stone-truce",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "cairn-wolves",
+      "title": "Pack at the Toppled Cairn",
+      "combatants": [
+        {
+          "id": "pack-leader",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "hunting-wolves",
+          "statblock": "wolf",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "ice",
+        "open",
+        "unstable",
+        "wind"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Get every party member across the tarn ice to the boulder-throat on the far shore; the pack will not follow into the stones."
+      },
+      "onVictory": "frozen-watchtower",
+      "onDefeat": "shepherds-warning",
+      "onFlee": "wolf-road"
+    },
+    {
+      "id": "raider-camp",
+      "title": "Kethra Nine-Nails and the Tribute-Sled",
+      "combatants": [
+        {
+          "id": "kethra-nine-nails",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ash-wolf-raiders",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "bound-thralls",
+          "statblock": "bandit",
+          "count": 2,
+          "hpOverride": 6,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "difficult",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "bound-thralls"
+      },
+      "onVictory": "shepherds-warning",
+      "onDefeat": "wolf-road",
+      "onFlee": "frozen-watchtower"
+    },
+    {
+      "id": "barrow-guardian",
+      "title": "Hallvard's Judgement",
+      "combatants": [
+        {
+          "id": "hallvard-cairn-maker",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "cairn-thralls",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "climb-to-hrimgard",
+      "onDefeat": "shepherds-warning",
+      "onFlee": "wolf-road"
+    },
+    {
+      "id": "ogre-court",
+      "title": "Vorgul Thighbone's Court",
+      "combatants": [
+        {
+          "id": "stone-king",
+          "statblock": "ogre",
+          "count": 1,
+          "hpOverride": 78,
+          "hostile": true
+        },
+        {
+          "id": "thane-guard",
+          "statblock": "hobgoblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "hall-hound",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "cover-heavy",
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "stone-king"
+      },
+      "onVictory": "ending-frontier-held",
+      "onDefeat": "ending-long-winter",
+      "onFlee": "ending-long-winter"
+    }
+  ]
+}

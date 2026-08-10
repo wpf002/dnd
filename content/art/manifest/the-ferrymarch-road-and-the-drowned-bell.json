@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ferrymarch-road-and-the-drowned-bell",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-marl-ford-flooded-crossing",
+      "beat": "crossing-at-marl-ford",
+      "brief": "Crossing at Marl Ford — The Ferrymarch Road drops to Marl Ford in a slick of churned clay, and the Slate Vein runs a hand's width higher than any drover would call honest for"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-capsized-wagons-in-reeds",
+      "beat": "wreck-of-the-ox-train",
+      "brief": "Wreck of the Ox-Train — Two wagons lie on their sides in a foot of brown water, tarps slashed, strongboxes split like melons. But the split boxes are empty of nothing — the g"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-drover-propped-on-wheel-hub",
+      "beat": "survivor-in-the-reeds",
+      "brief": "Neb Ashgrove, Waist-Deep — Neb Ashgrove is a drover with a broken collarbone and a mouth full of reed-water, propped against a wheel hub because sitting down means drowning. He "
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-reed-blind-crossbow-ambush",
+      "beat": "reed-blind-ambush",
+      "brief": "The Reed Blind — The reeds open in four places at once and they are not reeds, they are woven blinds, and the men behind them have hemp cord knotted at both wrists. Th"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-chiselled-milestone-bell-mark",
+      "beat": "sunken-milestone",
+      "brief": "The Sunken Milestone — The road's fourth milestone leans half-drowned in the ditch, and someone has been at it with a chisel this week — the old league-mark scraped away, a "
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-tollhouse-counter-and-ledger",
+      "beat": "tollhouse-of-saint-verrow",
+      "brief": "The Tollhouse of Saint Verrow — Marda Verrow keeps the toll gate her great-grandmother kept, and she keeps it with a hand-cannon on the counter and a ledger she trusts more than scri"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-willow-flats-wagon-ruts",
+      "beat": "wheel-ruts-through-the-willows",
+      "brief": "Wheel-Ruts Through the Willows — Eleven wagons cut a road of their own through the willow flats, and you walk in it for two hours in the smell of crushed leaf and mule. The Concord si"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-caged-bronze-bell-on-wagon",
+      "beat": "the-baggage-train",
+      "brief": "Eleven Wagons and a Muzzled Thing — Up close the Concord is not an army; it is a household. Mule-boys, cooks, a cooper mending hoops, and every wrist knotted with the same hemp cord that"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-choirmaster-tea-on-bell-crate",
+      "beat": "parley-with-choirmaster-oleth",
+      "brief": "Parley With Choirmaster Oleth Sarn — Oleth Sarn is small, sunburnt, and pleasant, and he pours you tea from a kettle balanced on a bell-crate. He explains the Concord's arithmetic with th"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-clapper-sling-beneath-axles",
+      "beat": "undercart-crawl",
+      "brief": "Under the Ninth Wagon — Beneath the ninth wagon the world is axle-grease, forty spans of turning spoke, and a floor of stones going by at walking speed a hand's breadth from "
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-kennel-wagons-loosed-hounds",
+      "beat": "tide-hound-kennels",
+      "brief": "The Tide Hounds of Kesh Tallow — Kesh Tallow keeps the Concord's hounds wet and hungry, and he unlatches three of them with the same three notes the reed-raiders whistled. The kennel "
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-chained-bell-cage-at-the-bend",
+      "beat": "the-bell-cage",
+      "brief": "The Bell Cage — Swiftwater Bend is one bend ahead and the Concord has begun to sing in earnest, all eleven wagons, so loud the felt in the bell's mouth trembles. The "
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-yokeman-in-the-shallows",
+      "beat": "the-ringing-at-swiftwater-bend",
+      "brief": "The Ringing at Swiftwater Bend — The Yokeman plants his feet on the shingle at Swiftwater Bend with the cage on his shoulders and two cord-wristed thralls guarding his hocks, and Olet"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-bell-sinking-in-deep-channel",
+      "beat": "ending-bell-drowned",
+      "brief": "Ending: The Bell Drowned — The Yokeman goes down on one knee in the shingle and the cage goes past him into the deep channel, chain and all, and the Slate Vein swallows a hundre"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-flooded-ferrymarch-spires",
+      "beat": "ending-choir-crowned",
+      "brief": "Ending: The Choir Gets Its Note — The felt comes out and the bell speaks once, and it is not a sound so much as a decision the river makes. You wake hours later on a tollhouse roof wit"
+    },
+    {
+      "slot": "art-the-ferrymarch-road-and-the-drowned-bell-shale-stair-crowded-at-dawn",
+      "beat": "ending-road-abandoned",
+      "brief": "Ending: All Night at the Doors — You do not stop the bell. You ride, and shout, and haul on shutters, and by grey morning six villages stand empty of everything that breathes and Mard"
+    }
+  ]
+}

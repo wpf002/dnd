@@ -1,0 +1,85 @@
+{
+  "adventure": "the-hour-wide-throat",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: survival-horror, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hour-wide-throat-swallowing-mouth",
+      "beat": "the-swallowing-mouth",
+      "brief": "The Swallowing Mouth — The fissure in the Vess barrens is a wound rather than a cave — a slot of black stone that exhales cold and smells of wet chalk. Old rope ladders hang"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-groaning-stair",
+      "beat": "the-groaning-stair",
+      "brief": "The Groaning Stair — Below the Mouth the rock folds into a stair that no hand cut — flowstone terraces, slick as tallow, descending into a dark your lanterns only bruise. "
+    },
+    {
+      "slot": "art-the-hour-wide-throat-chalk-liturgy",
+      "beat": "the-chalk-liturgy",
+      "brief": "The Chalk Liturgy — Someone from the Kettlewright party covered forty feet of wall in chalk before their hand failed. It is not a map. It is a liturgy of hours: HOUR 9 — "
+    },
+    {
+      "slot": "art-the-hour-wide-throat-tallow-hermit",
+      "beat": "the-tallow-hermit",
+      "brief": "Solkeb of the Tallow Coat — The steady light is a single fat candle in a niche, and behind it sits a man wearing the drippings of ten thousand others: Solkeb, once the Kettlewrig"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-breath-tide",
+      "beat": "the-breath-tide",
+      "brief": "The Breath Tide — The gallery beyond is knee-deep in pale fungus that pulses like lung tissue, and every ninety seconds it exhales a sweet grey fog that rolls waist-hig"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-gnaw-warren",
+      "beat": "the-gnaw-warren",
+      "brief": "The Gnaw Warren — The crawl opens into a hollow lined with chewed bone and shredded expedition canvas. Eyes ignite in tiers — rat-things the size of hounds, fat on elev"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-counting-stones",
+      "beat": "the-counting-stones",
+      "brief": "The Counting Stones — A ring of nine standing stones fills a chamber whose ceiling you cannot find, and each stone bears a shallow socket worn by generations of turning. Th"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-drowned-cartograph",
+      "beat": "the-drowned-cartograph",
+      "brief": "The Drowned Cartograph — Black water fills a bowl of rock to the ribs, and in it floats the Kettlewright survey table, still lashed to its frame, its vellum swollen but legibl"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-carrion-choir",
+      "beat": "the-carrion-choir",
+      "brief": "The Carrion Choir — The singers come up out of the water on all fours: two long-jawed corpse-eaters with surveyor's brass still tangled in their hair, herding a pair of s"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-two-throats",
+      "beat": "the-two-throats",
+      "brief": "The Two Throats — Two ascents, side by side, breathing in alternation like nostrils. The left is dry, narrow, and ribbed with old spike-scars — climbable, if the map's "
+    },
+    {
+      "slot": "art-the-hour-wide-throat-narrowing-gullet",
+      "beat": "the-narrowing-gullet",
+      "brief": "The Narrowing Gullet — The ascent becomes a gullet, and the gullet is measurably smaller than it was an hour ago. You go through on your sides, then on your backs, packs pus"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-keystone-heart",
+      "beat": "the-keystone-heart",
+      "brief": "The Keystone Heart — The Warden of Hours turns from the sockets. It was Kettlewright once; the coat still has her name stitched inside the collar. Its hands are white with"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-ending-hostile-air",
+      "beat": "ending-out-into-hostile-air",
+      "brief": "Ending: Out Into Hostile Air — You come out of the Vess barrens at the hour the Mouth would have shut, and it does shut — behind you, with a sound like a book closing on a finger. T"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-ending-sealed-below",
+      "beat": "ending-sealed-below",
+      "brief": "Ending: Sealed Below — The hour turns while you are still down here, and the Underland finishes its swallow. There is no crash, no cave-in — only the sudden absence of the d"
+    },
+    {
+      "slot": "art-the-hour-wide-throat-ending-door-that-is-you",
+      "beat": "ending-the-door-that-is-you",
+      "brief": "Ending: The Door That Is You — You flee the Collar chamber and the Warden lets you go, because the Warden does not need to chase what it has already scheduled. In the flue you find "
+    }
+  ]
+}

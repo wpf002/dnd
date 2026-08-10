@@ -1,0 +1,806 @@
+{
+  "id": "four-troubles-under-ashkelds-wing",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "Four Troubles Under Ashkeld's Wing",
+    "premise": "Karrowfast Hold has three days before the wyrm Ashkeld wakes from her cinder-sleep, and four troubles gnawing at its edges — a kobold sap under the wall, a wolf pack in the winter pasture, toll-thieves on Sunder Ford, and something stirring in the founder's barrow. There is time for two.",
+    "tone": [
+      "sandbox",
+      "beginner-classic"
+    ],
+    "tier": "local",
+    "partyLevel": 2,
+    "narrationVoice": "Plainspoken frontier chronicler — dry, practical, fond of names and weather, letting the wyrm stay mostly offstage as a smell of hot ash on the wind.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Karrowfast has families, but all endangered NPCs shown in scenes are adults. Keep the hold's young offstage and safe behind the inner wall."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-ash-gate",
+  "beats": [
+    {
+      "id": "the-ash-gate",
+      "kind": "threshold",
+      "title": "The Ash Gate",
+      "prose": "Karrowfast Hold sits on a shoulder of black rock where the Slate Vein river bends, and everything in it — timber, laundry, the mortar between stones — carries a faint grit of ash. Above and behind, three miles off, the Cinderdelve ridge smokes gently where the wyrm Ashkeld sleeps in her own heat. The watch on the Ash Gate does not look up at the ridge; that is how you know they think about it constantly. Warden Belisa Thrun has sent for hired swords and is honest enough to say she cannot pay for four days of work, only two.",
+      "readAloud": "\"You'll have heard she wakes at the turn of the frost,\" says the gate-sergeant, not stopping her whetstone. \"Three days, near enough. Warden's in the moot-hall counting troubles. She's got four. Don't let her tell you different.\"",
+      "art": "art-four-troubles-under-ashkelds-wing-ash-gate-arrival",
+      "options": [
+        {
+          "id": "straight-to-the-moot",
+          "label": "Go straight up to the moot-hall and hear the Warden out",
+          "target": "crooked-moot",
+          "effects": []
+        },
+        {
+          "id": "walk-the-breach",
+          "label": "Walk the wall first and look at the cracked footing near the north tower",
+          "target": "crooked-moot",
+          "effects": [
+            {
+              "flag": "sapper-sign",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 12,
+            "onFailure": "crooked-moot"
+          }
+        },
+        {
+          "id": "drinks-for-the-watch",
+          "label": "Stand a round of hot cider for the gate watch and let them talk",
+          "target": "crooked-moot",
+          "effects": [
+            {
+              "flag": "warden-trust",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 11,
+            "onFailure": "crooked-moot"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crooked-moot",
+      "kind": "decision",
+      "title": "The Crooked Moot",
+      "prose": "The moot-hall's roofbeam is warped from an old fire, which is why they call it crooked. Warden Thrun has chalked four marks on the trestle table. First: something is digging under the north wall footing, and the tailings smell of kobold — the Cinder Choir, who call Ashkeld holy. Second: a wolf pack has taken the Thornstep pasture, and without the herd the hold starves whether the wyrm wakes or not. Third: a woman calling herself Rook Ambersall has taken Sunder Ford and charges a toll the salt caravan cannot pay. Fourth, spoken last and quietly: lights have been seen on Grayhowe, the founder's barrow, where old Ferrin Karrow was buried with the spear Ashbinder. \"Two,\" Thrun says. \"Pick two, and pick them well.\"",
+      "readAloud": "\"I'll not pretend to you. Everything I don't hand you tonight, I lose. So choose the losses you can live beside.\"",
+      "art": "art-four-troubles-under-ashkelds-wing-chalk-marks-on-the-trestle",
+      "options": [
+        {
+          "id": "first-the-delve",
+          "label": "The sap under the wall — go down into the Cinderdelve",
+          "target": "cinderdelve-descent",
+          "effects": [
+            {
+              "flag": "first-front",
+              "value": "delve"
+            }
+          ]
+        },
+        {
+          "id": "first-the-pasture",
+          "label": "The herd first — ride out to Thornstep pasture",
+          "target": "thornstep-pasture",
+          "effects": [
+            {
+              "flag": "first-front",
+              "value": "pasture"
+            }
+          ]
+        },
+        {
+          "id": "first-the-ford",
+          "label": "The road first — go down to Sunder Ford and the toll-thieves",
+          "target": "sunder-ford",
+          "effects": [
+            {
+              "flag": "first-front",
+              "value": "ford"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cinderdelve-descent",
+      "kind": "discovery",
+      "title": "Down the Cinderdelve",
+      "prose": "The hold's old ore-gallery runs in under the north wall and then further, into warm rock that nobody wanted to dig. Somewhere below, iron rings on stone in a patient, unhurried rhythm. Chalk sigils in three colours mark the walls: the Cinder Choir writes prayers where it works, and the prayers say the wyrm's shadow should fall on the hold's stones, not merely over them. A sump of black water blocks the straight way. A shored side gallery, freshly propped, goes around.",
+      "art": "art-four-troubles-under-ashkelds-wing-cinderdelve-chalk-prayers",
+      "options": [
+        {
+          "id": "follow-sapper-sign",
+          "label": "Follow the sapper-sign you read at the wall straight to the shored gallery",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sapper-sign",
+            "value": true
+          },
+          "target": "sapper-warren",
+          "effects": []
+        },
+        {
+          "id": "wade-the-sump",
+          "label": "Wade the sump and come at the sap-head blind",
+          "target": "sapper-warren",
+          "effects": []
+        },
+        {
+          "id": "parley-with-skitch-ulm",
+          "label": "Call out for the Choir's prophet, Skitch-Ulm, and offer terms",
+          "target": "night-tally",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "sapper-warren"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sapper-warren",
+      "kind": "conflict",
+      "title": "The Sap-Head",
+      "prose": "The gallery ends in a low chamber shored with green timber, where the Cinder Choir has been undercutting the wall's footing stone by stone. Sappers scatter for spears and sling-pots of hot grit. The props are the thing: bring the roof down on the sap and the wall above is saved, whatever else happens in this hole. Fighting through every kobold in the warren is not required — reaching the far props is.",
+      "art": "art-four-troubles-under-ashkelds-wing-sap-head-green-timber",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "kobold-sappers",
+      "terminal": false
+    },
+    {
+      "id": "thornstep-pasture",
+      "kind": "hazard",
+      "title": "Thornstep in the Cold",
+      "prose": "Thornstep is a bowl of frost-burned grass ringed by stone folds, and the herd is scattered across it in nervous knots. Halcey Mord, chief drover, has lost eleven head in four nights and slept perhaps four hours in that time. The tracks are wrong: ordinary wolves do not cull like this, and one set of prints is nearly the size of a shield-boss. Ash-fall has driven the pack down from the ridge, and hunger has made it clever.",
+      "readAloud": "\"They don't rush,\" Halcey says. \"They pick. Like they've a mind between them and it's a mean one.\"",
+      "art": "art-four-troubles-under-ashkelds-wing-thornstep-frost-bowl",
+      "options": [
+        {
+          "id": "fold-the-herd",
+          "label": "Drive the herd into the stone folds, then use the strays as bait",
+          "target": "wolf-cull",
+          "effects": []
+        },
+        {
+          "id": "thorn-hurdles-and-fire",
+          "label": "Spend the day on fire-lines and thorn hurdles, and make the pass too costly to hunt",
+          "target": "night-tally",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Survival",
+            "dc": 12,
+            "onFailure": "wolf-cull"
+          }
+        },
+        {
+          "id": "watch-with-halcey",
+          "label": "Sit the night watch over the fold beside Halcey and meet them when they come",
+          "target": "wolf-cull",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wolf-cull",
+      "kind": "conflict",
+      "title": "The Pack at the Fold",
+      "prose": "They come at the grey hour, three lean shapes fanning wide while the big one — grizzled, ash-dusted, patient — waits for someone to look the wrong way. Halcey Mord will not leave the fold gate, which means the fight is not about killing wolves. It is about the drover still standing when the light comes up.",
+      "art": "art-four-troubles-under-ashkelds-wing-grey-hour-pack",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wolf-pack",
+      "terminal": false
+    },
+    {
+      "id": "sunder-ford",
+      "kind": "social",
+      "title": "Sunder Ford",
+      "prose": "Sunder Ford is the only place for eleven miles where the Slate Vein can be crossed by a laden cart, and the Split Antler have made a business of that fact. A chain on a winch-tower lies across the shallows; six of them lounge in the ruined mill on the far bank, and Rook Ambersall stands on the tower step in a good coat she certainly did not buy. Behind you, four salt carts wait, and the caravan master is doing arithmetic he does not like.",
+      "readAloud": "\"Toll's toll,\" Rook calls across the water, pleasantly. \"Wyrm wakes in three days and I'm collecting for my retirement. Nothing personal in it.\"",
+      "art": "art-four-troubles-under-ashkelds-wing-sunder-ford-chain",
+      "options": [
+        {
+          "id": "the-wardens-writ",
+          "label": "Invoke the Warden's writ the gate watch vouched for you with, and buy the crossing cheap",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-trust",
+            "value": true
+          },
+          "target": "night-tally",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 12,
+            "onFailure": "ford-standoff"
+          }
+        },
+        {
+          "id": "take-the-winch-tower",
+          "label": "Cross at dawn and take the winch-tower before the chain can be raised",
+          "target": "ford-standoff",
+          "effects": []
+        },
+        {
+          "id": "answer-the-toll-horn",
+          "label": "Answer the toll-horn with drawn steel and hold the shallows for the carts",
+          "target": "ford-standoff",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ford-standoff",
+      "kind": "conflict",
+      "title": "Holding the Shallows",
+      "prose": "Rook Ambersall does not waste breath on threats once steel is out; she simply starts giving orders, and her people obey them, which is worse. Knee-deep water, slick stones, and crossbows in the mill windows. The salt carts are already rolling — the caravan master has decided that hesitating is the more expensive choice. All that is asked of you is to keep the ford open long enough for the last axle to reach the near bank.",
+      "art": "art-four-troubles-under-ashkelds-wing-knee-deep-crossbows",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "split-antler",
+      "terminal": false
+    },
+    {
+      "id": "night-tally",
+      "kind": "decision",
+      "title": "Tally by Lamplight",
+      "prose": "Back in the crooked moot-hall, Warden Thrun rubs out one chalk mark and stares at the rest. The ash-fall has thickened; the ridge glows a duller, deeper red than it did yesterday. Whatever hours remain are countable now. There is time to turn to one more trouble — or to ride for Grayhowe, where the barrow-lights burn, and see whether Ferrin Karrow's spear is a legend or a tool.",
+      "readAloud": "\"Ashbinder,\" the Warden says. \"My grandmother swore it turned her once. Might be it's a stick with a story on it. Might be it's the only thing in this hold she's ever been afraid of.\"",
+      "art": "art-four-troubles-under-ashkelds-wing-lamplight-tally",
+      "options": [
+        {
+          "id": "ride-to-grayhowe",
+          "label": "Ride to Grayhowe barrow before moonset",
+          "target": "grayhowe-barrow",
+          "effects": []
+        },
+        {
+          "id": "turn-to-what-you-left",
+          "label": "Turn to the trouble you left behind",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "second-front-taken",
+            "value": true
+          },
+          "target": "second-front-crossroads",
+          "effects": []
+        },
+        {
+          "id": "muster-now",
+          "label": "Let the rest lie — muster the hold at the Ash Gate",
+          "target": "wyrmfall-muster",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "second-front-crossroads",
+      "kind": "decision",
+      "title": "The Second Front",
+      "prose": "There is one night and one day left in the hiring, and one more trouble you can put your hands on. Thrun does not advise you. She has learned that advising hired swords about which of her people to save makes her sleep worse afterward, and she needs the sleep.",
+      "art": "art-four-troubles-under-ashkelds-wing-second-front-crossroads-map",
+      "options": [
+        {
+          "id": "second-delve",
+          "label": "Down into the Cinderdelve after the Choir's sap",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "first-front",
+            "value": "delve"
+          },
+          "target": "cinderdelve-descent",
+          "effects": [
+            {
+              "flag": "second-front-taken",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "second-pasture",
+          "label": "Out to Thornstep, where the pack is still culling the herd",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "first-front",
+            "value": "pasture"
+          },
+          "target": "thornstep-pasture",
+          "effects": [
+            {
+              "flag": "second-front-taken",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "second-ford",
+          "label": "Down to Sunder Ford and Rook Ambersall's chain",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "first-front",
+            "value": "ford"
+          },
+          "target": "sunder-ford",
+          "effects": [
+            {
+              "flag": "second-front-taken",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "grayhowe-barrow",
+      "kind": "puzzle",
+      "title": "Grayhowe",
+      "prose": "Grayhowe is a long turf mound with a stone throat, and the lights inside are cold and blue and quite steady. Ferrin Karrow lies in the far chamber with the spear Ashbinder across him, its head a dull grey metal that the ash will not stick to. Around the chamber, cut into the lintel in the founder's own crooked lettering, runs a cant in the old hold-speech: a debt, a promise, and a condition — the spear is lent, never taken, and it comes out only to a hand that names the lender aloud. Along the walls, six niches hold six sitting figures wrapped in rotted mail.",
+      "readAloud": "The lettering is worn but readable: WHO BORROWS, SAYS MY NAME. WHO TAKES, WAKES MY HOUSEHOLD.",
+      "art": "art-four-troubles-under-ashkelds-wing-grayhowe-blue-lights",
+      "options": [
+        {
+          "id": "recite-the-cant",
+          "label": "Read the founder's cant and speak the lending-name aloud",
+          "target": "wyrmfall-muster",
+          "effects": [
+            {
+              "flag": "wyrm-spear",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "History",
+            "dc": 13,
+            "onFailure": "barrow-guardians"
+          }
+        },
+        {
+          "id": "prise-it-free",
+          "label": "Wrench Ashbinder free and be ready for what that costs",
+          "target": "barrow-guardians",
+          "effects": [
+            {
+              "flag": "wyrm-spear",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-the-dead",
+          "label": "Leave the dead their due and ride back empty-handed",
+          "target": "wyrmfall-muster",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barrow-guardians",
+      "kind": "conflict",
+      "title": "Karrow's Household",
+      "prose": "The rotted mail shifts in all six niches at once. Three come up dry and rattling with old blades still gripped; two come up slower, heavier, wrong. They are not angry, exactly. They are performing a duty their master wrote into the stone, and they will perform it until they are broken apart or you are out of the mound. The spear stays where it has been gripped, either way.",
+      "art": "art-four-troubles-under-ashkelds-wing-six-niches-waking",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cairn-dead",
+      "terminal": false
+    },
+    {
+      "id": "wyrmfall-muster",
+      "kind": "transit",
+      "title": "Muster at the Ash Gate",
+      "prose": "The last night is not dark; the ridge lights it. Ash falls like slow snow and lies grey on the roof-slates, on the well-cover, on the shoulders of everyone forming up in the gate-yard. Warden Thrun has the hold's forty spears, such as they are, and every family already behind the inner wall. Then the horns start — not the wyrm, but the Cinder Choir, coming down the switchback road behind a man in scale and ash-paint who calls himself Ossaine Vurl, Ashkeld's speaker. He has come to open the gate for her, in her name, before she even opens an eye.",
+      "readAloud": "\"She is waking!\" Vurl bellows up at the wall, delighted. \"Unbar it! Let her find the hold humble and the door wide and she may leave you your children!\"",
+      "art": "art-four-troubles-under-ashkelds-wing-grey-snow-muster",
+      "options": [
+        {
+          "id": "set-the-spear",
+          "label": "Set Ashbinder at the gate-post where the whole yard can see it",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "wyrm-spear",
+            "value": true
+          },
+          "target": "wyrm-herald-stand",
+          "effects": []
+        },
+        {
+          "id": "shield-line",
+          "label": "Form the shield-line across the gate-yard with what you have",
+          "target": "wyrm-herald-stand",
+          "effects": []
+        },
+        {
+          "id": "call-the-retreat",
+          "label": "Tell Thrun to call the retreat down the Salt Road and abandon the hold",
+          "target": "ending-ash-and-tally",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wyrm-herald-stand",
+      "kind": "climax",
+      "title": "Ashkeld's Speaker",
+      "prose": "Ossaine Vurl fights like a man who believes an audience is watching from three miles up the ridge, and his Choir fights because he believes it. The hold's spears will hold their line as long as he is upright and shouting; the moment he is not, the Choir remembers it is a congregation and not an army. Above everything, the ridge grumbles, and the ash comes down harder, and the light behind the smoke shifts as though something enormous has changed the angle of its head.",
+      "art": "art-four-troubles-under-ashkelds-wing-ossaine-vurl-at-the-gate",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wyrm-herald",
+      "terminal": false
+    },
+    {
+      "id": "ending-hold-stands",
+      "kind": "ending",
+      "title": "The Hold Stands, Diminished",
+      "prose": "Vurl goes down in the ash and his Choir goes to pieces around him, streaming back up the switchback into the dark. Whatever Ashkeld does that night, she does it without a door opened in her name: the ridge roars once at dawn, the sky goes brown for an hour, and then the wind changes and the hold is still there. What is not still there is whatever you left undone — the empty pasture, or the closed road, or the cracked footing under the north wall, or a barrow with its lintel-promise broken. Warden Thrun rubs out the last chalk marks with her sleeve and does not pretend they are settled. She pays you the two days she promised, adds a third out of her own purse, and asks, without much hope, whether you are free again by the thaw. Karrowfast has a spring to survive, and a wyrm that now knows its name.",
+      "art": "art-four-troubles-under-ashkelds-wing-brown-dawn-over-karrowfast",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ash-and-tally",
+      "kind": "ending",
+      "title": "Ash, and the Tally After",
+      "prose": "The gate-yard breaks, or is never held, and Karrowfast goes down the Salt Road in the grey snow with its people and its goats and none of its grain. From the second bend you can see the Choir dancing on the wall-walk, and later, when the ridge finally opens, you can see far more than anyone wanted to. Nobody dies in the road who can be carried, and that is the whole of the victory. Warden Thrun keeps the chalk tally in her coat all the way to the lowland towns, four marks and however many you rubbed out, and shows it to anyone who asks what happened up on the Slate Vein. The hold is a name now, not a place. Names, she says, can be carried back.",
+      "art": "art-four-troubles-under-ashkelds-wing-salt-road-exodus",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "sapper-warren",
+      "to": "night-tally",
+      "when": {
+        "op": "always"
+      },
+      "note": "Props brought down; the sap is dead"
+    },
+    {
+      "from": "sapper-warren",
+      "to": "wyrmfall-muster",
+      "when": {
+        "op": "always"
+      },
+      "note": "Dragged out of the delve; a day lost"
+    },
+    {
+      "from": "wolf-cull",
+      "to": "night-tally",
+      "when": {
+        "op": "always"
+      },
+      "note": "Halcey and the herd survive the grey hour"
+    },
+    {
+      "from": "wolf-cull",
+      "to": "wyrmfall-muster",
+      "when": {
+        "op": "always"
+      },
+      "note": "Driven off the pasture bloodied"
+    },
+    {
+      "from": "ford-standoff",
+      "to": "night-tally",
+      "when": {
+        "op": "always"
+      },
+      "note": "Salt carts across; the chain cut"
+    },
+    {
+      "from": "ford-standoff",
+      "to": "wyrmfall-muster",
+      "when": {
+        "op": "always"
+      },
+      "note": "Beaten back from the shallows"
+    },
+    {
+      "from": "barrow-guardians",
+      "to": "wyrmfall-muster",
+      "when": {
+        "op": "always"
+      },
+      "note": "Out of the mound, one way or another"
+    },
+    {
+      "from": "wyrm-herald-stand",
+      "to": "ending-hold-stands",
+      "when": {
+        "op": "always"
+      },
+      "note": "Vurl falls"
+    },
+    {
+      "from": "wyrm-herald-stand",
+      "to": "ending-ash-and-tally",
+      "when": {
+        "op": "always"
+      },
+      "note": "The gate-yard breaks"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "kobold-sappers",
+      "title": "The Cinder Choir's Sap",
+      "combatants": [
+        {
+          "id": "sap-boss",
+          "statblock": "kobold",
+          "count": 1,
+          "hpOverride": 9,
+          "hostile": true
+        },
+        {
+          "id": "grit-slingers",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "pick-hands",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach the far props at the sap-head and cut them, dropping the roof on the undermining before the wall footing is breached."
+      },
+      "onVictory": "night-tally",
+      "onDefeat": "wyrmfall-muster",
+      "onFlee": "night-tally"
+    },
+    {
+      "id": "wolf-pack",
+      "title": "The Ash-Dusted Pack",
+      "combatants": [
+        {
+          "id": "grizzle",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "fan-wolves",
+          "statblock": "wolf",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "halcey-mord",
+          "statblock": "bandit",
+          "count": 1,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "halcey-mord"
+      },
+      "onVictory": "night-tally",
+      "onDefeat": "wyrmfall-muster",
+      "onFlee": "night-tally"
+    },
+    {
+      "id": "split-antler",
+      "title": "Rook Ambersall's Toll",
+      "combatants": [
+        {
+          "id": "rook-ambersall",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "mill-crossbows",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "cover-heavy",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "night-tally",
+      "onDefeat": "wyrmfall-muster",
+      "onFlee": "night-tally"
+    },
+    {
+      "id": "cairn-dead",
+      "title": "Karrow's Household",
+      "combatants": [
+        {
+          "id": "mail-sitters",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "heavy-two",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "wyrmfall-muster",
+      "onDefeat": "wyrmfall-muster",
+      "onFlee": "wyrmfall-muster"
+    },
+    {
+      "id": "wyrm-herald",
+      "title": "Ossaine Vurl at the Ash Gate",
+      "combatants": [
+        {
+          "id": "ossaine-vurl",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "choir-censers",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "open",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "ossaine-vurl"
+      },
+      "onVictory": "ending-hold-stands",
+      "onDefeat": "ending-ash-and-tally",
+      "onFlee": "ending-ash-and-tally"
+    }
+  ]
+}

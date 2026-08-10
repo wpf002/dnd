@@ -1,0 +1,854 @@
+{
+  "id": "the-ninth-mouth-of-the-anchor-bell",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ninth Mouth of the Anchor Bell",
+    "premise": "In the last hour before the Unstitching, four wanderers descend through the failing city of Vellisandre-in-the-Gap to the Anchor Bell of Nine Mouths — the only lever left that can hold four worlds apart, and the thing the Hollow Choir has come to silence.",
+    "tone": [
+      "epic-finale",
+      "cosmic-horror"
+    ],
+    "tier": "national",
+    "partyLevel": 10,
+    "narrationVoice": "Hushed and elegiac, second person present — the acoustics of a cathedral emptying at the end of the world, with the bell-tone always half-heard beneath the words.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Vellisandre's evacuated young are always already gone — referenced as safely away, never shown in peril."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-last-hour",
+  "beats": [
+    {
+      "id": "the-last-hour",
+      "kind": "threshold",
+      "title": "The Last Hour of Vellisandre",
+      "prose": "Vellisandre-in-the-Gap was built in the overlap of four worlds, and for nine centuries the overlap held. Tonight the seams show: streets end in unfinished air, rain falls upward through the Cooper's Quarter, and every shadow in the city has begun to hum the same low note. The Threadwright Guild has fled. The evacuation barges left at dusk with the children and the elders aboard, sails already out of sight. What remains is you, an hour of borrowed time, and the Anchor Bell nine hundred steps below.",
+      "readAloud": "A bell you cannot see is being tuned. You feel it in your teeth, in the marrow, in the seam of the world: one note held too long, waiting to break.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-vellisandre-unstitching-skyline",
+      "options": [
+        {
+          "id": "seek-the-warden",
+          "label": "Climb to the Lanternhouse — a Warden's light still burns there.",
+          "target": "warden-remnant",
+          "effects": []
+        },
+        {
+          "id": "take-the-stair",
+          "label": "Go straight for the Salt Stair. There is no time for counsel.",
+          "target": "salt-stair-descent",
+          "effects": []
+        },
+        {
+          "id": "cross-the-market",
+          "label": "Cut through the Mirror Market, where things still trade in the ruin.",
+          "target": "mirror-market",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-remnant",
+      "kind": "social",
+      "title": "Warden Isquith Vale",
+      "prose": "The Lanternhouse leans over a street that is no longer entirely there. Inside, Warden Isquith Vale — last of the Lantern Wardens, one arm gone grey and translucent to the elbow — feeds oil to a flame that keeps a doorway honest. 'The Bell has nine mouths,' she says without turning. 'Eight are named in the Guild's rolls. The ninth is named only in the drowned orrery, and the Choir means to sing it first. Whoever speaks it, the Bell obeys.' She offers two things: a sigil of soldered lantern-glass, and the beginning of a name.",
+      "readAloud": "'I cannot walk it. My arm has already reached the other side, and the rest of me is being persuaded. Carry the light down for me.'",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-lanternhouse-warden-vigil",
+      "options": [
+        {
+          "id": "accept-sigil",
+          "label": "Accept the lantern-glass sigil and her authority over the Bell's doors.",
+          "target": "salt-stair-descent",
+          "effects": [
+            {
+              "flag": "warden-sigil",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "learn-the-name",
+          "label": "Press her for the ninth name's first syllables, whatever it costs her.",
+          "target": "mirror-market",
+          "effects": [
+            {
+              "flag": "bell-name-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 16,
+            "onFailure": "mirror-market"
+          }
+        },
+        {
+          "id": "leave-her-post",
+          "label": "Leave her to her flame and take the stair.",
+          "target": "salt-stair-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "salt-stair-descent",
+      "kind": "transit",
+      "title": "The Salt Stair",
+      "prose": "Nine hundred steps of salt-crusted basalt spiral down the throat of the Gap. Halfway, the stair forgets which world it belongs to: three flights occupy the same space, each lit by a different sun, and your footfalls echo out of step with your feet. Voices rise from below in patient harmony. Somewhere, a hinge of reality is being oiled.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-salt-stair-triple-flight",
+      "options": [
+        {
+          "id": "stair-market-door",
+          "label": "Step sideways into the flight lit by green sun — it lets out at the Market.",
+          "target": "mirror-market",
+          "effects": []
+        },
+        {
+          "id": "stair-quiet-descent",
+          "label": "Descend fast and quiet, betting on speed over silence.",
+          "target": "unstitched-gallery",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 15,
+            "onFailure": "choir-ambush"
+          }
+        },
+        {
+          "id": "stair-answer-song",
+          "label": "Answer the harmony below with a hail. Meet them face to face.",
+          "target": "choir-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mirror-market",
+      "kind": "discovery",
+      "title": "The Mirror Market",
+      "prose": "Stalls of standing glass, each one a shopfront onto a world the Gap still touches. A vendor with too-symmetrical hands sells hours; another sells the memory of solid ground. Behind the last mirror, a Choir factor waits with a brand of cold ash and a fair offer: wear the Choir's mark and the thin places will not contest your passage. The mark does not hurt. That is the worst of it.",
+      "readAloud": "In every mirror your reflection has already turned to face the deep. Only you are still looking at the glass.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-mirror-market-standing-glass",
+      "options": [
+        {
+          "id": "take-the-mark",
+          "label": "Take the ash-brand. Let the Choir believe you are theirs.",
+          "target": "drowned-orrery",
+          "effects": [
+            {
+              "flag": "choir-mark",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "break-the-glass",
+          "label": "Break the factor's mirror and refuse the bargain loudly.",
+          "target": "choir-ambush",
+          "effects": []
+        },
+        {
+          "id": "slip-market-rear",
+          "label": "Slip out the rear arcade toward the Unstitched Gallery.",
+          "target": "unstitched-gallery",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-ambush",
+      "kind": "conflict",
+      "title": "Vanguard of the Hollow Choir",
+      "prose": "They come singing, and the song is a schedule. Stole-bearers with mouths sewn into vertical seams press in from the arcades while two of the Choir's cast-off shadows peel from the walls to hold you in place. They do not need to win. They need only keep you here until the ninth hour, and the ninth hour is very close.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-choir-vanguard-arcade-assault",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "choir-vanguard",
+      "terminal": false
+    },
+    {
+      "id": "unstitched-gallery",
+      "kind": "puzzle",
+      "title": "The Unstitched Gallery",
+      "prose": "A colonnade where the Threadwrights recorded the Bell's tuning in nine woven banners. Eight hang whole. The ninth has been unpicked to bare warp, its thread stolen — but the loom-frame still holds the tension pattern, and tension in Threadwright craft is a language. Read the empty banner correctly and you read the shape of the ninth name. Read it wrong and the gallery, which is only held together by that tension, lets go.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-unstitched-gallery-empty-banner",
+      "options": [
+        {
+          "id": "read-the-warp",
+          "label": "Read the ninth banner's tension pattern and reconstruct the name.",
+          "target": "drowned-orrery",
+          "effects": [
+            {
+              "flag": "bell-name-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 16,
+            "onFailure": "the-thin-place"
+          }
+        },
+        {
+          "id": "cut-the-banners",
+          "label": "Cut the eight whole banners down and drop the gallery behind you.",
+          "target": "the-thin-place",
+          "effects": []
+        },
+        {
+          "id": "gallery-to-bridge",
+          "label": "Leave the weaving. Take the service arch toward the Bridge of Nine Mouths.",
+          "target": "bridge-of-nine-mouths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-orrery",
+      "kind": "discovery",
+      "title": "The Drowned Orrery",
+      "prose": "A vaulted chamber flooded waist-deep in something colder and more patient than water. Four brass worlds turn on submerged armatures, and where they overlap a ninth glyph rises and sinks with the tide-light. The Choir has been here: half the armatures are wedged. What remains is one clean reading of the ninth name, and a reservoir of anchor-light you could siphon into a lamp — the Bell's own ballast, portable and terribly negotiable.",
+      "readAloud": "The four brass worlds grind closer than the mechanism allows. Somewhere above, the city sighs and loses another street.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-drowned-orrery-brass-worlds",
+      "options": [
+        {
+          "id": "read-the-orrery",
+          "label": "Wade to the overlap and read the ninth glyph whole.",
+          "target": "the-thin-place",
+          "effects": [
+            {
+              "flag": "bell-name-known",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "siphon-anchor-light",
+          "label": "Siphon anchor-light into a lamp. Carry the Bell's ballast with you.",
+          "target": "bridge-of-nine-mouths",
+          "effects": [
+            {
+              "flag": "anchor-secured",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 15,
+            "onFailure": "the-thin-place"
+          }
+        },
+        {
+          "id": "orrery-descend",
+          "label": "Touch nothing. The hour is spending itself — go down.",
+          "target": "bridge-of-nine-mouths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-thin-place",
+      "kind": "hazard",
+      "title": "Where the Seam Has Already Failed",
+      "prose": "A stretch of corridor with no floor and no absence of floor — the seam has simply given up here, and four worlds argue over the same forty feet. Gravity votes in three directions. Something enormous and unhurried moves in the interference pattern, too vast to be looking at you, too near to be ignored. There is a marked path scored in cold ash for those the Choir counts as its own.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-thin-place-failed-seam",
+      "options": [
+        {
+          "id": "anchor-with-salt",
+          "label": "Drive salt pitons and rope yourselves to one world's opinion of down.",
+          "target": "bridge-of-nine-mouths",
+          "effects": [
+            {
+              "flag": "anchor-secured",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 15,
+            "onFailure": "mourncant-parley"
+          }
+        },
+        {
+          "id": "walk-the-marked-path",
+          "label": "Walk the ash-marked path openly, wearing the Choir's mark.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "choir-mark",
+            "value": true
+          },
+          "target": "bell-hollow-threshold",
+          "effects": []
+        },
+        {
+          "id": "cross-unaided",
+          "label": "Cross unaided and unmarked, and hope the vastness stays incurious.",
+          "target": "bridge-of-nine-mouths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bridge-of-nine-mouths",
+      "kind": "conflict",
+      "title": "The Bridge of Nine Mouths",
+      "prose": "A single span crosses the Bell's shaft, and nine arched mouths of dark iron open along its length — the resonance ports, each big enough to swallow a cart. The Choir has posted the old toll: three suits of Warden armour turned against their oath, and a rank of bone cantors who mark time with their own ribs. They are not here to kill you. They are here to make the crossing take longer than you have. Reach the far landing.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-bridge-nine-mouths-iron-ports",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "bridge-toll",
+      "terminal": false
+    },
+    {
+      "id": "bell-hollow-threshold",
+      "kind": "decision",
+      "title": "The Threshold of the Bell Hollow",
+      "prose": "The Anchor Bell hangs in a hollow the size of a cathedral, so large that its curve reads as a horizon. The tuning lever — one iron arm, wound with nine centuries of Threadwright thread — stands at its lip. The Choir has already gathered below, and their First Mouth, Mourncant, waits with his back to you as though he has been expecting this precise number of footsteps. Two doors admit you honestly. One conversation admits you at a price.",
+      "readAloud": "The Bell is not silent. It has been ringing since before the city, so slowly that a single toll takes an age. You have arrived in the pause.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-bell-hollow-threshold-lever",
+      "options": [
+        {
+          "id": "speak-ninth-name",
+          "label": "Speak the ninth name and the hollow-doors will open for you.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bell-name-known",
+            "value": true
+          },
+          "target": "the-tuning",
+          "effects": []
+        },
+        {
+          "id": "break-seal-with-sigil",
+          "label": "Press the Warden's lantern-glass sigil to the seal and break it open.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-sigil",
+            "value": true
+          },
+          "target": "the-tuning",
+          "effects": []
+        },
+        {
+          "id": "hail-the-first-mouth",
+          "label": "Call out to Mourncant, and let him turn around.",
+          "target": "mourncant-parley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mourncant-parley",
+      "kind": "social",
+      "title": "Mourncant, First Mouth",
+      "prose": "He is a hollowed thing in Threadwright grey, and when he speaks the Bell's pause lengthens to accommodate him. 'You believe I came to break the seam. I came to end the ache of it. Four worlds ground against each other for nine centuries; every one of your streets is a wound that will not close. Pull the lever and you hold the grinding forever. Let me sing, and there is one world, and it is quiet.' He extends a hand. 'Or a third tone. Someone must be the hinge. It could be you — willingly, which is the only kindness left.'",
+      "readAloud": "'I have made this offer eight times tonight. You are the ninth. There is no tenth.'",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-mourncant-first-mouth-parley",
+      "options": [
+        {
+          "id": "refuse-and-fight",
+          "label": "Refuse. Put yourselves between the Choir and the lever.",
+          "target": "the-tuning",
+          "effects": []
+        },
+        {
+          "id": "offer-the-anchor-lamp",
+          "label": "Offer the anchor-light — become the third tone, the willing hinge.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "anchor-secured",
+            "value": true
+          },
+          "target": "the-third-tone",
+          "effects": []
+        },
+        {
+          "id": "sing-the-name-back",
+          "label": "Sing the ninth name back at him, and take the Bell's obedience first.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "bell-name-known",
+            "value": true
+          },
+          "target": "the-tuning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-tuning",
+      "kind": "climax",
+      "title": "The Tuning",
+      "prose": "The ninth hour arrives as a pressure rather than a sound. Mourncant sets his hands to the Bell's lip and begins the note that ends the argument of worlds; his First Descant close on either side of him, and the Choir's unstitched shades pour up the hollow's curve to keep you from the lever. Everything now depends on unmaking the First Mouth before he finishes. One iron arm. One held breath. Cut the singer out of the song.",
+      "readAloud": "The Bell begins to answer him. Four horizons lean in to listen.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-the-tuning-bell-hollow-climax",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "mourncant-choir",
+      "terminal": false
+    },
+    {
+      "id": "seam-sealed",
+      "kind": "ending",
+      "title": "Ending: The Grinding Held",
+      "prose": "Mourncant comes apart mid-syllable, and the unfinished note falls out of the world. Someone reaches the lever. It takes all four of you to move it, and it moves the way centuries move. High above, Vellisandre-in-the-Gap sets its broken streets back down at slightly the wrong angle and decides, grudgingly, to keep existing. The seam is not mended — it is held, the way a fracture is held by a splint, and the ache Mourncant described is now yours to carry. In the barge-lanes, the evacuation turns around. The Bell tolls once, ninety years early, and every mirror in the Mirror Market shows only the room it stands in.",
+      "readAloud": "Four worlds, still separate. Still grinding. Still, somehow, worlds.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-ending-seam-held-dawn",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "chorus-ascendant",
+      "kind": "ending",
+      "title": "Ending: One World, and It Is Quiet",
+      "prose": "The last of you falls short of the lever by nine feet, and Mourncant finishes the note. It is not violent. The four worlds simply agree, the way arguing voices agree when one grows overwhelming, and everything that was ever a seam becomes a single smooth surface. Vellisandre is not destroyed; it is resolved — one city, one sun, one endless held tone, and no more edges anywhere for anything to catch on. Somewhere out on the water the barges arrive at a shore that has always been there and always will be, and the people aboard cannot remember why they were afraid, or what a horizon used to do.",
+      "readAloud": "You are still here. That is the terrible part. Everything is still here, and none of it is separate, and the Bell will never need to ring again.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-ending-chorus-ascendant-smooth-world",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-third-tone",
+      "kind": "ending",
+      "title": "Ending: The Willing Hinge",
+      "prose": "There is a third answer, and it costs exactly what Mourncant said it would. The anchor-light goes into the Bell, and you go in after it — not destroyed, not sung away, but distributed: four lives drawn thin across a seam and held there as tension, which is the only thing weaving has ever been. The Unstitching stops because the warp is restrung. Vellisandre wakes with its streets whole and four suns politely queuing at the edge of the sky, and nobody knows why. In the Lanternhouse a grey-armed Warden feels her hand become solid again and weeps without understanding. Below, in the pause of the Bell, you hold — and hearing your own note come back to you from four directions is not, in the end, the worst way to be everywhere at once.",
+      "readAloud": "Someone must be the hinge. You were the ninth, and there was no tenth, and you said yes.",
+      "art": "art-the-ninth-mouth-of-the-anchor-bell-ending-third-tone-willing-hinge",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "the-last-hour",
+      "to": "warden-remnant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-hour",
+      "to": "salt-stair-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-hour",
+      "to": "mirror-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-remnant",
+      "to": "salt-stair-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-remnant",
+      "to": "mirror-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "salt-stair-descent",
+      "to": "mirror-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "salt-stair-descent",
+      "to": "unstitched-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "salt-stair-descent",
+      "to": "choir-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-market",
+      "to": "drowned-orrery",
+      "when": {
+        "op": "always"
+      },
+      "note": "Passage bought with the ash-brand."
+    },
+    {
+      "from": "mirror-market",
+      "to": "choir-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-market",
+      "to": "unstitched-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-ambush",
+      "to": "unstitched-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-ambush",
+      "to": "the-thin-place",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-ambush",
+      "to": "drowned-orrery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "unstitched-gallery",
+      "to": "drowned-orrery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "unstitched-gallery",
+      "to": "the-thin-place",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "unstitched-gallery",
+      "to": "bridge-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-orrery",
+      "to": "the-thin-place",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-orrery",
+      "to": "bridge-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-thin-place",
+      "to": "bridge-of-nine-mouths",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-thin-place",
+      "to": "bell-hollow-threshold",
+      "when": {
+        "op": "eq",
+        "flag": "choir-mark",
+        "value": true
+      },
+      "note": "Only the marked may walk the ash path straight to the hollow."
+    },
+    {
+      "from": "the-thin-place",
+      "to": "mourncant-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bridge-of-nine-mouths",
+      "to": "bell-hollow-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bridge-of-nine-mouths",
+      "to": "mourncant-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bridge-of-nine-mouths",
+      "to": "the-thin-place",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-hollow-threshold",
+      "to": "the-tuning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-hollow-threshold",
+      "to": "mourncant-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mourncant-parley",
+      "to": "the-tuning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mourncant-parley",
+      "to": "the-third-tone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-tuning",
+      "to": "seam-sealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-tuning",
+      "to": "chorus-ascendant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-tuning",
+      "to": "the-third-tone",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "choir-vanguard",
+      "title": "Vanguard of the Hollow Choir",
+      "combatants": [
+        {
+          "id": "stole-bearers",
+          "statblock": "ghoul",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "cast-off-shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "unstitched-gallery",
+      "onDefeat": "the-thin-place",
+      "onFlee": "drowned-orrery"
+    },
+    {
+      "id": "bridge-toll",
+      "title": "The Toll of Nine Mouths",
+      "combatants": [
+        {
+          "id": "oathturned-armours",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "bone-cantors",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "wind",
+        "fog",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Set foot on the Bell-side landing beyond the ninth resonance port before the toll can stall you further."
+      },
+      "onVictory": "bell-hollow-threshold",
+      "onDefeat": "mourncant-parley",
+      "onFlee": "the-thin-place"
+    },
+    {
+      "id": "mourncant-choir",
+      "title": "The Tuning of the Anchor Bell",
+      "combatants": [
+        {
+          "id": "mourncant",
+          "statblock": "wight",
+          "count": 1,
+          "hpOverride": 104,
+          "hostile": true
+        },
+        {
+          "id": "first-descant",
+          "statblock": "ghast",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "unstitched-shades",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "unstable",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "mourncant"
+      },
+      "onVictory": "seam-sealed",
+      "onDefeat": "chorus-ascendant",
+      "onFlee": "the-third-tone"
+    }
+  ]
+}

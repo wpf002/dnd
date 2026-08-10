@@ -1,0 +1,696 @@
+{
+  "id": "the-ninefold-palimpsest",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ninefold Palimpsest",
+    "premise": "A sublector has vanished from the cliff-top Sconcelight Athenaeum, yet the fortress's own records place her in two rooms at once, alive and dead, on the same evening. The proof of her fate is bound inside a book that rewrites whoever reads it.",
+    "tone": [
+      "mystery",
+      "anthology"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "A hushed archivist's cadence — precise, faintly amused, prone to footnotes; every room described as if it were a page that might turn on its own.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "All witnesses, staff, and victims are adults. The Athenaeum admits no minors."
+    },
+    "provenance": "flint"
+  },
+  "entry": "cliffside-gate",
+  "beats": [
+    {
+      "id": "cliffside-gate",
+      "kind": "threshold",
+      "title": "The Gullmaw Gate",
+      "prose": "The Sconcelight Athenaeum straddles a spur of black rock above four hundred feet of gull-screaming air, its only bridge a hinged plank the keepers raise at dusk. Chains rattle behind the gate — not for prisoners, the porters insist, but for books. A storm-bell hangs beside the wicket. Below it, chalked and half-scrubbed, someone has written: ILVA CAME BACK. ILVA NEVER LEFT. Both hands look like the same hand. You were hired by the Athenaeum's trustees to explain that contradiction.",
+      "readAloud": "Wind comes off the sea in slabs. The plank bridge shivers under your boots, and from somewhere deep inside the rock a book begins, politely, to knock.",
+      "art": "art-the-ninefold-palimpsest-gullmaw-gate",
+      "options": [
+        {
+          "id": "opt-ring-bell",
+          "label": "Ring the storm-bell and present the trustees' writ",
+          "target": "keepers-welcome",
+          "effects": []
+        },
+        {
+          "id": "opt-laundry-stair",
+          "label": "Climb the salt-slick laundry stair and enter unannounced",
+          "target": "vacant-cell",
+          "effects": [
+            {
+              "flag": "entered-unseen",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "wind-gallery"
+          }
+        },
+        {
+          "id": "opt-lamplighter",
+          "label": "Share a flask with the lamplighter huddled at the gate-post",
+          "target": "keepers-welcome",
+          "effects": [
+            {
+              "flag": "heard-rumor",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "keepers-welcome",
+      "kind": "social",
+      "title": "Prime Lector Halbrec Thane",
+      "prose": "Thane receives you in a reading room where every chair is bolted down and every volume is leashed by a brass chain to a ring in the floor. He is old, immaculate, and speaks of Sublector Ilva Marrowgate in the past and present tense within the same sentence. 'She was our finest hand at collation. She is not to be trusted with the Palimpsest.' When you ask which, he offers you tea and a choice of three doors: her cell, the loan ledger, or a tour of the chained stacks he clearly hopes you will accept.",
+      "readAloud": "'Understand, investigators — the Athenaeum does not lose things. Occasionally it acquires them twice.'",
+      "art": "art-the-ninefold-palimpsest-lector-thane",
+      "options": [
+        {
+          "id": "opt-ask-cell",
+          "label": "Ask to see Ilva's cell, exactly as she left it",
+          "target": "vacant-cell",
+          "effects": []
+        },
+        {
+          "id": "opt-demand-ledger",
+          "label": "Demand the loan ledger under the trustees' writ",
+          "target": "ledger-vault",
+          "effects": []
+        },
+        {
+          "id": "opt-accept-tour",
+          "label": "Accept the tour of the chained stacks",
+          "target": "chained-stacks",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vacant-cell",
+      "kind": "discovery",
+      "title": "A Cell Left Twice",
+      "prose": "Ilva's cell is a stone slot with a cot, a shelf, and an inkwell holding a single black quill still wet after nine days. On the shelf sit two identical diaries. In one, the final entry is a farewell: she is leaving the Athenaeum for good, at dusk, by the plank bridge. In the other, the final entry is a warning: she cannot leave, the Palimpsest has her margin, and she must not be believed if she says otherwise. Both are dated the same evening. Both are unmistakably her handwriting. Wet ink-tracks lead out the door and down, not up.",
+      "art": "art-the-ninefold-palimpsest-vacant-cell",
+      "options": [
+        {
+          "id": "opt-take-quill",
+          "label": "Pocket the black quill that will not dry",
+          "target": "ledger-vault",
+          "effects": [
+            {
+              "flag": "carries-ilva-quill",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-collate-diaries",
+          "label": "Collate the two diaries line by line for the seam",
+          "target": "witness-pair",
+          "effects": [
+            {
+              "flag": "saw-double-hand",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "spiral-stair-descent"
+          }
+        },
+        {
+          "id": "opt-follow-ink",
+          "label": "Follow the wet ink-tracks down the spiral stair",
+          "target": "spiral-stair-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-vault",
+      "kind": "puzzle",
+      "title": "The Loan Ledger",
+      "prose": "The vault is a drum of shelving lit by a caged lamp, and every loan in the Athenaeum's history is recorded twice: once forward by the clerk, once in reverse by a mechanism the keepers no longer understand. Wren Suttle, the vault clerk, has bitten her nails to the quick. The forward ledger shows Ilva signing the Ninefold Palimpsest out at dusk and crossing the bridge. The reverse ledger shows the Palimpsest never left its lectern — and Ilva's name written in the column reserved for items borrowed, not borrowers. A wax seal binds the closing pages.",
+      "art": "art-the-ninefold-palimpsest-loan-ledger",
+      "options": [
+        {
+          "id": "opt-break-seal",
+          "label": "Break the wax seal and read the closing entries aloud",
+          "target": "witness-pair",
+          "effects": [
+            {
+              "flag": "ledger-seal-broken",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-copy-reverse",
+          "label": "Slip behind the counter unnoticed and copy the reverse ledger",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "entered-unseen",
+            "value": true
+          },
+          "target": "scriptorium-mirror",
+          "effects": []
+        },
+        {
+          "id": "opt-press-clerk",
+          "label": "Press Wren Suttle on who signs for a borrowed person",
+          "target": "witness-pair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "witness-pair",
+      "kind": "social",
+      "title": "Two Truths in the Kitchen Passage",
+      "prose": "Bettany Owlin, cook, swears on her mother's grave that she watched Ilva walk out over the plank bridge at dusk, cloak snapping, and waved. Nightwarden Cassock Dree swears on his pension that he raised that bridge an hour before dusk and that Ilva screamed his name from inside the stacks all night. Neither will yield. Neither is lying; you would stake your reputation on it. Each recounts a small, complete, self-contained tale of that evening — and the two tales share a single detail: a book that knocked.",
+      "art": "art-the-ninefold-palimpsest-kitchen-passage",
+      "options": [
+        {
+          "id": "opt-press-cook",
+          "label": "Press Bettany on what her Ilva's face looked like up close",
+          "target": "spiral-stair-descent",
+          "effects": [
+            {
+              "flag": "has-witness-contradiction",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-use-rumor",
+          "label": "Set the lamplighter's rumour between them and watch it land",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "heard-rumor",
+            "value": true
+          },
+          "target": "censor-confrontation",
+          "effects": [
+            {
+              "flag": "has-witness-contradiction",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-leave-quarrel",
+          "label": "Leave them to their quarrel and search the chained stacks",
+          "target": "chained-stacks",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "spiral-stair-descent",
+      "kind": "transit",
+      "title": "Nine Turns Down",
+      "prose": "The stair bores down through the cliff in nine turns, each landing a small anthology of horrors: a shelf of sealed novellas that weep brine, a locked case labelled DO NOT FINISH, a reading niche where a chair has been worn through by someone who sat too long. The ink-drips continue, thinning. On the sixth landing they double — two sets, one going down, one coming up, laid over each other in the same wet black.",
+      "art": "art-the-ninefold-palimpsest-spiral-stair",
+      "options": [
+        {
+          "id": "opt-match-hour",
+          "label": "Match the drip-spacing to the vault's recorded closing hour",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ledger-seal-broken",
+            "value": true
+          },
+          "target": "scriptorium-mirror",
+          "effects": []
+        },
+        {
+          "id": "opt-descend-stacks",
+          "label": "Keep descending to the chained stacks",
+          "target": "chained-stacks",
+          "effects": []
+        },
+        {
+          "id": "opt-cut-gallery",
+          "label": "Cut out through the wind gallery to save three turns",
+          "target": "wind-gallery",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chained-stacks",
+      "kind": "conflict",
+      "title": "The Chained Stacks",
+      "prose": "Down here the books are not shelved but restrained: chained, weighted, some stitched shut with wire. Three empty suits of reading-armour stand as wardens between you and the scriptorium stair, and they have been given one instruction — nothing that has read the Palimpsest passes. Loose bones lie among the chains, still clutching bookmarks. When the first gauntlet closes on a chain-link, the whole hall rings like a struck bell. You do not need to break them. You need to reach the stair.",
+      "readAloud": "A helm turns. There is no face in it, only a page, and the page is turning.",
+      "art": "art-the-ninefold-palimpsest-chained-stacks",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "stack-wardens",
+      "terminal": false
+    },
+    {
+      "id": "scriptorium-mirror",
+      "kind": "discovery",
+      "title": "The Mirror-Press",
+      "prose": "The scriptorium's copying engine is a press faced with a sheet of grey glass. Feed it a page and it returns two, indistinguishable, each insisting it is the original. Tonight the press is warm and there is a long dark hair caught in its rollers. A trial sheet lies in the tray: a copy of Ilva's farewell entry, and beneath it, in fresh ink, the copy has answered itself — *I am the one that stayed.* The Palimpsest, you understand at last, does not eat readers. It collates them.",
+      "art": "art-the-ninefold-palimpsest-mirror-press",
+      "options": [
+        {
+          "id": "opt-press-diaries",
+          "label": "Lay both diaries in the press and read what the glass adds",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "saw-double-hand",
+            "value": true
+          },
+          "target": "the-two-ilvas",
+          "effects": [
+            {
+              "flag": "knows-duplication",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-copy-page",
+          "label": "Feed a blank page through and watch the copy write back",
+          "target": "censor-confrontation",
+          "effects": [
+            {
+              "flag": "knows-duplication",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-redaction-bins",
+          "label": "Search the redaction bins beneath the press",
+          "target": "ghostlight-cistern",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wind-gallery",
+      "kind": "hazard",
+      "title": "The Wind Gallery",
+      "prose": "An open colonnade cut into the cliff-face, meant for airing damp folios and nothing else. The gale comes through in fists. Loose pages travel it like gulls — torn leaves of a hundred confiscated stories, each a complete small doom, and one of them is in Ilva's hand. The parapet is a hand's breadth of crumbling lime. Behind you, a censor's alcove glows with a shuttered lamp; below, a grated shaft breathes cold cistern air.",
+      "art": "art-the-ninefold-palimpsest-wind-gallery",
+      "options": [
+        {
+          "id": "opt-chase-pages",
+          "label": "Chase the pages along the parapet and snatch Ilva's leaf",
+          "target": "scriptorium-mirror",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "ghostlight-cistern"
+          }
+        },
+        {
+          "id": "opt-censor-alcove",
+          "label": "Shelter in the censors' alcove and see who keeps the lamp",
+          "target": "censor-confrontation",
+          "effects": []
+        },
+        {
+          "id": "opt-quill-compass",
+          "label": "Hold the black quill loose and let the wind aim it",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "carries-ilva-quill",
+            "value": true
+          },
+          "target": "the-two-ilvas",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "censor-confrontation",
+      "kind": "decision",
+      "title": "Redactor Prime Ossia Vane",
+      "prose": "Vane keeps her own faction inside the Athenaeum: the Redactors, six women with lampblack under their nails who solve dangerous books by removing them, sentence by sentence. She has known about the Palimpsest for eleven years and about Ilva for nine days. 'Thane collects. I subtract. Your missing woman is now a marginal note in a book that is very interested in being finished.' Her price for help is old and simple: you choose a volume to feed the furnace in Ilva's place.",
+      "readAloud": "'Contradiction is not a mystery, investigators. It is a symptom. Something in this fortress is drafting.'",
+      "art": "art-the-ninefold-palimpsest-redactor-vane",
+      "options": [
+        {
+          "id": "opt-accept-terms",
+          "label": "Accept Vane's terms and name a book for the furnace",
+          "target": "the-two-ilvas",
+          "effects": [
+            {
+              "flag": "redactor-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-vane",
+          "label": "Refuse her, and take the redactors' back-shaft down instead",
+          "target": "ghostlight-cistern",
+          "effects": []
+        },
+        {
+          "id": "opt-show-proof",
+          "label": "Show her the mirror-press proof and set your own terms",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-duplication",
+            "value": true
+          },
+          "target": "the-two-ilvas",
+          "effects": [
+            {
+              "flag": "redactor-ally",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ghostlight-cistern",
+      "kind": "conflict",
+      "title": "The Ghostlight Cistern",
+      "prose": "Rainwater collects in a vaulted tank beneath the stacks, and the Athenaeum's leaked ink has made it black as a closed eye. Ghostlight crawls on the surface — the discarded shadows of readers the Palimpsest has already collated, thin as offcut paper and hungry for the outline of a body. There is a ladder on the far wall and a ledge above the waterline. You want the ladder. They want your shape. Nothing here can be usefully killed; it can only be outrun.",
+      "art": "art-the-ninefold-palimpsest-ghostlight-cistern",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cistern-shades",
+      "terminal": false
+    },
+    {
+      "id": "the-two-ilvas",
+      "kind": "puzzle",
+      "title": "Both of Her",
+      "prose": "In the sealed lectern-room, the Ninefold Palimpsest lies open on its chain, and two women sit on either side of it. Both are Ilva Marrowgate. One has salt in her hair and a bruised shoulder from a raised bridge; she says she never left. One is dry, calm, cloaked for travel; she says she walked out at dusk and only came back for her quill. Each remembers waving at Bettany. Each remembers screaming for Dree. The book, between them, is halfway through a sentence that begins with your names.",
+      "readAloud": "'Ask us anything,' they say, together, in one voice with one breath. 'We will both answer truthfully. That is the trouble.'",
+      "art": "art-the-ninefold-palimpsest-two-ilvas",
+      "options": [
+        {
+          "id": "opt-begin-unbinding",
+          "label": "Name which Ilva the book drafted, and begin the unbinding",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "has-witness-contradiction",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "knows-duplication",
+                "value": true
+              }
+            ]
+          },
+          "target": "unbinding-climax",
+          "effects": []
+        },
+        {
+          "id": "opt-hand-to-vane",
+          "label": "Hand both women to Vane's redactors and honour her bargain",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "redactor-ally",
+            "value": true
+          },
+          "target": "ending-bargain",
+          "effects": []
+        },
+        {
+          "id": "opt-take-one-and-run",
+          "label": "Take the Ilva who bleeds, leave the book, and run for the bridge",
+          "target": "ending-flight",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "unbinding-climax",
+      "kind": "climax",
+      "title": "The Unbinding",
+      "prose": "You say the name. The Palimpsest objects. Its chain goes rigid, its pages fan out into a wheel of other people's endings, and the thing it has been drafting for nine days steps out of the margin wearing a ninth draft of Ilva Marrowgate — grey-lipped, cold-handed, and word-perfect. Two collated readers rise from the floor-cracks to hold the room while it works. The true Ilva has the lectern's brass key and needs four rounds to cut her name out of the spine. You need only to still be standing when she finishes.",
+      "readAloud": "'Do not interrupt,' says the draft, in her voice, from her face. 'I am nearly done with you.'",
+      "art": "art-the-ninefold-palimpsest-unbinding-climax",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "palimpsest-binding",
+      "terminal": false
+    },
+    {
+      "id": "ending-restored",
+      "kind": "ending",
+      "title": "Errata",
+      "prose": "The spine gives. The ninth draft comes apart into loose leaves that the wind gallery takes out over the water, and one woman is left kneeling on the flagstones with ink to the elbows and a raised-bridge bruise on her shoulder. Bettany weeps and insists she waved at someone. She did. Prime Lector Thane accepts your report, files it under ERRATA, and has the Palimpsest chained with nine chains instead of one. The Athenaeum pays in full and asks, politely, whether you are available in the spring. Somewhere in the stacks, something else begins to knock.",
+      "art": "art-the-ninefold-palimpsest-ending-errata",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bargain",
+      "kind": "ending",
+      "title": "The Redacted Woman",
+      "prose": "Vane's redactors take both women below and come back with one, and no one afterwards can agree on which. She works the collation desk, competent and quiet, and does not remember owning a black quill. The Palimpsest is subtracted line by line into the furnace; so, somewhere in the process, is nine days of one woman's life and the name of whoever waved at the cook. You are paid. You are thanked. Your own report reads oddly when you re-read it on the bridge — as though a hand not yours had tidied the margins.",
+      "art": "art-the-ninefold-palimpsest-ending-redacted",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-flight",
+      "kind": "ending",
+      "title": "Two Sets of Footprints",
+      "prose": "You cross the plank bridge at dawn with Ilva Marrowgate between you, salt-haired and shaking and alive, and behind you the lectern-room stays shut. In the mud of the cliff road there are two sets of her footprints. She only made one. Somewhere behind the raised bridge the Palimpsest finishes its sentence with a draft of her that is patient, unbruised, and already writing to the trustees about the investigators who abducted her. The mystery is not solved. It has merely been carried down the hill.",
+      "art": "art-the-ninefold-palimpsest-ending-two-tracks",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-devoured",
+      "kind": "ending",
+      "title": "Collated",
+      "prose": "The cold gets into your outlines first, and then your outlines get into the book. The Athenaeum's next loan ledger records a party of investigators returning items they never borrowed, at dusk, over a bridge that was already raised. Prime Lector Thane files the contradiction and does not read the new pages — the ones at the back of the Ninefold Palimpsest, where four short, complete, self-contained stories have been added in four familiar hands, each ending mid-word. In the gallery, the wind turns them, and turns them, and turns them.",
+      "art": "art-the-ninefold-palimpsest-ending-collated",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "stack-wardens",
+      "title": "Wardens of the Chained Stacks",
+      "combatants": [
+        {
+          "id": "reading-armour",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hpOverride": 27,
+          "hostile": true
+        },
+        {
+          "id": "bookmarked-dead",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Any two party members reach the scriptorium stair at the hall's far end and haul the chain-gate down behind them."
+      },
+      "onVictory": "scriptorium-mirror",
+      "onDefeat": "wind-gallery",
+      "onFlee": "spiral-stair-descent"
+    },
+    {
+      "id": "cistern-shades",
+      "title": "Offcut Shadows",
+      "combatants": [
+        {
+          "id": "offcut-shade",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "the-two-ilvas",
+      "onDefeat": "ending-devoured",
+      "onFlee": "wind-gallery"
+    },
+    {
+      "id": "palimpsest-binding",
+      "title": "The Ninth Draft",
+      "combatants": [
+        {
+          "id": "ninth-draft",
+          "statblock": "wight",
+          "count": 1,
+          "hpOverride": 36,
+          "hostile": true
+        },
+        {
+          "id": "collated-reader",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "true-ilva",
+          "statblock": "bandit",
+          "count": 1,
+          "hpOverride": 14,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "ending-restored",
+      "onDefeat": "ending-devoured"
+    }
+  ]
+}

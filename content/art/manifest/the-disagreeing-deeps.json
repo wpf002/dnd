@@ -1,0 +1,90 @@
+{
+  "adventure": "the-disagreeing-deeps",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: megadungeon, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-disagreeing-deeps-sunken-stair-art",
+      "beat": "the-sunken-stair",
+      "brief": "The Sunken Stair — The stair begins in a Cinderhollow root-cellar and does not stop. Thirty steps down, the masonry changes character entirely: granary chutes fitted wit"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-listening-well-art",
+      "beat": "the-listening-well",
+      "brief": "The Listening Well — A dry well ringed with brass ears, each ear labeled with a level number in Vare's cramped hand. Speak into it and the well answers in the voice of wha"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-tallow-market-art",
+      "beat": "tallow-market",
+      "brief": "The Tallow Market — Level One is a vaulted granary turned bazaar, lit by ten thousand candles the Tallow Choir refuses to let gutter. Their speaker, Mother Quillion Aske,"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-cistern-tithe-art",
+      "beat": "cistern-tithe",
+      "brief": "The Tithe-Cistern — The cistern is a drowned granary silo, chest-deep and rising as some unseen sluice opens above. Its permanent tenants — rats grown fat on grain that w"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-hollow-shaft-art",
+      "beat": "hollow-shaft",
+      "brief": "The Hollow Shaft — A single vertical shaft threads all known levels, strung with counterweighted cables that still run on a schedule nobody set. Painted rungs mark the t"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-ledger-gate-art",
+      "beat": "ledger-gate",
+      "brief": "The Ledger Gate — Level Four is Intake, and Intake is run by the Auditors of the Ninth Rung — small, tidy, spectacled clerks descended from the labor Vare conscripted a"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-cell-block-art",
+      "beat": "cell-block-of-quiet-names",
+      "brief": "The Cell Block of Quiet Names — Two hundred cells, all unlocked, all empty, each door plated with a name. The plates are hinged so they can be read from inside. Read in order, the na"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-auditor-sweep-art",
+      "beat": "auditor-sweep",
+      "brief": "Sweep of the Ninth Rung — Bells in threes. The Auditors do not fight so much as file: invigilators herd, brass vergers block, and dust-knit clerks of long-dead shifts come up t"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-sown-garden-art",
+      "beat": "the-sown-garden",
+      "brief": "The Sown Garden — Level Seven is soil, forty feet deep and lit by hanging fungus-lamps. The Sown tend it: long-lived, grey-gummed gardeners who eat only what has alread"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-spore-tide-art",
+      "beat": "spore-tide",
+      "brief": "The Spore Tide — The vent breathes. Every ninth minute a warm tide of yellow spores rolls uphill through the passage, and every surface it touches sprouts a small crop"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-foundation-vault-art",
+      "beat": "foundation-vault",
+      "brief": "The Foundation Vault — Below the last painted rung, the undercity stops pretending to be architecture. A single round chamber, a plinth, and on the plinth the Codicil: a sla"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-warden-bellhouse-art",
+      "beat": "warden-bellhouse",
+      "brief": "Bellhouse, Who Keeps the Line Empty — It was a caretaker once. Four centuries of contradictory orders have hollowed it into something cold that keeps only one rule: the purpose-line stays "
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-inscribing-art",
+      "beat": "the-inscribing",
+      "brief": "The Inscribing — The stylus is bone and fits any hand. Ink is not required; the deed-stone takes the intent. Above you, five levels of certainty hold their breath — ca"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-ending-refuge-art",
+      "beat": "ending-refuge",
+      "brief": "Ending: The Shelter Admitted — Whether you wrote the word or the undercity wrote it over you, the answer settles as SHELTER, and the whole descent rearranges itself politely to agre"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-ending-ledger-art",
+      "beat": "ending-ledger",
+      "brief": "Ending: The Sentence Upheld — The undercity becomes what Intake always insisted it was: a place built to hold. The granary's benches grow numbers, the garden's rows grow fences, an"
+    },
+    {
+      "slot": "art-the-disagreeing-deeps-ending-seed-art",
+      "beat": "ending-seed",
+      "brief": "Ending: The Planting Deferred — SEED VAULT, says the stone, and the deep exhales soil. Levels fold into cold dry order: the market becomes a granary again, the cells become drawers, "
+    }
+  ]
+}

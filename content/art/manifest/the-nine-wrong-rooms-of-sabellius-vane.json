@@ -1,0 +1,90 @@
+{
+  "adventure": "the-nine-wrong-rooms-of-sabellius-vane",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: heist, urban-intrigue.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-rooftop-ingress",
+      "beat": "rooftop-ingress",
+      "brief": "Rooftop Ingress — The Ombrine Reliquary has no windows on the street and eleven on the roof, and every one of them looks down into a different room than it did last mon"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-antechamber-of-tallies",
+      "beat": "antechamber-of-tallies",
+      "brief": "The Antechamber of Tallies — A long room whose walls are a single continuous column of figures, chalked, inked, burned, and in one place stitched. The figures are current: one of "
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-mirror-clerks-parlor",
+      "beat": "mirror-clerks-parlor",
+      "brief": "The Parlour of Mirror-Clerks — Grivane Ost sits at a desk facing a mirror, and so does Grivane Ost. One of them is the night registrar of the Ombrine Trust; the other is what the Tr"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-room-of-constant-weight",
+      "beat": "room-of-constant-weight",
+      "brief": "The Room of Constant Weight — A vaulted cube with no exit but the one behind you — until the floor's great brass scale is satisfied. Vane's rule, chiselled overhead: NOTHING LEAVES"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-gallery-of-standing-armor",
+      "beat": "gallery-of-standing-armor",
+      "brief": "The Gallery of Standing Armour — Ceremonial plate lines a gallery that is longer than the building. The suits are hollow, and the Trust pays a stipend to each of them. They do not att"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-stair-that-descends-upward",
+      "beat": "stair-that-descends-upward",
+      "brief": "The Stair That Descends Upward — You go down. The rain gets louder above and also below. Halfway along, a landing offers three ways: a doorway weeping ledger-water; a low cell door wi"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-drowned-strongroom",
+      "beat": "drowned-strongroom",
+      "brief": "The Drowned Strongroom — A strongroom filled to the ceiling with cold water that tastes of iron gall ink. Inside it, suspended, float the Trust's unpaid debts: coins, contract"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-cartographers-cell",
+      "beat": "cartographers-cell",
+      "brief": "The Cartographer's Cell — Ismene Ply has been inside the Reliquary for six weeks and has not been caught, because she has not left. Her cell walls are papered with a map of the"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-rival-crew-in-the-margin",
+      "beat": "rival-crew-in-the-margin",
+      "brief": "The Margin — The margin is the gap between strongrooms: a scaffolded seam of unfinished floor where Vane left his workings visible. Vessel Krance and three of the "
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-the-false-vault",
+      "beat": "the-false-vault",
+      "brief": "The Vault of Nine Locks — Nine locks, nine keyholes, nine different centuries of craft, and beneath the ninth, small as a signature, the architect's mark: S.V., and a line of n"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-ledger-heart",
+      "beat": "ledger-heart",
+      "brief": "The Ledger-Heart — The Reliquary's accounting is not kept in a book. It is kept in a room-sized clockwork of pens, each nib resting on a running strip of vellum, writing"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-the-quiet-bell-chamber",
+      "beat": "the-quiet-bell-chamber",
+      "brief": "The Quiet Bell — The ninth wrong room is small and plain and warm, like a kitchen. On a leather cushion sits a hand-bell of grey metal, and around it the air is thin w"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-the-architect-unspent",
+      "beat": "the-architect-unspent",
+      "brief": "The Architect Unspent — The kitchen-warmth goes out of the room. Sabellius Vane died forty years ago and has not spent a single one of them: he had himself entered into his o"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-clean-lift",
+      "beat": "ending-clean-lift",
+      "brief": "Ending: A Tally Unchanged — You come out onto the wet lead of the roof at the fag-end of the Night of Tallies with a grey bell wrapped in a stolen ledger, and behind you the Reli"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-bell-rung",
+      "beat": "ending-bell-rung",
+      "brief": "Ending: The Hour That Kept Its Change — You ring a bell with no clapper and the last hour comes apart like wet paper. You are on the roof again in the rain, dry-mouthed, whole, with the skyl"
+    },
+    {
+      "slot": "art-the-nine-wrong-rooms-of-sabellius-vane-ending-cataloged",
+      "beat": "ending-cataloged",
+      "brief": "Ending: Entered, Filed, Held — The Trust does not kill thieves; killing is wasteful and hard to account for. You wake in a strongroom that is a very good imitation of a room you hav"
+    }
+  ]
+}

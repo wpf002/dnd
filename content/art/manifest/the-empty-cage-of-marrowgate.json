@@ -1,0 +1,90 @@
+{
+  "adventure": "the-empty-cage-of-marrowgate",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: anthology, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-ledger-house-loft",
+      "beat": "the-empty-cage",
+      "brief": "The Commission in the Ledger Loft — The Ledger of Roads keeps its business in a hayloft above a caravan stable, because the Ledger believes that anything worth writing down should smell "
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-lamp-house-registers",
+      "beat": "lamp-house-questions",
+      "brief": "The Lamp House Registers — The Lampwrights of Marrowgate light every post on the four roads out to the twelfth milestone, and they write down each lamp's behaviour in registers "
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-rain-slick-gantries",
+      "beat": "shadow-the-client",
+      "brief": "Chalk Marks on the Gantries — Marrowgate above street level is a lattice of porter-gantries, rope hoists and plank walks strung between warehouses, and Vole crosses it like a woman"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-quiet-market-stalls",
+      "beat": "quiet-market",
+      "brief": "The Quiet Market Under the Customs Arch — Everything that must not appear in the Ledger of Roads is bought under the customs arch, in a market where nobody raises a voice because the arch carr"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-alley-toll-lanterns",
+      "beat": "toll-in-the-alley",
+      "brief": "The Toll in the Alley — The back arch gives onto Cooper's Slip, a wet stone throat six feet wide with a lamp at either end, and both lamps go out at once. Bodies come off the"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-salt-road-gate-dusk",
+      "beat": "salt-road-gate",
+      "brief": "Out the Salt Road Gate — The Salt Road leaves Marrowgate through a gate wide enough for three wagons abreast, and beyond it the milestones march away into a flat country of pa"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-fourth-milestone-lamp",
+      "beat": "fourth-milestone",
+      "brief": "The Fourth Milestone — The fourth milestone is older than the road it stands beside: a shaft of blue-grey stone pitted like bone, wearing a collar of moss and a lamp-post bo"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-drifting-road-fog",
+      "beat": "the-drifting-road",
+      "brief": "The Road Comes Untied — The lamp gutters. Fog comes up out of the salt pans in one motion, like a sheet lifted off furniture, and when it clears in patches the milestones are"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-hollow-caravan-lanterns",
+      "beat": "hollow-caravan",
+      "brief": "The Hollow Caravan — It passes in six long minutes: oxen-frames of bone in rotted harness, a drover with a lantern hung where a face should be, outriders who were people o"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-passenger-in-the-cage",
+      "beat": "the-passenger",
+      "brief": "The Passenger — When the last lantern goes by, something remains: a light the size of a wren, folded like a map along creases that hurt to follow. It speaks in the ex"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-numerals-under-moss",
+      "beat": "milestone-cipher",
+      "brief": "The Column of Numerals — The milestone's numerals are a survey column, and a survey column is an argument: this point, from these three bearings, at this depth. Two of the bea"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-vault-of-roads",
+      "beat": "vault-of-roads",
+      "brief": "The Vault of Roads — Under the caravan stable, behind a brick arch the Ledger has kept whitewashed for two centuries, is a room the size of a chapel with four channels cut"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-last-measure-plinth",
+      "beat": "the-last-measure",
+      "brief": "The Last Measure — The false milestone comes apart into plate and brass and a great deal of expensive chalk, and the socket in the plinth is open, and cold, and exactly "
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-ending-lamps-lean",
+      "beat": "ending-roads-hold",
+      "brief": "Ending: The Roads Hold — The light goes into the socket the way a key goes into a lock it was cut for, and every lamp on the four roads out to the twelfth milestone leans once"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-ending-empty-crossing",
+      "beat": "ending-city-adrift",
+      "brief": "Ending: The Crossing Drifts East — It takes eleven weeks and nobody can point to the day it happened. Caravans set out for Marrowgate and arrive at a new-built crossing three leagues ea"
+    },
+    {
+      "slot": "art-the-empty-cage-of-marrowgate-ending-chain-and-channels",
+      "beat": "ending-new-cartographer",
+      "brief": "Ending: The New Measure — The chain is cold and heavier than iron has any right to be, and when you step into the meeting of the four channels the vault stops being a room and "
+    }
+  ]
+}

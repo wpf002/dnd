@@ -1,0 +1,90 @@
+{
+  "adventure": "the-greenmaw-swallows-slow",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: jungle-survival, megadungeon.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-greenmaw-swallows-slow-shell-sand-landing",
+      "beat": "mouth-of-the-green",
+      "brief": "The Mouth of the Green — The Greenmaw is a peninsula shaped like a tongue and it behaves like one. Your longboat grounds on a bar of grey shell-sand and the jungle leans out o"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-hetsu-nine-stilts",
+      "beat": "stilt-village",
+      "brief": "Hetsu Nine, On Stilts — Nine houses on nine sets of legs, roped together over a creek the colour of steeped tea. Somewhere out of sight, children are singing a counting song "
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-black-mangrove-shallows",
+      "beat": "mangrove-wade",
+      "brief": "The Black Shallows — Thigh-deep, then chest-deep. The mangrove roots arch like the inside of a rib-cage and the water tastes of iron and old sugar. Leeches the length of y"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-leafcutter-highway",
+      "beat": "beetle-road",
+      "brief": "The Leafcutter Road — A highway two carts wide, swept bare by generations of insects the size of dinner plates. They ignore you. They are carrying cut leaf inland and carry"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-furred-canvas-camp",
+      "beat": "swallowed-camp",
+      "brief": "The Peeler Picket — The Salt-Ledger camp is being eaten while it works. Tent canvas has gone furred and green; a winch tower stands in a nest of creeper it will never lea"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-green-thread-hands",
+      "beat": "fever-dream",
+      "brief": "Green Fever — You come back to yourself somewhere you did not lie down. Your sweat has a smell like cut grass. Something has been thinking at you while you were und"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-bronze-sluice-gears",
+      "beat": "drowned-stair",
+      "brief": "The Drowned Stair — The sink of ferns hides masonry: a stair of nine broad steps descending into standing black water, and beyond it, a sluice-gate of bronze gears older "
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-root-squeezed-vault",
+      "beat": "throat-of-roots",
+      "brief": "The Throat of Roots — This is not a corridor. It is a corridor that has been swallowed: barrel-vaulted stone squeezed to an oval by root-muscle thick as thighs, sweating a "
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-ninth-mouth-ossuary",
+      "beat": "gallery-of-swallowed-kings",
+      "brief": "The Gallery of Swallowed Kings — A hall the length of a ship, and along both walls the ossuary niches of Ihru's household, each niche a stone mouth with a stone tongue. Eight are empt"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-tooth-mosaic-chapel",
+      "beat": "chapel-of-chewed-prayers",
+      "brief": "The Chapel of Chewed Prayers — The side-chapel's floor is a mosaic of teeth and its ceiling is a lattice of root through which sap comes down in a rising, glistening flood. The Peel"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-hanging-bone-orchard",
+      "beat": "bone-orchard",
+      "brief": "The Bone Orchard — A cavern where roots have grown up through the graves of Ihru's servants and lifted the skeletons into the canopy like fruit. Warden-Surveyor Cassil D"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-bronze-petal-valve",
+      "beat": "peristalsis",
+      "brief": "Peristalsis — The last descent moves. Not quickly — a squeeze that takes a slow count of forty, then a slack, then another squeeze, the whole shaft working like a s"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-tallow-king-dry-vault",
+      "beat": "sallow-crown",
+      "brief": "Ihru of the Sallow Crown — The vault is dry. That is the horror of it: after all that wet green throat, a dry stone room with a dry stone chair, and in the chair a man of tallow"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-slack-roots-dawn",
+      "beat": "crown-unswallowed",
+      "brief": "Ending: The Peninsula Spits — The circlet cracks and the roots go slack all at once, all the way to the coast. For an hour the Greenmaw gives back what it has been holding: masts a"
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-twelfth-tally-mark",
+      "beat": "digested",
+      "brief": "Ending: Not Finished — The vault stays dry and the chair stays full, and the peninsula adds you to its long slow work. This is not an ending with a stone over it. Somewhere "
+    },
+    {
+      "slot": "art-the-greenmaw-swallows-slow-low-tide-survivor",
+      "beat": "spat-out",
+      "brief": "Ending: Spat Out — You run, and the throat lets you — that is the insult of it. The sap vein sluices you up and out and the mangroves lay you on the shell-sand at low ti"
+    }
+  ]
+}

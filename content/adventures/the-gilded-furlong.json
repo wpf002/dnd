@@ -1,0 +1,933 @@
+{
+  "id": "the-gilded-furlong",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Gilded Furlong",
+    "premise": "A travelling carnival has pitched itself in a barley field at the hem of the fey realm, and the village of Hollow Ferry walked in three nights ago and never walked out. The ringmistress once signed a charming little bargain with a fey broker, and the Broker has begun reading it aloud, word for literal word.",
+    "tone": [
+      "whimsical-fey",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Warm carnival-barker cadence with a chill under the tinsel — second person, present tense, every kindness slightly too specific.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of Hollow Ferry appear only asleep, safe, and unharmed in the sweet-tent; any peril involving them stays off-screen and is resolved by adults before the party arrives."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crooked-gate",
+  "beats": [
+    {
+      "id": "crooked-gate",
+      "kind": "threshold",
+      "title": "The Gate at the Crooked Mile",
+      "prose": "There is no road here, and yet there is a gate: a scrolled iron arch spelling THE GILDED FURLONG in letters that rearrange themselves when you blink. Barley grows right up to the turnstile and stops as if it had been told to. The ticket-taker is a long-armed hob in a porcelain half-mask who calls himself Grinnow Tick; his ledger is thicker than a church door and every line is filled. Beyond him the midway breathes out sugar, oil, and something colder underneath, and a woman's laughter loops over and over from somewhere near the middle, always the same three notes.",
+      "readAloud": "\"Admission's a trifle, friends. One small thing you won't miss — a middle name, the smell of your grandmother's kitchen, the ache in an old knee. Cheap! Everything here is cheap, that's the whole trouble with it.\"",
+      "art": "art-the-gilded-furlong-crooked-gate",
+      "options": [
+        {
+          "id": "pay-the-small-toll",
+          "label": "Pay the toll — surrender one small thing you 'won't miss' and take the punched token",
+          "target": "midway-lamps",
+          "effects": [
+            {
+              "flag": "paid-toll",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "slip-the-fence",
+          "label": "Slip through the gap where the picket fence forgets to be a fence",
+          "target": "midway-lamps",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "clerk-writ-beat"
+          }
+        },
+        {
+          "id": "question-grinnow",
+          "label": "Question Grinnow Tick about the folk of Hollow Ferry who came in and stayed",
+          "target": "midway-lamps",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "midway-lamps",
+      "kind": "transit",
+      "title": "The Midway of Many Lamps",
+      "prose": "Every lamp along the midway is a glass belly full of pale moths, and the moths beat in time with that looping laugh. Hollow Ferry's people are here — a wheelwright endlessly winning at the ring-toss, a widow eating the same toffee apple she has been eating since Tuesday, all of them courteous, all of them unable to explain which way the gate lies. In a curtained sweet-tent, the village children sleep in a heap of quilts under the watch of two calm aunties, undisturbed and breathing easy; the aunties turn you away with a finger to their lips. Three ways beckon: a fortune tent stitched with tiny doors, a carousel that makes no sound at all, and the performers' alley where a calliope is playing far too fast.",
+      "art": "art-the-gilded-furlong-midway-lamps",
+      "options": [
+        {
+          "id": "to-small-fates",
+          "label": "Duck into the tent of small fates and its hundred stitched doors",
+          "target": "tent-small-fates",
+          "effects": []
+        },
+        {
+          "id": "to-silent-carousel",
+          "label": "Approach the carousel that spins without a whisper",
+          "target": "carousel-held-breath",
+          "effects": []
+        },
+        {
+          "id": "to-backstage",
+          "label": "Follow the racing calliope into the performers' alley",
+          "target": "backstage-tireless",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tent-small-fates",
+      "kind": "discovery",
+      "title": "Auntie Sump and the Small Fates",
+      "prose": "Auntie Sump is a hedge-witch with pond water in a chipped bowl and a hundred paper doors sewn to her tent wall, one for every promise made on these grounds. She will not tell your future — 'crowded enough in here' — but she will tell you the bargain: Mother Marigold Quillon, ringmistress, signed with Thistlewick Vane, Broker of Sweet Terms, that the Furlong should never lose its shine, that no guest should leave wanting, that the show should go on, and that the Broker might take the smallest thing of value from every night. Charming, at the time. Now no guest can leave, because none of them can be made to want; now the show cannot stop; now the smallest thing of value is being taken from every single night, and nights are getting thinner.",
+      "readAloud": "\"Sweet words, dear. Sweet as syrup, and syrup sets. There's a fourth clause too, in the fold — every contract of theirs keeps a way out, or it wouldn't be fair, and they are dreadfully fair.\"",
+      "art": "art-the-gilded-furlong-small-fates-tent",
+      "options": [
+        {
+          "id": "go-to-ringmistress",
+          "label": "Ask where Mother Quillon keeps her wagon, and go there",
+          "target": "ringmistress-wagon",
+          "effects": []
+        },
+        {
+          "id": "read-the-fold",
+          "label": "Read the contract's fourth clause in the steam off Sump's kettle",
+          "target": "mirror-corridor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 13,
+            "onFailure": "midway-lamps"
+          }
+        },
+        {
+          "id": "seek-a-witness",
+          "label": "Ask who saw the signing — and be sent to the silent carousel",
+          "target": "carousel-held-breath",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "knows-terms",
+          "value": true
+        }
+      ],
+      "terminal": false
+    },
+    {
+      "id": "carousel-held-breath",
+      "kind": "puzzle",
+      "title": "The Carousel of Held Breath",
+      "prose": "It turns, and it is utterly silent, and every rider is caught mid-laugh with their breath still un-let-out. Chief among them is Pell Tarrow, the farrier's apprentice from Hollow Ferry, who was standing at the ringmistress's elbow the night the ink dried — you can read that much in her frozen, delighted horror. The trick of the thing is timing: a rider can only be lifted off in the exact instant their laugh would have ended, and the mares come round every nine heartbeats. Get it wrong and the carousel takes the breath as payment, and you will be the one holding still.",
+      "art": "art-the-gilded-furlong-silent-carousel",
+      "options": [
+        {
+          "id": "free-pell",
+          "label": "Ease Pell Tarrow off the painted mare at the end of her laugh",
+          "target": "backstage-tireless",
+          "effects": [
+            {
+              "flag": "freed-rider",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 13,
+            "onFailure": "mirror-corridor"
+          }
+        },
+        {
+          "id": "ride-the-mare",
+          "label": "Take an empty saddle and let the carousel show you the night of the signing",
+          "target": "tent-small-fates",
+          "effects": []
+        },
+        {
+          "id": "follow-the-wires",
+          "label": "Leave the riders their laughter and follow the calliope wires backstage",
+          "target": "backstage-tireless",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "clerk-writ-beat",
+      "kind": "conflict",
+      "title": "Service of the Writ",
+      "prose": "They come out of the ticket booth's shadow in single file: small clerks in paper masks, each carrying a rolled writ and a pen sharpened to a needle, led by a squat foreman with a ledger chained to his wrist who introduces himself as Snib, Sub-Broker (Provisional). They do not want to kill you. They want you to be holding a pen when the sentence ends, because a signature is a signature, and the Furlong is dreadfully fair.",
+      "readAloud": "\"Party of unnamed persons, presently trespassing, hereby invited — invited! — to accept complimentary lifetime residency. Initial here, here, and on the heart.\"",
+      "art": "art-the-gilded-furlong-writ-service",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "clerk-writ-service",
+      "terminal": false
+    },
+    {
+      "id": "backstage-tireless",
+      "kind": "discovery",
+      "title": "Backstage of the Tireless Twelve",
+      "prose": "Twelve performers dance in the sawdust behind the big top and have not stopped since Tuesday: a contortionist folded past comfort, stilt-walkers whose stilts have grown into their boots, a fire-eater with cold ash on her tongue. They speak between steps, in gasps, and what they say is that the music is the show and the show must go on, so someone must silence the music before anyone may sit down. A brass cable as thick as a wrist runs from the calliope's guts across the grass toward a single lantern hung in the ring's centre — the only lamp on the grounds with no moths in it at all.",
+      "art": "art-the-gilded-furlong-backstage-tireless",
+      "options": [
+        {
+          "id": "jam-the-calliope",
+          "label": "Jam the calliope's bellows with a mirror-backed playbill and let silence in",
+          "target": "mirror-corridor",
+          "effects": [
+            {
+              "flag": "music-stopped",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "interview-dancers",
+          "label": "Question the Tireless Twelve while they dance, taking their gasped testimony",
+          "target": "ringmistress-wagon",
+          "effects": []
+        },
+        {
+          "id": "follow-brass-cable",
+          "label": "Follow the brass cable to the lantern with no moths in it",
+          "target": "lantern-of-her-laugh",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mirror-corridor",
+      "kind": "hazard",
+      "title": "The Corridor of Thin Glass",
+      "prose": "The hall of mirrors is where the Broker keeps the seam. Here the glass is thin as a promise: some panes show you a stranger's reflection, some show the barley field as it was before the gate, and some show nothing at all, which is worse. Cold pours off the frames, and your own reflections have begun rehearsing gestures you have not made yet. Somewhere ahead is a pane that shows no reflection — the true door — and something between here and there has been living off borrowed shapes.",
+      "art": "art-the-gilded-furlong-thin-glass-corridor",
+      "options": [
+        {
+          "id": "token-chooses",
+          "label": "Hold up the punched toll-token and let it hum you toward the honest glass",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "paid-toll",
+            "value": true
+          },
+          "target": "ringmistress-wagon",
+          "effects": []
+        },
+        {
+          "id": "walk-the-glass",
+          "label": "Walk the corridor openly, snapping loose a splinter of true glass as you go",
+          "target": "thin-mirror-beat",
+          "effects": [
+            {
+              "flag": "mirror-shard",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "back-out-of-glass",
+          "label": "Back out through the flap and take the long way round the animal pens",
+          "target": "lantern-of-her-laugh",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thin-mirror-beat",
+      "kind": "conflict",
+      "title": "What Wears Your Reflection",
+      "prose": "Two of the reflections step out of true and thin themselves into the lamplight, flat as spilled ink, wearing the outlines of people who paid their toll and never got change. They do not block the corridor so much as lengthen it. The far end still holds one pane that shows nothing at all; reach it and the glass becomes a door.",
+      "art": "art-the-gilded-furlong-hollow-reflections",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "mirror-shades",
+      "terminal": false
+    },
+    {
+      "id": "ringmistress-wagon",
+      "kind": "social",
+      "title": "Mother Quillon's Wagon",
+      "prose": "The ringmistress's wagon smells of pomade and cold tea. Marigold Quillon is a broad, tired woman in a coat of moth-eaten gold who cannot stop smiling; the smile is not hers to stop. She talks about ticket sales while her hands sign apologies in the air, and when you look closely there is a keyhole in her chest, small and neat and empty. Her music-box plays three notes on a loop — the same three notes looping over the midway — and she winces every time, as though hearing her own voice quoted back at her by a stranger.",
+      "readAloud": "\"I said, 'I'd give my last laugh to keep these lamps lit.' That's all I said. Who talks like that? People talk like that all the time, and nobody ever comes to collect.\"",
+      "art": "art-the-gilded-furlong-ringmistress-wagon",
+      "options": [
+        {
+          "id": "cite-clause-fourth",
+          "label": "Read Clause the Fourth aloud to her and demand the way out it promises",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-terms",
+            "value": true
+          },
+          "target": "brokers-parlour",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "lantern-of-her-laugh"
+          }
+        },
+        {
+          "id": "ask-what-she-gave",
+          "label": "Ask her plainly what she gave, and where it is kept",
+          "target": "lantern-of-her-laugh",
+          "effects": []
+        },
+        {
+          "id": "search-the-wagon",
+          "label": "Search the wagon while she winds the music-box again",
+          "target": "lantern-of-her-laugh",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 14,
+            "onFailure": "clerk-writ-beat"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lantern-of-her-laugh",
+      "kind": "puzzle",
+      "title": "The Lantern With No Moths",
+      "prose": "In the middle of the empty ring hangs a plain tin lantern, and inside it is not a flame but a laugh: three notes, folded over and over, burning without being consumed. The brass cable feeds out of it to every lamp on the grounds — the shine that will never fade, exactly as promised. The glass is warm and the catch is a fey catch, meaning it opens for the right sound rather than the right hand. While the calliope screams over the big top you cannot hear the rhythm of it at all; in silence, they say, the laugh can be coaxed to step out on its own.",
+      "art": "art-the-gilded-furlong-lantern-no-moths",
+      "options": [
+        {
+          "id": "coax-the-laugh",
+          "label": "In the new quiet, match the lantern's rhythm and coax the last laugh into your hands",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "music-stopped",
+            "value": true
+          },
+          "target": "brokers-parlour",
+          "effects": [
+            {
+              "flag": "holds-laugh",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 13,
+            "onFailure": "brokers-parlour"
+          }
+        },
+        {
+          "id": "unscrew-the-glass",
+          "label": "Force the fey catch and take what is inside by hand",
+          "target": "brokers-parlour",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "thin-mirror-beat"
+          }
+        },
+        {
+          "id": "leave-it-burning",
+          "label": "Leave it burning and go find the Broker in his parlour behind the ring",
+          "target": "brokers-parlour",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "brokers-parlour",
+      "kind": "social",
+      "title": "The Parlour of Sweet Terms",
+      "prose": "Thistlewick Vane holds court in a striped parlour tent furnished entirely in things people described carelessly: a chair 'to die for', a cake 'worth its weight in gold', a drum 'that could raise the dead'. He is thin, cheerful, and dressed in a coat of pressed playbills; he takes your hands in both of his and thanks you sincerely for coming. Behind him stands the Effigy of Terms — a man-shaped bundle of contracts and tin, with the signed page beating where a heart would go. Vane offers tea. Vane offers everything. Vane insists he has never once broken a promise, and he is telling the truth, which is the whole horror of him.",
+      "readAloud": "\"You keep saying I *tricked* her. Show me the trick! Show me one syllable I invented. I only listened properly. Nobody listens properly, and then they blame the listener.\"",
+      "art": "art-the-gilded-furlong-brokers-parlour",
+      "options": [
+        {
+          "id": "witness-testimony",
+          "label": "Set Pell Tarrow's witness before him and demand a witness's due",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "freed-rider",
+            "value": true
+          },
+          "target": "final-encore",
+          "effects": [
+            {
+              "flag": "vane-obliged",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 14,
+            "onFailure": "final-encore"
+          }
+        },
+        {
+          "id": "offer-sweet-term",
+          "label": "Offer Vane a sweet new term of your own devising, and see what he hears in it",
+          "target": "final-encore",
+          "effects": []
+        },
+        {
+          "id": "case-the-parlour",
+          "label": "Say nothing useful; count the doors, the drums, and the stitches in the Effigy",
+          "target": "final-encore",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "final-encore",
+      "kind": "climax",
+      "title": "The Final Encore",
+      "prose": "The ring fills of its own accord: Hollow Ferry in the stands, applauding politely and unable to stop; the Tireless Twelve staggering their steps; Mother Quillon in the sawdust with her keyhole chest and her borrowed smile. Vane strolls to the centre with the contract in his hand and announces the encore, which by the terms of Clause the Third can be followed only by another encore, forever. The Effigy of Terms takes its place beside him, page-heart thudding. Whatever is going to end this has to be said, sounded, or cut in the next thirty seconds, because after that the band starts again and nobody in these stands will ever go home.",
+      "readAloud": "\"Ladies, gentlemen, hobs, hedge-things — the Gilded Furlong presents, for the ten thousandth time and the ten thousandth time after that, ITS FINAL, ABSOLUTELY FINAL ENCORE!\"",
+      "art": "art-the-gilded-furlong-final-encore-ring",
+      "options": [
+        {
+          "id": "sign-anew",
+          "label": "Take up the ledger and sign the encore in your own name instead",
+          "target": "ending-new-ringmaster",
+          "effects": []
+        },
+        {
+          "id": "letter-of-the-law",
+          "label": "Hold Vane to the letter: give the lamps back their laugh and end the show as written",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "holds-laugh",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "mirror-shard",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "vane-obliged",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-lamps-relit",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "champions-beat"
+          }
+        },
+        {
+          "id": "cut-the-effigy",
+          "label": "Cut the Effigy of Terms out of its playbill skin and take the page by force",
+          "target": "champions-beat",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "champions-beat",
+      "kind": "conflict",
+      "title": "Sawdust and Stilts",
+      "prose": "Vane steps back with the delighted expression of a man watching a wager pay out, and the Furlong defends its own paperwork. The Effigy of Terms lumbers forward on tin knees, the signed page thudding behind its ribs of folded contracts, while three longshank stilt-walkers vault the ring fence with poles as pikes. Tear the page out of the Effigy and the encore has nothing to stand on; the stilt-walkers are only bound to keep you from it.",
+      "art": "art-the-gilded-furlong-sawdust-champions",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sawdust-champions",
+      "terminal": false
+    },
+    {
+      "id": "ending-lamps-relit",
+      "kind": "ending",
+      "title": "Ending: The Lamps Give It Back",
+      "prose": "You end it the way it began — with words, said properly. The last laugh goes back into Marigold Quillon's keyhole chest, three notes and then a fourth nobody has heard in years, and every lamp on the midway loses its shine at once because the shine was never theirs. Moths pour out of the glass bellies in a white tide; the writs go blank; the Tireless Twelve sit down in the sawdust and weep with relief. Thistlewick Vane bows very low, entirely unhumiliated, and hands you a fresh blank card 'for later'. By dawn there is only flattened barley, a smell of toffee, and Hollow Ferry walking home in their own time — the children still asleep, carried by their aunties, no worse for the night — while somewhere far off a calliope tunes up for a different field.",
+      "art": "art-the-gilded-furlong-ending-lamps-out",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-new-ringmaster",
+      "kind": "ending",
+      "title": "Ending: The New Ringmistress",
+      "prose": "You sign, and the applause is enormous, and it is the last honest sound you will hear for a while. Marigold Quillon's smile finally falls off her face; she is out of the gate and into the barley before the ink dries, and Hollow Ferry streams after her, dazed and blinking, the sleeping children handed out over the turnstile first. Thistlewick Vane calls you a natural, refits your coat in pressed playbills, and points out — kindly, thoroughly — the fourteen ways your careful new wording can be read. The Gilded Furlong keeps its shine. You keep the ledger, the keyhole, and a very long time in which to learn to listen properly.",
+      "art": "art-the-gilded-furlong-ending-new-ringmistress",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-endless-encore",
+      "kind": "ending",
+      "title": "Ending: Absolutely Final Encore",
+      "prose": "The band starts again. Whatever you meant to say is somehow already part of the act: your fumbles get laughs, your wounds get bandaged between numbers, and the audience adores you with hands that will not stop. You are billed on the playbills as THE LATE ARRIVALS, and the billing is accurate. Once every long while a stranger wanders in off a road that isn't there, and you find yourself smiling at them from the ring, mouthing something urgent that the calliope politely drowns — while a masked hob at the gate explains that admission is only a trifle, only one small thing you won't miss.",
+      "art": "art-the-gilded-furlong-ending-endless-encore",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "crooked-gate",
+      "to": "midway-lamps",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crooked-gate",
+      "to": "clerk-writ-beat",
+      "when": {
+        "op": "always"
+      },
+      "note": "Caught slipping the fence."
+    },
+    {
+      "from": "midway-lamps",
+      "to": "tent-small-fates",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midway-lamps",
+      "to": "carousel-held-breath",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "midway-lamps",
+      "to": "backstage-tireless",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tent-small-fates",
+      "to": "ringmistress-wagon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tent-small-fates",
+      "to": "mirror-corridor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tent-small-fates",
+      "to": "carousel-held-breath",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tent-small-fates",
+      "to": "midway-lamps",
+      "when": {
+        "op": "always"
+      },
+      "note": "The steam-read fails and the tent turns you out."
+    },
+    {
+      "from": "carousel-held-breath",
+      "to": "backstage-tireless",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "carousel-held-breath",
+      "to": "tent-small-fates",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "carousel-held-breath",
+      "to": "mirror-corridor",
+      "when": {
+        "op": "always"
+      },
+      "note": "Botched rescue; the carousel takes a breath in payment."
+    },
+    {
+      "from": "backstage-tireless",
+      "to": "mirror-corridor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "backstage-tireless",
+      "to": "ringmistress-wagon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "backstage-tireless",
+      "to": "lantern-of-her-laugh",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-corridor",
+      "to": "ringmistress-wagon",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-corridor",
+      "to": "thin-mirror-beat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mirror-corridor",
+      "to": "lantern-of-her-laugh",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "thin-mirror-beat",
+      "to": "ringmistress-wagon",
+      "when": {
+        "op": "always"
+      },
+      "note": "Reached the pane with no reflection."
+    },
+    {
+      "from": "thin-mirror-beat",
+      "to": "carousel-held-breath",
+      "when": {
+        "op": "always"
+      },
+      "note": "Spat back out among the silent riders."
+    },
+    {
+      "from": "thin-mirror-beat",
+      "to": "lantern-of-her-laugh",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fled the corridor toward the ring."
+    },
+    {
+      "from": "ringmistress-wagon",
+      "to": "brokers-parlour",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ringmistress-wagon",
+      "to": "lantern-of-her-laugh",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ringmistress-wagon",
+      "to": "clerk-writ-beat",
+      "when": {
+        "op": "always"
+      },
+      "note": "Caught rifling her wagon."
+    },
+    {
+      "from": "lantern-of-her-laugh",
+      "to": "brokers-parlour",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lantern-of-her-laugh",
+      "to": "thin-mirror-beat",
+      "when": {
+        "op": "always"
+      },
+      "note": "The forced catch flings you back into the glass."
+    },
+    {
+      "from": "brokers-parlour",
+      "to": "final-encore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-encore",
+      "to": "ending-new-ringmaster",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-encore",
+      "to": "ending-lamps-relit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-encore",
+      "to": "champions-beat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "champions-beat",
+      "to": "ending-lamps-relit",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "champions-beat",
+      "to": "ending-endless-encore",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "champions-beat",
+      "to": "ending-new-ringmaster",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clerk-writ-beat",
+      "to": "midway-lamps",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "clerk-writ-beat",
+      "to": "backstage-tireless",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "clerk-writ-service",
+      "title": "Service of the Writ",
+      "combatants": [
+        {
+          "id": "quill-clerk",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "foreman-snib",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "midway-lamps",
+      "onDefeat": "backstage-tireless",
+      "onFlee": "midway-lamps"
+    },
+    {
+      "id": "mirror-shades",
+      "title": "What Wears Your Reflection",
+      "combatants": [
+        {
+          "id": "hollow-reflection",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach and step through the single pane at the corridor's far end that shows no reflection at all."
+      },
+      "onVictory": "ringmistress-wagon",
+      "onDefeat": "carousel-held-breath",
+      "onFlee": "lantern-of-her-laugh"
+    },
+    {
+      "id": "sawdust-champions",
+      "title": "Sawdust and Stilts",
+      "combatants": [
+        {
+          "id": "effigy-of-terms",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "longshank-stiltwalker",
+          "statblock": "goblin",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "open",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "effigy-of-terms"
+      },
+      "onVictory": "ending-lamps-relit",
+      "onDefeat": "ending-endless-encore",
+      "onFlee": "ending-new-ringmaster"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ten-lamps-of-the-long-night",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: arctic-survival, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-sixth-lamp-arrival",
+      "beat": "arrival-at-the-sixth-lamp",
+      "brief": "Arrival at the Sixth Lamp — The lampline runs from settlement to settlement like a stitched wound across the snowfield, each iron lamp burning oil that must be hand-carried throu"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-frostmarket-hide-roof",
+      "beat": "frostmarket-of-sallow-hearth",
+      "brief": "The Frostmarket of Sallow Hearth — The market runs under a roof of stitched hide, lit by tallow stubs and the breath of two hundred people who will not go home. An Ash Ledger clerk name"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-wellhead-frost-veins",
+      "beat": "the-well-that-drinks-heat",
+      "brief": "The Well That Drinks Heat — Sallow Hearth's stone well is ringed by frost-veins that spread outward in deliberate spokes, like handwriting. Lower anything warm past the lip and t"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-silent-pack-in-drift",
+      "beat": "wolves-on-the-lampline",
+      "brief": "Wolves on the Lampline — Out past the last lit post the snow is blue-black and the wind has stopped entirely, which is worse. The pack that comes for you is starved thin and r"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-snow-pocket-hollow",
+      "beat": "dragged-under-the-drift",
+      "brief": "Dragged Under the Drift — You come back to yourself under three feet of packed snow, in a pocket of air that smells of old smoke. Something dragged you here and left you, which"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-upright-frozen-sledges",
+      "beat": "the-buried-caravan",
+      "brief": "The Buried Caravan — Six sledges stand upright in the drift, harnessed and loaded, frozen mid-journey with their lamps still socketed and full. No bodies — only boot print"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-open-coated-choir",
+      "beat": "choir-in-the-icehouse",
+      "brief": "The Choir in the Icehouse — Forty of Sallow Hearth's grown folk stand in the icehouse with their coats open, singing a slow counting-song, and none of them are shivering. Their c"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-chained-master-book",
+      "beat": "the-frozen-ledger",
+      "brief": "The Frozen Ledger — The Ash Ledger's master book has ten columns, one per lamp, and an eleventh column nobody will admit to ruling — the debtor's side. Heat is entered as"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-black-shelf-crossing",
+      "beat": "crossing-the-black-shelf",
+      "brief": "Crossing the Black Shelf — Between the Sixth Lamp and the Tenth lies a shelf of clear black ice half a mile wide, thin as a windowpane and lit only by the stars caught inside it"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-ice-table-cellar",
+      "beat": "cellar-of-the-quiet-feast",
+      "brief": "Cellar of the Quiet Feast — The cut cellars are where the ten lamps stored their winter meat, and something has been reorganising them. Sledge-drivers sit at a long ice table, ar"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-tenth-lamp-tower",
+      "beat": "the-tenth-lamp",
+      "brief": "The Tenth Lamp — The Tenth Lamp stands lit and alone at the end of the line, a stone tower with an oil-house below and a choir loft above, and its flame burns black-he"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-hollow-cantor-loft",
+      "beat": "the-cantors-loft",
+      "brief": "The Cantor's Loft — In the loft stands a figure in a lampwarden's rimed coat, hands folded over a ledger of ice, mouth open on a note too low to hear — the Hollow Cantor,"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-cantor-battle-loft",
+      "beat": "the-hollow-cantor",
+      "brief": "The Hollow Cantor — The note he has been holding for eleven years finally lands, and the loft's air goes still enough to crack. The harnessed wardens come apart from thei"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-ten-lamps-burning",
+      "beat": "the-lamps-relit",
+      "brief": "The Lamps Relit — When the Cantor comes apart, the ice ledger goes with him, and every withdrawal written in it is voided at once — eleven years of stolen warmth return"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-dimming-fifth-lamp",
+      "beat": "the-long-night-deepens",
+      "brief": "The Long Night Deepens — The counting finishes without you. What is left of your expedition is carried down the lampline in orderly file and seated at the ice table with the s"
+    },
+    {
+      "slot": "art-the-ten-lamps-of-the-long-night-new-warden-ledger",
+      "beat": "the-warden-of-the-cold",
+      "brief": "The Warden of the Cold — You sign. The warmth leaves you in one clean subtraction, and afterward you understand the arithmetic completely: ten lamps, a fixed debt, and someone"
+    }
+  ]
+}

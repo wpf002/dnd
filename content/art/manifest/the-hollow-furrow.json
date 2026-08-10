@@ -1,0 +1,85 @@
+{
+  "adventure": "the-hollow-furrow",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: cosmic-horror, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-hollow-furrow-vale-gate",
+      "beat": "arrival-at-hollow-furrow",
+      "brief": "Arrival at Hollow Furrow — The road drops out of the pine hills into a bowl of gold. Barley to the horizon, every stalk the same height, every field the same size, hedged in sto"
+    },
+    {
+      "slot": "art-the-hollow-furrow-harvest-fair",
+      "beat": "the-harvest-fair",
+      "brief": "The Harvest Fair — Trestle tables, sheaf-dollies, a fiddler with new strings. Warden Selm Achree keeps order in a coat too large for him, and greets every single village"
+    },
+    {
+      "slot": "art-the-hollow-furrow-ridge-graves",
+      "beat": "the-empty-graveyard",
+      "brief": "The Ridge of Identical Dates — Sixty-one stones, weathered to precisely the same degree, arranged in furrows rather than rows. Every stone carries a different name and the same date"
+    },
+    {
+      "slot": "art-the-hollow-furrow-mill-ledger",
+      "beat": "the-mill-ledger",
+      "brief": "The Miller's Repeating Ledger — Miller Habb Orrow keeps beautiful books. Nine years of grain weights, all in the same hand, all in the same ink — and if you set the pages side by sid"
+    },
+    {
+      "slot": "art-the-hollow-furrow-scarecrow-line",
+      "beat": "the-scarecrow-line",
+      "brief": "The Scarecrow Line — The barley moves against the wind. Along the boundary between two fields stand the vale's scarecrows — straw bodies bound over old harrow-blades and r"
+    },
+    {
+      "slot": "art-the-hollow-furrow-sealed-well",
+      "beat": "beneath-the-well",
+      "brief": "The Well Nobody Draws From — It stands in a barley field with a wide bare ring around it where nothing will grow. The wellhead is capped with an iron collar cast in one seamless p"
+    },
+    {
+      "slot": "art-the-hollow-furrow-listening-chapel",
+      "beat": "the-listening-chapel",
+      "brief": "The Listening Chapel — A low chapel of dry stone, no god named on its lintel, only a carved furrow. Deaconess Ivry Pell holds the noon listening: the congregation kneels wit"
+    },
+    {
+      "slot": "art-the-hollow-furrow-two-farmers",
+      "beat": "the-man-who-was-two",
+      "brief": "The Man Who Was Two — In the lane behind the smithy, two men in the same patched coat stand looking at one another. Both are Yarrin Deld, cottager, thirty-one years old, wi"
+    },
+    {
+      "slot": "art-the-hollow-furrow-seedvault-door",
+      "beat": "the-seedvault-door",
+      "brief": "The Seedvault Door — Below the water table the shaft widens into a chamber of grey unmortared stone that is not stone. The door is a disc six feet across, ringed with barl"
+    },
+    {
+      "slot": "art-the-hollow-furrow-fallow-stair",
+      "beat": "the-fallow-stair",
+      "brief": "The Fallow Stair — A stair spirals down through soil that has never seen a plough, and the soil is full of shapes: outlines of people lying folded like seed in a husk, u"
+    },
+    {
+      "slot": "art-the-hollow-furrow-dream-furrow",
+      "beat": "the-dream-furrow",
+      "brief": "The Dream Furrow — The vault is a field. Under a ceiling of root and pale light, furrows run away into dark, and in the furrows lie people — villagers, unfinished and fi"
+    },
+    {
+      "slot": "art-the-hollow-furrow-quiet-yield",
+      "beat": "the-quiet-yield",
+      "brief": "The Quiet Yield — The sower stirs, and its stirring sends up its keepers. From the first furrow rises the thing the vale calls its First Harvest — a husk grown nine yea"
+    },
+    {
+      "slot": "art-the-hollow-furrow-collar-recast",
+      "beat": "ending-sealed-again",
+      "brief": "Ending: The Collar Recast — The First Harvest comes apart into loose straw and old iron, and the sower's furrows go still — not dead, only fallow, dreaming shallower. You climb o"
+    },
+    {
+      "slot": "art-the-hollow-furrow-valley-forgets",
+      "beat": "ending-the-valley-forgets",
+      "brief": "Ending: The Valley Forgets, and You Do Not — You climb out of the well and let the collar cool behind you. The page burns easily. You tell Ivry Pell nothing; you tell the Warden less. By harvest'"
+    },
+    {
+      "slot": "art-the-hollow-furrow-yield-wakes",
+      "beat": "ending-the-yield-wakes",
+      "brief": "Ending: The Yield Wakes — The husks bear you down into the furrow, and the sower — told its name at last, made to know itself — begins to think properly for the first time in n"
+    }
+  ]
+}

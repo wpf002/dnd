@@ -63,7 +63,7 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
   registry.register({
     id: 'dm-narration',
     provider: 'anthropic',
-    model: 'claude-opus-5',
+    model: 'claude-sonnet-5',
     system:
       'You narrate the outcome of an already-computed game resolution. The numbers are final: ' +
       'you never change, add, or imply mechanical values beyond what the Resolution states. ' +
@@ -74,7 +74,7 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
   registry.register({
     id: 'npc-dialogue',
     provider: 'anthropic',
-    model: 'claude-opus-5',
+    model: 'claude-haiku-4-5-20251001',
     system:
       'You speak as a single NPC, in character, using the NPC sheet provided in the request. ' +
       'You reveal information imperfectly: interrupt, deflect, lie, misremember, show bias.',
@@ -106,7 +106,7 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
   registry.register({
     id: 'generator',
     provider: 'anthropic',
-    model: 'claude-opus-5',
+    model: 'claude-sonnet-5',
     system:
       'You generate complete BeatGraph JSON for a solo tabletop adventure from a premise. ' +
       'Output must validate against the provided schema; linter errors from prior attempts, ' +

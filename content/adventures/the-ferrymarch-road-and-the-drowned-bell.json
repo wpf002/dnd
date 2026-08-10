@@ -1,0 +1,768 @@
+{
+  "id": "the-ferrymarch-road-and-the-drowned-bell",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ferrymarch Road and the Drowned Bell",
+    "premise": "Raiders have gutted the ox-trains along the Slate Vein river road, but the wreckage points at the very cult whose baggage train is crawling north toward Swiftwater Bend with a bell that can call the river up over six villages.",
+    "tone": [
+      "high-adventure",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 3,
+    "narrationVoice": "Wry, weathered caravan-guard telling it plain and present-tense — mud, rope, wet hemp, and the smell of a river that is too high for the season.",
+    "contentLimits": {
+      "exclude": [
+        "on-screen harm to children"
+      ],
+      "note": "Villages are emptied of families off-screen; children are only ever referenced as already carried to high ground."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crossing-at-marl-ford",
+  "beats": [
+    {
+      "id": "crossing-at-marl-ford",
+      "kind": "threshold",
+      "title": "Crossing at Marl Ford",
+      "prose": "The Ferrymarch Road drops to Marl Ford in a slick of churned clay, and the Slate Vein runs a hand's width higher than any drover would call honest for the season. Three wagons' worth of drag-marks go down into the reeds instead of up the road. Crows are working at something in the willows, and somewhere off in the green a boot is still moving.",
+      "readAloud": "Nobody robs a train and then hauls the wreck downhill into a marsh. Unless they wanted the road to look robbed.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-marl-ford-flooded-crossing",
+      "options": [
+        {
+          "id": "follow-drag-marks",
+          "label": "Follow the drag-marks down into the reeds.",
+          "target": "wreck-of-the-ox-train",
+          "effects": []
+        },
+        {
+          "id": "whistle-at-the-boot",
+          "label": "Whistle low at the reeds where the boot keeps twitching.",
+          "target": "survivor-in-the-reeds",
+          "effects": []
+        },
+        {
+          "id": "read-the-road-first",
+          "label": "Stay on high ground and read the road itself, stone by stone.",
+          "target": "sunken-milestone",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wreck-of-the-ox-train",
+      "kind": "discovery",
+      "title": "Wreck of the Ox-Train",
+      "prose": "Two wagons lie on their sides in a foot of brown water, tarps slashed, strongboxes split like melons. But the split boxes are empty of nothing — the grain is still there, the tin is still there, and the coin purses are still knotted to the driver's bench. Whatever the raiders wanted, it was not cargo. The dead ox has a clean crossbow bolt behind the ear, and the fletching is river-cane, cut short in the Concord style.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-capsized-wagons-in-reeds",
+      "options": [
+        {
+          "id": "search-strongbox-splinters",
+          "label": "Sift the strongbox splinters for what was actually taken.",
+          "target": "survivor-in-the-reeds",
+          "effects": []
+        },
+        {
+          "id": "follow-fresh-ruts",
+          "label": "Follow the fresh ruts north, right now, before dark.",
+          "target": "reed-blind-ambush",
+          "effects": []
+        },
+        {
+          "id": "read-the-ox-wound",
+          "label": "Pull the tarp back and read the ox's wound properly.",
+          "target": "sunken-milestone",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Medicine",
+            "dc": 13,
+            "onFailure": "reed-blind-ambush"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "survivor-in-the-reeds",
+      "kind": "social",
+      "title": "Neb Ashgrove, Waist-Deep",
+      "prose": "Neb Ashgrove is a drover with a broken collarbone and a mouth full of reed-water, propped against a wheel hub because sitting down means drowning. He talks the way men do when they have decided they are already dead: fast, and truthfully. He says the raiders wore hemp cord at the wrist, sang while they worked, and left the coin. He says they took the road-ledgers, the toll seals, and the mule-tally — paper, all paper.",
+      "readAloud": "\"They robbed us of the proof, friend. Not the goods. The proof.\"",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-drover-propped-on-wheel-hub",
+      "options": [
+        {
+          "id": "water-and-let-him-talk",
+          "label": "Give him water, splint the collarbone, and let him talk himself out.",
+          "target": "sunken-milestone",
+          "effects": [
+            {
+              "flag": "knows-staged-raids",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "press-him-on-boots",
+          "label": "Press him hard: describe the raiders' boots, exactly.",
+          "target": "tollhouse-of-saint-verrow",
+          "effects": [
+            {
+              "flag": "knows-staged-raids",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Intimidation",
+            "dc": 13,
+            "onFailure": "reed-blind-ambush"
+          }
+        },
+        {
+          "id": "carry-him-to-tollhouse",
+          "label": "Carry him out to the tollhouse before the water rises again.",
+          "target": "tollhouse-of-saint-verrow",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "reed-blind-ambush",
+      "kind": "conflict",
+      "title": "The Reed Blind",
+      "prose": "The reeds open in four places at once and they are not reeds, they are woven blinds, and the men behind them have hemp cord knotted at both wrists. Their captain calls the tune — an actual tune, three notes, and the crossbows answer it. They do not want the road; they want you off it for one more day. Hold the mud long enough and the tide-channel behind them will cut them off from their own boats.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-reed-blind-crossbow-ambush",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "reed-blind-raiders",
+      "terminal": false
+    },
+    {
+      "id": "sunken-milestone",
+      "kind": "puzzle",
+      "title": "The Sunken Milestone",
+      "prose": "The road's fourth milestone leans half-drowned in the ditch, and someone has been at it with a chisel this week — the old league-mark scraped away, a new mark cut beneath: a bell with water in its mouth, and a number, six. Six of them, then, going north. Or six villages, counted downstream from here. The chisel dust is still pale in the grooves, and the flood channel beside it carries wheel-ruts that no flood made.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-chiselled-milestone-bell-mark",
+      "options": [
+        {
+          "id": "scrape-the-carving",
+          "label": "Scrape the new carving clean and reckon what the six counts.",
+          "target": "tollhouse-of-saint-verrow",
+          "effects": [
+            {
+              "flag": "knows-staged-raids",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "wade-the-channel",
+          "label": "Wade the flood channel and count axle-widths in the silt.",
+          "target": "wheel-ruts-through-the-willows",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "reed-blind-ambush"
+          }
+        },
+        {
+          "id": "towpath-to-tollhouse",
+          "label": "Take the towpath up to the tollhouse and ask who paid for a chisel.",
+          "target": "tollhouse-of-saint-verrow",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tollhouse-of-saint-verrow",
+      "kind": "social",
+      "title": "The Tollhouse of Saint Verrow",
+      "prose": "Marda Verrow keeps the toll gate her great-grandmother kept, and she keeps it with a hand-cannon on the counter and a ledger she trusts more than scripture. Her last three pages are gone, cut out clean. She has already sent the village families up the shale stair to the high pasture — she is not sentimental, she says, she is arithmetical, and the river is arithmetic that has gone wrong. The Hollow Concord's train passed her gate at dawn: eleven wagons, a caged thing on the ninth, muzzled with wet felt.",
+      "readAloud": "\"Bell's for the Bend. They ring at Swiftwater and the Vein comes up over the whole Ferrymarch. You can walk away from that. Plenty do. Just don't tell me later you didn't know.\"",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-tollhouse-counter-and-ledger",
+      "options": [
+        {
+          "id": "swear-road-oath",
+          "label": "Swear the road-oath with Marda and take her brass chit and two wardens.",
+          "target": "wheel-ruts-through-the-willows",
+          "effects": [
+            {
+              "flag": "tollkeeper-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "hold-the-toll-gate",
+          "label": "Hold the toll gate and wait for the raiders to come back for the last pages.",
+          "target": "reed-blind-ambush",
+          "effects": []
+        },
+        {
+          "id": "slip-out-alone",
+          "label": "Slip out alone at dusk and let her keep her wardens.",
+          "target": "wheel-ruts-through-the-willows",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wheel-ruts-through-the-willows",
+      "kind": "transit",
+      "title": "Wheel-Ruts Through the Willows",
+      "prose": "Eleven wagons cut a road of their own through the willow flats, and you walk in it for two hours in the smell of crushed leaf and mule. The Concord sings as it hauls — a low, patient, three-note thing that keeps the pace and, you begin to suspect, keeps the cargo quiet. Ahead the flats narrow: outrider pickets on the left, kennel wagons braying on the right, and the ninth wagon dark under wet felt in the middle.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-willow-flats-wagon-ruts",
+      "options": [
+        {
+          "id": "hail-under-truce-rag",
+          "label": "Hail them openly, truce rag high, and walk in as guests.",
+          "target": "the-baggage-train",
+          "effects": [
+            {
+              "flag": "choir-alerted",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "shadow-the-willow-line",
+          "label": "Shadow the train from the willow line and count its watch.",
+          "target": "the-baggage-train",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "tide-hound-kennels"
+          }
+        },
+        {
+          "id": "cut-to-the-kennels",
+          "label": "Cut ahead to the kennel wagons and cripple their pursuit first.",
+          "target": "tide-hound-kennels",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-baggage-train",
+      "kind": "discovery",
+      "title": "Eleven Wagons and a Muzzled Thing",
+      "prose": "Up close the Concord is not an army; it is a household. Mule-boys, cooks, a cooper mending hoops, and every wrist knotted with the same hemp cord that the reed-blind raiders wore. On the ninth wagon rides an iron cage the size of a chapel door, and inside it a bell of green bronze, its mouth stuffed with sodden felt, sweating river-water onto the boards though it has not touched a river in a hundred years. When the wagon jolts, the felt goes tight, and every mule in the train stops breathing at once.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-caged-bronze-bell-on-wagon",
+      "options": [
+        {
+          "id": "flash-brass-chit",
+          "label": "Flash Verrow's brass chit at the outriders and demand toll-parley.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "tollkeeper-allied",
+            "value": true
+          },
+          "target": "parley-with-choirmaster-oleth",
+          "effects": []
+        },
+        {
+          "id": "ask-for-the-choirmaster",
+          "label": "Ask for the Choirmaster by name and wait to be brought.",
+          "target": "parley-with-choirmaster-oleth",
+          "effects": []
+        },
+        {
+          "id": "drop-under-the-axles",
+          "label": "Drop under the axles while the mules are watered.",
+          "target": "undercart-crawl",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "parley-with-choirmaster-oleth",
+      "kind": "social",
+      "title": "Parley With Choirmaster Oleth Sarn",
+      "prose": "Oleth Sarn is small, sunburnt, and pleasant, and he pours you tea from a kettle balanced on a bell-crate. He explains the Concord's arithmetic with the patience of a man who has done the sums many times: the Vein is silting closed, the delta is dying, six villages sit in a channel the river wants back, and one ringing sets it right for four hundred years. He says nobody has to be in those villages when it rings. He says he has been very generous about the timing.",
+      "readAloud": "\"I staged the robberies, yes. I took paper, not bread. Without ledgers no warden may lawfully stop a bonded train — and I did not wish to kill wardens. Do you see how careful I have been with you all?\"",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-choirmaster-tea-on-bell-crate",
+      "options": [
+        {
+          "id": "name-the-staged-raids",
+          "label": "Name the staged raids to his face and strip him of his congregation's trust.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-staged-raids",
+            "value": true
+          },
+          "target": "the-bell-cage",
+          "effects": []
+        },
+        {
+          "id": "bargain-for-silence",
+          "label": "Bargain: free passage north in exchange for the bell staying dumb.",
+          "target": "undercart-crawl",
+          "effects": []
+        },
+        {
+          "id": "take-the-choir-cup",
+          "label": "Drink the choir-cup and walk the train as an honoured guest.",
+          "target": "tide-hound-kennels",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undercart-crawl",
+      "kind": "hazard",
+      "title": "Under the Ninth Wagon",
+      "prose": "Beneath the ninth wagon the world is axle-grease, forty spans of turning spoke, and a floor of stones going by at walking speed a hand's breadth from your spine. The bell's clapper does not hang inside it — it rides slung in a leather cradle under the bed, wrapped like a newborn, because a clapper in the bell is a bell that rings on every pothole. Unpin that cradle and the Concord hauls a very large green ornament to Swiftwater Bend.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-clapper-sling-beneath-axles",
+      "options": [
+        {
+          "id": "unpin-the-clapper",
+          "label": "Unpin the clapper cradle and take the tongue of the bell.",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "choir-alerted",
+            "value": true
+          },
+          "target": "the-bell-cage",
+          "effects": [
+            {
+              "flag": "has-clapper",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 14,
+            "onFailure": "tide-hound-kennels"
+          }
+        },
+        {
+          "id": "ride-the-undercarriage",
+          "label": "Ride the undercarriage forward to the cage wagon's tailgate.",
+          "target": "the-bell-cage",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "tide-hound-kennels"
+          }
+        },
+        {
+          "id": "roll-clear-to-kennels",
+          "label": "Roll clear and go break the hound wagons instead.",
+          "target": "tide-hound-kennels",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tide-hound-kennels",
+      "kind": "conflict",
+      "title": "The Tide Hounds of Kesh Tallow",
+      "prose": "Kesh Tallow keeps the Concord's hounds wet and hungry, and he unlatches three of them with the same three notes the reed-raiders whistled. The kennel wagons are a maze of rope, slop-buckets, and swinging gates, and the whole thing is rolling at mule-pace toward Swiftwater Bend the entire time you are in it. You do not need to kill them. You need to be at the head of the train.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-kennel-wagons-loosed-hounds",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "tide-hound-kennels-fight",
+      "terminal": false
+    },
+    {
+      "id": "the-bell-cage",
+      "kind": "puzzle",
+      "title": "The Bell Cage",
+      "prose": "Swiftwater Bend is one bend ahead and the Concord has begun to sing in earnest, all eleven wagons, so loud the felt in the bell's mouth trembles. The cage is chained at four corners to a yoke-frame hauled by a great ox-shouldered brute the Concord calls the Yokeman, and the whole rig can be undone three ways: choke the bell's tongue, cut the cinch straps and roll the cage into the flood channel, or turn around and spend the night riding downstream shouting at doors.",
+      "readAloud": "The felt in the bell's mouth is wet with water that came from nowhere. It has already begun, in a small way. The question is only how big you let it get.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-chained-bell-cage-at-the-bend",
+      "options": [
+        {
+          "id": "jam-the-stolen-clapper",
+          "label": "Jam the stolen clapper crosswise into the yoke chain — the bell cannot speak without its tongue.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-clapper",
+            "value": true
+          },
+          "target": "the-ringing-at-swiftwater-bend",
+          "effects": [
+            {
+              "flag": "bell-silenced",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cut-the-cinch-straps",
+          "label": "Cut the cinch straps under fire and topple the cage toward the flood channel.",
+          "target": "the-ringing-at-swiftwater-bend",
+          "effects": [
+            {
+              "flag": "bell-silenced",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "the-ringing-at-swiftwater-bend"
+          }
+        },
+        {
+          "id": "break-off-and-warn",
+          "label": "Break off. Ride downstream all night and empty the six villages instead.",
+          "target": "ending-road-abandoned",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-ringing-at-swiftwater-bend",
+      "kind": "climax",
+      "title": "The Ringing at Swiftwater Bend",
+      "prose": "The Yokeman plants his feet on the shingle at Swiftwater Bend with the cage on his shoulders and two cord-wristed thralls guarding his hocks, and Oleth Sarn stands in the shallows with both hands raised to conduct. Water is already climbing the wagon spokes. Put the Yokeman down and the cage goes into the deep channel; leave him standing and the bell finds its voice over six villages.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-yokeman-in-the-shallows",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "swiftwater-bend-climax",
+      "terminal": false
+    },
+    {
+      "id": "ending-bell-drowned",
+      "kind": "ending",
+      "title": "Ending: The Bell Drowned",
+      "prose": "The Yokeman goes down on one knee in the shingle and the cage goes past him into the deep channel, chain and all, and the Slate Vein swallows a hundred years of green bronze without a single note. Oleth Sarn does not fight; he stands in the water and does the sums again, aloud, and cannot make them come out. The Concord unties its wrist-cords one by one on the bank, because a household without a bell is only a household. Marda Verrow rewrites her stolen pages from memory, the families come down the shale stair by noon, and the Ferrymarch Road carries oxen again by the next new moon — silted, dying by inches, and above water.",
+      "readAloud": "Six villages. Nobody in them ever hears the note that was meant for them. That is the whole of the reward, and it is enough.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-bell-sinking-in-deep-channel",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-choir-crowned",
+      "kind": "ending",
+      "title": "Ending: The Choir Gets Its Note",
+      "prose": "The felt comes out and the bell speaks once, and it is not a sound so much as a decision the river makes. You wake hours later on a tollhouse roof with Marda Verrow's hand knotted in your collar, looking out at a new grey lake where the Ferrymarch Road used to run, six church spires standing in it like reeds. The families are on the high pasture; the houses are not. Somewhere north, eleven empty wagons roll on with the cord-wristed singing, and the delta downstream turns green again in a season, which is exactly what Oleth Sarn promised and exactly no comfort at all.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-flooded-ferrymarch-spires",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-road-abandoned",
+      "kind": "ending",
+      "title": "Ending: All Night at the Doors",
+      "prose": "You do not stop the bell. You ride, and shout, and haul on shutters, and by grey morning six villages stand empty of everything that breathes and Marda Verrow's shale stair is crowded to the top with mules, grandmothers, hens, and one very calm blacksmith. The note comes at noon. The Vein takes the road, the tollhouse, the ford, and every roof you emptied — and not one person. The Concord is gone north by then, and the Yokeman's cage rides on toward whatever bend they have chosen next.",
+      "readAloud": "You chose which loss to carry. Wood and stone, and a road no one will ever haul again. It was a choice, and you made it on purpose, which is more than most.",
+      "art": "art-the-ferrymarch-road-and-the-drowned-bell-shale-stair-crowded-at-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "crossing-at-marl-ford",
+      "to": "wreck-of-the-ox-train",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wreck-of-the-ox-train",
+      "to": "survivor-in-the-reeds",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "survivor-in-the-reeds",
+      "to": "sunken-milestone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sunken-milestone",
+      "to": "tollhouse-of-saint-verrow",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tollhouse-of-saint-verrow",
+      "to": "wheel-ruts-through-the-willows",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wheel-ruts-through-the-willows",
+      "to": "the-baggage-train",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-baggage-train",
+      "to": "parley-with-choirmaster-oleth",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "parley-with-choirmaster-oleth",
+      "to": "undercart-crawl",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undercart-crawl",
+      "to": "the-bell-cage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tide-hound-kennels",
+      "to": "the-bell-cage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-bell-cage",
+      "to": "the-ringing-at-swiftwater-bend",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-bell-cage",
+      "to": "ending-road-abandoned",
+      "when": {
+        "op": "always"
+      },
+      "note": "Walking away is a real ending, not a failure state."
+    },
+    {
+      "from": "the-ringing-at-swiftwater-bend",
+      "to": "ending-bell-drowned",
+      "when": {
+        "op": "eq",
+        "flag": "bell-silenced",
+        "value": true
+      },
+      "note": "The tongue is gone or the cage is already sliding — the cage goes into the deep channel."
+    },
+    {
+      "from": "the-ringing-at-swiftwater-bend",
+      "to": "ending-choir-crowned",
+      "when": {
+        "op": "neq",
+        "flag": "bell-silenced",
+        "value": true
+      },
+      "note": "Nothing was done to the bell itself; if the Yokeman holds, it speaks."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "reed-blind-raiders",
+      "title": "The Reed Blind",
+      "combatants": [
+        {
+          "id": "cord-wrist-raiders",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "reed-captain-hallow",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "water",
+        "cover-heavy",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "sunken-milestone",
+      "onDefeat": "tollhouse-of-saint-verrow",
+      "onFlee": "tollhouse-of-saint-verrow"
+    },
+    {
+      "id": "tide-hound-kennels-fight",
+      "title": "Loose in the Kennel Wagons",
+      "combatants": [
+        {
+          "id": "kesh-tallow",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "tide-hounds",
+          "statblock": "wolf",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "unstable",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "The tailgate of the ninth wagon at the head of the moving train."
+      },
+      "onVictory": "the-bell-cage",
+      "onDefeat": "ending-choir-crowned",
+      "onFlee": "wheel-ruts-through-the-willows"
+    },
+    {
+      "id": "swiftwater-bend-climax",
+      "title": "The Yokeman at Swiftwater Bend",
+      "combatants": [
+        {
+          "id": "the-yokeman",
+          "statblock": "ogre",
+          "count": 1,
+          "hpOverride": 52,
+          "hostile": true
+        },
+        {
+          "id": "cord-wrist-thralls",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "unstable",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "the-yokeman"
+      },
+      "onVictory": "ending-bell-drowned",
+      "onDefeat": "ending-choir-crowned",
+      "onFlee": "ending-road-abandoned"
+    }
+  ]
+}

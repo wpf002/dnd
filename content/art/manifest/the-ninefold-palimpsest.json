@@ -1,0 +1,95 @@
+{
+  "adventure": "the-ninefold-palimpsest",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: mystery, anthology.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ninefold-palimpsest-gullmaw-gate",
+      "beat": "cliffside-gate",
+      "brief": "The Gullmaw Gate — The Sconcelight Athenaeum straddles a spur of black rock above four hundred feet of gull-screaming air, its only bridge a hinged plank the keepers rai"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-lector-thane",
+      "beat": "keepers-welcome",
+      "brief": "Prime Lector Halbrec Thane — Thane receives you in a reading room where every chair is bolted down and every volume is leashed by a brass chain to a ring in the floor. He is old, "
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-vacant-cell",
+      "beat": "vacant-cell",
+      "brief": "A Cell Left Twice — Ilva's cell is a stone slot with a cot, a shelf, and an inkwell holding a single black quill still wet after nine days. On the shelf sit two identical"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-loan-ledger",
+      "beat": "ledger-vault",
+      "brief": "The Loan Ledger — The vault is a drum of shelving lit by a caged lamp, and every loan in the Athenaeum's history is recorded twice: once forward by the clerk, once in r"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-kitchen-passage",
+      "beat": "witness-pair",
+      "brief": "Two Truths in the Kitchen Passage — Bettany Owlin, cook, swears on her mother's grave that she watched Ilva walk out over the plank bridge at dusk, cloak snapping, and waved. Nightwarden"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-spiral-stair",
+      "beat": "spiral-stair-descent",
+      "brief": "Nine Turns Down — The stair bores down through the cliff in nine turns, each landing a small anthology of horrors: a shelf of sealed novellas that weep brine, a locked "
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-chained-stacks",
+      "beat": "chained-stacks",
+      "brief": "The Chained Stacks — Down here the books are not shelved but restrained: chained, weighted, some stitched shut with wire. Three empty suits of reading-armour stand as ward"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-mirror-press",
+      "beat": "scriptorium-mirror",
+      "brief": "The Mirror-Press — The scriptorium's copying engine is a press faced with a sheet of grey glass. Feed it a page and it returns two, indistinguishable, each insisting it "
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-wind-gallery",
+      "beat": "wind-gallery",
+      "brief": "The Wind Gallery — An open colonnade cut into the cliff-face, meant for airing damp folios and nothing else. The gale comes through in fists. Loose pages travel it like "
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-redactor-vane",
+      "beat": "censor-confrontation",
+      "brief": "Redactor Prime Ossia Vane — Vane keeps her own faction inside the Athenaeum: the Redactors, six women with lampblack under their nails who solve dangerous books by removing them,"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-ghostlight-cistern",
+      "beat": "ghostlight-cistern",
+      "brief": "The Ghostlight Cistern — Rainwater collects in a vaulted tank beneath the stacks, and the Athenaeum's leaked ink has made it black as a closed eye. Ghostlight crawls on the su"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-two-ilvas",
+      "beat": "the-two-ilvas",
+      "brief": "Both of Her — In the sealed lectern-room, the Ninefold Palimpsest lies open on its chain, and two women sit on either side of it. Both are Ilva Marrowgate. One has "
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-unbinding-climax",
+      "beat": "unbinding-climax",
+      "brief": "The Unbinding — You say the name. The Palimpsest objects. Its chain goes rigid, its pages fan out into a wheel of other people's endings, and the thing it has been dr"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-ending-errata",
+      "beat": "ending-restored",
+      "brief": "Errata — The spine gives. The ninth draft comes apart into loose leaves that the wind gallery takes out over the water, and one woman is left kneeling on the f"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-ending-redacted",
+      "beat": "ending-bargain",
+      "brief": "The Redacted Woman — Vane's redactors take both women below and come back with one, and no one afterwards can agree on which. She works the collation desk, competent and q"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-ending-two-tracks",
+      "beat": "ending-flight",
+      "brief": "Two Sets of Footprints — You cross the plank bridge at dawn with Ilva Marrowgate between you, salt-haired and shaking and alive, and behind you the lectern-room stays shut. In"
+    },
+    {
+      "slot": "art-the-ninefold-palimpsest-ending-collated",
+      "beat": "ending-devoured",
+      "brief": "Collated — The cold gets into your outlines first, and then your outlines get into the book. The Athenaeum's next loan ledger records a party of investigators re"
+    }
+  ]
+}

@@ -1,0 +1,967 @@
+{
+  "id": "the-brine-loom-of-sallanth",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Brine Loom of Sallanth",
+    "premise": "Beneath the harbor of the guild-republic of Sallanth, a salvage crew has cracked the seals on an ancient tide-engine, and it has begun to turn. The Chair of Nine argues over jurisdiction while the water rises, and doing nothing will drown the lower city as surely as any enemy.",
+    "tone": [
+      "high-adventure",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Wry, brisk, and salt-stained — a harbor chronicler who has seen guilds argue their way into catastrophe before, and who describes ruins with the fondness of a thief and politics with the precision of an auditor.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Evacuations and endangered families are described only as rescued, sheltered, or led to high ground; no on-screen harm to children."
+    },
+    "provenance": "flint"
+  },
+  "entry": "broken-tide-bell",
+  "beats": [
+    {
+      "id": "broken-tide-bell",
+      "kind": "threshold",
+      "title": "The Bell That Rang Wrong",
+      "prose": "Sallanth is a republic of nine guilds, four hundred docks, and one very old habit of pretending its ruins are only quarries. At the third hour the great tide bell in Cinderquay rang without a hand on the rope — then rang again, off-beat, as though the sea itself were keeping time badly. In the fish market a sinkhole has opened, and the water in it is going down instead of up, spiralling into a throat of green-black stone that no charter admits exists. Deepwright salvage barges are already moored over it with their winch-arms folded like guilty hands, and runners are sprinting uphill toward the Chamber of Nine.",
+      "readAloud": "The bell tolls a fourth time, dragging, as if something below is pulling the note under the water with it. A fishwife grips your sleeve and says the only honest sentence you will hear all day: 'Somebody woke something, and nobody will sign for it.'",
+      "art": "art-the-brine-loom-of-sallanth-harbor-bell-wrong-hour",
+      "options": [
+        {
+          "id": "attend-the-chair",
+          "label": "Climb to the Chamber of Nine and force the Republic to name the problem out loud.",
+          "target": "chair-of-nine",
+          "effects": []
+        },
+        {
+          "id": "follow-the-money",
+          "label": "Follow the money: the Lamplighters' Chain insures every salvage hull in the harbor.",
+          "target": "ledger-house",
+          "effects": []
+        },
+        {
+          "id": "walk-the-dredge-yards",
+          "label": "Walk straight into the Deepwright dredge-yards and ask Master Quay what he broke.",
+          "target": "dredger-hall",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chair-of-nine",
+      "kind": "social",
+      "title": "The Chair of Nine Deliberates",
+      "prose": "The Chamber smells of wet wool and lamp oil. Speaker Sevra Alcaine holds a bronze rule she taps against the rail whenever anyone says the word 'emergency,' which is often. The Deepwright bench insists the sinkhole is a quarry subsidence; the Lamplighters insist it is an act of sea and therefore uninsurable; the Ropewalkers' delegate has fallen asleep. Alcaine will not act without cover — but she is not a fool, and she is listening for anything she can call evidence.",
+      "readAloud": "'Understand me,' Alcaine says quietly, under the shouting. 'I can drown with the harbor or I can be voted out by noon. Bring me something with a seal on it and I will risk the second.'",
+      "art": "art-the-brine-loom-of-sallanth-chamber-of-nine-lamplight",
+      "options": [
+        {
+          "id": "press-for-writ",
+          "label": "Press Alcaine for an emergency writ on your own authority and reputation.",
+          "target": "dredger-hall",
+          "effects": [
+            {
+              "flag": "council-mandate",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "lower-city-warning"
+          }
+        },
+        {
+          "id": "table-the-ledger",
+          "label": "Table the Lamplighters' tidesteel folio and let the Chair read who paid for the breach.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "has-ledger-proof",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "quay-exposed",
+                "value": true
+              }
+            ]
+          },
+          "target": "dredger-hall",
+          "effects": [
+            {
+              "flag": "council-mandate",
+              "value": true
+            },
+            {
+              "flag": "quay-exposed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "abandon-the-chamber",
+          "label": "Leave them to their deadlock — the lower city deserves a warning more than a vote.",
+          "target": "lower-city-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ledger-house",
+      "kind": "discovery",
+      "title": "The Counting House of the Lamplighters' Chain",
+      "prose": "The Chain's counting house is a windowless brick lantern where clerks price catastrophe by the yard. Their folios show eleven Deepwright hulls insured against 'ruin-hazard' — every policy rewritten six weeks ago, premiums tripled, and the riders signed by an actuary named Anseline Vurr. Someone at this desk knew the seals under the harbor would be cut before the cutting began. Vurr is at her stool now, pretending to sharpen a pen she has already sharpened four times.",
+      "art": "art-the-brine-loom-of-sallanth-counting-house-folios",
+      "options": [
+        {
+          "id": "copy-the-tidesteel-folio",
+          "label": "Copy the tidesteel folio while the clerks change the lamp wicks.",
+          "target": "chair-of-nine",
+          "effects": [
+            {
+              "flag": "has-ledger-proof",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 14,
+            "onFailure": "wharf-ambush"
+          }
+        },
+        {
+          "id": "buy-vurrs-testimony",
+          "label": "Buy Anseline Vurr's testimony — she wants passage out more than she wants her stool.",
+          "target": "dredger-hall",
+          "effects": [
+            {
+              "flag": "has-ledger-proof",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Insight",
+            "dc": 13,
+            "onFailure": "dredger-hall"
+          }
+        },
+        {
+          "id": "leave-for-the-shrine",
+          "label": "Take Vurr's whispered word — 'ask the Tidewarden' — and go to the shrine instead.",
+          "target": "tidewarden-shrine",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "dredger-hall",
+      "kind": "social",
+      "title": "Master Dredger Hollowbrant Quay",
+      "prose": "The Deepwright hall is a cathedral of chain and rust, and Hollowbrant Quay sits under it like a man who has already priced his own ruin. He admits the guild has been mining tidesteel from Karrhu-Vel, the drowned city beneath the harbor; he does not admit that his cutters severed a ring of sluice-seals eleven days ago. What turns below, he says, is a loom — a tide-engine the old city used to weave the coastline itself, and it is re-weaving now. His crews are loyal, armed, and frightened, which is the worst combination in any republic.",
+      "readAloud": "'You want a confession,' Quay says, wiping brine from his knuckles. 'What I have is four hundred dredgers and a harbor that will eat them. Give me a name to hide behind and I'll give you my bells, my bells' rope, and my best divers.'",
+      "art": "art-the-brine-loom-of-sallanth-dredger-hall-chains",
+      "options": [
+        {
+          "id": "invoke-the-writ",
+          "label": "Invoke the Chair's authority — cooperate now, and the blame is the Republic's, not his.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "council-mandate",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "quay-exposed",
+                "value": true
+              }
+            ]
+          },
+          "target": "drowned-stair",
+          "effects": [
+            {
+              "flag": "quay-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-salvage-shares",
+          "label": "Offer Quay a private share of whatever the Loom's heart yields.",
+          "target": "tidewarden-shrine",
+          "effects": [
+            {
+              "flag": "quay-allied",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Deception",
+            "dc": 15,
+            "onFailure": "wharf-ambush"
+          }
+        },
+        {
+          "id": "accuse-him-openly",
+          "label": "Accuse him in front of his own crews and let the hall decide.",
+          "target": "wharf-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wharf-ambush",
+      "kind": "conflict",
+      "title": "Blood on the Cinderquay Boards",
+      "prose": "Frightened guilds hire cheap knives. A crew boss named Trelle Bracken corners you between a fish-oil shed and forty feet of black water, and the toughs with her have been paid in coin that still smells of counting-house wax. They do not want a fight so much as a delay — every hour the Loom turns, the harbor's charter becomes someone else's problem.",
+      "art": "art-the-brine-loom-of-sallanth-wharf-knives-fish-oil",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "dredger-toughs",
+      "terminal": false
+    },
+    {
+      "id": "lower-city-warning",
+      "kind": "decision",
+      "title": "Cinderquay, Below the Waterline",
+      "prose": "Cinderquay is six thousand people living under the harbor's own lip: rope-lofts, salt-houses, tenement stairs that already weep at high tide. The gutters are running the wrong way. Families are stacking what they own on tables, waiting for someone with a voice to tell them whether to climb or to stay. The Republic has not told them anything, because telling them would be an admission with a price attached.",
+      "readAloud": "A rope-loft foreman looks down at the reversed gutter and then up at you. 'You've the look of someone who knows. Do we carry the grandmothers uphill, or do we sleep?'",
+      "art": "art-the-brine-loom-of-sallanth-cinderquay-reversed-gutters",
+      "options": [
+        {
+          "id": "raise-the-cinderquay",
+          "label": "Raise the whole quarter: bells, ladders, high ground, and shelter in the guild halls.",
+          "target": "tidewarden-shrine",
+          "effects": [
+            {
+              "flag": "city-warned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "commandeer-a-lighter",
+          "label": "Commandeer a lighter and go down to the ruin now, before the tide changes again.",
+          "target": "drowned-stair",
+          "effects": []
+        },
+        {
+          "id": "take-the-evening-tide-out",
+          "label": "Judge it unsalvageable: take passage out of Sallanth on the evening tide.",
+          "target": "ending-tide-unanswered",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tidewarden-shrine",
+      "kind": "social",
+      "title": "The Tidewarden's Sea-Stair Shrine",
+      "prose": "Kesh Marrow keeps a shrine that the guilds tolerate the way they tolerate weather: a shell-plastered vault at the bottom of a hundred slick steps, where the last keepers of Karrhu-Vel's memory count tides on knotted cord. Marrow says the Brine Loom was never a weapon — it was a treaty, a machine that held the coastline steady while the old city bargained with the sea. Cut its sluice-seals and it begins reweaving to the last pattern it remembers, which is a shoreline three miles inland. There is a stilling rite, and there is a brine key, and Marrow can spare exactly one of them before the water reaches this vault.",
+      "readAloud": "Marrow's knotted cord is wet to the eleventh knot. 'That is not a tide,' the Tidewarden says. 'That is arithmetic. And your Chair of Nine has never once been early to arithmetic.'",
+      "art": "art-the-brine-loom-of-sallanth-tidewarden-shell-vault",
+      "options": [
+        {
+          "id": "learn-the-stilling-rite",
+          "label": "Learn the stilling rite — the seventeen names of standing water, spoken to the Loom's crown.",
+          "target": "drowned-stair",
+          "effects": [
+            {
+              "flag": "knows-stilling-rite",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Religion",
+            "dc": 13,
+            "onFailure": "drowned-stair"
+          }
+        },
+        {
+          "id": "barter-for-the-brine-key",
+          "label": "Barter for the brine key, the shrine's toothed bronze that still opens Karrhu-Vel's sluices.",
+          "target": "drowned-stair",
+          "effects": [
+            {
+              "flag": "have-brine-key",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warn-the-lower-city-first",
+          "label": "Take Marrow's arithmetic straight back up to Cinderquay before you descend at all.",
+          "target": "lower-city-warning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-stair",
+      "kind": "transit",
+      "title": "Down the Drowned Stair of Karrhu-Vel",
+      "prose": "The sinkhole's throat becomes a stair, and the stair becomes a street: green-black basalt, doorways full of standing brine, shop-signs in a script that predates the Republic's alphabet by six hundred years. The Loom's rhythm arrives through the stone as a slow double knock, like a heart with a stammer. Somewhere ahead, the water is being held back by something that is still working, and somewhere behind it, something is singing in the salt.",
+      "art": "art-the-brine-loom-of-sallanth-drowned-stair-basalt-street",
+      "options": [
+        {
+          "id": "borrowed-diving-bell",
+          "label": "Descend in a borrowed diving bell, with willing hands above on the pumps.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "quay-allied",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "city-warned",
+                "value": true
+              }
+            ]
+          },
+          "target": "sluice-gate",
+          "effects": []
+        },
+        {
+          "id": "free-dive-the-stair",
+          "label": "Free-dive the flooded landings on lungs and rope alone.",
+          "target": "sluice-gate",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "salt-choir"
+          }
+        },
+        {
+          "id": "crawl-the-choir-vault",
+          "label": "Take the dry route: crawl through the choir vault where the singing comes from.",
+          "target": "salt-choir",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sluice-gate",
+      "kind": "puzzle",
+      "title": "The Sluice of Seven Wheels",
+      "prose": "A wall of tidesteel stands across the old aqueduct race, pierced by seven bronze wheels, each rimmed with the numerals of a tide. Deepwright cutters have gouged three of them raw and left their pry-bars behind like a signature. The wheels are a lock and a lung both: set them to a slack tide and the race drains, opening a dry road to the Loom's chamber; set them wrong and the sea comes through the passage instead of through the machine. The double knock from below has quickened to a triple.",
+      "art": "art-the-brine-loom-of-sallanth-seven-bronze-tide-wheels",
+      "options": [
+        {
+          "id": "turn-the-brine-key",
+          "label": "Seat the brine key in the master wheel and let the old city do the arithmetic.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "have-brine-key",
+            "value": true
+          },
+          "target": "loom-antechamber",
+          "effects": [
+            {
+              "flag": "sluice-open",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-the-tide-wheels",
+          "label": "Read the numerals and set the seven wheels to slack water yourself.",
+          "target": "loom-antechamber",
+          "effects": [
+            {
+              "flag": "sluice-open",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 15,
+            "onFailure": "salt-choir"
+          }
+        },
+        {
+          "id": "shatter-the-gate",
+          "label": "Shatter the gate with dredger bars and wade the flood that follows.",
+          "target": "loom-antechamber",
+          "effects": [
+            {
+              "flag": "sluice-open",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "salt-choir",
+      "kind": "conflict",
+      "title": "The Salt Choir",
+      "prose": "The vault was a choir loft once, and its singers never left. Salt has grown through them until their ribs are lattice and their throats are pipes, and at their head stands a crowned thing that still keeps the beat of a treaty nobody honors. They do not hate you. They are simply still on duty, and the tide is rising through the floor grates fast enough that outlasting them is wiser than out-fighting them.",
+      "art": "art-the-brine-loom-of-sallanth-salt-crusted-choir-loft",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "salt-choir-dead",
+      "terminal": false
+    },
+    {
+      "id": "loom-antechamber",
+      "kind": "decision",
+      "title": "Antechamber of the Loom",
+      "prose": "Beyond the sluice, the corridor opens into a hall of hanging bronze threads that stretch away into fog and vanish — the warp of the machine, each strand tuned to a mile of coastline. Deepwright lamps still burn on abandoned scaffolds; someone fled in a hurry and left the seals open. Ahead, past a ring of tidesteel doors carved with the seventeen names of standing water, the Loom's crown turns with a sound like a city clearing its throat. How you cross the threshold will decide what greets you.",
+      "art": "art-the-brine-loom-of-sallanth-bronze-warp-threads-fog",
+      "options": [
+        {
+          "id": "walk-the-dry-race",
+          "label": "Walk the drained race you opened and come at the crown from beneath, unheard.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sluice-open",
+            "value": true
+          },
+          "target": "loom-heart",
+          "effects": []
+        },
+        {
+          "id": "speak-the-rite-at-the-seal",
+          "label": "Speak the stilling rite at the seal and ask the doors to know you.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-stilling-rite",
+            "value": true
+          },
+          "target": "loom-heart",
+          "effects": []
+        },
+        {
+          "id": "break-the-seal-with-steel",
+          "label": "Break the seal with steel and pry-bar and take whatever answers.",
+          "target": "loom-heart",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "loom-heart",
+      "kind": "climax",
+      "title": "The Heart of the Brine Loom",
+      "prose": "The chamber is a drum of tidesteel forty feet across, and at its center the regulator stands upright — a hollow carapace of plated bronze that the old city built to wear the Loom's will like armor. It is weaving, and the harbor above is the cloth. Around it drift the salt-shadows of the last keepers and the sodden shapes of Deepwright cutters who did not get out. Stop the regulator and the pattern hangs; leave it and Sallanth's waterline moves three miles inland by morning.",
+      "readAloud": "The carapace turns its empty helm toward you and the whole chamber inhales. Every bronze thread in the hall pulls taut at once, and somewhere far above, the tide bell rings a fifth wrong note.",
+      "art": "art-the-brine-loom-of-sallanth-regulator-carapace-drum",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "loom-guardians",
+      "terminal": false
+    },
+    {
+      "id": "loom-crown",
+      "kind": "decision",
+      "title": "The Crown, Still Turning",
+      "prose": "The regulator lies open like a cracked bell and the Loom's crown is bare: a ring of seventeen bronze mouths, still turning, still willing to be told what the coastline should be. Above you the harbor's water hangs in the shafts, undecided. Quay's divers are shouting down the race; if there is a Chair's writ in your pocket, its wax is soft with brine. Whatever you do in the next minute, the Republic will spend fifty years arguing about.",
+      "readAloud": "The crown slows as you approach — not stopping, only waiting, the way a scribe waits with the pen already wet.",
+      "art": "art-the-brine-loom-of-sallanth-bare-loom-crown-seventeen-mouths",
+      "options": [
+        {
+          "id": "speak-the-stilling",
+          "label": "Speak the stilling rite into the crown and put the Loom to sleep forever.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-stilling-rite",
+            "value": true
+          },
+          "target": "ending-stilled-tide",
+          "effects": []
+        },
+        {
+          "id": "bind-it-to-the-charter",
+          "label": "Bind the Loom to the Republic: a new article, a public trust, nine hands on the wheel.",
+          "target": "ending-charter-of-brine",
+          "effects": []
+        },
+        {
+          "id": "leave-it-turning",
+          "label": "Take what you can carry from the chamber and leave the crown turning.",
+          "target": "ending-tide-unanswered",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-stilled-tide",
+      "kind": "ending",
+      "title": "Ending: The Stilled Tide",
+      "prose": "You give the crown the seventeen names of standing water, and the Brine Loom lets go of the coastline the way a hand lets go of a rope. The bronze threads slacken mile by mile; the sinkhole fills with ordinary, unremarkable sea. Karrhu-Vel is sealed under a hundred feet of it, and with it goes every yard of tidesteel the Deepwrights had already priced — Hollowbrant Quay is ruined by nightfall and oddly relieved about it. The Chair of Nine, denied both a catastrophe and a treasure, votes you a bronze rule and no thanks whatsoever. In Cinderquay the tide bell keeps proper time again, and the Tidewarden's knotted cord is wound back to the first knot, which is the only monument anyone will ever raise to this day.",
+      "art": "art-the-brine-loom-of-sallanth-sealed-sinkhole-calm-water",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-charter-of-brine",
+      "kind": "ending",
+      "title": "Ending: The Charter of Brine",
+      "prose": "You do not silence the Loom. You give it a constituency. Nine hands are set on the crown by dawn — Deepwright, Lamplighter, Tidewarden, Ropewalker and the rest — and the coastline of Sallanth becomes, for the first time in six hundred years, a thing the Republic votes on. The harbor holds. So does the argument: every session for the next decade will turn on who is permitted to move the water, and more than one guild will try to buy the crown outright before the year is done. Speaker Alcaine calls it the finest disaster she ever presided over and has your names written into the tenth article. You have handed a nation of clerks the sea itself, and no one yet knows whether that was mercy or a very long fuse.",
+      "art": "art-the-brine-loom-of-sallanth-nine-hands-on-the-crown",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-tide-unanswered",
+      "kind": "ending",
+      "title": "Ending: The Tide Unanswered",
+      "prose": "The Loom finishes its pattern. It takes until the second dawn, and it is not violent so much as patient: the sea walks up the Cinderquay stairs, into the rope-lofts, over the fish market, and settles three miles inland with the calm of a thing returning to a remembered edge. What was warned, walked out; what was not, floated. The Chair of Nine convenes on a hillside above a new lagoon and spends its first session determining which guild owns the water. Somewhere under it the crown still turns, keeping the coastline it was told to keep, waiting for anyone willing to speak to it — and the record will note, in a clerk's neat hand, that the choice not to answer was still a choice, and that it was yours.",
+      "art": "art-the-brine-loom-of-sallanth-new-lagoon-drowned-quarter",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "broken-tide-bell",
+      "to": "chair-of-nine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "broken-tide-bell",
+      "to": "ledger-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "broken-tide-bell",
+      "to": "dredger-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chair-of-nine",
+      "to": "dredger-hall",
+      "when": {
+        "op": "always"
+      },
+      "note": "With or without a writ, the dredge-yards are next."
+    },
+    {
+      "from": "chair-of-nine",
+      "to": "lower-city-warning",
+      "when": {
+        "op": "always"
+      },
+      "note": "Deadlock, or a failed appeal to the Speaker."
+    },
+    {
+      "from": "ledger-house",
+      "to": "chair-of-nine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-house",
+      "to": "dredger-hall",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-house",
+      "to": "tidewarden-shrine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-house",
+      "to": "wharf-ambush",
+      "when": {
+        "op": "always"
+      },
+      "note": "Caught copying the folio."
+    },
+    {
+      "from": "dredger-hall",
+      "to": "drowned-stair",
+      "when": {
+        "op": "eq",
+        "flag": "quay-allied",
+        "value": true
+      }
+    },
+    {
+      "from": "dredger-hall",
+      "to": "tidewarden-shrine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "dredger-hall",
+      "to": "wharf-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wharf-ambush",
+      "to": "tidewarden-shrine",
+      "when": {
+        "op": "always"
+      },
+      "note": "Victory: Bracken's coin points at the shrine."
+    },
+    {
+      "from": "wharf-ambush",
+      "to": "lower-city-warning",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat or flight: you wake up in Cinderquay."
+    },
+    {
+      "from": "lower-city-warning",
+      "to": "tidewarden-shrine",
+      "when": {
+        "op": "eq",
+        "flag": "city-warned",
+        "value": true
+      }
+    },
+    {
+      "from": "lower-city-warning",
+      "to": "drowned-stair",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lower-city-warning",
+      "to": "ending-tide-unanswered",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tidewarden-shrine",
+      "to": "drowned-stair",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tidewarden-shrine",
+      "to": "lower-city-warning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-stair",
+      "to": "sluice-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-stair",
+      "to": "salt-choir",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sluice-gate",
+      "to": "loom-antechamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sluice-gate",
+      "to": "salt-choir",
+      "when": {
+        "op": "always"
+      },
+      "note": "Mis-set wheels flood the choir vault around you."
+    },
+    {
+      "from": "salt-choir",
+      "to": "loom-antechamber",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "salt-choir",
+      "to": "ending-tide-unanswered",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat: the choir keeps its post and the Loom finishes."
+    },
+    {
+      "from": "loom-antechamber",
+      "to": "loom-heart",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loom-heart",
+      "to": "loom-crown",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loom-heart",
+      "to": "ending-tide-unanswered",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat at the regulator."
+    },
+    {
+      "from": "loom-crown",
+      "to": "ending-stilled-tide",
+      "when": {
+        "op": "eq",
+        "flag": "knows-stilling-rite",
+        "value": true
+      }
+    },
+    {
+      "from": "loom-crown",
+      "to": "ending-charter-of-brine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "loom-crown",
+      "to": "ending-tide-unanswered",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "dredger-toughs",
+      "title": "Bracken's Paid Delay",
+      "combatants": [
+        {
+          "id": "trelle-bracken",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "dock-toughs",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "water",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "tidewarden-shrine",
+      "onDefeat": "lower-city-warning",
+      "onFlee": "lower-city-warning"
+    },
+    {
+      "id": "salt-choir-dead",
+      "title": "Outlast the Choir",
+      "combatants": [
+        {
+          "id": "crowned-cantor",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bone-cantors",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "water",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "loom-antechamber",
+      "onDefeat": "ending-tide-unanswered",
+      "onFlee": "loom-antechamber"
+    },
+    {
+      "id": "loom-guardians",
+      "title": "Break the Regulator",
+      "combatants": [
+        {
+          "id": "regulator-carapace",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hpOverride": 58,
+          "hostile": true
+        },
+        {
+          "id": "salt-shadows",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "drowned-cutters",
+          "statblock": "zombie",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "regulator-carapace"
+      },
+      "onVictory": "loom-crown",
+      "onDefeat": "ending-tide-unanswered",
+      "onFlee": "ending-tide-unanswered"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "adventure": "the-threnody-accord",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: political-fantasy, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-threnody-accord-sallowgate-toll-gate-dusk",
+      "beat": "dusk-at-the-toll-gate",
+      "brief": "Dusk at the Toll Gate — Sallowgate straddles the River Marrow like a hand over a wound: Ascendancy banners on the near bank, Thessine campfires smudging the far one. The Marg"
+    },
+    {
+      "slot": "art-the-threnody-accord-widow-magistrate-parlor",
+      "beat": "the-widow-magistrate",
+      "brief": "The Widow-Magistrate's Parlour — Perrine Coll governs Sallowgate the way a splint governs a broken arm: temporarily, painfully, and only because nothing better presented itself. Her p"
+    },
+    {
+      "slot": "art-the-threnody-accord-counting-house-ledger-stacks",
+      "beat": "the-counting-house-ledgers",
+      "brief": "The Counting House Ledgers — The factor Bellum Ashgrave keeps his books in a room with two doors and no windows, which tells you most of what you need. The levy entry is beautiful"
+    },
+    {
+      "slot": "art-the-threnody-accord-hymnal-cipher-candlelight",
+      "beat": "cipher-in-the-hymnal",
+      "brief": "The Cipher in the Hymnal — The Margravine's hymnal sits on the chapel lectern, still marked with a black ribbon. Her marginalia are pious nonsense — until you notice the pinpric"
+    },
+    {
+      "slot": "art-the-threnody-accord-tannery-roof-chase",
+      "beat": "roof-chase-over-the-tannery",
+      "brief": "Roof-Chase Over the Tannery — Whistles, three short — the thief-takers' call. They come with dogs bred to work the gutter-lanes, and the only road that isn't theirs is upward: tann"
+    },
+    {
+      "slot": "art-the-threnody-accord-sable-envoy-teahouse",
+      "beat": "the-sable-envoy",
+      "brief": "The Sable Envoy Takes Tea — Iskra Dohn of the Thessine Compact drinks tea in an occupied town with the calm of a woman who has already read the ending. She does not deny paying t"
+    },
+    {
+      "slot": "art-the-threnody-accord-smugglers-culvert-tunnel",
+      "beat": "smugglers-culvert",
+      "brief": "The Culvert Beneath the Toll-Wall — The culvert runs the whole width of Sallowgate: brick throat, knee-deep river, chalk marks left by four generations of people moving things the Assize"
+    },
+    {
+      "slot": "art-the-threnody-accord-almshouse-foundling-token",
+      "beat": "the-foundling-token",
+      "brief": "The Foundling's Token — Ilva Renn is nineteen, scours pots at the Almshouse of Saint Vellis, and wears on a bootlace the half-token given to every foundling admitted there — "
+    },
+    {
+      "slot": "art-the-threnody-accord-assize-chamber-debt",
+      "beat": "the-debt-that-cannot-be-paid",
+      "brief": "The Debt That Cannot Be Paid — The Assize convenes in the Weights Hall at the eighth bell: forty thousand marks receipted, a treaty unsigned, and a Crown auditor who will accept any"
+    },
+    {
+      "slot": "art-the-threnody-accord-garrison-cellar-press-gang",
+      "beat": "press-gang-in-the-garrison-cellar",
+      "brief": "The Press-Gang in the Garrison Cellar — Quist's levy-men work by lamplight in a cellar strung with tally-ropes: names, thumbprints, and a river-barge waiting at the water-stair. They are not"
+    },
+    {
+      "slot": "art-the-threnody-accord-margravine-lying-in-state",
+      "beat": "the-lying-in-state",
+      "brief": "The Lying-In-State — Nine days of cold has kept the Margravine presentable. The signet is still on her hand, wound with black ribbon, because no one dared decide who shoul"
+    },
+    {
+      "slot": "art-the-threnody-accord-antechamber-knives",
+      "beat": "knives-in-the-antechamber",
+      "brief": "Knives in the Antechamber — The antechamber to the Weights Hall is full of people pretending to wait. Then the door-latch turns the wrong way and three of them are no longer pret"
+    },
+    {
+      "slot": "art-the-threnody-accord-signing-hall-accord",
+      "beat": "the-signing-hall",
+      "brief": "The Signing Hall — The Weights Hall: Crown auditor at one end, Thessine envoy at the other, Quist's men along the wall, and between them a document that will decide whet"
+    },
+    {
+      "slot": "art-the-threnody-accord-ratified-accord-dawn",
+      "beat": "the-accord-ratified",
+      "brief": "The Accord Ratified — The Threnody Accord is signed at the eleventh bell, and it holds — not because it is just, but because it is documented. Ilva Renn is confirmed Margra"
+    },
+    {
+      "slot": "art-the-threnody-accord-sable-silver-epilogue",
+      "beat": "sold-for-thessine-silver",
+      "brief": "Sold for Thessine Silver — The debt is settled in good Thessine coin, the Accord is signed, and nobody hangs — which is exactly what Iskra Dohn promised and exactly what she bou"
+    },
+    {
+      "slot": "art-the-threnody-accord-closed-ledger-epilogue",
+      "beat": "the-ledger-closes-without-you",
+      "brief": "The Ledger Closes Without You — Perhaps it was irons and a barge at the water-stair; perhaps it was a smuggler's cart and the culvert road at moonset. Either way the Weights Hall bel"
+    }
+  ]
+}

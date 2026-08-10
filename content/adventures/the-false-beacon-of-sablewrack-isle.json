@@ -1,0 +1,687 @@
+{
+  "id": "the-false-beacon-of-sablewrack-isle",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The False Beacon of Sablewrack Isle",
+    "premise": "Three ships have died on the Black Tooth in fair weather, and the wreck-pickers of Sablewrack Isle grow fat on the salvage. The lie begins in a drowned lamp room beneath the tide, where a stolen lens still burns.",
+    "tone": [
+      "beginner-classic",
+      "nautical"
+    ],
+    "tier": "local",
+    "partyLevel": 1,
+    "narrationVoice": "Warm, plainspoken harbor-tale narrator. Short sentences, salt on every noun, and a fondness for naming the weather before naming the danger.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The island's children are kept ashore and off-page; drake hatchlings and eggs may be threatened but never shown harmed."
+    },
+    "provenance": "flint"
+  },
+  "entry": "wreck-light-landing",
+  "beats": [
+    {
+      "id": "wreck-light-landing",
+      "kind": "threshold",
+      "title": "Wreck-Light Landing",
+      "prose": "The coaster Coldfinch will not tie up. She noses the shingle at Thraskmoor Landing long enough for you to jump, then backs off into the rain. Thraskmoor is nine houses, a fish-drying rack, and a stone pier built out of somebody else's ship. Beyond the roofs, the Black Tooth stands out of the surf like a broken molar, and the whole shore below it glitters with copper nails and split planking. Three ships in one month, the Coldfinch's mate told you. All in weather a child could sail. All of them steering happily toward a light that should not be there. The Landing pays a copper bounty and a hot meal to anyone who finds out why.",
+      "readAloud": "Rain, and the smell of tar and drying cod. A woman in an oilskin watches you from the pier with a ledger under her arm. Down the beach, a canvas tent flaps over a heap of salvaged brass. Nobody hurries to greet you.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-thraskmoor-landing",
+      "options": [
+        {
+          "id": "meet-harbormistress",
+          "label": "Present yourselves to the woman with the ledger.",
+          "target": "harbormistress-ledger",
+          "effects": []
+        },
+        {
+          "id": "visit-salvagers",
+          "label": "Walk down to the salvage tent and its heap of brass.",
+          "target": "salvagers-tent",
+          "effects": []
+        },
+        {
+          "id": "walk-the-strand",
+          "label": "Skip the pleasantries and walk the wreck-strewn strand yourselves.",
+          "target": "keel-strewn-strand",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "harbormistress-ledger",
+      "kind": "social",
+      "title": "Marra Quillow's Ledger",
+      "prose": "Marra Quillow has been harbormistress for eleven years and has the handwriting of a woman who expects to be doubted. Her ledger records every hull lost off Sablewrack since her grandmother's time: dates, tides, cargo, survivors. 'The old light stood on the Tooth,' she says. 'It fell into the sea in my mother's day — quake dropped the whole headland. There is no lamp out there to burn. And yet.' She taps a column of dates. 'And yet.' She will trade what she knows for a promise: whatever you find, you bring the truth back to her pier, not to the salvagers' tent.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-quillow-ledger",
+      "options": [
+        {
+          "id": "study-the-dates",
+          "label": "Sit down and cross-read the wreck dates against the tide tables.",
+          "target": "keel-strewn-strand",
+          "effects": [
+            {
+              "flag": "ledger-clue",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 10,
+            "onFailure": "keel-strewn-strand"
+          }
+        },
+        {
+          "id": "ask-about-salvagers",
+          "label": "Ask her plainly who profits from the wrecks.",
+          "target": "salvagers-tent",
+          "effects": []
+        },
+        {
+          "id": "ask-about-drakes",
+          "label": "Ask about the drakes that nest above the strand.",
+          "target": "keel-strewn-strand",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "salvagers-tent",
+      "kind": "social",
+      "title": "Kellin Ashgrave's Spoil",
+      "prose": "The tent smells of wet rope and hot pitch. Kellin Ashgrave sorts salvage by weight with a fish-scale and a stub of chalk: brass fittings here, bolts of ruined cloth there, a ship's bell with the name filed off. He is not ashamed of any of it. 'Sea gives, we carry,' he says. 'I did not put the Tooth where it is.' But his crew of four go quiet when you mention the light, and one of them — a rope-scarred woman called Denn — will not look up from her splicing. Kellin has boats, lines, and men who can swim in a chop. He would like a cut of whatever is out there.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-salvage-tent",
+      "options": [
+        {
+          "id": "offer-fair-split",
+          "label": "Offer Kellin an honest share for the loan of his crew and lines.",
+          "target": "keel-strewn-strand",
+          "effects": [
+            {
+              "flag": "salvage-ally",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 11,
+            "onFailure": "keel-strewn-strand"
+          }
+        },
+        {
+          "id": "buy-diving-line",
+          "label": "Buy a diving line and a shuttered lantern, and ask nothing else.",
+          "target": "keel-strewn-strand",
+          "effects": []
+        },
+        {
+          "id": "back-to-pier",
+          "label": "Take what you heard back to the pier and the ledger.",
+          "target": "harbormistress-ledger",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "keel-strewn-strand",
+      "kind": "discovery",
+      "title": "The Keel-Strewn Strand",
+      "prose": "Low tide lays the whole ugly account out for you. Three hulls in three stages of ruin: the herring-boat Grey Marrow gone to ribs, the trader Sunder's Promise on her side with her name still bright, and nearest the Tooth a coastal packet whose stern reads THE LANTERN. The sand tells stories. Barefoot prints and boot prints, drag-marks where crates were hauled inland by rope, and over all of it the three-toed track of storm-drakes, big as dinner plates, coming down out of the cliff hollows to squabble over drowned cargo. One drag-trail is fresh, and it does not lead toward Thraskmoor.",
+      "readAloud": "Rain hisses on wet planking. Somewhere in the cliffs above, something with a long throat calls twice, and the gulls all go silent at once.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-keel-strewn-strand",
+      "options": [
+        {
+          "id": "follow-drag-marks",
+          "label": "Follow the fresh drag-trail inland along the rope-scars.",
+          "target": "kobold-scavenger-line",
+          "effects": []
+        },
+        {
+          "id": "climb-the-ridge",
+          "label": "Climb the ridge above the wrecks for a vantage on the Tooth.",
+          "target": "black-tooth-ridge",
+          "effects": []
+        },
+        {
+          "id": "board-the-lantern",
+          "label": "Board the packet Lantern while the tide is out of her hold.",
+          "target": "the-lantern-wreck",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kobold-scavenger-line",
+      "kind": "conflict",
+      "title": "The Scavenger Line",
+      "prose": "The drag-trail ends at a gully where a bucket-line of small scaled folk — wrack-kobolds, the islanders call them, drake-tenders and hull-pickers — are passing salvage hand to hand up into the rocks. They wear cut-down sailcloth and carry gaffs. They see you, shriek one word, and set themselves across the gully mouth, because behind them the tide-race is filling and they only have to hold you a few breaths before the water makes the crossing impossible for anybody. Hold the line yourself, and the sea will end this for you.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-scavenger-gully",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wrack-scavengers",
+      "terminal": false
+    },
+    {
+      "id": "drake-hollow-nest",
+      "kind": "hazard",
+      "title": "The Brooding Hollow",
+      "prose": "Above the gully the cliff opens into a warm hollow that stinks of sulphur and fish. A storm-drake the length of a longboat lies coiled over a clutch of leathery eggs, steam curling from a crack in the rock beside her. She is old, half-blind in one eye, and she has been fed — salt cod, whole crates of it, stacked where the kobolds left tribute. Somebody has been buying her patience. Somebody has been teaching her that lights on the water mean food on the beach. She lifts her head and watches you decide.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-brooding-hollow",
+      "options": [
+        {
+          "id": "offer-tribute",
+          "label": "Add your own salt cod to the tribute and speak to her low and slow.",
+          "target": "black-tooth-ridge",
+          "effects": [
+            {
+              "flag": "drake-truce",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Animal Handling",
+            "dc": 11,
+            "onFailure": "black-tooth-ridge"
+          }
+        },
+        {
+          "id": "slip-past-steam",
+          "label": "Slip past under cover of the fumarole steam.",
+          "target": "black-tooth-ridge",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 12,
+            "onFailure": "black-tooth-ridge"
+          }
+        },
+        {
+          "id": "leave-the-hollow",
+          "label": "Back out of the hollow and go pick over the packet Lantern instead.",
+          "target": "the-lantern-wreck",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "black-tooth-ridge",
+      "kind": "transit",
+      "title": "The Ridge Above the Tooth",
+      "prose": "The ridge is a knife of wet basalt with the whole storm leaning on it. From the top you can see everything: the wreck-field, the tent, Thraskmoor's nine chimneys — and the Black Tooth, half a mile out, with green light welling up through the water at its base. Not a fire. Something under the sea is lit. At the Tooth's landward foot, a cleft in the rock swallows the surf and breathes it out again: the old keeper's stair, drowned to the fourth step. Twice while you watch, the green light stutters in a pattern, and far out in the murk a ship's answering lamp swings toward it.",
+      "readAloud": "The light under the water goes long, short, long. A patient, courteous, murdering little rhythm.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-black-tooth-ridge",
+      "options": [
+        {
+          "id": "descend-to-stair",
+          "label": "Descend the ridge to the drowned keeper's stair.",
+          "target": "drowned-stair",
+          "effects": []
+        },
+        {
+          "id": "ride-the-drake-wind",
+          "label": "Call the old drake and let her carry you down the ridge-wind, straight past the cleft.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "drake-truce",
+            "value": true
+          },
+          "target": "the-flooded-lamp-room",
+          "effects": []
+        },
+        {
+          "id": "ridge-back-to-lantern",
+          "label": "Go back down to the packet Lantern first; her deckhouse is still dry.",
+          "target": "the-lantern-wreck",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-lantern-wreck",
+      "kind": "puzzle",
+      "title": "The Keeper's Log Aboard the Lantern",
+      "prose": "The packet's deckhouse is canted but sound, and someone has already searched it badly. Under a bench you find what they missed: a keeper's log, older than the wreck by fifty years, salvaged and hidden here by a person who did not want it found. The last pages are written in the Sablewrack light-keepers' shorthand — columns of tide-marks, bearings, and a repeated three-beat figure. The final legible line, in plain script, reads: THE LENS ANSWERS THE LITANY, NOT THE HAND. WHOEVER SPEAKS IT OWNS THE SEA'S ATTENTION.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-lantern-deckhouse",
+      "options": [
+        {
+          "id": "cross-read-with-ledger",
+          "label": "Lay Quillow's wreck dates beside the shorthand and read the pattern out.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ledger-clue",
+            "value": true
+          },
+          "target": "drowned-stair",
+          "effects": [
+            {
+              "flag": "lens-known",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "crack-the-shorthand",
+          "label": "Work the keeper's shorthand out from first principles.",
+          "target": "drowned-stair",
+          "effects": [
+            {
+              "flag": "lens-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "dc": 13,
+            "onFailure": "drowned-stair"
+          }
+        },
+        {
+          "id": "take-glass-and-go",
+          "label": "Pocket the log unread, pry the lamp glass loose, and get back to high ground.",
+          "target": "black-tooth-ridge",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-stair",
+      "kind": "transit",
+      "title": "The Drowned Stair",
+      "prose": "The cleft at the Tooth's foot is a throat. Every seventh wave fills it to the ceiling and empties it again, and between waves you can see them: cut steps, a rusted handrail, and a lintel of dressed stone with SABLEWRACK LIGHT carved across it, forty feet below where any lighthouse should stand. Fresh rope is spiked into the wall. Somebody uses this stair daily. There is a seaward shaft too, a chimney of black water that goes down past the stair entirely — faster, wetter, and unwatched.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-drowned-stair",
+      "options": [
+        {
+          "id": "descend-slack-tide",
+          "label": "Time the waves and go down the cut steps at slack water.",
+          "target": "tide-warden-ambush",
+          "effects": []
+        },
+        {
+          "id": "rope-the-seaward-shaft",
+          "label": "Rope down the seaward shaft and bypass the stair entirely.",
+          "target": "the-flooded-lamp-room",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "tide-warden-ambush"
+          }
+        },
+        {
+          "id": "back-up-the-ridge",
+          "label": "Retreat up the ridge and watch the cleft until someone comes out of it.",
+          "target": "black-tooth-ridge",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tide-warden-ambush",
+      "kind": "conflict",
+      "title": "Ambush on the Cut Steps",
+      "prose": "Halfway down, lanterns unhood above and below you. Three of them, oilskinned, with boarding axes and a net — Denn from the salvage tent among them, and she does say sorry, which is worse. They do not need to kill you. They only need to keep you on the steps until the seventh wave comes through and does it for them. Below, the stair turns left into a stone doorway and a green glow. Get through it.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-cut-steps-ambush",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wreckers-ambush",
+      "terminal": false
+    },
+    {
+      "id": "the-flooded-lamp-room",
+      "kind": "discovery",
+      "title": "The Room at the Bottom",
+      "prose": "It is a lamp room, whole and drowned. The quake took the headland but not the lantern-house: it slid down entire and settled upright on the seabed, and the sea, for reasons of its own, left it a bubble of air under its copper dome. Thigh-deep water. Brass rails furred green. Curved storm-panes with fish grazing beyond them. In the middle, on its gimbal cradle, the great Sablewrack lens turns slowly, and it is burning — a cold green flame with no fuel, throwing its beam not out to the safe channel but sideways, deliberately, onto the Black Tooth. Around it: crates of stolen cargo, a hammock, a slate scrawled with tide-times, and a ship's bell with the name filed off. Whoever works this room will be back on the turn of the tide.",
+      "readAloud": "The lens revolves. Long, short, long. The light passes across your faces and, for a moment, out through the glass and into the black water where the ships come looking.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-flooded-lamp-room",
+      "options": [
+        {
+          "id": "wrench-the-lens-true",
+          "label": "Lay hands on the cradle and haul the beam back around toward the safe channel.",
+          "target": "the-false-beacon",
+          "effects": []
+        },
+        {
+          "id": "speak-the-litany",
+          "label": "Speak the keeper's litany and let the lens answer its rightful master.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "lens-known",
+            "value": true
+          },
+          "target": "the-false-beacon",
+          "effects": []
+        },
+        {
+          "id": "surface-and-warn",
+          "label": "Take proof, surface, and let Kellin's boats and Quillow's ledger settle it above water.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "salvage-ally",
+            "value": true
+          },
+          "target": "ending-leave-the-isle",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-false-beacon",
+      "kind": "climax",
+      "title": "The False Beacon",
+      "prose": "The stair-door bangs and Vesk Tarrow comes in out of the water with two wreck-hands behind him. He was a light-keeper's apprentice once; he says so, proudly, while he draws. 'I kept it burning when the whole headland went down. Eleven years I have been the only lamp on this coast. If the sea wants to be paid, I decide who pays.' The lens-cradle answers him — the brine-crusted harness of brass and armour-plate that carries it grinds around on its gimbal and comes at you with the beam. The green light is the thing that kills ships. Break the light, and every argument in this room ends.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-vesk-tarrow-stand",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "false-beacon-fight",
+      "terminal": false
+    },
+    {
+      "id": "ending-true-light",
+      "kind": "ending",
+      "title": "Ending: The True Light",
+      "prose": "The cradle-harness comes apart in a gout of steam and the green flame goes out, and for one moment the drowned lamp room is completely dark and completely quiet, forty feet under the sea. Then the lens — cracked, honest, cold — catches the little light coming down through the water and gives it back white. Vesk Tarrow sits down in the shallows and does not resist the rope. Above, the ship that had been steering for the Tooth loses her guide star, hesitates, and finds the channel by soundings, as sailors did before anybody built a tower. Marra Quillow writes the whole of it in her ledger in her doubted handwriting, and this time she has witnesses. Kellin Ashgrave's crew spend the season hauling wreckage off the strand instead of onto it, which he claims is worse work for the same money. In the cliff hollow, the old storm-drake waits three nights for a light that never comes, then goes back to fishing for herself, and her clutch hatches to a shore where nothing is drowned on purpose. On the pier at Thraskmoor Landing someone nails up a plank with a shuttered lantern on it and no name, and every returning boat touches it going by.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-ending-true-light",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-leave-the-isle",
+      "kind": "ending",
+      "title": "Ending: The Coast Takes Its Own Measures",
+      "prose": "You come up out of the cleft with a stolen bell, a keeper's log, and a story too strange for any court — and it turns out that is enough. Quillow's ledger and Kellin's boats do between them what steel underwater could not: the cleft is stoppered with rubble at slack tide, Vesk Tarrow is sealed in his own bright room, and the salvage crews take a vow they will mostly keep. The green light still burns down there. On thick nights you can see it glowing faintly through the rock like something under a lid, and pilots have learned to steer away from that glow instead of toward it, which is its own kind of lighthouse. Nobody in Thraskmoor calls it a victory. Nobody has lost a hull since. You leave on the Coldfinch with your copper bounty and the strong feeling that the Isle finished the job without you, and would have, either way.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-ending-stoppered-cleft",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-tide-took-us",
+      "kind": "ending",
+      "title": "Ending: What the Seventh Wave Kept",
+      "prose": "The sea does not argue; it arrives. It takes the stair, the gully, the argument, and you, and it puts you down somewhere with your lungs full of Sablewrack. What Thraskmoor gets back is oilskin scraps and one boot on the strand at low water, laid out among the copper nails with all the other salvage. Marra Quillow writes your names in the ledger, in the column she keeps for people the light killed, and rules a line under them. Out past the Black Tooth the lens turns on its gimbal, long, short, long, patient as a clerk, and somewhere north of the Tooth a trader's lamp swings gratefully toward it. The green glow will need a keeper for a while yet. In a month or a year, someone else will jump off a coaster onto that shingle, and be told about the three ships, and be given a hot meal and a copper bounty.",
+      "art": "art-the-false-beacon-of-sablewrack-isle-ending-tide-took-us",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "kobold-scavenger-line",
+      "to": "drake-hollow-nest",
+      "when": {
+        "op": "always"
+      },
+      "note": "The tide-race ends the fight and the gully path climbs to the brooding hollow."
+    },
+    {
+      "from": "kobold-scavenger-line",
+      "to": "black-tooth-ridge",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fleeing the gully drives the party uphill onto the ridge."
+    },
+    {
+      "from": "kobold-scavenger-line",
+      "to": "ending-tide-took-us",
+      "when": {
+        "op": "always"
+      },
+      "note": "Overwhelmed on the gully floor when the race fills."
+    },
+    {
+      "from": "tide-warden-ambush",
+      "to": "the-flooded-lamp-room",
+      "when": {
+        "op": "always"
+      },
+      "note": "Breaking through the stair door into the lamp room."
+    },
+    {
+      "from": "tide-warden-ambush",
+      "to": "ending-tide-took-us",
+      "when": {
+        "op": "always"
+      },
+      "note": "Netted on the cut steps ahead of the seventh wave."
+    },
+    {
+      "from": "the-false-beacon",
+      "to": "ending-true-light",
+      "when": {
+        "op": "always"
+      },
+      "note": "The lens-cradle is destroyed and the false light dies."
+    },
+    {
+      "from": "the-false-beacon",
+      "to": "ending-tide-took-us",
+      "when": {
+        "op": "always"
+      },
+      "note": "Tarrow keeps his room."
+    },
+    {
+      "from": "the-false-beacon",
+      "to": "ending-leave-the-isle",
+      "when": {
+        "op": "always"
+      },
+      "note": "Withdrawing up the stair with proof rather than dying for it."
+    },
+    {
+      "from": "black-tooth-ridge",
+      "to": "the-flooded-lamp-room",
+      "when": {
+        "op": "eq",
+        "flag": "drake-truce",
+        "value": true
+      },
+      "note": "The drake carries them past the guarded cleft."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "wrack-scavengers",
+      "title": "Holding the Gully Mouth",
+      "combatants": [
+        {
+          "id": "wrack-kobolds",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "gaff-boss",
+          "statblock": "kobold",
+          "count": 1,
+          "hpOverride": 9,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "fog",
+        "water",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "drake-hollow-nest",
+      "onDefeat": "ending-tide-took-us",
+      "onFlee": "black-tooth-ridge"
+    },
+    {
+      "id": "wreckers-ambush",
+      "title": "Net and Axe on the Cut Steps",
+      "combatants": [
+        {
+          "id": "wreck-hands",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "denn-net-caster",
+          "statblock": "bandit",
+          "count": 1,
+          "hpOverride": 9,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "water",
+        "unstable",
+        "vertical"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "the-flooded-lamp-room",
+      "onDefeat": "ending-tide-took-us"
+    },
+    {
+      "id": "false-beacon-fight",
+      "title": "Break the Light",
+      "combatants": [
+        {
+          "id": "lens-cradle",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hpOverride": 16,
+          "hostile": true
+        },
+        {
+          "id": "vesk-tarrow",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hpOverride": 34,
+          "hostile": true
+        },
+        {
+          "id": "tarrows-hands",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "dim-light",
+        "unstable",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "lens-cradle"
+      },
+      "onVictory": "ending-true-light",
+      "onDefeat": "ending-tide-took-us",
+      "onFlee": "ending-leave-the-isle"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "adventure": "the-quiet-room-under-kettlewick",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: beginner-classic, cosmic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-kettlewick-slate-roofs",
+      "beat": "arrival-at-kettlewick",
+      "brief": "Arrival at Kettlewick Hollow — Kettlewick Hollow is thirty slate roofs wedged into a fold of the Grinnel Ridge, and every one of them is quiet. Ore carts stand loaded and forgotten "
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-tallow-lantern-barred-shutters",
+      "beat": "the-tallow-lantern",
+      "brief": "The Tallow Lantern — Bett Orrow keeps the Tallow Lantern with the shutters barred at noon and a lamp burning in every corner. Her drinkers are day-shift men who will not g"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-marrow-survey-rolls",
+      "beat": "foreman-marrow",
+      "brief": "Foreman Selwyn Marrow — Selwyn Marrow has not slept. He has the Deepdrift's survey rolls spread across his desk and he keeps flattening them, as if the paper has been arguing"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-widows-row-lamps",
+      "beat": "widows-row",
+      "brief": "Widows' Row — Four cottages at the end of Kettlewick lean on one another for warmth, and in each of them a grown woman or man sits up with a lamp and waits. Hanna Q"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-deepdrift-adit-timbers",
+      "beat": "the-deepdrift-mouth",
+      "brief": "The Deepdrift Mouth — The adit is a black mouth framed in creosoted timber, breathing out air that is warmer than it has any right to be. Someone has chalked a tally on the"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-gnawed-gallery-barricade",
+      "beat": "rat-choked-gallery",
+      "brief": "The Gnawed Gallery — Two hundred feet down, the main drift opens into a timbered gallery that stinks of wet fur and spoiled lamp oil. The rats here are the size of terrier"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-flooded-ninth-blue-flame",
+      "beat": "flooded-lift-shaft",
+      "brief": "The Flooded Ninth — The cage stops with a shudder in water up to your thighs — black water, still as poured glass, and warm. Tallow flames gutter and turn blue here. Unde"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-singing-vein-glyph-ring",
+      "beat": "the-singing-vein",
+      "brief": "The Singing Vein — The old workings end at a face of quartz shot through with a metal nobody in Kettlewick has a name for — grey, faintly warm, and humming. A ring of gl"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-hollow-crew-linked-hands",
+      "beat": "the-hollow-crew",
+      "brief": "The Hollow Crew — You find four of the night crew standing in a side-cut, facing the wall, hands linked. When your light touches them they turn together, and their lamp"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-iron-strapped-door-glyphs",
+      "beat": "the-strapped-door",
+      "brief": "The Iron-Strapped Door — Past the blasted fault, the Concern's timbering stops and the mountain becomes architecture. A door stands in dressed stone, oak strapped with iron th"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-quiet-room-seam-floor",
+      "beat": "the-quiet-room",
+      "brief": "The Quiet Room — The room beyond is thirty feet square and empty, and it is the emptiest place any of you have ever stood. No shrine, no bones, no treasure — only dres"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-cobb-wickery-cold-lamp",
+      "beat": "the-starless-choir",
+      "brief": "The Starless Choir — The grey thing in the shaft-sinker's coat straightens, and the courtesy goes out of the murmur all at once. Cobb Wickery — the sinker who locked this "
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-ending-concrete-in-the-shaft",
+      "beat": "ending-the-seal-holds",
+      "brief": "Ending: The Seal Holds — Wickery comes apart like a struck lamp-mantle, and the knocking stops mid-beat — three beats and no rest, forever after, in the ear of everyone who he"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-ending-emptied-slate-town",
+      "beat": "ending-carried-home",
+      "brief": "Ending: Carried Home — You come up out of the Deepdrift with whoever would take a hand, and you drop the adit timbers behind you, and the mountain closes its mouth on a swal"
+    },
+    {
+      "slot": "art-the-quiet-room-under-kettlewick-ending-open-doors-cold-stoves",
+      "beat": "ending-the-town-empties",
+      "brief": "Ending: The Hollow Joins — The dark takes your lamps one by one, and the last thing anyone decides is that kneeling is not so much to ask. Weeks later a Concern inspector rides "
+    }
+  ]
+}

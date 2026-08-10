@@ -1,0 +1,90 @@
+{
+  "adventure": "the-last-hour-of-the-ninefold-seat",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: epic-finale, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-bastion-gate-siege-fires",
+      "beat": "siege-gate",
+      "brief": "The Bastion Gate, Third Hour Before Dawn — Varrimond's outer gate has been bricked shut with rubble and prayer-tiles. Beyond it, the Ashen Concord's siege-fires make a second horizon; inside, a"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-tallow-preacher-plaza",
+      "beat": "chancery-steps",
+      "brief": "The Tallow Preacher on the Steps — Two thousand people fill the Chancery plaza, and Hessa Kroy stands above them on a fishmonger's crate with a tallow candle burning in each fist. 'They"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-plaza-riot-shield-wall",
+      "beat": "crowd-riot",
+      "brief": "The Plaza Breaks — Candles go over. Someone throws a paving stone, and the tallow faithful surge with looted wall-shields locked. These are Varrimonders — grocers, dyers"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-council-chamber-ninth-seat",
+      "beat": "council-floor",
+      "brief": "The Council of Nine, Eight Present — The Council chamber smells of hot wax and unwashed fear. Eight seats are filled; the ninth, the plague-seat, has stood empty eleven years, its cushion"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-sealed-archive-reliquary",
+      "beat": "archive-vault",
+      "brief": "The Sealed Archive — Ledger-stacks to the vaulted ceiling, and in a lead reliquary on the third shelf: the Seal of the Ninth Seat, a disc of grey glass with a city cut int"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-green-lamp-parley",
+      "beat": "ash-emissary",
+      "brief": "Legate Sabben Ost, Under the Green Lamp — The Concord's legate is a small, courteous man in a coat of grey scale, and he has brought his own chair. 'Marshal Vaun does not want Varrimond,' Sabb"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-flooded-undercroft-chalk",
+      "beat": "undercroft-descent",
+      "brief": "Down Where the City Keeps Its Foundations — The undercroft is knee-deep in cistern water gone warm, and the warmth is the point: something above is drinking heat out of the stone. Chalk lines ru"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-bricked-warden-chair",
+      "beat": "warden-cell",
+      "brief": "The Bricked Warden — Behind the arch sits a figure of mortar and grave-linen in a chair of council oak: Ossim Grell, ninth councillor, bricked in alive eleven years ago fo"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-sapper-tunnel-powder-props",
+      "beat": "sappers-breach",
+      "brief": "Under the East Wall — The tunnel ends in a chamber of shored powder-kegs beneath Varrimond's east curtain, and the Concord's sapper crews are setting the last props: four h"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-stripped-study-grey-robe",
+      "beat": "chancellor-study",
+      "brief": "Vandry's Study, One Hour Left — The Chancellor's study is stripped bare: no portraits, no ledgers, nothing she intends to keep. Ilbeth Vandry is putting on ceremonial grey and she is"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-bronze-sanctum-doors",
+      "beat": "sanctum-threshold",
+      "brief": "The Sanctum Doors — Bronze doors, nine hand-spans thick, the ninefold seat carved across both leaves so that opening them splits the city in half. The seams glow the dull"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-ninefold-seal-ember-arrival",
+      "beat": "summoning-circle",
+      "brief": "The Ninth Fire — The sanctum floor is one enormous seal, and eight councillors kneel at eight points of it, hands bloodied on the rim. At the ninth point there is nobo"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-coal-crowned-herald",
+      "beat": "binding-duel",
+      "brief": "The Herald in the Crown of Coals — What comes through is not the Sovereign — it is its herald, the part sent ahead to sign. It wears a councillor's grey and a crown of live coals, and i"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-dawn-empty-ninth-seat",
+      "beat": "ending-ninth-vote",
+      "brief": "Ending: The Empty Seat Speaks — You stand in the ninth point with a disc of grey glass held up and say the only words the contract cannot survive: the vote is not unanimous. Eight bl"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-ash-field-ringing-bells",
+      "beat": "ending-pact-sworn",
+      "brief": "Ending: The Owner in the Coals — Someone had to fill the ninth point, and it was you. The Ember Sovereign arrives fully, and the siege ends in eleven minutes: the Concord's camp becom"
+    },
+    {
+      "slot": "art-the-last-hour-of-the-ninefold-seat-collapsed-sanctum-candles",
+      "beat": "ending-city-ash",
+      "brief": "Ending: The Sanctum Kept the Fire — The herald dies with the pen unsigned, and the summoning collapses back down its own chalk. It takes the sanctum with it — nine hand-spans of bronze d"
+    }
+  ]
+}

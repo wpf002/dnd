@@ -1,0 +1,659 @@
+{
+  "id": "the-ninefold-way",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ninefold Way",
+    "premise": "Ashiret-Vand drinks from nine cisterns, and the Sixth has turned to brine; the only route to the drowned city that feeds them has swallowed every diver sent down it. When a caravan city's water fails, someone always tries the route again.",
+    "tone": [
+      "exploration",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Dry, patient, and hushed — a caravan surveyor reading field notes aloud by lamplight, pausing where the notes stop making sense.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of Ashiret-Vand may be spoken of as thirsty or evacuated, never shown in danger or harmed on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "well-mouth-brief",
+  "beats": [
+    {
+      "id": "well-mouth-brief",
+      "kind": "threshold",
+      "title": "The Mouth of the Sixth Cistern",
+      "prose": "The Sixth Cistern of Ashiret-Vand has gone to brine. Salt blooms on the tile like frost in a country that has never seen frost, and the water-criers have stopped crying because there is nothing honest left to shout. Two parties want to speak with you before you descend: Warden of Wells Hakima Ferrun-Adze, who signs the city's charters, and Tesk the Pale Ledger, factor of the Ninefold Cartel, who signs everything else. Below the cistern floor a shaft drops into the sunken deep of Qhal-Marun — the drowned city whose bones the aquifer runs through. Forty days ago Warden-diver Oshek Bellowlung took eleven divers down the route called the Salt Ladder. Nobody has come back from it. Somebody has to go anyway.",
+      "readAloud": "Salt crusts the drained cistern in white feathers. Down the inspection shaft the air smells of cold stone and old sea — a sea that has no business being under a desert.",
+      "art": "art-the-ninefold-way-sixth-cistern-mouth",
+      "options": [
+        {
+          "id": "brief-see-tesk",
+          "label": "Take a meeting with Tesk the Pale Ledger; the Cartel keeps the only charts of the Salt Ladder.",
+          "target": "pale-ledger-bargain",
+          "effects": []
+        },
+        {
+          "id": "brief-see-hakima",
+          "label": "Report to Warden Hakima Ferrun-Adze and ask what the city will lend you.",
+          "target": "warden-tideglass",
+          "effects": []
+        },
+        {
+          "id": "brief-descend-now",
+          "label": "Waste no daylight. Rig the counterweight cage and go down unbriefed.",
+          "target": "salt-ladder-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "pale-ledger-bargain",
+      "kind": "social",
+      "title": "Tesk of the Pale Ledger",
+      "prose": "Tesk keeps a counting-room above a spice scale, and does not offer water. He is thin as a tally-stick and speaks in prices. The Cartel has a survey of the Salt Ladder down to the drowned bazaar: nine locks, nine keys, one of them long since drowned shut. He will lend the survey for a signature — the route, once opened, belongs to the Ninefold Cartel, and the city may lease its own water back at a fair rate. 'Fair,' he says, 'is a word with a column in my book.' A copy of the survey lies unrolled at his elbow, weighted with a brass shell.",
+      "readAloud": "'Everyone descends,' Tesk says, wetting his thumb. 'Few return. The difference, in my experience, is paperwork.'",
+      "art": "art-the-ninefold-way-pale-ledger-counting-room",
+      "options": [
+        {
+          "id": "ledger-sign-debt",
+          "label": "Sign the Cartel's writ. The route is theirs; the survey is yours.",
+          "target": "salt-ladder-descent",
+          "effects": [
+            {
+              "flag": "cartel-debt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "ledger-copy-chart",
+          "label": "Refuse, and copy the survey while he argues terms.",
+          "target": "salt-ladder-descent",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "cartel-ambush"
+          }
+        },
+        {
+          "id": "ledger-to-warden",
+          "label": "Leave the price on the table and go hear the Warden out first.",
+          "target": "warden-tideglass",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-tideglass",
+      "kind": "social",
+      "title": "Warden Hakima and the Tide-Glass",
+      "prose": "Hakima Ferrun-Adze has the forearms of a woman who has hauled sluice-gates for thirty years and the eyes of one who has signed too many death-benefits this season. She lays out what the city can spare: a tide-glass, a hooded lens of layered brine and lead that shows which way drowned water wants to move — the only instrument that reads the Ninefold Locks. She will not pretend it is a loan. In a curtained side room sits her one returned diver, Sula Tarn, who came up the shaft on the eleventh day with no gear, no story, and a single word she repeats when the lamps are low.",
+      "readAloud": "'The Cartel will tell you the deep is a route,' Hakima says. 'It is a city. Somebody down there is still keeping its books.'",
+      "art": "art-the-ninefold-way-warden-hall-tide-glass",
+      "options": [
+        {
+          "id": "warden-take-glass",
+          "label": "Accept the tide-glass and the charter that comes with it.",
+          "target": "salt-ladder-descent",
+          "effects": [
+            {
+              "flag": "tide-glass",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warden-hear-sula",
+          "label": "Sit with Sula Tarn until she says the word again, and write it down.",
+          "target": "salt-ladder-descent",
+          "effects": [
+            {
+              "flag": "true-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warden-to-tesk",
+          "label": "Ask who else holds charts of the Ladder, and go bargain with the Cartel.",
+          "target": "pale-ledger-bargain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "salt-ladder-descent",
+      "kind": "hazard",
+      "title": "Down the Salt Ladder",
+      "prose": "The Salt Ladder is not a ladder. It is a rust-jawed counterweight cage running in a shaft cut through nine strata of dead sea-floor, and the rope has been spliced by people who were in a hurry. Two hundred feet down the air turns cold and edible-thick. Chalk arrows appear on the shaft wall at intervals — small, careful, drawn by hands the size of a child's glove, pointing sideways into a crack that the Cartel survey does not admit exists. Somewhere below you, or above you, other gear creaks. You are not the only crew in the shaft tonight.",
+      "readAloud": "The cage shudders. Far down, water answers with a sound like a held breath being let out slowly.",
+      "art": "art-the-ninefold-way-counterweight-shaft-descent",
+      "options": [
+        {
+          "id": "descent-ride-cage",
+          "label": "Ride the cage all the way to the sump floor and trust the splices.",
+          "target": "sump-gate",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "cartel-ambush"
+          }
+        },
+        {
+          "id": "descent-follow-chalk",
+          "label": "Follow the chalk arrows sideways into the crack.",
+          "target": "chalk-kin-warren",
+          "effects": []
+        },
+        {
+          "id": "descent-hunt-the-creak",
+          "label": "Douse the lamp and go find whoever else is on the rope.",
+          "target": "cartel-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cartel-ambush",
+      "kind": "conflict",
+      "title": "Wreckers on the Rope",
+      "prose": "They are not guards. They are wreckers — a cutting crew in oiled leather with brine-scarred hands, led by a keel-master who wears a Cartel shell on a thong and does not intend to explain it. Their orders are simple and old: the Ninefold Way stays shut until the Cartel says otherwise, and drowned expeditions cost nothing to explain. They mean to cut the splice and let the shaft do the work. You need only hold the cage steady long enough to reach the sump floor.",
+      "art": "art-the-ninefold-way-wreckers-on-the-rope",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "stair-ambush",
+      "terminal": false
+    },
+    {
+      "id": "sump-gate",
+      "kind": "puzzle",
+      "title": "The Ninefold Lock",
+      "prose": "The shaft ends in a chamber half-full of black water, and in the far wall stands the first true work of Qhal-Marun: a gate of nine bronze wheels set in a stone jamb carved with tide-tables. It is a lock in the canal sense — pressure balanced against pressure. The wheels must be turned in the order the water wants, and the water's want is invisible unless you have an instrument that shows it. Get the order wrong and the chamber equalises with whatever lies beyond, all at once. On the jamb's underside, someone small has chalked a sideways arrow and a single scratched word that might be 'later'.",
+      "readAloud": "Nine wheels, green with centuries. Behind the gate, something vast and patient shifts its weight of water.",
+      "art": "art-the-ninefold-way-ninefold-lock-gate",
+      "options": [
+        {
+          "id": "lock-read-tideglass",
+          "label": "Read the pressures through the tide-glass and turn the wheels in the water's order.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "tide-glass",
+            "value": true
+          },
+          "target": "drowned-bazaar",
+          "effects": []
+        },
+        {
+          "id": "lock-force-valve",
+          "label": "Crank the equalising valve by main force and swim the surge.",
+          "target": "drowned-bazaar",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "dc": 15,
+            "onFailure": "market-dead"
+          }
+        },
+        {
+          "id": "lock-follow-chalk",
+          "label": "Trust the chalk arrow and take the small folk's way around.",
+          "target": "chalk-kin-warren",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chalk-kin-warren",
+      "kind": "social",
+      "title": "The Chalk-Kin Warren",
+      "prose": "The crack widens into a warren of dry galleries braced with salvaged oars, and the Chalk-Kin live in it: a scavenging clan of small reptilian folk who have mapped the sunken deep in chalk because chalk is cheap and stone remembers. Their diver-speaker, Ilsuya of the Long Breath, wears goggles ground from bottle-glass and counts your lamps before she counts you. The Chalk-Kin will trade: lamp oil and unrusted needles for knowledge. They know which galleries are air and which are grave. They will not go past the bazaar, because past the bazaar somebody rings bells at low tide, and the Chalk-Kin do not sing.",
+      "readAloud": "'Eleven went by,' Ilsuya says, tapping a chalk tally on the wall. 'We drew eleven. We did not draw them coming back, so we did not draw them.'",
+      "art": "art-the-ninefold-way-chalk-kin-warren",
+      "options": [
+        {
+          "id": "warren-trade-oil",
+          "label": "Trade lamp oil and needles for a diver's truce and a guide-line.",
+          "target": "drowned-bazaar",
+          "effects": [
+            {
+              "flag": "chalk-truce",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warren-hire-diver",
+          "label": "Talk Ilsuya into opening the Ninefold Lock for you from the wet side.",
+          "target": "sump-gate",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "drowned-bazaar"
+          }
+        },
+        {
+          "id": "warren-ask-vanished",
+          "label": "Ask only about the eleven, then go on alone.",
+          "target": "drowned-bazaar",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-bazaar",
+      "kind": "discovery",
+      "title": "The Drowned Bazaar",
+      "prose": "Qhal-Marun's great market survives as an air-bell: a domed hall where the flood stopped two feet below the ceiling and stayed there for a thousand years. Awning-poles stand in ranks under black water. Stalls still hold their stock — salt-fused coin, glass gone milky, a rack of tally-slates. At the hall's heart a ledger-stone the size of a cart records the city's water rights in a script that leans like handwriting, and the last entries were scratched fresh, in a different hand, not long ago at all. Drag-marks lead away toward a side alcove: something heavy, hauled by someone tired. A sealed reliquary of green bronze sits where the wet meets the dry, humming faintly when the water moves.",
+      "readAloud": "Your lamp travels the ceiling and the ceiling travels back, upside down, in water so still it looks like a lens.",
+      "art": "art-the-ninefold-way-drowned-bazaar-air-bell",
+      "options": [
+        {
+          "id": "bazaar-read-ledger",
+          "label": "Read the ledger-stone's fresh entries and follow where they point.",
+          "target": "flooded-orrery",
+          "effects": []
+        },
+        {
+          "id": "bazaar-pry-reliquary",
+          "label": "Pry the humming reliquary open.",
+          "target": "market-dead",
+          "effects": []
+        },
+        {
+          "id": "bazaar-follow-drag-marks",
+          "label": "Follow the drag-marks into the side alcove.",
+          "target": "oshek-alcove",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "market-dead",
+      "kind": "conflict",
+      "title": "Stallholders of the Drowned Market",
+      "prose": "The water in the aisles stands up. The bazaar's dead keep their trades: bloated stallholders who rise from behind counters with their hands still cupped for coin, and two lean grave-things that have learned to swim and have not eaten a warm thing in a very long time. They do not swarm cleverly — but the flooded aisles are waist-deep and the tilted stair to the upper gallery is forty feet of bad footing away. Fighting to the last of them in this hall is how the eleven became a tally-mark. Getting to the stair is not.",
+      "art": "art-the-ninefold-way-stallholders-of-the-drowned",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "market-of-the-drowned",
+      "terminal": false
+    },
+    {
+      "id": "oshek-alcove",
+      "kind": "discovery",
+      "title": "Oshek Bellowlung's Air-Bell",
+      "prose": "The drag-marks end at an overturned copper vat wedged against a shrine niche — a crude air-bell, and inside it Warden-diver Oshek Bellowlung, alive on rainwater seep and forty days of stubbornness. He is grey, hoarse, and lucid in bursts. The route works, he says. The route is fine. The problem is that the deep is administered. There is a surveyor down at the Choir Door, in a coat sewn of tally-slates, who closed the sluices because the city above stopped filing its returns — a drowned clerk still auditing the aquifer, and the bells he rings raise his staff. Oshek has the man's name in his logbook, written twice and crossed out once, and his dive-logs with pressures for every gallery.",
+      "readAloud": "'Ten of mine sang,' Oshek rasps. 'That's what it does. It doesn't kill you first. It enrols you.'",
+      "art": "art-the-ninefold-way-oshek-copper-air-bell",
+      "options": [
+        {
+          "id": "alcove-ask-name",
+          "label": "Make him say the surveyor's name aloud, and learn it properly.",
+          "target": "flooded-orrery",
+          "effects": [
+            {
+              "flag": "true-name",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "alcove-take-charts",
+          "label": "Take his charts and go straight for the Choir Door.",
+          "target": "surveyors-name",
+          "effects": []
+        },
+        {
+          "id": "alcove-send-him-up",
+          "label": "Send Oshek up the guide-line with the Chalk-Kin divers, then press on.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "chalk-truce",
+            "value": true
+          },
+          "target": "flooded-orrery",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "oshek-found",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "flooded-orrery",
+      "kind": "puzzle",
+      "title": "The Orrery of Waters",
+      "prose": "Above the bazaar, in a gallery where the flood only reaches your knees, stands the machine Qhal-Marun was built to serve: an orrery not of stars but of waters. Nested brass rings model every vein of the aquifer, and nine little sluice-cocks along the outer ring correspond to nine cisterns in the city overhead. Eight cocks are open. The sixth is shut and wired closed with a lead seal bearing a signature. Turning it is easy. Understanding what else the rings will do when you turn it is the whole problem — misalign them and the drowned bells in the next hall will ring themselves, and something will answer the muster.",
+      "readAloud": "The rings turn under your palm with a sound like coins counted very slowly.",
+      "art": "art-the-ninefold-way-orrery-of-waters",
+      "options": [
+        {
+          "id": "orrery-align-glass",
+          "label": "Align the rings against the tide-glass and open the Sixth by the water's own order.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "tide-glass",
+            "value": true
+          },
+          "target": "surveyors-name",
+          "effects": []
+        },
+        {
+          "id": "orrery-use-logs",
+          "label": "Calibrate the rings from Oshek's dive-logs and the pressures he recorded.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "oshek-found",
+            "value": true
+          },
+          "target": "surveyors-name",
+          "effects": []
+        },
+        {
+          "id": "orrery-force-reading",
+          "label": "Work the mechanism out cold, from the carvings and your own arithmetic.",
+          "target": "surveyors-name",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 15,
+            "onFailure": "drowned-choir-battle"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "surveyors-name",
+      "kind": "climax",
+      "title": "The Choir Door",
+      "prose": "The Choir Door is a sluice-gate the size of a caravan gate, and the hall behind it is full of standing water and standing figures. At the audit-table waits the surveyor: a tall drowned thing in a coat sewn from tally-slates, ink and salt running together down its sleeves, a bell-hammer in one hand. It logs your arrival. It explains, in the flat courtesy of a clerk, that the Sixth Cistern was closed for non-return of tallies, that eleven divers have been entered as assets, and that your names will be taken. Its own name it has struck from every slate — for a clerk unnamed cannot be audited in turn. The lead seal on the orrery's sixth cock bears that same struck-out signature: Vaunt-Marrow, Surveyor of the Ninefold Way.",
+      "readAloud": "'State your charter,' the drowned thing says, and the water in the hall stands to attention with it.",
+      "art": "art-the-ninefold-way-choir-door-audit-table",
+      "options": [
+        {
+          "id": "climax-speak-name",
+          "label": "Speak the struck name — Vaunt-Marrow — and file the city's return against him.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "true-name",
+            "value": true
+          },
+          "target": "ending-cistern-restored",
+          "effects": []
+        },
+        {
+          "id": "climax-break-the-choir",
+          "label": "Answer with steel and break the choir before the bell falls.",
+          "target": "drowned-choir-battle",
+          "effects": []
+        },
+        {
+          "id": "climax-cede-to-cartel",
+          "label": "Produce the Cartel writ and re-file the deep as Ninefold property — let clerks settle with clerks.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "cartel-debt",
+            "value": true
+          },
+          "target": "ending-drowned-charter",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-choir-battle",
+      "kind": "conflict",
+      "title": "The Drowned Choir",
+      "prose": "Vaunt-Marrow strikes the bell and the hall sings. Salt-bleached bones rise out of the audit-benches in ranks, and something with no body at all peels off the wall-shadow and comes low across the water. The surveyor himself does not advance; he stands at the table, marking hits and misses in a column, and while he stands the choir keeps time. Cut down the clerk and the singing ends — the rest are only staff.",
+      "art": "art-the-ninefold-way-drowned-choir-sings",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "choir-of-vaunt-marrow",
+      "terminal": false
+    },
+    {
+      "id": "ending-cistern-restored",
+      "kind": "ending",
+      "title": "Ending: The Sixth Runs Sweet",
+      "prose": "The lead seal breaks, the sixth cock turns, and a thousand years of held breath goes up the veins of the aquifer. In Ashiret-Vand the Sixth Cistern coughs brine for a day and a half and then runs sweet, and the water-criers cry themselves hoarse in the streets while the salt-feathers dissolve off the tiles. The Warden's office enters the sunken deep in its registers as a public work — the Ninefold Way, open and charted, tolled by the city and dived by the Chalk-Kin under truce. Somebody paints Vaunt-Marrow's name back onto a slate at the Choir Door, because a name is how you close a ledger, and someone should be able to say the eleven were signed for. You are entered as claimants. The rate is fair, and 'fair' now has a column in a different book.",
+      "art": "art-the-ninefold-way-ending-sweet-water",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-drowned-charter",
+      "kind": "ending",
+      "title": "Ending: The Drowned Charter",
+      "prose": "In the end the deep is settled the way deeps usually are: by signature. The Ninefold Cartel files the sunken city as recovered property, and the drowned surveyor — who cares only that returns are filed by someone — accepts the paperwork and opens the sixth cock himself, one grinding quarter-turn at a time. Water reaches Ashiret-Vand within the month, sweet and metered, at Cartel rates that rise each dry season. Tesk the Pale Ledger has your marks in his book and the deep in his column, and down at the Choir Door the audit-table is busier than it has been in a thousand years. The city drinks. The route is open. Nobody says the word 'free' out loud, and the eleven remain entered as assets.",
+      "art": "art-the-ninefold-way-ending-metered-water",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-silt-claims",
+      "kind": "ending",
+      "title": "Ending: What the Silt Keeps",
+      "prose": "The lamps go out one by one under a thousand feet of dead sea, and the sunken deep does with you what it has always done: it makes a tally-mark. Above, the Warden's office adds another line to a list that is getting long, the Cartel quietly raises the price of cistern-water, and the Chalk-Kin chalk a new sideways arrow beside the shaft with no figures drawn beyond it. Ashiret-Vand hauls its drink up from the Seventh and the Eighth and rations the rest, and the caravans begin taking the long road around a city that cannot promise them water. The Ninefold Way stays shut. Somewhere below, a drowned clerk in a coat of slates finishes recording the arrivals, sets down his pen, and waits for the next expedition to file.",
+      "art": "art-the-ninefold-way-ending-silt-tally",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "stair-ambush",
+      "title": "Wreckers on the Rope",
+      "combatants": [
+        {
+          "id": "cutting-crew",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "keel-master",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "cramped",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "sump-gate",
+      "onDefeat": "ending-silt-claims",
+      "onFlee": "chalk-kin-warren"
+    },
+    {
+      "id": "market-of-the-drowned",
+      "title": "The Stallholders Rise",
+      "combatants": [
+        {
+          "id": "stall-dead",
+          "statblock": "zombie",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "brine-ghouls",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "difficult",
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Cross the flooded aisles and get every member of the party onto the tilted stair to the upper gallery."
+      },
+      "onVictory": "oshek-alcove",
+      "onDefeat": "ending-silt-claims",
+      "onFlee": "flooded-orrery"
+    },
+    {
+      "id": "choir-of-vaunt-marrow",
+      "title": "The Choir of Vaunt-Marrow",
+      "combatants": [
+        {
+          "id": "vaunt-marrow",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bench-bones",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "wall-shade",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "dim-light",
+        "fog",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "vaunt-marrow"
+      },
+      "onVictory": "ending-cistern-restored",
+      "onDefeat": "ending-silt-claims",
+      "onFlee": "ending-drowned-charter"
+    }
+  ]
+}

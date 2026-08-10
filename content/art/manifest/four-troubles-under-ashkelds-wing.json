@@ -1,0 +1,90 @@
+{
+  "adventure": "four-troubles-under-ashkelds-wing",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: sandbox, beginner-classic.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-ash-gate-arrival",
+      "beat": "the-ash-gate",
+      "brief": "The Ash Gate — Karrowfast Hold sits on a shoulder of black rock where the Slate Vein river bends, and everything in it — timber, laundry, the mortar between stones —"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-chalk-marks-on-the-trestle",
+      "beat": "crooked-moot",
+      "brief": "The Crooked Moot — The moot-hall's roofbeam is warped from an old fire, which is why they call it crooked. Warden Thrun has chalked four marks on the trestle table. Firs"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-cinderdelve-chalk-prayers",
+      "beat": "cinderdelve-descent",
+      "brief": "Down the Cinderdelve — The hold's old ore-gallery runs in under the north wall and then further, into warm rock that nobody wanted to dig. Somewhere below, iron rings on sto"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-sap-head-green-timber",
+      "beat": "sapper-warren",
+      "brief": "The Sap-Head — The gallery ends in a low chamber shored with green timber, where the Cinder Choir has been undercutting the wall's footing stone by stone. Sappers sc"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-thornstep-frost-bowl",
+      "beat": "thornstep-pasture",
+      "brief": "Thornstep in the Cold — Thornstep is a bowl of frost-burned grass ringed by stone folds, and the herd is scattered across it in nervous knots. Halcey Mord, chief drover, has "
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-grey-hour-pack",
+      "beat": "wolf-cull",
+      "brief": "The Pack at the Fold — They come at the grey hour, three lean shapes fanning wide while the big one — grizzled, ash-dusted, patient — waits for someone to look the wrong way"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-sunder-ford-chain",
+      "beat": "sunder-ford",
+      "brief": "Sunder Ford — Sunder Ford is the only place for eleven miles where the Slate Vein can be crossed by a laden cart, and the Split Antler have made a business of that "
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-knee-deep-crossbows",
+      "beat": "ford-standoff",
+      "brief": "Holding the Shallows — Rook Ambersall does not waste breath on threats once steel is out; she simply starts giving orders, and her people obey them, which is worse. Knee-dee"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-lamplight-tally",
+      "beat": "night-tally",
+      "brief": "Tally by Lamplight — Back in the crooked moot-hall, Warden Thrun rubs out one chalk mark and stares at the rest. The ash-fall has thickened; the ridge glows a duller, deep"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-second-front-crossroads-map",
+      "beat": "second-front-crossroads",
+      "brief": "The Second Front — There is one night and one day left in the hiring, and one more trouble you can put your hands on. Thrun does not advise you. She has learned that adv"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-grayhowe-blue-lights",
+      "beat": "grayhowe-barrow",
+      "brief": "Grayhowe — Grayhowe is a long turf mound with a stone throat, and the lights inside are cold and blue and quite steady. Ferrin Karrow lies in the far chamber wit"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-six-niches-waking",
+      "beat": "barrow-guardians",
+      "brief": "Karrow's Household — The rotted mail shifts in all six niches at once. Three come up dry and rattling with old blades still gripped; two come up slower, heavier, wrong. Th"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-grey-snow-muster",
+      "beat": "wyrmfall-muster",
+      "brief": "Muster at the Ash Gate — The last night is not dark; the ridge lights it. Ash falls like slow snow and lies grey on the roof-slates, on the well-cover, on the shoulders of eve"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-ossaine-vurl-at-the-gate",
+      "beat": "wyrm-herald-stand",
+      "brief": "Ashkeld's Speaker — Ossaine Vurl fights like a man who believes an audience is watching from three miles up the ridge, and his Choir fights because he believes it. The ho"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-brown-dawn-over-karrowfast",
+      "beat": "ending-hold-stands",
+      "brief": "The Hold Stands, Diminished — Vurl goes down in the ash and his Choir goes to pieces around him, streaming back up the switchback into the dark. Whatever Ashkeld does that night, s"
+    },
+    {
+      "slot": "art-four-troubles-under-ashkelds-wing-salt-road-exodus",
+      "beat": "ending-ash-and-tally",
+      "brief": "Ash, and the Tally After — The gate-yard breaks, or is never held, and Karrowfast goes down the Salt Road in the grey snow with its people and its goats and none of its grain. F"
+    }
+  ]
+}

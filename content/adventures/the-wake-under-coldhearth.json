@@ -1,0 +1,645 @@
+{
+  "id": "the-wake-under-coldhearth",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Wake Under Coldhearth",
+    "premise": "As the Halvekk Marches muster against an invading horde, the Ashen Choir works beneath the fortress-city of Coldhearth to wake Orovant, a buried war-titan whose rising would end the war and the realm together.",
+    "tone": [
+      "high-adventure",
+      "epic-finale"
+    ],
+    "tier": "regional",
+    "partyLevel": 6,
+    "narrationVoice": "A campaign-weary herald, plainspoken and urgent, who names the cost of every hour and lets silence carry the dread.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Refugee children appear only at a distance, always being led to safety; never show them threatened or hurt."
+    },
+    "provenance": "flint"
+  },
+  "entry": "muster-gate",
+  "beats": [
+    {
+      "id": "muster-gate",
+      "kind": "threshold",
+      "title": "The Muster Gate",
+      "prose": "Coldhearth's outer gate has not closed in forty years; it closes tonight. Pike-shafts stand in stacked cones along the causeway, and the smiths' hammering keeps a rhythm the whole city has learned to breathe by. Beyond the northern hills, the horde's cook-fires make a second, lower constellation. The party arrives with the last of the road-traffic: grain wagons, a column of levy farmers holding their spears wrong, and families being ushered inland by warden escorts. Nailed to the gatepost is a warden's summons bearing the party's names — and beneath it, painted in wet grey ash, a nine-pointed star. Someone has been marking doors.",
+      "readAloud": "\"Names?\" the gate-sergeant asks, then answers herself. \"You're the ones the Marshal sent for. Get inside before we drop the bar. And do us all a kindness — don't touch the ash.\"",
+      "art": "art-the-wake-under-coldhearth-muster-gate-dusk",
+      "options": [
+        {
+          "id": "opt-to-council",
+          "label": "Report to Warden-Marshal Isbeth Craul in the keep",
+          "target": "warden-council",
+          "effects": []
+        },
+        {
+          "id": "opt-to-bells",
+          "label": "Climb to the bell-loft to see the horde's line for yourselves",
+          "target": "bell-tower-vigil",
+          "effects": []
+        },
+        {
+          "id": "opt-to-sermon",
+          "label": "Follow the ash-marks into the Kettle Quarter",
+          "target": "street-sermon",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-council",
+      "kind": "social",
+      "title": "The Marshal's Table",
+      "prose": "The war-table in Coldhearth Keep is a slab of black slate with the Marches chalked across it, and Warden-Marshal Isbeth Craul has drawn the same arrow three times, each time further south. She is a broad, grey-braided woman who has stopped pretending optimism. Nine thousand spears at the passes, she says, and eleven thousand coming. But that is arithmetic, and arithmetic she can lose honestly. What she cannot account for is the digging beneath the city: quarry-crews vanished, a sub-cellar of the Salt Chapel opened onto worked stone nobody in the Marches cut, and every warden sent down has come back either silent or not at all. She slides a folded parchment across the slate — a Writ of Muster, naming the bearers as her voice in the field. She does not pretend it is a gift.",
+      "readAloud": "\"I can lose a war,\" Craul says. \"Armies do that; the survivors plant again. What I cannot lose is the ground. Something under my city is being woken up, and I need people small enough to go down there and stubborn enough to come back.\"",
+      "art": "art-the-wake-under-coldhearth-war-table-slate",
+      "options": [
+        {
+          "id": "opt-take-writ",
+          "label": "Accept the Writ of Muster and its authority over the walls",
+          "target": "bell-tower-vigil",
+          "effects": [
+            {
+              "flag": "writ-of-muster",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-writ",
+          "label": "Refuse the writ — travel light, answer to no one",
+          "target": "salt-road-caravan",
+          "effects": []
+        },
+        {
+          "id": "opt-ask-choir",
+          "label": "Press her about the Ashen Choir and the nine-pointed star",
+          "target": "street-sermon",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bell-tower-vigil",
+      "kind": "discovery",
+      "title": "The Nine Bells",
+      "prose": "The bell-loft smells of pigeon and old rope. From here the whole doom is legible at once: the horde's line crawling south like a slow tide, and inside the walls, a stranger pattern — ash-stars daubed on doors in a curve that ignores streets entirely, as if tracing something buried beneath them. The loft's bell-warden, a stammering boy of nineteen named Petro Sain, has been keeping a chalk log. Every night at the third hour, he says, the bells hum on their own. Not ring. Hum. And the flagstones under the tower are warm. The Nine Bells of Coldhearth are the city's alarm and its oldest ward; ringing them will wake every soldier in the district — and, Petro whispers, whatever the humming answers to.",
+      "readAloud": "Petro sets your hand against the great bell's flank. Under the cold bronze, something is keeping time — slow, enormous, patient as a tide. \"That's not the wind,\" he says. \"I checked. I checked six nights.\"",
+      "art": "art-the-wake-under-coldhearth-bell-loft-vigil",
+      "options": [
+        {
+          "id": "opt-ring-bells",
+          "label": "Ring the Nine Bells and put the city on its feet",
+          "target": "street-sermon",
+          "effects": [
+            {
+              "flag": "bells-rung",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-map-stars",
+          "label": "Map the ash-stars from above, then take the chart to the Marshal",
+          "target": "warden-council",
+          "effects": []
+        },
+        {
+          "id": "opt-leave-quiet",
+          "label": "Say nothing, keep the vigil quiet, and go out by the salt road",
+          "target": "salt-road-caravan",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "street-sermon",
+      "kind": "conflict",
+      "title": "Sermon in the Kettle Quarter",
+      "prose": "The Kettle Quarter's cistern square is packed shoulder to shoulder, and at its centre a cantor in grey wrappings stands on the wellhead with both arms raised, throat painted with ash. She is not preaching surrender to the horde. She is preaching Orovant — the Wake-Under-Coldhearth, the realm's own buried war-titan, who will rise and grind the invaders to meal, and who asks only the city's breath in payment. The crowd is frightened and therefore willing. When the party is noticed, the cantor names them wardens' dogs, and the willing become a wall. Warden pickets are already forcing an evacuation lane at the square's far end; the crowd only has to be held long enough for it to clear.",
+      "readAloud": "\"They offer you a wall!\" the cantor cries. \"I offer you a god with our own dirt under its nails! Which of these has ever kept the Marches?\"",
+      "art": "art-the-wake-under-coldhearth-cistern-square-sermon",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "choir-riot",
+      "terminal": false
+    },
+    {
+      "id": "salt-road-caravan",
+      "kind": "transit",
+      "title": "The Salt Road South",
+      "prose": "The salt road runs from Coldhearth's postern down through the barrow-flats to the drowned Salt Chapel, and tonight it carries a slow river of the displaced: salt-carters, a militia surgeon's wagon, two herds of goats, and warden escorts walking the flanks with lanterns hooded against the north. Ash-stars mark the milestones — every one, in order, like a countdown. The carters know things the Marshal's table does not: that the Choir buys quarrymen at four times a warden's wage, that the chapel's flood-cellar drained itself dry last month, and that the barrow-flats have gone loud with hounds nobody feeds. Ahead, the road forks: chapel, barrows, or the old crypt stair the salt-men use to shortcut the flats.",
+      "readAloud": "An old carter spits into the verge. \"Star on every stone since the ninth mile,\" she says. \"Whoever's counting isn't counting up.\"",
+      "art": "art-the-wake-under-coldhearth-salt-road-lanterns",
+      "options": [
+        {
+          "id": "opt-press-chapel",
+          "label": "Press on to the drowned Salt Chapel",
+          "target": "drowned-chapel",
+          "effects": []
+        },
+        {
+          "id": "opt-escort-barrows",
+          "label": "Walk the caravan's flank across the barrow-flats",
+          "target": "barrow-pack",
+          "effects": []
+        },
+        {
+          "id": "opt-crypt-shortcut",
+          "label": "Take the salt-men's crypt stair as a shortcut",
+          "target": "crypt-riddle",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-chapel",
+      "kind": "discovery",
+      "title": "The Drowned Salt Chapel",
+      "prose": "The Salt Chapel sits in its own shallow lake, a squat grey box with brine crusting its sills — except the water has retreated, leaving a bathtub ring three feet up the walls and a floor of cracked salt-mud. In the nave, the Choir has been busy: pews broken down for scaffolding, the altar-stone levered aside, and beneath it a shaft of dressed black masonry descending into warm air. The stone is not Marches work. Its courses are carved with a single repeated figure — a bound giant with nine nails through its brow — and beneath, in the old warden tongue, a caution rather than a prayer: THE NAILS ARE NAMES. STRIKE NONE. Ropes still hang down the shaft. Someone below is singing in unison, and the singing keeps the same slow time as the bells.",
+      "readAloud": "The shaft breathes on you: warm, mineral, faintly sweet. Far down, voices come up in a rhythm you have felt before through cold bronze.",
+      "art": "art-the-wake-under-coldhearth-drowned-chapel-shaft",
+      "options": [
+        {
+          "id": "opt-read-nails",
+          "label": "Study the nine-nail carvings and the warden caution",
+          "target": "crypt-riddle",
+          "effects": []
+        },
+        {
+          "id": "opt-secure-flats",
+          "label": "Clear the barrow-flats first so the caravan can shelter here",
+          "target": "barrow-pack",
+          "effects": []
+        },
+        {
+          "id": "opt-descend-rope",
+          "label": "Go down the ropes toward the singing",
+          "target": "hollow-legate",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crypt-riddle",
+      "kind": "puzzle",
+      "title": "The Nails Are Names",
+      "prose": "Below the chapel, the shaft opens into a warden-crypt older than the Marches' charters: nine iron spikes the length of spears, driven through a floor of black masonry in a ring, each spike collared with a bronze plate. Eight plates bear a word in the old warden tongue. The ninth has been chiselled blank, and fresh ash-handprints crowd around it. The pattern resolves slowly. These are not restraints; they are a sentence — a true-name spoken in iron, one syllable per nail, and the Choir has been erasing it syllable by syllable so the sleeper below can no longer be addressed, only released. Reconstruct the missing word from the eight that remain and the sleeper can still be called by name and commanded to lie down. Get it wrong, or strike a nail, and the sentence breaks.",
+      "readAloud": "Eight words in iron, one silence. The blank plate is warm as a held hand, and the ash-prints on it are small and many, as if a whole congregation came down to touch the place where a name used to be.",
+      "art": "art-the-wake-under-coldhearth-nine-nail-crypt",
+      "options": [
+        {
+          "id": "opt-reconstruct-name",
+          "label": "Reconstruct the ninth syllable from the eight surviving plates",
+          "target": "hollow-legate",
+          "effects": [
+            {
+              "flag": "true-name-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "History",
+            "dc": 15,
+            "onFailure": "barrow-pack"
+          }
+        },
+        {
+          "id": "opt-guard-nails",
+          "label": "Leave the nails untouched and hunt the Choir's diggers instead",
+          "target": "barrow-pack",
+          "effects": []
+        },
+        {
+          "id": "opt-report-up",
+          "label": "Climb out and carry word straight back to the walls",
+          "target": "siege-choice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "barrow-pack",
+      "kind": "hazard",
+      "title": "Hounds of the Barrow-Flats",
+      "prose": "The barrow-flats are a mile of grave-mounds in ground fog, and the fog is full of running. The Choir's diggers have been feeding the flats' hounds on cast-off spoil and worse, and the pack has grown bold, heavy-shouldered, and disinterested in fire. They do not want to kill everything here; they want the party stopped, held, worried in circles until the singing below finishes a verse. The only ground that breaks their rushes is the iron-banded crypt door on the flats' far side, forty yards off through the mounds — reach it, get it open, and the pack will not follow past the threshold.",
+      "readAloud": "Something huge goes past in the fog at a dead run, and the mound-grass lies down in its wake. Then another, from the other side. They are not charging yet. They are counting you.",
+      "art": "art-the-wake-under-coldhearth-barrow-fog-hounds",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "barrow-pack-hunt",
+      "terminal": false
+    },
+    {
+      "id": "hollow-legate",
+      "kind": "social",
+      "title": "The Hollow Legate",
+      "prose": "Deeper still, the black masonry widens into a gallery lit by ash-lamps, and there the Choir's Legate waits without guards, because he does not need them. Vessik Morrow was a warden-quartermaster once; his commission is still pinned to a chest that no longer rises. He speaks reasonably, and that is the worst of it. Eleven thousand are coming south. The Marches will fall in a season and be salted for a generation. Orovant will not fall. Orovant will walk north, unmake the horde, and then — yes — take the city's breath as its due, and the Marches will endure without them. He offers a compact: stand aside, wear the grey, and be named among those who chose the realm over the town. Behind him, a reliquary of blackened plate hangs on chains above the last stair, and inside it something keeps the bells' slow time.",
+      "readAloud": "\"You think I am the monster in this room,\" Morrow says mildly. \"I am the arithmetic. Forty thousand in the Marches, nine thousand in Coldhearth. Tell me which sum you would rather sign, and I will hand you the pen.\"",
+      "art": "art-the-wake-under-coldhearth-ash-lamp-gallery",
+      "options": [
+        {
+          "id": "opt-take-compact",
+          "label": "Take the Legate's compact and the grey wrappings",
+          "target": "siege-choice",
+          "effects": [
+            {
+              "flag": "legate-bargain",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-compact",
+          "label": "Refuse him to his face and climb back to the walls",
+          "target": "siege-choice",
+          "effects": []
+        },
+        {
+          "id": "opt-slip-past",
+          "label": "Stall him and slip past to the reliquary stair",
+          "target": "titan-heart",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 15,
+            "onFailure": "siege-choice"
+          }
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "siege-choice",
+      "kind": "decision",
+      "title": "The Hour of Two Sieges",
+      "prose": "Dawn is two hours off and Coldhearth is fighting on two fronts at once. Outbound: the horde's vanguard has come further and faster than Craul's arithmetic allowed, and the western curtain wall has taken a ram. Inbound: the flagstones are warm to the bare hand across half the city, and the bells hum loud enough now that dogs will not go near the tower. The party cannot be in both places. Hold the breach and the city survives the night — but the singing below finishes its verse. Go down and the Choir may be stopped — but the western wall goes to whoever wants it more. There is a third door, and it is the Legate's, and it is standing open.",
+      "readAloud": "Craul finds you on the muster stair, helm under her arm, blood on her collar that is not hers. \"Choose out loud,\" she says. \"I'll not have anyone claiming later that it happened to us.\"",
+      "art": "art-the-wake-under-coldhearth-two-sieges-dawn",
+      "options": [
+        {
+          "id": "opt-hold-breach",
+          "label": "Take command of the western breach under the Writ of Muster",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "writ-of-muster",
+            "value": true
+          },
+          "target": "wall-breach",
+          "effects": []
+        },
+        {
+          "id": "opt-descend-heart",
+          "label": "Go down to the reliquary and the titan's heart",
+          "target": "titan-heart",
+          "effects": []
+        },
+        {
+          "id": "opt-open-gate",
+          "label": "Honour the compact — put on the grey and open the inner gate",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "legate-bargain",
+            "value": true
+          },
+          "target": "ending-crown-of-ash",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wall-breach",
+      "kind": "conflict",
+      "title": "The Western Breach",
+      "prose": "The ram has done its work: a bite of curtain wall gone, rubble sloping down into a mud lane, and the horde's forward company already inside it — disciplined hobgoblin spears in a wedge, with an ogre behind them swinging a mooring-post to widen the gap. Holding the stone is beyond the levy; holding the standard is not. Warden-Sergeant Brask Ollivant has planted the Coldhearth banner in the breach itself, because while it stands the levy files keep coming up the stair, and if it falls they will not. Brask will not step back from it. Everything tonight depends on the banner and the man under it lasting until the reserve companies arrive.",
+      "readAloud": "\"Don't mind me!\" Brask bellows over the spear-clatter, boots braced in rubble, banner-pole hugged to his ribs. \"Mind the flag! They break when the flag does — so does the levy!\"",
+      "art": "art-the-wake-under-coldhearth-western-breach-banner",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "breach-hold",
+      "terminal": false
+    },
+    {
+      "id": "titan-heart",
+      "kind": "climax",
+      "title": "The Heart of Orovant",
+      "prose": "The last stair ends in a vault the size of a cathedral nave, and the vault is a chest. Ribs of black masonry arch overhead; the floor rises and falls, slowly, once every nine heartbeats. Hanging on chains at the vault's centre is the Choir's reliquary — a suit of ancient warden plate crammed with the shaved-away name-iron of the ninth nail, ringing like a struck bell each time the floor lifts. It is the wedge in the door. While it sings, Orovant cannot be addressed, only released; break it, and the sentence in iron closes again. Vessik Morrow is waiting on the reliquary's platform, grey wrappings sodden, commission still pinned to his chest, and he is no longer pretending to be a living man. His congregation crawls up out of the floor's seams to meet you.",
+      "readAloud": "The floor rises. The reliquary rings. Somewhere far above, the Nine Bells answer it — and under your boots, something the size of the city rolls over in its sleep and begins, very slowly, to sit up.",
+      "art": "art-the-wake-under-coldhearth-titan-heart-vault",
+      "options": [],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "reliquary-break",
+      "terminal": false
+    },
+    {
+      "id": "ending-dawn-over-coldhearth",
+      "kind": "ending",
+      "title": "Dawn Over Coldhearth",
+      "prose": "The reliquary comes apart in a spray of name-iron, and the shaved syllables go home into the ninth nail with a sound like a lock. The floor of the vault sinks one last time and stays sunk. Above, the Nine Bells fall silent mid-hum, and every warden on the walls hears the silence before they hear the horns — because with the ground quiet, Craul's reserve companies can be where she puts them, and the horde's line, which came south expecting a city already eating itself, finds a garrison instead. The war is not over. It is merely a war again, the sort armies lose honestly and survivors plant after. In the crypt of the nine nails the wardens post a permanent watch, and the eight words are recut in bronze, and the ninth as well — spoken aloud once a year by someone whose only duty is to remember that the nails are names, and that a realm which sells its city to save itself has already lost the ground.",
+      "readAloud": "Coldhearth's gate does not open at dawn. It is opened — from the inside, by tired people, on purpose. In the Marches, that counts as victory.",
+      "art": "art-the-wake-under-coldhearth-coldhearth-dawn-bells",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-crown-of-ash",
+      "kind": "ending",
+      "title": "A Crown of Ash",
+      "prose": "The inner gate goes up on greased chains and the Choir comes through it singing, and by the third hour Orovant stands. It is a mile of grave-dirt and old iron shaped like a soldier, and it does exactly what Vessik Morrow promised: it walks north, and the horde stops existing. The Marches endure. Coldhearth does not. The titan took the city's breath as its due — nine thousand throats' worth, drawn out over an afternoon, and the warden escorts on the salt road were far enough south with their charges to hear it as a wind. Afterward the Choir crowns the party in grey ash on the steps of the emptied keep, and calls them the ones who chose the realm. Perhaps a chronicle will agree. But the flagstones stay warm, and the thing that ate a city for a war has learned that it can be fed, and somewhere under the next town a sentence in iron is missing a syllable.",
+      "readAloud": "Morrow sets the grey circlet on your brow with something like tenderness. \"There,\" he says. \"Now you are arithmetic too.\"",
+      "art": "art-the-wake-under-coldhearth-ash-crown-empty-keep",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-long-retreat",
+      "kind": "ending",
+      "title": "The Long Retreat",
+      "prose": "It ends with a fighting withdrawal down the salt road, which is the most honest thing anyone does that night. The breach cannot be held, or the vault cannot be broken, and so the wardens do the other work: postern open, lanterns hooded, the surgeon's wagons first and the levy last, and Warden-Marshal Isbeth Craul standing at the ninth milestone counting people out loud as they pass. Behind them Coldhearth goes quiet in a way stone should not, and then the ground stands up. Orovant walks north into the horde and neither is seen again, and the Marches inherit a border made of ash and a story nobody tells the same way twice. The party carries out the chart of nine nails, eight words and a silence, and hands it to the Marshal at the milestone. She reads it, folds it, and puts it inside her coat. \"Next time,\" she says, \"we'll know its name before we need it.\"",
+      "readAloud": "Craul is still counting when the horizon behind you rises. She does not turn around. She just keeps counting, louder, so the ones at the back can hear.",
+      "art": "art-the-wake-under-coldhearth-salt-road-retreat",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "muster-gate",
+      "to": "warden-council",
+      "when": {
+        "op": "always"
+      },
+      "note": "Intended spine: brief with the Marshal before going into the streets."
+    },
+    {
+      "from": "crypt-riddle",
+      "to": "hollow-legate",
+      "when": {
+        "op": "always"
+      },
+      "note": "Knowing the sentence in iron makes the Legate's compact legible as a trade, not a mercy."
+    },
+    {
+      "from": "wall-breach",
+      "to": "titan-heart",
+      "when": {
+        "op": "eq",
+        "flag": "bells-rung",
+        "value": true
+      },
+      "note": "If the Nine Bells were rung, the levy reserves reach the breach faster and the party can break away downward."
+    },
+    {
+      "from": "titan-heart",
+      "to": "ending-dawn-over-coldhearth",
+      "when": {
+        "op": "eq",
+        "flag": "true-name-known",
+        "value": true
+      },
+      "note": "With the ninth syllable reconstructed, breaking the reliquary closes the sentence cleanly rather than merely delaying the waking."
+    },
+    {
+      "from": "siege-choice",
+      "to": "ending-crown-of-ash",
+      "when": {
+        "op": "eq",
+        "flag": "legate-bargain",
+        "value": true
+      },
+      "note": "The compact honoured."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "choir-riot",
+      "title": "Holding the Cistern Square",
+      "combatants": [
+        {
+          "id": "zealot-throng",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "choir-cantor",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "difficult",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "salt-road-caravan",
+      "onDefeat": "drowned-chapel",
+      "onFlee": "salt-road-caravan"
+    },
+    {
+      "id": "barrow-pack-hunt",
+      "title": "Forty Yards to the Crypt Door",
+      "combatants": [
+        {
+          "id": "barrow-hound",
+          "statblock": "dire-wolf",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "lean-hound",
+          "statblock": "wolf",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "difficult",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Cross forty yards of mound-ground and get the iron-banded crypt door open; the pack will not cross the threshold."
+      },
+      "onVictory": "hollow-legate",
+      "onDefeat": "siege-choice",
+      "onFlee": "siege-choice"
+    },
+    {
+      "id": "breach-hold",
+      "title": "Mind the Flag",
+      "combatants": [
+        {
+          "id": "horde-spears",
+          "statblock": "hobgoblin",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "ram-ogre",
+          "statblock": "ogre",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sergeant-brask",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "unstable",
+        "difficult",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "sergeant-brask"
+      },
+      "onVictory": "titan-heart",
+      "onDefeat": "ending-long-retreat",
+      "onFlee": "titan-heart"
+    },
+    {
+      "id": "reliquary-break",
+      "title": "Break the Ringing Reliquary",
+      "combatants": [
+        {
+          "id": "ash-reliquary",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "legate-morrow",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "choir-communicant",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "unstable",
+        "vertical"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "ash-reliquary"
+      },
+      "onVictory": "ending-dawn-over-coldhearth",
+      "onDefeat": "ending-long-retreat",
+      "onFlee": "ending-long-retreat"
+    }
+  ]
+}

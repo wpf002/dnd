@@ -1,0 +1,903 @@
+{
+  "id": "the-empty-cage-of-marrowgate",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Empty Cage of Marrowgate",
+    "premise": "In Marrowgate, the waystation city where four great roads and one cold river braid together, a guild factor pays four strangers a small fortune to carry an empty birdcage out to the fourth milestone of the Salt Road and bring back whatever is inside it. Nothing about the commission connects to anything — until the roads themselves begin to drift.",
+    "tone": [
+      "anthology",
+      "exploration"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "Second person, present tense. A dry municipal surveyor's voice — measurements, distances, ledger entries — that keeps slipping sideways into wonder when it thinks you are not listening.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Marrowgate is full of porters' children and lamplighters' apprentices; they are always heard, never harmed on-screen. Keep any threat to them off-page and unrealized."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-empty-cage",
+  "beats": [
+    {
+      "id": "the-empty-cage",
+      "kind": "threshold",
+      "title": "The Commission in the Ledger Loft",
+      "prose": "The Ledger of Roads keeps its business in a hayloft above a caravan stable, because the Ledger believes that anything worth writing down should smell of the road it came from. Perenna Vole, factor of the Third Desk, is a small grey woman with ink to the elbow and a cough she pretends is dust. She sets a brass birdcage on the table between you: two spans high, door hanging open, perch worn smooth, absolutely empty. Her terms are simple and make no sense. Carry it out the Salt Road to the fourth milestone. Wait until the road-lamp there gutters — it will gutter tonight. Then bring back whatever is inside. Sixty gold, thirty now, and no, she will not tell you what she expects. She will only say: 'It has been carried out and back every nine years since before my grandmother, and the year it is not carried, Marrowgate stops being a place you can get to.'",
+      "readAloud": "'You are not being hired to fight, or steal, or lie,' says Vole. 'You are being hired to walk a measured distance, wait, and come back heavier. If that frightens you, it should. Thirty now.'",
+      "art": "art-the-empty-cage-of-marrowgate-ledger-house-loft",
+      "options": [
+        {
+          "id": "take-terms-as-written",
+          "label": "Take the coin and the terms exactly as written. Ask nothing.",
+          "target": "salt-road-gate",
+          "effects": []
+        },
+        {
+          "id": "ask-who-carried-before",
+          "label": "Ask who carried the cage nine years ago — and go find them at the Lamp House.",
+          "target": "lamp-house-questions",
+          "effects": []
+        },
+        {
+          "id": "follow-her-out",
+          "label": "Pocket the coin, then follow Vole when she leaves.",
+          "target": "shadow-the-client",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lamp-house-questions",
+      "kind": "social",
+      "title": "The Lamp House Registers",
+      "prose": "The Lampwrights of Marrowgate light every post on the four roads out to the twelfth milestone, and they write down each lamp's behaviour in registers bound in road-leather. Marm Quillet, senior lampwright, has a jaw like a mooring cleat and no patience for anyone who has never trimmed a wick in wind. The register for the Salt Road's fourth lamp is thin, and every ninth entry is the same phrase in a different hand: 'guttered at the appointed hour; the carrier returned; the roads held.' She admits, grudgingly, that the last carrier was a hostler named Bram Teel, and that Bram Teel came back unable to say which direction his own house was in. She also admits that strangers in surveyor's coats have been asking for this register all month, and that they do not belong to any survey she can name.",
+      "art": "art-the-empty-cage-of-marrowgate-lamp-house-registers",
+      "options": [
+        {
+          "id": "buy-the-register",
+          "label": "Buy an hour with the register and learn the words the carriers used.",
+          "target": "salt-road-gate",
+          "effects": [
+            {
+              "flag": "knows-ritual",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "quiet-market"
+          }
+        },
+        {
+          "id": "ask-about-pale-survey",
+          "label": "Ask about the strangers in surveyor's coats — then go looking for them.",
+          "target": "shadow-the-client",
+          "effects": []
+        },
+        {
+          "id": "go-price-the-cage",
+          "label": "Go to the Quiet Market and find out what an empty cage is worth to somebody else.",
+          "target": "quiet-market",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "shadow-the-client",
+      "kind": "discovery",
+      "title": "Chalk Marks on the Gantries",
+      "prose": "Marrowgate above street level is a lattice of porter-gantries, rope hoists and plank walks strung between warehouses, and Vole crosses it like a woman who has been avoiding ground floors for years. She is not the only one moving up here. A tall woman in a slate-grey surveyor's coat follows two gantries behind, pausing to chalk marks on the brickwork: a numeral, a bearing, a small closed circle. Wherever she chalks, the wall behind the mark feels subtly wrong under your palm — as though the warehouse were an inch further away than your eyes report. Below, apprentice lamplighters chase each other along the towpath, oblivious, and the grey woman waits, politely, for them to pass out of the way before she chalks again.",
+      "readAloud": "The chalk squeals. You look at the mark, then at the street below it, and for one swimming heartbeat you cannot say which of the two is the copy.",
+      "art": "art-the-empty-cage-of-marrowgate-rain-slick-gantries",
+      "options": [
+        {
+          "id": "copy-the-marks",
+          "label": "Copy every chalk mark into your journal before the rain takes them.",
+          "target": "lamp-house-questions",
+          "effects": [
+            {
+              "flag": "vole-hunted",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "warn-vole",
+          "label": "Drop down beside Vole, tell her she is being measured, and head for the gate.",
+          "target": "salt-road-gate",
+          "effects": [
+            {
+              "flag": "vole-hunted",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "slip-away-to-market",
+          "label": "Leave both women to it and slip down into the Quiet Market.",
+          "target": "quiet-market",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "quiet-market",
+      "kind": "social",
+      "title": "The Quiet Market Under the Customs Arch",
+      "prose": "Everything that must not appear in the Ledger of Roads is bought under the customs arch, in a market where nobody raises a voice because the arch carries whispers to the toll-house. Hook-Hand Eyre runs the porters here: a broad, courteous man with a boat-hook where his left hand should be and a habit of listening with his eyes shut. He offers two hundred gold for the birdcage. He offers it before you have mentioned owning one. Pressed, he says only that the Quietmen have carried the cage twice themselves, that they were paid handsomely both times, and that this year somebody paid them more to make sure it never reached the fourth milestone at all.",
+      "art": "art-the-empty-cage-of-marrowgate-quiet-market-stalls",
+      "options": [
+        {
+          "id": "refuse-buy-goodwill",
+          "label": "Refuse the sale, but buy the porters' goodwill with truth and coin.",
+          "target": "salt-road-gate",
+          "effects": [
+            {
+              "flag": "quietmen-favor",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 14,
+            "onFailure": "toll-in-the-alley"
+          }
+        },
+        {
+          "id": "refuse-and-run",
+          "label": "Refuse flatly and walk out fast by the back arch.",
+          "target": "toll-in-the-alley",
+          "effects": []
+        },
+        {
+          "id": "trade-rumour-for-lore",
+          "label": "Trade Eyre the rumour of the grey surveyors for what the Quietmen learned carrying the cage.",
+          "target": "salt-road-gate",
+          "effects": [
+            {
+              "flag": "knows-ritual",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "toll-in-the-alley",
+      "kind": "conflict",
+      "title": "The Toll in the Alley",
+      "prose": "The back arch gives onto Cooper's Slip, a wet stone throat six feet wide with a lamp at either end, and both lamps go out at once. Bodies come off the barrel-stacks: porters with hooks, sacking on their boots, and Eyre's second walking behind them with a rope net folded over one arm. They do not want your blood; they want the cage, and they are being paid by the piece. The only winning here is the mouth of the alley and the crowded towpath beyond it.",
+      "art": "art-the-empty-cage-of-marrowgate-alley-toll-lanterns",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "quiet-toll",
+      "terminal": false
+    },
+    {
+      "id": "salt-road-gate",
+      "kind": "transit",
+      "title": "Out the Salt Road Gate",
+      "prose": "The Salt Road leaves Marrowgate through a gate wide enough for three wagons abreast, and beyond it the milestones march away into a flat country of pale grass and drying pans. Lamplighters go out ahead of you at dusk with their long brass tapers, working post to post, and the first three lamps take with a sound like a held breath let go. The fourth lamp, far out, is already lit, and nobody remembers lighting it. The cage in your hands weighs a little more with each milestone you pass, though nothing has entered it.",
+      "readAloud": "MILESTONE I: MARROWGATE. MILESTONE II: MARROWGATE, ONE LEAGUE. MILESTONE III: MARROWGATE, TWO. The fourth stone bears no distance at all — only a socket where a number used to be.",
+      "art": "art-the-empty-cage-of-marrowgate-salt-road-gate-dusk",
+      "options": [
+        {
+          "id": "walk-and-count",
+          "label": "Walk out openly at dusk and count the milestones aloud, as carriers do.",
+          "target": "fourth-milestone",
+          "effects": []
+        },
+        {
+          "id": "take-the-towpath",
+          "label": "Leave the road and take the river towpath, unseen, cutting across the pans.",
+          "target": "the-drifting-road",
+          "effects": []
+        },
+        {
+          "id": "quietmen-escort",
+          "label": "Whistle up the Quietmen escort Eyre promised you and walk in company.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "quietmen-favor",
+            "value": true
+          },
+          "target": "fourth-milestone",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "fourth-milestone",
+      "kind": "discovery",
+      "title": "The Fourth Milestone",
+      "prose": "The fourth milestone is older than the road it stands beside: a shaft of blue-grey stone pitted like bone, wearing a collar of moss and a lamp-post bolted to its side by some later, tidier century. Beneath the moss are numerals — not distances, but a survey column, the kind used to fix a place that keeps trying to move. The lamp burns steady and cold. The cage, set down on the stone plinth, tilts as though something has stepped onto its perch, and the grass out toward the salt pans has stopped moving in the wind.",
+      "readAloud": "The flame stands straight up, white as paper. Then it leans — toward you — and the sound of the city behind you goes out like a snuffed wick.",
+      "art": "art-the-empty-cage-of-marrowgate-fourth-milestone-lamp",
+      "options": [
+        {
+          "id": "wait-as-instructed",
+          "label": "Do exactly as commissioned: wait beside the cage until the lamp gutters.",
+          "target": "the-drifting-road",
+          "effects": []
+        },
+        {
+          "id": "read-the-milestone",
+          "label": "Scrape the moss away and read the numerals before anything happens.",
+          "target": "milestone-cipher",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "the-drifting-road"
+          }
+        },
+        {
+          "id": "snuff-the-lamp",
+          "label": "Snuff the lamp yourself and force the appointed hour early.",
+          "target": "hollow-caravan",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-drifting-road",
+      "kind": "hazard",
+      "title": "The Road Comes Untied",
+      "prose": "The lamp gutters. Fog comes up out of the salt pans in one motion, like a sheet lifted off furniture, and when it clears in patches the milestones are in the wrong order — III beyond IV, then III again, then a stone with no numeral at all standing where Marrowgate's gate should be. Distance stops behaving. Ten paces toward the city takes an hour and returns you to the plinth; ten paces away puts you shin-deep in a ford that does not exist. Somewhere in the fog, out on the road that is no longer a road, wheels are turning and lanterns are coming: a caravan of everything the roads have mislaid, walking its route because nobody ever told it to stop.",
+      "art": "art-the-empty-cage-of-marrowgate-drifting-road-fog",
+      "options": [
+        {
+          "id": "stand-on-the-stone",
+          "label": "Stand on the milestone's plinth — the one fixed point — and let them come to you.",
+          "target": "hollow-caravan",
+          "effects": []
+        },
+        {
+          "id": "chalk-your-own-marks",
+          "label": "Chalk your own bearings on the stone and hold a scrap of the road still.",
+          "target": "the-passenger",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "dc": 13,
+            "onFailure": "hollow-caravan"
+          }
+        },
+        {
+          "id": "read-by-touch",
+          "label": "Crawl back to the stone and read its numerals by fingertip in the fog.",
+          "target": "milestone-cipher",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hollow-caravan",
+      "kind": "conflict",
+      "title": "The Hollow Caravan",
+      "prose": "It passes in six long minutes: oxen-frames of bone in rotted harness, a drover with a lantern hung where a face should be, outriders who were people once and are now only the habit of travelling. They are not hunting you. You are simply standing in the road, and the road is theirs, and they clear obstructions the way a wheel clears a stone. Nothing here needs to be destroyed. It needs to be survived until the last lantern is past and the fog exhales.",
+      "art": "art-the-empty-cage-of-marrowgate-hollow-caravan-lanterns",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hollow-caravan-passage",
+      "terminal": false
+    },
+    {
+      "id": "the-passenger",
+      "kind": "social",
+      "title": "The Passenger",
+      "prose": "When the last lantern goes by, something remains: a light the size of a wren, folded like a map along creases that hurt to follow. It speaks in the exact cadence of a professional giving evidence. She is Elowen Marchet, Third Surveyor of the Marrowgate Commission, ninety-one years dead, and she is what the city measures itself against — the only remaining record of where its roads actually meet. Every nine years someone carries her out in an empty cage so she can walk the drift, take the new bearings, and be carried home to sit in the socket beneath the Ledger House. She asks two things: whether you were sent by the Ledger, and whether you understand that carrying her means carrying a person, not a parcel.",
+      "readAloud": "'I have been a cargo for four generations,' the light says, mildly. 'It is not undignified. It is simply very small. Open the door, or do not, but decide before the fog decides for you.'",
+      "art": "art-the-empty-cage-of-marrowgate-passenger-in-the-cage",
+      "options": [
+        {
+          "id": "invite-her-in",
+          "label": "Open the cage door and invite her in, plainly, by name.",
+          "target": "milestone-cipher",
+          "effects": [
+            {
+              "flag": "cage-occupied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "speak-the-carriers-words",
+          "label": "Speak the carriers' words from the Lamp House register and take her bearings with her.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-ritual",
+            "value": true
+          },
+          "target": "milestone-cipher",
+          "effects": [
+            {
+              "flag": "cage-occupied",
+              "value": true
+            },
+            {
+              "flag": "cipher-read",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-to-cage",
+          "label": "Refuse to cage anything living. Offer to carry her word instead, and leave the door shut.",
+          "target": "milestone-cipher",
+          "effects": [
+            {
+              "flag": "cage-occupied",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "milestone-cipher",
+      "kind": "puzzle",
+      "title": "The Column of Numerals",
+      "prose": "The milestone's numerals are a survey column, and a survey column is an argument: this point, from these three bearings, at this depth. Two of the bearings run out to lamps you have passed. The third runs backward, into Marrowgate, under the caravan stable, to a plinth in a brick vault beneath the Ledger House — the true fourth milestone, of which the stone out here is only the visible end. And someone has been amending the column. Fresh chalk, a tidier hand: a fourth bearing, inserted, that would fix Marrowgate's crossing three leagues east, in country owned by nobody you have heard of, on a road that does not yet exist.",
+      "art": "art-the-empty-cage-of-marrowgate-numerals-under-moss",
+      "options": [
+        {
+          "id": "solve-the-column",
+          "label": "Solve the column properly and learn where the false milestone has been set.",
+          "target": "vault-of-roads",
+          "effects": [
+            {
+              "flag": "cipher-read",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "vault-of-roads"
+          }
+        },
+        {
+          "id": "match-the-chalk",
+          "label": "Match the fresh chalk to the marks you copied off the gantries and follow it home.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vole-hunted",
+            "value": true
+          },
+          "target": "vault-of-roads",
+          "effects": [
+            {
+              "flag": "cipher-read",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "just-deliver",
+          "label": "Leave the arithmetic to arithmeticians. Walk the cage back to the Ledger House.",
+          "target": "vault-of-roads",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-of-roads",
+      "kind": "climax",
+      "title": "The Vault of Roads",
+      "prose": "Under the caravan stable, behind a brick arch the Ledger has kept whitewashed for two centuries, is a room the size of a chapel with four channels cut in its floor, running to four walls, to four gates, to four roads. At the meeting of the channels stands a plinth with an empty socket. It is not empty tonight. A thing of riveted plate and surveyor's brass has been bolted into the socket — a false milestone, humming, patiently redefining the middle of the world — and Corvine Ashlow of the Pale Survey stands beside it with her chalk and her hired road-breakers and a contract already signed by three cities that would rather the crossing were somewhere they own. Perenna Vole is on the floor by the far channel, still breathing, still counting. The false stone must come out of the socket. Nothing else in this room matters.",
+      "readAloud": "'You carried her four leagues in a birdcage for sixty gold,' Ashlow says, not unkindly. 'I am offering the same work at a better wage. Set her down and step out of the channel.'",
+      "art": "art-the-empty-cage-of-marrowgate-vault-of-roads",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "false-milestone-fight",
+      "terminal": false
+    },
+    {
+      "id": "the-last-measure",
+      "kind": "decision",
+      "title": "The Last Measure",
+      "prose": "The false milestone comes apart into plate and brass and a great deal of expensive chalk, and the socket in the plinth is open, and cold, and exactly the size of a thing the size of a wren. Ashlow's contract lies in the channel where she dropped it, countersigned and worth more than this stable district. Vole, propped against the wall, says the socket has never once been left unfilled, and that a measure held by nobody drifts within a season: caravans arriving at the wrong Marrowgate, letters delivered to a city three leagues east that has not been built. The channels in the floor are cool underfoot. Somewhere above, the apprentice lamplighters are trimming the gate lamps and arguing about whose turn it is.",
+      "art": "art-the-empty-cage-of-marrowgate-last-measure-plinth",
+      "options": [
+        {
+          "id": "seat-the-passenger",
+          "label": "Set Elowen Marchet in the socket and let Marrowgate re-measure itself around her.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "cage-occupied",
+            "value": true
+          },
+          "target": "ending-roads-hold",
+          "effects": []
+        },
+        {
+          "id": "take-the-contract",
+          "label": "Take Ashlow's contract. Let the crossing drift — and sell the only road that still arrives.",
+          "target": "ending-city-adrift",
+          "effects": []
+        },
+        {
+          "id": "be-measured-yourself",
+          "label": "Take up the surveyor's chain, step into the channel, and be the measure yourself.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "cipher-read",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "knows-ritual",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-new-cartographer",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-roads-hold",
+      "kind": "ending",
+      "title": "Ending: The Roads Hold",
+      "prose": "The light goes into the socket the way a key goes into a lock it was cut for, and every lamp on the four roads out to the twelfth milestone leans once, together, toward the vault. Marrowgate settles a half-inch into being a place you can get to. In the morning the Ledger of Roads pays the second thirty gold with no comment whatsoever, and Marm Quillet writes in the register, in a hand nine years from being read again: guttered at the appointed hour; the carriers returned; the roads held. Vole gives you the names of the three cities on Ashlow's contract and suggests, coughing, that you take work far from all of them. On the way out you pass the fourth milestone. Its numeral socket is still empty, and the moss has already begun growing back over a column of figures that now, quietly, includes four strangers who once stood exactly here.",
+      "art": "art-the-empty-cage-of-marrowgate-ending-lamps-lean",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-city-adrift",
+      "kind": "ending",
+      "title": "Ending: The Crossing Drifts East",
+      "prose": "It takes eleven weeks and nobody can point to the day it happened. Caravans set out for Marrowgate and arrive at a new-built crossing three leagues east with a Pale Survey stone at its heart and tolls set by contract. Marrowgate itself does not vanish; it simply becomes hard to reach, then improbable, then a place people are sure they remember passing through. The lamplighters go out at dusk to posts that are no longer on any route, and the fourth milestone stands in a field of pale grass with a socket where its number should be, and something small waits beside it in the fog for a carrier who is not coming. Your share of the contract spends beautifully. You just cannot find, on any map you buy, the loft above the stable where a grey woman once handed you an empty cage.",
+      "art": "art-the-empty-cage-of-marrowgate-ending-empty-crossing",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-new-cartographer",
+      "kind": "ending",
+      "title": "Ending: The New Measure",
+      "prose": "The chain is cold and heavier than iron has any right to be, and when you step into the meeting of the four channels the vault stops being a room and becomes a distance — every road out of Marrowgate at once, felt like the length of your own arms. Elowen Marchet, freed and astonished, takes the cage door off its hinges with her thumb and stays to teach, because a measure needs correcting and she has ninety-one years of notes. Your companions carry your name back up into the stable-yard dusk, where the lamplighters are lighting the gate posts and the caravans are arguing about tolls, and the crossing holds because someone living is holding it. Every nine years, they say, a stranger is hired to walk four leagues out with an empty birdcage, so that whoever is inside can take the air and see how far the roads have wandered. The pay is good. The terms make no sense. It is, they say, an honest commission.",
+      "art": "art-the-empty-cage-of-marrowgate-ending-chain-and-channels",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "the-empty-cage",
+      "to": "salt-road-gate",
+      "when": {
+        "op": "always"
+      },
+      "note": "Terms accepted as written."
+    },
+    {
+      "from": "the-empty-cage",
+      "to": "lamp-house-questions",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-empty-cage",
+      "to": "shadow-the-client",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lamp-house-questions",
+      "to": "salt-road-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lamp-house-questions",
+      "to": "shadow-the-client",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "lamp-house-questions",
+      "to": "quiet-market",
+      "when": {
+        "op": "always"
+      },
+      "note": "Also the failure branch of the register search."
+    },
+    {
+      "from": "shadow-the-client",
+      "to": "lamp-house-questions",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shadow-the-client",
+      "to": "salt-road-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "shadow-the-client",
+      "to": "quiet-market",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "quiet-market",
+      "to": "salt-road-gate",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "quiet-market",
+      "to": "toll-in-the-alley",
+      "when": {
+        "op": "always"
+      },
+      "note": "Also the failure branch of the persuasion attempt."
+    },
+    {
+      "from": "toll-in-the-alley",
+      "to": "salt-road-gate",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escaped the Slip with the cage."
+    },
+    {
+      "from": "toll-in-the-alley",
+      "to": "quiet-market",
+      "when": {
+        "op": "always"
+      },
+      "note": "Netted, tolled, dumped back under the arch."
+    },
+    {
+      "from": "salt-road-gate",
+      "to": "fourth-milestone",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "salt-road-gate",
+      "to": "the-drifting-road",
+      "when": {
+        "op": "always"
+      },
+      "note": "Towpath arrival — late, and already inside the drift."
+    },
+    {
+      "from": "fourth-milestone",
+      "to": "the-drifting-road",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "fourth-milestone",
+      "to": "milestone-cipher",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "fourth-milestone",
+      "to": "hollow-caravan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-drifting-road",
+      "to": "hollow-caravan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-drifting-road",
+      "to": "the-passenger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-drifting-road",
+      "to": "milestone-cipher",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "hollow-caravan",
+      "to": "the-passenger",
+      "when": {
+        "op": "always"
+      },
+      "note": "The caravan passes; something stays."
+    },
+    {
+      "from": "hollow-caravan",
+      "to": "fourth-milestone",
+      "when": {
+        "op": "always"
+      },
+      "note": "Rolled under; the road spits you back at the plinth at dawn."
+    },
+    {
+      "from": "the-passenger",
+      "to": "milestone-cipher",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "milestone-cipher",
+      "to": "vault-of-roads",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-of-roads",
+      "to": "the-last-measure",
+      "when": {
+        "op": "always"
+      },
+      "note": "False milestone destroyed."
+    },
+    {
+      "from": "vault-of-roads",
+      "to": "ending-city-adrift",
+      "when": {
+        "op": "always"
+      },
+      "note": "Ashlow keeps the socket."
+    },
+    {
+      "from": "the-last-measure",
+      "to": "ending-roads-hold",
+      "when": {
+        "op": "eq",
+        "flag": "cage-occupied",
+        "value": true
+      }
+    },
+    {
+      "from": "the-last-measure",
+      "to": "ending-city-adrift",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-last-measure",
+      "to": "ending-new-cartographer",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "quiet-toll",
+      "title": "Cooper's Slip",
+      "combatants": [
+        {
+          "id": "hook-porters",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "eyres-second",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "salt-road-gate",
+      "onDefeat": "quiet-market"
+    },
+    {
+      "id": "hollow-caravan-passage",
+      "title": "Six Minutes of Lanterns",
+      "combatants": [
+        {
+          "id": "road-lost-outriders",
+          "statblock": "skeleton",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "drover-shades",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "fog",
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 4
+      },
+      "onVictory": "the-passenger",
+      "onDefeat": "fourth-milestone",
+      "onFlee": "the-passenger"
+    },
+    {
+      "id": "false-milestone-fight",
+      "title": "The Socket in the Plinth",
+      "combatants": [
+        {
+          "id": "false-milestone",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hpOverride": 40,
+          "hostile": true
+        },
+        {
+          "id": "corvine-ashlow",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "road-breakers",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "false-milestone"
+      },
+      "onVictory": "the-last-measure",
+      "onDefeat": "ending-city-adrift",
+      "onFlee": "ending-city-adrift"
+    }
+  ]
+}

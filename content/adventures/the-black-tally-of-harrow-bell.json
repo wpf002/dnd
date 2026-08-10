@@ -1,0 +1,919 @@
+{
+  "id": "the-black-tally-of-harrow-bell",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Black Tally of Harrow Bell",
+    "premise": "Ore has stopped coming out of the Widow Seam and three miners are missing, and every thread of the trouble leads down to a walled-up counting room where the mining company's first clerk was left with his ledger.",
+    "tone": [
+      "beginner-classic"
+    ],
+    "tier": "local",
+    "partyLevel": 2,
+    "narrationVoice": "Warm, plainspoken frontier storyteller — short sentences, lantern-light detail, and a steady hand on the rules so a new player never feels lost.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The pump-boy Tibb appears only as a voice, a chalk mark, or safely accounted for; never place a child in on-screen danger."
+    },
+    "provenance": "flint"
+  },
+  "entry": "bell-and-bad-air",
+  "beats": [
+    {
+      "id": "bell-and-bad-air",
+      "kind": "threshold",
+      "title": "Bell and Bad Air",
+      "prose": "Harrow Bell is one crooked street of plank buildings pinned between two spoil heaps. The headframe of the Widow Seam stands over it all like a gallows with a wheel on top, and the wheel is not turning. Miners loiter in the road with their lamps unlit. A tally board outside the company office lists three names circled in chalk: Dunnet Fay, Marek Osp, Little Tibb's father. Nobody will say aloud what everyone is thinking — that the ore stopped and the water rose in the same week, and that the company knew first.",
+      "readAloud": "The stamp mill is silent. In a mining town, silence costs money, and somebody in Harrow Bell is already deciding who will pay for it.",
+      "art": "art-the-black-tally-of-harrow-bell-harrow-bell-headframe",
+      "options": [
+        {
+          "id": "opt-to-lantern",
+          "label": "Buy a round at the Crooked Lantern and let the miners talk.",
+          "target": "crooked-lantern",
+          "effects": []
+        },
+        {
+          "id": "opt-to-counting-house",
+          "label": "Present yourselves at the company counting house.",
+          "target": "counting-house",
+          "effects": []
+        },
+        {
+          "id": "opt-straight-down",
+          "label": "Skip the talking and slip up to the headframe unnoticed.",
+          "target": "headframe-descent",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 12,
+            "onFailure": "pump-house-quarrel"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crooked-lantern",
+      "kind": "social",
+      "title": "The Crooked Lantern",
+      "prose": "The taproom smells of wet wool and tallow. Sable Innish of the Free Pick — a wiry woman with a broken thumbnail and a ledger of her own — holds the long table. She says the company sank a new crosscut into old ground last month, against the survey, and hit something that talks back: knocking in the walls, in threes. Old Wend the timberman mutters about \"Vaile's room,\" and then refuses to say more without a drink he will not accept.",
+      "readAloud": "Sable taps the table three times with her knuckle. Then twice. Then three. 'That's what the pump-boy heard through the pipe. That ain't water, friend.'",
+      "art": "art-the-black-tally-of-harrow-bell-crooked-lantern-taproom",
+      "options": [
+        {
+          "id": "opt-side-with-union",
+          "label": "Swear to the Free Pick that you'll bring back the truth, not a story.",
+          "target": "headframe-descent",
+          "effects": [
+            {
+              "flag": "union-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-ask-company-side",
+          "label": "Hear the company's version before you judge.",
+          "target": "counting-house",
+          "effects": []
+        },
+        {
+          "id": "opt-peek-pumps",
+          "label": "Go look at the pump house yourselves, invitation or not.",
+          "target": "pump-house-quarrel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "counting-house",
+      "kind": "social",
+      "title": "Quarrow's Counting House",
+      "prose": "Aldis Quarrow is a soft-handed man in a hard-handed town, and he keeps his office warm enough to sweat in. He offers forty silver each to go down, clear whatever fouled the sump, and bring up the three missing men. He also offers, unasked, a theory: the Free Pick sabotaged the pumps. On the wall behind him hangs a framed survey of the Widow Seam with one gallery inked over in black.",
+      "readAloud": "'Mining is arithmetic,' Quarrow says. 'Water in, water out. Men in, men out. When the numbers stop balancing, someone has been holding a page back.'",
+      "art": "art-the-black-tally-of-harrow-bell-quarrow-counting-house",
+      "options": [
+        {
+          "id": "opt-take-contract",
+          "label": "Take the company's coin and the company's map.",
+          "target": "headframe-descent",
+          "effects": [
+            {
+              "flag": "quarrow-contract",
+              "value": true
+            },
+            {
+              "flag": "mine-map",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-warn",
+          "label": "Refuse the contract and warn the Free Pick what he intends.",
+          "target": "crooked-lantern",
+          "effects": [
+            {
+              "flag": "union-trust",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-lift-survey",
+          "label": "Get that inked-over survey off the wall while he pours the wine.",
+          "target": "headframe-descent",
+          "effects": [
+            {
+              "flag": "mine-map",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 13,
+            "onFailure": "pump-house-quarrel"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "pump-house-quarrel",
+      "kind": "conflict",
+      "title": "Quarrel at the Pump House",
+      "prose": "The pump house shudders with the stroke of an engine that is pumping nothing. Three of Quarrow's hired hands lounge among the valves, and their foreman — Grett Dole, a bandit-captain in a company coat — steps out with a pick handle across his shoulders. He is not paid to explain the closed valve behind him. He is paid to be the reason nobody looks at it.",
+      "readAloud": "'Company property,' Dole says pleasantly. 'And company weather. Storms come up quick in here.'",
+      "art": "art-the-black-tally-of-harrow-bell-pump-house-brawl",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "pump-house-toughs",
+      "terminal": false
+    },
+    {
+      "id": "headframe-descent",
+      "kind": "transit",
+      "title": "Down the Widow Seam",
+      "prose": "The cage is a rust-scabbed box on a fraying rope, and the shaft breathes cold on the way down. At the two-hundred level the lamplight finds three ways on: a drift half-drowned in black water, a ladderway climbing sideways into dry ground, and a low haulage road where small barefoot tracks go out and do not come back. Somewhere below, water drips in a rhythm that is almost counting.",
+      "readAloud": "Three knocks come up through the timbers. Then two. Then three. The cage rope hums along with them.",
+      "art": "art-the-black-tally-of-harrow-bell-widow-seam-cage",
+      "options": [
+        {
+          "id": "opt-wade-drift",
+          "label": "Wade the flooded drift toward the sump.",
+          "target": "flooded-drift",
+          "effects": []
+        },
+        {
+          "id": "opt-climb-ladderway",
+          "label": "Take the dry ladderway over the water.",
+          "target": "sump-and-signal",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "flooded-drift"
+          }
+        },
+        {
+          "id": "opt-follow-tracks",
+          "label": "Follow the small barefoot tracks down the haulage road.",
+          "target": "kobold-picket",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "flooded-drift",
+      "kind": "conflict",
+      "title": "The Flooded Drift",
+      "prose": "Waist-deep water, cold as a coin. Lamps make one long yellow smear on the surface, and the smear breaks apart as things swim toward you — rats the size of terriers, driven up out of the lower levels by the rising sump and desperate enough to take on lanterns. The iron sump stair glints at the far end of the drift, forty feet of wading away.",
+      "readAloud": "The water is moving. Not with current. With backs.",
+      "art": "art-the-black-tally-of-harrow-bell-flooded-drift-rats",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "drift-rats",
+      "terminal": false
+    },
+    {
+      "id": "sump-and-signal",
+      "kind": "puzzle",
+      "title": "The Sump and the Signal",
+      "prose": "Above the sump, the pump pipe rises through solid rock, and somebody small has chalked a rhythm along it in careful marks: three strokes, two strokes, three. Tibb the pump-boy tapped messages down this pipe all summer, safe at the top — and all summer, something tapped back. The great valve wheel here has been closed with a bar jammed through the spokes, which is why the level is rising.",
+      "readAloud": "You put an ear to the pipe. Far below, patient as arithmetic: knock, knock, knock. Pause. Knock, knock. Pause.",
+      "art": "art-the-black-tally-of-harrow-bell-sump-valve-chalk",
+      "options": [
+        {
+          "id": "opt-learn-code",
+          "label": "Study the chalk and learn the tap-code, then answer it.",
+          "target": "sputterfang-parley",
+          "effects": [
+            {
+              "flag": "signal-code",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 12,
+            "onFailure": "kobold-picket"
+          }
+        },
+        {
+          "id": "opt-open-valve",
+          "label": "Pull the bar, open the valve, and press on into dry workings.",
+          "target": "chalk-gallery",
+          "effects": []
+        },
+        {
+          "id": "opt-wet-footprints",
+          "label": "Follow the wet footprints away from the sump.",
+          "target": "kobold-picket",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kobold-picket",
+      "kind": "conflict",
+      "title": "The Sputterfang Picket",
+      "prose": "The old workings narrow to a crawl, and the crawl has been fortified: a barricade of split timber, a curtain of tin cans on string, and behind it the Sputterfang clan — small, sooty, and extremely well-organized about slings. They are not defending treasure. They are defending a barricaded doorway further back, and they would clearly rather scare you off than die about it.",
+      "readAloud": "A voice like a kettle: 'Go up! Go up! Bad room, bad clerk, bad counting! We hold door, you hold nothing!'",
+      "art": "art-the-black-tally-of-harrow-bell-sputterfang-barricade",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sputterfang-picket",
+      "terminal": false
+    },
+    {
+      "id": "sputterfang-parley",
+      "kind": "social",
+      "title": "Grit-Grit of the Sputterfangs",
+      "prose": "Chief Grit-Grit wears a broken miner's lamp as a crown and sits on a crate stamped QUARROW CONSOLIDATED. Whether you came in talking, tapping, or roped between two slingers, the story is the same: the company's new crosscut broke a wall the Sputterfangs had been keeping bricked for two generations. Behind it is a counting room. In the counting room is a clerk who has not stopped working. Three miners went in. The knocking started the same night — and it is counting, chief says, counting up what the town owes.",
+      "readAloud": "'We not brave,' Grit-Grit admits. 'We only tidy. Wall broke. You made wall break. You go fix, or we flood whole level and lose good crawl.'",
+      "art": "art-the-black-tally-of-harrow-bell-gritgrit-crate-throne",
+      "options": [
+        {
+          "id": "opt-ally-sappers",
+          "label": "Trade: you handle the clerk, they lend you sappers and a way in.",
+          "target": "chalk-gallery",
+          "effects": [
+            {
+              "flag": "kobold-allies",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-code-demand",
+          "label": "Tap the code back at them and demand the sealed door, now.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "signal-code",
+            "value": true
+          },
+          "target": "sealed-door",
+          "effects": []
+        },
+        {
+          "id": "opt-go-alone",
+          "label": "Thank them for nothing and go on alone.",
+          "target": "sealed-door",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chalk-gallery",
+      "kind": "discovery",
+      "title": "The Chalk Gallery",
+      "prose": "A long dry gallery of the first workings, its walls crowded with sixty-year-old survey chalk — bearings, dates, and a hand that grows less steady toward the end. Here a crew wrote what they did: the founder's clerk, Ottren Vaile, had tallied every man's debt against his wages until nobody could ever leave, and when the crew came for the ledger, they walled Vaile in with it and let the workings take the blame. The last chalk line reads: HE IS STILL ADDING.",
+      "readAloud": "Boot-marks in the dust are fresh. Three sets going in. None coming out.",
+      "art": "art-the-black-tally-of-harrow-bell-chalk-gallery-survey",
+      "options": [
+        {
+          "id": "opt-read-survey",
+          "label": "Match the company survey to the chalk and find the black gallery.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "mine-map",
+            "value": true
+          },
+          "target": "sealed-door",
+          "effects": []
+        },
+        {
+          "id": "opt-pry-winze",
+          "label": "Pry the boarded winze at the gallery's end and squeeze through.",
+          "target": "sealed-door",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "kobold-picket"
+          }
+        },
+        {
+          "id": "opt-back-to-kobolds",
+          "label": "Go back and get the little folk to guide you.",
+          "target": "sputterfang-parley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sealed-door",
+      "kind": "decision",
+      "title": "The Bricked Door",
+      "prose": "The company's new crosscut ends in a wall that was never on any map: dressed stone, mortared with slag, and stamped with the old brand of Harrow Bell's first company. A hole has been knocked through it at shoulder height and hastily stuffed with a coat. Through the gap comes lamp-warm air that should not exist, the scratch of a nib, and — steady as a pulse — three knocks, two knocks, three.",
+      "readAloud": "Someone has chalked a running sum on the inside of the brick. It ends: TOWN OF HARROW BELL — BALANCE DUE.",
+      "art": "art-the-black-tally-of-harrow-bell-bricked-door-gap",
+      "options": [
+        {
+          "id": "opt-break-seal",
+          "label": "Take picks to the brick and go in loud.",
+          "target": "tallyroom",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "tallyroom"
+          }
+        },
+        {
+          "id": "opt-kobold-sap",
+          "label": "Let the Sputterfang sappers undermine the frame for a quiet entry.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "kobold-allies",
+            "value": true
+          },
+          "target": "tallyroom",
+          "effects": []
+        },
+        {
+          "id": "opt-seal-forever",
+          "label": "Wall it up, cut the pumps, and let the water have it.",
+          "target": "ending-sealed-again",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tallyroom",
+      "kind": "climax",
+      "title": "The Tallyroom",
+      "prose": "Sixty years of dark, and yet a candle burns on the desk. Ottren Vaile still sits at his books, a skeleton in a rotted collar, pen scratching down a column that has no bottom. Two more sit on stools flanking him — the newest hands, in miners' boots not yet gone to rot. The great ledger lies open, and every name in Harrow Bell is written in it. When Vaile lifts his skull, the knocking stops, and he reaches for a fresh line.",
+      "readAloud": "'Late,' says the clerk, in a voice like a page turning. 'Interest has been accruing. Sit down, and be entered.'",
+      "art": "art-the-black-tally-of-harrow-bell-tallyroom-clerk-desk",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "tallyroom-reckoning",
+      "terminal": false
+    },
+    {
+      "id": "ledger-in-hand",
+      "kind": "decision",
+      "title": "The Black Tally",
+      "prose": "The clerk comes apart into a drift of collar-bone and brass buttons, and the candle finally goes out. What remains is the ledger: heavy as a paving stone, warm to the touch, and — you find, turning pages — perfectly accurate. Every debt the company ever invented, every wage it clipped, every name it owned. The three missing men lie behind you, past helping, but their marks are on the last page, and so is Tibb's father's. There is a brazier in the corner with dry coal still in it.",
+      "readAloud": "The numbers are true. That is the awful part. Whoever holds this book holds Harrow Bell by the throat.",
+      "art": "art-the-black-tally-of-harrow-bell-black-tally-ledger",
+      "options": [
+        {
+          "id": "opt-burn-ledger",
+          "label": "Burn the Black Tally here, where it was made.",
+          "target": "ending-ash",
+          "effects": []
+        },
+        {
+          "id": "opt-carry-up",
+          "label": "Carry it up the shaft into daylight and let it be read.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "quarrow-contract",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "union-trust",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-daylight-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-leave-it-walled",
+          "label": "Set it back on the desk and brick the room up for good.",
+          "target": "ending-sealed-again",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-ash",
+      "kind": "ending",
+      "title": "Ending: Ash in the Sump",
+      "prose": "The Black Tally burns badly and long, and the smoke goes out through the crosscut and up the ventilation raise, so that all Harrow Bell smells of scorched paper by evening. With the valve open, the water drops a foot a day. The Sputterfangs rebuild their wall on the far side with company brick and no permission. Quarrow claims the flood was sabotage; Sable Innish claims it was arithmetic; nobody can prove either, because the proof is cinders. Three names come off the tally board and onto stones in the burying ground, and Tibb — safe on top the whole while, tapping his pipe — is taken in by the Free Pick and taught the trade. No one is owed anything now. In a mining town, that is nearly a miracle.",
+      "readAloud": "You came for missing men and left with an empty page. Sometimes that is the best a frontier gets.",
+      "art": "art-the-black-tally-of-harrow-bell-ending-burning-ledger",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-daylight-ledger",
+      "kind": "ending",
+      "title": "Ending: Read in Daylight",
+      "prose": "The ledger comes up the shaft in the cage, and Harrow Bell learns to read very fast. If you carried Quarrow's coin, he meets you at the headframe with a smile and a purse — and then finds his own name in the older columns, in his father's hand, and stops smiling forever. If you gave your word to the Free Pick, Sable Innish reads the book aloud on the tally board's own step until the stamp mill crew comes down off shift to listen. Either way the accounts of Harrow Bell are public now: which debts were forged, which wages were clipped, which men were owned by a page. There are lawyers coming, and worse than lawyers. The pumps run. The Widow Seam works again. And somewhere in the old ground, the Sputterfangs listen for knocking that does not come.",
+      "readAloud": "Truth in a mining town is like water: once it's above the floor, everyone gets wet.",
+      "art": "art-the-black-tally-of-harrow-bell-ending-ledger-daylight",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sealed-again",
+      "kind": "ending",
+      "title": "Ending: What the Water Keeps",
+      "prose": "Brick, slag, and a prayer nobody in Harrow Bell admits to knowing. Then the bar comes off the valve the wrong way and the sump climbs, and by morning the black gallery is a hundred feet under standing water. The company writes off the level; the Free Pick writes off the company; the Sputterfangs write off you, politely, and move their crawl two hundred feet east. The three miners stay where they lie, and their names stay circled in chalk until the rain takes them. It is quiet, which is what you wanted. But on still nights the pump pipe carries a rhythm up out of the drowned dark — three knocks, two knocks, three — and Harrow Bell has learned not to answer.",
+      "readAloud": "The wheel turns again on the shallow levels. Nobody sinks a new crosscut. Nobody says why.",
+      "art": "art-the-black-tally-of-harrow-bell-ending-drowned-gallery",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "bell-and-bad-air",
+      "to": "crooked-lantern",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-and-bad-air",
+      "to": "counting-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bell-and-bad-air",
+      "to": "headframe-descent",
+      "when": {
+        "op": "always"
+      },
+      "note": "Stealth 12; failure spills into the pump house."
+    },
+    {
+      "from": "bell-and-bad-air",
+      "to": "pump-house-quarrel",
+      "when": {
+        "op": "always"
+      },
+      "note": "Failed Stealth check."
+    },
+    {
+      "from": "crooked-lantern",
+      "to": "headframe-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crooked-lantern",
+      "to": "counting-house",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crooked-lantern",
+      "to": "pump-house-quarrel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "counting-house",
+      "to": "headframe-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "counting-house",
+      "to": "crooked-lantern",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "counting-house",
+      "to": "pump-house-quarrel",
+      "when": {
+        "op": "always"
+      },
+      "note": "Caught lifting the survey."
+    },
+    {
+      "from": "pump-house-quarrel",
+      "to": "headframe-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "pump-house-quarrel",
+      "to": "crooked-lantern",
+      "when": {
+        "op": "always"
+      },
+      "note": "Thrown out; wake up in the taproom."
+    },
+    {
+      "from": "headframe-descent",
+      "to": "flooded-drift",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "headframe-descent",
+      "to": "sump-and-signal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "headframe-descent",
+      "to": "kobold-picket",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-drift",
+      "to": "sump-and-signal",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "flooded-drift",
+      "to": "headframe-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sump-and-signal",
+      "to": "sputterfang-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sump-and-signal",
+      "to": "chalk-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sump-and-signal",
+      "to": "kobold-picket",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-picket",
+      "to": "sputterfang-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "kobold-picket",
+      "to": "chalk-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sputterfang-parley",
+      "to": "chalk-gallery",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sputterfang-parley",
+      "to": "sealed-door",
+      "when": {
+        "op": "eq",
+        "flag": "signal-code",
+        "value": true
+      },
+      "note": "Also reachable by simply walking off alone."
+    },
+    {
+      "from": "chalk-gallery",
+      "to": "sealed-door",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chalk-gallery",
+      "to": "kobold-picket",
+      "when": {
+        "op": "always"
+      },
+      "note": "Failed pry on the boarded winze."
+    },
+    {
+      "from": "chalk-gallery",
+      "to": "sputterfang-parley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sealed-door",
+      "to": "tallyroom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sealed-door",
+      "to": "ending-sealed-again",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tallyroom",
+      "to": "ledger-in-hand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tallyroom",
+      "to": "ending-sealed-again",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-in-hand",
+      "to": "ending-ash",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-in-hand",
+      "to": "ending-daylight-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ledger-in-hand",
+      "to": "ending-sealed-again",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "pump-house-toughs",
+      "title": "Grett Dole and the Company Hands",
+      "combatants": [
+        {
+          "id": "grett-dole",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "company-hands",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "water",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "headframe-descent",
+      "onDefeat": "crooked-lantern",
+      "onFlee": "headframe-descent"
+    },
+    {
+      "id": "drift-rats",
+      "title": "Driven Up by the Water",
+      "combatants": [
+        {
+          "id": "drift-vermin",
+          "statblock": "giant-rat",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach the iron sump stair at the far end of the flooded drift — forty feet of waist-deep water."
+      },
+      "onVictory": "sump-and-signal",
+      "onDefeat": "headframe-descent",
+      "onFlee": "headframe-descent"
+    },
+    {
+      "id": "sputterfang-picket",
+      "title": "Hold the Barricade",
+      "combatants": [
+        {
+          "id": "picket-slingers",
+          "statblock": "kobold",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "gritgrit-herald",
+          "statblock": "kobold",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "cover-heavy",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "sputterfang-parley",
+      "onDefeat": "sputterfang-parley",
+      "onFlee": "chalk-gallery"
+    },
+    {
+      "id": "tallyroom-reckoning",
+      "title": "The Clerk Closes the Books",
+      "combatants": [
+        {
+          "id": "tallykeeper",
+          "statblock": "skeleton",
+          "count": 1,
+          "hpOverride": 26,
+          "hostile": true
+        },
+        {
+          "id": "entered-hands",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "tallykeeper"
+      },
+      "onVictory": "ledger-in-hand",
+      "onDefeat": "ending-sealed-again",
+      "onFlee": "ending-sealed-again"
+    }
+  ]
+}

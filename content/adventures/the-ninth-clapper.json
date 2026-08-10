@@ -1,0 +1,859 @@
+{
+  "id": "the-ninth-clapper",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ninth Clapper",
+    "premise": "In sleepless Veyrmoor, three quiet powers each need the same thumb-sized bronze clapper missing from the city's ninth bell — and none of them wants to be seen wanting it.",
+    "tone": [
+      "urban-intrigue",
+      "whimsical-fey"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, neon-damp second person, like a night-shift dispatcher who has been to the other city and would rather not discuss it.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Sleepwalking crowds include no minors; the dream city's dangers land only on adults."
+    },
+    "provenance": "flint"
+  },
+  "entry": "nightside-terminal",
+  "beats": [
+    {
+      "id": "nightside-terminal",
+      "kind": "threshold",
+      "title": "Nightside Terminal, 3:12 A.M.",
+      "prose": "Veyrmoor does not sleep; it merely dims. The Nightside Terminal smells of wet concrete, cardamom, and ozone from the trams. Three people are waiting for you under three different lights, and each of them is pretending not to notice the other two. A municipal poster peels above the turnstiles: NINE BELLS FOR NINE HOURS — THE NINTH IS SILENT BY ORDINANCE.",
+      "readAloud": "A grey woman with a clipboard by the fare booth. A fixer in a foil jacket at the noodle window, steam curling round her like a familiar. And down the service alley, a lantern with moths in it, held by nobody you can see.",
+      "art": "art-the-ninth-clapper-nightside-terminal-arrivals",
+      "options": [
+        {
+          "id": "opt-terminal-bureau",
+          "label": "Present yourselves to the woman with the clipboard.",
+          "target": "bureau-offer",
+          "effects": []
+        },
+        {
+          "id": "opt-terminal-syndicate",
+          "label": "Buy a bowl of noodles beside the fixer in foil.",
+          "target": "syndicate-offer",
+          "effects": []
+        },
+        {
+          "id": "opt-terminal-moth",
+          "label": "Follow the moth-lantern down the service alley.",
+          "target": "mothkeeper-alley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bureau-offer",
+      "kind": "social",
+      "title": "The Bureau of Small Hours",
+      "prose": "Deputy Registrar Odile Vantch does not blink often enough. She speaks of the ninth bell of Marrowgate Tower the way one speaks of a plumbing fault: a small bronze clapper, lost from municipal custody nine nights ago, currently in private hands. The Bureau wishes it recovered and melted into the city seal. Quietly. There is a form. There is always a form.",
+      "readAloud": "\"Veyrmoor is a city of productive hours,\" she says. \"A ringing ninth bell would give the citizenry ideas. Ideas cost overtime. Sign here, and here, and initial the box that says you will not listen to it.\"",
+      "art": "art-the-ninth-clapper-bureau-of-small-hours-desk",
+      "options": [
+        {
+          "id": "opt-bureau-accept",
+          "label": "Take the writ of recovery and the Bureau's stamped coin.",
+          "target": "courier-trail",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "bureau"
+            }
+          ]
+        },
+        {
+          "id": "opt-bureau-files",
+          "label": "Ask to see the custody file before agreeing to anything.",
+          "target": "records-of-small-hours",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "archive-nightshift"
+          }
+        },
+        {
+          "id": "opt-bureau-decline",
+          "label": "Decline, but let her keep talking until she names the courier.",
+          "target": "mothkeeper-alley",
+          "effects": [
+            {
+              "flag": "knows-courier",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "syndicate-offer",
+      "kind": "social",
+      "title": "The Noodle Window",
+      "prose": "Kesh Oroloi of the Filament Syndicate sells metered sleep by the quarter-hour: coin in the slot, dream for twelve minutes, wake refreshed and slightly poorer. She is unbothered, generous with broth, and very interested in a certain bronze trinket that must never, under any circumstance, be rung. Free sleep would ruin her margins.",
+      "readAloud": "\"Everyone in this terminal wants the same little thing tonight,\" Kesh says, tapping her chopsticks twice on the counter. \"The difference is that I'll pay you and won't file anything about it afterward.\"",
+      "art": "art-the-ninth-clapper-noodle-window-fixer",
+      "options": [
+        {
+          "id": "opt-syndicate-retainer",
+          "label": "Pocket the retainer — three sleep-tokens and a name.",
+          "target": "courier-trail",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "syndicate"
+            }
+          ]
+        },
+        {
+          "id": "opt-syndicate-haggle",
+          "label": "Haggle for the pawn-lot number instead of money.",
+          "target": "quiet-and-sons",
+          "effects": [
+            {
+              "flag": "knows-courier",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 13,
+            "onFailure": "courier-trail"
+          }
+        },
+        {
+          "id": "opt-syndicate-walk",
+          "label": "Thank her for the broth and walk toward the moth-light.",
+          "target": "mothkeeper-alley",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mothkeeper-alley",
+      "kind": "discovery",
+      "title": "The Mothkeeper's Alley",
+      "prose": "The lantern is held by Sable Lampwick, who is mostly a coat, a courtesy, and a great many moths. She lights the alley lamps of a city that hasn't needed lamplighters in eighty years, and she serves the Thistlewharf Court of Mirrenveyr — Veyrmoor's dreaming twin, laid over it like tracing paper. The Court would like the ninth bell to ring exactly once, so that a door might stay open.",
+      "readAloud": "\"Small things carry cities,\" she says, and a moth crawls out of her collar to inspect your pockets. \"One clapper. One chime. One street where both towns agree to be the same street. Is that so much to ask of a Tuesday?\"",
+      "art": "art-the-ninth-clapper-mothkeeper-lantern-alley",
+      "options": [
+        {
+          "id": "opt-moth-courtesy",
+          "label": "Swear the small courtesy and take the Court's errand.",
+          "target": "courier-trail",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "court"
+            },
+            {
+              "flag": "owes-courtesy",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-moth-memory",
+          "label": "Trade her one dull memory for eyes that see the other city.",
+          "target": "courier-trail",
+          "effects": [
+            {
+              "flag": "dream-attuned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-moth-ledgers",
+          "label": "Ask only where the clapper went; she says: the tram ledgers.",
+          "target": "records-of-small-hours",
+          "effects": [
+            {
+              "flag": "knows-courier",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "records-of-small-hours",
+      "kind": "puzzle",
+      "title": "Ledger Stacks, Sub-Level Four",
+      "prose": "Nine decades of tram tickets, sorted by hour rather than date, because the Bureau believes hours are the only real unit. Somewhere in the drifts is the route of Pell Marrow, night courier, who sleepwalks his last delivery every shift and cannot remember what he carried. The stacks hum. Filing here is done after closing, by things that were once very good at filing.",
+      "art": "art-the-ninth-clapper-tram-ledger-stacks",
+      "options": [
+        {
+          "id": "opt-records-cross-index",
+          "label": "Cross-index the 3 A.M. tickets against pawn receipts.",
+          "target": "quiet-and-sons",
+          "effects": [
+            {
+              "flag": "knows-courier",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "archive-nightshift"
+          }
+        },
+        {
+          "id": "opt-records-wake",
+          "label": "Ring the service bell and ask the night staff directly.",
+          "target": "archive-nightshift",
+          "effects": []
+        },
+        {
+          "id": "opt-records-slip",
+          "label": "Take what you've got and slip out before the stacks notice.",
+          "target": "courier-trail",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-nightshift",
+      "kind": "conflict",
+      "title": "The Night Shift Objects",
+      "prose": "Empty clerical plate unfolds from the coat-stands, gauntlets full of rubber stamps. Two dry things that used to be overdue-notice clerks rise from between the shelves. They do not want you dead, particularly. They want you processed, and processing takes longer than escaping.",
+      "art": "art-the-ninth-clapper-nightshift-filing-remnants",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "filing-remnants",
+      "terminal": false
+    },
+    {
+      "id": "courier-trail",
+      "kind": "transit",
+      "title": "The Sleepwalkers' Route",
+      "prose": "At 3:40 the sleepwalkers come out — office cleaners, bakers, insomniac clerks — walking the old tram lines with their eyes half-shut, dreaming Mirrenveyr's streets over Veyrmoor's. Pell Marrow is among them, satchel empty, still making a delivery he made nine nights ago. Follow the parade and you follow the clapper.",
+      "readAloud": "Neon reflects wrong in the tram windows: in the glass, the crowd is carrying paper lanterns and walking on water.",
+      "art": "art-the-ninth-clapper-sleepwalk-courier-chase",
+      "options": [
+        {
+          "id": "opt-trail-rooftops",
+          "label": "Cut ahead across the fire escapes and gutter-boards.",
+          "target": "quiet-and-sons",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 14,
+            "onFailure": "pawnshop-scuffle"
+          }
+        },
+        {
+          "id": "opt-trail-parade",
+          "label": "Walk with the sleepwalkers where they walk through the glass.",
+          "target": "mirrorline-crossing",
+          "effects": []
+        },
+        {
+          "id": "opt-trail-tickets",
+          "label": "Buy Pell's pockets out for coffee money and read his stubs.",
+          "target": "quiet-and-sons",
+          "effects": [
+            {
+              "flag": "knows-courier",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "quiet-and-sons",
+      "kind": "social",
+      "title": "Quiet & Sons, Open All Night",
+      "prose": "Ambrose Quiet buys sleep, keepsakes, and inconvenient bronze. Lot 909 sits in a velvet tray beneath the counter: a clapper the length of a thumb, warm, faintly ringing when nobody looks at it. Two Filament collectors are already at the counter with a crate and a receipt, arguing about paperwork. Pell Marrow dozes upright by the door, still waiting to be told where to take it.",
+      "readAloud": "\"I don't sell to bells,\" Ambrose says, without looking up. \"Bells always want a discount.\"",
+      "art": "art-the-ninth-clapper-quiet-and-sons-pawnshop",
+      "options": [
+        {
+          "id": "opt-pawn-trade",
+          "label": "Pay Ambrose in a memory he can resell twice.",
+          "target": "mirrorline-crossing",
+          "effects": [
+            {
+              "flag": "has-clapper",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 14,
+            "onFailure": "pawnshop-scuffle"
+          }
+        },
+        {
+          "id": "opt-pawn-lift",
+          "label": "Lift lot 909 while the collectors quarrel over the receipt.",
+          "target": "mirrorline-crossing",
+          "effects": [
+            {
+              "flag": "has-clapper",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "pawnshop-scuffle"
+          }
+        },
+        {
+          "id": "opt-pawn-follow",
+          "label": "Let the Syndicate crate it, and follow the crate.",
+          "target": "mirrorline-crossing",
+          "effects": [
+            {
+              "flag": "has-clapper",
+              "value": false
+            },
+            {
+              "flag": "syndicate-alerted",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "pawnshop-scuffle",
+      "kind": "conflict",
+      "title": "Collection in Progress",
+      "prose": "Foreman Dessa Trell decides the paperwork can wait and the witnesses cannot. Her collectors put their shoulders into the aisles of clocks and cutlery. Worse: Pell Marrow wakes halfway, panicking in two cities at once, and wanders straight into the middle of it. Keep the courier breathing and the shop's ledger will fall open on your side.",
+      "art": "art-the-ninth-clapper-pawnshop-collectors-brawl",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "syndicate-alerted",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "encounter": "syndicate-collectors",
+      "terminal": false
+    },
+    {
+      "id": "mirrorline-crossing",
+      "kind": "threshold",
+      "title": "The Mirrorline",
+      "prose": "The 4 A.M. tram takes a curve it isn't supposed to and the windows stop reflecting. Beyond the glass lies Mirrenveyr: the same metropolis, dreamed slightly kinder and much stranger — traffic of paper boats, a skyline of unfinished thoughts, and everywhere the eight bells of Marrowgate ringing while the ninth stands mute above them all.",
+      "readAloud": "Step down onto the platform and your footsteps arrive a moment before you do.",
+      "art": "art-the-ninth-clapper-mirrorline-tram-window",
+      "options": [
+        {
+          "id": "opt-cross-court",
+          "label": "Accept the Court's invitation barge at Thistlewharf.",
+          "target": "thistlewharf-revel",
+          "effects": []
+        },
+        {
+          "id": "opt-cross-underline",
+          "label": "Ride the Underline straight to the carillon stair.",
+          "target": "carillon-watch",
+          "effects": []
+        },
+        {
+          "id": "opt-cross-attune",
+          "label": "Stand still until the dream agrees you belong here.",
+          "target": "thistlewharf-revel",
+          "effects": [
+            {
+              "flag": "dream-attuned",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "thistlewharf-revel",
+      "kind": "social",
+      "title": "The Marquess of Quiet Streets",
+      "prose": "Thistlewharf is a revel on a moored barge of borrowed sleep: dancers in tram-conductor coats, a band of glass bottles, cake made of remembered cake. Bramble Ashgrey, Marquess of Quiet Streets, is courteous, delighted, and entirely unwilling to say aloud what one chime would actually do to Veyrmoor's mornings. Courtesies here are currency and debts here are architecture.",
+      "readAloud": "\"One ring,\" the Marquess says, holding out a hand like an usher. \"Then the two cities become one street, and nobody in either has to work at four in the morning again. Tell me which part of that you object to.\"",
+      "art": "art-the-ninth-clapper-thistlewharf-revel-barge",
+      "options": [
+        {
+          "id": "opt-revel-bargain",
+          "label": "Strike the bargain: the Court's chime, the Court's protection.",
+          "target": "bell-tower-of-nine",
+          "effects": [
+            {
+              "flag": "allegiance",
+              "value": "court"
+            }
+          ]
+        },
+        {
+          "id": "opt-revel-slip",
+          "label": "Dance once, promise nothing, and slip out toward the tower.",
+          "target": "carillon-watch",
+          "effects": []
+        },
+        {
+          "id": "opt-revel-warn",
+          "label": "Warn the Marquess the Syndicate is already in the dream.",
+          "target": "carillon-watch",
+          "effects": [
+            {
+              "flag": "owes-courtesy",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "carillon-watch",
+      "kind": "conflict",
+      "title": "The Carillon Stair",
+      "prose": "Nine landings, no railing, and the stairwell lit by eight ringing bells. The Bureau keeps a Silence on this stair — cast shadows peeled off lamplighters long since retired, tasked with ensuring nobody reaches the ninth landing. They do not shout. They simply thin the light and wait for you to tire on the climb.",
+      "art": "art-the-ninth-clapper-carillon-stair-shades",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "hush-shades",
+      "terminal": false
+    },
+    {
+      "id": "bell-tower-of-nine",
+      "kind": "climax",
+      "title": "The Ninth Landing",
+      "prose": "Both cities meet in this room. The ninth bell hangs mute and enormous, its throat empty, waiting for a thumb of bronze. Odile Vantch stands with a crucible and a form. Kesh Oroloi stands with a lockbox and a smile. The Marquess stands with an open door that leads to a street in two towns at once. All three are being very, very quiet, because whoever speaks first admits they need you.",
+      "readAloud": "The clapper is warm in your hand and it wants what small things always want: to be used exactly once, and to matter.",
+      "art": "art-the-ninth-clapper-bell-tower-of-nine-chamber",
+      "options": [
+        {
+          "id": "opt-tower-ring",
+          "label": "Fit the clapper and ring the ninth bell.",
+          "target": "ending-ninth-chime",
+          "effects": []
+        },
+        {
+          "id": "opt-tower-melt",
+          "label": "Drop it in the Registrar's crucible and sign the form.",
+          "target": "ending-melted-hush",
+          "effects": []
+        },
+        {
+          "id": "opt-tower-keep",
+          "label": "Keep it. Let three powers negotiate with you instead.",
+          "target": "ending-third-shift",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-ninth-chime",
+      "kind": "ending",
+      "title": "Ending: The Ninth Chime",
+      "prose": "One note, low enough to feel in the teeth of both cities. Veyrmoor's night shift stops mid-motion and dreams standing up; Mirrenveyr's paper boats come ashore on real asphalt. Thistlewharf's door stays open on Vantch Street, which now exists in two places and answers to neither. Vantch files an objection with a department that no longer keeps small hours. Kesh Oroloi, to her credit, is already selling maps. The city sleeps, badly, wonderfully, and forever slightly fey — and the Court remembers you are the ones who let it in.",
+      "art": "art-the-ninth-clapper-ending-two-cities-one-street",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-melted-hush",
+      "kind": "ending",
+      "title": "Ending: Stamped and Sealed",
+      "prose": "Bronze goes into the crucible; the ninth bell keeps its silence by ordinance, permanently. Veyrmoor wakes to another productive dawn that isn't quite a dawn, trams running, coffee pouring, nobody remembering the moth-lanterns. Sable Lampwick puts out her lamps one by one and does not look at you. You are paid in stamped coin that spends perfectly well, and every so often, at 3:12 A.M., you hear a note that isn't there and understand exactly what it cost.",
+      "art": "art-the-ninth-clapper-ending-crucible-and-form",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-third-shift",
+      "kind": "ending",
+      "title": "Ending: The Third Shift",
+      "prose": "You walk out of Marrowgate Tower with a thumb of warm bronze and three powers obliged to be polite to you. The Bureau grants a licence it insists it never granted. The Syndicate meters its sleep a little cheaper. The Court sends cake and moths and a standing invitation you'd be unwise to accept. Nobody rings the ninth bell — yet — and the whole of sleepless Veyrmoor now runs on a schedule with your name quietly in the margin, on the night shift that answers to nobody but you.",
+      "art": "art-the-ninth-clapper-ending-clapper-in-pocket",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "nightside-terminal",
+      "to": "bureau-offer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "nightside-terminal",
+      "to": "syndicate-offer",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "nightside-terminal",
+      "to": "mothkeeper-alley",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "bureau-offer",
+      "to": "records-of-small-hours",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "mothkeeper-alley",
+      "to": "records-of-small-hours",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "records-of-small-hours",
+      "to": "archive-nightshift",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-nightshift",
+      "to": "courier-trail",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "courier-trail",
+      "to": "quiet-and-sons",
+      "when": {
+        "op": "eq",
+        "flag": "knows-courier",
+        "value": true
+      },
+      "note": "They know Pell Marrow's route and the pawn lot."
+    },
+    {
+      "from": "courier-trail",
+      "to": "mirrorline-crossing",
+      "when": {
+        "op": "always"
+      },
+      "note": "Following the sleepwalkers through the glass."
+    },
+    {
+      "from": "quiet-and-sons",
+      "to": "mirrorline-crossing",
+      "when": {
+        "op": "eq",
+        "flag": "has-clapper",
+        "value": true
+      },
+      "note": "Lot 909 is in their pocket."
+    },
+    {
+      "from": "quiet-and-sons",
+      "to": "pawnshop-scuffle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "pawnshop-scuffle",
+      "to": "mirrorline-crossing",
+      "when": {
+        "op": "eq",
+        "flag": "has-clapper",
+        "value": false
+      },
+      "note": "The crate goes through the mirror without them; they chase it."
+    },
+    {
+      "from": "mirrorline-crossing",
+      "to": "thistlewharf-revel",
+      "when": {
+        "op": "eq",
+        "flag": "dream-attuned",
+        "value": true
+      },
+      "note": "Dream-attuned guests are welcomed aboard the barge."
+    },
+    {
+      "from": "mirrorline-crossing",
+      "to": "carillon-watch",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "thistlewharf-revel",
+      "to": "bell-tower-of-nine",
+      "when": {
+        "op": "eq",
+        "flag": "owes-courtesy",
+        "value": true
+      },
+      "note": "The Court calls in the courtesy and clears the stair."
+    },
+    {
+      "from": "thistlewharf-revel",
+      "to": "carillon-watch",
+      "when": {
+        "op": "eq",
+        "flag": "syndicate-alerted",
+        "value": true
+      },
+      "note": "Filament collectors are already climbing; the Silence is roused."
+    },
+    {
+      "from": "carillon-watch",
+      "to": "bell-tower-of-nine",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "carillon-watch",
+      "to": "ending-melted-hush",
+      "when": {
+        "op": "always"
+      },
+      "note": "Driven from the stair, the Bureau collects the clapper."
+    },
+    {
+      "from": "bell-tower-of-nine",
+      "to": "ending-ninth-chime",
+      "when": {
+        "op": "eq",
+        "flag": "allegiance",
+        "value": "court"
+      }
+    },
+    {
+      "from": "bell-tower-of-nine",
+      "to": "ending-melted-hush",
+      "when": {
+        "op": "eq",
+        "flag": "allegiance",
+        "value": "bureau"
+      }
+    },
+    {
+      "from": "bell-tower-of-nine",
+      "to": "ending-third-shift",
+      "when": {
+        "op": "eq",
+        "flag": "allegiance",
+        "value": "syndicate"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "filing-remnants",
+      "title": "Processing Delay",
+      "combatants": [
+        {
+          "id": "clerical-plate",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "overdue-clerks",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "courier-trail",
+      "onDefeat": "mothkeeper-alley",
+      "onFlee": "courier-trail"
+    },
+    {
+      "id": "syndicate-collectors",
+      "title": "Foreman Trell Collects",
+      "combatants": [
+        {
+          "id": "dessa-trell",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "filament-collectors",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "pell-marrow",
+          "statblock": "bandit",
+          "count": 1,
+          "hpOverride": 9,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "cover-heavy",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "pell-marrow"
+      },
+      "onVictory": "quiet-and-sons",
+      "onDefeat": "mirrorline-crossing",
+      "onFlee": "mirrorline-crossing"
+    },
+    {
+      "id": "hush-shades",
+      "title": "The Bureau's Silence",
+      "combatants": [
+        {
+          "id": "lamplighter-shades",
+          "statblock": "shadow",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "vertical",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Set foot on the ninth landing beneath the mute bell."
+      },
+      "onVictory": "bell-tower-of-nine",
+      "onDefeat": "ending-melted-hush",
+      "onFlee": "thistlewharf-revel"
+    }
+  ]
+}

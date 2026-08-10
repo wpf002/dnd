@@ -60,7 +60,25 @@ const PALETTES = {
   archive: { sky: ['#2e2a24', '#17150f'], ground: '#100e0a', mist: '#b0a080', key: '#e8c880' },
 };
 
+/**
+ * Generated library adventures carry their tone tags in the manifest, so their
+ * palette comes from the tone rather than from hand-written slot keywords —
+ * there is no way to enumerate slot names for content that does not exist yet.
+ */
+const TONE_PALETTE = {
+  'gothic-horror': 'crypt', 'survival-horror': 'crypt', 'cosmic-horror': 'meridian',
+  'arctic-survival': 'sea', 'nautical': 'sea', 'jungle-survival': 'drowned',
+  'exploration': 'sea', 'west-marches': 'sea', 'sandbox': 'industry',
+  'urban-intrigue': 'industry', 'heist': 'industry', 'political-fantasy': 'archive',
+  'mystery': 'archive', 'anthology': 'archive', 'beginner-classic': 'interior',
+  'infernal-war': 'forge', 'high-adventure': 'forge', 'epic-finale': 'forge',
+  'megadungeon': 'crypt', 'whimsical-fey': 'votive',
+};
+let SLOT_TONE = new Map();
+
 function paletteFor(s) {
+  const t = SLOT_TONE.get(s);
+  if (t && PALETTES[TONE_PALETTE[t] ?? '']) return PALETTES[TONE_PALETTE[t]];
   // Meridian
   if (/(waking-scarred|scar-visions|scar-crossing|absent-gate|alternate-selves|unmade-regent|meridian-|dawnbound-court)/.test(s))
     return PALETTES.meridian;

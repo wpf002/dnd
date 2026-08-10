@@ -1,0 +1,1016 @@
+{
+  "id": "the-ten-lamps-of-the-long-night",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Ten Lamps of the Long Night",
+    "premise": "Ten settlements strung along a frozen lampline have lived under permanent night for eleven years, and now the lamps are going out one by one. The cold is not weather — it is being spent, deliberately, by something that keeps a ledger.",
+    "tone": [
+      "arctic-survival",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "Hushed and precise, like a lamplighter reading weather in the dark — short sentences, exact temperatures, no comfort offered that the ice will not take back.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Children of the ten lamps are spoken of, evacuated, or sheltered off-screen only."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-at-the-sixth-lamp",
+  "beats": [
+    {
+      "id": "arrival-at-the-sixth-lamp",
+      "kind": "threshold",
+      "title": "Arrival at the Sixth Lamp",
+      "prose": "The lampline runs from settlement to settlement like a stitched wound across the snowfield, each iron lamp burning oil that must be hand-carried through the dark. The Sixth Lamp — Sallow Hearth — still burns, but the flame stands unnaturally straight, as though the air has forgotten how to move. Three lamps down the line have already gone black, and the wardens count the days by how far the blackness has walked toward them.",
+      "readAloud": "Your breath does not plume. It falls. Frost gathers on your lashes in the time it takes to read the tally board nailed to the lamp post: SEVEN LIT. THREE DARK. LAST COUNT, ELEVEN NIGHTS AGO.",
+      "art": "art-the-ten-lamps-of-the-long-night-sixth-lamp-arrival",
+      "options": [
+        {
+          "id": "opt-into-frostmarket",
+          "label": "Follow the lampline down into Sallow Hearth's frostmarket.",
+          "target": "frostmarket-of-sallow-hearth",
+          "effects": []
+        },
+        {
+          "id": "opt-to-wellhead",
+          "label": "Climb to the wellhead above town, where the first lamp died.",
+          "target": "the-well-that-drinks-heat",
+          "effects": []
+        },
+        {
+          "id": "opt-open-snow",
+          "label": "Cut straight across the open snow toward the stalled caravan lights.",
+          "target": "wolves-on-the-lampline",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "frostmarket-of-sallow-hearth",
+      "kind": "social",
+      "title": "The Frostmarket of Sallow Hearth",
+      "prose": "The market runs under a roof of stitched hide, lit by tallow stubs and the breath of two hundred people who will not go home. An Ash Ledger clerk named Vesk Orrimund weighs oil by the thimble and writes every gram in a book chained to her wrist. Everyone here trades in the same two currencies: heat, and rumours about who is stealing it.",
+      "readAloud": "\"Ten lamps,\" says Vesk, without looking up. \"Ten tallies. But the book says heat left the Ninth Lamp before the Ninth Lamp went dark. Heat does not leave early. Someone is spending us.\"",
+      "art": "art-the-ten-lamps-of-the-long-night-frostmarket-hide-roof",
+      "options": [
+        {
+          "id": "opt-trade-oil",
+          "label": "Trade hard for a sealed jar of slow-burning lamp oil.",
+          "target": "the-frozen-ledger",
+          "effects": [
+            {
+              "flag": "has-lamp-oil",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 13,
+            "onFailure": "the-well-that-drinks-heat"
+          }
+        },
+        {
+          "id": "opt-ask-tallies",
+          "label": "Ask Vesk to open the chained book and show you the ten tallies.",
+          "target": "the-frozen-ledger",
+          "effects": []
+        },
+        {
+          "id": "opt-icehouse-road",
+          "label": "Take the icehouse road, toward the singing nobody will explain.",
+          "target": "choir-in-the-icehouse",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-well-that-drinks-heat",
+      "kind": "discovery",
+      "title": "The Well That Drinks Heat",
+      "prose": "Sallow Hearth's stone well is ringed by frost-veins that spread outward in deliberate spokes, like handwriting. Lower anything warm past the lip and the warmth does not dissipate — it is taken, quickly and evenly, the way a mouth takes water. Someone has chiselled a row of small notches into the inner wall, one for each lamp on the line, and the fourth notch is fresh.",
+      "art": "art-the-ten-lamps-of-the-long-night-wellhead-frost-veins",
+      "options": [
+        {
+          "id": "opt-lower-brand",
+          "label": "Lower a lit brand on a chain and time exactly how it dies.",
+          "target": "the-frozen-ledger",
+          "effects": [
+            {
+              "flag": "knows-cold-is-made",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "wolves-on-the-lampline"
+          }
+        },
+        {
+          "id": "opt-follow-veins",
+          "label": "Follow the frost-veins downhill to whatever they are feeding on.",
+          "target": "the-buried-caravan",
+          "effects": []
+        },
+        {
+          "id": "opt-back-to-market",
+          "label": "Go back down and put the notches in front of the Ash Ledger clerk.",
+          "target": "frostmarket-of-sallow-hearth",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wolves-on-the-lampline",
+      "kind": "conflict",
+      "title": "Wolves on the Lampline",
+      "prose": "Out past the last lit post the snow is blue-black and the wind has stopped entirely, which is worse. The pack that comes for you is starved thin and rimed white along the spine, and it does not howl — it works in silence, herding you away from the lampline and out toward the open drift. Survive long enough to reach the caravan lights and the pack will not follow into iron and lamp smoke.",
+      "art": "art-the-ten-lamps-of-the-long-night-silent-pack-in-drift",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "lampline-pack",
+      "terminal": false
+    },
+    {
+      "id": "dragged-under-the-drift",
+      "kind": "hazard",
+      "title": "Dragged Under the Drift",
+      "prose": "You come back to yourself under three feet of packed snow, in a pocket of air that smells of old smoke. Something dragged you here and left you, which means something intends to come back. The cold in this hollow is not the cold of weather; it has an attention to it, and it is counting your heartbeats.",
+      "readAloud": "Through the snow above, very faint, you hear a voice keeping time. Not words. Numbers.",
+      "art": "art-the-ten-lamps-of-the-long-night-snow-pocket-hollow",
+      "options": [
+        {
+          "id": "opt-dig-to-mast",
+          "label": "Dig upward toward the dark shape of a caravan mast.",
+          "target": "the-buried-caravan",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 12,
+            "onFailure": "crossing-the-black-shelf"
+          }
+        },
+        {
+          "id": "opt-crawl-lampline",
+          "label": "Crawl along the buried lampline toward the icehouse singing.",
+          "target": "choir-in-the-icehouse",
+          "effects": []
+        },
+        {
+          "id": "opt-listen-to-cold",
+          "label": "Lie still and listen to what the cold is counting.",
+          "target": "crossing-the-black-shelf",
+          "effects": [
+            {
+              "flag": "knows-cold-is-made",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-buried-caravan",
+      "kind": "discovery",
+      "title": "The Buried Caravan",
+      "prose": "Six sledges stand upright in the drift, harnessed and loaded, frozen mid-journey with their lamps still socketed and full. No bodies — only boot prints leading away in a single orderly file, none returning. In the lead sledge's strongbox something ticks with a slow, warm pulse: an Ash Ledger warm-charm, brass and hearth-glass, still holding a summer in it.",
+      "art": "art-the-ten-lamps-of-the-long-night-upright-frozen-sledges",
+      "options": [
+        {
+          "id": "opt-pry-strongbox",
+          "label": "Pry the strongbox and take the warm-charm.",
+          "target": "the-frozen-ledger",
+          "effects": [
+            {
+              "flag": "caravan-charm",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 14,
+            "onFailure": "cellar-of-the-quiet-feast"
+          }
+        },
+        {
+          "id": "opt-read-slate",
+          "label": "Read the drivers' last tally-slate, scratched in a failing hand.",
+          "target": "choir-in-the-icehouse",
+          "effects": [
+            {
+              "flag": "knows-cold-is-made",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-push-to-shelf",
+          "label": "Leave it all and push on across the black shelf.",
+          "target": "crossing-the-black-shelf",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-in-the-icehouse",
+      "kind": "social",
+      "title": "The Choir in the Icehouse",
+      "prose": "Forty of Sallow Hearth's grown folk stand in the icehouse with their coats open, singing a slow counting-song, and none of them are shivering. Their choirmaster, a former lampwarden called Hulda Marrowlin, says the cold offered a bargain the Ash Ledger never would: give it your warmth willingly and it will let your settlement stay lit. Every singer wears a chip of black ice on a thread, and each chip is very slightly warm.",
+      "readAloud": "\"You think it is a storm,\" Hulda says kindly. \"It is a creditor. It has always been a creditor. We are simply the first to pay on time.\"",
+      "art": "art-the-ten-lamps-of-the-long-night-open-coated-choir",
+      "options": [
+        {
+          "id": "opt-name-the-cold",
+          "label": "Name the cold aloud as a made thing, and dare the choir to deny it.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-cold-is-made",
+            "value": true
+          },
+          "target": "crossing-the-black-shelf",
+          "effects": [
+            {
+              "flag": "choir-token",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-sing-along",
+          "label": "Sing along until Hulda threads a chip of black ice onto your collar.",
+          "target": "the-frozen-ledger",
+          "effects": [
+            {
+              "flag": "choir-token",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-follow-choirmaster",
+          "label": "Slip out and follow the choirmaster's night tracks under the shelf.",
+          "target": "cellar-of-the-quiet-feast",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-frozen-ledger",
+      "kind": "puzzle",
+      "title": "The Frozen Ledger",
+      "prose": "The Ash Ledger's master book has ten columns, one per lamp, and an eleventh column nobody will admit to ruling — the debtor's side. Heat is entered as withdrawn on dates before each lamp went dark, and every withdrawal is signed with the same mark: a hollow circle with a bar through it. The tenth page is sealed under a lens of ice that will not melt near flame, only near patient breath.",
+      "art": "art-the-ten-lamps-of-the-long-night-chained-master-book",
+      "options": [
+        {
+          "id": "opt-thaw-tenth-page",
+          "label": "Breathe the tenth page free and read the name signed there.",
+          "target": "crossing-the-black-shelf",
+          "effects": [
+            {
+              "flag": "ledger-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 14,
+            "onFailure": "cellar-of-the-quiet-feast"
+          }
+        },
+        {
+          "id": "opt-count-tallies",
+          "label": "Set the withdrawals against the lamp deaths and find the pattern.",
+          "target": "choir-in-the-icehouse",
+          "effects": [
+            {
+              "flag": "knows-cold-is-made",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 12,
+            "onFailure": "wolves-on-the-lampline"
+          }
+        },
+        {
+          "id": "opt-abandon-book",
+          "label": "Shut the book. Take the shelf road while there is still oil to burn.",
+          "target": "crossing-the-black-shelf",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crossing-the-black-shelf",
+      "kind": "hazard",
+      "title": "Crossing the Black Shelf",
+      "prose": "Between the Sixth Lamp and the Tenth lies a shelf of clear black ice half a mile wide, thin as a windowpane and lit only by the stars caught inside it. Down there, under your boots, the lampline continues — posts, lamps, and a single file of orderly boot prints walking on the underside. Warmth is the only thing that holds the shelf together; where the cold has been spending, the ice remembers nothing and simply opens.",
+      "readAloud": "Something below keeps pace with you, upside down, and does not look up.",
+      "art": "art-the-ten-lamps-of-the-long-night-black-shelf-crossing",
+      "options": [
+        {
+          "id": "opt-burn-oil-circle",
+          "label": "Burn the sealed lamp oil in a moving circle and walk inside the warmth.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-lamp-oil",
+            "value": true
+          },
+          "target": "the-tenth-lamp",
+          "effects": []
+        },
+        {
+          "id": "opt-rope-across",
+          "label": "Rope up and cross in the dark, spread flat, one at a time.",
+          "target": "the-tenth-lamp",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "dragged-under-the-drift"
+          }
+        },
+        {
+          "id": "opt-detour-cellar",
+          "label": "Detour down into the cut cellars beneath the shelf.",
+          "target": "cellar-of-the-quiet-feast",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cellar-of-the-quiet-feast",
+      "kind": "conflict",
+      "title": "Cellar of the Quiet Feast",
+      "prose": "The cut cellars are where the ten lamps stored their winter meat, and something has been reorganising them. Sledge-drivers sit at a long ice table, arranged, hands folded, perfectly preserved and perfectly counted. The thing that seated them is still carving, and it resents an interruption more than it fears a blade.",
+      "art": "art-the-ten-lamps-of-the-long-night-ice-table-cellar",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ghoul-cellar",
+      "terminal": false
+    },
+    {
+      "id": "the-tenth-lamp",
+      "kind": "threshold",
+      "title": "The Tenth Lamp",
+      "prose": "The Tenth Lamp stands lit and alone at the end of the line, a stone tower with an oil-house below and a choir loft above, and its flame burns black-hearted and cold. Its door has no lock — only a plate of ice that thickens when you approach and thins when it approves of you. The settlement it was built to serve is gone: houses swept flat, hearths cold, nobody left to owe anything.",
+      "readAloud": "On the door plate, written in frost from the inside: TENTH TALLY OPEN. NAME YOUR ACCOUNT.",
+      "art": "art-the-ten-lamps-of-the-long-night-tenth-lamp-tower",
+      "options": [
+        {
+          "id": "opt-show-token",
+          "label": "Hold up the choir's chip of black ice and let the door read it.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "choir-token",
+            "value": true
+          },
+          "target": "the-cantors-loft",
+          "effects": []
+        },
+        {
+          "id": "opt-speak-truth",
+          "label": "Say aloud exactly what the cold is, and that you have counted it.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-cold-is-made",
+            "value": true
+          },
+          "target": "the-cantors-loft",
+          "effects": []
+        },
+        {
+          "id": "opt-climb-chain",
+          "label": "Climb the outer oil-chain to the loft shutters instead.",
+          "target": "the-cantors-loft",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "cellar-of-the-quiet-feast"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-cantors-loft",
+      "kind": "decision",
+      "title": "The Cantor's Loft",
+      "prose": "In the loft stands a figure in a lampwarden's rimed coat, hands folded over a ledger of ice, mouth open on a note too low to hear — the Hollow Cantor, who was the first warden of the Tenth Lamp and who made a bargain to keep his lamp lit forever. Around him, three former wardens stand in harness like sledge dogs. He offers you the same terms he offered the choir: sign your warmth over, and the lamps you love will burn until the ice takes something else.",
+      "readAloud": "\"I did not make the night,\" the Cantor says, without breath. \"I only agreed to keep the books. Ten lamps. Nine paid. Will you settle the tenth, or shall I?\"",
+      "art": "art-the-ten-lamps-of-the-long-night-hollow-cantor-loft",
+      "options": [
+        {
+          "id": "opt-speak-ledger-name",
+          "label": "Speak the name from the ledger's tenth page and break his authority to collect.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ledger-name",
+            "value": true
+          },
+          "target": "the-hollow-cantor",
+          "effects": []
+        },
+        {
+          "id": "opt-kindle-warmth",
+          "label": "Kindle stolen summer in his face — warm-charm or lamp oil, whatever you carry.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "caravan-charm",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "has-lamp-oil",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-hollow-cantor",
+          "effects": []
+        },
+        {
+          "id": "opt-accept-terms",
+          "label": "Accept the terms. Open your coat and let the counting begin.",
+          "target": "the-warden-of-the-cold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-hollow-cantor",
+      "kind": "climax",
+      "title": "The Hollow Cantor",
+      "prose": "The note he has been holding for eleven years finally lands, and the loft's air goes still enough to crack. The harnessed wardens come apart from their bindings, rattling, obedient, endless — but they are only interest on the debt. Destroy the Cantor and the account closes; leave him standing and the ice will simply hire more clerks.",
+      "art": "art-the-ten-lamps-of-the-long-night-cantor-battle-loft",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "cantor-choir",
+      "terminal": false
+    },
+    {
+      "id": "the-lamps-relit",
+      "kind": "ending",
+      "title": "The Lamps Relit",
+      "prose": "When the Cantor comes apart, the ice ledger goes with him, and every withdrawal written in it is voided at once — eleven years of stolen warmth returning along the lampline in a single long exhalation. The three dark lamps gutter, catch, and hold. The night does not end; the night was always going to be long here. But the wind moves again, the black shelf groans and thickens, and the choir in the icehouse feels the cold for the first time and starts, gratefully, to shiver.",
+      "readAloud": "In Sallow Hearth, someone repaints the tally board. TEN LIT. NONE OWED. The paint stays wet long enough to dry.",
+      "art": "art-the-ten-lamps-of-the-long-night-ten-lamps-burning",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-long-night-deepens",
+      "kind": "ending",
+      "title": "The Long Night Deepens",
+      "prose": "The counting finishes without you. What is left of your expedition is carried down the lampline in orderly file and seated at the ice table with the sledge-drivers, hands folded, tallied, preserved. In Sallow Hearth the flame stands unnaturally straight for another nine nights, and then it doesn't. The Ash Ledger's chained book records four new withdrawals in a hollow-circle hand, and the fifth lamp begins to dim.",
+      "readAloud": "The frost-veins spread outward from the well in deliberate spokes, and the handwriting is neater than before.",
+      "art": "art-the-ten-lamps-of-the-long-night-dimming-fifth-lamp",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-warden-of-the-cold",
+      "kind": "ending",
+      "title": "The Warden of the Cold",
+      "prose": "You sign. The warmth leaves you in one clean subtraction, and afterward you understand the arithmetic completely: ten lamps, a fixed debt, and someone required to keep honest books. The Hollow Cantor folds his ledger into your hands with something like relief and walks out into the drift to be spent. Sallow Hearth stays lit. So do the others — and every eleven years, in a rimed coat that fits you now, you will choose which settlement pays.",
+      "readAloud": "Your breath no longer plumes. It does not fall, either. You simply do not make any.",
+      "art": "art-the-ten-lamps-of-the-long-night-new-warden-ledger",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-at-the-sixth-lamp",
+      "to": "frostmarket-of-sallow-hearth",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-the-sixth-lamp",
+      "to": "the-well-that-drinks-heat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-at-the-sixth-lamp",
+      "to": "wolves-on-the-lampline",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "frostmarket-of-sallow-hearth",
+      "to": "the-frozen-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "frostmarket-of-sallow-hearth",
+      "to": "choir-in-the-icehouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "frostmarket-of-sallow-hearth",
+      "to": "the-well-that-drinks-heat",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed trade sends you back uphill"
+    },
+    {
+      "from": "the-well-that-drinks-heat",
+      "to": "the-frozen-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-well-that-drinks-heat",
+      "to": "the-buried-caravan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-well-that-drinks-heat",
+      "to": "frostmarket-of-sallow-hearth",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-well-that-drinks-heat",
+      "to": "wolves-on-the-lampline",
+      "when": {
+        "op": "always"
+      },
+      "note": "botched experiment draws the pack"
+    },
+    {
+      "from": "wolves-on-the-lampline",
+      "to": "the-buried-caravan",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "wolves-on-the-lampline",
+      "to": "dragged-under-the-drift",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "wolves-on-the-lampline",
+      "to": "frostmarket-of-sallow-hearth",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flight"
+    },
+    {
+      "from": "dragged-under-the-drift",
+      "to": "the-buried-caravan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "dragged-under-the-drift",
+      "to": "choir-in-the-icehouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "dragged-under-the-drift",
+      "to": "crossing-the-black-shelf",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-caravan",
+      "to": "the-frozen-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-caravan",
+      "to": "choir-in-the-icehouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-caravan",
+      "to": "crossing-the-black-shelf",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-buried-caravan",
+      "to": "cellar-of-the-quiet-feast",
+      "when": {
+        "op": "always"
+      },
+      "note": "the strongbox alarm carries downward"
+    },
+    {
+      "from": "choir-in-the-icehouse",
+      "to": "crossing-the-black-shelf",
+      "when": {
+        "op": "eq",
+        "flag": "knows-cold-is-made",
+        "value": true
+      }
+    },
+    {
+      "from": "choir-in-the-icehouse",
+      "to": "the-frozen-ledger",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-in-the-icehouse",
+      "to": "cellar-of-the-quiet-feast",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-frozen-ledger",
+      "to": "crossing-the-black-shelf",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-frozen-ledger",
+      "to": "choir-in-the-icehouse",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-frozen-ledger",
+      "to": "cellar-of-the-quiet-feast",
+      "when": {
+        "op": "always"
+      },
+      "note": "failed thawing shatters the lens and wakes the cellars"
+    },
+    {
+      "from": "the-frozen-ledger",
+      "to": "wolves-on-the-lampline",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossing-the-black-shelf",
+      "to": "the-tenth-lamp",
+      "when": {
+        "op": "eq",
+        "flag": "has-lamp-oil",
+        "value": true
+      }
+    },
+    {
+      "from": "crossing-the-black-shelf",
+      "to": "the-tenth-lamp",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossing-the-black-shelf",
+      "to": "cellar-of-the-quiet-feast",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crossing-the-black-shelf",
+      "to": "dragged-under-the-drift",
+      "when": {
+        "op": "always"
+      },
+      "note": "the shelf opens"
+    },
+    {
+      "from": "cellar-of-the-quiet-feast",
+      "to": "the-tenth-lamp",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "cellar-of-the-quiet-feast",
+      "to": "dragged-under-the-drift",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "cellar-of-the-quiet-feast",
+      "to": "crossing-the-black-shelf",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flight"
+    },
+    {
+      "from": "the-tenth-lamp",
+      "to": "the-cantors-loft",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-tenth-lamp",
+      "to": "cellar-of-the-quiet-feast",
+      "when": {
+        "op": "always"
+      },
+      "note": "a fall from the oil-chain"
+    },
+    {
+      "from": "the-cantors-loft",
+      "to": "the-hollow-cantor",
+      "when": {
+        "op": "eq",
+        "flag": "ledger-name",
+        "value": true
+      }
+    },
+    {
+      "from": "the-cantors-loft",
+      "to": "the-hollow-cantor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-cantors-loft",
+      "to": "the-warden-of-the-cold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-hollow-cantor",
+      "to": "the-lamps-relit",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter victory"
+    },
+    {
+      "from": "the-hollow-cantor",
+      "to": "the-long-night-deepens",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter defeat"
+    },
+    {
+      "from": "the-hollow-cantor",
+      "to": "the-warden-of-the-cold",
+      "when": {
+        "op": "always"
+      },
+      "note": "encounter flight — terms accepted late"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "lampline-pack",
+      "title": "The Silent Pack",
+      "combatants": [
+        {
+          "id": "rimed-wolves",
+          "statblock": "wolf",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "pack-mother",
+          "statblock": "dire-wolf",
+          "count": 1,
+          "hpOverride": 28,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "difficult",
+        "ice",
+        "open"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-buried-caravan",
+      "onDefeat": "dragged-under-the-drift",
+      "onFlee": "frostmarket-of-sallow-hearth"
+    },
+    {
+      "id": "ghoul-cellar",
+      "title": "The Quiet Feast",
+      "combatants": [
+        {
+          "id": "the-carver",
+          "statblock": "ghast",
+          "count": 1,
+          "hpOverride": 26,
+          "hostile": true
+        },
+        {
+          "id": "seated-guests",
+          "statblock": "ghoul",
+          "count": 2,
+          "hpOverride": 16,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "ice",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-tenth-lamp",
+      "onDefeat": "dragged-under-the-drift",
+      "onFlee": "crossing-the-black-shelf"
+    },
+    {
+      "id": "cantor-choir",
+      "title": "Closing the Tenth Tally",
+      "combatants": [
+        {
+          "id": "hollow-cantor",
+          "statblock": "wight",
+          "count": 1,
+          "hpOverride": 33,
+          "hostile": true
+        },
+        {
+          "id": "harnessed-wardens",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "vertical",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "hollow-cantor"
+      },
+      "onVictory": "the-lamps-relit",
+      "onDefeat": "the-long-night-deepens",
+      "onFlee": "the-warden-of-the-cold"
+    }
+  ]
+}

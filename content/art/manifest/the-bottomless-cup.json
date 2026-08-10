@@ -1,0 +1,90 @@
+{
+  "adventure": "the-bottomless-cup",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: megadungeon, anthology.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-bottomless-cup-taproom-ring-above-the-gullet",
+      "beat": "the-bottomless-cup",
+      "brief": "The Bottomless Cup — The taproom is built like a doughnut: benches, barrels and a bar-ring all facing inward toward a black circle of masonry twenty feet across. That is t"
+    },
+    {
+      "slot": "art-the-bottomless-cup-descent-book-purpose-claimed",
+      "beat": "landladys-ledger",
+      "brief": "Mother Vane's Ledger — Vane's ledger is a descent-book: names, dates, depths, and a column headed PURPOSE CLAIMED. Granary, it reads, forty times. Then Gaol, thirty. Then Se"
+    },
+    {
+      "slot": "art-the-bottomless-cup-greased-drum-and-failed-maps",
+      "beat": "the-winch-house",
+      "brief": "The Winch-House — A shed of grease and geared oak clings to the shaft's lip. The house cage descends on a drum marked in old depths: LARDER, GAOL, CHAPEL, and a fourth "
+    },
+    {
+      "slot": "art-the-bottomless-cup-sheaf-keystones-and-grain-chutes",
+      "beat": "larder-level",
+      "brief": "First Mouth: The Larder — Sixty feet down the shaft opens into vaulted bays, every keystone carved with a bound sheaf of wheat. Chutes angle away, glazed smooth by centuries of"
+    },
+    {
+      "slot": "art-the-bottomless-cup-chaff-swarm-and-bell-ringers",
+      "beat": "tithe-of-the-larder",
+      "brief": "The Larder Takes Its Tithe — The chaff erupts. Rats the size of terriers pour from a burst measure-bin, and behind them come two kobold tithe-takers in aprons stitched from grain-"
+    },
+    {
+      "slot": "art-the-bottomless-cup-shackle-keystones-inward-doors",
+      "beat": "the-gaol-level",
+      "brief": "Second Mouth: The Gaol — The stair ends in a corridor of iron doors, each with a slot, a number, and a slate. The same keystones are here — but the sheaves are chiselled into "
+    },
+    {
+      "slot": "art-the-bottomless-cup-slate-tallies-and-old-spellings",
+      "beat": "tally-of-names",
+      "brief": "The Tally of Names — The tallies are not sentences served. They are portions issued: one stroke per ration, one slate per mouth fed. The names at the bottom are not prison"
+    },
+    {
+      "slot": "art-the-bottomless-cup-swallowed-sun-boss-and-desk-rings",
+      "beat": "chapel-of-swallowed-sun",
+      "brief": "Third Mouth: The Chapel of the Swallowed Sun — A drum-shaped hall, gilt flaking from a ceiling boss carved as a sun going down a throat. Reading-desks in rings. Racks of scroll-cases, most empty, e"
+    },
+    {
+      "slot": "art-the-bottomless-cup-spectacled-scriveners-tally-hammer",
+      "beat": "concordance-parley",
+      "brief": "The Concordance of Depths — Nine hobgoblins in scholar's leather, spectacles lashed on with cord, led by Scrivener-Prime Vokath Ilm, who has a quill behind each ear and a tally-h"
+    },
+    {
+      "slot": "art-the-bottomless-cup-stair-that-changes-its-mind",
+      "beat": "the-dissenting-stair",
+      "brief": "Fourth Mouth: The Dissenting Stair — Below the chapel the disagreement stops being a matter of records. Treads are grain-chute one moment, cell-step the next, pew-rail the third; the rise"
+    },
+    {
+      "slot": "art-the-bottomless-cup-riveted-charter-armour",
+      "beat": "wardens-of-the-untruth",
+      "brief": "Wardens of the Untruth — The landing's centrepiece is a plinth-suit of fluted armour with a charter riveted across its breast — the Gullet's founding purpose, in letters deep "
+    },
+    {
+      "slot": "art-the-bottomless-cup-dry-well-first-digger",
+      "beat": "the-founders-remnant",
+      "brief": "Fifth Mouth: The First Digger — The fifth mouth is not a level. It is the bottom of a well — a true well, shaft-round, ringed with the original tool-marks, and dry as a throat. On it"
+    },
+    {
+      "slot": "art-the-bottomless-cup-capstone-and-black-water",
+      "beat": "the-hollow-purpose",
+      "brief": "The Hollow Purpose — Hessa Dowl comes apart into loose leaves of ledger-paper, and the well floor is left showing what she sat on: a capstone, tool-marked, with a handhold"
+    },
+    {
+      "slot": "art-the-bottomless-cup-wedged-capstone-quiet-taproom",
+      "beat": "ending-shaft-sealed",
+      "brief": "Ending: The Lid Held — You wedge the capstone home with Dowl's own tools, and bring the fourth mouth down behind you in a slide of chute-and-cell-and-pew. Grell redraws his "
+    },
+    {
+      "slot": "art-the-bottomless-cup-beer-slate-full-of-truth",
+      "beat": "ending-charter-published",
+      "brief": "Ending: The Slate Rewritten — You chalk it all onto Vane's beer-slate: granary, gaol, seminary, well, and the forger's hand under each. The taproom goes very quiet, then very loud."
+    },
+    {
+      "slot": "art-the-bottomless-cup-spring-bursting-the-taproom-floor",
+      "beat": "ending-cup-refilled",
+      "brief": "Ending: The Cup Refilled — The capstone lifts easier than it has any right to, and the well remembers its purpose all at once. Water climbs the five mouths in a single grey brea"
+    }
+  ]
+}

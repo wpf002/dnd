@@ -1,0 +1,935 @@
+{
+  "id": "the-last-hour-of-the-ninefold-seat",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Hour of the Ninefold Seat",
+    "premise": "The free city of Varrimond has three hours of wall left, and its Chancellor intends to spend them summoning the Ember Sovereign to break the siege — a bargain that would mortgage the city forever. The Ninth Seat of the Council stands empty, and whoever claims it can still dissolve the pact by vote.",
+    "tone": [
+      "epic-finale",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 8,
+    "narrationVoice": "Grave, close, and procedural — a war-clerk narrating the fall of a republic in the present tense, counting hours aloud.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Refugee families are present throughout; children are described as sheltered, shepherded, or off-page only. No on-screen injury to them."
+    },
+    "provenance": "flint"
+  },
+  "entry": "siege-gate",
+  "beats": [
+    {
+      "id": "siege-gate",
+      "kind": "threshold",
+      "title": "The Bastion Gate, Third Hour Before Dawn",
+      "prose": "Varrimond's outer gate has been bricked shut with rubble and prayer-tiles. Beyond it, the Ashen Concord's siege-fires make a second horizon; inside, a river of refugees presses toward the Chancery of the Ninefold Seat, where lamplight burns in every window and a bell that should not be rung is being oiled. Wall Warden Osca Ruhl, one arm splinted to her breastplate, meets you at the sally-door. 'Chancellor Vandry has cleared the sanctum. Whatever she means to call, she calls it before sunrise. You have until then, and I have four hundred spears.' Refugee families are being herded into the tithe-cellars, out of the coming noise.",
+      "readAloud": "Three hours. That is what Osca Ruhl gives you, and she gives it like a coin she cannot spare.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-bastion-gate-siege-fires",
+      "options": [
+        {
+          "id": "press-through-column",
+          "label": "Push up the refugee column to the Chancery steps.",
+          "target": "chancery-steps",
+          "effects": []
+        },
+        {
+          "id": "take-the-aqueduct",
+          "label": "Take Ruhl's key to the flooded undercroft and go beneath the argument.",
+          "target": "undercroft-descent",
+          "effects": []
+        },
+        {
+          "id": "demand-escort",
+          "label": "Demand a warden escort straight onto the Council floor.",
+          "target": "council-floor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "chancery-steps"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chancery-steps",
+      "kind": "social",
+      "title": "The Tallow Preacher on the Steps",
+      "prose": "Two thousand people fill the Chancery plaza, and Hessa Kroy stands above them on a fishmonger's crate with a tallow candle burning in each fist. 'They will sell you,' she cries, 'to a thing with a crown of coals — and they will call it governance.' She is not wrong, which is the difficulty. Her faithful have taken the shields of the dead off the wall carts. If the plaza breaks, Ruhl loses the spears she needs for the breach.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-tallow-preacher-plaza",
+      "options": [
+        {
+          "id": "speak-for-the-streets",
+          "label": "Take the crate and give the crowd something better than fear.",
+          "target": "council-floor",
+          "effects": [
+            {
+              "flag": "crowd-calmed",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Performance",
+            "dc": 14,
+            "onFailure": "crowd-riot"
+          }
+        },
+        {
+          "id": "slip-inside",
+          "label": "Let Kroy have her sermon; slip through the clerks' door.",
+          "target": "council-floor",
+          "effects": [
+            {
+              "flag": "crowd-calmed",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "face-the-faithful",
+          "label": "Stand in front of the shields and order the plaza cleared.",
+          "target": "crowd-riot",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crowd-riot",
+      "kind": "conflict",
+      "title": "The Plaza Breaks",
+      "prose": "Candles go over. Someone throws a paving stone, and the tallow faithful surge with looted wall-shields locked. These are Varrimonders — grocers, dyers, gravediggers — and Kroy fights at their front with a warden's poleaxe she has no right to carry. You do not need to kill them. You need to still be standing on the steps when Ruhl's whistle sounds and the cellars are sealed behind the last family.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-plaza-riot-shield-wall",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "chancery-mob",
+      "terminal": false
+    },
+    {
+      "id": "council-floor",
+      "kind": "social",
+      "title": "The Council of Nine, Eight Present",
+      "prose": "The Council chamber smells of hot wax and unwashed fear. Eight seats are filled; the ninth, the plague-seat, has stood empty eleven years, its cushion still under a linen shroud. Chancellor Ilbeth Vandry does not sit at all — she stands at the map table with the summoning writ open, her signature dry, seven counter-signatures beside it. 'The vote is taken,' she says without looking up. 'Unless someone here can produce a ninth voice, we are finished debating and I am going downstairs.' Archivist Pel Dunnow will not meet your eyes, and a Concord parley-lamp burns green in the outer hall.",
+      "readAloud": "Eleven years of a shrouded cushion, and tonight it is the only lever left in Varrimond.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-council-chamber-ninth-seat",
+      "options": [
+        {
+          "id": "invoke-the-mandate",
+          "label": "Invoke the plaza's mandate and demand the Ninth Seat be opened.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "crowd-calmed",
+            "value": true
+          },
+          "target": "archive-vault",
+          "effects": []
+        },
+        {
+          "id": "raid-the-archive",
+          "label": "Go into the Sealed Archive without leave and find the seat's charter.",
+          "target": "archive-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 15,
+            "onFailure": "ash-emissary"
+          }
+        },
+        {
+          "id": "follow-the-aide",
+          "label": "Follow Vandry's aide down the sanctum stair into the undercroft.",
+          "target": "undercroft-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "archive-vault",
+      "kind": "discovery",
+      "title": "The Sealed Archive",
+      "prose": "Ledger-stacks to the vaulted ceiling, and in a lead reliquary on the third shelf: the Seal of the Ninth Seat, a disc of grey glass with a city cut into it. Beside it, a codicil in Vandry's own hand, dated forty days ago — before the Concord ever crossed the Wend. She did not decide tonight. She has been paying installments on this summoning since spring, and the ninth councillor did not die of plague. Archivist Dunnow watches from the stair, weeping quietly, holding a lamp for you anyway.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-sealed-archive-reliquary",
+      "options": [
+        {
+          "id": "take-the-seal",
+          "label": "Take the Seal of the Ninth Seat and claim the empty voice.",
+          "target": "chancellor-study",
+          "effects": [
+            {
+              "flag": "ninth-seal",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "read-the-codicil",
+          "label": "Pocket the codicil and carry the truth to the Concord's legate.",
+          "target": "ash-emissary",
+          "effects": [
+            {
+              "flag": "truth-known",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "archivists-stair",
+          "label": "Take Dunnow's lamp and the archivists' stair down to the undercroft.",
+          "target": "undercroft-descent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ash-emissary",
+      "kind": "decision",
+      "title": "Legate Sabben Ost, Under the Green Lamp",
+      "prose": "The Concord's legate is a small, courteous man in a coat of grey scale, and he has brought his own chair. 'Marshal Vaun does not want Varrimond,' Sabben Ost says. 'He wants the thing your Chancellor is buying. We besieged you to stop the sale.' He slides a folded requisition across the table: forty days of Concord grain, redirected to Vandry's private household, signed by a hand you have seen tonight. 'Her sappers are under your east wall as we speak — mine, technically, but she opened the ground for them. Ask yourself who is selling whom.'",
+      "art": "art-the-last-hour-of-the-ninefold-seat-green-lamp-parley",
+      "options": [
+        {
+          "id": "take-the-proof",
+          "label": "Take Ost's proof and go straight up to Vandry's study.",
+          "target": "chancellor-study",
+          "effects": [
+            {
+              "flag": "truth-known",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-parley",
+          "label": "Refuse the parley and carry his threat back to the Council floor.",
+          "target": "council-floor",
+          "effects": []
+        },
+        {
+          "id": "break-the-parley",
+          "label": "Break the parley — go for the tunnel his sappers came in by.",
+          "target": "sappers-breach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undercroft-descent",
+      "kind": "transit",
+      "title": "Down Where the City Keeps Its Foundations",
+      "prose": "The undercroft is knee-deep in cistern water gone warm, and the warmth is the point: something above is drinking heat out of the stone. Chalk lines run along the vault ribs in fresh, careful hands, feeding upward toward the sanctum. From the east comes hammering — patient, professional, wrong. From the west, from behind a bricked arch stamped with eight council sigils, a voice says your names, politely, one at a time.",
+      "readAloud": "The water is warm. Nothing in Varrimond has been warm for a month.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-flooded-undercroft-chalk",
+      "options": [
+        {
+          "id": "toward-hammering",
+          "label": "Wade east toward the hammering.",
+          "target": "sappers-breach",
+          "effects": []
+        },
+        {
+          "id": "open-warden-corridor",
+          "label": "Open the bricked arch and speak to the thing that knows your names.",
+          "target": "warden-cell",
+          "effects": []
+        },
+        {
+          "id": "climb-understair",
+          "label": "Climb the wet under-stair straight to the sanctum doors.",
+          "target": "sanctum-threshold",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "sappers-breach"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warden-cell",
+      "kind": "puzzle",
+      "title": "The Bricked Warden",
+      "prose": "Behind the arch sits a figure of mortar and grave-linen in a chair of council oak: Ossim Grell, ninth councillor, bricked in alive eleven years ago for refusing a smaller version of tonight's bargain. He is not free and does not wish to be. 'The Ember Sovereign answers names, and Vandry has only her own,' he says. 'I have the city's. Answer me three things truly and I will lend it to your mouths. Or scrape my chalk, and the fire above will come thin and hungry and easy to break — but it will come.'",
+      "art": "art-the-last-hour-of-the-ninefold-seat-bricked-warden-chair",
+      "options": [
+        {
+          "id": "answer-three-questions",
+          "label": "Answer the Warden's three questions truly.",
+          "target": "sanctum-threshold",
+          "effects": [
+            {
+              "flag": "warden-bargain",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Insight",
+            "dc": 16,
+            "onFailure": "sappers-breach"
+          }
+        },
+        {
+          "id": "scour-the-chalk",
+          "label": "Scour the chalk lines and starve the summoning of its heat.",
+          "target": "sanctum-threshold",
+          "effects": [
+            {
+              "flag": "ritual-weakened",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-him-caged",
+          "label": "Leave him bricked and take the east tunnel instead.",
+          "target": "sappers-breach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sappers-breach",
+      "kind": "conflict",
+      "title": "Under the East Wall",
+      "prose": "The tunnel ends in a chamber of shored powder-kegs beneath Varrimond's east curtain, and the Concord's sapper crews are setting the last props: four hobgoblin sergeants calling time, goblin diggers scuttling with fuse-cord, and a mine-ogre swinging a maul the size of a door. Cut through them, reach the keystone prop, and bring the tunnel down on itself — before the fuse reaches the wall that Ruhl's four hundred are standing on.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-sapper-tunnel-powder-props",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [
+        {
+          "flag": "breach-sealed",
+          "value": true
+        }
+      ],
+      "encounter": "undercroft-sappers",
+      "terminal": false
+    },
+    {
+      "id": "chancellor-study",
+      "kind": "social",
+      "title": "Vandry's Study, One Hour Left",
+      "prose": "The Chancellor's study is stripped bare: no portraits, no ledgers, nothing she intends to keep. Ilbeth Vandry is putting on ceremonial grey and she is very tired. 'You think I am selling the city,' she says. 'I am buying it an owner who cannot be starved out. Vaun can wait us out in a month. The Sovereign cannot be waited out at all.' Somewhere below, the sanctum choir starts its count. She has an hour, and she knows exactly how many minutes of argument she can afford.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-stripped-study-grey-robe",
+      "options": [
+        {
+          "id": "show-the-proof",
+          "label": "Lay the forty-day codicil on her bare desk and name what it makes her.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "truth-known",
+            "value": true
+          },
+          "target": "sanctum-threshold",
+          "effects": [
+            {
+              "flag": "chancellor-swayed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "present-the-seal",
+          "label": "Set the Seal of the Ninth Seat before her and claim the vote.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ninth-seal",
+            "value": true
+          },
+          "target": "summoning-circle",
+          "effects": [
+            {
+              "flag": "chancellor-swayed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "say-nothing",
+          "label": "Say nothing. Walk down with her and decide at the door.",
+          "target": "sanctum-threshold",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sanctum-threshold",
+      "kind": "threshold",
+      "title": "The Sanctum Doors",
+      "prose": "Bronze doors, nine hand-spans thick, the ninefold seat carved across both leaves so that opening them splits the city in half. The seams glow the dull orange of a smith's floor. Inside, the choir counts down in a language that was old when Varrimond was a ford. Osca Ruhl's guards wait with a ram and no orders; Ruhl herself is up on the wall, where the horns have just started. Whatever goes through this door goes through it now.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-bronze-sanctum-doors",
+      "options": [
+        {
+          "id": "speak-city-name",
+          "label": "Speak the city's true name, lent to you by the Bricked Warden.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "warden-bargain",
+            "value": true
+          },
+          "target": "summoning-circle",
+          "effects": []
+        },
+        {
+          "id": "enter-sigil-gap",
+          "label": "Slip through the guttering gap where the starved chalk failed.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ritual-weakened",
+            "value": true
+          },
+          "target": "summoning-circle",
+          "effects": []
+        },
+        {
+          "id": "ram-the-doors",
+          "label": "Give Ruhl's guards the order and take the doors down.",
+          "target": "binding-duel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "summoning-circle",
+      "kind": "climax",
+      "title": "The Ninth Fire",
+      "prose": "The sanctum floor is one enormous seal, and eight councillors kneel at eight points of it, hands bloodied on the rim. At the ninth point there is nobody, and the fire that is arriving keeps looking there — a shape of coals and crowned smoke, half in the room, waiting on a voice from the empty seat to make the contract binding. Vandry stands at the focus stone with her palm open. The choir has reached three. Whatever fills the ninth point decides what Varrimond is by sunrise.",
+      "readAloud": "Three. The thing in the fire turns its crowned head toward the empty ninth point, patient as law.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-ninefold-seal-ember-arrival",
+      "options": [
+        {
+          "id": "call-the-ninth-vote",
+          "label": "Take the ninth point, show the Seal, and call the vote to dissolve the pact.",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "ninth-seal",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "chancellor-swayed",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-ninth-vote",
+          "effects": []
+        },
+        {
+          "id": "swear-the-pact",
+          "label": "Kneel at the ninth point and swear the pact yourselves — the wall will hold, at a price.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "breach-sealed",
+            "value": true
+          },
+          "target": "ending-pact-sworn",
+          "effects": []
+        },
+        {
+          "id": "shatter-the-focus",
+          "label": "Shatter the focus stone and fight whatever is already through.",
+          "target": "binding-duel",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "binding-duel",
+      "kind": "conflict",
+      "title": "The Herald in the Crown of Coals",
+      "prose": "What comes through is not the Sovereign — it is its herald, the part sent ahead to sign. It wears a councillor's grey and a crown of live coals, and it drags the sanctum's shadows up off the floor to stand as its clerks while two suits of chancery armour turn on their plinths to guard the unfinished seal. Kill the herald and the contract has no hand to hold the pen. The choir keeps counting anyway.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-coal-crowned-herald",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "ember-herald",
+      "terminal": false
+    },
+    {
+      "id": "ending-ninth-vote",
+      "kind": "ending",
+      "title": "Ending: The Empty Seat Speaks",
+      "prose": "You stand in the ninth point with a disc of grey glass held up and say the only words the contract cannot survive: the vote is not unanimous. Eight bloodied hands come off the rim. The fire folds inward with a sound like a furnace door closing, taking the writ, the choir's last count, and every promise Ilbeth Vandry made in spring. She does not fight it; she sits down on the seal's rim like a woman setting down a stone she has carried too far, and asks that the record show she was outvoted. At dawn Osca Ruhl's four hundred still hold the east wall, because the tunnel beneath it is a grave and the Concord's marshal has lost the only thing he came for. Legate Ost brings terms instead of ladders. Varrimond will be poorer, hungrier, and its own. In the tithe-cellars they unbar the doors and let the families out into a morning that belongs to nobody but the city.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-dawn-empty-ninth-seat",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-pact-sworn",
+      "kind": "ending",
+      "title": "Ending: The Owner in the Coals",
+      "prose": "Someone had to fill the ninth point, and it was you. The Ember Sovereign arrives fully, and the siege ends in eleven minutes: the Concord's camp becomes a field of white ash in the shape of tents, and Marshal Vaun's horn stops mid-note. Varrimond is saved, indisputably, and the bells ring themselves. Then the accounting begins. The Council of Nine sits nightly now to hear what is owed, and the ninth seat is never empty again, because you are in it, and the crown of coals sits on the table between the ledgers where every councillor can see it. Grain returns. The walls are rebuilt in glassy black stone nobody quarried. In the tithe-cellars, families come up into warm streets and thank you, and you learn to accept it, because the alternative is explaining the interest.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-ash-field-ringing-bells",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-city-ash",
+      "kind": "ending",
+      "title": "Ending: The Sanctum Kept the Fire",
+      "prose": "The herald dies with the pen unsigned, and the summoning collapses back down its own chalk. It takes the sanctum with it — nine hand-spans of bronze door running like candle-fat, the eight councillors' names burning off the seal, Ilbeth Vandry lost somewhere in the folding light with her hand still open. You are carried out over rubble into a plaza where Hessa Kroy's candles are the only light left. Nothing owns Varrimond at dawn, and nothing defends it either: the Chancery is a hole, the Council is four survivors and a shrouded cushion, and the Ashen Concord's horns are still out there, patient. But the cellars held, the families came up, and Osca Ruhl is already stacking the rubble into a new wall by hand. The city's last hour ended with its worst bargain unmade. What comes next is only a siege.",
+      "art": "art-the-last-hour-of-the-ninefold-seat-collapsed-sanctum-candles",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "siege-gate",
+      "to": "chancery-steps",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "siege-gate",
+      "to": "undercroft-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "siege-gate",
+      "to": "council-floor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancery-steps",
+      "to": "council-floor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancery-steps",
+      "to": "crowd-riot",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "crowd-riot",
+      "to": "council-floor",
+      "when": {
+        "op": "always"
+      },
+      "note": "held the steps until the whistle"
+    },
+    {
+      "from": "crowd-riot",
+      "to": "ash-emissary",
+      "when": {
+        "op": "always"
+      },
+      "note": "overrun and delivered to the parley"
+    },
+    {
+      "from": "crowd-riot",
+      "to": "undercroft-descent",
+      "when": {
+        "op": "always"
+      },
+      "note": "withdrawn into the cisterns"
+    },
+    {
+      "from": "council-floor",
+      "to": "archive-vault",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-floor",
+      "to": "ash-emissary",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "council-floor",
+      "to": "undercroft-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "chancellor-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "ash-emissary",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "archive-vault",
+      "to": "undercroft-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ash-emissary",
+      "to": "chancellor-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ash-emissary",
+      "to": "council-floor",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "ash-emissary",
+      "to": "sappers-breach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undercroft-descent",
+      "to": "sappers-breach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undercroft-descent",
+      "to": "warden-cell",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undercroft-descent",
+      "to": "sanctum-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-cell",
+      "to": "sanctum-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warden-cell",
+      "to": "sappers-breach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sappers-breach",
+      "to": "sanctum-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sappers-breach",
+      "to": "chancellor-study",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sappers-breach",
+      "to": "undercroft-descent",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancellor-study",
+      "to": "sanctum-threshold",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "chancellor-study",
+      "to": "summoning-circle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sanctum-threshold",
+      "to": "summoning-circle",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "sanctum-threshold",
+      "to": "binding-duel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "summoning-circle",
+      "to": "ending-ninth-vote",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "summoning-circle",
+      "to": "ending-pact-sworn",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "summoning-circle",
+      "to": "binding-duel",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "binding-duel",
+      "to": "ending-city-ash",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "binding-duel",
+      "to": "ending-pact-sworn",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "chancery-mob",
+      "title": "The Plaza Breaks",
+      "combatants": [
+        {
+          "id": "tallow-preacher",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "tallow-faithful",
+          "statblock": "bandit",
+          "count": 5,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "difficult",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "council-floor",
+      "onDefeat": "ash-emissary",
+      "onFlee": "undercroft-descent"
+    },
+    {
+      "id": "undercroft-sappers",
+      "title": "Under the East Wall",
+      "combatants": [
+        {
+          "id": "sapper-sergeants",
+          "statblock": "hobgoblin",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "tunnel-crews",
+          "statblock": "goblin",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "mine-ogre",
+          "statblock": "ogre",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "unstable",
+        "water"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach the keystone prop at the far end of the powder chamber and cut it, collapsing the tunnel before the fuse reaches the curtain wall."
+      },
+      "onVictory": "sanctum-threshold",
+      "onDefeat": "chancellor-study",
+      "onFlee": "undercroft-descent"
+    },
+    {
+      "id": "ember-herald",
+      "title": "The Herald in the Crown of Coals",
+      "combatants": [
+        {
+          "id": "coal-crowned-herald",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sanctum-shades",
+          "statblock": "shadow",
+          "count": 4,
+          "hostile": true
+        },
+        {
+          "id": "chancery-armour",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "fog",
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "coal-crowned-herald"
+      },
+      "onVictory": "ending-city-ash",
+      "onDefeat": "ending-pact-sworn"
+    }
+  ]
+}

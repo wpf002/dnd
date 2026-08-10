@@ -1,0 +1,90 @@
+{
+  "adventure": "the-ninefold-way",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ninefold-way-sixth-cistern-mouth",
+      "beat": "well-mouth-brief",
+      "brief": "The Mouth of the Sixth Cistern — The Sixth Cistern of Ashiret-Vand has gone to brine. Salt blooms on the tile like frost in a country that has never seen frost, and the water-criers h"
+    },
+    {
+      "slot": "art-the-ninefold-way-pale-ledger-counting-room",
+      "beat": "pale-ledger-bargain",
+      "brief": "Tesk of the Pale Ledger — Tesk keeps a counting-room above a spice scale, and does not offer water. He is thin as a tally-stick and speaks in prices. The Cartel has a survey of"
+    },
+    {
+      "slot": "art-the-ninefold-way-warden-hall-tide-glass",
+      "beat": "warden-tideglass",
+      "brief": "Warden Hakima and the Tide-Glass — Hakima Ferrun-Adze has the forearms of a woman who has hauled sluice-gates for thirty years and the eyes of one who has signed too many death-benefits"
+    },
+    {
+      "slot": "art-the-ninefold-way-counterweight-shaft-descent",
+      "beat": "salt-ladder-descent",
+      "brief": "Down the Salt Ladder — The Salt Ladder is not a ladder. It is a rust-jawed counterweight cage running in a shaft cut through nine strata of dead sea-floor, and the rope has "
+    },
+    {
+      "slot": "art-the-ninefold-way-wreckers-on-the-rope",
+      "beat": "cartel-ambush",
+      "brief": "Wreckers on the Rope — They are not guards. They are wreckers — a cutting crew in oiled leather with brine-scarred hands, led by a keel-master who wears a Cartel shell on a "
+    },
+    {
+      "slot": "art-the-ninefold-way-ninefold-lock-gate",
+      "beat": "sump-gate",
+      "brief": "The Ninefold Lock — The shaft ends in a chamber half-full of black water, and in the far wall stands the first true work of Qhal-Marun: a gate of nine bronze wheels set i"
+    },
+    {
+      "slot": "art-the-ninefold-way-chalk-kin-warren",
+      "beat": "chalk-kin-warren",
+      "brief": "The Chalk-Kin Warren — The crack widens into a warren of dry galleries braced with salvaged oars, and the Chalk-Kin live in it: a scavenging clan of small reptilian folk who"
+    },
+    {
+      "slot": "art-the-ninefold-way-drowned-bazaar-air-bell",
+      "beat": "drowned-bazaar",
+      "brief": "The Drowned Bazaar — Qhal-Marun's great market survives as an air-bell: a domed hall where the flood stopped two feet below the ceiling and stayed there for a thousand yea"
+    },
+    {
+      "slot": "art-the-ninefold-way-stallholders-of-the-drowned",
+      "beat": "market-dead",
+      "brief": "Stallholders of the Drowned Market — The water in the aisles stands up. The bazaar's dead keep their trades: bloated stallholders who rise from behind counters with their hands still cupp"
+    },
+    {
+      "slot": "art-the-ninefold-way-oshek-copper-air-bell",
+      "beat": "oshek-alcove",
+      "brief": "Oshek Bellowlung's Air-Bell — The drag-marks end at an overturned copper vat wedged against a shrine niche — a crude air-bell, and inside it Warden-diver Oshek Bellowlung, alive on"
+    },
+    {
+      "slot": "art-the-ninefold-way-orrery-of-waters",
+      "beat": "flooded-orrery",
+      "brief": "The Orrery of Waters — Above the bazaar, in a gallery where the flood only reaches your knees, stands the machine Qhal-Marun was built to serve: an orrery not of stars but o"
+    },
+    {
+      "slot": "art-the-ninefold-way-choir-door-audit-table",
+      "beat": "surveyors-name",
+      "brief": "The Choir Door — The Choir Door is a sluice-gate the size of a caravan gate, and the hall behind it is full of standing water and standing figures. At the audit-table "
+    },
+    {
+      "slot": "art-the-ninefold-way-drowned-choir-sings",
+      "beat": "drowned-choir-battle",
+      "brief": "The Drowned Choir — Vaunt-Marrow strikes the bell and the hall sings. Salt-bleached bones rise out of the audit-benches in ranks, and something with no body at all peels "
+    },
+    {
+      "slot": "art-the-ninefold-way-ending-sweet-water",
+      "beat": "ending-cistern-restored",
+      "brief": "Ending: The Sixth Runs Sweet — The lead seal breaks, the sixth cock turns, and a thousand years of held breath goes up the veins of the aquifer. In Ashiret-Vand the Sixth Cistern co"
+    },
+    {
+      "slot": "art-the-ninefold-way-ending-metered-water",
+      "beat": "ending-drowned-charter",
+      "brief": "Ending: The Drowned Charter — In the end the deep is settled the way deeps usually are: by signature. The Ninefold Cartel files the sunken city as recovered property, and the drown"
+    },
+    {
+      "slot": "art-the-ninefold-way-ending-silt-tally",
+      "beat": "ending-silt-claims",
+      "brief": "Ending: What the Silt Keeps — The lamps go out one by one under a thousand feet of dead sea, and the sunken deep does with you what it has always done: it makes a tally-mark. Above"
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "id": "the-lamp-compact-comes-due",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Lamp Compact Comes Due",
+    "premise": "When the Umberflow drops to its hundredth low water, a brass writ surfaces beneath Cadence Weir naming an interest payment on a century-old infernal bargain — and the only way to argue the figures is to descend into the burning Undermarch the city insists does not exist.",
+    "tone": [
+      "infernal-war",
+      "political-fantasy"
+    ],
+    "tier": "regional",
+    "partyLevel": 6,
+    "narrationVoice": "Dry, ledger-clerk second person — bureaucratic menace with soot under its fingernails, where every atrocity has a line item and a polite footnote.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Conscription and the tithe concern adults of muster age only; children are referenced as absent, protected, or evacuated and never shown in danger."
+    },
+    "provenance": "flint"
+  },
+  "entry": "low-water-summons",
+  "beats": [
+    {
+      "id": "low-water-summons",
+      "kind": "threshold",
+      "title": "Low Water at the Coinbridge",
+      "prose": "The Umberflow drops three feet in a single night, exposing mudflats no living Weirwright has ever surveyed. Under the Coinbridge, a brass plate the size of a door stands upright in the silt, its edges warm enough to steam. Riverfolk gather at a respectful distance; nobody from the Quaymoot has come down, and everyone notices that nobody has come down.",
+      "readAloud": "The plate reads, in letters that were poured rather than engraved: BY THE LAMP COMPACT, INTEREST FALLS DUE AT THE HUNDREDTH LOW WATER. ONE THOUSAND LAMPS, OR THE PRINCIPAL IN FLOOD. Folded against the brass, held by a wax seal shaped like a quill, is an invitation with your names on it. All of your names. Correctly spelled.",
+      "art": "art-the-lamp-compact-comes-due-brass-writ-at-low-water",
+      "options": [
+        {
+          "id": "read-the-brass-writ",
+          "label": "Read the fine print by lantern light before the tide returns",
+          "target": "quaymoot-in-denial",
+          "effects": [
+            {
+              "flag": "writ-decoded",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "lampless-tavern"
+          }
+        },
+        {
+          "id": "ask-the-veterans-first",
+          "label": "Ask the returned soldiers who drink at the Drowned Lamp",
+          "target": "lampless-tavern",
+          "effects": []
+        },
+        {
+          "id": "answer-the-sealed-invitation",
+          "label": "Answer the sealed invitation folded against the brass",
+          "target": "advocates-offer",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "quaymoot-in-denial",
+      "kind": "social",
+      "title": "The Quaymoot Takes No Questions",
+      "prose": "The council chamber smells of beeswax and river damp. First Sluicewarden Marda Colquin gavels through harbour tariffs while the word 'compact' is struck from the minutes twice. There is no war beneath Cadence Weir, she explains pleasantly; there are merely deep works, and deep works occasionally require personnel.",
+      "readAloud": "\"You have found a decorative plate,\" says Colquin, without looking up. \"The city is not at war. The city has never been at war. The city has a maintenance obligation, and it has been met on schedule for one hundred years, and that is why your grandmother's house did not drown.\"",
+      "art": "art-the-lamp-compact-comes-due-quaymoot-chamber-of-denial",
+      "options": [
+        {
+          "id": "demand-emergency-session",
+          "label": "Force an emergency session and demand a warrant of inquiry",
+          "target": "weirwright-locks",
+          "effects": [
+            {
+              "flag": "council-sanction",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "persuasion",
+            "dc": 15,
+            "onFailure": "revenue-collectors"
+          }
+        },
+        {
+          "id": "leak-the-writ",
+          "label": "Leak the writ to the veterans on the wharf instead",
+          "target": "lampless-tavern",
+          "effects": []
+        },
+        {
+          "id": "keep-the-advocates-appointment",
+          "label": "Walk out and keep the advocate's appointment",
+          "target": "advocates-offer",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lampless-tavern",
+      "kind": "social",
+      "title": "The Drowned Lamp",
+      "prose": "Hessa Ninefingers keeps a tavern for soldiers who came back from a war the city does not acknowledge, which means she keeps a tavern for people with no discharge papers and no names. They answer to numbers now. They call themselves the Lampless, and every one of them flinches when the sluice bells ring.",
+      "readAloud": "\"They take the name first,\" says the woman they call Fourteen, turning her mug. \"Easier bookkeeping. A lamp is just a name with a wick in it, and down there the lamps are the only thing that burns steady.\"",
+      "art": "art-the-lamp-compact-comes-due-the-drowned-lamp-taproom",
+      "options": [
+        {
+          "id": "swear-to-find-their-names",
+          "label": "Swear on the bar to bring their names back up with you",
+          "target": "weirwright-locks",
+          "effects": [
+            {
+              "flag": "lampless-trust",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "persuasion",
+            "dc": 12,
+            "onFailure": "revenue-collectors"
+          }
+        },
+        {
+          "id": "ask-for-the-sunken-route",
+          "label": "Buy directions to the sunken lock they were marched through",
+          "target": "descent-sunken-lock",
+          "effects": []
+        },
+        {
+          "id": "carry-word-to-the-quaymoot",
+          "label": "Carry their testimony to the Quaymoot and make it official",
+          "target": "quaymoot-in-denial",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "advocates-offer",
+      "kind": "social",
+      "title": "Sorrel Quill-of-Cinders, Advocate",
+      "prose": "The counting parlour above the fish market has no fire, yet the ink steams in its well. Sorrel Quill-of-Cinders is thin, courteous, and slightly out of focus at the edges, and she represents the interests of Archduke Vaskarel, the Ledger-Flame, in all matters riparian. She is delighted you came. She has a retainer, three copies of everything, and a pen that is already warm.",
+      "readAloud": "\"My client does not want your city,\" Sorrel says. \"My client wants his interest, in lamps, at the agreed rate. You may find the rate distasteful. I would gently observe that your grandparents found the flood more distasteful, and signed accordingly.\"",
+      "art": "art-the-lamp-compact-comes-due-advocate-in-the-counting-parlour",
+      "options": [
+        {
+          "id": "take-the-retainer",
+          "label": "Take her retainer and the writ of safe passage that comes with it",
+          "target": "weirwright-locks",
+          "effects": [
+            {
+              "flag": "advocate-bargain",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-and-walk-out",
+          "label": "Refuse the pen and walk out through the fish market",
+          "target": "revenue-collectors",
+          "effects": []
+        },
+        {
+          "id": "cite-the-compounding-clause",
+          "label": "Cite the compounding clause you read on the plate and demand the audit",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "writ-decoded",
+            "value": true
+          },
+          "target": "weirwright-locks",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "deception",
+            "dc": 15,
+            "onFailure": "revenue-collectors"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "weirwright-locks",
+      "kind": "puzzle",
+      "title": "The Tide-Gate of the Weirwrights",
+      "prose": "Underwright Tobin Ferrule tends the great tide-gate the way a physician tends a patient he expects to outlive him. The gate's tally-wheel counts something other than water: five brass drums, each notched with a century of muster figures, and a keyway that only turns when the drums agree. Ferrule will not say what lies past the gate. He does say that the sound from behind it got louder at low water.",
+      "readAloud": "\"Every drum is a decade of ledgers,\" Ferrule mutters, \"and the sums don't match. They've never matched. I've spent forty years pretending it's rust.\"",
+      "art": "art-the-lamp-compact-comes-due-tide-gate-of-the-weirwrights",
+      "options": [
+        {
+          "id": "requisition-the-sluice-key",
+          "label": "Present the Quaymoot's warrant and requisition the sluice key",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "council-sanction",
+            "value": true
+          },
+          "target": "descent-sunken-lock",
+          "effects": [
+            {
+              "flag": "sluice-key",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "solve-the-tide-gate-tally",
+          "label": "Reconcile the five tally-drums yourself and cut a key from the reading",
+          "target": "descent-sunken-lock",
+          "effects": [
+            {
+              "flag": "sluice-key",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "dc": 15,
+            "onFailure": "revenue-collectors"
+          }
+        },
+        {
+          "id": "swim-the-flooded-stair",
+          "label": "Ignore the gate and swim the flooded maintenance stair",
+          "target": "the-cinder-march",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "athletics",
+            "dc": 14,
+            "onFailure": "no-mans-ember"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "revenue-collectors",
+      "kind": "conflict",
+      "title": "Collectors in the Cut",
+      "prose": "They come along the Tanner's Cut where the walls are close and the water is knee-deep: Tally-Sergeant Grumn Vasse with a muster book chained to his wrist, two ash-grey legionaries on secondment from below, and local bruisers on the city's unofficial payroll. Vasse is not here to kill you. He is here to enter you into the book, and he has until the sluice bells ring at the turn of the tide.",
+      "readAloud": "\"Names,\" says Vasse, licking his thumb. \"Or numbers. The Compact accepts either.\"",
+      "art": "art-the-lamp-compact-comes-due-tally-sergeant-in-the-cut",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "collectors-in-the-cut",
+      "terminal": false
+    },
+    {
+      "id": "descent-sunken-lock",
+      "kind": "transit",
+      "title": "Down Through the Sunken Lock",
+      "prose": "Past the gate the stair goes down further than the river bed has any right to allow, and the air changes from cold damp to hot damp to something that dries your eyes. Chalked muster-marks climb the wall beside you, thousands of them, each a tally of people who walked down and a much shorter tally of people who walked back. The spillway roars somewhere off to the left, carrying water that comes back up as steam.",
+      "art": "art-the-lamp-compact-comes-due-descent-through-the-sunken-lock",
+      "options": [
+        {
+          "id": "turn-the-sluice-key",
+          "label": "Turn the sluice key and walk down the sanctioned way",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sluice-key",
+            "value": true
+          },
+          "target": "the-cinder-march",
+          "effects": []
+        },
+        {
+          "id": "follow-the-muster-marks",
+          "label": "Follow the chalked muster-marks down the maintenance shaft",
+          "target": "lampless-outpost",
+          "effects": []
+        },
+        {
+          "id": "rappel-the-spillway",
+          "label": "Rappel the spillway and drop in behind the front",
+          "target": "the-cinder-march",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "acrobatics",
+            "dc": 14,
+            "onFailure": "no-mans-ember"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-cinder-march",
+      "kind": "discovery",
+      "title": "The Undermarch, Burning",
+      "prose": "The ceiling is the underside of Cadence Weir: foundation piles, sewer arches, the pale keels of moored barges seen from beneath. Below that hangs a sky of smoke, and beneath the smoke stretches a warfront of trench, slag and lamplight running further than a city has business running. On both sides the lamps burn in rows, each one steady as a heartbeat, each one the tidy remainder of a name.",
+      "readAloud": "You had imagined a hell. This is worse: it is a works. There are duckboards, latrines, requisition posts and a field ledger tent, and every single thing about it says that somebody has been maintaining this budget for a hundred years.",
+      "art": "art-the-lamp-compact-comes-due-the-burning-undermarch",
+      "options": [
+        {
+          "id": "cross-toward-trench-lights",
+          "label": "Cross the duckboards toward the nearest friendly trench-lights",
+          "target": "lampless-outpost",
+          "effects": []
+        },
+        {
+          "id": "recover-the-fallen-standard",
+          "label": "Crawl out and recover the fallen tithe-standard planted in the slag",
+          "target": "lampless-outpost",
+          "effects": [
+            {
+              "flag": "tithe-standard",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "stealth",
+            "dc": 13,
+            "onFailure": "graveworks-skirmish"
+          }
+        },
+        {
+          "id": "skirt-the-ash-flats",
+          "label": "Skirt wide across the open ash flats to avoid the muster posts",
+          "target": "no-mans-ember",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "no-mans-ember",
+      "kind": "hazard",
+      "title": "No One's Ember",
+      "prose": "Between the lines the ground is grey powder over red heat, and it breathes. Every few minutes the smoke-ceiling sheds a slow rain of burning paper — discharged requisitions, struck-out names, invoices for boots — and where the paper lands the ash flares. There is a dead siege-engine out here, and a slag ridge from which, they say, you can see the counting house lights.",
+      "art": "art-the-lamp-compact-comes-due-no-mans-ember-flats",
+      "options": [
+        {
+          "id": "run-the-ember-flats",
+          "label": "Run it in one push while the paper-rain is thin",
+          "target": "lampless-outpost",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 14,
+            "onFailure": "graveworks-skirmish"
+          }
+        },
+        {
+          "id": "shelter-in-the-siege-engine",
+          "label": "Shelter inside the dead siege-engine until the burning stops",
+          "target": "graveworks-skirmish",
+          "effects": []
+        },
+        {
+          "id": "raise-the-iron-shaft",
+          "label": "Plant the standard's iron shaft as a rod and walk the slag ridge to the counting house",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "tithe-standard",
+            "value": true
+          },
+          "target": "ledger-vault",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lampless-outpost",
+      "kind": "social",
+      "title": "Outpost Fourteen-and-a-Half",
+      "prose": "Sergeant Ibbet Nailhand commands nine soldiers, one working lamp and a trench revetted with bales of expired paperwork. Nobody here has a name; they have positions on a muster roll, and Ibbet keeps a private roll in pencil where the old names are still written, which is technically a breach of the Compact. Nobody here is under muster age. Ibbet made certain of that years ago, and it cost her.",
+      "readAloud": "\"You want the counting house,\" Ibbet says, tapping ash from her pencil. \"Everyone new wants the counting house. Understand the sum first: they don't need us to win. They need us to keep accruing.\"",
+      "art": "art-the-lamp-compact-comes-due-trench-outpost-of-the-lampless",
+      "options": [
+        {
+          "id": "take-ibbets-muster-roll",
+          "label": "Accept Ibbet's pencilled roll of true names and her two best scouts",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "lampless-trust",
+            "value": true
+          },
+          "target": "ledger-vault",
+          "effects": []
+        },
+        {
+          "id": "slip-past-the-wire-alone",
+          "label": "Slip past the wire alone and follow the cable-run to the vault",
+          "target": "ledger-vault",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "stealth",
+            "dc": 14,
+            "onFailure": "graveworks-skirmish"
+          }
+        },
+        {
+          "id": "march-with-relief-column",
+          "label": "Join the relief column raiding the graveworks tonight",
+          "target": "graveworks-skirmish",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "graveworks-skirmish",
+      "kind": "conflict",
+      "title": "Raid on the Graveworks",
+      "prose": "The graveworks is where lapsed accounts are re-enlisted. A pale standard-bearer in the rags of a Cadence Weir uniform walks the rows, and behind it the settled debts stand up in ranks: bone-dry old tithes, and hungrier things that were paid in more recently. The standard it carries is the tally that binds them. Break the bearer and the column comes apart.",
+      "readAloud": "The standard-bearer lifts its lamp, and every lamp in the field turns to face you at once — a hundred small identical flames, each one somebody's struck-out name.",
+      "art": "art-the-lamp-compact-comes-due-raid-on-the-graveworks",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "raid-on-the-graveworks",
+      "terminal": false
+    },
+    {
+      "id": "ledger-vault",
+      "kind": "decision",
+      "title": "The Vault of the Lamp Compact",
+      "prose": "The counting house is a bunker of black brass sunk into the slag, and the Compact lies open on a lectern inside it: two vellum sheets, a hundred years of marginalia, and the signatures of eleven Sluicewardens including one who signed last winter. The interest column is written in a hand that presses so hard it scorches. In the margin, in fresh ink, someone has begun drafting amended articles.",
+      "readAloud": "Sorrel Quill-of-Cinders is waiting beside the lectern, unsurprised, as she has probably been waiting since the invitation. \"Whatever you do next,\" she says, \"do it as a party to the contract. It goes so much better for you than trespass.\"",
+      "art": "art-the-lamp-compact-comes-due-vault-of-the-lamp-compact",
+      "options": [
+        {
+          "id": "put-flame-to-the-compact",
+          "label": "Put flame to the Compact and let the audit fall where it falls",
+          "target": "audit-of-flames",
+          "effects": []
+        },
+        {
+          "id": "countersign-amended-articles",
+          "label": "Countersign the amended articles as retained counsel, then open the vault behind the lectern",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "advocate-bargain",
+            "value": true
+          },
+          "target": "audit-of-flames",
+          "effects": []
+        },
+        {
+          "id": "carry-the-proof-home",
+          "label": "Cut out the signature page and carry the proof back up to the Quaymoot",
+          "target": "ending-terms-rewritten",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "audit-of-flames",
+      "kind": "climax",
+      "title": "The Audit of Flames",
+      "prose": "The lectern rises on brass legs and the counting house closes its shutters like a mouth. Vaskarel does not attend in person — an archduke does not attend an audit — but his clerks do: an armoured auditor that files as it strikes, two hollow appetites in clerks' aprons, and the flat shadows of every witness who was ever discouraged from testifying. Destroy the lectern and the Compact has nowhere to be read from.",
+      "readAloud": "A voice comes up through the floor plates, patient and enormous: \"OBJECTION NOTED. PROCEED WITH THE RECONCILIATION.\"",
+      "art": "art-the-lamp-compact-comes-due-audit-of-flames-counting-house",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "audit-of-flames",
+      "terminal": false
+    },
+    {
+      "id": "ending-ledger-burned",
+      "kind": "ending",
+      "title": "Ashes of the Lamp Compact",
+      "prose": "The lectern splits and the vellum goes up in a white sheet of flame that smells of every year it recorded. Below, in the trenches, the lamps gutter — and then, one by one, the Lampless remember what to call themselves, which is the loudest sound the Undermarch has ever made. The debt is void because the instrument is gone; the principal, however, was always the river. Cadence Weir floods to its second storey by autumn, and rebuilds crooked and free, and the Quaymoot is replaced by people who admit out loud what the city stood on. Sorrel Quill-of-Cinders sends no bill. She sends a note: my client will draft again in a hundred years, and asks whether you will still be practising.",
+      "readAloud": "They read the names off Ibbet's pencilled roll from the Coinbridge for eleven hours, and the water rises the whole time, and nobody leaves.",
+      "art": "art-the-lamp-compact-comes-due-ashes-of-the-lamp-compact",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-terms-rewritten",
+      "kind": "ending",
+      "title": "Amended Articles, Signed at Dawn",
+      "prose": "You come up at low water with a signature page, a witness, and enough leverage to make the Quaymoot admit — in closed session, in language no minute-taker will ever transcribe plainly — that there is a war under the floorboards. The interest is renegotiated: the rate falls, the muster ages rise, the Lampless are granted names, pensions and a memorial nobody is allowed to explain. The war continues, better catered. You are appointed to the new Standing Committee on Deep Works, which meets monthly and is never adjourned, and every session Sorrel Quill-of-Cinders sits at the far end of the table with three copies of everything, waiting for the next hundred years to accrue.",
+      "readAloud": "First Sluicewarden Colquin signs, blots the page, and says without warmth: \"Congratulations. You are now the people who knew.\"",
+      "art": "art-the-lamp-compact-comes-due-amended-articles-signed-at-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-tithe-collected",
+      "kind": "ending",
+      "title": "Lamps Carried Down the Locks",
+      "prose": "The book closes on you, and the clerks are very gentle about it, because a struggling entry smudges. Somewhere above, the river settles back into its channel and Cadence Weir wakes to a morning of ordinary tariffs; the Quaymoot notes the interest paid on schedule and strikes the word compact from the minutes a third time. Down in the Undermarch, four new lamps burn steady in a row on the parapet of Outpost Fourteen-and-a-Half, and Sergeant Ibbet Nailhand writes four more names in pencil on a roll she is not permitted to keep, so that when the next fools come down there will be something left to say out loud.",
+      "readAloud": "\"Numbers, then,\" says Tally-Sergeant Vasse, and licks his thumb, and turns the page.",
+      "art": "art-the-lamp-compact-comes-due-lanterns-carried-down-the-locks",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "revenue-collectors",
+      "to": "descent-sunken-lock",
+      "when": {
+        "op": "always"
+      },
+      "note": "Held the Cut until the sluice bells rang; the Tally withdraws and the gate stands open."
+    },
+    {
+      "from": "revenue-collectors",
+      "to": "the-cinder-march",
+      "when": {
+        "op": "always"
+      },
+      "note": "Entered into the book and marched down; you wake conscripted on the front."
+    },
+    {
+      "from": "revenue-collectors",
+      "to": "weirwright-locks",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fled the Cut back toward the tide-gate."
+    },
+    {
+      "from": "graveworks-skirmish",
+      "to": "ledger-vault",
+      "when": {
+        "op": "always"
+      },
+      "note": "Standard-bearer destroyed; the raid opens the cable-run to the counting house."
+    },
+    {
+      "from": "graveworks-skirmish",
+      "to": "ending-the-tithe-collected",
+      "when": {
+        "op": "always"
+      },
+      "note": "Overrun and re-enlisted as settled accounts."
+    },
+    {
+      "from": "graveworks-skirmish",
+      "to": "no-mans-ember",
+      "when": {
+        "op": "always"
+      },
+      "note": "Broke off and scattered back into the ash flats."
+    },
+    {
+      "from": "audit-of-flames",
+      "to": "ending-ledger-burned",
+      "when": {
+        "op": "always"
+      },
+      "note": "Lectern destroyed; the instrument is void."
+    },
+    {
+      "from": "audit-of-flames",
+      "to": "ending-the-tithe-collected",
+      "when": {
+        "op": "always"
+      },
+      "note": "Reconciliation completed against you."
+    },
+    {
+      "from": "audit-of-flames",
+      "to": "ending-terms-rewritten",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escaped the audit with the signature page and a bargaining position."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "collectors-in-the-cut",
+      "title": "The Tally Comes for Names",
+      "combatants": [
+        {
+          "id": "tally-sergeant-vasse",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "seconded-legionary",
+          "statblock": "hobgoblin",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "wharf-bruiser",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "descent-sunken-lock",
+      "onDefeat": "the-cinder-march",
+      "onFlee": "weirwright-locks"
+    },
+    {
+      "id": "raid-on-the-graveworks",
+      "title": "The Standard-Bearer of Settled Accounts",
+      "combatants": [
+        {
+          "id": "pale-standard-bearer",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "lapsed-tithe",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "recent-account",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "fog",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "pale-standard-bearer"
+      },
+      "onVictory": "ledger-vault",
+      "onDefeat": "ending-the-tithe-collected",
+      "onFlee": "no-mans-ember"
+    },
+    {
+      "id": "audit-of-flames",
+      "title": "Reconciliation in the Counting House",
+      "combatants": [
+        {
+          "id": "ledger-lectern",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hpOverride": 40,
+          "hostile": false
+        },
+        {
+          "id": "brass-auditor",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "apron-clerk",
+          "statblock": "ghast",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "discouraged-witness",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cover-heavy",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "ledger-lectern"
+      },
+      "onVictory": "ending-ledger-burned",
+      "onDefeat": "ending-the-tithe-collected",
+      "onFlee": "ending-terms-rewritten"
+    }
+  ]
+}

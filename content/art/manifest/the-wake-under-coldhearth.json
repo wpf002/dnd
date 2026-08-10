@@ -1,0 +1,85 @@
+{
+  "adventure": "the-wake-under-coldhearth",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, epic-finale.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-wake-under-coldhearth-muster-gate-dusk",
+      "beat": "muster-gate",
+      "brief": "The Muster Gate — Coldhearth's outer gate has not closed in forty years; it closes tonight. Pike-shafts stand in stacked cones along the causeway, and the smiths' hamme"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-war-table-slate",
+      "beat": "warden-council",
+      "brief": "The Marshal's Table — The war-table in Coldhearth Keep is a slab of black slate with the Marches chalked across it, and Warden-Marshal Isbeth Craul has drawn the same arrow"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-bell-loft-vigil",
+      "beat": "bell-tower-vigil",
+      "brief": "The Nine Bells — The bell-loft smells of pigeon and old rope. From here the whole doom is legible at once: the horde's line crawling south like a slow tide, and inside"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-cistern-square-sermon",
+      "beat": "street-sermon",
+      "brief": "Sermon in the Kettle Quarter — The Kettle Quarter's cistern square is packed shoulder to shoulder, and at its centre a cantor in grey wrappings stands on the wellhead with both arms"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-salt-road-lanterns",
+      "beat": "salt-road-caravan",
+      "brief": "The Salt Road South — The salt road runs from Coldhearth's postern down through the barrow-flats to the drowned Salt Chapel, and tonight it carries a slow river of the disp"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-drowned-chapel-shaft",
+      "beat": "drowned-chapel",
+      "brief": "The Drowned Salt Chapel — The Salt Chapel sits in its own shallow lake, a squat grey box with brine crusting its sills — except the water has retreated, leaving a bathtub ring "
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-nine-nail-crypt",
+      "beat": "crypt-riddle",
+      "brief": "The Nails Are Names — Below the chapel, the shaft opens into a warden-crypt older than the Marches' charters: nine iron spikes the length of spears, driven through a floor "
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-barrow-fog-hounds",
+      "beat": "barrow-pack",
+      "brief": "Hounds of the Barrow-Flats — The barrow-flats are a mile of grave-mounds in ground fog, and the fog is full of running. The Choir's diggers have been feeding the flats' hounds on "
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-ash-lamp-gallery",
+      "beat": "hollow-legate",
+      "brief": "The Hollow Legate — Deeper still, the black masonry widens into a gallery lit by ash-lamps, and there the Choir's Legate waits without guards, because he does not need th"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-two-sieges-dawn",
+      "beat": "siege-choice",
+      "brief": "The Hour of Two Sieges — Dawn is two hours off and Coldhearth is fighting on two fronts at once. Outbound: the horde's vanguard has come further and faster than Craul's arithm"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-western-breach-banner",
+      "beat": "wall-breach",
+      "brief": "The Western Breach — The ram has done its work: a bite of curtain wall gone, rubble sloping down into a mud lane, and the horde's forward company already inside it — disci"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-titan-heart-vault",
+      "beat": "titan-heart",
+      "brief": "The Heart of Orovant — The last stair ends in a vault the size of a cathedral nave, and the vault is a chest. Ribs of black masonry arch overhead; the floor rises and falls,"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-coldhearth-dawn-bells",
+      "beat": "ending-dawn-over-coldhearth",
+      "brief": "Dawn Over Coldhearth — The reliquary comes apart in a spray of name-iron, and the shaved syllables go home into the ninth nail with a sound like a lock. The floor of the vau"
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-ash-crown-empty-keep",
+      "beat": "ending-crown-of-ash",
+      "brief": "A Crown of Ash — The inner gate goes up on greased chains and the Choir comes through it singing, and by the third hour Orovant stands. It is a mile of grave-dirt and "
+    },
+    {
+      "slot": "art-the-wake-under-coldhearth-salt-road-retreat",
+      "beat": "ending-long-retreat",
+      "brief": "The Long Retreat — It ends with a fighting withdrawal down the salt road, which is the most honest thing anyone does that night. The breach cannot be held, or the vault "
+    }
+  ]
+}

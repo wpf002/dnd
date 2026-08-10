@@ -1,0 +1,90 @@
+{
+  "adventure": "the-tithe-of-grauvane",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: gothic-horror, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-tithe-of-grauvane-toll-gate-in-the-standing-mist",
+      "beat": "mist-toll-gate",
+      "brief": "The Toll Gate at Grauvane Mouth — The valley road ends in a wall of standing mist that does not drift. A toll-house leans beside it, roof furred with green, and the toll-post is scratc"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-thistlewick-square-roll-call",
+      "beat": "thistlewick-square",
+      "brief": "Thistlewick, Counting Its Own — Fourteen adults, and the little ones shut safe in the loft of the granary with the ladder pulled up. Reeve Odric Camm stands in the square with a wax "
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-swollen-parish-ledger-page",
+      "beat": "the-drowned-ledger",
+      "brief": "The Drowned Ledger — The reeve's back room smells of mould and boiled turnip. The parish ledger has swollen to twice its width; whole years have run together into blue-bla"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-hedge-chapel-pebble-spiral",
+      "beat": "nettles-chapel",
+      "brief": "Sister Nettle's Hedge-Chapel — A chapel of wattle and hawthorn, its bell cracked, its floor a mosaic of river pebbles laid in the shape of a spiral well. Sister Nettle Vane is ninet"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-switchback-road-in-white-mist",
+      "beat": "hollow-road",
+      "brief": "The Hollow Road — The switchback road to Mournspire climbs through mist so thick the valley below is only a rumour of rooftops. Drifts of it pool in the ditches and sti"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-three-flat-shadows-in-fog",
+      "beat": "mist-choir-ambush",
+      "brief": "The Mist Choir — The singing resolves into shapes: three flat darknesses standing in the white, each one shaped like a person bent over a bucket. They are the ones alr"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-hawthorns-knotted-with-rags",
+      "beat": "shrouded-orchard",
+      "brief": "The Drowned Orchard — Hawthorns stand in six inches of standing water that has no source and no outlet. Every tree is knotted with rags: hundreds of them, tied in a pattern"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-open-gate-and-water-bucket",
+      "beat": "castle-gate",
+      "brief": "The Gate of Castle Mournspire — Mournspire's gate stands open and has for years; nobody comes up and nobody comes down. In the gatehouse a single retainer in a rusted breastplate, Wa"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-sleepless-castellan-and-signet",
+      "beat": "castellans-vigil",
+      "brief": "The Castellan's Vigil — Castellan Emeric Ilsandor, last of a line that has run out of both money and heirs, keeps his vigil in a hall with the tapestries taken down and stack"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-flooded-brick-walled-arch",
+      "beat": "cistern-stair",
+      "brief": "The Cistern Stair — Below the kitchens the stair turns twice and enters water. The water is cold enough to steal breath and clean enough to drink, which is the worst thin"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-cavity-of-mortar-bound-dead",
+      "beat": "tithe-boneyard",
+      "brief": "The Tithes Between the Walls — The broken courses spill a cavity, and the cavity spills its contents: the ones sent up the hill after Maren and quietly added to the wall so the acco"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-windlass-turning-over-black-shaft",
+      "beat": "the-walled-well",
+      "brief": "The Walled Well — The cistern is a vaulted drum of stone, and at its centre is a well within a well: a shaft ringed by seventy years of brick, with a windlass above it "
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-dry-warden-rising-on-the-rope",
+      "beat": "the-name-returned",
+      "brief": "Maren Vess, Warden of Grauvane — She comes up hand over hand, and she is not a drowned woman but a dry one — every drop of her given to the valley, seventy years of it, until nothing "
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-grauvane-under-open-sky",
+      "beat": "ending-mist-lifted",
+      "brief": "Ending: The Valley Un-Sealed — The rope goes slack. The rising water finds the old outfall and leaves, taking the standing mist with it in one long grey exhalation, and for the firs"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-fresh-names-on-the-toll-post",
+      "beat": "ending-name-inherited",
+      "brief": "Ending: The Name Passes On — You leave the cistern alive, and the mist lets you go, and that is the price. Behind you the windlass resumes its patient turning; ahead of you the to"
+    },
+    {
+      "slot": "art-the-tithe-of-grauvane-white-throat-of-the-flooded-valley",
+      "beat": "ending-valley-swallowed",
+      "brief": "Ending: The Tide That Kept Its Word — The water remembers everything at once. It comes up the cistern stair, out of the dry wells, out of the drowned orchard, and the mist comes down to me"
+    }
+  ]
+}

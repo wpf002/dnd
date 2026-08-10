@@ -1,0 +1,90 @@
+{
+  "adventure": "four-wounds-of-the-corrun-vale",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: sandbox, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ferry-at-lowwater",
+      "beat": "lowwater-ferry",
+      "brief": "Lowwater Ferry — The Slowmarrow is a brown, sulking thing this season, shrunk back from its banks so far that the ferry landing at Lowwater stands on dry cracked mud l"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-chalk-hall-map",
+      "beat": "chalk-hall-council",
+      "brief": "The Chalk Hall — Marrowford's council hall has a slate floor, and Reeve Adalie Thorn has drawn the whole vale on it in chalk: river, weir, terraces, ridge road, quarry"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ridge-waystone",
+      "beat": "ridge-road-survey",
+      "brief": "Cobbet's Waystone — The ridge road runs the spine of the vale, and Bram Cobbet has set his surveying tripod beside a waystone worn smooth by two centuries of hands. He ha"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-broken-weir-sluice",
+      "beat": "broken-weir",
+      "brief": "The Broken Weir — Above Marrowford the Slowmarrow has been made to hold its breath. The Drowning Choir have jammed the weir's sluice gates shut with oak wedges and iron"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-weir-siege-melee",
+      "beat": "weir-siege-fight",
+      "brief": "Four Rounds on the Gate-Walk — The gate-walk is a plank road two paces wide with a green lake shoving at one elbow and a forty-foot drop at the other. The choir stops singing and st"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ember-terraces-smoke",
+      "beat": "ember-terraces",
+      "brief": "The Ember Terraces — Six generations of orchard climb the eastern slope in dry-stone terraces, and the Ember Kiln is walking uphill through them with torches, methodically"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-kiln-ring-effigy",
+      "beat": "kiln-ring-fight",
+      "brief": "The Bright Appetite — Inside the brick ring the heat has a shape to it. The effigy turns its blank scorched faceplate toward you and takes one step, and every acolyte in th"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-whistlecrown-mill-vanes",
+      "beat": "whistlecrown-mill",
+      "brief": "Whistlecrown Mill — The mill stands on the bald crown of the ridge and its four vanes turn steadily in perfectly still air. Inside, the millstones are gone. In their plac"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-unbreath-shrine-jars",
+      "beat": "unbreath-shrine-fight",
+      "brief": "The Unbreath Below — Below the mill floor the ridge is hollow, a chalk bubble where the wind arrives from nowhere and leaves in every direction. The Hollow Breath keep the"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-grindle-quarry-pit",
+      "beat": "grindle-quarry",
+      "brief": "Grindle Quarry — Grindle is a white staircase cut down into the hill, and it is busy in the wrong way. The Deepset have dug past the working face into a natural galler"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-keystone-descent-cavern",
+      "beat": "keystone-descent-fight",
+      "brief": "The Keystone Gallery — The gallery smells of wet chalk and old marrow. Grull's night shift comes at you out of the scaffolding in the lamp-shadow — dry, unhurried, incurious"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-nightfall-camp-tally",
+      "beat": "nightfall-tally",
+      "brief": "Nightfall Tally — You come back to a fire, wherever you have made it, and do the arithmetic the reeve warned you about. What you mended is mended. What you left is stil"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-confluence-conclave-rite",
+      "beat": "confluence-conclave-fight",
+      "brief": "The Conclave at the Confluence — The gravel spit where the Thin Fork gives itself to the Slowmarrow is lit by lanterns set in the water. Four small delegations stand at four points of"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ending-vale-holds-dawn",
+      "beat": "ending-vale-holds",
+      "brief": "The Vale Holds — Osselen goes down on wet gravel with his song unfinished, and the circle he scratched there is only a scratch. The other three delegations do what sma"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ending-vale-unmade-flood",
+      "beat": "ending-vale-unmade",
+      "brief": "The Vale Unmade — You are carried out of it — by water, by smoke, by a hand under each arm — and from a high place you watch the Corrun Vale finish the sentence the cul"
+    },
+    {
+      "slot": "art-four-wounds-of-the-corrun-vale-ending-downriver-silence-boat",
+      "beat": "ending-downriver-silence",
+      "brief": "Downriver Silence — The boat goes with the current, which is the only easy thing in the Corrun Vale this year. Behind you the smoke on the terraces stands up straighter, "
+    }
+  ]
+}

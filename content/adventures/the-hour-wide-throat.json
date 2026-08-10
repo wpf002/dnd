@@ -1,0 +1,633 @@
+{
+  "id": "the-hour-wide-throat",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Hour-Wide Throat",
+    "premise": "A salvage crew descends through a fissure called the Swallowing Mouth into the lightless Underland of Vess, only to learn that the stone closes a finger's width every hour — and something below is counting.",
+    "tone": [
+      "survival-horror",
+      "exploration"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Close, hushed, second-person present; describe sound and pressure before sight, and let every scene name what the darkness costs.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No child endangerment is shown or implied; the vanished expedition members are all adults."
+    },
+    "provenance": "flint"
+  },
+  "entry": "the-swallowing-mouth",
+  "beats": [
+    {
+      "id": "the-swallowing-mouth",
+      "kind": "threshold",
+      "title": "The Swallowing Mouth",
+      "prose": "The fissure in the Vess barrens is a wound rather than a cave — a slot of black stone that exhales cold and smells of wet chalk. Old rope ladders hang in it, each one shorter than the last, each severed where the rock pinched them through. Your guide, a scarred surveyor named Ondrel Kass, sets her palm to the lip and says the measurement plainly: a finger's width narrower every hour. Nine hands of stone still stand between you and being sealed in. Somewhere below, the Kettlewright expedition went down eleven days ago and never signalled back.",
+      "readAloud": "The Mouth breathes on you. Not wind — breath, warm at the edges, rotten at the core. Ondrel spits into it and the spit never lands.",
+      "art": "art-the-hour-wide-throat-swallowing-mouth",
+      "options": [
+        {
+          "id": "opt-descend-fast",
+          "label": "Waste nothing. Rope down at speed and bank the hours.",
+          "target": "the-groaning-stair",
+          "effects": [
+            {
+              "flag": "descended-swiftly",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-study-the-closing",
+          "label": "Study the closing stone — learn its rhythm before you trust your life to it.",
+          "target": "the-chalk-liturgy",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Survival",
+            "dc": 13,
+            "onFailure": "the-groaning-stair"
+          }
+        },
+        {
+          "id": "opt-prop-the-mouth",
+          "label": "Prop the Mouth with iron spars and salvaged beams before descending.",
+          "target": "the-groaning-stair",
+          "effects": [
+            {
+              "flag": "mouth-propped",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-groaning-stair",
+      "kind": "transit",
+      "title": "The Groaning Stair",
+      "prose": "Below the Mouth the rock folds into a stair that no hand cut — flowstone terraces, slick as tallow, descending into a dark your lanterns only bruise. The groaning comes in slow pulses from beneath, the sound of a jaw settling. Ondrel counts aloud so the counting stays yours: eighty steps, ninety, a hundred and four. At the base, three throats open. One is scratched over with chalk. One breathes sweet and wrong. One flickers with a light too small and too steady to be a fire.",
+      "art": "art-the-hour-wide-throat-groaning-stair",
+      "options": [
+        {
+          "id": "opt-follow-chalk",
+          "label": "Take the chalk-scratched throat.",
+          "target": "the-chalk-liturgy",
+          "effects": []
+        },
+        {
+          "id": "opt-sweet-air",
+          "label": "Take the throat that breathes sweet.",
+          "target": "the-breath-tide",
+          "effects": []
+        },
+        {
+          "id": "opt-toward-light",
+          "label": "Go toward the small steady light.",
+          "target": "the-tallow-hermit",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-chalk-liturgy",
+      "kind": "discovery",
+      "title": "The Chalk Liturgy",
+      "prose": "Someone from the Kettlewright party covered forty feet of wall in chalk before their hand failed. It is not a map. It is a liturgy of hours: HOUR 9 — THE COLLAR TAKES A FINGER. HOUR 20 — WE HEARD IT COUNT BACK. HOUR 31 — DO NOT ANSWER THE WARDEN. Beneath the words runs a repeating cadence of tally-marks in sets of five and one, the same figure over and over, like a lock's combination written by a person who no longer expected to use it. A chalk stub lies in a puddle of old candle grease, and the passage beyond stinks of wet fur.",
+      "readAloud": "The last line is written low, near the floor, where a kneeling person could reach: WE ARE NOT LOST. WE ARE BEING KEPT.",
+      "art": "art-the-hour-wide-throat-chalk-liturgy",
+      "options": [
+        {
+          "id": "opt-copy-cipher",
+          "label": "Copy the tally-cadence exactly into your journal before moving on.",
+          "target": "the-tallow-hermit",
+          "effects": [
+            {
+              "flag": "chalk-cipher",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-follow-marks-down",
+          "label": "Follow the chalk arrows down toward the sweet air.",
+          "target": "the-breath-tide",
+          "effects": []
+        },
+        {
+          "id": "opt-deface-marks",
+          "label": "Scrub the liturgy away — whatever reads it should not — and push into the fur-stink.",
+          "target": "the-gnaw-warren",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-tallow-hermit",
+      "kind": "social",
+      "title": "Solkeb of the Tallow Coat",
+      "prose": "The steady light is a single fat candle in a niche, and behind it sits a man wearing the drippings of ten thousand others: Solkeb, once the Kettlewright expedition's chandler, now a shape of hardened wax with human eyes. He does not startle. He has been waiting for whoever came next. He will trade — he wants the count, the sets of five and one, because he has forgotten the cadence and cannot pass the Collar without it. In return he offers a veil soaked in his own rendered tallow, which lets a person breathe the sweet air, and a rhyme he still remembers in his teeth.",
+      "readAloud": "\"Don't pity me,\" Solkeb says, and the wax on his jaw cracks when he smiles. \"I'm the only one down here who still owes nobody an answer.\"",
+      "art": "art-the-hour-wide-throat-tallow-hermit",
+      "options": [
+        {
+          "id": "opt-trade-cipher",
+          "label": "Trade the copied cadence for the tallow veil — and shake on the pact.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "chalk-cipher",
+            "value": true
+          },
+          "target": "the-breath-tide",
+          "effects": [
+            {
+              "flag": "tallow-veil",
+              "value": true
+            },
+            {
+              "flag": "hermit-pact",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-swear-pact",
+          "label": "Swear the pact without the cadence: he guides, you carry him out.",
+          "target": "the-counting-stones",
+          "effects": [
+            {
+              "flag": "hermit-pact",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-refuse-hermit",
+          "label": "Refuse the wax man entirely and take the low crawl past his niche.",
+          "target": "the-gnaw-warren",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-breath-tide",
+      "kind": "hazard",
+      "title": "The Breath Tide",
+      "prose": "The gallery beyond is knee-deep in pale fungus that pulses like lung tissue, and every ninety seconds it exhales a sweet grey fog that rolls waist-high down the slope. Lantern flames go blue in it. Ondrel's nose starts to bleed before she notices she is smiling. Across the gallery, forty feet of open floor, a stone lip drops toward a deeper, colder chamber where something metallic drips. The tide is coming again; you can hear the fungus draw in.",
+      "art": "art-the-hour-wide-throat-breath-tide",
+      "options": [
+        {
+          "id": "opt-hold-breath",
+          "label": "Run it on held breath, all of you roped together.",
+          "target": "the-counting-stones",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Constitution",
+            "dc": 14,
+            "onFailure": "the-gnaw-warren"
+          }
+        },
+        {
+          "id": "opt-use-veil",
+          "label": "Breathe through the tallow veil and cross at a walk, mapping as you go.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "tallow-veil",
+            "value": true
+          },
+          "target": "the-drowned-cartograph",
+          "effects": []
+        },
+        {
+          "id": "opt-retreat-tide",
+          "label": "Back out. Climb to the Stair and try another throat.",
+          "target": "the-groaning-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-gnaw-warren",
+      "kind": "conflict",
+      "title": "The Gnaw Warren",
+      "prose": "The crawl opens into a hollow lined with chewed bone and shredded expedition canvas. Eyes ignite in tiers — rat-things the size of hounds, fat on eleven days of provisions, and behind them two lean scaled scavengers in stolen surveyor's coats, jabbing with sharpened tent-poles to drive the swarm at you. There is no room to hold a line here. There is only the far crack and the will to reach it.",
+      "art": "art-the-hour-wide-throat-gnaw-warren",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "gnaw-warren-swarm",
+      "terminal": false
+    },
+    {
+      "id": "the-counting-stones",
+      "kind": "puzzle",
+      "title": "The Counting Stones",
+      "prose": "A ring of nine standing stones fills a chamber whose ceiling you cannot find, and each stone bears a shallow socket worn by generations of turning. This is the Collar — the mechanism the chalk liturgy warned of, the thing that takes a finger of the Mouth every hour. Set the sockets to the right cadence and the Collar pauses; set them wrong and it takes two fingers instead of one, and you will feel the whole Underland tighten around you like a swallow.",
+      "readAloud": "When you touch the first stone, something far below stops dripping and begins, distinctly, to count.",
+      "art": "art-the-hour-wide-throat-counting-stones",
+      "options": [
+        {
+          "id": "opt-align-stones",
+          "label": "Work the cadence out from the wear-patterns and set all nine sockets.",
+          "target": "the-drowned-cartograph",
+          "effects": [
+            {
+              "flag": "stones-aligned",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 14,
+            "onFailure": "the-narrowing-gullet"
+          }
+        },
+        {
+          "id": "opt-brute-collar",
+          "label": "Spike the sockets with iron and run before it corrects itself.",
+          "target": "the-narrowing-gullet",
+          "effects": []
+        },
+        {
+          "id": "opt-hermit-rhyme",
+          "label": "Recite Solkeb's rhyme aloud and follow where it puts your hands.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "hermit-pact",
+            "value": true
+          },
+          "target": "the-drowned-cartograph",
+          "effects": [
+            {
+              "flag": "stones-aligned",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-drowned-cartograph",
+      "kind": "discovery",
+      "title": "The Drowned Cartograph",
+      "prose": "Black water fills a bowl of rock to the ribs, and in it floats the Kettlewright survey table, still lashed to its frame, its vellum swollen but legible under wax. Two routes are inked toward the surface: one marked TRUE THROAT in careful hand, one marked WET — DO NOT. Weighted to the table's leg is a lantern-case of good oil. Deeper in the bowl, half-sunk, is a wedge of pale mineral that hums against your teeth and bears the same tally-marks as the chalk. Something in the far dark is singing very quietly in several voices at once.",
+      "art": "art-the-hour-wide-throat-drowned-cartograph",
+      "options": [
+        {
+          "id": "opt-read-map",
+          "label": "Read and memorise the True Throat route before the vellum rots further.",
+          "target": "the-two-throats",
+          "effects": [
+            {
+              "flag": "true-throat-known",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-salvage-oil",
+          "label": "Wade out for the lantern oil — light is life, whatever is singing.",
+          "target": "the-carrion-choir",
+          "effects": []
+        },
+        {
+          "id": "opt-take-shard",
+          "label": "Dive for the humming wedge of stone and pry it free.",
+          "target": "the-two-throats",
+          "effects": [
+            {
+              "flag": "keystone-shard",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-carrion-choir",
+      "kind": "conflict",
+      "title": "The Carrion Choir",
+      "prose": "The singers come up out of the water on all fours: two long-jawed corpse-eaters with surveyor's brass still tangled in their hair, herding a pair of slack-mouthed dead who wear the Kettlewright colours. They do not want to kill you quickly. They want to keep you here until the Collar closes and the arithmetic of the Underland resolves in their favour. Hold the shallows. The current pulls toward the outflow, and the outflow leads on.",
+      "art": "art-the-hour-wide-throat-carrion-choir",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "carrion-choir-vigil",
+      "terminal": false
+    },
+    {
+      "id": "the-two-throats",
+      "kind": "decision",
+      "title": "The Two Throats",
+      "prose": "Two ascents, side by side, breathing in alternation like nostrils. The left is dry, narrow, and ribbed with old spike-scars — climbable, if the map's cadence is in your head. The right runs with black water that goes up, against sense, sucked toward some higher pressure. Ondrel's chalk mark from your own descent is here, and it is lower than you left it. The stone has taken three fingers since you came down. Whatever choice you make, make it now.",
+      "readAloud": "Far above, faint as a cough in another room, you hear iron shift. That was your rope. That was your ladder. That was the sound of the count going on without you.",
+      "art": "art-the-hour-wide-throat-two-throats",
+      "options": [
+        {
+          "id": "opt-true-throat",
+          "label": "Climb the True Throat by the memorised route.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "true-throat-known",
+            "value": true
+          },
+          "target": "the-narrowing-gullet",
+          "effects": []
+        },
+        {
+          "id": "opt-wet-throat",
+          "label": "Swim the wet throat and trust the wrong-way current.",
+          "target": "the-narrowing-gullet",
+          "effects": []
+        },
+        {
+          "id": "opt-back-for-solkeb",
+          "label": "Go back down for Solkeb — a debt is a rope too.",
+          "target": "the-tallow-hermit",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-narrowing-gullet",
+      "kind": "transit",
+      "title": "The Narrowing Gullet",
+      "prose": "The ascent becomes a gullet, and the gullet is measurably smaller than it was an hour ago. You go through on your sides, then on your backs, packs pushed ahead, exhaling to gain inches. Above, the shaft opens into a lit chamber — lit not by day but by a cold grey glow that shows a collar of nine sockets set into living rock, and a figure standing at them, patient as a clock, wearing the Kettlewright expedition's leader's coat over nothing that is still alive.",
+      "art": "art-the-hour-wide-throat-narrowing-gullet",
+      "options": [
+        {
+          "id": "opt-crawl-on",
+          "label": "Keep crawling. Meet whatever stands at the Collar.",
+          "target": "the-keystone-heart",
+          "effects": []
+        },
+        {
+          "id": "opt-jam-the-collar",
+          "label": "Jam the upper collar with what you carry and what you learned before you're seen.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "stones-aligned",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "keystone-shard",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "descended-swiftly",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-keystone-heart",
+          "effects": []
+        },
+        {
+          "id": "opt-run-for-propped-mouth",
+          "label": "Abandon the Collar — sprint the side flue to the spars you left in the Mouth.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "mouth-propped",
+            "value": true
+          },
+          "target": "ending-out-into-hostile-air",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-keystone-heart",
+      "kind": "climax",
+      "title": "The Keystone Heart",
+      "prose": "The Warden of Hours turns from the sockets. It was Kettlewright once; the coat still has her name stitched inside the collar. Its hands are white with chalk. Around it, three sets of bones stand in a half-circle and begin to keep time on the stone with their knuckles — five and one, five and one. While the Warden lives, the count continues and the Mouth closes. End it, and the Collar is only stone again.",
+      "readAloud": "\"You are late,\" the Warden says, in a voice like chalk dragged flat. \"But you are counted.\"",
+      "art": "art-the-hour-wide-throat-keystone-heart",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "keystone-heart-vigil",
+      "terminal": false
+    },
+    {
+      "id": "ending-out-into-hostile-air",
+      "kind": "ending",
+      "title": "Ending: Out Into Hostile Air",
+      "prose": "You come out of the Vess barrens at the hour the Mouth would have shut, and it does shut — behind you, with a sound like a book closing on a finger. The Underland's cold breath cuts off mid-exhale. You are filthy, blind-eyed, three fingers of stone from dead, and alive. Ondrel writes the true measurement in the survey ledger and then, beneath it, a warning in a hand that shakes: THE COUNT IS NOT A NATURAL LAW. SOMETHING KEEPS IT. Whatever you carried out — chalk cadence, humming shard, waxen debt — you carried it into daylight, and that is more than the Kettlewrights managed. The barrens are still hostile. They are merely survivable.",
+      "art": "art-the-hour-wide-throat-ending-hostile-air",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sealed-below",
+      "kind": "ending",
+      "title": "Ending: Sealed Below",
+      "prose": "The hour turns while you are still down here, and the Underland finishes its swallow. There is no crash, no cave-in — only the sudden absence of the draught, and the way sound stops travelling upward. The lanterns become a small negotiation with the dark. Somewhere below, the counting resumes at one. You will map what you can. You will chalk your own liturgy on the wall for whoever comes next, and you will write it low, where a kneeling person can reach: WE ARE NOT LOST. WE ARE BEING KEPT.",
+      "art": "art-the-hour-wide-throat-ending-sealed-below",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-the-door-that-is-you",
+      "kind": "ending",
+      "title": "Ending: The Door That Is You",
+      "prose": "You flee the Collar chamber and the Warden lets you go, because the Warden does not need to chase what it has already scheduled. In the flue you find the sockets turning by themselves, and you understand the shape of the bargain: the count needs a keeper, and the keeper needs only to stay. One of you stops. One of you puts chalk-white hands to the stone and holds the hour open while the others crawl out into a sky none of you will describe honestly afterward. The Mouth stays a finger wide for a long time — long enough that the Vess surveyors begin to call it a landmark rather than a wound, and never learn whose patience is holding it.",
+      "art": "art-the-hour-wide-throat-ending-door-that-is-you",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "gnaw-warren-swarm",
+      "title": "Break for the Far Crack",
+      "combatants": [
+        {
+          "id": "gnaw-swarm",
+          "statblock": "giant-rat",
+          "count": 5,
+          "hostile": true
+        },
+        {
+          "id": "warren-pikers",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "the-counting-stones",
+      "onDefeat": "ending-sealed-below",
+      "onFlee": "the-groaning-stair"
+    },
+    {
+      "id": "carrion-choir-vigil",
+      "title": "Hold the Shallows Three Rounds",
+      "combatants": [
+        {
+          "id": "choir-eaters",
+          "statblock": "ghoul",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "colour-bearers",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "water",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-two-throats",
+      "onDefeat": "ending-sealed-below",
+      "onFlee": "the-narrowing-gullet"
+    },
+    {
+      "id": "keystone-heart-vigil",
+      "title": "Break the Count",
+      "combatants": [
+        {
+          "id": "hour-warden",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "bone-choristers",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "vertical",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "hour-warden"
+      },
+      "onVictory": "ending-out-into-hostile-air",
+      "onDefeat": "ending-sealed-below",
+      "onFlee": "ending-the-door-that-is-you"
+    }
+  ]
+}

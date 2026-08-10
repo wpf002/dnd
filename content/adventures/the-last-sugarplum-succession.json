@@ -1,0 +1,544 @@
+{
+  "id": "the-last-sugarplum-succession",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Sugarplum Succession",
+    "premise": "When the Confectioner-King of Sucrelle dies without a clear heir, a crushing debt to the Salt Barons threatens to melt the kingdom's sovereignty entirely unless the throne is settled—or the debt escaped—before the treaty deadline strikes midnight.",
+    "tone": [
+      "political-fantasy",
+      "epic-finale"
+    ],
+    "tier": "national",
+    "partyLevel": 5,
+    "narrationVoice": "wry, bittersweet court chronicler",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children are placed in on-screen jeopardy; the succession crisis is handled through adult courtiers and factions only."
+    },
+    "provenance": "flint"
+  },
+  "entry": "sugarspun-gates",
+  "beats": [
+    {
+      "id": "sugarspun-gates",
+      "kind": "threshold",
+      "title": "The Sugarspun Gates",
+      "prose": "The Candied Citadel of Sucrelle rises before you, its walls hardened caramel gone dull with mourning-frost. Bells of spun sugar toll in a register too sad for their sweetness. The old king is dead, and the city holds its breath.",
+      "readAloud": "The gates of hardened caramel groan open, and the smell of burnt sugar and old grief rolls out to meet you.",
+      "art": "art-the-last-sugarplum-succession-sugarspun-gates-art",
+      "options": [
+        {
+          "id": "enter-market",
+          "label": "Slip in through the marzipan market to hear the rumors",
+          "target": "kings-last-breath",
+          "effects": []
+        },
+        {
+          "id": "enter-cathedral",
+          "label": "Enter by the Cathedral of Confection, where the court will be watching",
+          "target": "kings-last-breath",
+          "effects": []
+        },
+        {
+          "id": "enter-tunnels",
+          "label": "Take the servants' sugar-tunnels beneath the citadel",
+          "target": "kings-last-breath",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "kings-last-breath",
+      "kind": "discovery",
+      "title": "The King's Last Breath",
+      "prose": "In the royal larder, King Baumkuchen III lies crystallized on his bier, his body slowly fracturing like brittle toffee. Beside him, a scorched corner of parchment: the Caramel Compact, the treaty that bought his kingdom's sweetness with the Salt Barons' patience—and their salt.",
+      "art": "art-the-last-sugarplum-succession-kings-last-breath-art",
+      "options": [
+        {
+          "id": "examine-body",
+          "label": "Examine the King's crystallized remains for cause of death",
+          "target": "court-of-crumbs",
+          "effects": []
+        },
+        {
+          "id": "question-steward",
+          "label": "Question the trembling Steward of Spices",
+          "target": "court-of-crumbs",
+          "effects": []
+        },
+        {
+          "id": "read-scroll",
+          "label": "Read the fraying Caramel Compact scroll",
+          "target": "court-of-crumbs",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "court-of-crumbs",
+      "kind": "social",
+      "title": "Court of Crumbs",
+      "prose": "Duke Marzipane Ganache holds the regency like a man holding a melting candle too close. He speaks smoothly of debts, deadlines, and the necessity of ceding the Crystal Orchard to the Salt Barons to save what remains of Sucrelle.",
+      "art": "art-the-last-sugarplum-succession-court-of-crumbs-art",
+      "options": [
+        {
+          "id": "press-duke",
+          "label": "Press the Duke on the debt's true cost",
+          "target": "princess-in-the-pantry",
+          "effects": []
+        },
+        {
+          "id": "offer-mediate",
+          "label": "Offer to mediate the succession yourselves",
+          "target": "princess-in-the-pantry",
+          "effects": []
+        },
+        {
+          "id": "watch-courtiers",
+          "label": "Watch how the courtiers flinch around him",
+          "target": "princess-in-the-pantry",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "met-duke",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "princess-in-the-pantry",
+      "kind": "social",
+      "title": "Princess in the Pantry",
+      "prose": "You find Princess Nougatine Frost hiding among the flour sacks, still in mourning-sugar, terrified and resolute in equal measure. She is the rightful heir—and utterly unprepared for what the Duke intends.",
+      "art": "art-the-last-sugarplum-succession-princess-in-the-pantry-art",
+      "options": [
+        {
+          "id": "swear-help",
+          "label": "Swear to help her claim the throne",
+          "target": "three-paths",
+          "effects": []
+        },
+        {
+          "id": "ask-fathers-death",
+          "label": "Ask what she knows of her father's death",
+          "target": "three-paths",
+          "effects": []
+        },
+        {
+          "id": "warn-ambitions",
+          "label": "Warn her plainly of the Duke's ambitions",
+          "target": "three-paths",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "met-princess",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "three-paths",
+      "kind": "decision",
+      "title": "Three Paths Through the Sugar",
+      "prose": "The Salt Barons' deadline draws near. To stop the Duke's sale of the Crystal Orchard, you need leverage—and there are three places it might be found.",
+      "art": "art-the-last-sugarplum-succession-three-paths-art",
+      "options": [
+        {
+          "id": "choose-salt",
+          "label": "Track the Salt Barons' collection caravan",
+          "target": "salt-baron-camp",
+          "effects": [
+            {
+              "flag": "path-salt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "choose-archive",
+          "label": "Search the Archive of Recipes for the treaty's fine print",
+          "target": "archive-of-recipes",
+          "effects": [
+            {
+              "flag": "path-archive",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "choose-orchard",
+          "label": "Stand vigil at the Crystal Orchard's failing wards",
+          "target": "crystal-orchard-vigil",
+          "effects": [
+            {
+              "flag": "path-orchard",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "salt-baron-camp",
+      "kind": "conflict",
+      "title": "The Salt Barons' Caravan",
+      "prose": "Salt-crusted wagons rumble through the frost-cracked orchard road, guarded by hard-eyed mercenaries under a bandit-captain flying the Salt Barons' grey pennant. Their ledger, if you can seize it, may prove the debt was forged.",
+      "art": "art-the-last-sugarplum-succession-salt-baron-camp-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "salt-baron-camp",
+      "terminal": false
+    },
+    {
+      "id": "archive-of-recipes",
+      "kind": "puzzle",
+      "title": "Archive of Recipes",
+      "prose": "Dust and candied ink fill the Archive of Recipes, where every treaty, tax roll, and marginal joke of the last century is preserved in sugar-glass tablets. Somewhere here is the clause the Duke doesn't want found.",
+      "art": "art-the-last-sugarplum-succession-archive-of-recipes-art",
+      "options": [
+        {
+          "id": "decode-marginalia",
+          "label": "Decode the marginalia written in candied ink",
+          "target": "gathered-evidence",
+          "effects": []
+        },
+        {
+          "id": "cross-reference",
+          "label": "Cross-reference the treaty against old tax rolls",
+          "target": "gathered-evidence",
+          "effects": []
+        },
+        {
+          "id": "bribe-archivist",
+          "label": "Bribe the Archivist Mothmallow for the missing page",
+          "target": "gathered-evidence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "crystal-orchard-vigil",
+      "kind": "hazard",
+      "title": "Vigil at the Crystal Orchard",
+      "prose": "The Crystal Orchard hums with failing magic, its root-crystal unmortgaged and untouched—if you can get past the candied guardians the Duke posted to keep everyone, including the truth, away.",
+      "art": "art-the-last-sugarplum-succession-crystal-orchard-vigil-art",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "crystal-orchard-vigil",
+      "terminal": false
+    },
+    {
+      "id": "gathered-evidence",
+      "kind": "discovery",
+      "title": "Gathered Evidence",
+      "prose": "Whatever the path, the truth crystallizes at last: the debt was inflated, the treaty's abdication clause was buried, and the King's final breath was sweetened with something that should never have been in his sugar.",
+      "art": "art-the-last-sugarplum-succession-gathered-evidence-art",
+      "options": [
+        {
+          "id": "reveal-salt",
+          "label": "Reveal the Salt Barons' forged ledger",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "path-salt",
+            "value": true
+          },
+          "target": "accusation-decision",
+          "effects": []
+        },
+        {
+          "id": "reveal-archive",
+          "label": "Reveal the treaty's hidden abdication clause",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "path-archive",
+            "value": true
+          },
+          "target": "accusation-decision",
+          "effects": []
+        },
+        {
+          "id": "reveal-orchard",
+          "label": "Reveal the Orchard's true, unmortgaged worth",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "path-orchard",
+            "value": true
+          },
+          "target": "accusation-decision",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "gathered-proof",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "accusation-decision",
+      "kind": "decision",
+      "title": "The Accusation",
+      "prose": "Proof in hand, you must choose how to move against the Duke before the Salt Barons' deadline falls and the Crystal Orchard is signed away forever.",
+      "art": "art-the-last-sugarplum-succession-accusation-decision-art",
+      "options": [
+        {
+          "id": "confront-duke",
+          "label": "Confront Duke Marzipane publicly in the throne room",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-duke",
+            "value": true
+          },
+          "target": "throne-room-clash",
+          "effects": []
+        },
+        {
+          "id": "support-princess",
+          "label": "Crown Princess Nougatine covertly before the Duke can react",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "met-princess",
+            "value": true
+          },
+          "target": "new-sugar-queen",
+          "effects": []
+        },
+        {
+          "id": "broker-deal",
+          "label": "Broker a private deal with the Salt Barons instead",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "gathered-proof",
+            "value": true
+          },
+          "target": "salt-barons-triumph",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "throne-room-clash",
+      "kind": "climax",
+      "title": "Throne Room Clash",
+      "prose": "The Duke's candied guardians snap to attention as you make your accusation before the court. Steel and sugar-armor gleam. There will be no more diplomacy tonight.",
+      "art": "art-the-last-sugarplum-succession-throne-room-clash-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "throne-room-clash",
+      "terminal": false
+    },
+    {
+      "id": "new-sugar-queen",
+      "kind": "ending",
+      "title": "The New Sugar Queen",
+      "prose": "Princess Nougatine Frost ascends the crystallized throne, the forged debt exposed and renegotiated on fairer terms. Sucrelle will be poorer and wiser for a generation, but it will still be sweet, and it will still be free.",
+      "art": "art-the-last-sugarplum-succession-new-sugar-queen-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "salt-barons-triumph",
+      "kind": "ending",
+      "title": "The Salt Barons' Triumph",
+      "prose": "The deal is struck. The Crystal Orchard passes into Salt Baron hands, and Sucrelle becomes a bitter vassal state, its sweetness rationed by foreign decree. You saved lives today—but not the kingdom's soul.",
+      "art": "art-the-last-sugarplum-succession-salt-barons-triumph-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "bittersweet-regency",
+      "kind": "ending",
+      "title": "Bittersweet Regency",
+      "prose": "The Duke survives, wounded and chastened, to rule on as a bitter regent under a watchful court. No throne changes hands tonight, but the debt is delayed, the Orchard stands, and Sucrelle limps on toward an uncertain, uneasy peace.",
+      "art": "art-the-last-sugarplum-succession-bittersweet-regency-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "salt-baron-camp",
+      "title": "Ambush at the Salt Caravan",
+      "combatants": [
+        {
+          "id": "captain-halvor",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "salt-raider",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "open"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "gathered-evidence",
+      "onDefeat": "salt-barons-triumph",
+      "onFlee": "gathered-evidence"
+    },
+    {
+      "id": "crystal-orchard-vigil",
+      "title": "Guardians of the Crystal Orchard",
+      "combatants": [
+        {
+          "id": "candy-golem",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "sprite-scout",
+          "statblock": "goblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Fight through to the heart of the Orchard and touch the unmortgaged root-crystal."
+      },
+      "onVictory": "gathered-evidence",
+      "onDefeat": "bittersweet-regency",
+      "onFlee": "gathered-evidence"
+    },
+    {
+      "id": "throne-room-clash",
+      "title": "Clash in the Throne Room",
+      "combatants": [
+        {
+          "id": "armored-confectioner",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "rotten-advisor",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "duke-guard",
+          "statblock": "hobgoblin",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-heavy"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "new-sugar-queen",
+      "onDefeat": "bittersweet-regency"
+    }
+  ]
+}

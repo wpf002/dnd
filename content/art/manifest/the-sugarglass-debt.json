@@ -1,0 +1,90 @@
+{
+  "adventure": "the-sugarglass-debt",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: gothic-horror, whimsical-fey.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-sugarglass-debt-crooked-signpost-img",
+      "beat": "crooked-signpost",
+      "brief": "The Crooked Signpost — A signpost stands bent at the border of Thistlewick Vale, its painted letters weeping down the wood like candle wax. Three roads split from here: one "
+    },
+    {
+      "slot": "art-the-sugarglass-debt-thistlewick-square-img",
+      "beat": "thistlewick-square",
+      "brief": "Thistlewick Square — Shutters are nailed closed and the well in the square is capped with iron. A gaunt woman sweeping ash from her step tells you the mayor still keeps of"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-hollow-wood-path-img",
+      "beat": "hollow-wood-path",
+      "brief": "The Hollow Wood — The trees here have faces pressed into their bark, mouths open in permanent silent song. A wall of black briar rises ahead, and somewhere beyond it so"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-toll-bridge-ruins-img",
+      "beat": "toll-bridge-ruins",
+      "brief": "The Toll Bridge Ruins — A stone bridge, half-collapsed, spans a ravine of black water. A rotted tollbooth still stands sentinel, its ledger-slot stuffed with claw marks. Some"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-toll-briars-hazard-img",
+      "beat": "toll-briars-hazard",
+      "brief": "The Briar Wall — The briars are warm to the touch and hum a lullaby that makes your teeth ache. Somewhere beyond them, a grove waits that the wood itself seems despera"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-weeping-mayor-img",
+      "beat": "weeping-mayor",
+      "brief": "The Weeping Mayor — Mayor Corrin Vell sits behind a desk stacked with unpaid tithes to a power he won't name aloud. His eyes are red-rimmed but dry now, as if he has run "
+    },
+    {
+      "slot": "art-the-sugarglass-debt-buried-ledger-img",
+      "beat": "buried-ledger",
+      "brief": "The Buried Ledger — Beneath rotten floorboards or brittle bridge-planks, you find a leather ledger. Generations ago, Thistlewick promised the Godmother a yearly toll of a"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-godmothers-grove-edge-img",
+      "beat": "godmothers-grove-edge",
+      "brief": "The Grove's Edge — Sugarglass icicles hang from black branches, chiming like wind-bells over a ring of standing stones. Something in the grove watches without eyes, and "
+    },
+    {
+      "slot": "art-the-sugarglass-debt-shadow-guardians-img",
+      "beat": "shadow-guardians",
+      "brief": "The Grove's Watchers — Shapes peel off the standing stones like ink lifting from paper, and the grove goes cold as grave-dirt."
+    },
+    {
+      "slot": "art-the-sugarglass-debt-goblin-tollkeepers-img",
+      "beat": "goblin-tollkeepers",
+      "brief": "The Tollkeepers — From the wreckage of the tollbooth spill goblins in patchwork coats, led by a scarred hobgoblin who still, absurdly, demands a toll before you may cro"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-godmother-in-the-wood-img",
+      "beat": "godmother-in-the-wood",
+      "brief": "The Godmother in the Wood — She is stitched together from storybook things: a crown of thorned sugar, a smile too wide, eyes like wells with no bottom. 'You have found my ledger,"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-reckoning-decision-img",
+      "beat": "reckoning-decision",
+      "brief": "The Reckoning — The grove holds its breath. Whatever you chose to offer, the Godmother now waits to see it made real, and the vale itself seems to lean in to listen."
+    },
+    {
+      "slot": "art-the-sugarglass-debt-ending-toll-paid-img",
+      "beat": "ending-toll-paid",
+      "brief": "The Toll Paid — You give her what Thistlewick withheld: a true and willing joy, freely offered, taken from your own hearts rather than stolen from a child. The curse "
+    },
+    {
+      "slot": "art-the-sugarglass-debt-ending-curse-broken-img",
+      "beat": "ending-curse-broken",
+      "brief": "The Bargain Shattered — You refuse to pay her anything at all, and instead tear the old bargain out by its roots, ledger and grove and all. The Godmother's shriek unmakes the"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-ending-new-bargain-img",
+      "beat": "ending-new-bargain",
+      "brief": "A Fairer Bargain — Ledger in hand, you name the old lie for what it was, and the Godmother — who is nothing if not a creature of contracts — agrees to strike a new and h"
+    },
+    {
+      "slot": "art-the-sugarglass-debt-curse-consumes-you-img",
+      "beat": "curse-consumes-you",
+      "brief": "The Curse Collects — You reached for the vale's oldest wound without her leave, or fell to what guards it, and the debt comes due on you instead. The sugarglass wood close"
+    }
+  ]
+}

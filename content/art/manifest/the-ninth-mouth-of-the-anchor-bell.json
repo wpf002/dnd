@@ -1,0 +1,85 @@
+{
+  "adventure": "the-ninth-mouth-of-the-anchor-bell",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: epic-finale, cosmic-horror.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-vellisandre-unstitching-skyline",
+      "beat": "the-last-hour",
+      "brief": "The Last Hour of Vellisandre — Vellisandre-in-the-Gap was built in the overlap of four worlds, and for nine centuries the overlap held. Tonight the seams show: streets end in unfini"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-lanternhouse-warden-vigil",
+      "beat": "warden-remnant",
+      "brief": "Warden Isquith Vale — The Lanternhouse leans over a street that is no longer entirely there. Inside, Warden Isquith Vale — last of the Lantern Wardens, one arm gone grey an"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-salt-stair-triple-flight",
+      "beat": "salt-stair-descent",
+      "brief": "The Salt Stair — Nine hundred steps of salt-crusted basalt spiral down the throat of the Gap. Halfway, the stair forgets which world it belongs to: three flights occup"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-mirror-market-standing-glass",
+      "beat": "mirror-market",
+      "brief": "The Mirror Market — Stalls of standing glass, each one a shopfront onto a world the Gap still touches. A vendor with too-symmetrical hands sells hours; another sells the "
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-choir-vanguard-arcade-assault",
+      "beat": "choir-ambush",
+      "brief": "Vanguard of the Hollow Choir — They come singing, and the song is a schedule. Stole-bearers with mouths sewn into vertical seams press in from the arcades while two of the Choir's c"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-unstitched-gallery-empty-banner",
+      "beat": "unstitched-gallery",
+      "brief": "The Unstitched Gallery — A colonnade where the Threadwrights recorded the Bell's tuning in nine woven banners. Eight hang whole. The ninth has been unpicked to bare warp, its "
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-drowned-orrery-brass-worlds",
+      "beat": "drowned-orrery",
+      "brief": "The Drowned Orrery — A vaulted chamber flooded waist-deep in something colder and more patient than water. Four brass worlds turn on submerged armatures, and where they ov"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-thin-place-failed-seam",
+      "beat": "the-thin-place",
+      "brief": "Where the Seam Has Already Failed — A stretch of corridor with no floor and no absence of floor — the seam has simply given up here, and four worlds argue over the same forty feet. Gravi"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-bridge-nine-mouths-iron-ports",
+      "beat": "bridge-of-nine-mouths",
+      "brief": "The Bridge of Nine Mouths — A single span crosses the Bell's shaft, and nine arched mouths of dark iron open along its length — the resonance ports, each big enough to swallow a "
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-bell-hollow-threshold-lever",
+      "beat": "bell-hollow-threshold",
+      "brief": "The Threshold of the Bell Hollow — The Anchor Bell hangs in a hollow the size of a cathedral, so large that its curve reads as a horizon. The tuning lever — one iron arm, wound with nin"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-mourncant-first-mouth-parley",
+      "beat": "mourncant-parley",
+      "brief": "Mourncant, First Mouth — He is a hollowed thing in Threadwright grey, and when he speaks the Bell's pause lengthens to accommodate him. 'You believe I came to break the seam. "
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-the-tuning-bell-hollow-climax",
+      "beat": "the-tuning",
+      "brief": "The Tuning — The ninth hour arrives as a pressure rather than a sound. Mourncant sets his hands to the Bell's lip and begins the note that ends the argument of wor"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-ending-seam-held-dawn",
+      "beat": "seam-sealed",
+      "brief": "Ending: The Grinding Held — Mourncant comes apart mid-syllable, and the unfinished note falls out of the world. Someone reaches the lever. It takes all four of you to move it, an"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-ending-chorus-ascendant-smooth-world",
+      "beat": "chorus-ascendant",
+      "brief": "Ending: One World, and It Is Quiet — The last of you falls short of the lever by nine feet, and Mourncant finishes the note. It is not violent. The four worlds simply agree, the way argui"
+    },
+    {
+      "slot": "art-the-ninth-mouth-of-the-anchor-bell-ending-third-tone-willing-hinge",
+      "beat": "the-third-tone",
+      "brief": "Ending: The Willing Hinge — There is a third answer, and it costs exactly what Mourncant said it would. The anchor-light goes into the Bell, and you go in after it — not destroye"
+    }
+  ]
+}

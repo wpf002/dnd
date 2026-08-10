@@ -1,0 +1,727 @@
+{
+  "id": "the-threnody-accord",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Threnody Accord",
+    "premise": "Nine days after the Margravine of Sallowgate dies without a named heir, an intelligencer of the Ascendancy's Quiet Office must find out who forged the border town's grain-levy payment before the Threnody Accord is signed — or unsigned — in blood.",
+    "tone": [
+      "political-fantasy",
+      "mystery"
+    ],
+    "tier": "regional",
+    "partyLevel": 4,
+    "narrationVoice": "Cool, close third person, like a spy's report read aloud by candlelight — precise nouns, dry irony, and every conversation weighed as evidence.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The disputed heir is a nineteen-year-old almshouse scullion; wards and foundlings are named but never harmed or threatened on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "dusk-at-the-toll-gate",
+  "beats": [
+    {
+      "id": "dusk-at-the-toll-gate",
+      "kind": "threshold",
+      "title": "Dusk at the Toll Gate",
+      "prose": "Sallowgate straddles the River Marrow like a hand over a wound: Ascendancy banners on the near bank, Thessine campfires smudging the far one. The Margravine Odile Vance has been dead nine days, the Threnody Accord waits three more for a seal nobody can find, and the town's grain-levy to the Crown Assize was paid in scrip the treasury swears it never printed. Your orders from the Quiet Office are four words long: learn who paid. At the gate, a levy-sergeant turns your writ over twice, looking for the smell of ink that hasn't dried.",
+      "readAloud": "\"Courier, are you? Nine days, four couriers, and not one of them carried anything I could read. Step into the lamplight, friend, and let me admire your handwriting.\"",
+      "art": "art-the-threnody-accord-sallowgate-toll-gate-dusk",
+      "options": [
+        {
+          "id": "present-the-forged-writ",
+          "label": "Present the Quiet Office writ and let him doubt his own eyes.",
+          "target": "the-widow-magistrate",
+          "effects": [
+            {
+              "flag": "courier-trust",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Deception",
+            "dc": 13,
+            "onFailure": "roof-chase-over-the-tannery"
+          }
+        },
+        {
+          "id": "pay-the-honest-toll",
+          "label": "Pay the gate-toll in honest coin and enter as a nobody.",
+          "target": "the-widow-magistrate",
+          "effects": [
+            {
+              "flag": "courier-trust",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "take-the-culvert",
+          "label": "Leave the road; the old smugglers' culvert under the toll-wall is unwatched.",
+          "target": "smugglers-culvert",
+          "effects": [
+            {
+              "flag": "wall-breach",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-widow-magistrate",
+      "kind": "social",
+      "title": "The Widow-Magistrate's Parlour",
+      "prose": "Perrine Coll governs Sallowgate the way a splint governs a broken arm: temporarily, painfully, and only because nothing better presented itself. Her parlour smells of vinegar and burnt correspondence. She has three problems, she says, and offers them like cards: a debt of forty thousand marks paid in false scrip, a treaty that needs a signet resting on a dead woman's finger, and a Thessine envoy taking tea in a town at war with Thessine.",
+      "readAloud": "\"I am not asking you to save Sallowgate. I am asking you to be somewhere specific when it drowns, and to write down what you see.\"",
+      "art": "art-the-threnody-accord-widow-magistrate-parlor",
+      "options": [
+        {
+          "id": "ask-about-the-debt",
+          "label": "Ask about the debt. Who signed for the levy?",
+          "target": "the-counting-house-ledgers",
+          "effects": []
+        },
+        {
+          "id": "ask-about-the-chapel",
+          "label": "Ask about the Margravine's last weeks — and the hymnal she never put down.",
+          "target": "cipher-in-the-hymnal",
+          "effects": []
+        },
+        {
+          "id": "ask-for-envoy-introduction",
+          "label": "Use your courier's standing to demand an introduction to the Thessine envoy.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "courier-trust",
+            "value": true
+          },
+          "target": "the-sable-envoy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-counting-house-ledgers",
+      "kind": "discovery",
+      "title": "The Counting House Ledgers",
+      "prose": "The factor Bellum Ashgrave keeps his books in a room with two doors and no windows, which tells you most of what you need. The levy entry is beautiful: forty thousand marks, receipted, sealed, cross-tallied. It is also written in an ink that hasn't finished curing, and the scrip serials run in a sequence the Ascendancy retired two winters ago. Someone paid Sallowgate's debt with money that does not exist, and someone in this room knew it.",
+      "art": "art-the-threnody-accord-counting-house-ledger-stacks",
+      "options": [
+        {
+          "id": "copy-the-ledger",
+          "label": "Copy the serials and the countersignature before Ashgrave's clerks return.",
+          "target": "cipher-in-the-hymnal",
+          "effects": [
+            {
+              "flag": "ledger-copied",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "press-gang-in-the-garrison-cellar"
+          }
+        },
+        {
+          "id": "burn-the-ledger",
+          "label": "Burn the ledger. A debt nobody can read is a debt nobody can collect.",
+          "target": "the-debt-that-cannot-be-paid",
+          "effects": [
+            {
+              "flag": "debt-erased",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-the-ledger",
+          "label": "Touch nothing. Leave the way you came and follow the ink instead.",
+          "target": "cipher-in-the-hymnal",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cipher-in-the-hymnal",
+      "kind": "puzzle",
+      "title": "The Cipher in the Hymnal",
+      "prose": "The Margravine's hymnal sits on the chapel lectern, still marked with a black ribbon. Her marginalia are pious nonsense — until you notice the pinpricks under certain letters, and that the hymn numbers do not match any liturgy in the Ascendancy. It is a book-cipher, and the key is the one thing she could not write down: the name of the person she meant to inherit Sallowgate.",
+      "readAloud": "Pinholes, then. Nine days of grief and nobody thought to hold her prayer-book up to a candle.",
+      "art": "art-the-threnody-accord-hymnal-cipher-candlelight",
+      "options": [
+        {
+          "id": "solve-the-cipher",
+          "label": "Work the pinpricks against the hymn numbers until a name surfaces.",
+          "target": "the-foundling-token",
+          "effects": [
+            {
+              "flag": "cipher-known",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "dc": 15,
+            "onFailure": "roof-chase-over-the-tannery"
+          }
+        },
+        {
+          "id": "sell-the-hymnal",
+          "label": "Carry the hymnal to the Thessine envoy and see what she'll pay to read it.",
+          "target": "the-sable-envoy",
+          "effects": []
+        },
+        {
+          "id": "follow-the-marginal-map",
+          "label": "Ignore the cipher; the back endpaper is a map of the crypt drains.",
+          "target": "smugglers-culvert",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "roof-chase-over-the-tannery",
+      "kind": "conflict",
+      "title": "Roof-Chase Over the Tannery",
+      "prose": "Whistles, three short — the thief-takers' call. They come with dogs bred to work the gutter-lanes, and the only road that isn't theirs is upward: tannery roof, drying frames, the slick shingles above the fish-market. Nobody here needs you dead. They need you named, held, and questioned somewhere with a floor drain. Get to the culvert mouth and be gone.",
+      "art": "art-the-threnody-accord-tannery-roof-chase",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "gutter-hounds",
+      "terminal": false
+    },
+    {
+      "id": "the-sable-envoy",
+      "kind": "social",
+      "title": "The Sable Envoy Takes Tea",
+      "prose": "Iskra Dohn of the Thessine Compact drinks tea in an occupied town with the calm of a woman who has already read the ending. She does not deny paying the levy; she denies that it matters. The Compact does not want Sallowgate burned, she says. The Compact wants Sallowgate *indebted* — to a creditor across the river, quietly, for a generation. She has a name to trade, and a compact to offer, and she is patient about which you take.",
+      "readAloud": "\"Your empire will hang someone for that scrip. I am only suggesting it needn't be the town. Sit. The tea is genuinely good; we stole it from your side.\"",
+      "art": "art-the-threnody-accord-sable-envoy-teahouse",
+      "options": [
+        {
+          "id": "accept-the-sable-compact",
+          "label": "Accept the Sable Compact — Thessine silver, Ascendancy signatures, nobody hanged.",
+          "target": "the-debt-that-cannot-be-paid",
+          "effects": [
+            {
+              "flag": "sable-pact",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "trade-cipher-for-name",
+          "label": "Trade what the hymnal told you for the heir's name and address.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "cipher-known",
+            "value": true
+          },
+          "target": "the-foundling-token",
+          "effects": [
+            {
+              "flag": "heir-found",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-the-envoy",
+          "label": "Refuse, memorise her ring, and walk out while the tea is still hot.",
+          "target": "the-debt-that-cannot-be-paid",
+          "effects": [
+            {
+              "flag": "sable-pact",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "smugglers-culvert",
+      "kind": "transit",
+      "title": "The Culvert Beneath the Toll-Wall",
+      "prose": "The culvert runs the whole width of Sallowgate: brick throat, knee-deep river, chalk marks left by four generations of people moving things the Assize would rather not tax. Three passages branch off it. One climbs to the counting house cellar. One ends at a grate below the crypt where the Margravine lies in state. One surfaces in the yard of the Almshouse of Saint Vellis, where the chalk marks are freshest of all.",
+      "art": "art-the-threnody-accord-smugglers-culvert-tunnel",
+      "options": [
+        {
+          "id": "culvert-to-counting-house",
+          "label": "Climb toward the counting house and its two-doored ledger room.",
+          "target": "the-counting-house-ledgers",
+          "effects": []
+        },
+        {
+          "id": "culvert-to-crypt",
+          "label": "Wade to the crypt grate, quietly, past the honour-guard's boots.",
+          "target": "the-lying-in-state",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "press-gang-in-the-garrison-cellar"
+          }
+        },
+        {
+          "id": "culvert-to-almshouse",
+          "label": "Follow the fresh chalk to the almshouse yard.",
+          "target": "the-foundling-token",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-foundling-token",
+      "kind": "discovery",
+      "title": "The Foundling's Token",
+      "prose": "Ilva Renn is nineteen, scours pots at the Almshouse of Saint Vellis, and wears on a bootlace the half-token given to every foundling admitted there — except hers is silver, and its broken edge is the exact negative of the Vance signet. The almshouse admittance book has a page cut out with a razor. The matron remembers who paid Ilva's keep for nineteen years, in coin, in person, wearing a black ribbon.",
+      "readAloud": "\"She never gave a name. She only ever asked if the girl was well, and then she went away and governed us for another year.\"",
+      "art": "art-the-threnody-accord-almshouse-foundling-token",
+      "options": [
+        {
+          "id": "verify-the-sigil",
+          "label": "Match the token's broken edge against the Vance sigil and record the proof.",
+          "target": "the-debt-that-cannot-be-paid",
+          "effects": [
+            {
+              "flag": "heir-found",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "keep-the-token-secret",
+          "label": "Say nothing to anyone; go straight to the bier and see the ring for yourself.",
+          "target": "the-lying-in-state",
+          "effects": []
+        },
+        {
+          "id": "bring-token-to-envoy",
+          "label": "Bring what you've found to the Thessine envoy and price it.",
+          "target": "the-sable-envoy",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-debt-that-cannot-be-paid",
+      "kind": "decision",
+      "title": "The Debt That Cannot Be Paid",
+      "prose": "The Assize convenes in the Weights Hall at the eighth bell: forty thousand marks receipted, a treaty unsigned, and a Crown auditor who will accept any answer that lets him leave before the shelling starts. Captain Marlow Quist has a press-gang in the cellar and a simpler theory — that debts are settled at swordpoint and successions by whoever holds the gate. Whatever you carry into that hall becomes the truth of it.",
+      "art": "art-the-threnody-accord-assize-chamber-debt",
+      "options": [
+        {
+          "id": "declare-the-forgery",
+          "label": "Declare the levy forged before the Assize and name the ink.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "ledger-copied",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "debt-erased",
+                "value": true
+              }
+            ]
+          },
+          "target": "knives-in-the-antechamber",
+          "effects": [
+            {
+              "flag": "expose-plan",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-the-heir",
+          "label": "Offer the heir as guarantor: a living Vance outweighs a dead woman's debt.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "heir-found",
+            "value": true
+          },
+          "target": "knives-in-the-antechamber",
+          "effects": [
+            {
+              "flag": "heir-plan",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "let-quist-collect",
+          "label": "Say nothing and let Quist's press-gang collect the levy his way.",
+          "target": "press-gang-in-the-garrison-cellar",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "press-gang-in-the-garrison-cellar",
+      "kind": "conflict",
+      "title": "The Press-Gang in the Garrison Cellar",
+      "prose": "Quist's levy-men work by lamplight in a cellar strung with tally-ropes: names, thumbprints, and a river-barge waiting at the water-stair. They are not assassins, they are bookkeeping with cudgels, and they will have you on that barge by the ninth bell. You do not need to beat them. You need to still be standing, and still be nameless, when the sergeant's patience runs out and the bell rings.",
+      "readAloud": "\"Forty thousand marks, and the Assize wants bodies instead. Fine. Hold still — this hurts less if the ink dries straight.\"",
+      "art": "art-the-threnody-accord-garrison-cellar-press-gang",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "press-gang",
+      "terminal": false
+    },
+    {
+      "id": "the-lying-in-state",
+      "kind": "hazard",
+      "title": "The Lying-In-State",
+      "prose": "Nine days of cold has kept the Margravine presentable. The signet is still on her hand, wound with black ribbon, because no one dared decide who should take it off. Two things are wrong. Her nails are blue in a way cold does not do. And pinned inside the shroud, folded small, is a death-warrant in her own hand — hers, dated, and countersigned by the factor Ashgrave.",
+      "readAloud": "The honour-guard's boots scrape overhead, four paces out, four paces back. Somewhere above, the Weights Hall bell begins to clear its throat.",
+      "art": "art-the-threnody-accord-margravine-lying-in-state",
+      "options": [
+        {
+          "id": "take-the-signet",
+          "label": "Slip the signet from her finger without disturbing the ribbon.",
+          "target": "knives-in-the-antechamber",
+          "effects": [
+            {
+              "flag": "seal-recovered",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 14,
+            "onFailure": "knives-in-the-antechamber"
+          }
+        },
+        {
+          "id": "read-the-death-warrant",
+          "label": "Read the folded warrant and copy the countersignature.",
+          "target": "the-debt-that-cannot-be-paid",
+          "effects": [
+            {
+              "flag": "murder-proven",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "send-word-through-the-breach",
+          "label": "Send word out through your culvert breach and go straight to the signing.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "wall-breach",
+            "value": true
+          },
+          "target": "knives-in-the-antechamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "knives-in-the-antechamber",
+      "kind": "conflict",
+      "title": "Knives in the Antechamber",
+      "prose": "The antechamber to the Weights Hall is full of people pretending to wait. Then the door-latch turns the wrong way and three of them are no longer pretending: Compact knives, quiet ones, moving on Widow-Magistrate Coll — because a treaty needs a living signatory, and the simplest amendment is a funeral. The Vance harness on its display stand grinds around to face her too; someone has spent good money on old spite. Keep Perrine Coll breathing.",
+      "art": "art-the-threnody-accord-antechamber-knives",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "knives-in-the-antechamber",
+      "terminal": false
+    },
+    {
+      "id": "the-signing-hall",
+      "kind": "climax",
+      "title": "The Signing Hall",
+      "prose": "The Weights Hall: Crown auditor at one end, Thessine envoy at the other, Quist's men along the wall, and between them a document that will decide whether Sallowgate is a border town or a battlefield. Everything you gathered is now leverage, and leverage spends only once. The auditor dips his pen and looks up at you, because you are the only person in the room whose report he has to believe.",
+      "readAloud": "\"Well, intelligencer. Whose name goes on the line, and whose goes in the margin?\"",
+      "art": "art-the-threnody-accord-signing-hall-accord",
+      "options": [
+        {
+          "id": "ratify-in-the-heirs-name",
+          "label": "Ratify the Threnody Accord honestly — on the evidence you carry.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "heir-plan",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "seal-recovered",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "murder-proven",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "expose-plan",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-accord-ratified",
+          "effects": []
+        },
+        {
+          "id": "take-the-sable-silver",
+          "label": "Honour the Sable Compact: Thessine silver settles the debt, and the town's owner changes quietly.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "sable-pact",
+            "value": true
+          },
+          "target": "sold-for-thessine-silver",
+          "effects": []
+        },
+        {
+          "id": "close-the-ledger-yourself",
+          "label": "Give the Assize nothing, take the culvert road, and let Sallowgate answer for itself.",
+          "target": "the-ledger-closes-without-you",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-accord-ratified",
+      "kind": "ending",
+      "title": "The Accord Ratified",
+      "prose": "The Threnody Accord is signed at the eleventh bell, and it holds — not because it is just, but because it is documented. Ilva Renn is confirmed Margravine of Sallowgate by token, hymnal, and one dead woman's cipher; the forged levy is voided; Bellum Ashgrave's countersignature earns him a room with a floor drain of his own. The guns across the Marrow go quiet for eleven months, which in this war is a dynasty. The Quiet Office files your report unread and sends you a new one, four words long. You have made a border town into a fact, and facts are the only fortifications that ever held.",
+      "art": "art-the-threnody-accord-ratified-accord-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "sold-for-thessine-silver",
+      "kind": "ending",
+      "title": "Sold for Thessine Silver",
+      "prose": "The debt is settled in good Thessine coin, the Accord is signed, and nobody hangs — which is exactly what Iskra Dohn promised and exactly what she bought. Sallowgate keeps its banners, its bells, and its bread. It simply keeps them on credit, from a creditor across the river, for a generation. Ilva Renn scours pots for another year and then is quietly pensioned somewhere pleasant. Your report is accurate, complete, and will be used as evidence against you in eleven years' time. The town lives. The empire's border has moved without a single shot, and only you know precisely how far.",
+      "art": "art-the-threnody-accord-sable-silver-epilogue",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-ledger-closes-without-you",
+      "kind": "ending",
+      "title": "The Ledger Closes Without You",
+      "prose": "Perhaps it was irons and a barge at the water-stair; perhaps it was a smuggler's cart and the culvert road at moonset. Either way the Weights Hall bell rings without your testimony in it. The Assize accepts Quist's simpler theory: the debt is collected at swordpoint, the succession settled by whoever holds the gate, and the Threnody Accord lapses unsigned for want of a seal. Three weeks later Thessine guns find the range of the toll-wall. In the Quiet Office ledger your line reads *unrecovered*, and beneath it, in the same retired ink as the forged scrip, someone has written the name of the town — and drawn a line through it.",
+      "art": "art-the-threnody-accord-closed-ledger-epilogue",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "gutter-hounds",
+      "title": "Thief-Takers and Gutter-Hounds",
+      "combatants": [
+        {
+          "id": "thief-takers",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "gutter-hounds",
+          "statblock": "wolf",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "unstable",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "smugglers-culvert",
+      "onDefeat": "press-gang-in-the-garrison-cellar"
+    },
+    {
+      "id": "press-gang",
+      "title": "Quist's Press-Gang",
+      "combatants": [
+        {
+          "id": "levy-sergeants",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "cudgel-men",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "water"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "the-debt-that-cannot-be-paid",
+      "onDefeat": "the-ledger-closes-without-you",
+      "onFlee": "smugglers-culvert"
+    },
+    {
+      "id": "knives-in-the-antechamber",
+      "title": "Knives in the Antechamber",
+      "combatants": [
+        {
+          "id": "magistrate-coll",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": false
+        },
+        {
+          "id": "compact-knives",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "vance-harness",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cover-light",
+        "cramped",
+        "open"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "magistrate-coll"
+      },
+      "onVictory": "the-signing-hall",
+      "onDefeat": "the-ledger-closes-without-you",
+      "onFlee": "the-signing-hall"
+    }
+  ]
+}

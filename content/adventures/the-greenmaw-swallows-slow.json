@@ -1,0 +1,821 @@
+{
+  "id": "the-greenmaw-swallows-slow",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Greenmaw Swallows Slow",
+    "premise": "A fever-green peninsula digests everything that walks into it, and beneath its root-choked gullet lies the swallowed vault of Ihru of the Sallow Crown. Whoever reaches the crown decides whether the green keeps eating.",
+    "tone": [
+      "jungle-survival",
+      "megadungeon"
+    ],
+    "tier": "regional",
+    "partyLevel": 5,
+    "narrationVoice": "Second person present tense, humid and clinical, like a surveyor's field journal kept by someone running a low fever.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The stilt-village children of the Kin of Nine Mouths are present as voices and shadows only; never place them in danger on-screen."
+    },
+    "provenance": "flint"
+  },
+  "entry": "mouth-of-the-green",
+  "beats": [
+    {
+      "id": "mouth-of-the-green",
+      "kind": "threshold",
+      "title": "The Mouth of the Green",
+      "prose": "The Greenmaw is a peninsula shaped like a tongue and it behaves like one. Your longboat grounds on a bar of grey shell-sand and the jungle leans out over the water, dripping, patient. Every tree on this coast grows out of something that used to be standing: a mast, a wagon axle, a ribcage of some beast the size of a barn. Three ways lead inland — the plank road to the stilt-village of Hetsu Nine, the black mangrove shallows, and a broad cut of bare earth the leafcutters keep polished.",
+      "readAloud": "Nothing here rots. It is chewed. There is a difference, and the difference is audible: a slow wet grinding under the leaf litter, everywhere at once, like a mouth working in its sleep.",
+      "art": "art-the-greenmaw-swallows-slow-shell-sand-landing",
+      "options": [
+        {
+          "id": "mouth-go-village",
+          "label": "Walk the plank road to Hetsu Nine and ask the Kin of Nine Mouths what lies under their peninsula.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "stilt-village",
+          "effects": []
+        },
+        {
+          "id": "mouth-go-mangrove",
+          "label": "Take the mangrove shallows — slower, wetter, unwatched by the survey company.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mangrove-wade",
+          "effects": []
+        },
+        {
+          "id": "mouth-go-beetleroad",
+          "label": "Follow the polished cut of the leafcutter road straight inland.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "beetle-road",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "stilt-village",
+      "kind": "social",
+      "title": "Hetsu Nine, On Stilts",
+      "prose": "Nine houses on nine sets of legs, roped together over a creek the colour of steeped tea. Somewhere out of sight, children are singing a counting song and being hushed. Mother Attu Bramblewife, guide and mouth-keeper, sits splitting bone-nuts with a fish knife. She explains it plainly: the green digests. The Kin survive by feeding it on schedule — a tribute in the ninth mouth every dark moon — and by never, ever digging. The Salt-Ledger Company's surveyors, the Peelers, have been digging for eleven days.",
+      "readAloud": "\"You want the vault under us,\" Attu says, not looking up. \"Everyone does. Understand what a vault is, this deep in a throat. It isn't a room. It's something the peninsula couldn't finish swallowing.\"",
+      "art": "art-the-greenmaw-swallows-slow-hetsu-nine-stilts",
+      "options": [
+        {
+          "id": "village-hire-attu",
+          "label": "Hire Attu as guide; she knows which roots are watching.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "beetle-road",
+          "effects": [
+            {
+              "flag": "guide-hired",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "village-take-tribute",
+          "label": "Trade for a wrapped tribute-bundle of bone-nut, salt and hair, to feed the green yourselves.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "mangrove-wade",
+          "effects": [
+            {
+              "flag": "offered-tribute",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "village-push-inland",
+          "label": "Waste no more daylight; leave the Kin to their schedule and go find the Peelers' dig.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "swallowed-camp",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "mangrove-wade",
+      "kind": "hazard",
+      "title": "The Black Shallows",
+      "prose": "Thigh-deep, then chest-deep. The mangrove roots arch like the inside of a rib-cage and the water tastes of iron and old sugar. Leeches the length of your thumb come up out of the silt in a slow polite crowd. Above you, a great pale bloom hangs from the branches, breathing out a yellow-green dust each time something moves the water — sporebloom, the Kin call it, and they call it a door as much as a plant.",
+      "art": "art-the-greenmaw-swallows-slow-black-mangrove-shallows",
+      "options": [
+        {
+          "id": "mangrove-push-through",
+          "label": "Push through the leech shallows fast and burn them off on dry ground.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "beetle-road",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "dc": 13,
+            "onFailure": "fever-dream"
+          }
+        },
+        {
+          "id": "mangrove-climb-crown",
+          "label": "Climb into the mangrove crown and travel above the water, spying on the dig from height.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "swallowed-camp",
+          "effects": []
+        },
+        {
+          "id": "mangrove-breathe-bloom",
+          "label": "Deliberately breathe the sporebloom and let the green mark you as something it has already tasted.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "fever-dream",
+          "effects": [
+            {
+              "flag": "spore-marked",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "beetle-road",
+      "kind": "transit",
+      "title": "The Leafcutter Road",
+      "prose": "A highway two carts wide, swept bare by generations of insects the size of dinner plates. They ignore you. They are carrying cut leaf inland and carrying something else out — pale chips of worked stone, bone buttons, a brass survey chain in segments, all borne away toward the sea in a glittering procession. Somewhere inland, the road descends into a sink of ferns and does not come back up.",
+      "art": "art-the-greenmaw-swallows-slow-leafcutter-highway",
+      "options": [
+        {
+          "id": "beetle-attu-shortcut",
+          "label": "Let Attu take you off-road by the ridge of dead cedar, avoiding the dig entirely.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "guide-hired",
+            "value": true
+          },
+          "target": "drowned-stair",
+          "effects": []
+        },
+        {
+          "id": "beetle-follow-chain",
+          "label": "Follow the stolen survey chain back to whoever was measuring with it.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "swallowed-camp",
+          "effects": []
+        },
+        {
+          "id": "beetle-compass-inland",
+          "label": "Strike inland by compass toward the sink of ferns.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-stair",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "Survival",
+            "dc": 14,
+            "onFailure": "fever-dream"
+          }
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "swallowed-camp",
+      "kind": "conflict",
+      "title": "The Peeler Picket",
+      "prose": "The Salt-Ledger camp is being eaten while it works. Tent canvas has gone furred and green; a winch tower stands in a nest of creeper it will never leave. Warden-Surveyor Cassil Drenn is not here — down the shaft, his people say, eleven days down. What is here is his picket: hard men in oilcloth who have decided that anyone arriving now is a claim-jumper, and who will not be talked out of that decision. Past them, forty yards off, the shaft head gapes: a timbered mouth going down into wet dark.",
+      "art": "art-the-greenmaw-swallows-slow-furred-canvas-camp",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "peeler-picket",
+      "terminal": false
+    },
+    {
+      "id": "fever-dream",
+      "kind": "discovery",
+      "title": "Green Fever",
+      "prose": "You come back to yourself somewhere you did not lie down. Your sweat has a smell like cut grass. Something has been thinking at you while you were under — not words, but the shape of a want: down, and open, and let me finish. Fine green threads have written a pattern across the backs of your hands. It does not hurt. It itches like being remembered. Whatever else the fever took, it gave you a direction: the ground here slopes, everywhere, toward one throat.",
+      "readAloud": "In the dream the peninsula was a body lying on its side in the sea, and you were a splinter in its gum, and it was being very patient about you.",
+      "art": "art-the-greenmaw-swallows-slow-green-thread-hands",
+      "options": [
+        {
+          "id": "fever-burn-marks",
+          "label": "Burn the threads off with a hot blade and salt, then get back to open road.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "beetle-road",
+          "effects": []
+        },
+        {
+          "id": "fever-listen",
+          "label": "Sit still and listen to the chewing until you can tell which direction it comes from.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-stair",
+          "effects": []
+        },
+        {
+          "id": "fever-crawl-down",
+          "label": "Follow the want. Crawl downhill into the root-choked gullet.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "throat-of-roots",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "spore-marked",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-stair",
+      "kind": "puzzle",
+      "title": "The Drowned Stair",
+      "prose": "The sink of ferns hides masonry: a stair of nine broad steps descending into standing black water, and beyond it, a sluice-gate of bronze gears older than the Company and better maintained than its winch. The gate is not locked. It is held by water pressure, and the water is held by a mechanism that someone built to be operated from the inside. Nine steps down, something has scratched a tally on the wall — eleven marks, the last one shaky.",
+      "art": "art-the-greenmaw-swallows-slow-bronze-sluice-gears",
+      "options": [
+        {
+          "id": "stair-work-gears",
+          "label": "Read the gear train and drain the landing properly, the way the builders intended.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-swallowed-kings",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Investigation",
+            "dc": 15,
+            "onFailure": "throat-of-roots"
+          }
+        },
+        {
+          "id": "stair-dive",
+          "label": "Rope up and dive the flooded landing, feeling for the gap under the gate.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-swallowed-kings",
+          "effects": []
+        },
+        {
+          "id": "stair-root-ladder",
+          "label": "Ignore the stair. Climb down the root-braid beside it into the gullet.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "throat-of-roots",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "throat-of-roots",
+      "kind": "hazard",
+      "title": "The Throat of Roots",
+      "prose": "This is not a corridor. It is a corridor that has been swallowed: barrel-vaulted stone squeezed to an oval by root-muscle thick as thighs, sweating a clear sap that tightens on skin like a closing hand. Every dozen yards the roots have pulled a wall-relief out of true, so that the carved processions of Ihru's court walk crookedly downhill, forever. The passage narrows, breathes, and narrows again.",
+      "art": "art-the-greenmaw-swallows-slow-root-squeezed-vault",
+      "options": [
+        {
+          "id": "throat-hack",
+          "label": "Hack a passage through the root-muscle and take the noise as the cost.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chapel-of-chewed-prayers",
+          "effects": []
+        },
+        {
+          "id": "throat-marked-passage",
+          "label": "Walk in slowly with bare marked hands out; the green has tasted you already and may let you slide.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "spore-marked",
+            "value": true
+          },
+          "target": "gallery-of-swallowed-kings",
+          "effects": []
+        },
+        {
+          "id": "throat-follow-seep",
+          "label": "Follow the sap-seep downhill on your belly, where the gullet has to stay open to drain.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gallery-of-swallowed-kings",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "chapel-of-chewed-prayers"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gallery-of-swallowed-kings",
+      "kind": "discovery",
+      "title": "The Gallery of Swallowed Kings",
+      "prose": "A hall the length of a ship, and along both walls the ossuary niches of Ihru's household, each niche a stone mouth with a stone tongue. Eight are empty and clean. The ninth still holds its tribute from some unimaginable year — salt gone to glass, hair gone to wire. On the vault door at the hall's end, a lid of green-black stone carries the chewed name of the sleeper in three scripts, and set into the lid's jaw is a key of sallow bone that a Company hand has already tried, and failed, to pry loose.",
+      "readAloud": "The niches are labelled in a script that reads like chewing. What it says, over and over, is not 'here lies.' It says 'not finished.'",
+      "art": "art-the-greenmaw-swallows-slow-ninth-mouth-ossuary",
+      "options": [
+        {
+          "id": "gallery-pry-key",
+          "label": "Pry the sallow bone key out of the lid's jaw, whatever it wakes down the hall.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "chapel-of-chewed-prayers",
+          "effects": [
+            {
+              "flag": "vault-key",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "gallery-read-lid",
+          "label": "Decipher the chewed name on the lid before touching anything.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "bone-orchard",
+          "effects": [
+            {
+              "flag": "crown-named",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "Religion",
+            "dc": 15,
+            "onFailure": "chapel-of-chewed-prayers"
+          }
+        },
+        {
+          "id": "gallery-lay-tribute",
+          "label": "Lay the Kin's tribute-bundle in the ninth mouth and let the green tell you the name itself.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "offered-tribute",
+            "value": true
+          },
+          "target": "bone-orchard",
+          "effects": [
+            {
+              "flag": "crown-named",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chapel-of-chewed-prayers",
+      "kind": "conflict",
+      "title": "The Chapel of Chewed Prayers",
+      "prose": "The side-chapel's floor is a mosaic of teeth and its ceiling is a lattice of root through which sap comes down in a rising, glistening flood. The Peelers who got this far are still here, more or less, and they have learned the local habit of eating. They come off the walls in a scrabble of oilcloth and grey hands. The sap is rising: hold the doorway, hold your ground, and in three breaths the flood will fill the chapel and settle the argument for you.",
+      "art": "art-the-greenmaw-swallows-slow-tooth-mosaic-chapel",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "chapel-vigil",
+      "terminal": false
+    },
+    {
+      "id": "bone-orchard",
+      "kind": "social",
+      "title": "The Bone Orchard",
+      "prose": "A cavern where roots have grown up through the graves of Ihru's servants and lifted the skeletons into the canopy like fruit. Warden-Surveyor Cassil Drenn sits at the base of the largest, one leg splinted with a survey rod, his charts spread on a slab, entirely calm. He has been down here eleven days and he has worked out the arithmetic: the peninsula is not a place with a tomb in it. The peninsula is the digestion, and the crown at the bottom is what keeps the stomach from ever emptying. He has blasting jelly and jack-screws. He no longer has anyone to carry them.",
+      "readAloud": "\"I came to value this land,\" Drenn says. \"I have. It's worth nothing and it will eat the Company alive, and I find that I want to be the man who tells them so. Help me to the bottom.\"",
+      "art": "art-the-greenmaw-swallows-slow-hanging-bone-orchard",
+      "options": [
+        {
+          "id": "orchard-truce",
+          "label": "Take Drenn's truce: his jack-screws and jelly, your legs and blades.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "peristalsis",
+          "effects": [
+            {
+              "flag": "truce-with-drenn",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "orchard-take-charts",
+          "label": "Take his charts, leave him his splint and his arithmetic, and go on alone.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "peristalsis",
+          "effects": []
+        },
+        {
+          "id": "orchard-go-back-for-key",
+          "label": "Go back up for the sallow bone key first — Drenn says nothing below opens without it.",
+          "visibleWhen": {
+            "op": "neq",
+            "flag": "vault-key",
+            "value": true
+          },
+          "target": "chapel-of-chewed-prayers",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "peristalsis",
+      "kind": "transit",
+      "title": "Peristalsis",
+      "prose": "The last descent moves. Not quickly — a squeeze that takes a slow count of forty, then a slack, then another squeeze, the whole shaft working like a swallow. In the slack you can see the sealed valve at the bottom: a ring of bronze petals clamped shut on the vault of Ihru of the Sallow Crown, and beside it a sap vein no wider than a coffin, going the same place by a worse road.",
+      "art": "art-the-greenmaw-swallows-slow-bronze-petal-valve",
+      "options": [
+        {
+          "id": "peristalsis-force-valve",
+          "label": "Force the bronze petals — with the sallow key, or with Drenn's jack-screws.",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "vault-key",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "truce-with-drenn",
+                "value": true
+              }
+            ]
+          },
+          "target": "sallow-crown",
+          "effects": []
+        },
+        {
+          "id": "peristalsis-speak-name",
+          "label": "Speak the chewed name into the valve and let the sleeper open his own door.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "crown-named",
+            "value": true
+          },
+          "target": "sallow-crown",
+          "effects": []
+        },
+        {
+          "id": "peristalsis-sap-vein",
+          "label": "Crawl the sap vein and arrive gummed, blind and unannounced.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "sallow-crown",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "constitution",
+            "dc": 14,
+            "onFailure": "fever-dream"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "sallow-crown",
+      "kind": "climax",
+      "title": "Ihru of the Sallow Crown",
+      "prose": "The vault is dry. That is the horror of it: after all that wet green throat, a dry stone room with a dry stone chair, and in the chair a man of tallow and bone wearing a circlet of yellowed roots that go down through the floor and out through the whole peninsula. Ihru does not rise for you. His court does — two lacquered honour-guards gone to bones, two of the Peelers' vanguard gone to worse. Break the crown off the roots and the Greenmaw stops swallowing. Break anything else and you are simply the next course.",
+      "readAloud": "\"Eleven days,\" the tallow mouth says, in Drenn's cadence, in Attu's cadence, in yours. \"Eleven hundred years. It is all one chewing. Sit down.\"",
+      "art": "art-the-greenmaw-swallows-slow-tallow-king-dry-vault",
+      "options": [],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "sallow-crown-vigil",
+      "terminal": false
+    },
+    {
+      "id": "crown-unswallowed",
+      "kind": "ending",
+      "title": "Ending: The Peninsula Spits",
+      "prose": "The circlet cracks and the roots go slack all at once, all the way to the coast. For an hour the Greenmaw gives back what it has been holding: masts and axles and survey chain surface in the mangrove mud, and the grinding under the leaf litter stops so completely that the silence sounds like injury. In Hetsu Nine the counting song goes on, unhushed for the first time in nine generations, because there is nothing left down there that needs feeding. Attu will not thank you. She will spend the rest of her life learning what a jungle does when it is only a jungle — and so will you, because you are still standing in it, three days from the sea, with no road that a beetle keeps swept.",
+      "art": "art-the-greenmaw-swallows-slow-slack-roots-dawn",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "digested",
+      "kind": "ending",
+      "title": "Ending: Not Finished",
+      "prose": "The vault stays dry and the chair stays full, and the peninsula adds you to its long slow work. This is not an ending with a stone over it. Somewhere above, the leafcutters carry your buttons and buckles down to the shell-sand in a glittering procession, and the Kin of Nine Mouths add a wrapped bundle to the ninth mouth on the dark moon and sleep easier for the fresh tribute. The tally on the drowned stair gains a twelfth mark. It is scratched from the inside, by a hand that still remembers counting.",
+      "art": "art-the-greenmaw-swallows-slow-twelfth-tally-mark",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "spat-out",
+      "kind": "ending",
+      "title": "Ending: Spat Out",
+      "prose": "You run, and the throat lets you — that is the insult of it. The sap vein sluices you up and out and the mangroves lay you on the shell-sand at low tide, marked, feverish, alive, and entirely unswallowed. The crown is still on the chair. The grinding is still under the leaf litter. You carry off Drenn's arithmetic and a name in three scripts, and every port from here to the salt coast will pay for the chart and none of them will believe the warning. The Greenmaw is patient. It has your measure now, and it has your direction, and it knows you know the way back down.",
+      "art": "art-the-greenmaw-swallows-slow-low-tide-survivor",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "swallowed-camp",
+      "to": "drowned-stair",
+      "when": {
+        "op": "always"
+      },
+      "note": "Picket bypassed; the shaft head is reached."
+    },
+    {
+      "from": "swallowed-camp",
+      "to": "fever-dream",
+      "when": {
+        "op": "always"
+      },
+      "note": "Beaten down, dragged off, waking green."
+    },
+    {
+      "from": "swallowed-camp",
+      "to": "beetle-road",
+      "when": {
+        "op": "always"
+      },
+      "note": "Withdrawal back to the leafcutter road."
+    },
+    {
+      "from": "chapel-of-chewed-prayers",
+      "to": "bone-orchard",
+      "when": {
+        "op": "always"
+      },
+      "note": "The sap flood settles the chapel."
+    },
+    {
+      "from": "chapel-of-chewed-prayers",
+      "to": "fever-dream",
+      "when": {
+        "op": "always"
+      },
+      "note": "Overrun; the green takes over the telling."
+    },
+    {
+      "from": "chapel-of-chewed-prayers",
+      "to": "peristalsis",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fled downhill instead of back."
+    },
+    {
+      "from": "sallow-crown",
+      "to": "crown-unswallowed",
+      "when": {
+        "op": "always"
+      },
+      "note": "The circlet is broken from the roots."
+    },
+    {
+      "from": "sallow-crown",
+      "to": "digested",
+      "when": {
+        "op": "always"
+      },
+      "note": "The court finishes what the peninsula started."
+    },
+    {
+      "from": "sallow-crown",
+      "to": "spat-out",
+      "when": {
+        "op": "always"
+      },
+      "note": "Escape up the sap vein, crown intact."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "peeler-picket",
+      "title": "Claim-Jumpers at the Shaft Head",
+      "combatants": [
+        {
+          "id": "picket-sergeant",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "oilcloth-hands",
+          "statblock": "bandit",
+          "count": 4,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "difficult",
+        "cover-light",
+        "fog"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Get the whole party past the picket line to the timbered shaft head, forty yards through creeper and tent-lines."
+      },
+      "onVictory": "drowned-stair",
+      "onDefeat": "fever-dream",
+      "onFlee": "beetle-road"
+    },
+    {
+      "id": "chapel-vigil",
+      "title": "Hold the Doorway While the Sap Rises",
+      "combatants": [
+        {
+          "id": "chapel-ghast",
+          "statblock": "ghast",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "grey-peelers",
+          "statblock": "ghoul",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "bone-orchard",
+      "onDefeat": "fever-dream",
+      "onFlee": "peristalsis"
+    },
+    {
+      "id": "sallow-crown-vigil",
+      "title": "The Court That Will Not Rise For You",
+      "combatants": [
+        {
+          "id": "crown",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "lacquered-guard",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "vanguard-remains",
+          "statblock": "zombie",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "darkness"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "crown"
+      },
+      "onVictory": "crown-unswallowed",
+      "onDefeat": "digested",
+      "onFlee": "spat-out"
+    }
+  ]
+}

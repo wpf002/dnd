@@ -1,0 +1,90 @@
+{
+  "adventure": "the-brine-loom-of-sallanth",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, political-fantasy.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-brine-loom-of-sallanth-harbor-bell-wrong-hour",
+      "beat": "broken-tide-bell",
+      "brief": "The Bell That Rang Wrong — Sallanth is a republic of nine guilds, four hundred docks, and one very old habit of pretending its ruins are only quarries. At the third hour the gre"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-chamber-of-nine-lamplight",
+      "beat": "chair-of-nine",
+      "brief": "The Chair of Nine Deliberates — The Chamber smells of wet wool and lamp oil. Speaker Sevra Alcaine holds a bronze rule she taps against the rail whenever anyone says the word 'emerge"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-counting-house-folios",
+      "beat": "ledger-house",
+      "brief": "The Counting House of the Lamplighters' Chain — The Chain's counting house is a windowless brick lantern where clerks price catastrophe by the yard. Their folios show eleven Deepwright hulls insured"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-dredger-hall-chains",
+      "beat": "dredger-hall",
+      "brief": "Master Dredger Hollowbrant Quay — The Deepwright hall is a cathedral of chain and rust, and Hollowbrant Quay sits under it like a man who has already priced his own ruin. He admits the"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-wharf-knives-fish-oil",
+      "beat": "wharf-ambush",
+      "brief": "Blood on the Cinderquay Boards — Frightened guilds hire cheap knives. A crew boss named Trelle Bracken corners you between a fish-oil shed and forty feet of black water, and the tough"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-cinderquay-reversed-gutters",
+      "beat": "lower-city-warning",
+      "brief": "Cinderquay, Below the Waterline — Cinderquay is six thousand people living under the harbor's own lip: rope-lofts, salt-houses, tenement stairs that already weep at high tide. The gutt"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-tidewarden-shell-vault",
+      "beat": "tidewarden-shrine",
+      "brief": "The Tidewarden's Sea-Stair Shrine — Kesh Marrow keeps a shrine that the guilds tolerate the way they tolerate weather: a shell-plastered vault at the bottom of a hundred slick steps, whe"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-drowned-stair-basalt-street",
+      "beat": "drowned-stair",
+      "brief": "Down the Drowned Stair of Karrhu-Vel — The sinkhole's throat becomes a stair, and the stair becomes a street: green-black basalt, doorways full of standing brine, shop-signs in a script tha"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-seven-bronze-tide-wheels",
+      "beat": "sluice-gate",
+      "brief": "The Sluice of Seven Wheels — A wall of tidesteel stands across the old aqueduct race, pierced by seven bronze wheels, each rimmed with the numerals of a tide. Deepwright cutters h"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-salt-crusted-choir-loft",
+      "beat": "salt-choir",
+      "brief": "The Salt Choir — The vault was a choir loft once, and its singers never left. Salt has grown through them until their ribs are lattice and their throats are pipes, and"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-bronze-warp-threads-fog",
+      "beat": "loom-antechamber",
+      "brief": "Antechamber of the Loom — Beyond the sluice, the corridor opens into a hall of hanging bronze threads that stretch away into fog and vanish — the warp of the machine, each stra"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-regulator-carapace-drum",
+      "beat": "loom-heart",
+      "brief": "The Heart of the Brine Loom — The chamber is a drum of tidesteel forty feet across, and at its center the regulator stands upright — a hollow carapace of plated bronze that the old"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-bare-loom-crown-seventeen-mouths",
+      "beat": "loom-crown",
+      "brief": "The Crown, Still Turning — The regulator lies open like a cracked bell and the Loom's crown is bare: a ring of seventeen bronze mouths, still turning, still willing to be told w"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-sealed-sinkhole-calm-water",
+      "beat": "ending-stilled-tide",
+      "brief": "Ending: The Stilled Tide — You give the crown the seventeen names of standing water, and the Brine Loom lets go of the coastline the way a hand lets go of a rope. The bronze thr"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-nine-hands-on-the-crown",
+      "beat": "ending-charter-of-brine",
+      "brief": "Ending: The Charter of Brine — You do not silence the Loom. You give it a constituency. Nine hands are set on the crown by dawn — Deepwright, Lamplighter, Tidewarden, Ropewalker and"
+    },
+    {
+      "slot": "art-the-brine-loom-of-sallanth-new-lagoon-drowned-quarter",
+      "beat": "ending-tide-unanswered",
+      "brief": "Ending: The Tide Unanswered — The Loom finishes its pattern. It takes until the second dawn, and it is not violent so much as patient: the sea walks up the Cinderquay stairs, into "
+    }
+  ]
+}

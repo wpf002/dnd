@@ -1,0 +1,90 @@
+{
+  "adventure": "the-black-tally-of-harrow-bell",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: beginner-classic.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-harrow-bell-headframe",
+      "beat": "bell-and-bad-air",
+      "brief": "Bell and Bad Air — Harrow Bell is one crooked street of plank buildings pinned between two spoil heaps. The headframe of the Widow Seam stands over it all like a gallows"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-crooked-lantern-taproom",
+      "beat": "crooked-lantern",
+      "brief": "The Crooked Lantern — The taproom smells of wet wool and tallow. Sable Innish of the Free Pick — a wiry woman with a broken thumbnail and a ledger of her own — holds the lo"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-quarrow-counting-house",
+      "beat": "counting-house",
+      "brief": "Quarrow's Counting House — Aldis Quarrow is a soft-handed man in a hard-handed town, and he keeps his office warm enough to sweat in. He offers forty silver each to go down, cle"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-pump-house-brawl",
+      "beat": "pump-house-quarrel",
+      "brief": "Quarrel at the Pump House — The pump house shudders with the stroke of an engine that is pumping nothing. Three of Quarrow's hired hands lounge among the valves, and their forema"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-widow-seam-cage",
+      "beat": "headframe-descent",
+      "brief": "Down the Widow Seam — The cage is a rust-scabbed box on a fraying rope, and the shaft breathes cold on the way down. At the two-hundred level the lamplight finds three ways"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-flooded-drift-rats",
+      "beat": "flooded-drift",
+      "brief": "The Flooded Drift — Waist-deep water, cold as a coin. Lamps make one long yellow smear on the surface, and the smear breaks apart as things swim toward you — rats the siz"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-sump-valve-chalk",
+      "beat": "sump-and-signal",
+      "brief": "The Sump and the Signal — Above the sump, the pump pipe rises through solid rock, and somebody small has chalked a rhythm along it in careful marks: three strokes, two strokes,"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-sputterfang-barricade",
+      "beat": "kobold-picket",
+      "brief": "The Sputterfang Picket — The old workings narrow to a crawl, and the crawl has been fortified: a barricade of split timber, a curtain of tin cans on string, and behind it the "
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-gritgrit-crate-throne",
+      "beat": "sputterfang-parley",
+      "brief": "Grit-Grit of the Sputterfangs — Chief Grit-Grit wears a broken miner's lamp as a crown and sits on a crate stamped QUARROW CONSOLIDATED. Whether you came in talking, tapping, or rope"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-chalk-gallery-survey",
+      "beat": "chalk-gallery",
+      "brief": "The Chalk Gallery — A long dry gallery of the first workings, its walls crowded with sixty-year-old survey chalk — bearings, dates, and a hand that grows less steady towa"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-bricked-door-gap",
+      "beat": "sealed-door",
+      "brief": "The Bricked Door — The company's new crosscut ends in a wall that was never on any map: dressed stone, mortared with slag, and stamped with the old brand of Harrow Bell'"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-tallyroom-clerk-desk",
+      "beat": "tallyroom",
+      "brief": "The Tallyroom — Sixty years of dark, and yet a candle burns on the desk. Ottren Vaile still sits at his books, a skeleton in a rotted collar, pen scratching down a co"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-black-tally-ledger",
+      "beat": "ledger-in-hand",
+      "brief": "The Black Tally — The clerk comes apart into a drift of collar-bone and brass buttons, and the candle finally goes out. What remains is the ledger: heavy as a paving st"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-ending-burning-ledger",
+      "beat": "ending-ash",
+      "brief": "Ending: Ash in the Sump — The Black Tally burns badly and long, and the smoke goes out through the crosscut and up the ventilation raise, so that all Harrow Bell smells of scor"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-ending-ledger-daylight",
+      "beat": "ending-daylight-ledger",
+      "brief": "Ending: Read in Daylight — The ledger comes up the shaft in the cage, and Harrow Bell learns to read very fast. If you carried Quarrow's coin, he meets you at the headframe with"
+    },
+    {
+      "slot": "art-the-black-tally-of-harrow-bell-ending-drowned-gallery",
+      "beat": "ending-sealed-again",
+      "brief": "Ending: What the Water Keeps — Brick, slag, and a prayer nobody in Harrow Bell admits to knowing. Then the bar comes off the valve the wrong way and the sump climbs, and by morning "
+    }
+  ]
+}

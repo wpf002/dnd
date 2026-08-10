@@ -1,0 +1,90 @@
+{
+  "adventure": "winter-of-the-stone-king",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: high-adventure, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-winter-of-the-stone-king-ash-ridge-dusk",
+      "beat": "ash-on-the-north-wind",
+      "brief": "Ash on the North Wind — The party crests the last ridge of the Hrafnmark trade-road at dusk. Below, the fjord lies black and unfrozen, but the wind carries grey flakes that a"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-broken-oar-yard",
+      "beat": "steading-of-broken-oars",
+      "brief": "Broken-Oar Steading — Broken-Oar is a ring of turf longhouses behind a palisade of ship-timbers, half of them scorched. The gate-thanes let you in past wagons already loade"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-longhouse-council-fire",
+      "beat": "the-longhouse-council",
+      "brief": "The Longhouse Council — Sixty voices under a smoke-blackened roof. Half the freeholders want to pay the tribute and survive the winter; half want to burn the tribute-barn and"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-wolf-road-cairns",
+      "beat": "wolf-road",
+      "brief": "The Wolf Road — The Wolf Road is not a road but a chain of frozen tarns and wind-scoured saddles running north between black scree slopes. Cairns mark it every bowsho"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-toppled-cairn-ice",
+      "beat": "cairn-wolves-beat",
+      "brief": "The Toppled Cairn — The cairn's stones lie scattered over a frozen tarn, and the ice between them is scored with claw-marks and old blood. The pack has been fed on raid-l"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-frozen-watchtower-map",
+      "beat": "frozen-watchtower",
+      "brief": "The Frozen Watchtower — The tower is old frontier work, two storeys of drystone with an ice-plugged well and a beacon-basket long since robbed of its oil. Ash-Wolf raiders ha"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-birch-hollow-camp",
+      "beat": "raider-camp-beat",
+      "brief": "The Ash-Wolf Camp — Six hide tents in a birch hollow, a tribute-sled heaped with sacks, and a picket line where four bound thralls from the outfarms sit roped wrist-to-wr"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-pasture-fire-aslief",
+      "beat": "shepherds-warning",
+      "brief": "Aslief Goat-Sister — The pasture fire belongs to Aslief Goat-Sister, who has summered under Hrimgard's shadow for thirty years and speaks of the ogre-lords the way other f"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-barrow-oath-iron",
+      "beat": "barrow-of-the-first-jarl",
+      "brief": "Barrow of Hallvard Cairn-Maker — The barrow is a green hump in a field of leaning stones, its door-slab carved with a giant's hand pinned by an iron nail. Inside, cold and dry, Hallva"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-barrow-wight-rising",
+      "beat": "barrow-guardian-beat",
+      "brief": "The Oath Still Stands — Hallvard stands. He does not roar; he simply rises, and the nails of his rotted shield lift with him, and the cairn-thralls buried at his feet come up"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-ice-stair-climb",
+      "beat": "climb-to-hrimgard",
+      "brief": "The Ice-Stair — The ice-stair is a giant's staircase: two hundred treads, each as high as your chest, cut into a frozen waterfall and slick with meltwater that refree"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-ice-gate-whalebone",
+      "beat": "gate-of-the-giant-hold",
+      "brief": "The Ice-Gate of Hrimgard — Hrimgard's gate is a slab of blue ice framed in whalebone and set in a wall of drystone blocks the size of byres. A door-thane leans on a shaft of sha"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-stone-king-hall",
+      "beat": "hall-of-the-stone-king",
+      "brief": "The Hall of the Stone King — Vorgul Thighbone's hall is a cave roofed with the ribs of some drowned leviathan, floored in trampled snow, hung with the shields of forty steadings. "
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-ending-frontier-held-thaw",
+      "beat": "ending-frontier-held",
+      "brief": "The Frontier Holds — Vorgul Thighbone falls across his own millstone seat and the hall empties around him — thanes first, then families, then the sledges, streaming north "
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-ending-long-winter-fjord",
+      "beat": "ending-long-winter",
+      "brief": "The Long Winter — You go south, and the going is easy, and that is the worst of it. The Hrafnmark pays: grain, iron, and hands to carry them. Broken-Oar's palisade come"
+    },
+    {
+      "slot": "art-winter-of-the-stone-king-ending-oath-of-stone-truce",
+      "beat": "ending-oath-of-stone",
+      "brief": "Oath of Stone — You lay Hallvard's oath-iron in the snow with the naming-rite turned upward, and speak the weregild the barrow-walls taught you: a debt owed, a debt r"
+    }
+  ]
+}

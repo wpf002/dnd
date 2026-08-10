@@ -1,0 +1,411 @@
+{
+  "generated": [
+    {
+      "id": "the-tithe-of-grauvane",
+      "title": "The Tithe of Grauvane",
+      "inspiredBy": "Curse of Strahd",
+      "source": "official",
+      "tone": [
+        "gothic-horror",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-lamp-compact-comes-due",
+      "title": "The Lamp Compact Comes Due",
+      "inspiredBy": "Baldur's Gate: Descent into Avernus",
+      "source": "official",
+      "tone": [
+        "infernal-war",
+        "political-fantasy"
+      ],
+      "partyLevel": 6,
+      "beats": 16
+    },
+    {
+      "id": "the-greenmaw-swallows-slow",
+      "title": "The Greenmaw Swallows Slow",
+      "inspiredBy": "Tomb of Annihilation",
+      "source": "official",
+      "tone": [
+        "jungle-survival",
+        "megadungeon"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-tidewrights-pin",
+      "title": "The Tidewright's Pin",
+      "inspiredBy": "Waterdeep: Dragon Heist",
+      "source": "official",
+      "tone": [
+        "urban-intrigue",
+        "heist"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-hour-wide-throat",
+      "title": "The Hour-Wide Throat",
+      "inspiredBy": "Out of the Abyss",
+      "source": "official",
+      "tone": [
+        "survival-horror",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 15
+    },
+    {
+      "id": "winter-of-the-stone-king",
+      "title": "Winter of the Stone King",
+      "inspiredBy": "Storm King's Thunder",
+      "source": "official",
+      "tone": [
+        "high-adventure",
+        "exploration"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-gilded-furlong",
+      "title": "The Gilded Furlong",
+      "inspiredBy": "The Wild Beyond the Witchlight",
+      "source": "official",
+      "tone": [
+        "whimsical-fey",
+        "mystery"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-black-tally-of-harrow-bell",
+      "title": "The Black Tally of Harrow Bell",
+      "inspiredBy": "Lost Mine of Phandelver",
+      "source": "official",
+      "tone": [
+        "beginner-classic"
+      ],
+      "partyLevel": 2,
+      "beats": 16
+    },
+    {
+      "id": "the-ten-lamps-of-the-long-night",
+      "title": "The Ten Lamps of the Long Night",
+      "inspiredBy": "Icewind Dale: Rime of the Frostmaiden",
+      "source": "official",
+      "tone": [
+        "arctic-survival",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "four-wounds-of-the-corrun-vale",
+      "title": "Four Wounds of the Corrun Vale",
+      "inspiredBy": "Princes of the Apocalypse",
+      "source": "official",
+      "tone": [
+        "sandbox",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-wake-under-coldhearth",
+      "title": "The Wake Under Coldhearth",
+      "inspiredBy": "Tyranny of Dragons",
+      "source": "official",
+      "tone": [
+        "high-adventure",
+        "epic-finale"
+      ],
+      "partyLevel": 6,
+      "beats": 15
+    },
+    {
+      "id": "the-ferrymarch-road-and-the-drowned-bell",
+      "title": "The Ferrymarch Road and the Drowned Bell",
+      "inspiredBy": "Hoard of the Dragon Queen",
+      "source": "official",
+      "tone": [
+        "high-adventure",
+        "mystery"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-last-hour-of-the-ninefold-seat",
+      "title": "The Last Hour of the Ninefold Seat",
+      "inspiredBy": "Rise of Tiamat",
+      "source": "official",
+      "tone": [
+        "epic-finale",
+        "political-fantasy"
+      ],
+      "partyLevel": 8,
+      "beats": 16
+    },
+    {
+      "id": "the-tide-keeps-it",
+      "title": "The Tide Keeps It",
+      "inspiredBy": "Ghosts of Saltmarsh",
+      "source": "official",
+      "tone": [
+        "nautical",
+        "mystery"
+      ],
+      "partyLevel": 3,
+      "beats": 16
+    },
+    {
+      "id": "the-nine-wrong-rooms-of-sabellius-vane",
+      "title": "The Nine Wrong Rooms of Sabellius Vane",
+      "inspiredBy": "Keys from the Golden Vault",
+      "source": "official",
+      "tone": [
+        "heist",
+        "urban-intrigue"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ninefold-way",
+      "title": "The Ninefold Way",
+      "inspiredBy": "Call of the Netherdeep",
+      "source": "official",
+      "tone": [
+        "exploration",
+        "mystery"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-ninefold-palimpsest",
+      "title": "The Ninefold Palimpsest",
+      "inspiredBy": "Candlekeep Mysteries",
+      "source": "official",
+      "tone": [
+        "mystery",
+        "anthology"
+      ],
+      "partyLevel": 3,
+      "beats": 17
+    },
+    {
+      "id": "the-empty-cage-of-marrowgate",
+      "title": "The Empty Cage of Marrowgate",
+      "inspiredBy": "Journeys Through the Radiant Citadel",
+      "source": "official",
+      "tone": [
+        "anthology",
+        "exploration"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-bottomless-cup",
+      "title": "The Bottomless Cup",
+      "inspiredBy": "Tales from the Yawning Portal",
+      "source": "official",
+      "tone": [
+        "megadungeon",
+        "anthology"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-ninth-mouth-of-the-anchor-bell",
+      "title": "The Ninth Mouth of the Anchor Bell",
+      "inspiredBy": "Vecna: Eve of Ruin",
+      "source": "official",
+      "tone": [
+        "epic-finale",
+        "cosmic-horror"
+      ],
+      "partyLevel": 10,
+      "beats": 15
+    },
+    {
+      "id": "the-disagreeing-deeps",
+      "title": "The Disagreeing Deeps",
+      "inspiredBy": "Dungeon of the Mad Mage",
+      "source": "official",
+      "tone": [
+        "megadungeon",
+        "exploration"
+      ],
+      "partyLevel": 6,
+      "beats": 16
+    },
+    {
+      "id": "the-quiet-room-under-kettlewick",
+      "title": "The Quiet Room Under Kettlewick",
+      "inspiredBy": "Phandelver and Below: The Shattered Obelisk",
+      "source": "official",
+      "tone": [
+        "beginner-classic",
+        "cosmic-horror"
+      ],
+      "partyLevel": 3,
+      "beats": 15
+    },
+    {
+      "id": "the-false-beacon-of-sablewrack-isle",
+      "title": "The False Beacon of Sablewrack Isle",
+      "inspiredBy": "Dragons of Stormwreck Isle",
+      "source": "official",
+      "tone": [
+        "beginner-classic",
+        "nautical"
+      ],
+      "partyLevel": 1,
+      "beats": 15
+    },
+    {
+      "id": "the-hollow-furrow",
+      "title": "The Hollow Furrow",
+      "inspiredBy": "The Shattered Obelisk Campaign",
+      "source": "official",
+      "tone": [
+        "cosmic-horror",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 15
+    },
+    {
+      "id": "four-troubles-under-ashkelds-wing",
+      "title": "Four Troubles Under Ashkeld's Wing",
+      "inspiredBy": "Dragon of Icespire Peak",
+      "source": "official",
+      "tone": [
+        "sandbox",
+        "beginner-classic"
+      ],
+      "partyLevel": 2,
+      "beats": 16
+    },
+    {
+      "id": "the-threnody-accord",
+      "title": "The Threnody Accord",
+      "inspiredBy": "Critical Role: The Mighty Nein",
+      "source": "community",
+      "tone": [
+        "political-fantasy",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-brine-loom-of-sallanth",
+      "title": "The Brine Loom of Sallanth",
+      "inspiredBy": "Critical Role: Vox Machina",
+      "source": "community",
+      "tone": [
+        "high-adventure",
+        "political-fantasy"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-sundered-road-beneath-the-cleft-moon",
+      "title": "The Sundered Road Beneath the Cleft Moon",
+      "inspiredBy": "Critical Role: Bells Hells",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "cosmic-horror"
+      ],
+      "partyLevel": 5,
+      "beats": 15
+    },
+    {
+      "id": "the-slate-beneath-thornwake",
+      "title": "The Slate Beneath Thornwake",
+      "inspiredBy": "Dimension 20: Fantasy High",
+      "source": "community",
+      "tone": [
+        "beginner-classic",
+        "mystery"
+      ],
+      "partyLevel": 2,
+      "beats": 16
+    },
+    {
+      "id": "the-debt-of-grievehold",
+      "title": "The Debt of Grievehold",
+      "inspiredBy": "Dimension 20: Escape from the Bloodkeep",
+      "source": "community",
+      "tone": [
+        "political-fantasy",
+        "gothic-horror"
+      ],
+      "partyLevel": 6,
+      "beats": 15
+    },
+    {
+      "id": "the-ninth-clapper",
+      "title": "The Ninth Clapper",
+      "inspiredBy": "Dimension 20: The Unsleeping City",
+      "source": "community",
+      "tone": [
+        "urban-intrigue",
+        "whimsical-fey"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-sugarglass-debt",
+      "title": "The Sugarglass Debt",
+      "inspiredBy": "Dimension 20: Neverafter",
+      "source": "community",
+      "tone": [
+        "gothic-horror",
+        "whimsical-fey"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-hollow-run",
+      "title": "The Hollow Run",
+      "inspiredBy": "Dimension 20: Starstruck Odyssey",
+      "source": "community",
+      "tone": [
+        "exploration",
+        "heist"
+      ],
+      "partyLevel": 4,
+      "beats": 16
+    },
+    {
+      "id": "the-last-sugarplum-succession",
+      "title": "The Last Sugarplum Succession",
+      "inspiredBy": "Dimension 20: A Crown of Candy",
+      "source": "community",
+      "tone": [
+        "political-fantasy",
+        "epic-finale"
+      ],
+      "partyLevel": 5,
+      "beats": 14
+    }
+  ]
+}

@@ -1,0 +1,858 @@
+{
+  "id": "the-tidewrights-pin",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Tidewright's Pin",
+    "premise": "In the guild-port of Ambercleft, three powers each need the same thumb-length brass pin — the seal that clears cargo and drops the harbor chain — and each needs it taken quietly, tonight.",
+    "tone": [
+      "urban-intrigue",
+      "heist"
+    ],
+    "tier": "local",
+    "partyLevel": 3,
+    "narrationVoice": "Second person, present tense; clipped and conspiratorial, like a fence talking fast in a doorway while the rain comes down on slate.",
+    "contentLimits": {
+      "exclude": [
+        "on-screen harm to children"
+      ],
+      "note": "Ambercleft is full of apprentices and ledger-runners; they flee, hide, or are already gone before any violence lands."
+    },
+    "provenance": "flint"
+  },
+  "entry": "crooked-lantern-tap",
+  "beats": [
+    {
+      "id": "crooked-lantern-tap",
+      "kind": "threshold",
+      "title": "The Crooked Lantern Tap",
+      "prose": "Rain hammers the slates above the Crooked Lantern, and three sealed envelopes reach your table inside a single hour: wax the green of the Salt & Sail Compact, a smear of blue chalk in the shape of a cormorant, and a stiff Tithe-House cover stamped with the crown-and-anchor. Every one names the same object without ever writing it down — a thumb-length brass pin worn on a thong by an under-clerk of the harbor. The taproom is loud enough to hide a conversation and small enough to hide a knife.",
+      "readAloud": "Three envelopes. One table. Somebody in this room is counting how long you look at each.",
+      "art": "art-the-tidewrights-pin-tap-room-three-envelopes",
+      "options": [
+        {
+          "id": "hear-all-three",
+          "label": "Break all three seals and let the buyers bid against each other",
+          "target": "three-buyers",
+          "effects": []
+        },
+        {
+          "id": "read-the-room",
+          "label": "Read the room first — find who is watching you read",
+          "target": "three-buyers",
+          "effects": [
+            {
+              "flag": "spotted-the-watcher",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "gulls-nest-ambush"
+          }
+        },
+        {
+          "id": "slip-to-the-tiles",
+          "label": "Burn all three letters and go after the pin for yourselves",
+          "target": "rooftop-run",
+          "effects": [
+            {
+              "flag": "unhired",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "three-buyers",
+      "kind": "decision",
+      "title": "Three Buyers, One Booth",
+      "prose": "They come to the back booth in shifts, none acknowledging the others' damp footprints. Factor Vessa Quill of the Salt & Sail Compact offers guild paper and a berth out of the port. Marrow Kell, Roostmaster of the Cormorant Court, offers the chalk-cant that opens every roof in Ambercleft. Adjutant Ondrei Sabb of the Tithe-House offers something rarer: a warrant that makes tonight legal after the fact.",
+      "art": "art-the-tidewrights-pin-back-booth-three-buyers",
+      "options": [
+        {
+          "id": "take-guild-coin",
+          "label": "Take Quill's guild paper — cargo must move before the tariff turns",
+          "target": "rooftop-run",
+          "effects": [
+            {
+              "flag": "patron",
+              "value": "guild"
+            }
+          ]
+        },
+        {
+          "id": "take-court-chalk",
+          "label": "Take Kell's chalk-cant — the Court wants the pin buried, not used",
+          "target": "rooftop-run",
+          "effects": [
+            {
+              "flag": "patron",
+              "value": "court"
+            },
+            {
+              "flag": "knows-chalk-cant",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "take-excise-warrant",
+          "label": "Take Sabb's warrant — theft with a stamp on it",
+          "target": "rooftop-run",
+          "effects": [
+            {
+              "flag": "patron",
+              "value": "excise"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rooftop-run",
+      "kind": "transit",
+      "title": "Gutter Lines Over Chandler's Row",
+      "prose": "Ambercleft is two cities: the ledger-city of counting halls at street level, and the rope-and-slate city above it, where cargo hooks swing between gables and nobody asks for papers. The Custom House quarter lies four roofs east, past the Chalk Market's canvas awnings. Wet lead, wet rope, and somewhere behind you the soft scuff of someone matching your pace.",
+      "art": "art-the-tidewrights-pin-gutter-line-crossing",
+      "options": [
+        {
+          "id": "fast-line",
+          "label": "Ride the cargo line straight across Chandler's Row",
+          "target": "chalk-market-tail",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 13,
+            "onFailure": "gulls-nest-ambush"
+          }
+        },
+        {
+          "id": "read-the-chalk",
+          "label": "Go slow and read the chalk-marks scrawled at every chimney",
+          "target": "chalk-market-tail",
+          "effects": [
+            {
+              "flag": "knows-chalk-cant",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "down-to-the-drains",
+          "label": "Drop to the street and take the undercroft drains instead",
+          "target": "undercroft-tide-gate",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chalk-market-tail",
+      "kind": "discovery",
+      "title": "The Chalk Market Tail",
+      "prose": "Under the awnings, gossip is cheaper than salt. The pin is not in the Counting Hall vault as all three buyers believe — Under-Clerk Halbin Torrow wears it on a thong under his collar and only surrenders it to the strongroom niche on the nights he does not stand the chain-house watch. Tonight he stands the watch. And the figure who followed you from the Lantern has stopped pretending not to.",
+      "art": "art-the-tidewrights-pin-chalk-market-tail-figure",
+      "options": [
+        {
+          "id": "follow-into-alley",
+          "label": "Turn the tail around — corner them in the gull-stinking alley",
+          "target": "gulls-nest-ambush",
+          "effects": []
+        },
+        {
+          "id": "trade-names",
+          "label": "Walk straight up to the watcher and trade names instead",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "spotted-the-watcher",
+            "value": true
+          },
+          "target": "halbins-boarding-house",
+          "effects": [
+            {
+              "flag": "knows-halbin",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "buy-clerk-gossip",
+          "label": "Buy a tally-clerk's gossip: where does Torrow sleep?",
+          "target": "halbins-boarding-house",
+          "effects": [
+            {
+              "flag": "knows-halbin",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gulls-nest-ambush",
+      "kind": "conflict",
+      "title": "Scuffle at the Gulls' Nest",
+      "prose": "Chalk squeals on slate — three marks at once — and roost-bravos of the Cormorant Court come over the ridge tiles with weighted cords and short hooks. They are not here to kill you. They are here to make you late, and to make sure the Court can say afterward that you were warned. The tiles are loose; the drop to the wharf is forty feet of rain.",
+      "readAloud": "\"Roostmaster's compliments,\" says the one with the chalk-white hands. \"Go home. The pin isn't yours to want.\"",
+      "art": "art-the-tidewrights-pin-gulls-nest-rooftop-scuffle",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "crossed-the-court",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "encounter": "cormorant-toughs",
+      "terminal": false
+    },
+    {
+      "id": "undercroft-tide-gate",
+      "kind": "hazard",
+      "title": "The Undercroft Tide Gate",
+      "prose": "Beneath the Custom House quarter runs the old undercroft, a brick throat that swallows the harbor twice a day. The iron tide gate stands half-shut and the water is already climbing the tally-marks cut into the wall. Beyond it: the service stair to the Counting Hall floor. Beside it: a coal chute up into Ovine Plait's wax-chandlery.",
+      "art": "art-the-tidewrights-pin-tide-gate-undercroft",
+      "options": [
+        {
+          "id": "crank-the-gate",
+          "label": "Haul the gate open before the tide takes the crank",
+          "target": "counting-hall-floor",
+          "effects": [
+            {
+              "flag": "tide-gate-open",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "wax-and-whisper"
+          }
+        },
+        {
+          "id": "squeeze-the-grate",
+          "label": "Squeeze the side grate and keep it silent",
+          "target": "counting-hall-floor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 12,
+            "onFailure": "gulls-nest-ambush"
+          }
+        },
+        {
+          "id": "up-the-coal-chute",
+          "label": "Take the coal chute up into the wax-chandlery",
+          "target": "wax-and-whisper",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wax-and-whisper",
+      "kind": "puzzle",
+      "title": "Wax and Whisper",
+      "prose": "Mistress Ovine Plait's chandlery smells of tallow and secrets; she pours candles for the guilds and impressions for everyone else. On her bench sit two hundred discarded bills of lading, each one bearing a soft harbor clearance stamp — and the pin's mark is a simple thing, three teeth and a crescent, if you can find a print clean enough to lift. She will help. She always helps, and she always writes down what she was owed.",
+      "art": "art-the-tidewrights-pin-wax-chandler-seal-forge",
+      "options": [
+        {
+          "id": "lift-the-impression",
+          "label": "Sort the bills yourself and lift a clean impression",
+          "target": "counting-hall-floor",
+          "effects": [
+            {
+              "flag": "forged-clearance",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "sabbs-offer"
+          }
+        },
+        {
+          "id": "hire-plait",
+          "label": "Let Plait cut the die — pay her in a secret you'd rather keep",
+          "target": "counting-hall-floor",
+          "effects": [
+            {
+              "flag": "forged-clearance",
+              "value": true
+            },
+            {
+              "flag": "owes-favor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "skip-the-forgery",
+          "label": "Forget forgery. Go at the man who wears the pin",
+          "target": "halbins-boarding-house",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "halbins-boarding-house",
+      "kind": "social",
+      "title": "Torrow's Narrow Room",
+      "prose": "Halbin Torrow rents a third-floor room above a rope-walk: one bunk, one shelf of copied ledgers, one kettle. He is thirty years of careful handwriting and no allies, and he already knows three powers are circling, because all three have been kind to him this month. The thong is at his throat. He does not reach for it; he reaches for the kettle, hands shaking, and offers you tea.",
+      "readAloud": "\"You're the fourth,\" he says. \"Sit down. I'd like just once to be asked instead of measured.\"",
+      "art": "art-the-tidewrights-pin-boarding-house-under-clerk",
+      "options": [
+        {
+          "id": "speak-plainly",
+          "label": "Tell him the truth: all three buyers, all three prices",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "knows-halbin",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "owes-favor",
+                "value": true
+              }
+            ]
+          },
+          "target": "counting-hall-floor",
+          "effects": [
+            {
+              "flag": "halbin-ally",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "routine-audit",
+          "label": "Sell him a story: a routine night audit, papers to follow",
+          "target": "counting-hall-floor",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Deception",
+            "dc": 14,
+            "onFailure": "sabbs-offer"
+          }
+        },
+        {
+          "id": "lift-the-thong",
+          "label": "Wait for him to doze over the kettle and lift the thong",
+          "target": "chainhouse-climb",
+          "effects": [
+            {
+              "flag": "has-pin",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 15,
+            "onFailure": "strongroom-wardens"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "counting-hall-floor",
+      "kind": "discovery",
+      "title": "The Counting Hall by Night",
+      "prose": "Forty desks in rows, each with its shuttered lamp, each ledger chained to its own iron ring. At the north end a brass wicket guards the strongroom stair, where the pin sleeps in a felt niche on watch-nights; at the south, Torrow's own desk, its lock worn bright by a man who opens it forty times a day. Somewhere behind the wicket, something heavy shifts its weight and does not breathe.",
+      "art": "art-the-tidewrights-pin-counting-hall-night-desks",
+      "options": [
+        {
+          "id": "flooded-stair",
+          "label": "Come up behind the wicket by the flooded strongroom stair",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "tide-gate-open",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "crossed-the-court",
+                "value": true
+              }
+            ]
+          },
+          "target": "strongroom-wardens",
+          "effects": []
+        },
+        {
+          "id": "present-clearance",
+          "label": "Walk to the wicket and present the forged clearance",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "forged-clearance",
+            "value": true
+          },
+          "target": "chainhouse-climb",
+          "effects": [
+            {
+              "flag": "has-pin",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "search-torrow-desk",
+          "label": "Search Torrow's desk for the duplicate everyone swears doesn't exist",
+          "target": "sabbs-offer",
+          "effects": [
+            {
+              "flag": "has-pin",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 13,
+            "onFailure": "strongroom-wardens"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "strongroom-wardens",
+      "kind": "conflict",
+      "title": "The Brass Wardens",
+      "prose": "The wicket bell rings once, thin and final, and the alcove suits come down off their pegs: two harnesses of green-black brass, moving with the patience of accounts overdue. Behind them the audited dead rise from the debtors' niche, still clutching the tally-sticks they died over. The coal hatch behind the strongroom is nine strides and one bad idea away.",
+      "art": "art-the-tidewrights-pin-strongroom-brass-wardens",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "alarm-rung",
+          "value": true
+        }
+      ],
+      "onExit": [
+        {
+          "flag": "has-pin",
+          "value": true
+        }
+      ],
+      "encounter": "brass-wardens",
+      "terminal": false
+    },
+    {
+      "id": "sabbs-offer",
+      "kind": "social",
+      "title": "Adjutant Sabb's Lamp",
+      "prose": "Excise men take you without ceremony to a room with one desk, one lamp, and Ondrei Sabb, who does not look up from his blotter. The Tithe-House does not want the pin to steal cargo; it wants the pin to prove that Ambercleft's guilds have been clearing their own ships for eleven years. He slides a writ of immunity across the desk, then a pen, then silence, which he uses better than either.",
+      "readAloud": "\"I don't need the theft,\" Sabb says. \"I need a witness who was in the room. Congratulations — that's you.\"",
+      "art": "art-the-tidewrights-pin-excise-adjutant-lamplit-desk",
+      "options": [
+        {
+          "id": "hand-over-pin",
+          "label": "Put the pin on the blotter and take the writ",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "has-pin",
+            "value": true
+          },
+          "target": "ending-third-hand",
+          "effects": [
+            {
+              "flag": "has-pin",
+              "value": false
+            },
+            {
+              "flag": "patron",
+              "value": "excise"
+            }
+          ]
+        },
+        {
+          "id": "offer-a-witness",
+          "label": "Offer Sabb the thing he actually lacks: a sworn witness",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "alarm-rung",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "halbin-ally",
+                "value": true
+              }
+            ]
+          },
+          "target": "chainhouse-climb",
+          "effects": [
+            {
+              "flag": "patron",
+              "value": "excise"
+            }
+          ]
+        },
+        {
+          "id": "slip-the-window",
+          "label": "Go out the window while he sends for the night ledger",
+          "target": "chainhouse-climb",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Stealth",
+            "dc": 13,
+            "onFailure": "chain-house-standoff"
+          }
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chainhouse-climb",
+      "kind": "transit",
+      "title": "Climbing to the Chain-House",
+      "prose": "The chain-house squats on the harbor mole: a winch tower where a single stamped pin can drop the great chain and open Ambercleft to any hull that pays. Halbin Torrow stands the watch up there tonight, alone, and every roof between here and the mole is suddenly busy with lantern-light. Three powers have realized the same thing at the same hour, which is the most dangerous hour a port can have.",
+      "art": "art-the-tidewrights-pin-chain-house-winch-tower",
+      "options": [
+        {
+          "id": "roost-lines",
+          "label": "Follow the chalk-cant along the roost-lines into the winch loft",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-chalk-cant",
+            "value": true
+          },
+          "target": "chain-house-standoff",
+          "effects": []
+        },
+        {
+          "id": "auction-from-the-rail",
+          "label": "Owing nobody, auction the pin aloud from the tower rail",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "unhired",
+            "value": true
+          },
+          "target": "ending-third-hand",
+          "effects": []
+        },
+        {
+          "id": "climb-the-chain",
+          "label": "Climb the wet chain itself, link by streaming link",
+          "target": "chain-house-standoff",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "undercroft-tide-gate"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chain-house-standoff",
+      "kind": "climax",
+      "title": "Standoff in the Winch Loft",
+      "prose": "The loft is all wind and lamp-swing: the drum, the pawl, the chain going down into black water. Vail Tarn of the Cormorant Court comes up the roost-line with hooks out; Quill's hired blades come up the stair with the guild's green cords; Halbin Torrow stands between them with his hands open, worth more alive to nobody in this room but you. Whoever is still standing when the pawl is thrown decides what Ambercleft is tomorrow.",
+      "readAloud": "\"Kill the clerk,\" Tarn calls pleasantly, \"and the pin means nothing to anybody. That's a bargain, that is.\"",
+      "art": "art-the-tidewrights-pin-chain-house-lantern-standoff",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "chain-house-standoff",
+      "terminal": false
+    },
+    {
+      "id": "ending-quiet-ledger",
+      "kind": "ending",
+      "title": "Ending: The Quiet Ledger",
+      "prose": "Dawn finds the chain still up, the loft swept, and Halbin Torrow signing a new watch-book in a hand that has stopped shaking. The pin goes back to its felt niche, but the record of tonight goes elsewhere — to your patron, if you kept one, and to the clerk who now owes you the only debt in Ambercleft that gets paid. Nothing in the port visibly changes. Three powers spend the next year being extremely polite to you, and to each other, and none of them can say why out loud.",
+      "art": "art-the-tidewrights-pin-ending-quiet-ledger-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-chain-and-tide",
+      "kind": "ending",
+      "title": "Ending: Chain and Tide",
+      "prose": "The pawl goes over. The great chain runs out with a sound like a city clearing its throat, and by the turn of the tide there are eleven hulls in the roads that paid nobody, and eleven guilds screaming that they are ruined. You come out of the mole gate limping, unpaid, and famous in the wrong ledgers. Ambercleft will be rich again in a decade; the rooftops remember your names for longer than that.",
+      "art": "art-the-tidewrights-pin-ending-harbor-chain-falls",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-third-hand",
+      "kind": "ending",
+      "title": "Ending: The Third Hand",
+      "prose": "In the end the pin sits in a palm that no faction planned for: yours, or Sabb's, or whichever bidder shouted highest into the rain. Three powers who each needed one small thing quietly must now negotiate loudly, in front of witnesses, with someone they cannot audit. You keep the thong. You keep the mark of three teeth and a crescent. In a port built of ledgers, that is not a fortune — it is better, and heavier, and you will be carrying it a long while.",
+      "art": "art-the-tidewrights-pin-ending-pin-in-your-palm",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "chain-house-standoff",
+      "to": "ending-quiet-ledger",
+      "when": {
+        "op": "eq",
+        "flag": "patron",
+        "value": "guild"
+      },
+      "note": "Quill's Compact buries the night and pays in berths and paper."
+    },
+    {
+      "from": "chain-house-standoff",
+      "to": "ending-quiet-ledger",
+      "when": {
+        "op": "eq",
+        "flag": "patron",
+        "value": "court"
+      },
+      "note": "The Cormorant Court prefers the chain up and the secret theirs."
+    },
+    {
+      "from": "chain-house-standoff",
+      "to": "ending-third-hand",
+      "when": {
+        "op": "eq",
+        "flag": "patron",
+        "value": "excise"
+      },
+      "note": "Sabb takes the pin as evidence and the port learns a new word for audit."
+    },
+    {
+      "from": "chain-house-standoff",
+      "to": "ending-quiet-ledger",
+      "when": {
+        "op": "eq",
+        "flag": "halbin-ally",
+        "value": true
+      },
+      "note": "Torrow alive and willing makes the quiet outcome possible."
+    },
+    {
+      "from": "chain-house-standoff",
+      "to": "ending-chain-and-tide",
+      "when": {
+        "op": "eq",
+        "flag": "alarm-rung",
+        "value": true
+      },
+      "note": "With the Counting Hall bell already rung, nobody has time for subtlety."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "cormorant-toughs",
+      "title": "Roost-Bravos of the Cormorant Court",
+      "combatants": [
+        {
+          "id": "roost-bravos",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "chalk-hand",
+          "statblock": "bandit",
+          "count": 1,
+          "hpOverride": 16,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "unstable",
+        "darkness",
+        "wind"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "undercroft-tide-gate",
+      "onDefeat": "sabbs-offer",
+      "onFlee": "undercroft-tide-gate"
+    },
+    {
+      "id": "brass-wardens",
+      "title": "Wardens of the Strongroom Niche",
+      "combatants": [
+        {
+          "id": "brass-harnesses",
+          "statblock": "animated-armor",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "audited-dead",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Get the pin out of the felt niche and reach the coal hatch behind the strongroom stair."
+      },
+      "onVictory": "chainhouse-climb",
+      "onDefeat": "sabbs-offer",
+      "onFlee": "sabbs-offer"
+    },
+    {
+      "id": "chain-house-standoff",
+      "title": "The Winch Loft Standoff",
+      "combatants": [
+        {
+          "id": "vail-tarn",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "quill-hirelings",
+          "statblock": "bandit",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "halbin-torrow",
+          "statblock": "bandit",
+          "count": 1,
+          "hpOverride": 9,
+          "hostile": false
+        }
+      ],
+      "terrain": [
+        "vertical",
+        "wind",
+        "dim-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "protect",
+        "target": "halbin-torrow"
+      },
+      "onVictory": "ending-quiet-ledger",
+      "onDefeat": "ending-chain-and-tide",
+      "onFlee": "ending-third-hand"
+    }
+  ]
+}

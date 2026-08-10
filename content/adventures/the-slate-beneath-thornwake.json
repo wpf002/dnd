@@ -1,0 +1,724 @@
+{
+  "id": "the-slate-beneath-thornwake",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Slate Beneath Thornwake",
+    "premise": "At Thornwake Academy for Young Adventurers, the great brass bell rings itself at midnight and small metal things keep vanishing; the trail leads down to a chalk-sealed classroom that appears on no floor plan.",
+    "tone": [
+      "beginner-classic",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 2,
+    "narrationVoice": "Warm and patient, like a favorite instructor walking beside the party — plain language, small vivid details, and an honest hint whenever the students seem stuck.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "Younger students are always off-screen, asleep, or already escorted to safety by prefects. All danger falls on the adult party and adult staff."
+    },
+    "provenance": "flint"
+  },
+  "entry": "bell-at-midnight",
+  "beats": [
+    {
+      "id": "bell-at-midnight",
+      "kind": "threshold",
+      "title": "The Bell at Midnight",
+      "prose": "Thornwake Academy hires third-year apprentices for the dull jobs: hall patrol, cellar inventory, chasing rumors. Tonight the great brass bell in the belfry rang eleven times at midnight with no hand on the rope, and Proctor Halden Merrow is waiting in the quad with a lantern and a list of missing objects — nails, keys, buckles, and the bell's own clapper. Every dormitory door is locked from the inside and the prefects have already walked the younger students back to bed, so whatever is happening is your problem and nobody else's.",
+      "readAloud": "'Eleven strokes,' says Proctor Merrow, breath fogging. 'A bell with no clapper struck eleven times. I have taught here nineteen years and I have never wanted a lantern so badly.'",
+      "art": "art-the-slate-beneath-thornwake-belfry-lantern-quad",
+      "options": [
+        {
+          "id": "answer-the-summons",
+          "label": "Answer the Proctor's summons and hear the full list of thefts",
+          "target": "quad-of-questions",
+          "effects": []
+        },
+        {
+          "id": "climb-the-belfry-ladder",
+          "label": "Climb the belfry ladder first and see the empty yoke for yourself",
+          "target": "quad-of-questions",
+          "effects": [
+            {
+              "flag": "clue-bell",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Acrobatics",
+            "dc": 12,
+            "onFailure": "quad-of-questions"
+          }
+        },
+        {
+          "id": "wake-the-groundskeeper",
+          "label": "Wake Bristle Damm the groundskeeper — he sleeps nearest the cellars",
+          "target": "groundskeepers-shed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "quad-of-questions",
+      "kind": "discovery",
+      "title": "A Quad Full of Questions",
+      "prose": "Under the lantern, Merrow's list makes an odd shape: everything taken is small, iron or brass, and everything was taken from a room with a floor drain. Three staff members have complaints worth hearing tonight — the groundskeeper who lost his tools, the librarian who lost three pages out of the founder's ledger, and the night prefect who keeps finding sleepwalkers in the east stair. The chalk dust on the flagstones runs, faintly, toward the kitchen cellar.",
+      "art": "art-the-slate-beneath-thornwake-quad-list-of-thefts",
+      "options": [
+        {
+          "id": "quad-to-shed",
+          "label": "Visit Bristle Damm's tool shed behind the practice field",
+          "target": "groundskeepers-shed",
+          "effects": []
+        },
+        {
+          "id": "quad-to-library",
+          "label": "Wake Master Osrin Peale in the Library of Loose Pages",
+          "target": "library-of-loose-pages",
+          "effects": []
+        },
+        {
+          "id": "quad-to-dorm",
+          "label": "Walk the east stair with the night prefect",
+          "target": "dormitory-sleepwalk",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "groundskeepers-shed",
+      "kind": "social",
+      "title": "Bristle Damm's Shed",
+      "prose": "Bristle Damm is a broad, sour man with chalk on his knuckles and a grudge against the Academy's paperwork. Nineteen tools gone in eleven nights, he says, plus the bell clapper, plus a brass drain grate that took two hands to lift. He also says — quietly, once the door is shut — that there is a door in the coal warren he has been paid every year of his life not to unlock.",
+      "readAloud": "'Small things first. Then heavy things. Then, last week, it took the grate off my own drain.' Damm sets down his lamp. 'Whatever's counting up down there, it's getting stronger arms.'",
+      "art": "art-the-slate-beneath-thornwake-toolshed-empty-hooks",
+      "options": [
+        {
+          "id": "shed-inventory-talk",
+          "label": "Walk the inventory item by item until the pattern shows",
+          "target": "library-of-loose-pages",
+          "effects": [
+            {
+              "flag": "clue-bell",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "shed-follow-trail",
+          "label": "Follow the scuffed drag-marks behind the shed",
+          "target": "cellar-stair",
+          "effects": []
+        },
+        {
+          "id": "shed-borrow-bar",
+          "label": "Borrow his pry-bar and lantern, then check on the sleepwalkers",
+          "target": "dormitory-sleepwalk",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "library-of-loose-pages",
+      "kind": "puzzle",
+      "title": "The Library of Loose Pages",
+      "prose": "Master Osrin Peale keeps the Academy's records unbound so that corrections can be slipped in without shame. Three pages are missing from the founder's ledger, and the surviving pages describe a technique Dame Reeva Thornwake used to close a room: a 'chalk cant', spoken while redrawing the line on a threshold. The staff roster of the founding year has one entry scraped down to the paper's weave — a name someone worked very hard to unmake.",
+      "art": "art-the-slate-beneath-thornwake-library-unbound-ledger",
+      "options": [
+        {
+          "id": "library-study-cant",
+          "label": "Study the founder's chalk cant until you can speak it correctly",
+          "target": "cellar-stair",
+          "effects": [
+            {
+              "flag": "clue-chalk",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 12,
+            "onFailure": "dormitory-sleepwalk"
+          }
+        },
+        {
+          "id": "library-recover-name",
+          "label": "Raise the scraped name with candle-smoke and Peale's help",
+          "target": "dormitory-sleepwalk",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "History",
+            "dc": 13,
+            "onFailure": "dormitory-sleepwalk"
+          }
+        },
+        {
+          "id": "library-go-down",
+          "label": "Take what you have and head for the kitchen cellar",
+          "target": "cellar-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "dormitory-sleepwalk",
+      "kind": "discovery",
+      "title": "The East Stair Sleepwalkers",
+      "prose": "Night Prefect Nell Ashgrove meets you halfway up with a ledger of her own: four students walked in their sleep toward the cellar door this week, and each was turned around at the landing and tucked back in before they woke. Every one of them, she says, had chalk dust on their heels, and every one of them murmured the same thing — a roll-call, as if answering a name that was never called. Ashgrove has already barred the stair and posted the older students in pairs above it; nobody younger than her is going anywhere near the cellars tonight.",
+      "readAloud": "'They weren't frightened,' Ashgrove says. 'That's what unsettles me. They were being polite. Like someone finally asked for them by name.'",
+      "art": "art-the-slate-beneath-thornwake-east-stair-chalk-heels",
+      "options": [
+        {
+          "id": "dorm-follow-dust",
+          "label": "Follow the chalk dust down past Ashgrove's barred landing",
+          "target": "cellar-stair",
+          "effects": []
+        },
+        {
+          "id": "dorm-question-prefect",
+          "label": "Copy Ashgrove's roll-call murmurs and take them to the library",
+          "target": "library-of-loose-pages",
+          "effects": []
+        },
+        {
+          "id": "dorm-to-shed",
+          "label": "Compare her ledger against the groundskeeper's missing tools",
+          "target": "groundskeepers-shed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cellar-stair",
+      "kind": "transit",
+      "title": "Down the Kitchen Cellar Stair",
+      "prose": "Below the kitchens the Academy stops being a school and becomes an old fortified house: rough steps, coal warrens, a floor that slopes toward a drain nobody has ever mapped. Chalk dust lies thicker the lower you go, and somewhere ahead something small is sorting metal into neat, ringing piles.",
+      "art": "art-the-slate-beneath-thornwake-cellar-stair-coal-dust",
+      "options": [
+        {
+          "id": "stair-descend-quiet",
+          "label": "Descend quietly toward the sound of sorted metal",
+          "target": "rat-warren",
+          "effects": []
+        },
+        {
+          "id": "stair-call-out",
+          "label": "Call out politely to whoever is down there",
+          "target": "kobold-parley",
+          "effects": []
+        },
+        {
+          "id": "stair-search-coal-bin",
+          "label": "Search the coal bin first — the thief's cache has to be near",
+          "target": "kobold-parley",
+          "effects": [
+            {
+              "flag": "clue-bell",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "rat-warren",
+      "kind": "conflict",
+      "title": "Scuffle in the Coal Warren",
+      "prose": "The coal warren is a low arcade of brick pillars, ankle-deep grit, and rat-runs bored through the mortar. Something has trained the rats to guard the piles: they come in a rush, and two lean scavengers with sharpened barrel-hoops shriek at you from atop the coal, more frightened than furious. The chalk-marked door waits at the far end, and getting to it matters more than winning.",
+      "art": "art-the-slate-beneath-thornwake-coal-warren-rat-rush",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "warren-scuffle",
+      "terminal": false
+    },
+    {
+      "id": "kobold-parley",
+      "kind": "social",
+      "title": "Tik-Tallow, Collector of Small Metals",
+      "prose": "The thief is a soot-black kobold in a coat sewn from oven mitts, sitting cross-legged before a cathedral of nails, keys, buckles, and one brass bell clapper. He gives his name as Tik-Tallow and insists he is not a thief but a supplier: the door at the end of the warren asked him for metal, politely, in a voice like chalk on slate, and he has never once been able to say no to politeness.",
+      "readAloud": "'It says please,' Tik-Tallow whispers, cradling the clapper. 'Nineteen nights of please. You try telling a door no when it says please.'",
+      "art": "art-the-slate-beneath-thornwake-tik-tallow-metal-cathedral",
+      "options": [
+        {
+          "id": "parley-trade-clapper",
+          "label": "Trade rations for the clapper and the whole story of the thefts",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "clue-bell",
+            "value": true
+          },
+          "target": "chalk-sealed-door",
+          "effects": [
+            {
+              "flag": "ally-kobold",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "parley-persuade-guide",
+          "label": "Persuade him to guide you to the chalk-sealed door",
+          "target": "chalk-sealed-door",
+          "effects": [
+            {
+              "flag": "ally-kobold",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 12,
+            "onFailure": "chalk-sealed-door"
+          }
+        },
+        {
+          "id": "parley-threaten",
+          "label": "Threaten him and take the cache by force",
+          "target": "rat-warren",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "chalk-sealed-door",
+      "kind": "puzzle",
+      "title": "The Door That Says Please",
+      "prose": "At the warren's end stands a schoolroom door where no schoolroom should be, its threshold ringed by a chalk line drawn a hundred times over a hundred years. The ward-lock is brass, keyless, and warm. When you lean close you hear a small polite scratching from the other side, the sound of someone patiently writing the same word again and again.",
+      "art": "art-the-slate-beneath-thornwake-chalk-line-threshold-door",
+      "options": [
+        {
+          "id": "door-speak-cant",
+          "label": "Speak Dame Thornwake's chalk cant and redraw the line to open it safely",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "clue-chalk",
+            "value": true
+          },
+          "target": "silent-room",
+          "effects": []
+        },
+        {
+          "id": "door-tik-picks-lock",
+          "label": "Let Tik-Tallow coax the ward-lock the way it has coaxed him",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ally-kobold",
+            "value": true
+          },
+          "target": "silent-room",
+          "effects": []
+        },
+        {
+          "id": "door-pry-hinges",
+          "label": "Pry the hinges with the groundskeeper's bar and break the chalk line",
+          "target": "silent-room",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "dc": 13,
+            "onFailure": "bone-monitors"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "silent-room",
+      "kind": "discovery",
+      "title": "The Room on No Floor Plan",
+      "prose": "Inside is a classroom kept in perfect order: nine desks, nine chairs, a lectern, and a slate that runs the whole width of the far wall. Every surface is chalk-white, and every scrap of stolen metal has been arranged along the sills like offerings. On the slate a single name is being written and erased, written and erased, by nothing you can see — and around the room, nine suits of undersized armour stand at attention, the Academy's old drill dummies, wearing chalk dust like frost.",
+      "readAloud": "The chalk stops. In the silence you can hear it decide something. Then it begins again, faster: a name, a name, a name.",
+      "art": "art-the-slate-beneath-thornwake-silent-classroom-wide-slate",
+      "options": [
+        {
+          "id": "room-read-slate",
+          "label": "Steady the shaking chalk and read the name before it is erased",
+          "target": "name-on-the-slate",
+          "effects": [
+            {
+              "flag": "knows-name",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Wisdom",
+            "skill": "Perception",
+            "dc": 12,
+            "onFailure": "name-on-the-slate"
+          }
+        },
+        {
+          "id": "room-search-desks",
+          "label": "Search the nine desks and the lectern's locked drawer",
+          "target": "bone-monitors",
+          "effects": []
+        },
+        {
+          "id": "room-light-lamps",
+          "label": "Chalk the doorway behind you and light every lamp in the room",
+          "target": "bone-monitors",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "bone-monitors",
+      "kind": "conflict",
+      "title": "The Monitors Take Attendance",
+      "prose": "The drill dummies step off their stands in unison, and the old bones bound into the practice armour clatter into a marching line — the Academy's first class of monitors, still keeping order, still enforcing a silence a century old. They do not pursue and they do not speak; they only mean to clear the room. Hold the doorway until the fresh chalk line dries and they must stop at it.",
+      "art": "art-the-slate-beneath-thornwake-drill-dummies-marching-line",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "the-monitors",
+      "terminal": false
+    },
+    {
+      "id": "name-on-the-slate",
+      "kind": "decision",
+      "title": "Corvin Slate",
+      "prose": "The name on the wall is Corvin Slate: an assistant master of the founding year, scraped out of the roster, walled into a room, and forgotten so thoroughly that all that is left of him is the habit of writing his own name and doubting it. He has been collecting metal to make a bell, because a bell is a thing that gets answered. He has been calling roll in the dark, hoping someone will finally say 'present' — and the sleepwalkers above are children who nearly did.",
+      "readAloud": "The chalk halts mid-letter. A voice like a duster on slate asks, very politely: 'Is that correct? Is that how it is spelled?'",
+      "art": "art-the-slate-beneath-thornwake-name-written-and-erased",
+      "options": [
+        {
+          "id": "slate-speak-name",
+          "label": "Say the name aloud, mark him present, and order him to stand at the door like a master should",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-name",
+            "value": true
+          },
+          "target": "the-erasing",
+          "effects": []
+        },
+        {
+          "id": "slate-wipe-clean",
+          "label": "Wipe the slate clean and end the roll-call by force",
+          "target": "the-erasing",
+          "effects": []
+        },
+        {
+          "id": "slate-withdraw",
+          "label": "Withdraw, reseal the room, and let the Academy keep its old bargain",
+          "target": "ending-bell-silent",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-erasing",
+      "kind": "climax",
+      "title": "The Erasing",
+      "prose": "Chalk dust rises off every surface at once and the lamps gutter to coals. Out of the slate step three flat, grey shapes: two half-formed echoes of students who were never enrolled, and behind them the tall thin shadow that has been teaching itself its own name for a hundred years. The echoes only copy what the master does — unmake the shadow of Corvin Slate and the copies have nothing left to imitate.",
+      "art": "art-the-slate-beneath-thornwake-chalk-dust-three-shadows",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "the-erasing-choir",
+      "terminal": false
+    },
+    {
+      "id": "ending-lesson-learned",
+      "kind": "ending",
+      "title": "Ending: The Roster Corrected",
+      "prose": "The shadow comes apart into ordinary chalk dust, and the room stops insisting on itself: nine desks, a slate, a drain, nothing more. Master Peale writes Corvin Slate back into the founding roster in fresh ink — present, retired, remembered — and the Academy's new chalk line is drawn by every student in the school, one stroke each, so that nobody has to keep the secret alone. Bristle Damm gets his tools back, Tik-Tallow gets a paid post as under-cellarer and a locker for his small metals, and at midnight the belfry rings twelve, on time, with its own clapper. The east stair stays quiet. Nobody sleepwalks again.",
+      "art": "art-the-slate-beneath-thornwake-ending-roster-corrected",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-quiet-bargain",
+      "kind": "ending",
+      "title": "Ending: A Quiet Bargain",
+      "prose": "You give ground rather than be unmade, and in the doorway you strike a deal instead: the room may keep its name and its metal, and in exchange it keeps to its own threshold and calls no roll above the cellar stair. Tik-Tallow becomes courier to a master who has no students, and every term one apprentice volunteers to descend, say 'present', and come straight back up. It holds. It is not a solution and everyone knows it, but the bell rings only when a hand pulls the rope, and the children sleep through the night.",
+      "art": "art-the-slate-beneath-thornwake-ending-quiet-bargain-doorway",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-bell-silent",
+      "kind": "ending",
+      "title": "Ending: The Bell Goes Quiet",
+      "prose": "You come up the kitchen stair coughing chalk, and the door is bricked over before dawn on Proctor Merrow's order. The Academy moves its dormitories to the west wing, the belfry rope is cut, and the whole affair is written down as a rat problem. It works, mostly: the thefts stop, the stair stays barred, the younger students are safely two hundred feet from anything that whispers. But sometimes a first-year says a name in her sleep that appears on no roster, and every one of you knows that somewhere under the kitchens, someone very patient is still taking attendance.",
+      "art": "art-the-slate-beneath-thornwake-ending-bricked-doorway",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "rat-warren",
+      "to": "chalk-sealed-door",
+      "when": {
+        "op": "always"
+      },
+      "note": "Reached the chalk-marked door"
+    },
+    {
+      "from": "rat-warren",
+      "to": "cellar-stair",
+      "when": {
+        "op": "always"
+      },
+      "note": "Driven back up the coal warren"
+    },
+    {
+      "from": "rat-warren",
+      "to": "kobold-parley",
+      "when": {
+        "op": "always"
+      },
+      "note": "Withdrew and tried words instead"
+    },
+    {
+      "from": "bone-monitors",
+      "to": "name-on-the-slate",
+      "when": {
+        "op": "always"
+      },
+      "note": "Held the doorway until the chalk dried"
+    },
+    {
+      "from": "bone-monitors",
+      "to": "ending-bell-silent",
+      "when": {
+        "op": "always"
+      },
+      "note": "Swept out of the room"
+    },
+    {
+      "from": "bone-monitors",
+      "to": "cellar-stair",
+      "when": {
+        "op": "always"
+      },
+      "note": "Retreated to the stair"
+    },
+    {
+      "from": "the-erasing",
+      "to": "ending-lesson-learned",
+      "when": {
+        "op": "always"
+      },
+      "note": "The shadow of Corvin Slate is undone"
+    },
+    {
+      "from": "the-erasing",
+      "to": "ending-quiet-bargain",
+      "when": {
+        "op": "always"
+      },
+      "note": "Gave ground and bargained in the doorway"
+    },
+    {
+      "from": "the-erasing",
+      "to": "ending-bell-silent",
+      "when": {
+        "op": "always"
+      },
+      "note": "Fled the cellars for good"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "warren-scuffle",
+      "title": "Scuffle in the Coal Warren",
+      "combatants": [
+        {
+          "id": "warren-rats",
+          "statblock": "giant-rat",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "hoop-scavengers",
+          "statblock": "kobold",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "darkness",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Push through the pillars and rat-runs to the chalk-marked door at the far end of the coal warren."
+      },
+      "onVictory": "chalk-sealed-door",
+      "onDefeat": "cellar-stair",
+      "onFlee": "kobold-parley"
+    },
+    {
+      "id": "the-monitors",
+      "title": "The Monitors Take Attendance",
+      "combatants": [
+        {
+          "id": "bone-monitor",
+          "statblock": "skeleton",
+          "count": 3,
+          "hostile": true
+        },
+        {
+          "id": "head-monitor",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "name-on-the-slate",
+      "onDefeat": "ending-bell-silent",
+      "onFlee": "cellar-stair"
+    },
+    {
+      "id": "the-erasing-choir",
+      "title": "The Erasing",
+      "combatants": [
+        {
+          "id": "chalk-echo",
+          "statblock": "shadow",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "corvin-slate-shade",
+          "statblock": "shadow",
+          "count": 1,
+          "hpOverride": 22,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "corvin-slate-shade"
+      },
+      "onVictory": "ending-lesson-learned",
+      "onDefeat": "ending-bell-silent",
+      "onFlee": "ending-quiet-bargain"
+    }
+  ]
+}

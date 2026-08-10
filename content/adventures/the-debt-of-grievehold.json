@@ -1,0 +1,637 @@
+{
+  "id": "the-debt-of-grievehold",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Debt of Grievehold",
+    "premise": "The dark lord Varkoth Ashfell is nine days dead, and the fortress of Grievehold must name an heir before dawn — because the creditor who financed his wars has arrived to collect, and the collateral was never gold.",
+    "tone": [
+      "political-fantasy",
+      "gothic-horror"
+    ],
+    "tier": "regional",
+    "partyLevel": 6,
+    "narrationVoice": "Second person, present tense; the measured hush of a court in mourning, with a creditor's abacus ticking beneath every eulogy.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "The Sablemarch tenantry, including its families, is discussed only as distant stakes; no minors appear in any scene."
+    },
+    "provenance": "flint"
+  },
+  "entry": "gates-of-grievehold",
+  "beats": [
+    {
+      "id": "gates-of-grievehold",
+      "kind": "threshold",
+      "title": "The Gates of Grievehold",
+      "prose": "Grievehold squats on a spur of black slate above the Sablemarch valley, and its gate has been left open — which is worse than a siege. Nine days ago Varkoth Ashfell, self-styled Lord of the Long Winter, died in his bed with no wound on him. You carry the neutral seal of the valley towns, sent to witness a succession that will decide whether ten thousand tenant farmers remain people or become a line item. Three ways in present themselves: a parley banner snapping over the mourners' arch, a scaffold of chained corpses that soldiers use as a ladder up the curtain wall, and a drain beneath the gate where a procession of pale crows walks — walks, not flies — inward, each with a scrap of parchment in its beak.",
+      "readAloud": "The gate is open. No one greets you. From somewhere deep in the keep comes a sound like a hundred small stones dropped one at a time into a bowl — an abacus, counting.",
+      "art": "art-the-debt-of-grievehold-gate-of-open-mourning",
+      "options": [
+        {
+          "id": "opt-parley-banner",
+          "label": "Answer the parley banner and present your seal formally",
+          "target": "black-antechamber",
+          "effects": []
+        },
+        {
+          "id": "opt-corpse-scaffold",
+          "label": "Climb the corpse-scaffold to the garrison yard and speak soldier to soldier",
+          "target": "wardens-yard",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "hall-of-tallow-armors"
+          }
+        },
+        {
+          "id": "opt-follow-crows",
+          "label": "Follow the ledger-crows into the drain",
+          "target": "weeping-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "black-antechamber",
+      "kind": "social",
+      "title": "The Black Antechamber",
+      "prose": "Chancellor Vessana Mour receives you in a room hung with the dark lord's confiscated banners, all turned inside out for mourning. She is small, grey, exhausting to underestimate: she wrote every law Varkoth ever signed and forged three he never read. 'You are witnesses,' she says, 'so witness this. My husband borrowed from the Pale Concord to raise his winters. He pledged what he did not own — the bond-labour of the Sablemarch, in perpetuity. The Concord's auditor is in my counting-house now. If Grievehold has no lord by dawn, the debt defaults, and default means the Concord takes the collateral in the flesh.' She sets a ring of keys on the table without letting go of it. 'Help me be lord here, and I will spend my reign arguing that clause to death.'",
+      "art": "art-the-debt-of-grievehold-chancellor-in-inverted-banners",
+      "options": [
+        {
+          "id": "opt-view-body",
+          "label": "Ask to view the body before you promise anything",
+          "target": "lying-in-state",
+          "effects": []
+        },
+        {
+          "id": "opt-pledge-vessana",
+          "label": "Pledge your witness to the Chancellor and ask for the treaty itself",
+          "target": "iron-codicil",
+          "effects": [
+            {
+              "flag": "vessana-pledge",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-seek-general",
+          "label": "Decline to choose yet; go hear the Warden-General's claim",
+          "target": "wardens-yard",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "lying-in-state",
+      "kind": "discovery",
+      "title": "Lying In State",
+      "prose": "They have laid Varkoth Ashfell on a bier of salted oak in the chapel of his own conquests, and the frost that always followed him has not left the room. He looks annoyed. The chaplains have propped his crown on his chest, and beneath it his skin is faintly blue at the lips and fingernails — not the blue of cold. Stranger: the mirrors ringing the bier show the chapel, the candles, you — and not him. Something has already been withdrawn from the body and filed elsewhere. A narrow shaft behind the bier drops into the fortress's older bones, and cold air sighs up it, smelling of ash and ink.",
+      "art": "art-the-debt-of-grievehold-bier-of-salted-oak",
+      "options": [
+        {
+          "id": "opt-examine-corpse",
+          "label": "Examine the corpse and the mirrors closely",
+          "target": "iron-codicil",
+          "effects": [
+            {
+              "flag": "knows-poison",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Medicine",
+            "dc": 15,
+            "onFailure": "hall-of-tallow-armors"
+          }
+        },
+        {
+          "id": "opt-take-signet",
+          "label": "Take the signet from his hand and carry it to the garrison",
+          "target": "wardens-yard",
+          "effects": []
+        },
+        {
+          "id": "opt-bier-shaft",
+          "label": "Descend the bier-shaft into the old fortress",
+          "target": "weeping-stair",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wardens-yard",
+      "kind": "social",
+      "title": "The Warden-General's Yard",
+      "prose": "Ulcaster Bregh drills three hundred soldiers in the frozen tilt-yard, and every one of them knows he is the dead lord's unacknowledged son. He is enormous, courteous, and reads. 'The Chancellor says the debt is law,' he tells you, breath steaming. 'Law is a thing a garrison decides to keep. I have inherited my father's face, his temper, and none of his signatures — which means I can repudiate the Pale Concord's writ the hour I am crowned.' He lowers his voice. 'What I cannot do is fight a creditor that does not bleed. My oath-men are two-thirds mercenary and the Concord pays better than a dead man's estate. Give me legitimacy before they decide otherwise.'",
+      "art": "art-the-debt-of-grievehold-tiltyard-under-black-snow",
+      "options": [
+        {
+          "id": "opt-pledge-ulcaster",
+          "label": "Pledge your witness to Ulcaster — and accept his trial of arms",
+          "target": "hall-of-tallow-armors",
+          "effects": [
+            {
+              "flag": "ulcaster-pledge",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-demand-rolls",
+          "label": "Demand the muster rolls and the treaty they were pledged against",
+          "target": "iron-codicil",
+          "effects": []
+        },
+        {
+          "id": "opt-warn-general",
+          "label": "Warn him you intend to meet the auditor first, and go",
+          "target": "auditors-ledger",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "hall-of-tallow-armors",
+      "kind": "conflict",
+      "title": "The Hall of Tallow Armours",
+      "prose": "The long gallery is lined with Varkoth's parade harnesses, each filled to the gorget with grey tallow so the empty steel would not rattle in the wind. Grievehold's old proving-rite is simple: stand in the gallery while the harnesses remember their drill. Three of them step down from their plinths with the unhurried patience of clerks, and the doors seal behind you. You are not required to destroy them. You are required to still be standing when the drum stops.",
+      "readAloud": "A drum begins somewhere above, slow as a resting heartbeat. It will beat eighteen times.",
+      "art": "art-the-debt-of-grievehold-gallery-of-filled-harnesses",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-tallow-trial",
+      "terminal": false
+    },
+    {
+      "id": "iron-codicil",
+      "kind": "puzzle",
+      "title": "The Iron Codicil",
+      "prose": "The treaty hangs in the strong-room: nine plates of cold iron, chained, each engraved in the Concord's needle-script. The bulk is tedious — grain tallies, siege loans, interest compounding in units of winters. Then comes the Fourth Codicil, and it is beautiful and obscene. Varkoth pledged not gold but *continuance*: the Concord is owed the productive remainder of the Sablemarch tenantry, redeemable on his death, unless a lawful heir 'of his own substance' assumes the principal. Beneath that, in a different hand, someone has begun and abandoned an emendation. Whatever the debt is, it cannot be settled honestly — there is no coin in the world that the Fourth Codicil accepts.",
+      "art": "art-the-debt-of-grievehold-nine-plates-of-cold-iron",
+      "options": [
+        {
+          "id": "opt-decipher-clause",
+          "label": "Decipher the Fourth Codicil precisely — find what 'his own substance' admits",
+          "target": "auditors-ledger",
+          "effects": [
+            {
+              "flag": "codicil-read",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Arcana",
+            "dc": 15,
+            "onFailure": "weeping-stair"
+          }
+        },
+        {
+          "id": "opt-forge-amendment",
+          "label": "Have the Warden-General's scribes finish the abandoned emendation",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ulcaster-pledge",
+            "value": true
+          },
+          "target": "auditors-ledger",
+          "effects": [
+            {
+              "flag": "codicil-read",
+              "value": true
+            },
+            {
+              "flag": "forged-amendment",
+              "value": true
+            }
+          ],
+          "requiresCheck": {
+            "ability": "Dexterity",
+            "skill": "Sleight of Hand",
+            "dc": 17,
+            "onFailure": "garrison-mutiny"
+          }
+        },
+        {
+          "id": "opt-burn-codicil",
+          "label": "Try to destroy the plates and let the fortress inherit chaos",
+          "target": "garrison-mutiny",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "auditors-ledger",
+      "kind": "social",
+      "title": "The Auditor's Counting-House",
+      "prose": "The counting-house has been the Concord's since before Varkoth's grandmother. Auditor Cinder-Nine sits behind a ledger the length of a coffin, and the pale crows land on its rim one by one to spit their parchment scraps into a slot. It — he — wears a magistrate's grey and a face that was somebody's, once, and speaks in tidy sums. 'The estate is in default at dawn. I am not cruel; I am merely correct. Present me a lawful heir of the debtor's own substance and I will re-book the principal against him. Present me nothing and I take the collateral — walking, in columns, west.' The abacus ticks. 'You are witnesses. Witnesses may co-sign. Witnesses who co-sign are indemnified.'",
+      "art": "art-the-debt-of-grievehold-auditor-behind-coffin-ledger",
+      "options": [
+        {
+          "id": "opt-sign-pact",
+          "label": "Co-sign the Concord's pact of indemnity and take your seat at the council",
+          "target": "succession-council",
+          "effects": [
+            {
+              "flag": "concord-pact",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-reveal-poison",
+          "label": "Accuse the Concord of poisoning its own debtor to trigger the clause",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-poison",
+            "value": true
+          },
+          "target": "cinder-vault",
+          "effects": []
+        },
+        {
+          "id": "opt-stall-auditor",
+          "label": "Refuse and stall — demand a night's grace under valley custom",
+          "target": "weeping-stair",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Charisma",
+            "skill": "Persuasion",
+            "dc": 15,
+            "onFailure": "garrison-mutiny"
+          }
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "weeping-stair",
+      "kind": "hazard",
+      "title": "The Weeping Stair",
+      "prose": "Below the new fortress lies the one Varkoth built first, and its single stair descends through rock that sweats. The moisture is warm and tastes of other people's regrets: each step you take, the wall beside you shows a memory that is not yours, and takes a small one of yours in exchange — the name of a street, the face of a first friend. Grievehold's oldest custom holds that the stair must be paid, honestly, in remembering. Above you, boots move in the dark; the garrison is arguing with itself. Outside, the frost-slick face of the spur offers a colder, faster route to the council hall.",
+      "art": "art-the-debt-of-grievehold-sweating-stair-of-memory",
+      "options": [
+        {
+          "id": "opt-pay-toll",
+          "label": "Pay the toll of memory and descend to the vault at the root",
+          "target": "cinder-vault",
+          "effects": [
+            {
+              "flag": "stair-toll-paid",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-climb-outer-face",
+          "label": "Climb out and along the outer face straight to the council hall",
+          "target": "succession-council",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Strength",
+            "skill": "Athletics",
+            "dc": 14,
+            "onFailure": "garrison-mutiny"
+          }
+        },
+        {
+          "id": "opt-vessana-escort",
+          "label": "Send for the Chancellor's escort and withdraw to her antechamber",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vessana-pledge",
+            "value": true
+          },
+          "target": "black-antechamber",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "cinder-vault",
+      "kind": "discovery",
+      "title": "The Cinder Vault",
+      "prose": "At the stair's root is a round room of unmortared slate, and in its centre a reliquary of glass and lead holds a single coal that burns without consuming: the withdrawn substance of Varkoth Ashfell, filed here on the night he died. He is awake. He speaks through the frost on the glass, spelling letters. THEY MOVED ME EARLY. A DEBTOR WHO DIES IS A DEBTOR WHO CANNOT ARGUE. Beside the reliquary lies the Concord's collection-writ, sealed nine days ago — dated the morning *before* his death. The Fourth Codicil admits an heir of his own substance. There is an heir of his own substance in your hands, if you dare carry it upstairs.",
+      "readAloud": "The coal brightens. Letters bloom in the frost: I WILL PAY. NOT HONESTLY. BUT I WILL PAY.",
+      "art": "art-the-debt-of-grievehold-reliquary-with-living-coal",
+      "options": [
+        {
+          "id": "opt-take-ember",
+          "label": "Take the soul-ember from the reliquary and carry it to the council",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "stair-toll-paid",
+            "value": true
+          },
+          "target": "succession-council",
+          "effects": [
+            {
+              "flag": "soul-ember",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "opt-shatter-reliquary",
+          "label": "Shatter the reliquary here and let the creditor come to you",
+          "target": "the-reckoning",
+          "effects": []
+        },
+        {
+          "id": "opt-leave-sealed",
+          "label": "Leave it sealed, take the back-dated writ as evidence, and go up",
+          "target": "succession-council",
+          "effects": []
+        }
+      ],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "garrison-mutiny",
+      "kind": "conflict",
+      "title": "The Garrison Decides",
+      "prose": "The Concord pays in advance, and two of Ulcaster's sergeants have already been paid. They catch you in the barrack-spine where the corridor narrows and the lamps have been carefully broken, and they are not interested in your seal or your safe passage — only in delivering you nowhere until dawn. The council hall is four turns east. You do not need to win this. You need to arrive.",
+      "art": "art-the-debt-of-grievehold-broken-lamps-in-barrack-spine",
+      "options": [],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-garrison-mutiny",
+      "terminal": false
+    },
+    {
+      "id": "succession-council",
+      "kind": "decision",
+      "title": "The Council of the Ninth Night",
+      "prose": "They convene in the throne hall an hour before dawn: Chancellor Vessana with her keys, Warden-General Ulcaster with his three hundred, Auditor Cinder-Nine with his ledger open at the page that ends a valley. The throne stands empty and cold. Grievehold's law wants a lord; the Concord wants a debtor; the Sablemarch wants only to keep waking up in its own houses. Whatever you say now, the hall will take as witnessed fact. There is no honest coin for this debt. There is only which dishonesty you are willing to sign.",
+      "art": "art-the-debt-of-grievehold-empty-throne-before-dawn",
+      "options": [
+        {
+          "id": "opt-crown-the-ember",
+          "label": "Set the soul-ember on the throne: the debtor himself, of his own substance, assumes the principal",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "soul-ember",
+            "value": true
+          },
+          "target": "the-reckoning",
+          "effects": []
+        },
+        {
+          "id": "opt-crown-ulcaster",
+          "label": "Witness Ulcaster as heir and repudiate the writ — force the creditor to collect in person",
+          "target": "the-reckoning",
+          "effects": []
+        },
+        {
+          "id": "opt-honour-the-writ",
+          "label": "Witness the Chancellor as heir and let the Fourth Codicil be performed as written",
+          "visibleWhen": {
+            "op": "or",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "codicil-read",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "forged-amendment",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "concord-pact",
+                "value": true
+              }
+            ]
+          },
+          "target": "the-ledger-balanced",
+          "effects": []
+        }
+      ],
+      "improvBudget": 10,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "the-reckoning",
+      "kind": "climax",
+      "title": "The Reckoning in the Throat",
+      "prose": "Cinder-Nine closes the ledger, and closing it is the violence. The magistrate's grey falls away from something that has been collecting on behalf of the Concord for four hundred years — grave-cold, patient, itemised — and the ledger-shades peel off the walls where the candlelight had been pretending they were shadows. 'Default,' the Auditor says, almost kindly, 'is a form of payment.' The hall's great doors seal. The only account that can be settled tonight is his: end the collector, and the collection ends with him, at least until the Concord sends another and the valley has a lord to meet it.",
+      "readAloud": "The abacus stops ticking. In the silence, every crow in the rafters turns its head at once.",
+      "art": "art-the-debt-of-grievehold-auditor-unfolding-in-throne-hall",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "enc-the-reckoning",
+      "terminal": false
+    },
+    {
+      "id": "crown-of-quiet-ash",
+      "kind": "ending",
+      "title": "Crown of Quiet Ash",
+      "prose": "The Auditor comes apart into loose paper and cold, and the ledger-shades go out like blown lamps. What is left on the flagstones is a heap of parchment scraps and one crow that will not fly. By full light Grievehold has a lord — the one you witnessed, ember or bastard, seated on cold slate before a hall that dares not object — and the Sablemarch keeps its people for another season. It is not absolution. The Pale Concord does not forget an unpaid page; somewhere a second auditor is already being appointed, and the fortress you saved is still a fortress built by a man who pledged strangers as currency. But the columns did not march west, and the valley towns will remember which witnesses stood in the throat of the hall when the counting stopped. You leave the crown behind you and the debt still owing, which is the honest part.",
+      "art": "art-the-debt-of-grievehold-dawn-over-sablemarch-valley",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-ledger-balanced",
+      "kind": "ending",
+      "title": "The Ledger Balanced",
+      "prose": "The Fourth Codicil is performed as written, and it is performed politely. Chancellor Vessana takes the crown at dawn and, in her first act, signs the redemption schedule; Cinder-Nine countersigns and re-books the principal in instalments, which is the mercy she bought with your witness — bond-labour spread over forty years instead of taken in one column. She will spend her reign litigating the clause to death, and she may even win, and you will read about it in letters. Your names are on the schedule as witnesses in a small, tidy hand. Grievehold is quiet. The crows leave. Riding down the spur you pass the first ox-carts of the levy going up, and you look at them, and they look at you, and everyone understands exactly what a treaty is.",
+      "art": "art-the-debt-of-grievehold-signed-schedule-in-tidy-hand",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "the-fortress-unmade",
+      "kind": "ending",
+      "title": "The Fortress Unmade",
+      "prose": "The collection is completed at dawn, and the collector is thorough. Grievehold's claimants are entered as assets: the Chancellor's keys, the Warden-General's three hundred oaths, and the witnesses who failed to sign anything at all. You wake — those of you who wake — in a wagon on the west road, footsore, indemnified by nobody, with the taste of the weeping stair still in your mouth and a page number stitched into your sleeve. Behind you the fortress stands open and empty, gate unguarded, banners still inside-out. The Pale Concord does not raze what it can rent. Ahead, the road climbs into grey country where the ledger is the only law, and somewhere in the column a voice begins counting, slow as a resting heartbeat, because someone always has to.",
+      "art": "art-the-debt-of-grievehold-wagons-on-the-grey-west-road",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [],
+  "encounters": [
+    {
+      "id": "enc-tallow-trial",
+      "title": "The Proving-Rite of the Tallow Harnesses",
+      "combatants": [
+        {
+          "id": "parade-harnesses",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "survive-rounds",
+        "rounds": 3
+      },
+      "onVictory": "iron-codicil",
+      "onDefeat": "black-antechamber",
+      "onFlee": "weeping-stair"
+    },
+    {
+      "id": "enc-garrison-mutiny",
+      "title": "Four Turns East",
+      "combatants": [
+        {
+          "id": "bought-sergeants",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "oath-breakers",
+          "statblock": "bandit",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "darkness",
+        "cramped",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "escape"
+      },
+      "onVictory": "succession-council",
+      "onDefeat": "cinder-vault"
+    },
+    {
+      "id": "enc-the-reckoning",
+      "title": "Settling the Auditor's Account",
+      "combatants": [
+        {
+          "id": "auditor-cinder-nine",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ledger-shades",
+          "statblock": "shadow",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-heavy",
+        "open"
+      ],
+      "victory": {
+        "kind": "destroy",
+        "target": "auditor-cinder-nine"
+      },
+      "onVictory": "crown-of-quiet-ash",
+      "onDefeat": "the-fortress-unmade",
+      "onFlee": "the-ledger-balanced"
+    }
+  ]
+}

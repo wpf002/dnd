@@ -1,0 +1,90 @@
+{
+  "adventure": "the-tide-keeps-it",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: nautical, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-tide-keeps-it-saltmere-quay-dawn",
+      "beat": "harbor-arrival",
+      "brief": "Saltmere Hollow, Slack Water — Saltmere Hollow is a town built on stilts and stubbornness: a mile of black pilings, a fish-market that never quite dries, and a wreck-bell tolling fr"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-split-keel-taproom",
+      "beat": "the-drowned-list",
+      "brief": "The Split Keel — The tavern leans over the water like a man being sick. Inside, four of the Tern's Widow's crew sit apart from each other on purpose. The youngest, a d"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-tide-market-ledger",
+      "beat": "tide-market",
+      "brief": "The Tide-Market Office — Harbormistress Idony Sceave keeps her office above the weigh-scales, warm as a held breath. She is courteous, quick, and pours you tea before you ask "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-wreck-two-halves",
+      "beat": "wreck-on-the-bar",
+      "brief": "The Whistling Bar — At slack water the Whistling Bar shows itself: a long spine of shingle that hums when the swell crosses it. The Tern's Widow lies broken across it in "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-false-lamp-cairn",
+      "beat": "false-lamp-cairn",
+      "brief": "The False Lamp — The cairn is knee-high and wind-braced, with a scorched flat stone on top and a hooded ship's lantern wedged in its lee, wick trimmed, reservoir still"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-underwharf-pilings",
+      "beat": "undock-crawl",
+      "brief": "Under the Fish-Stalls — The underwharf is a drowned cathedral: rank on rank of tarred pilings, walkways of stolen planking, and the whole ceiling a floor, with market voices "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-low-gallery-flood",
+      "beat": "rat-tide-crawl",
+      "brief": "The Low Gallery — The gallery narrows to a crawl of slime and shell, and the flood arrives early — it always arrives early. Wharf rats the size of terriers come boiling"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-salt-hold-casks",
+      "beat": "salt-hold",
+      "brief": "The Salt-Hold — Beyond the gallery, in a chamber dug into the sea wall itself, the cargo of the Tern's Widow is stacked above the wrack-line: forty lead casks, seams "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-hammock-loft-argument",
+      "beat": "crale-vs-vane",
+      "brief": "Two Whistles, One Crew — In the hammock loft the Underwharf tears itself in half in front of you. Quartermaster Nessa Crale wants the casks moved on tonight's high water: the "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-press-gang-boathooks",
+      "beat": "press-gang",
+      "brief": "Crale's Flood Crew — Crale does not shout. She blows her brass whistle twice, and the underwharf answers with boat-hooks and cudgels: her flood crew, come to shift casks a"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-sceave-parlour-lantern",
+      "beat": "harbormistress-parlor",
+      "brief": "Sceave's Parlour — Idony Sceave receives you again, and this time she does not pour tea. Her enforcer, Grishen Awl, stands at the shutters with his thumbs in his belt an"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-customs-house-shutters",
+      "beat": "customs-house-brawl",
+      "brief": "Grishen Awl Shuts the Shutters — Sceave sighs like a woman rained on, and Grishen Awl closes the shutters. He has two weigh-house bruisers and a cutlass he keeps for ledger disputes; "
+    },
+    {
+      "slot": "art-the-tide-keeps-it-high-water-ledge",
+      "beat": "the-turning-tide",
+      "brief": "High Water — The flood comes in fast under Saltmere Hollow, and everything that has been argued all day gets decided in twenty minutes of black water. Crale's crew"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-ending-bell-court",
+      "beat": "ending-lamp-and-gallows",
+      "brief": "Two Strokes of the Bell — Two strokes of the wreck-bell means a body, and Saltmere Hollow has never learned to ignore it. Boats come off their moorings by lamplight; the fish-m"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-ending-staved-casks",
+      "beat": "ending-cargo-to-the-deep",
+      "brief": "Thirty-Nine Casks and a Clean Bar — You go along the ledge staving lids as the flood takes your waist, and the grey salt goes out through the underwharf in a pale, warm smoke that the se"
+    },
+    {
+      "slot": "art-the-tide-keeps-it-ending-hoy-clears-bar",
+      "beat": "ending-the-tide-keeps-it",
+      "brief": "The Tide Keeps It — However you come to it — dragged senseless out of a flooding gallery by strangers who take your purse for the trouble, or walking off the ledge dry-sh"
+    }
+  ]
+}
