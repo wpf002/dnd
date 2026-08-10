@@ -32,7 +32,16 @@ export type FindingCode =
   | 'art-slot-duplicate'
   // Choice quality (warnings)
   | 'false-choice'
-  | 'all-encounters-defeat-all';
+  | 'all-encounters-defeat-all'
+  // Campaign scale (Phase 6)
+  | 'book-duplicate-id'
+  | 'book-adventure-missing'
+  | 'book-gate-unreachable'
+  | 'level-band-gap'
+  | 'level-band-inverted'
+  | 'carry-flag-never-set'
+  | 'carry-flag-never-read'
+  | 'campaign-not-campaign-scale';
 
 export interface Finding {
   severity: Severity;

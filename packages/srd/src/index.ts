@@ -11,3 +11,4 @@ export * from './equipment.js';
 export * from './spells.js';
 export * from './monsters.js';
 export * from './pregens.js';
+export * from './progression.js';

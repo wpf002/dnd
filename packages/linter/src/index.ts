@@ -1,10 +1,11 @@
-import { BeatGraph } from '@lantern/schema';
+import { BeatGraph, CampaignGraph } from '@lantern/schema';
 import type { Finding, LintResult } from './errors.js';
 import { toResult } from './errors.js';
 import { checkReachability } from './rules/reachability.js';
 import { checkFlags } from './rules/flags.js';
 import { checkSolvability } from './rules/solvability.js';
 import { checkQuality } from './rules/quality.js';
+import { checkCampaign } from './rules/campaign.js';
 
 export * from './errors.js';
 
@@ -44,4 +45,47 @@ export function lintGraph(input: unknown): LintResult {
     ...checkQuality(graph),
   ];
   return toResult(findings);
+}
+
+/**
+ * Lint a campaign — the multi-book container, not the adventures inside it.
+ *
+ * Book-level rules only. Each adventure is linted on its own by `lintGraph`;
+ * duplicating that here would report every finding twice. What this adds is
+ * the set of properties no single graph can see: level-band continuity across
+ * books, cross-book flag continuity, and encounter solvability re-checked at
+ * the band each book is actually played at.
+ *
+ * @param adventures The campaign's adventures by id. Optional, because the
+ *   schema and level-band rules hold without them — but pass them when you
+ *   can: unresolved adventures silently weaken the flag-continuity and
+ *   solvability checks, and the findings say so when that happens.
+ */
+export function lintCampaign(
+  input: unknown,
+  adventures?: ReadonlyMap<string, unknown>,
+): LintResult {
+  const parsed = CampaignGraph.safeParse(input);
+  if (!parsed.success) {
+    const findings: Finding[] = parsed.error.issues.map((issue) => ({
+      severity: 'error' as const,
+      code: 'schema-invalid' as const,
+      message: `schema: ${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`,
+    }));
+    return toResult(findings);
+  }
+
+  // Only adventures that themselves parse are handed to the campaign rules.
+  // A malformed graph is `lintGraph`'s finding to report, not this one's; here
+  // it simply counts as unresolved.
+  let resolved: Map<string, BeatGraph> | undefined;
+  if (adventures) {
+    resolved = new Map();
+    for (const [id, value] of adventures) {
+      const graph = BeatGraph.safeParse(value);
+      if (graph.success) resolved.set(id, graph.data);
+    }
+  }
+
+  return toResult(checkCampaign(parsed.data, resolved));
 }
