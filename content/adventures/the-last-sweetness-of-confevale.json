@@ -1,0 +1,828 @@
+{
+  "id": "the-last-sweetness-of-confevale",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Last Sweetness of Confevale",
+    "premise": "The confectionery Kingdom of Confevale has no heir since the death of Sovereign Praline the First, and a debt owed to the Bitter Concord can only be paid by melting down the Sugar Heart that keeps the realm's magic alive. Three claimants scramble for the throne while a hidden traitor moves to sell the kingdom out from under them.",
+    "tone": [
+      "political-fantasy",
+      "epic-finale"
+    ],
+    "tier": "national",
+    "partyLevel": 5,
+    "narrationVoice": "A wry, bittersweet chronicler who savors irony and never flinches from the cost of power",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "All claimants and stakes are adults; no children appear in threatened or harmed roles."
+    },
+    "provenance": "flint"
+  },
+  "entry": "arrival-court",
+  "beats": [
+    {
+      "id": "arrival-court",
+      "kind": "threshold",
+      "title": "The Sugar-Spun Court",
+      "prose": "Candoria's spires of spun glass sugar catch the grey mourning light. Sovereign Praline the First is three days dead, and the court hums with three rival claims to his throne: Guildmistress Caramella Vex, Steward Marzipan Lyre, and the Concord-favored Baron Thorn Nougat. Somewhere in the ledgers of this dying kingdom lies a debt no one wants to name aloud.",
+      "readAloud": "The palace smells of burnt caramel and old grief. Courtiers whisper of a debt owed to the Bitter Concord — one that may cost the realm its very sweetness.",
+      "art": "art-the-last-sweetness-of-confevale-candoria-court-arrival",
+      "options": [
+        {
+          "id": "seek-caramella",
+          "label": "Seek out Guildmistress Caramella Vex in the guild quarter",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "guildmistress-caramella",
+          "effects": []
+        },
+        {
+          "id": "seek-marzipan",
+          "label": "Seek out Steward Marzipan Lyre at the Sugar Vault",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-steward-marzipan",
+          "effects": []
+        },
+        {
+          "id": "seek-thorn",
+          "label": "Seek out Baron Thorn Nougat at the Concord embassy",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "concord-embassy-thorn",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "guildmistress-caramella",
+      "kind": "social",
+      "title": "The Guildmistress's Ledger",
+      "prose": "Caramella Vex rules the confectioners' guild with sticky-fingered pragmatism. She offers you spiced wine and a claim to legitimacy built on the labor of thousands of candy-crafters, if you'll back her.",
+      "readAloud": "\"The throne belongs to whoever can keep the ovens burning,\" Caramella says, licking sugar from her thumb. \"Not to whoever holds the oldest name.\"",
+      "art": "art-the-last-sweetness-of-confevale-guild-quarter-caramella",
+      "options": [
+        {
+          "id": "pledge-caramella",
+          "label": "Pledge your support to Caramella's claim",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "chosen-ally",
+              "value": "caramella"
+            }
+          ]
+        },
+        {
+          "id": "press-caramella-debt",
+          "label": "Press her about the treaty debt to the Bitter Concord",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "evidence-debt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-caramella",
+          "label": "Offer no commitment and withdraw",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-steward-marzipan",
+      "kind": "social",
+      "title": "The Steward's Vigil",
+      "prose": "Marzipan Lyre, the dead sovereign's estranged twin, keeps a lonely watch over the Sugar Vault. Their claim is blood-old and bitter with grief, and they seem to know more about the treaty than they say.",
+      "readAloud": "\"I did not want this crown,\" Marzipan says, staring at the Vault's crystalline door. \"I want the kingdom to still exist to wear it.\"",
+      "art": "art-the-last-sweetness-of-confevale-vault-antechamber-marzipan",
+      "options": [
+        {
+          "id": "pledge-marzipan",
+          "label": "Pledge your support to Marzipan's claim",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "chosen-ally",
+              "value": "marzipan"
+            }
+          ]
+        },
+        {
+          "id": "press-marzipan-debt",
+          "label": "Press them about the treaty debt to the Bitter Concord",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "evidence-debt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-marzipan",
+          "label": "Offer no commitment and withdraw",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "concord-embassy-thorn",
+      "kind": "social",
+      "title": "The Baron's Sweet Words",
+      "prose": "Baron Thorn Nougat entertains you in the Concord embassy, all charm and salt-crystal jewelry. He speaks of stability, of a firm hand, of an end to the realm's soft indecision — and never quite answers what the Concord wants in return.",
+      "readAloud": "\"The Concord only wants what was promised,\" Thorn says smoothly. \"I merely intend to be the one who delivers it.\"",
+      "art": "art-the-last-sweetness-of-confevale-concord-embassy-thorn",
+      "options": [
+        {
+          "id": "pledge-thorn",
+          "label": "Pledge your support to Thorn's claim",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "chosen-ally",
+              "value": "thorn"
+            }
+          ]
+        },
+        {
+          "id": "press-thorn-debt",
+          "label": "Press him about the treaty debt to the Bitter Concord",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": [
+            {
+              "flag": "evidence-debt",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-thorn",
+          "label": "Offer no commitment and withdraw",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "gathering-storm",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "gathering-storm",
+      "kind": "discovery",
+      "title": "Rumors Like Spun Sugar",
+      "prose": "Every conversation in Candoria circles the same unspoken fact: the Bitter Concord's debt is due, and paying it honestly means surrendering the Sugar Heart, the relic that keeps the kingdom's magic — and its people — from crumbling to inert candy.",
+      "readAloud": "The court's laughter has a hollow ring now, like a sugar shell over a rotten center.",
+      "art": "art-the-last-sweetness-of-confevale-candoria-rumor-mill",
+      "options": [
+        {
+          "id": "investigate-vault-cipher",
+          "label": "Go decipher the Vault's warded ledger yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-cipher",
+          "effects": []
+        },
+        {
+          "id": "interrogate-envoys",
+          "label": "Corner the Concord's junior envoys for answers",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-cipher",
+          "effects": []
+        },
+        {
+          "id": "use-evidence-shortcut",
+          "label": "Use what you've already learned to force the truth into the open",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "evidence-debt",
+            "value": true
+          },
+          "target": "debt-revealed",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-cipher",
+      "kind": "puzzle",
+      "title": "The Warded Ledger",
+      "prose": "The Sugar Vault's ledger is sealed in crystallized syrup, its true terms hidden beneath decorative glyphs. Somewhere in its fine print is the truth of who forged the debt's final clause.",
+      "readAloud": "The ledger's glyphs shimmer and rearrange themselves whenever you look away, as if the Vault itself resents being read.",
+      "art": "art-the-last-sweetness-of-confevale-vault-cipher-ledger",
+      "options": [
+        {
+          "id": "decipher-carefully",
+          "label": "Carefully decode the ledger's sugar-glyphs",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "debt-revealed",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "Intelligence",
+            "skill": "Investigation",
+            "dc": 14,
+            "onFailure": "vault-guardians"
+          }
+        },
+        {
+          "id": "bribe-archivist",
+          "label": "Bribe the vault archivist for the plain translation",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "debt-revealed",
+          "effects": []
+        },
+        {
+          "id": "force-the-vault",
+          "label": "Force the Vault open and take the ledger by hand",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "vault-guardians",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-guardians",
+      "kind": "conflict",
+      "title": "The Vault's Animated Guard",
+      "prose": "Suits of candied armor, animated by old wardings, clatter to life around the ledger chamber, sugar-glass blades gleaming.",
+      "readAloud": "The armor's joints creak like breaking toffee as it raises a gleaming blade in your direction.",
+      "art": "art-the-last-sweetness-of-confevale-vault-guardians-clash",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardians",
+      "terminal": false
+    },
+    {
+      "id": "debt-revealed",
+      "kind": "discovery",
+      "title": "The Forged Clause",
+      "prose": "The truth is uglier than rumor: Baron Thorn Nougat forged the treaty's final clause, arranging to personally deliver the Sugar Heart to the Concord and seize the throne under their backing — leaving Confevale's people to crumble into ordinary, mortal candy while he profits from the ruins.",
+      "readAloud": "There, in Thorn's own hand disguised as the sovereign's: a signature that damns him, and a kingdom's fate signed away in spiced ink.",
+      "art": "art-the-last-sweetness-of-confevale-debt-revealed-scroll",
+      "options": [
+        {
+          "id": "confront-thorn-now",
+          "label": "Confront Baron Thorn Nougat with what you know",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "confront-thorn",
+          "effects": []
+        },
+        {
+          "id": "rally-the-claimants",
+          "label": "Rally the surviving claimants to stand against Thorn",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "rally-claimants",
+          "effects": []
+        },
+        {
+          "id": "seek-concord-terms",
+          "label": "Seek the Concord envoy to renegotiate the debt directly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "concord-negotiation",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "vault-secret",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "confront-thorn",
+      "kind": "conflict",
+      "title": "Showdown at the Embassy",
+      "prose": "Thorn Nougat drops all pretense of charm the moment you lay the forged clause before him. His mercenaries, paid in Concord salt, move to silence the accusation.",
+      "readAloud": "\"You should have taken a sweeter bargain,\" Thorn says, backing toward the door as his enforcers draw steel.",
+      "art": "art-the-last-sweetness-of-confevale-thorn-confrontation-embassy",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "confront-thorn",
+      "terminal": false
+    },
+    {
+      "id": "rally-claimants",
+      "kind": "social",
+      "title": "A Fragile Alliance",
+      "prose": "Whatever allies you've won must be called upon now, if the throne — and the kingdom — is to be saved from Thorn's forged bargain.",
+      "readAloud": "Old rivals clasp hands across a banquet table littered with half-eaten sugar crowns, united only by a common enemy.",
+      "art": "art-the-last-sweetness-of-confevale-claimants-rally-hall",
+      "options": [
+        {
+          "id": "rally-with-caramella",
+          "label": "Call upon Guildmistress Caramella's workers",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "chosen-ally",
+            "value": "caramella"
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        },
+        {
+          "id": "rally-with-marzipan",
+          "label": "Call upon Steward Marzipan's loyal guard",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "chosen-ally",
+            "value": "marzipan"
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        },
+        {
+          "id": "rally-alone",
+          "label": "Face the reckoning with only your own resolve",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "concord-negotiation",
+      "kind": "social",
+      "title": "Terms with the Bitter Concord",
+      "prose": "The Concord's envoy receives you in a hall of salt-frosted glass, unmoved by sentiment, interested only in whether the debt will be paid — and by whom.",
+      "readAloud": "\"A treaty is a treaty,\" the envoy says, tasting a crystal of salt from a velvet pouch. \"Sentiment does not settle debts.\"",
+      "art": "art-the-last-sweetness-of-confevale-concord-negotiation-hall",
+      "options": [
+        {
+          "id": "renegotiate-treaty",
+          "label": "Offer the Concord envoy a renegotiated treaty",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        },
+        {
+          "id": "reveal-vault-secret",
+          "label": "Reveal the Vault's hidden leverage against the Concord",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "vault-secret",
+            "value": true
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        },
+        {
+          "id": "threaten-envoy",
+          "label": "Threaten the envoy with exposing Thorn's forgery publicly",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "throne-reckoning",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "throne-reckoning",
+      "kind": "decision",
+      "title": "The Sugar Heart's Reckoning",
+      "prose": "With the truth laid bare and Thorn's scheme unraveling, the fate of Confevale rests on a final choice: how the debt is truly paid, and what kind of kingdom rises from the reckoning.",
+      "readAloud": "The Sugar Heart pulses faintly on its plinth, warm as a living thing, waiting to know its fate.",
+      "art": "art-the-last-sweetness-of-confevale-throne-reckoning-dais",
+      "options": [
+        {
+          "id": "choose-mercy",
+          "label": "Choose mercy: spare Thorn, and reform the realm together",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-mercy",
+          "effects": []
+        },
+        {
+          "id": "choose-ruthless",
+          "label": "Choose ruthlessness: execute Thorn, and crown your ally absolute",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-ruthless",
+          "effects": []
+        },
+        {
+          "id": "choose-sacrifice",
+          "label": "Choose sacrifice: pour your own essence into the Sugar Heart to pay the debt yourself",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-sacrifice",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-mercy",
+      "kind": "ending",
+      "title": "A Kinder Sugar Kingdom",
+      "prose": "Thorn is stripped of title and exiled rather than executed; the Concord debt is renegotiated into decades of fair trade instead of a single ruinous payment. Confevale survives, softer and wiser, its new ruler bound by mercy rather than fear.",
+      "readAloud": "The Sugar Heart dims to a gentle glow, no longer straining under an impossible debt. Candoria's bells ring out, cautiously hopeful.",
+      "art": "art-the-last-sweetness-of-confevale-ending-mercy-dawn",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ruthless",
+      "kind": "ending",
+      "title": "The Crown of Salt and Sugar",
+      "prose": "Thorn is executed for treason before the assembled court, and your chosen ally is crowned with absolute authority, the Concord cowed by the display of resolve. Confevale endures, but its new sovereign rules through fear as much as sweetness.",
+      "readAloud": "The new crown gleams, hard-edged as rock candy, as the court bows low and says nothing of what was lost to earn it.",
+      "art": "art-the-last-sweetness-of-confevale-ending-ruthless-crown",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sacrifice",
+      "kind": "ending",
+      "title": "The Debt Paid in Full",
+      "prose": "You offer your own vitality to the Sugar Heart, becoming a living anchor for the kingdom's magic in place of the relic the Concord demanded. Confevale is saved, whole and unbroken — but you will never again be quite as you were, bound now to the realm's sweetness forever.",
+      "readAloud": "Warmth floods through you and out into every spire of Candoria, and for the first time in weeks, the whole city tastes faintly, impossibly, of hope.",
+      "art": "art-the-last-sweetness-of-confevale-ending-sacrifice-heart",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-defeat",
+      "kind": "ending",
+      "title": "The Kingdom Crumbles",
+      "prose": "Thorn's enforcers overwhelm you before the truth can be made to matter. In the weeks that follow, the Baron delivers the Sugar Heart to the Concord himself, and Confevale's magic guttecrs out. The spires dull to grey, ordinary candy, and the kingdom's story ends not with a bang but with a slow, sad sweetness fading from the world.",
+      "readAloud": "The last spun-glass spire dims and cracks in the cold morning air, and no one is left with the power to stop it.",
+      "art": "art-the-last-sweetness-of-confevale-ending-defeat-ruin",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "arrival-court",
+      "to": "guildmistress-caramella",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-court",
+      "to": "vault-steward-marzipan",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "arrival-court",
+      "to": "concord-embassy-thorn",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "guildmistress-caramella",
+      "to": "gathering-storm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-steward-marzipan",
+      "to": "gathering-storm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "concord-embassy-thorn",
+      "to": "gathering-storm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gathering-storm",
+      "to": "vault-cipher",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "gathering-storm",
+      "to": "debt-revealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-cipher",
+      "to": "debt-revealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-cipher",
+      "to": "vault-guardians",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-guardians",
+      "to": "debt-revealed",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-guardians",
+      "to": "gathering-storm",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "debt-revealed",
+      "to": "confront-thorn",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "debt-revealed",
+      "to": "rally-claimants",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "debt-revealed",
+      "to": "concord-negotiation",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-thorn",
+      "to": "throne-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-thorn",
+      "to": "ending-defeat",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "confront-thorn",
+      "to": "rally-claimants",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "rally-claimants",
+      "to": "throne-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "concord-negotiation",
+      "to": "throne-reckoning",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "throne-reckoning",
+      "to": "ending-mercy",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "throne-reckoning",
+      "to": "ending-ruthless",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "throne-reckoning",
+      "to": "ending-sacrifice",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "vault-guardians",
+      "title": "The Vault's Animated Guard",
+      "combatants": [
+        {
+          "id": "guard-armor",
+          "statblock": "animated-armor",
+          "count": 3,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "cramped",
+        "dim-light"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Reach the ledger chamber and escape with the treaty scroll before the guardians can pin the party down."
+      },
+      "onVictory": "debt-revealed",
+      "onDefeat": "debt-revealed",
+      "onFlee": "gathering-storm"
+    },
+    {
+      "id": "confront-thorn",
+      "title": "Showdown with Thorn's Enforcers",
+      "combatants": [
+        {
+          "id": "thorns-enforcer",
+          "statblock": "bandit-captain",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "thorns-guards",
+          "statblock": "hobgoblin",
+          "count": 2,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "open",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "throne-reckoning",
+      "onDefeat": "ending-defeat",
+      "onFlee": "rally-claimants"
+    }
+  ]
+}

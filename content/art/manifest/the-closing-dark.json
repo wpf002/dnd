@@ -1,0 +1,90 @@
+{
+  "adventure": "the-closing-dark",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: survival-horror, exploration.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-closing-dark-threshold-gate-art",
+      "beat": "threshold-gate",
+      "brief": "The Sealing Gate — A slab of black basalt grinds inch by inch across the only known door into the Underlight, the failing land below. A gaunt gate-warden named Yssa Grae"
+    },
+    {
+      "slot": "art-the-closing-dark-gatehouse-search-art",
+      "beat": "gatehouse-search",
+      "brief": "The Warden's Archive — Shelves of cracked ledgers and rolled charts line the gatehouse walls. A half-burned map fragment shows a shortcut through the old beacon causeway, if"
+    },
+    {
+      "slot": "art-the-closing-dark-warden-parley-art",
+      "beat": "warden-parley",
+      "brief": "Yssa Grae's Warning — Yssa Grae's voice is flat with exhaustion. 'The way closes on its own hour. I can't stop it, and I won't lie about that. But I can trade you what I kn"
+    },
+    {
+      "slot": "art-the-closing-dark-supply-cache-art",
+      "beat": "supply-cache",
+      "brief": "The Forgotten Stores — Behind a collapsed shelf, a cache of oil, rope, and rations sits undisturbed. Something has been gnawing at the crates from below the floorboards."
+    },
+    {
+      "slot": "art-the-closing-dark-beacon-causeway-art",
+      "beat": "beacon-causeway",
+      "brief": "The Guttering Causeway — A stone bridge stretches over a black chasm, lit only by beacon-cages that flicker like dying hearts. Some have already gone dark. Shapes seem to gath"
+    },
+    {
+      "slot": "art-the-closing-dark-sunken-shrine-art",
+      "beat": "sunken-shrine",
+      "brief": "The Drowned Shrine — Below the causeway lies a half-flooded shrine to whatever kept the first beacons burning. Ritual markings describe a key of light that can be coaxed f"
+    },
+    {
+      "slot": "art-the-closing-dark-rat-nest-encounter-art",
+      "beat": "rat-nest-encounter",
+      "brief": "Nest in the Walls — Dozens of red eyes catch the last of the light as a swarm of oversized rats pours from the cracks in the stone."
+    },
+    {
+      "slot": "art-the-closing-dark-shadow-ambush-art",
+      "beat": "shadow-ambush",
+      "brief": "What the Dark Kept — The shrine's shadows peel away from the walls, hungry for warmth and years long denied it."
+    },
+    {
+      "slot": "art-the-closing-dark-beacon-repair-art",
+      "beat": "beacon-repair",
+      "brief": "The Failing Tower — The beacon tower's mechanism groans, its light reduced to a dying coal. Hobgoblin sentries who serve some older, colder master guard the controls."
+    },
+    {
+      "slot": "art-the-closing-dark-hobgoblin-guard-art",
+      "beat": "hobgoblin-guard",
+      "brief": "The Tower's Wardens — Hobgoblin sentries and their loping wolves bar the way to the beacon controls, disciplined and unwilling to yield ground."
+    },
+    {
+      "slot": "art-the-closing-dark-desperate-flight-art",
+      "beat": "desperate-flight",
+      "brief": "The Last Hour — Behind you, the gate has nearly closed. Ahead, the tunnels themselves seem to be narrowing, stone easing shut like a fist."
+    },
+    {
+      "slot": "art-the-closing-dark-final-ascent-art",
+      "beat": "final-ascent",
+      "brief": "The Choice at the Threshold — The beacon-light steadies, however briefly. The way home is open again, for now. What you do with this reprieve will decide how this land remembers yo"
+    },
+    {
+      "slot": "art-the-closing-dark-ending-new-dawn-art",
+      "beat": "ending-new-dawn",
+      "brief": "A Grey and Grudging Light — You climb back into a sky that has no sun but is, at least, not sealed shut. The Underlight remains below, beacons guttering, waiting for someone else"
+    },
+    {
+      "slot": "art-the-closing-dark-ending-lightkeeper-art",
+      "beat": "ending-lightkeeper",
+      "brief": "The New Warden — You take up a post beside the gate, tending what light remains so that others might one day pass through safely. It is a lonely vigil, but not an unwo"
+    },
+    {
+      "slot": "art-the-closing-dark-ending-severance-art",
+      "beat": "ending-severance",
+      "brief": "The Door Unmade — You bring the way down behind you in a roar of collapsing stone. Whatever waited in the Underlight will wait forever now, and no one else will ever ha"
+    },
+    {
+      "slot": "art-the-closing-dark-the-way-seals-art",
+      "beat": "the-way-seals",
+      "brief": "Swallowed by the Dark — The last beacon dies. The gate finishes its long, grinding closure with you still on the wrong side of it. The Underlight keeps what it takes."
+    }
+  ]
+}

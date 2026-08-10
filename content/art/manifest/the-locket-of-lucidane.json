@@ -1,0 +1,80 @@
+{
+  "adventure": "the-locket-of-lucidane",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: urban-intrigue, mystery.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-locket-of-lucidane-entry-file-art",
+      "beat": "entry-file",
+      "brief": "The Referral — The rain in Lucidane never falls so much as it remembers falling. You're Cass Rourke, the only private eye this mind has ever needed, and The Landlord"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-censor-informant-art",
+      "beat": "censor-informant",
+      "brief": "Inspector Marrow's Ledger — Inspector Marrow keeps his office lit like an interrogation room, because to him it always is. The Censor, he explains, needs a certain small keepsake"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-undertow-fence-art",
+      "beat": "undertow-fence",
+      "brief": "Silt's Back Room — Silt deals in things that were supposed to stay buried. The Undertow wants the same keepsake — not to hide it, but to sell it, cracking open whatever "
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-choir-acolyte-art",
+      "beat": "choir-acolyte",
+      "brief": "Sister Iris's Vigil — Sister Iris kneels in a chapel that used to be a subway platform. The Choir believes the keepsake is a key — not to a memory, but to the whole identit"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-vault-approach-art",
+      "beat": "vault-approach",
+      "brief": "The Vault of Small Things — Beneath the city, past a stair that shouldn't exist, sits the Vault of Small Things — a bank-lobby dream guarded by fragments of guilt and order. Insi"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-vault-guardian-art",
+      "beat": "vault-guardian",
+      "brief": "Guardians of the Small Thing — The drawer clicks open and the room remembers it's a vault. Bone-white clerks rattle up from the floor tiles, a suit of filing-cabinet armor unfolds i"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-locket-found-art",
+      "beat": "the-locket-found",
+      "brief": "The Keepsake in Hand — It's lighter than it should be. A tin locket, a bit of string, and three powers who would each burn down a city block for it, quietly, so no one else "
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-final-stand-art",
+      "beat": "final-stand",
+      "brief": "Whose City Is This? — Three powers, three promises, and one small tin locket. You could end this cleanly, or not at all. Whatever you choose, it ends here."
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-lockdown-art",
+      "beat": "ending-lockdown",
+      "brief": "Order, Sealed — Marrow takes the locket without a word of thanks and locks it in a drawer that stops existing the moment it closes. The rain in Lucidane thins to a fi"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-blackmarket-art",
+      "beat": "ending-blackmarket",
+      "brief": "Everything for Sale — Silt grins and the locket vanishes into a coat with too many pockets. Within the hour, the memory it held is a hundred memories, sold and resold acros"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-freedom-art",
+      "beat": "ending-freedom",
+      "brief": "String and Tin — The locket crumples easily in your hand — it was never the point, just the shape three powers poured their hunger into. The string blows away down a r"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-ascension-art",
+      "beat": "ending-ascension",
+      "brief": "A Different Shape — Sister Iris turns the locket like a key, and somewhere deep in the architecture of the mind, a lock gives way that was never meant to move. Adaline wa"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-integration-art",
+      "beat": "ending-integration",
+      "brief": "The Fourth Power — You keep the locket. Marrow, Silt, and Iris all get the same answer: no. It costs you every alliance you might have built in this city, but the string"
+    },
+    {
+      "slot": "art-the-locket-of-lucidane-ending-captured-art",
+      "beat": "ending-captured",
+      "brief": "Filed and Forgotten — The wardens take you before you take the locket. Marrow, Silt, and Iris converge on the vault within the hour, and by the time they're done arguing ov"
+    }
+  ]
+}

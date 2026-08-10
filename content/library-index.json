@@ -384,8 +384,32 @@
       "beats": 16
     },
     {
-      "id": "the-hollow-run",
-      "title": "The Hollow Run",
+      "id": "the-locket-of-lucidane",
+      "title": "The Locket of Lucidane",
+      "inspiredBy": "Dimension 20: Mentopolis",
+      "source": "community",
+      "tone": [
+        "urban-intrigue",
+        "mystery"
+      ],
+      "partyLevel": 4,
+      "beats": 14
+    },
+    {
+      "id": "the-closing-dark",
+      "title": "The Closing Dark",
+      "inspiredBy": "High Rollers: Lightfall",
+      "source": "community",
+      "tone": [
+        "survival-horror",
+        "exploration"
+      ],
+      "partyLevel": 5,
+      "beats": 16
+    },
+    {
+      "id": "the-route-that-doesnt-come-back",
+      "title": "The Route That Doesn't Come Back",
       "inspiredBy": "Dimension 20: Starstruck Odyssey",
       "source": "community",
       "tone": [
@@ -396,8 +420,8 @@
       "beats": 16
     },
     {
-      "id": "the-last-sugarplum-succession",
-      "title": "The Last Sugarplum Succession",
+      "id": "the-last-sweetness-of-confevale",
+      "title": "The Last Sweetness of Confevale",
       "inspiredBy": "Dimension 20: A Crown of Candy",
       "source": "community",
       "tone": [
@@ -405,7 +429,7 @@
         "epic-finale"
       ],
       "partyLevel": 5,
-      "beats": 14
+      "beats": 16
     }
   ]
 }

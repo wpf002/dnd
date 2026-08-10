@@ -1,0 +1,90 @@
+{
+  "adventure": "the-route-that-doesnt-come-back",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: exploration, heist.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-route-that-doesnt-come-back-debt-call-art",
+      "beat": "debt-call",
+      "brief": "The Ledger Comes Due — Factor Ilsa Corvane of the Saltmere Ledger House lays a stack of overdue notices on the table between you. The Gray Wren owes more than her hull is wo"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-tallow-reach-art",
+      "beat": "tallow-reach",
+      "brief": "Port of Tallow Reach — Tallow Reach smells of tar and rendered fat, its stalls hung with charts nobody admits to selling. The rival crew of the Widowmark is here too, hungry"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-choose-approach-art",
+      "beat": "choose-approach",
+      "brief": "Getting the Charts — No safe charts of the Hollow Passage exist in any honest ledger. The old harbor charts are locked in a warehouse under guard, and there's more than on"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-warehouse-heist-art",
+      "beat": "warehouse-heist",
+      "brief": "The Chart Warehouse — Bone-white sentinels stand watch over the warehouse's locked vault: constructs animated by old ledger-magic, patrolling in slow, patient circuits. You"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-captains-logs-art",
+      "beat": "captains-logs",
+      "brief": "The Dead Captain's Logs — The vault holds charts, yes, but also the log of a captain who never came back. His handwriting grows shakier page by page, marking a lane through the"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-into-the-passage-art",
+      "beat": "into-the-passage",
+      "brief": "Into the Hollow Passage — The fog swallows the Gray Wren whole. Half-sunk masts jut from the water like broken teeth, and the compass needle spins lazily, uncertain of true nor"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-first-wreck-art",
+      "beat": "first-wreck",
+      "brief": "The Widow's Bell — The first wreck looms out of the fog: the Widow's Bell, the last ship lost on this route. Scratched into the hull near the waterline, fresh and delibe"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-drowned-ambush-art",
+      "beat": "drowned-ambush",
+      "brief": "What the Wreck Woke — Bloated shapes pull themselves up over the Widow's Bell's rail, water-logged and hungry. The wreck was not as empty as it looked."
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-widowmark-parley-art",
+      "beat": "widowmark-parley",
+      "brief": "The Widowmark's Offer — Smoke from a signal-lantern reveals the Widowmark crew anchored nearby, having tracked you into the passage. Captain Renn Oskar hails you across the w"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-heart-of-passage-art",
+      "beat": "heart-of-passage",
+      "brief": "The Heart of the Hollow Passage — At the center of the passage, a mast-forest of wrecks surrounds a single intact flagship, lantern-lit from within by no living hand. Somewhere aboard,"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-wight-captain-art",
+      "beat": "wight-captain",
+      "brief": "Captain Marrow's Ledger — The flagship's captain rises from the deck, drowned and unfinished, still counting debts owed to the sea. His skeletal crew rattles into formation beh"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-aftermath-art",
+      "beat": "aftermath",
+      "brief": "What You Carry Out — The flagship's hold is a graveyard of hoarded cargo — enough to clear the Gray Wren's debt three times over. Mika, if you found her, waits pale but br"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-ending-debt-cleared-art",
+      "beat": "ending-debt-cleared",
+      "brief": "The Ledger Closes — The Gray Wren limps back into Saltmere riding low with salvage. Factor Corvane counts the cargo twice, then tears the debt notice in half. You're free"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-ending-mika-freed-art",
+      "beat": "ending-mika-freed",
+      "brief": "What the Sea Gave Back — You leave most of the cargo behind, and Mika Thorne walks off the gangplank under her own power, blinking at real sunlight for the first time in month"
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-ending-sea-legend-art",
+      "beat": "ending-sea-legend",
+      "brief": "The Crew That Came Back — You keep the treasure, skip the delivery, and vanish from Saltmere's ledgers entirely. The Gray Wren becomes a story told in ports far from here: the "
+    },
+    {
+      "slot": "art-the-route-that-doesnt-come-back-ending-debtors-prison-art",
+      "beat": "ending-debtors-prison",
+      "brief": "The Ledger Collects — Whether by refusal, capture, or the cold grip of the passage itself, the debt catches up to you before you can outrun it. The Gray Wren is seized at t"
+    }
+  ]
+}

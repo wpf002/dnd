@@ -1,0 +1,639 @@
+{
+  "id": "the-locket-of-lucidane",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Locket of Lucidane",
+    "premise": "Inside the sleeping mind of a woman named Adaline Voss lies Lucidane, a rain-slicked noir city where every soul is a fragment of her. Three powers vie in secret for a single small keepsake that could reshape—or ruin—who she becomes when she wakes.",
+    "tone": [
+      "urban-intrigue",
+      "mystery"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Hardboiled, wry, and melancholic — a private eye's voiceover narrating another soul's dreams.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No content depicting harm to children, on-screen or implied in detail."
+    },
+    "provenance": "flint"
+  },
+  "entry": "entry-file",
+  "beats": [
+    {
+      "id": "entry-file",
+      "kind": "threshold",
+      "title": "The Referral",
+      "prose": "The rain in Lucidane never falls so much as it remembers falling. You're Cass Rourke, the only private eye this mind has ever needed, and The Landlord — a soft, worried fragment shaped like an overfed building super — just slid a case file across your desk. Three powers, he says, all quietly hunting the same small thing. If they find it before you do, the whole city might come apart at the seams, and so might she.",
+      "readAloud": "The Landlord mops his brow with a handkerchief that smells like old birthday candles. 'Find it first, Rourke. Whatever it is. Before one of them decides it's worth burning the block down for.'",
+      "art": "art-the-locket-of-lucidane-entry-file-art",
+      "options": [
+        {
+          "id": "tail-the-censor",
+          "label": "Start with the Censor's people — order first.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "censor-informant",
+          "effects": []
+        },
+        {
+          "id": "tail-the-undertow",
+          "label": "Start with the Undertow's tip — follow the money.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "undertow-fence",
+          "effects": []
+        },
+        {
+          "id": "tail-the-choir",
+          "label": "Answer the Choir's summons first — faith moves fast.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choir-acolyte",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "censor-informant",
+      "kind": "social",
+      "title": "Inspector Marrow's Ledger",
+      "prose": "Inspector Marrow keeps his office lit like an interrogation room, because to him it always is. The Censor, he explains, needs a certain small keepsake to seal a memory permanently — one shameful enough that the whole city would sleep easier if it were locked away for good.",
+      "art": "art-the-locket-of-lucidane-censor-informant-art",
+      "options": [
+        {
+          "id": "accept-censor-bargain",
+          "label": "Agree to find the keepsake — for the Censor.",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "ally-censor",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cross-reference-undertow",
+          "label": "Ask what he knows about the Undertow.",
+          "target": "undertow-fence",
+          "effects": []
+        },
+        {
+          "id": "cross-reference-choir",
+          "label": "Ask what he knows about the Choir.",
+          "target": "choir-acolyte",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "undertow-fence",
+      "kind": "social",
+      "title": "Silt's Back Room",
+      "prose": "Silt deals in things that were supposed to stay buried. The Undertow wants the same keepsake — not to hide it, but to sell it, cracking open whatever it's sealing and letting the memory flood the market for anyone willing to pay.",
+      "art": "art-the-locket-of-lucidane-undertow-fence-art",
+      "options": [
+        {
+          "id": "accept-undertow-bargain",
+          "label": "Agree to find the keepsake — for the Undertow.",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "ally-undertow",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cross-reference-censor",
+          "label": "Ask what Silt knows about the Censor.",
+          "target": "censor-informant",
+          "effects": []
+        },
+        {
+          "id": "cross-reference-choir",
+          "label": "Ask what Silt knows about the Choir.",
+          "target": "choir-acolyte",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choir-acolyte",
+      "kind": "social",
+      "title": "Sister Iris's Vigil",
+      "prose": "Sister Iris kneels in a chapel that used to be a subway platform. The Choir believes the keepsake is a key — not to a memory, but to the whole identity core beneath it. Turn it right, and Adaline could be remade entirely. Ascension, she calls it. You'd call it something else.",
+      "art": "art-the-locket-of-lucidane-choir-acolyte-art",
+      "options": [
+        {
+          "id": "accept-choir-bargain",
+          "label": "Agree to find the keepsake — for the Choir.",
+          "target": "vault-approach",
+          "effects": [
+            {
+              "flag": "ally-choir",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "cross-reference-censor",
+          "label": "Ask what Iris knows about the Censor.",
+          "target": "censor-informant",
+          "effects": []
+        },
+        {
+          "id": "cross-reference-undertow",
+          "label": "Ask what Iris knows about the Undertow.",
+          "target": "undertow-fence",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-approach",
+      "kind": "discovery",
+      "title": "The Vault of Small Things",
+      "prose": "Beneath the city, past a stair that shouldn't exist, sits the Vault of Small Things — a bank-lobby dream guarded by fragments of guilt and order. Inside a single drawer waits the keepsake everyone wants: a tin locket, dented, holding nothing more sinister than a length of frayed kite string.",
+      "art": "art-the-locket-of-lucidane-vault-approach-art",
+      "options": [
+        {
+          "id": "sneak-past-wards",
+          "label": "Slip past the ward-lanterns unseen.",
+          "target": "vault-guardian",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "Stealth",
+            "dc": 14,
+            "onFailure": "ending-captured"
+          }
+        },
+        {
+          "id": "bribe-a-warden",
+          "label": "Bribe a drowsy warden-fragment for the code.",
+          "target": "vault-guardian",
+          "effects": []
+        },
+        {
+          "id": "force-the-seal",
+          "label": "Break the seal by force.",
+          "target": "vault-guardian",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "strength",
+            "skill": "Athletics",
+            "dc": 13,
+            "onFailure": "ending-captured"
+          }
+        }
+      ],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "vault-guardian",
+      "kind": "climax",
+      "title": "Guardians of the Small Thing",
+      "prose": "The drawer clicks open and the room remembers it's a vault. Bone-white clerks rattle up from the floor tiles, a suit of filing-cabinet armor unfolds itself, and a shadow shaped like every deadline you ever missed peels off the wall. They don't want to hurt you. They just can't let the locket leave.",
+      "art": "art-the-locket-of-lucidane-vault-guardian-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "vault-guardian-fight",
+      "terminal": false
+    },
+    {
+      "id": "the-locket-found",
+      "kind": "decision",
+      "title": "The Keepsake in Hand",
+      "prose": "It's lighter than it should be. A tin locket, a bit of string, and three powers who would each burn down a city block for it, quietly, so no one else would notice. The choice of where it goes is yours alone.",
+      "art": "art-the-locket-of-lucidane-locket-found-art",
+      "options": [
+        {
+          "id": "give-to-censor",
+          "label": "Deliver it to Inspector Marrow, as promised.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ally-censor",
+            "value": true
+          },
+          "target": "ending-lockdown",
+          "effects": []
+        },
+        {
+          "id": "give-to-undertow",
+          "label": "Deliver it to Silt, as promised.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ally-undertow",
+            "value": true
+          },
+          "target": "ending-blackmarket",
+          "effects": []
+        },
+        {
+          "id": "refuse-all",
+          "label": "Refuse every bargain and decide for yourself.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "final-stand",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "final-stand",
+      "kind": "decision",
+      "title": "Whose City Is This?",
+      "prose": "Three powers, three promises, and one small tin locket. You could end this cleanly, or not at all. Whatever you choose, it ends here.",
+      "art": "art-the-locket-of-lucidane-final-stand-art",
+      "options": [
+        {
+          "id": "destroy-keepsake",
+          "label": "Crush the locket and scatter the string to the wind.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-freedom",
+          "effects": []
+        },
+        {
+          "id": "give-to-choir",
+          "label": "Give it to Sister Iris after all.",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "ally-choir",
+            "value": true
+          },
+          "target": "ending-ascension",
+          "effects": []
+        },
+        {
+          "id": "keep-for-self",
+          "label": "Pocket it. Some things aren't anyone's to decide but hers.",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-integration",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-lockdown",
+      "kind": "ending",
+      "title": "Order, Sealed",
+      "prose": "Marrow takes the locket without a word of thanks and locks it in a drawer that stops existing the moment it closes. The rain in Lucidane thins to a fine, obedient drizzle. Somewhere above, Adaline Voss wakes calm, composed, and quietly unable to remember why she ever cries at kites.",
+      "art": "art-the-locket-of-lucidane-ending-lockdown-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-blackmarket",
+      "kind": "ending",
+      "title": "Everything for Sale",
+      "prose": "Silt grins and the locket vanishes into a coat with too many pockets. Within the hour, the memory it held is a hundred memories, sold and resold across the Undertow's stalls. Adaline wakes flooded with feelings she can't place, raw and strange and entirely, chaotically hers again.",
+      "art": "art-the-locket-of-lucidane-ending-blackmarket-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-freedom",
+      "kind": "ending",
+      "title": "String and Tin",
+      "prose": "The locket crumples easily in your hand — it was never the point, just the shape three powers poured their hunger into. The string blows away down a rain-slicked street. No one gets what they wanted, which, in Lucidane, is sometimes the only fair outcome. Adaline wakes unremarkable and entirely her own.",
+      "art": "art-the-locket-of-lucidane-ending-freedom-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-ascension",
+      "kind": "ending",
+      "title": "A Different Shape",
+      "prose": "Sister Iris turns the locket like a key, and somewhere deep in the architecture of the mind, a lock gives way that was never meant to move. Adaline wakes as herself, mostly — except for a new, quiet certainty she can't quite trace to any memory of her own.",
+      "art": "art-the-locket-of-lucidane-ending-ascension-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-integration",
+      "kind": "ending",
+      "title": "The Fourth Power",
+      "prose": "You keep the locket. Marrow, Silt, and Iris all get the same answer: no. It costs you every alliance you might have built in this city, but the string stays whole, the memory stays hers, and you become the quiet, stubborn thing Lucidane didn't know it needed. Adaline wakes, and somewhere in her, a small light stays lit.",
+      "art": "art-the-locket-of-lucidane-ending-integration-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-captured",
+      "kind": "ending",
+      "title": "Filed and Forgotten",
+      "prose": "The wardens take you before you take the locket. Marrow, Silt, and Iris converge on the vault within the hour, and by the time they're done arguing over the spoils, Cass Rourke is a case file in a drawer that stops existing when it closes. Somewhere above, Adaline Voss stirs, and forgets she almost remembered something important.",
+      "art": "art-the-locket-of-lucidane-ending-captured-art",
+      "options": [],
+      "improvBudget": 5,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "entry-file",
+      "to": "censor-informant",
+      "when": {
+        "op": "always"
+      },
+      "note": "Choose Censor lead first"
+    },
+    {
+      "from": "entry-file",
+      "to": "undertow-fence",
+      "when": {
+        "op": "always"
+      },
+      "note": "Choose Undertow lead first"
+    },
+    {
+      "from": "entry-file",
+      "to": "choir-acolyte",
+      "when": {
+        "op": "always"
+      },
+      "note": "Choose Choir lead first"
+    },
+    {
+      "from": "censor-informant",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "Bargain with Censor"
+    },
+    {
+      "from": "censor-informant",
+      "to": "undertow-fence",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "censor-informant",
+      "to": "choir-acolyte",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undertow-fence",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "Bargain with Undertow"
+    },
+    {
+      "from": "undertow-fence",
+      "to": "censor-informant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "undertow-fence",
+      "to": "choir-acolyte",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-acolyte",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "Bargain with Choir"
+    },
+    {
+      "from": "choir-acolyte",
+      "to": "censor-informant",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choir-acolyte",
+      "to": "undertow-fence",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-approach",
+      "to": "vault-guardian",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "vault-approach",
+      "to": "ending-captured",
+      "when": {
+        "op": "always"
+      },
+      "note": "Failed stealth or force check"
+    },
+    {
+      "from": "vault-guardian",
+      "to": "the-locket-found",
+      "when": {
+        "op": "always"
+      },
+      "note": "Victory"
+    },
+    {
+      "from": "vault-guardian",
+      "to": "ending-captured",
+      "when": {
+        "op": "always"
+      },
+      "note": "Defeat"
+    },
+    {
+      "from": "vault-guardian",
+      "to": "vault-approach",
+      "when": {
+        "op": "always"
+      },
+      "note": "Flee"
+    },
+    {
+      "from": "the-locket-found",
+      "to": "ending-lockdown",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-locket-found",
+      "to": "ending-blackmarket",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "the-locket-found",
+      "to": "final-stand",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-stand",
+      "to": "ending-freedom",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-stand",
+      "to": "ending-ascension",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "final-stand",
+      "to": "ending-integration",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "vault-guardian-fight",
+      "title": "The Vault Wardens",
+      "combatants": [
+        {
+          "id": "warden-skeleton",
+          "statblock": "skeleton",
+          "count": 2,
+          "hostile": true
+        },
+        {
+          "id": "warden-armor",
+          "statblock": "animated-armor",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "warden-shadow",
+          "statblock": "shadow",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-light"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "the-locket-found",
+      "onDefeat": "ending-captured",
+      "onFlee": "vault-approach"
+    }
+  ]
+}

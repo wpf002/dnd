@@ -93,9 +93,19 @@ export async function generateAdventure(
     maxAttempts: MAX_ATTEMPTS,
     validate: (graph) => {
       const lint = lintGraph(graph);
+      // Warnings fail the attempt, not just errors. A `false-choice` warning
+      // means three options that all land in the same place with no state
+      // change — a choice that isn't one, which is the single property a
+      // beat-graph most needs to get right (Compendium Vol II Part II §10).
+      // Feeding warnings back as retry context is exactly what the
+      // validation-feedback loop is for; accepting them would ship the
+      // linter's own definition of bad content.
       return {
-        ok: lint.ok,
-        errors: lint.errors.map((e) => e.message),
+        ok: lint.ok && lint.warnings.length === 0,
+        errors: [
+          ...lint.errors.map((e) => e.message),
+          ...lint.warnings.map((w) => w.message),
+        ],
         warnings: lint.warnings.map((w) => w.message),
       };
     },

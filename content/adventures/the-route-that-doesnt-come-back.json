@@ -1,0 +1,896 @@
+{
+  "id": "the-route-that-doesnt-come-back",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Route That Doesn't Come Back",
+    "premise": "The debt-ridden crew of the freighter Gray Wren must run the Hollow Passage—a smugglers' lane where three ships have vanished without a trace—to deliver a cargo that could finally clear their crushing debt, and a garbled signal from a lost crewmate gives them a reason to believe they might come back this time.",
+    "tone": [
+      "exploration",
+      "heist"
+    ],
+    "tier": "local",
+    "partyLevel": 4,
+    "narrationVoice": "Wry, weather-beaten second-person narrator speaking directly to the crew, equal parts salt spray and gallows humor.",
+    "contentLimits": {
+      "exclude": [
+        "harm to children depicted on-screen"
+      ],
+      "note": "No children appear on-page; keep threats aimed at adult crew and salvage, not minors."
+    },
+    "provenance": "flint"
+  },
+  "entry": "debt-call",
+  "beats": [
+    {
+      "id": "debt-call",
+      "kind": "threshold",
+      "title": "The Ledger Comes Due",
+      "prose": "Factor Ilsa Corvane of the Saltmere Ledger House lays a stack of overdue notices on the table between you. The Gray Wren owes more than her hull is worth. Corvane offers one way out: run a cargo through the Hollow Passage, a lane that has swallowed three ships whole. Pay clears everything. Refusal means the debt collectors take the ship by morning.",
+      "readAloud": "\"Three ships in, none out,\" Corvane says, not unkindly. \"But the fourth time's rates are excellent. What'll it be?\"",
+      "art": "art-the-route-that-doesnt-come-back-debt-call-art",
+      "options": [
+        {
+          "id": "take-the-job",
+          "label": "Accept the ledger's desperate offer",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tallow-reach",
+          "effects": []
+        },
+        {
+          "id": "ask-about-losses",
+          "label": "Press Corvane about why no ship has returned",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "tallow-reach",
+          "effects": []
+        },
+        {
+          "id": "refuse-job",
+          "label": "Refuse the job and gamble on the debt collectors",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-debtors-prison",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "tallow-reach",
+      "kind": "social",
+      "title": "Port of Tallow Reach",
+      "prose": "Tallow Reach smells of tar and rendered fat, its stalls hung with charts nobody admits to selling. The rival crew of the Widowmark is here too, hungry for the same score. You have a night to prepare before the Hollow Passage run.",
+      "readAloud": "A dockhand spits and mutters, \"Hollow Passage takes ships the way the tide takes footprints. Doesn't leave much behind to argue with.\"",
+      "art": "art-the-route-that-doesnt-come-back-tallow-reach-art",
+      "options": [
+        {
+          "id": "talk-dockhands",
+          "label": "Question the dockhands about the Hollow Passage",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "wisdom",
+            "skill": "insight",
+            "dc": 12,
+            "onFailure": "choose-approach"
+          }
+        },
+        {
+          "id": "visit-widowmark",
+          "label": "Scope out the rival Widowmark crew at the tavern",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": []
+        },
+        {
+          "id": "check-ship",
+          "label": "Inspect the Gray Wren's hold before departure",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "choose-approach",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "choose-approach",
+      "kind": "decision",
+      "title": "Getting the Charts",
+      "prose": "No safe charts of the Hollow Passage exist in any honest ledger. The old harbor charts are locked in a warehouse under guard, and there's more than one way to get at them.",
+      "readAloud": "\"Whoever has the true lane through that passage,\" the fixer murmurs, \"has the only thing worth having tonight.\"",
+      "art": "art-the-route-that-doesnt-come-back-choose-approach-art",
+      "options": [
+        {
+          "id": "bribe-harbormaster",
+          "label": "Bribe the harbormaster for the warehouse key",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warehouse-heist",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "bribe"
+            }
+          ],
+          "requiresCheck": {
+            "ability": "charisma",
+            "skill": "deception",
+            "dc": 13,
+            "onFailure": "warehouse-heist"
+          }
+        },
+        {
+          "id": "steal-charts-plan",
+          "label": "Plan to steal the charts outright",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warehouse-heist",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "theft"
+            }
+          ]
+        },
+        {
+          "id": "seek-alliance",
+          "label": "Seek an alliance with the rival Widowmark crew",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "warehouse-heist",
+          "effects": [
+            {
+              "flag": "approach",
+              "value": "alliance"
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "warehouse-heist",
+      "kind": "conflict",
+      "title": "The Chart Warehouse",
+      "prose": "Bone-white sentinels stand watch over the warehouse's locked vault: constructs animated by old ledger-magic, patrolling in slow, patient circuits. You have to slip past them to reach the charts inside.",
+      "art": "art-the-route-that-doesnt-come-back-warehouse-heist-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "warehouse-heist-encounter",
+      "terminal": false
+    },
+    {
+      "id": "captains-logs",
+      "kind": "puzzle",
+      "title": "The Dead Captain's Logs",
+      "prose": "The vault holds charts, yes, but also the log of a captain who never came back. His handwriting grows shakier page by page, marking a lane through the passage that might still hold true.",
+      "readAloud": "The final legible entry reads: \"Follow the drowned lights. Do not answer them.\"",
+      "art": "art-the-route-that-doesnt-come-back-captains-logs-art",
+      "options": [
+        {
+          "id": "study-logs",
+          "label": "Study the captain's logs for the safe lane",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "into-the-passage",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "intelligence",
+            "skill": "investigation",
+            "dc": 13,
+            "onFailure": "into-the-passage"
+          }
+        },
+        {
+          "id": "ask-crew",
+          "label": "Ask your oldest hand about old sailor superstitions",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "into-the-passage",
+          "effects": []
+        },
+        {
+          "id": "pray-departure",
+          "label": "Hold a small ritual for luck before departure",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "into-the-passage",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "have-charts",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "into-the-passage",
+      "kind": "transit",
+      "title": "Into the Hollow Passage",
+      "prose": "The fog swallows the Gray Wren whole. Half-sunk masts jut from the water like broken teeth, and the compass needle spins lazily, uncertain of true north.",
+      "readAloud": "Something out in the fog answers your foghorn a half-second before you sound it.",
+      "art": "art-the-route-that-doesnt-come-back-into-the-passage-art",
+      "options": [
+        {
+          "id": "follow-charts",
+          "label": "Follow the charted safe lane precisely",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "have-charts",
+            "value": true
+          },
+          "target": "first-wreck",
+          "effects": []
+        },
+        {
+          "id": "trust-instincts",
+          "label": "Trust the crew's instincts and old sea-lore",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "first-wreck",
+          "effects": []
+        },
+        {
+          "id": "push-through-fog",
+          "label": "Push straight through the fog at full speed",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "first-wreck",
+          "effects": [],
+          "requiresCheck": {
+            "ability": "dexterity",
+            "skill": "vehicles-water",
+            "dc": 14,
+            "onFailure": "first-wreck"
+          }
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "first-wreck",
+      "kind": "discovery",
+      "title": "The Widow's Bell",
+      "prose": "The first wreck looms out of the fog: the Widow's Bell, the last ship lost on this route. Scratched into the hull near the waterline, fresh and deliberate, are the initials M.T. — Mika Thorne, your rigger, gone three months and presumed drowned.",
+      "readAloud": "The scratches are shallow, recent. Someone made those marks after the wreck settled, not before.",
+      "art": "art-the-route-that-doesnt-come-back-first-wreck-art",
+      "options": [
+        {
+          "id": "search-wreck",
+          "label": "Search the wreck's cabins for survivors or clues",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-ambush",
+          "effects": []
+        },
+        {
+          "id": "salvage-cargo",
+          "label": "Salvage what cargo remains before moving on",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-ambush",
+          "effects": []
+        },
+        {
+          "id": "signal-crew",
+          "label": "Signal your crew to stay alert and press on carefully",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "drowned-ambush",
+          "effects": []
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [
+        {
+          "flag": "knows-mika-alive",
+          "value": true
+        }
+      ],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "drowned-ambush",
+      "kind": "conflict",
+      "title": "What the Wreck Woke",
+      "prose": "Bloated shapes pull themselves up over the Widow's Bell's rail, water-logged and hungry. The wreck was not as empty as it looked.",
+      "art": "art-the-route-that-doesnt-come-back-drowned-ambush-art",
+      "options": [],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "drowned-ambush-encounter",
+      "terminal": false
+    },
+    {
+      "id": "widowmark-parley",
+      "kind": "social",
+      "title": "The Widowmark's Offer",
+      "prose": "Smoke from a signal-lantern reveals the Widowmark crew anchored nearby, having tracked you into the passage. Captain Renn Oskar hails you across the water, in no mood for a fight if a deal can be struck instead.",
+      "readAloud": "\"We're all chasing the same drowned fortune,\" Oskar calls. \"Question is whether we split it or sink each other trying.\"",
+      "art": "art-the-route-that-doesnt-come-back-widowmark-parley-art",
+      "options": [
+        {
+          "id": "ally-favor",
+          "label": "Call in the favor from your earlier alliance",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "approach",
+            "value": "alliance"
+          },
+          "target": "heart-of-passage",
+          "effects": [
+            {
+              "flag": "widowmark-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "offer-cut",
+          "label": "Offer them a cut of the salvage for their help",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "heart-of-passage",
+          "effects": [
+            {
+              "flag": "widowmark-allied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "refuse-parley",
+          "label": "Refuse their help and go it alone",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "heart-of-passage",
+          "effects": [
+            {
+              "flag": "widowmark-allied",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "improvBudget": 7,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "heart-of-passage",
+      "kind": "decision",
+      "title": "The Heart of the Hollow Passage",
+      "prose": "At the center of the passage, a mast-forest of wrecks surrounds a single intact flagship, lantern-lit from within by no living hand. Somewhere aboard, if the marks on the Widow's Bell meant anything, Mika might still be waiting.",
+      "readAloud": "A voice like wet rope drifts across the water: \"Come aboard, then. The ledger's still open.\"",
+      "art": "art-the-route-that-doesnt-come-back-heart-of-passage-art",
+      "options": [
+        {
+          "id": "direct-assault",
+          "label": "Lead the direct assault on the flagship",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wight-captain",
+          "effects": []
+        },
+        {
+          "id": "search-for-mika",
+          "label": "Detour into the flooded hold to search for Mika first",
+          "visibleWhen": {
+            "op": "eq",
+            "flag": "knows-mika-alive",
+            "value": true
+          },
+          "target": "wight-captain",
+          "effects": [
+            {
+              "flag": "seeking-mika",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "wait-for-dawn",
+          "label": "Wait for the tide and strike at dawn",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "wight-captain",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "wight-captain",
+      "kind": "climax",
+      "title": "Captain Marrow's Ledger",
+      "prose": "The flagship's captain rises from the deck, drowned and unfinished, still counting debts owed to the sea. His skeletal crew rattles into formation behind him.",
+      "art": "art-the-route-that-doesnt-come-back-wight-captain-art",
+      "options": [],
+      "improvBudget": 9,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "encounter": "wight-captain-encounter",
+      "terminal": false
+    },
+    {
+      "id": "aftermath",
+      "kind": "decision",
+      "title": "What You Carry Out",
+      "prose": "The flagship's hold is a graveyard of hoarded cargo — enough to clear the Gray Wren's debt three times over. Mika, if you found her, waits pale but breathing near the ballast. The choice of what to carry out, and what to leave behind, is yours.",
+      "readAloud": "The hold groans as the wreck settles further. Whatever you're taking, take it now.",
+      "art": "art-the-route-that-doesnt-come-back-aftermath-art",
+      "options": [
+        {
+          "id": "clear-the-debt",
+          "label": "Load the cargo and deliver it to settle the ledger",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-debt-cleared",
+          "effects": []
+        },
+        {
+          "id": "carry-mika-home",
+          "label": "Carry Mika home instead of the cargo",
+          "visibleWhen": {
+            "op": "and",
+            "clauses": [
+              {
+                "op": "eq",
+                "flag": "seeking-mika",
+                "value": true
+              },
+              {
+                "op": "eq",
+                "flag": "widowmark-allied",
+                "value": true
+              }
+            ]
+          },
+          "target": "ending-mika-freed",
+          "effects": []
+        },
+        {
+          "id": "vanish-with-treasure",
+          "label": "Cut the cargo loose and vanish into legend with the wreck's treasure",
+          "visibleWhen": {
+            "op": "always"
+          },
+          "target": "ending-sea-legend",
+          "effects": []
+        }
+      ],
+      "improvBudget": 8,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": false
+    },
+    {
+      "id": "ending-debt-cleared",
+      "kind": "ending",
+      "title": "The Ledger Closes",
+      "prose": "The Gray Wren limps back into Saltmere riding low with salvage. Factor Corvane counts the cargo twice, then tears the debt notice in half. You're free — poorer in nerve, richer in nothing but breathing room, and that's enough.",
+      "art": "art-the-route-that-doesnt-come-back-ending-debt-cleared-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-mika-freed",
+      "kind": "ending",
+      "title": "What the Sea Gave Back",
+      "prose": "You leave most of the cargo behind, and Mika Thorne walks off the gangplank under her own power, blinking at real sunlight for the first time in months. The debt remains, but the Widowmark crew, bound by the salvage they did take, promises to help you find another way to pay it. Some things are worth more than a clean ledger.",
+      "art": "art-the-route-that-doesnt-come-back-ending-mika-freed-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-sea-legend",
+      "kind": "ending",
+      "title": "The Crew That Came Back",
+      "prose": "You keep the treasure, skip the delivery, and vanish from Saltmere's ledgers entirely. The Gray Wren becomes a story told in ports far from here: the only crew to run the Hollow Passage and return with more than they went in with. The debt collectors are still looking. Let them.",
+      "art": "art-the-route-that-doesnt-come-back-ending-sea-legend-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    },
+    {
+      "id": "ending-debtors-prison",
+      "kind": "ending",
+      "title": "The Ledger Collects",
+      "prose": "Whether by refusal, capture, or the cold grip of the passage itself, the debt catches up to you before you can outrun it. The Gray Wren is seized at the dock, her crew scattered to work off what they owe in Saltmere's grim counting-houses. The Hollow Passage keeps its record intact.",
+      "art": "art-the-route-that-doesnt-come-back-ending-debtors-prison-art",
+      "options": [],
+      "improvBudget": 6,
+      "entryWhen": {
+        "op": "always"
+      },
+      "onEntry": [],
+      "onExit": [],
+      "terminal": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "debt-call",
+      "to": "tallow-reach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "debt-call",
+      "to": "ending-debtors-prison",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "tallow-reach",
+      "to": "choose-approach",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "choose-approach",
+      "to": "warehouse-heist",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "warehouse-heist",
+      "to": "captains-logs",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory: reach the vault"
+    },
+    {
+      "from": "warehouse-heist",
+      "to": "ending-debtors-prison",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "warehouse-heist",
+      "to": "tallow-reach",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee: retreat and regroup"
+    },
+    {
+      "from": "captains-logs",
+      "to": "into-the-passage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "into-the-passage",
+      "to": "first-wreck",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "first-wreck",
+      "to": "drowned-ambush",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "drowned-ambush",
+      "to": "widowmark-parley",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "drowned-ambush",
+      "to": "ending-debtors-prison",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "drowned-ambush",
+      "to": "first-wreck",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "widowmark-parley",
+      "to": "heart-of-passage",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "heart-of-passage",
+      "to": "wight-captain",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "wight-captain",
+      "to": "aftermath",
+      "when": {
+        "op": "always"
+      },
+      "note": "victory"
+    },
+    {
+      "from": "wight-captain",
+      "to": "ending-debtors-prison",
+      "when": {
+        "op": "always"
+      },
+      "note": "defeat"
+    },
+    {
+      "from": "wight-captain",
+      "to": "heart-of-passage",
+      "when": {
+        "op": "always"
+      },
+      "note": "flee"
+    },
+    {
+      "from": "aftermath",
+      "to": "ending-debt-cleared",
+      "when": {
+        "op": "always"
+      }
+    },
+    {
+      "from": "aftermath",
+      "to": "ending-mika-freed",
+      "when": {
+        "op": "and",
+        "clauses": [
+          {
+            "op": "eq",
+            "flag": "seeking-mika",
+            "value": true
+          },
+          {
+            "op": "eq",
+            "flag": "widowmark-allied",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "from": "aftermath",
+      "to": "ending-sea-legend",
+      "when": {
+        "op": "always"
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "id": "warehouse-heist-encounter",
+      "title": "The Vault Sentinels",
+      "combatants": [
+        {
+          "id": "sentinel-1",
+          "statblock": "skeleton",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sentinel-2",
+          "statblock": "skeleton",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "sentinel-3",
+          "statblock": "skeleton",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "cover-heavy",
+        "cramped"
+      ],
+      "victory": {
+        "kind": "reach-location",
+        "description": "Slip past the patrolling skeletons to reach the vault door and the charts inside."
+      },
+      "onVictory": "captains-logs",
+      "onDefeat": "ending-debtors-prison",
+      "onFlee": "tallow-reach"
+    },
+    {
+      "id": "drowned-ambush-encounter",
+      "title": "The Wreck's Hungry Crew",
+      "combatants": [
+        {
+          "id": "ghoul-1",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ghoul-2",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "ghoul-3",
+          "statblock": "ghoul",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "water",
+        "fog",
+        "unstable",
+        "difficult"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "widowmark-parley",
+      "onDefeat": "ending-debtors-prison",
+      "onFlee": "first-wreck"
+    },
+    {
+      "id": "wight-captain-encounter",
+      "title": "Captain Marrow's Last Watch",
+      "combatants": [
+        {
+          "id": "captain-marrow",
+          "statblock": "wight",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "marrow-crew-1",
+          "statblock": "skeleton",
+          "count": 1,
+          "hostile": true
+        },
+        {
+          "id": "marrow-crew-2",
+          "statblock": "skeleton",
+          "count": 1,
+          "hostile": true
+        }
+      ],
+      "terrain": [
+        "dim-light",
+        "water",
+        "cover-light",
+        "unstable"
+      ],
+      "victory": {
+        "kind": "defeat-all"
+      },
+      "onVictory": "aftermath",
+      "onDefeat": "ending-debtors-prison",
+      "onFlee": "heart-of-passage"
+    }
+  ]
+}

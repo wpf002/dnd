@@ -1,0 +1,90 @@
+{
+  "adventure": "the-last-sweetness-of-confevale",
+  "style": {
+    "promptPrefix": "TO BE LOCKED: choose one prefix and seed before generating any frame. Register should follow the tone tags: political-fantasy, epic-finale.",
+    "seed": null,
+    "note": "Generated adventure. Drop finished PNGs into apps/web/public/art/<slot>.png — BeatArt falls back png → svg → gradient."
+  },
+  "slots": [
+    {
+      "slot": "art-the-last-sweetness-of-confevale-candoria-court-arrival",
+      "beat": "arrival-court",
+      "brief": "The Sugar-Spun Court — Candoria's spires of spun glass sugar catch the grey mourning light. Sovereign Praline the First is three days dead, and the court hums with three riv"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-guild-quarter-caramella",
+      "beat": "guildmistress-caramella",
+      "brief": "The Guildmistress's Ledger — Caramella Vex rules the confectioners' guild with sticky-fingered pragmatism. She offers you spiced wine and a claim to legitimacy built on the labor "
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-vault-antechamber-marzipan",
+      "beat": "vault-steward-marzipan",
+      "brief": "The Steward's Vigil — Marzipan Lyre, the dead sovereign's estranged twin, keeps a lonely watch over the Sugar Vault. Their claim is blood-old and bitter with grief, and the"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-concord-embassy-thorn",
+      "beat": "concord-embassy-thorn",
+      "brief": "The Baron's Sweet Words — Baron Thorn Nougat entertains you in the Concord embassy, all charm and salt-crystal jewelry. He speaks of stability, of a firm hand, of an end to the"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-candoria-rumor-mill",
+      "beat": "gathering-storm",
+      "brief": "Rumors Like Spun Sugar — Every conversation in Candoria circles the same unspoken fact: the Bitter Concord's debt is due, and paying it honestly means surrendering the Sugar H"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-vault-cipher-ledger",
+      "beat": "vault-cipher",
+      "brief": "The Warded Ledger — The Sugar Vault's ledger is sealed in crystallized syrup, its true terms hidden beneath decorative glyphs. Somewhere in its fine print is the truth of"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-vault-guardians-clash",
+      "beat": "vault-guardians",
+      "brief": "The Vault's Animated Guard — Suits of candied armor, animated by old wardings, clatter to life around the ledger chamber, sugar-glass blades gleaming."
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-debt-revealed-scroll",
+      "beat": "debt-revealed",
+      "brief": "The Forged Clause — The truth is uglier than rumor: Baron Thorn Nougat forged the treaty's final clause, arranging to personally deliver the Sugar Heart to the Concord an"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-thorn-confrontation-embassy",
+      "beat": "confront-thorn",
+      "brief": "Showdown at the Embassy — Thorn Nougat drops all pretense of charm the moment you lay the forged clause before him. His mercenaries, paid in Concord salt, move to silence the a"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-claimants-rally-hall",
+      "beat": "rally-claimants",
+      "brief": "A Fragile Alliance — Whatever allies you've won must be called upon now, if the throne — and the kingdom — is to be saved from Thorn's forged bargain."
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-concord-negotiation-hall",
+      "beat": "concord-negotiation",
+      "brief": "Terms with the Bitter Concord — The Concord's envoy receives you in a hall of salt-frosted glass, unmoved by sentiment, interested only in whether the debt will be paid — and by whom"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-throne-reckoning-dais",
+      "beat": "throne-reckoning",
+      "brief": "The Sugar Heart's Reckoning — With the truth laid bare and Thorn's scheme unraveling, the fate of Confevale rests on a final choice: how the debt is truly paid, and what kind of ki"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-ending-mercy-dawn",
+      "beat": "ending-mercy",
+      "brief": "A Kinder Sugar Kingdom — Thorn is stripped of title and exiled rather than executed; the Concord debt is renegotiated into decades of fair trade instead of a single ruinous pa"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-ending-ruthless-crown",
+      "beat": "ending-ruthless",
+      "brief": "The Crown of Salt and Sugar — Thorn is executed for treason before the assembled court, and your chosen ally is crowned with absolute authority, the Concord cowed by the display of"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-ending-sacrifice-heart",
+      "beat": "ending-sacrifice",
+      "brief": "The Debt Paid in Full — You offer your own vitality to the Sugar Heart, becoming a living anchor for the kingdom's magic in place of the relic the Concord demanded. Confevale"
+    },
+    {
+      "slot": "art-the-last-sweetness-of-confevale-ending-defeat-ruin",
+      "beat": "ending-defeat",
+      "brief": "The Kingdom Crumbles — Thorn's enforcers overwhelm you before the truth can be made to matter. In the weeks that follow, the Baron delivers the Sugar Heart to the Concord hi"
+    }
+  ]
+}
