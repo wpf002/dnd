@@ -51,9 +51,39 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 2 | First playable one-shot, end to end | v2 — schema-constrained output, retry policy | 3–4 weeks |
 | 3 | **Generation** — campaign generator | v3 — routing, tiering, telemetry | 3–4 weeks |
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
-| 5 | Module ingestion (PDF → beat-graph) | — | open-ended |
+| 5 | Module ingestion — research spike | — | done, research-grade |
+| 6 | **Campaign scale** — multi-book, level 1→20 | — | 5–7 weeks |
+| 7 | **Published modules, playable** | v5 — long-document extraction | open-ended |
+
+Phases 6 and 7 are the two things the library does *not* deliver. Read the
+next section before assuming otherwise.
 
 Solo, part-time. Treat estimates as sequencing, not commitments.
+
+---
+
+## What the adventure library is, and is not
+
+The repo ships **79 playable adventures**. Be precise about what they are,
+because the naming invites exactly one wrong assumption.
+
+`content/library-index.json` maps each generated adventure to an `inspiredBy`
+entry from the canon list. **That is an attribution record, not a claim of
+equivalence.** The generator was given each entry's *setting type and theme*
+and nothing else — the source title never entered a prompt. Picking the
+Curse of Strahd slot yields *The Tithe of Grauvane*, an original gothic story
+with invented characters and plot. Zero published characters, places, or plot
+elements appear anywhere in the corpus.
+
+Two consequences, both of which Phases 6 and 7 exist to fix:
+
+1. **They are not the published modules.** Playing the real *Curse of Strahd*
+   requires that module's own text, through Phase 7 ingestion.
+2. **They are one-shots, not campaigns.** Every graph is 10–16 beats — one
+   sitting. A published campaign is a level 1–10 book; the stated ambition
+   (see `content/adventures/synopses/emberfall-chronicles.md`) is a saga
+   across multiple books, level 1→20. Nothing in the app is campaign-scale
+   yet, including the four hand-authored graphs.
 
 ---
 
@@ -361,6 +391,147 @@ sandbox.
 
 ---
 
+## Phase 6 — Campaign scale
+
+**Goal:** a campaign is a sequence of books that carries one party from level 1
+to level 20, not a single 16-beat graph replayed.
+
+This is a prerequisite for Phase 7, not an optional extra. A published campaign
+*is* multi-book — ingesting one into a single graph is precisely why the Phase 5
+spike produces a railroad.
+
+### What is actually missing
+
+`Campaign` holds one graph. The type carries the admission in a comment:
+
+```ts
+/** The adventure this campaign replays/continues. Multi-graph comes later. */
+graph: unknown;
+```
+
+Three separate gaps, in dependency order:
+
+**1. `packages/schema` — the container above `BeatGraph`.**
+
+- `Book` — an ordered `BeatGraph` with a level band (`levelStart`, `levelEnd`),
+  an entry guard over campaign state, and an exit condition
+- `CampaignGraph` — metadata, an ordered `Book[]`, and the ledger keys that
+  must survive book transitions
+- The `Guard` language already expresses cross-book conditions; nothing new is
+  needed there. What is new is that a flag set in Book I must still be readable
+  in Book IV, which makes the ledger the campaign's spine rather than a
+  per-session convenience.
+
+**2. `packages/engine` — character advancement.**
+
+The engine has no concept of levelling. Four pregens are frozen at level 3.
+A 1→20 campaign needs:
+
+- `advancement/` — milestone and XP progression, applying HP, proficiency
+  bonus, spell slots, subclass features on level-up
+- `packages/srd` — class progression tables for all 20 levels, not just the
+  level-3 slice chosen to make one adventure work
+
+This is the largest single piece of engine work remaining, and it is
+deterministic — no model involved, so invariant 1 holds and it is fully
+testable.
+
+**3. `packages/linter` — campaign-level rules.**
+
+Per-graph linting is not sufficient once graphs chain:
+
+- Level continuity: Book N's `levelEnd` must equal Book N+1's `levelStart`
+- Ledger continuity: a flag read in Book N must be written in Book ≤ N
+- Encounter solvability re-checked against the *band*, not a fixed level 3
+- Every book reachable; no book stranded behind an unsatisfiable guard
+
+### App
+
+- Campaign view: book progress, current level, party state across books
+- Between-book transition screen, reading from the ledger
+- The existing "Previously on…" recap generalizes from session to book
+
+### Exit criteria
+
+- One campaign of 3+ books runs end to end, party levelling across them
+- A flag set in Book I visibly changes content in Book III
+- The linter rejects a campaign whose level bands do not chain
+- A 200-turn simulated run across books produces zero mechanical errors
+
+### Kill condition
+
+Levelling introduces mechanical errors the engine cannot hold under audit. If
+20 levels of class features cannot be made deterministic and correct, cap the
+supported band (say 1–10) rather than shipping a rules engine that is wrong at
+the top end. Being right is the entire differentiation.
+
+---
+
+## Phase 7 — Published modules, playable
+
+**Goal:** a module you own goes in as text, and comes out playable with its own
+plot, characters, and structure intact.
+
+Phase 5 built the spike: `POST /ingest` extracts a structure and maps it to a
+graph. It is a **linear room→beat mapper** — it walks `module.rooms` in order
+and wires each to the next. That is fine for a single dungeon and wrong for a
+published campaign, which is branching, spatial, hub-based, and spread across
+chapters.
+
+### What has to change
+
+**1. Topology.** The mapper produces a chain. Real modules are hub-and-spoke,
+looping, and non-linear. `Edge` + `Guard` already express this — the mapper
+simply does not use them. This is the single highest-value fix and it needs no
+schema change.
+
+**2. Chapters become books.** A published campaign maps onto `CampaignGraph`
+from Phase 6, one book per chapter or act, with the module's own level bands.
+**This is why Phase 7 depends on Phase 6** — without it, every ingested module
+is compressed into one graph, which is the current failure.
+
+**3. Long-document extraction (Flint v5).** A campaign book is far beyond a
+single context window. Needs chunked extraction with a stable running index of
+areas, NPCs, and items, so chapter 14 can reference an NPC introduced in
+chapter 2.
+
+**4. Human-in-the-loop repair.** Extraction will mangle things. The linter's
+error output is already human-legible; the missing piece is a review surface
+that shows the extracted graph beside the source text so mistakes are fixed
+before play rather than discovered mid-session.
+
+**5. What a beat-graph still cannot express.** Some of a module is genuinely
+DM-improvisation-dependent — reactive factions, open exploration, table
+negotiation. The improv budget absorbs some of it. Be honest about the
+remainder rather than pretending the graph captured it.
+
+### Input
+
+Module text supplied by the user, for modules the user owns. Nothing is
+scraped, bundled, or redistributed. See Content and licensing below — this
+phase is the first thing deleted if distribution is ever on the table.
+
+### Exit criteria
+
+- A module you own plays end to end, recognizably itself: its named
+  characters, its locations, its actual plot
+- Its branching survives — at least one player choice reaches content a
+  different choice would not have
+- Chapters map to books with the module's own level progression
+- A blind read of the ingested graph is identifiably that module, not a
+  generic adventure in its setting
+
+### Honest assessment
+
+Unchanged from the Phase 5 note, and worth repeating: expect the first attempt
+to play like a bad railroad of a great adventure. The difference now is that
+"good enough" is defined — the exit criteria above are falsifiable, and the
+first one is the one that matters.
+
+Start with a linear, single-book module. Do not start with a sandbox.
+
+---
+
 ## Flint build-out summary
 
 | Version | Capability | Driven by | Phase |
@@ -422,6 +593,8 @@ Falsifiable. Each has a phase.
 | 3 | Intent parsing fails closed reliably | 2 | Free text becomes a liability; cut to three options only. |
 | 4 | Generator first-attempt linter pass ≥ 70% | 3 | Content engine is you writing graphs by hand. Project starves. |
 | 5 | A campaign survives three sessions coherently | 4 | Ship one-shots only; drop the ledger. |
+| 6 | Levelling stays mechanically correct 1→20 | 6 | Cap the supported band (1–10) rather than ship a rules engine that is wrong at the top end. |
+| 7 | An ingested module is recognizably itself | 7 | Ingestion is a research result, not a feature. Say so, and keep authored + generated content as the product. |
 
 ---
 
@@ -458,7 +631,32 @@ whole licensing posture gets rebuilt before anything ships.
 
 ## Immediate next steps
 
-1. ~~Phase 0~~ — closed, waived by decision.
-2. ~~Bootstrap, push, CI~~ — done.
-3. ~~`packages/schema`~~ — done, with engine/srd/linter/flint v1 (Phase 1 complete).
-4. Phase 2 in flight: Saltmire + game loop + PWA surface.
+Phases 0–5 are built and pushed. The app ships 79 playable adventures, a
+deterministic engine, the linter gate, the state ledger, and a working
+generator. **What it does not ship is the two things that matter most from
+here**, and they are ordered by dependency:
+
+1. **Phase 6 — campaign scale.** Do this first; Phase 7 depends on it. A
+   published campaign is multi-book, so without `CampaignGraph` and character
+   advancement, every ingested module collapses into one 16-beat graph — which
+   is exactly the current failure.
+   - The long pole inside it is `advancement/`: 20 levels of class features
+     across `srd` and `engine`. Deterministic, fully testable, no model calls.
+   - The schema work (`Book`, `CampaignGraph`) is small by comparison and lands
+     first, same as every other contract in this project.
+
+2. **Phase 7 — published modules, playable.** In this order:
+   - Fix the mapper's topology (hub-and-spoke and looping instead of a chain).
+     Highest value, needs no schema change — `Edge` and `Guard` already express
+     it and the mapper simply does not use them.
+   - Map chapters to books via Phase 6's `CampaignGraph`.
+   - Flint v5 long-document extraction with a running index, so late chapters
+     can reference NPCs introduced early.
+   - A human-in-the-loop repair surface before anything is played.
+
+3. **Supply one module you own, as text**, to drive Phase 7 against something
+   real. Start with a linear, single-book module — not a sandbox.
+
+4. **Phase 0 was waived.** It gates nothing technically. It remains the only
+   thing that answers whether any of this is worth playing, and the roadmap's
+   standing risk section still applies.
