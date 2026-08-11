@@ -167,10 +167,36 @@ export function templateNarration(res: Resolution): string {
 // Beat transitions
 // ---------------------------------------------------------------------------
 
-function enterBeat(session: GameSession, beatId: string): TurnOutcome {
+/**
+ * Edge redirects are bounded. A graph whose edges cycle would otherwise hang
+ * the turn; the linter cannot always prove termination, so the runtime refuses
+ * rather than spins.
+ */
+const MAX_EDGE_REDIRECTS = 8;
+
+function enterBeat(session: GameSession, beatId: string, redirects = 0): TurnOutcome {
   const beat = beatById(session, beatId);
   session.currentBeat = beatId;
   session.flags = applyMutations(session.flags, beat.onEntry);
+
+  // Edges: "transitions not owned by an option — timed events, state-triggered
+  // moves". Evaluated BEFORE the encounter starts, so a fight the party has
+  // already won does not run a second time when they walk back through.
+  //
+  // These were declared in the schema and enumerated by the linter from the
+  // beginning, and never evaluated here. Neither was `entryWhen` — an
+  // authored ending guarded on a flag has been silently reachable all along.
+  const edge = session.graph.edges.find(
+    (e) => e.from === beatId && evaluateGuard(e.when, session.flags),
+  );
+  if (edge) {
+    if (redirects >= MAX_EDGE_REDIRECTS) {
+      throw new Error(
+        `edge redirects from '${beatId}' exceeded ${MAX_EDGE_REDIRECTS} — the graph has an edge cycle`,
+      );
+    }
+    return enterBeat(session, edge.to, redirects + 1);
+  }
 
   if (beat.terminal) {
     session.ended = true;
@@ -189,7 +215,13 @@ function enterBeat(session: GameSession, beatId: string): TurnOutcome {
 /** Options currently visible given the flags. */
 export function visibleOptions(session: GameSession): BeatOption[] {
   const beat = beatById(session, session.currentBeat);
-  return beat.options.filter((o) => !o.visibleWhen || evaluateGuard(o.visibleWhen, session.flags));
+  return beat.options.filter((o) => {
+    if (o.visibleWhen && !evaluateGuard(o.visibleWhen, session.flags)) return false;
+    // `entryWhen` is the target's own condition: "must hold for this beat to
+    // be enterable". An option leading somewhere unenterable is not offered.
+    const target = session.graph.beats.find((b) => b.id === o.target);
+    return !target || evaluateGuard(target.entryWhen, session.flags);
+  });
 }
 
 export function chooseOption(session: GameSession, optionId: string): TurnOutcome {

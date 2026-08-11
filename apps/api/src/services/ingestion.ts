@@ -97,6 +97,16 @@ export async function ingestModule(
         `Room ids must be kebab-case. The first room is the entrance; mark plausible`,
         `conclusion rooms with isEnding.`,
         ``,
+        `Use "requires" when the module states that an area — very often its`,
+        `conclusion — can only be reached once other areas have been dealt with.`,
+        `List those area ids. Without it the conclusion becomes just another exit`,
+        `and the rest of the module turns optional.`,
+        ``,
+        `For every creature in an encounter, give its "cr" and "type" as the module`,
+        `prints them (cr 1/4 is 0.25). Those are what let a creature with no SRD`,
+        `equivalent be replaced by something of the right shape and difficulty`,
+        `instead of a fixed stand-in.`,
+        ``,
         `"connections" is the module's real map: list EVERY area a room leads to,`,
         `including ways back. Do not trim it to three and do not order it to suit a`,
         `linear reading — hubs, loops, and dead ends are all preserved downstream,`,
@@ -142,7 +152,11 @@ export async function ingestModule(
     type: 'ingestion',
     stage: 'done',
     outcome: lint.ok ? 'pass' : 'lint-fail',
-    rooms: (graph as { beats: unknown[] }).beats.length,
+    // Beats and rooms are no longer one-to-one: a fight adds an aftermath
+    // beat, and a hub with too many exits adds more. Report both rather than
+    // one number that used to mean either.
+    rooms: IngestedModule.parse(extraction.value).rooms.length,
+    beats: (graph as { beats: unknown[] }).beats.length,
     unmatchedCreatures: report.unmatchedCreatures.length,
   });
 

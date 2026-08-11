@@ -201,3 +201,77 @@ describe('the repair loop', () => {
     expect(() => remapModule({ title: 'x' })).toThrow();
   });
 });
+
+describe('what a real published module exposed', () => {
+  /** A fight room that is also a junction, plus a gated conclusion. */
+  function dungeon() {
+    return {
+      title: 'Cellar Test',
+      summary: 'A cellar, a corridor, and a way out.',
+      rooms: [
+        room('entry', 'The Hatch', ['cellar']),
+        room('cellar', 'The Cellar', ['entry', 'corridor', 'exit'], {
+          encounter: { creatures: [{ name: 'Giant Centipede', count: 3, cr: 0.25, type: 'Small monstrosity' }] },
+        }),
+        room('corridor', 'The Corridor', ['cellar', 'vault']),
+        room('vault', 'The Vault', ['corridor'], {
+          encounter: { creatures: [{ name: 'Giant Inferno Spider', count: 1, cr: 1, type: 'Large Monstrosity' }] },
+        }),
+        room('exit', 'Back to Daylight', [], { isEnding: true, requires: ['vault'] }),
+      ],
+    };
+  }
+
+  const beatsOf = (graph: unknown) =>
+    (graph as { beats: Array<Record<string, unknown>> }).beats;
+
+  it("sends a won fight onward, not back the way the party came", () => {
+    const { graph } = mapModuleToGraph(dungeon());
+    const encounter = (graph as { encounters: Array<{ id: string; onVictory: string; onDefeat: string }> })
+      .encounters.find((e) => e.id === 'enc-cellar')!;
+    // 'entry' is the room they arrived from and is first in `connections`.
+    // Routing victory there made everything past the first fight unreachable.
+    expect(encounter.onVictory).toBe('cellar-after');
+    expect(encounter.onDefeat).toBe('entry');
+  });
+
+  it('gives every fight an aftermath beat that records the win', () => {
+    const { graph } = mapModuleToGraph(dungeon());
+    const after = beatsOf(graph).find((b) => b.id === 'cellar-after')!;
+    expect(after.onEntry).toEqual([{ flag: 'cleared-cellar', value: true }]);
+    // The junction's other exits live here, since an encounter beat has none.
+    const targets = (after.options as Array<{ target: string }>).map((o) => o.target);
+    expect(targets).toContain('corridor');
+    expect(targets).toContain('exit');
+  });
+
+  it('routes a cleared room past its own fight with an edge', () => {
+    const { graph } = mapModuleToGraph(dungeon());
+    const edges = (graph as { edges: Array<{ from: string; to: string; when: unknown }> }).edges;
+    expect(edges).toContainEqual(
+      expect.objectContaining({
+        from: 'cellar',
+        to: 'cellar-after',
+        when: { op: 'set', flag: 'cleared-cellar' },
+      }),
+    );
+  });
+
+  it('substitutes an unknown creature by type and challenge rating', () => {
+    const { graph, report } = mapModuleToGraph(dungeon());
+    const encounters = (graph as { encounters: Array<{ id: string; combatants: Array<{ statblock: string }> }> })
+      .encounters;
+    // A centipede is a beast at CR 1/4 — a wolf, not a bandit or a skeleton.
+    expect(encounters.find((e) => e.id === 'enc-cellar')!.combatants[0]!.statblock).toBe('wolf');
+    // The spider is a beast at CR 1.
+    expect(encounters.find((e) => e.id === 'enc-vault')!.combatants[0]!.statblock).toBe('dire-wolf');
+    expect(report.unmatchedCreatures).toHaveLength(2);
+  });
+
+  it('turns a stated prerequisite into a guard on the conclusion', () => {
+    const { graph } = mapModuleToGraph(dungeon());
+    const ending = beatsOf(graph).find((b) => b.id === 'exit')!;
+    expect(ending.entryWhen).toEqual({ op: 'set', flag: 'cleared-vault' });
+    expect(lintGraph(graph).ok).toBe(true);
+  });
+});

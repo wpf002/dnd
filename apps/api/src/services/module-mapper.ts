@@ -28,6 +28,60 @@ import { MONSTERS, type MonsterInput } from '@lantern/srd';
 // Creature name → SRD statblock matching
 // ---------------------------------------------------------------------------
 
+/**
+ * Closest SRD stand-in for a creature the subset does not have.
+ *
+ * Ranked by creature type first, then by challenge rating, because a party
+ * fighting something of roughly the right shape and difficulty is far closer
+ * to the printed encounter than one fighting a fixed fallback. A module's
+ * giant centipedes become wolves rather than bandits.
+ *
+ * With no CR and no type to go on it still has to pick something; it says so
+ * through the mapping report either way.
+ */
+export function substituteStatblock(cr?: number, type?: string): string {
+  const entries = Object.entries(MONSTERS as Record<string, MonsterInput>);
+  const wantedType = normalizeCreatureType(type);
+
+  let best = entries[0]![0];
+  let bestScore = Number.POSITIVE_INFINITY;
+  for (const [id, monster] of entries) {
+    const typePenalty = wantedType && monster.type?.toLowerCase() === wantedType ? 0 : 10;
+    // Compared on a log scale: CR 1/8 to 1/4 is the same step as 1 to 2.
+    const crPenalty =
+      cr === undefined ? 0 : Math.abs(Math.log2(Math.max(cr, 0.0625)) - Math.log2(monster.cr));
+    const score = typePenalty + crPenalty;
+    if (score < bestScore) {
+      bestScore = score;
+      best = id;
+    }
+  }
+  return best;
+}
+
+/**
+ * Pull the creature type out of whatever the module printed.
+ *
+ * Statblocks say "Small monstrosity" or "Large Monstrosity, Unaligned", not
+ * "monstrosity", so a bare equality check never matched and every
+ * substitution fell back to challenge rating alone.
+ *
+ * Types with no representative in the SRD subset map to the nearest category
+ * that does. A giant centipede is animalistic whatever the statblock calls
+ * it, so a beast is a closer stand-in than a skeleton of the same CR.
+ */
+export function normalizeCreatureType(printed?: string): string | undefined {
+  if (!printed) return undefined;
+  const text = printed.toLowerCase();
+  const known = ['beast', 'humanoid', 'undead', 'construct', 'giant'];
+  for (const type of known) if (text.includes(type)) return type;
+  for (const animalistic of ['monstrosity', 'aberration', 'ooze', 'plant', 'dragon', 'elemental']) {
+    if (text.includes(animalistic)) return 'beast';
+  }
+  if (text.includes('fiend') || text.includes('undead')) return 'undead';
+  return undefined;
+}
+
 /** Best-effort match of a printed creature name onto the SRD subset. */
 export function matchStatblock(name: string): string | undefined {
   const needle = name.toLowerCase().trim();
@@ -119,6 +173,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
   const entryId = rooms[0]!.id;
   const encounters: Encounter[] = [];
   const beats: Beat[] = [];
+  const edges: Array<{ from: string; to: string; when: unknown; note: string }> = [];
 
   const reshaped = (id: string) => {
     if (!report.reshapedRooms.includes(id)) report.reshapedRooms.push(id);
@@ -188,6 +243,28 @@ export function mapModuleToGraph(moduleInput: unknown): {
   // -- Options --------------------------------------------------------------
 
   const searchFlag = (roomId: string) => `searched-${roomId}`;
+  /** Set once a room's fight is over, so re-entering does not restart it. */
+  const clearedFlag = (roomId: string) => `cleared-${roomId}`;
+  /** Set on entering a room with no fight in it. */
+  const visitedFlag = (roomId: string) => `visited-${roomId}`;
+
+  /**
+   * The flag that means "this area has been dealt with": winning its fight if
+   * it has one, reaching it otherwise.
+   */
+  const dealtWithFlag = (roomId: string) =>
+    byId.get(roomId)?.encounter ? clearedFlag(roomId) : visitedFlag(roomId);
+
+  /** Rooms some other room lists as a prerequisite. Only these need a marker. */
+  const requiredRooms = new Set(rooms.flatMap((r) => r.requires.filter((id) => byId.has(id))));
+
+  /** `entryWhen` for a room that states prerequisites. */
+  const entryGuardFor = (room: IngestedRoom): object | undefined => {
+    const needed = room.requires.filter((id) => byId.has(id) && id !== room.id);
+    if (needed.length === 0) return undefined;
+    const clauses = needed.map((id) => ({ op: 'set' as const, flag: dealtWithFlag(id) }));
+    return clauses.length === 1 ? clauses[0]! : { op: 'and', clauses };
+  };
 
   /**
    * Exactly three options for a beat exposing `targets` (at most three —
@@ -269,77 +346,28 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
   // -- Beats ----------------------------------------------------------------
 
-  for (const room of rooms) {
-    const exits = forward.get(room.id)!;
-    const prose = [
-      room.description,
-      ...room.npcs.map(
-        (n) => `NPC: ${n.name}${n.role ? ` — ${n.role}` : ''}${n.wants ? `; wants ${n.wants}` : ''}`,
-      ),
-    ].join('\n');
-
-    // --- an ending
-    if (room.isEnding) {
-      beats.push({
-        id: room.id,
-        kind: 'ending',
-        title: room.name,
-        prose,
-        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
-        art: `art-${room.id}`,
-        improvBudget: 6,
-        options: [] as BeatOption[],
-        terminal: true,
-      } as Beat);
-      continue;
-    }
-
-    // --- a fight
-    if (room.encounter) {
-      const encounterId = `enc-${room.id}`;
-      const combatants = room.encounter.creatures.map((c, ci) => {
-        let statblock = matchStatblock(c.name);
-        if (!statblock) {
-          statblock = 'bandit';
-          report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
-        }
-        return { id: `${room.id}-c${ci}`, statblock, count: Math.min(c.count, 8), hostile: true };
-      });
-
-      const onward = exits[0] ?? camefrom(room.id) ?? entryId;
-      const back = camefrom(room.id) ?? onward;
-      encounters.push({
-        id: encounterId,
-        title: room.name,
-        combatants,
-        terrain: [],
-        victory: { kind: 'defeat-all' },
-        onVictory: onward,
-        onDefeat: back,
-        onFlee: back,
-      } as Encounter);
-
-      beats.push({
-        id: room.id,
-        kind: 'conflict',
-        title: room.name,
-        prose,
-        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
-        art: `art-${room.id}`,
-        improvBudget: 6,
-        options: [] as BeatOption[],
-        encounter: encounterId,
-        terminal: false,
-      } as Beat);
-      continue;
-    }
-
-    // --- an ordinary room, possibly a hub
-    //
-    // Three options per beat is a hard schema rule. A hub with more exits is
-    // split across follow-on beats rather than truncated: each carries two
-    // exits plus a door to the next, and the last carries what remains. Five
-    // exits cost one extra beat and nothing is lost.
+  /**
+   * Emit the beat (or beats) that offer `exits` as choices, and return the id
+   * of the first one.
+   *
+   * Shared by ordinary rooms and by the aftermath of a fight, because both
+   * face the same constraint: three options per beat, and every exit has to
+   * survive. More than three means follow-on beats.
+   */
+  const emitChoiceBeats = (
+    room: IngestedRoom,
+    exits: string[],
+    opts: {
+      baseId: string;
+      carriesRoom: boolean;
+      prose: string;
+      kind: string;
+      /** Applied on entering the FIRST emitted beat only. */
+      onEntry?: Array<{ flag: string; value: boolean }> | undefined;
+      /** Guard on the FIRST emitted beat only. */
+      entryWhen?: object | undefined;
+    },
+  ): string => {
     const chunks: string[][] = [];
     if (exits.length <= 3) {
       chunks.push(exits);
@@ -362,7 +390,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
     chunks.forEach((chunk, ci) => {
       const isFirst = ci === 0;
-      const id = isFirst ? room.id : `${room.id}-ways-${ci}`;
+      const id = isFirst ? opts.baseId : `${opts.baseId}-ways-${ci}`;
       const last = ci === chunks.length - 1;
 
       const options: BeatOption[] = last
@@ -377,24 +405,154 @@ export function mapModuleToGraph(moduleInput: unknown): {
             {
               id: `${id}-more`,
               label: `Look for another way out of ${room.name}`,
-              target: `${room.id}-ways-${ci + 1}`,
+              target: `${opts.baseId}-ways-${ci + 1}`,
               effects: [],
             },
           ];
 
       beats.push({
         id,
-        kind: isFirst ? (room.id === entryId ? 'threshold' : 'discovery') : 'decision',
-        title: isFirst ? room.name : `${room.name} — another way`,
+        kind: isFirst ? opts.kind : 'decision',
+        title: isFirst
+          ? opts.carriesRoom
+            ? room.name
+            : `${room.name} — after the fight`
+          : `${room.name} — another way`,
         prose: isFirst
-          ? prose
+          ? opts.prose
           : `You look again at ${room.name}. There are ways out of here you have not taken.`,
-        ...(isFirst && room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
-        art: isFirst ? `art-${room.id}` : `art-${room.id}-ways-${ci}`,
-        improvBudget: isFirst ? 6 : 3,
+        ...(isFirst && opts.carriesRoom && room.readAloud !== undefined
+          ? { readAloud: room.readAloud }
+          : {}),
+        art: isFirst
+          ? opts.carriesRoom
+            ? `art-${room.id}`
+            : `art-${opts.baseId}`
+          : `art-${opts.baseId}-ways-${ci}`,
+        improvBudget: isFirst && opts.carriesRoom ? 6 : 3,
+        ...(isFirst && opts.onEntry ? { onEntry: opts.onEntry } : {}),
+        ...(isFirst && opts.entryWhen ? { entryWhen: opts.entryWhen } : {}),
         options,
         terminal: false,
       } as Beat);
+    });
+
+    return opts.baseId;
+  };
+
+
+  for (const room of rooms) {
+    const exits = forward.get(room.id)!;
+    const prose = [
+      room.description,
+      ...room.npcs.map(
+        (n) => `NPC: ${n.name}${n.role ? ` — ${n.role}` : ''}${n.wants ? `; wants ${n.wants}` : ''}`,
+      ),
+    ].join('\n');
+
+    // --- an ending
+    if (room.isEnding) {
+      const guard = entryGuardFor(room);
+      beats.push({
+        id: room.id,
+        kind: 'ending',
+        title: room.name,
+        prose,
+        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: `art-${room.id}`,
+        improvBudget: 6,
+        options: [] as BeatOption[],
+        ...(guard ? { entryWhen: guard } : {}),
+        terminal: true,
+      } as Beat);
+      continue;
+    }
+
+    // --- a fight
+    if (room.encounter) {
+      const encounterId = `enc-${room.id}`;
+      const combatants = room.encounter.creatures.map((c, ci) => {
+        let statblock = matchStatblock(c.name);
+        if (!statblock) {
+          statblock = substituteStatblock(c.cr, c.type);
+          report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
+        }
+        return { id: `${room.id}-c${ci}`, statblock, count: Math.min(c.count, 8), hostile: true };
+      });
+
+      // Victory pushes the party ON, not back the way they came. `exits[0]`
+      // is very often the room they entered from — a real module's connection
+      // lists are bidirectional — and routing victory there made everything
+      // past the first fight unreachable.
+      const back = camefrom(room.id);
+      const onwardExits = exits.filter((exit) => exit !== back);
+
+      // Every fight gets an aftermath beat. Two reasons, and the second is
+      // the one that matters: a room that is both a fight and a junction
+      // cannot express its exits through onVictory/onDefeat/onFlee alone, and
+      // the aftermath is the only place that can honestly record that the
+      // fight is over.
+      const afterExits = onwardExits.length > 0 ? onwardExits : back ? [back] : [];
+      const onward = emitChoiceBeats(room, afterExits, {
+        baseId: `${room.id}-after`,
+        carriesRoom: false,
+        prose: `The last of them stops moving. ${room.name} is yours, for now.`,
+        kind: 'discovery',
+        onEntry: [{ flag: clearedFlag(room.id), value: true }],
+      });
+
+      // Walking back into a room you have already cleared should find it
+      // empty, not full of the same monsters again. A published module's
+      // connections are bidirectional, so without this the party can grind
+      // the first fight forever — which is exactly what happened on the
+      // first real module put through this pipeline.
+      {
+        edges.push({
+          from: room.id,
+          to: onward,
+          when: { op: 'set', flag: clearedFlag(room.id) },
+          note: `${room.name} has already been cleared`,
+        });
+      }
+
+      const retreat = back ?? onward;
+      encounters.push({
+        id: encounterId,
+        title: room.name,
+        combatants,
+        terrain: [],
+        victory: { kind: 'defeat-all' },
+        onVictory: onward,
+        onDefeat: retreat,
+        onFlee: retreat,
+      } as Encounter);
+
+      beats.push({
+        id: room.id,
+        kind: 'conflict',
+        title: room.name,
+        prose,
+        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: `art-${room.id}`,
+        improvBudget: 6,
+        options: [] as BeatOption[],
+        encounter: encounterId,
+        ...(entryGuardFor(room) ? { entryWhen: entryGuardFor(room) } : {}),
+        terminal: false,
+      } as Beat);
+      continue;
+    }
+
+    // --- an ordinary room, possibly a hub
+    emitChoiceBeats(room, exits, {
+      baseId: room.id,
+      carriesRoom: true,
+      prose,
+      kind: room.id === entryId ? 'threshold' : 'discovery',
+      ...(requiredRooms.has(room.id)
+        ? { onEntry: [{ flag: visitedFlag(room.id), value: true }] }
+        : {}),
+      ...(entryGuardFor(room) ? { entryWhen: entryGuardFor(room) } : {}),
     });
   }
 
@@ -424,11 +582,11 @@ export function mapModuleToGraph(moduleInput: unknown): {
     },
     entry: entryId,
     beats,
-    // Edges carry transitions no option owns — timed events, triggered
-    // consequences. Extraction produces none of those today, and inventing
-    // them here would be the mapper writing content. Empty until the IR
-    // carries something real to put in it.
-    edges: [],
+    // Edges carry transitions no option owns. The one the mapper can derive
+    // honestly is "this fight is already over" — everything else a module
+    // triggers on state lives in prose the IR does not capture, and inventing
+    // it here would be the mapper writing content.
+    edges,
     encounters,
   };
 

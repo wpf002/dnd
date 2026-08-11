@@ -298,3 +298,107 @@ describe('full playthrough to each ending', () => {
     expect(s.currentBeat).toBe('ending-silence');
   });
 });
+
+describe('edges and entryWhen actually run', () => {
+  /**
+   * Both were declared in the schema and enumerated by the linter from the
+   * start, and neither was ever evaluated in play. An authored ending guarded
+   * on a flag was silently reachable, and a graph could not express "this
+   * fight is already over" at all.
+   */
+  function guardedGraph() {
+    const opt = (id: string, target: string, extra: object = {}) => ({
+      id,
+      label: id,
+      target,
+      ...extra,
+    });
+    return {
+      id: 'guarded',
+      schemaVersion: 1,
+      metadata: {
+        title: 'Guarded',
+        premise: 'A premise with a central conflict.',
+        tone: ['mystery'],
+        partyLevel: 3,
+        narrationVoice: 'Neutral.',
+      },
+      entry: 'start',
+      beats: [
+        {
+          id: 'start',
+          kind: 'threshold',
+          title: 'Start',
+          prose: 'Begin.',
+          art: 'art-start',
+          options: [
+            opt('to-locked', 'locked'),
+            opt('to-open', 'opener', { effects: [{ flag: 'key', value: true }] }),
+            opt('to-shortcut', 'shortcut'),
+          ],
+        },
+        {
+          id: 'opener',
+          kind: 'discovery',
+          title: 'Opener',
+          prose: 'You take the key.',
+          art: 'art-opener',
+          options: [opt('back', 'start'), opt('on', 'locked'), opt('sit', 'shortcut')],
+        },
+        {
+          id: 'locked',
+          kind: 'ending',
+          title: 'Locked',
+          prose: 'It opens.',
+          art: 'art-locked',
+          terminal: true,
+          entryWhen: { op: 'set', flag: 'key' },
+          options: [],
+        },
+        {
+          id: 'shortcut',
+          kind: 'discovery',
+          title: 'Shortcut',
+          prose: 'A side room.',
+          art: 'art-shortcut',
+          options: [opt('a', 'start'), opt('b', 'opener'), opt('c', 'locked')],
+        },
+        {
+          id: 'redirected',
+          kind: 'ending',
+          title: 'Redirected',
+          prose: 'Elsewhere.',
+          art: 'art-redirected',
+          terminal: true,
+          options: [],
+        },
+      ],
+      edges: [{ from: 'shortcut', to: 'redirected', when: { op: 'set', flag: 'key' } }],
+      encounters: [],
+    };
+  }
+
+  it('hides an option whose target is not enterable', () => {
+    const s = createSession(guardedGraph(), 'guard-1');
+    // 'locked' needs the key, which the party does not have yet.
+    expect(visibleOptions(s).map((o) => o.id)).toEqual(['to-open', 'to-shortcut']);
+
+    chooseOption(s, 'to-open'); // picks up the key
+    chooseOption(s, 'back');
+    expect(visibleOptions(s).map((o) => o.id)).toContain('to-locked');
+  });
+
+  it('follows an edge on entry when its guard holds', () => {
+    const s = createSession(guardedGraph(), 'guard-2');
+    chooseOption(s, 'to-shortcut');
+    expect(s.currentBeat).toBe('shortcut'); // no key yet, no redirect
+    expect(s.ended).toBe(false);
+
+    const s2 = createSession(guardedGraph(), 'guard-3');
+    chooseOption(s2, 'to-open'); // key
+    chooseOption(s2, 'sit'); // aims at 'shortcut'
+    // The edge fires on entry and carries the party somewhere else entirely.
+    expect(s2.currentBeat).toBe('redirected');
+    expect(s2.ended).toBe(true);
+  });
+});

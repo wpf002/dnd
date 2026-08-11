@@ -239,6 +239,9 @@ describe('the full pipeline with a scripted extractor', () => {
     const event = telemetry.events.find((e) => e.type === 'ingestion')!;
     expect(event.outcome).toBe('pass');
     expect(event.rooms).toBe(5);
+    // Beats exceed rooms: every fight gets an aftermath beat so that winning
+    // it can be recorded and the room's other exits stay reachable.
+    expect(event.beats).toBe(7);
   });
 
   it('a chaptered module comes out as a campaign, not one compressed graph', async () => {

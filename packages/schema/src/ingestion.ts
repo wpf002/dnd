@@ -19,8 +19,27 @@ import { Id, Level } from './primitives.js';
  */
 
 export const IngestedEncounter = z.object({
-  /** Free-text creature names as printed; mapped to SRD statblocks later. */
-  creatures: z.array(z.object({ name: z.string(), count: z.number().int().min(1).max(20) })).min(1),
+  /**
+   * Creatures as printed. Names are free text and mapped to SRD statblocks
+   * later; `cr` and `type` are what make that mapping survivable when the
+   * name has no SRD equivalent.
+   *
+   * Without them every unmatched creature fell back to one fixed statblock,
+   * so a module's giant centipedes and its fire spider both became bandits —
+   * which fails "recognizably itself" long before anyone reads the prose.
+   */
+  creatures: z
+    .array(
+      z.object({
+        name: z.string(),
+        count: z.number().int().min(1).max(20),
+        /** Challenge rating as printed. 1/4 is 0.25. */
+        cr: z.number().min(0).max(30).optional(),
+        /** beast, humanoid, undead, monstrosity, construct, giant, … */
+        type: z.string().optional(),
+      }),
+    )
+    .min(1),
   setup: z.string().optional(),
 });
 export type IngestedEncounter = z.infer<typeof IngestedEncounter>;
@@ -45,6 +64,17 @@ export const IngestedRoom = z.object({
   npcs: z.array(IngestedNpc).default([]),
   /** Marks a plausible conclusion point of the module. */
   isEnding: z.boolean().default(false),
+  /**
+   * Areas that must be dealt with before this one can be entered.
+   *
+   * Modules state this constantly — a conclusion the party can only reach
+   * once the job is actually done, a door that opens when the seal is broken.
+   * Without it the mapper wires the conclusion as just another exit, and the
+   * whole dungeon becomes optional: the first real module through this
+   * pipeline could be finished by killing the rats in the entry room and
+   * walking back out.
+   */
+  requires: z.array(Id).default([]),
 });
 export type IngestedRoom = z.infer<typeof IngestedRoom>;
 

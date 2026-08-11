@@ -15,6 +15,27 @@ const LONG_REQUEST_TOKEN_THRESHOLD = 8192;
  * This package is never bundled into `apps/web` (invariant 4), and it holds
  * no client instance at module scope so tests can run credential-free.
  */
+/**
+ * Models that reject `temperature` outright.
+ *
+ * Sampling parameters are deprecated on the Claude 5 family and on Opus 4.7+;
+ * sending one is a 400, not a warning. Sending it anyway cost a live ingest
+ * run: `temperature` is deprecated for this model.
+ *
+ * Kept as an explicit list rather than a catch-all so that adding a model is a
+ * deliberate act. A model absent from this list still gets whatever the
+ * consumer configured, which is the right default for the older ones where
+ * temperature genuinely controls determinism.
+ */
+const SAMPLING_UNSUPPORTED = [
+  /^claude-(?:opus|sonnet|fable|mythos)-5/,
+  /^claude-opus-4-(?:7|8)/,
+];
+
+function acceptsTemperature(model: string): boolean {
+  return !SAMPLING_UNSUPPORTED.some((pattern) => pattern.test(model));
+}
+
 export class AnthropicAdapter implements ProviderAdapter {
   readonly id = 'anthropic';
 
@@ -32,7 +53,9 @@ export class AnthropicAdapter implements ProviderAdapter {
     const stream = client.messages.stream({
       model: request.config.model,
       max_tokens: request.config.maxTokens,
-      temperature: request.config.temperature,
+      ...(acceptsTemperature(request.config.model)
+        ? { temperature: request.config.temperature }
+        : {}),
       system,
       messages: [{ role: 'user', content: request.input }],
     });
@@ -63,7 +86,9 @@ export class AnthropicAdapter implements ProviderAdapter {
     const params = {
       model: request.config.model,
       max_tokens: request.config.maxTokens,
-      temperature: request.config.temperature,
+      ...(acceptsTemperature(request.config.model)
+        ? { temperature: request.config.temperature }
+        : {}),
       system,
       messages: [{ role: 'user', content: request.input }],
     } satisfies Anthropic.MessageCreateParamsNonStreaming;
