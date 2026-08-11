@@ -125,23 +125,45 @@ export function checkSolvability(graph: BeatGraph, level = 3): Finding[] {
     }
     if (unknown || monsterHpTotal === 0) continue;
 
-    // Survive-N-rounds and escape encounters are winnable by definition of
-    // their victory condition; only attrition-style conditions get the math.
-    if (enc.victory.kind === 'escape' || enc.victory.kind === 'survive-rounds') continue;
+    // The kill-race only models a fight the party has to win by killing.
+    //
+    // `destroy` needs one target dead, not the room; racing the room's total
+    // HP called five shipped encounters unwinnable that are won by breaking a
+    // single idol. Everything else — escape, survive, reach a place, protect
+    // someone, set a flag — is won without killing at all.
+    let hpToBeat = monsterHpTotal;
+    // Hoisted so the narrowing survives into the callback below.
+    const victory = enc.victory;
+    if (victory.kind === 'destroy') {
+      const target = enc.combatants.find((c) => c.id === victory.target);
+      if (!target) continue;
+      const statblock = (MONSTERS as Record<string, MonsterInput>)[target.statblock];
+      if (!statblock) continue;
+      hpToBeat = (target.hpOverride ?? statblock.hp) * target.count;
+    } else if (victory.kind !== 'defeat-all') {
+      continue;
+    }
 
-    const roundsToKill = monsterHpTotal / Math.max(1, partyDpr(maxAc, level));
+    const roundsToKill = hpToBeat / Math.max(1, partyDpr(maxAc, level));
     const roundsToDie = partyEffectiveHp(level) / Math.max(1, monsterDprTotal);
 
-    // Hopeless threshold: the party dies twice over before the encounter is
-    // half dead. Deadly-but-possible passes; mathematically absurd does not.
-    if (roundsToDie * 2 < roundsToKill * 0.5) {
+    // If the party is expected to fall before the encounter does, it is not a
+    // hard fight, it is a loss — and an ingested module routes a loss straight
+    // back to the fight, so the party grinds it forever.
+    //
+    // The old threshold fired only when the party died four times over, which
+    // let through a real module's seven-on-four fight the party lost every
+    // single time. Across all 79 shipped adventures the worst defeat-all
+    // encounter sits at 0.81, so 1.0 separates cleanly without touching them.
+    if (roundsToKill > roundsToDie) {
       findings.push({
         severity: 'error',
         code: 'encounter-unwinnable',
         message:
-          `encounter '${enc.id}' is mathematically unwinnable for a level-${level} party: ` +
-          `~${roundsToKill.toFixed(1)} rounds to defeat it vs ~${roundsToDie.toFixed(1)} rounds until a party wipe. ` +
-          `Reduce combatant count/HP, lower the CR mix, or change the victory condition to escape/survive`,
+          `encounter '${enc.id}' is unwinnable for a level-${level} party: ` +
+          `~${roundsToKill.toFixed(1)} rounds to defeat it, but only ~${roundsToDie.toFixed(1)} rounds ` +
+          `until a party wipe — they fall first, every time. Reduce combatant count/HP, lower the ` +
+          `CR mix, or change the victory condition to escape/survive`,
         at: enc.id,
       });
     }

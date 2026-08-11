@@ -111,6 +111,16 @@ export async function ingestModule(
         `equivalent be replaced by something of the right shape and difficulty`,
         `instead of a fixed stand-in.`,
         ``,
+        `Set each creature's "role": "ally" for anyone fighting alongside the party,`,
+        `"noncombatant" for bystanders, "enemy" otherwise. Modules list allies in the`,
+        `same statblock block as the monsters and mark them only in prose.`,
+        ``,
+        `Set the encounter's "victory" to how the module says it ends: "escape" when`,
+        `the party is meant to get away or avoid it, "survive-rounds" (with "rounds")`,
+        `when they must hold out, "defeat-all" only when the text really expects`,
+        `every enemy dead. Assuming a fight to the death makes encounters the party`,
+        `was never meant to win.`,
+        ``,
         `"connections" is the module's real map: list EVERY area a room leads to,`,
         `including ways back. Do not trim it to three and do not order it to suit a`,
         `linear reading — hubs, loops, and dead ends are all preserved downstream,`,
@@ -193,14 +203,19 @@ function ingestChaptered(moduleValue: unknown, telemetry: Telemetry): IngestResu
   const warnings: string[] = [];
 
   const resolved = new Map<string, unknown>();
+  // Books that fail their own lint are named, so the campaign check can say
+  // "exists but is broken" rather than sending the reader to look for a file
+  // that is sitting right there.
+  const broken = new Set<string>();
   for (const adventure of adventures) {
     const lint = lintGraph(adventure.graph);
-    if (lint.ok) resolved.set(adventure.id, adventure.graph);
+    resolved.set(adventure.id, adventure.graph);
+    if (!lint.ok) broken.add(adventure.id);
     for (const finding of lint.errors) errors.push(`${adventure.id}: ${finding.message}`);
     for (const finding of lint.warnings) warnings.push(`${adventure.id}: ${finding.message}`);
   }
 
-  const campaignLint = lintCampaign(campaign, resolved);
+  const campaignLint = lintCampaign(campaign, resolved, broken);
   for (const finding of campaignLint.errors) errors.push(`campaign: ${finding.message}`);
   for (const finding of campaignLint.warnings) warnings.push(`campaign: ${finding.message}`);
 

@@ -41,7 +41,9 @@ export function lintGraph(input: unknown): LintResult {
   const findings: Finding[] = [
     ...checkReachability(graph),
     ...checkFlags(graph),
-    ...checkSolvability(graph),
+    // The graph declares the level it is written for; using a fixed 3 reported
+    // a level-1 chapter's encounter as unwinnable "for a level-3 party".
+    ...checkSolvability(graph, graph.metadata.partyLevel),
     ...checkQuality(graph),
     ...checkEndingDistance(graph),
   ];
@@ -65,6 +67,12 @@ export function lintGraph(input: unknown): LintResult {
 export function lintCampaign(
   input: unknown,
   adventures?: ReadonlyMap<string, unknown>,
+  /**
+   * Adventure ids the caller already knows are broken. Merged with the ones
+   * that fail to parse here, so a book pointing at a graph that exists but
+   * does not lint is told so, instead of being told the file is missing.
+   */
+  brokenAdventures?: ReadonlySet<string>,
 ): LintResult {
   const parsed = CampaignGraph.safeParse(input);
   if (!parsed.success) {
@@ -80,13 +88,16 @@ export function lintCampaign(
   // A malformed graph is `lintGraph`'s finding to report, not this one's; here
   // it simply counts as unresolved.
   let resolved: Map<string, BeatGraph> | undefined;
+  const unlinted = new Set<string>(brokenAdventures ?? []);
   if (adventures) {
     resolved = new Map();
     for (const [id, value] of adventures) {
+      if (unlinted.has(id)) continue;
       const graph = BeatGraph.safeParse(value);
       if (graph.success) resolved.set(id, graph.data);
+      else unlinted.add(id);
     }
   }
 
-  return toResult(checkCampaign(parsed.data, resolved));
+  return toResult(checkCampaign(parsed.data, resolved, unlinted));
 }

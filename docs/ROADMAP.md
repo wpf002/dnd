@@ -53,7 +53,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion — research spike | — | done, research-grade |
 | 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
-| 7 | **Published modules, playable** | v5 — long-document extraction | first real module plays; chapters untested |
+| 7 | **Published modules, playable** | v5 — long-document extraction | done — two real modules play |
 
 Phases 6 and 7 are the two things the library does *not* deliver. Read the
 next section before assuming otherwise.
@@ -572,8 +572,9 @@ owns. Its text and everything derived from it stay in gitignored directories.
   exercised.
 - ✅ **Branching survives.** Choosing the Lab reaches two beats the Well Room
   choice never sees, and the reverse.
-- ❌ **Chapters map to books with the module's own level progression.** Built
-  and unit-tested, never run against a real multi-chapter module.
+- ✅ **Chapters map to books with the module's own level progression.**
+  *Battle for Critter Vale* (64 pages, three chapters) ingests to a three-book
+  campaign that plays end to end, levelling 1 → 2 → 3 → 4 in 88 turns.
 - ✅ **A blind read is identifiably that module.** Glowkindle, the Beer Cellar,
   the Mosaic Corridor, the Well Room, read-aloud text verbatim.
 
@@ -593,13 +594,40 @@ Every one of these was invisible until actual published text went through:
 - chunked extraction reused a 32k-token config per section and was unusably
   slow
 
+### What the second module found
+
+A 64-page chaptered book found a further set, none of which the first module
+could have:
+
+- pdftotext repeats a chapter's name on every page, so one chapter became a
+  dozen sections — 61 sections from 64 pages
+- the keyed-area pattern matched ordinary numbered lists and table rows
+- a chapter that continues has no ending of its own; requiring a terminal beat
+  per book failed two of three books. Non-final chapters now get a hand-off
+  built from the connections that left the chapter
+- sequential extraction cannot make forward references, so a junction lost the
+  exits described in later sections. A second linking pass fixes it
+- allies and bystanders live in the same statblock list as the monsters,
+  marked only in prose — every one of them came out hostile, and the party's
+  own pixie ranger fought them
+- not every fight is to the death; the IR could only say `defeat-all`, which
+  made an avoidable weasel den a required massacre
+- the solvability threshold only fired when the party died four times over. A
+  fight the party loses every single time passed. Retuned to "the party falls
+  first" (shipped content's worst case is 0.81; the failing fight was 1.12)
+- `destroy` and `reach-location` encounters were being raced against the whole
+  room's hit points, which called five shipped encounters unwinnable
+
 ### Still open
 
 - A defeat has no ending in the module, so a party that keeps losing the same
-  fight loops. A total party kill now ends the session; short of that, walking
+  fight loops. A total party kill ends the session; short of that, walking
   back into a losing fight is the player's own affair.
-- Chapters → books is unexercised against real material.
-- Long-document extraction is unexercised against a real book-length source.
+- Extraction misreads party-size scaling tables — a "4 PCs: Adult ×1, Cubs ×2"
+  column came through as six cubs. Repairable in the IR, but the IR has no way
+  to express "scales with party size".
+- Skill challenges have no representation at all. The weasel den is a DC 13
+  group Stealth check in the module; the IR can only say there is a fight.
 
 ### Honest assessment
 

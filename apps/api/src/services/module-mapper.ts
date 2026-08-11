@@ -509,14 +509,24 @@ export function mapModuleToGraph(moduleInput: unknown): {
     // --- a fight
     if (room.encounter) {
       const encounterId = `enc-${room.id}`;
-      const combatants = room.encounter.creatures.map((c, ci) => {
-        let statblock = matchStatblock(c.name);
-        if (!statblock) {
-          statblock = substituteStatblock(c.cr, c.type);
-          report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
-        }
-        return { id: `${room.id}-c${ci}`, statblock, count: Math.min(c.count, 8), hostile: true };
-      });
+      const combatants = room.encounter.creatures
+        // Bystanders are not combatants. Putting a non-combatant snail on the
+        // battle map as a creature to be killed is worse than leaving it to
+        // the prose, which still describes it.
+        .filter((c) => c.role !== 'noncombatant')
+        .map((c, ci) => {
+          let statblock = matchStatblock(c.name);
+          if (!statblock) {
+            statblock = substituteStatblock(c.cr, c.type);
+            report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
+          }
+          return {
+            id: `${room.id}-c${ci}`,
+            statblock,
+            count: Math.min(c.count, 8),
+            hostile: c.role !== 'ally',
+          };
+        });
 
       // Victory pushes the party ON, not back the way they came. `exits[0]`
       // is very often the room they entered from — a real module's connection
@@ -562,7 +572,12 @@ export function mapModuleToGraph(moduleInput: unknown): {
         title: room.name,
         combatants,
         terrain: [],
-        victory: { kind: 'defeat-all' },
+        victory:
+          room.encounter.victory === 'escape'
+            ? { kind: 'escape' }
+            : room.encounter.victory === 'survive-rounds'
+              ? { kind: 'survive-rounds', rounds: room.encounter.rounds ?? 3 }
+              : { kind: 'defeat-all' },
         onVictory: onward,
         onDefeat: retreat,
         onFlee: retreat,
@@ -647,7 +662,10 @@ export interface CampaignMappingReport {
    * party goes next is the campaign's business, not the beat's.
    */
   crossChapterExits: Array<{ chapter: string; room: string; target: string; targetChapter: string }>;
-  /** Chapters with no ending room. Their graphs will fail the linter, by design. */
+  /**
+   * Chapters with no ending of their own. Every one but the last gets a
+   * synthetic hand-off beat; the last is a real problem and stays reported.
+   */
   chaptersWithoutEndings: string[];
   /** Rooms in no chapter at all. Extraction dropped them on the floor. */
   orphanedRooms: string[];
@@ -737,7 +755,45 @@ export function mapModuleToCampaign(moduleInput: unknown): {
         return { ...room, connections: kept };
       });
 
-    if (!chapterRooms.some((r) => r.isEnding)) report.chaptersWithoutEndings.push(chapter.id);
+    // A chapter that continues into the next one has no ending of its own —
+    // it hands off. That is not a defect in the module, it is what a chapter
+    // IS, and requiring a terminal beat per book made the first real
+    // multi-chapter ingest fail on two of its three books.
+    //
+    // The hand-off is built from the connections that left the chapter, which
+    // were already being detected and thrown away: the rooms that pointed
+    // onward are exactly where the story moves on.
+    const isLast = chapter.id === chapters[chapters.length - 1]!.id;
+    const needsHandoff = !chapterRooms.some((r) => r.isEnding);
+    if (needsHandoff) report.chaptersWithoutEndings.push(chapter.id);
+
+    if (needsHandoff && !isLast) {
+      const handoffId = `${slug(chapter.id)}-ends`;
+      const departures = new Set(
+        report.crossChapterExits.filter((x) => x.chapter === chapter.id).map((x) => x.room),
+      );
+      // Nothing pointed onward: the chapter's last-described area is the
+      // hand-off point, which is the best the text supports.
+      if (departures.size === 0 && chapterRooms.length > 0) {
+        departures.add(chapterRooms[chapterRooms.length - 1]!.id);
+      }
+      for (const room of chapterRooms) {
+        if (departures.has(room.id) && !room.connections.includes(handoffId)) {
+          room.connections.push(handoffId);
+        }
+      }
+      chapterRooms.push({
+        id: handoffId,
+        name: `${chapter.title} — the story moves on`,
+        description:
+          `The party's part in ${chapter.title} is finished. What happens next belongs to the ` +
+          `chapter that follows.`,
+        connections: [] as string[],
+        npcs: [],
+        isEnding: true,
+        requires: [] as string[],
+      } as IngestedRoom);
+    }
 
     const { graph, report: chapterReport } = mapModuleToGraph({
       title: chapter.title,

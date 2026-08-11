@@ -223,7 +223,7 @@ describe('adventure resolution', () => {
 
 describe('per-band solvability', () => {
   it('re-checks encounters at the level the book is played at', () => {
-    // An encounter that a level-15 party handles easily is hopeless at 1.
+    // Eight ogres: a level-17 party walks through them, a level-5 party does not.
     const deadly = adventure('adv-deadly') as ReturnType<typeof adventure> & {
       beats: { encounter?: string; kind: string; options: unknown[] }[];
       encounters: unknown[];
@@ -235,7 +235,7 @@ describe('per-band solvability', () => {
       {
         id: 'swarm',
         title: 'Overwhelming Swarm',
-        combatants: [{ statblock: 'ogre', id: 'o1', count: 20 }],
+        combatants: [{ statblock: 'ogre', id: 'o1', count: 8 }],
         victory: { kind: 'defeat-all' },
         onVictory: 'the-end',
         onDefeat: 'the-end',

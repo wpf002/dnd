@@ -65,6 +65,12 @@ function graphReads(graph: BeatGraph): Set<string> {
 export function checkCampaign(
   campaign: CampaignGraph,
   adventures?: ReadonlyMap<string, BeatGraph>,
+  /**
+   * Adventure ids that exist but did not pass their own lint. Without this the
+   * campaign reports them as missing, which sends the reader looking for a
+   * file that is sitting right there.
+   */
+  unlinted?: ReadonlySet<string>,
 ): Finding[] {
   const findings: Finding[] = [];
 
@@ -211,7 +217,9 @@ export function checkCampaign(
         findings.push({
           severity: 'error',
           code: 'book-adventure-missing',
-          message: `book '${book.id}' references adventure '${book.adventure}', which does not exist — add the graph to content/adventures/ or correct the id`,
+          message: unlinted?.has(book.adventure)
+            ? `book '${book.id}' references adventure '${book.adventure}', which exists but does not pass the linter — fix that adventure's own findings first`
+            : `book '${book.id}' references adventure '${book.adventure}', which does not exist — add the graph to content/adventures/ or correct the id`,
           at: book.id,
         });
         continue;

@@ -137,16 +137,36 @@ describe('what the mapper refuses to paper over', () => {
     expect(lintCampaign(campaign, resolved).errors.map((e) => e.code)).toContain('level-band-gap');
   });
 
-  it('reports a chapter with no ending rather than nominating one', () => {
+  it('hands a middle chapter off to the next instead of demanding an ending', () => {
+    // A chapter that continues has no ending of its own — that is what a
+    // chapter IS. Requiring a terminal beat per book failed two of the three
+    // books on the first real multi-chapter module.
     const module = chapteredModule();
     module.rooms[6]!.isEnding = false; // ch2 loses its only ending
 
     const { report, adventures } = mapModuleToCampaign(module);
     expect(report.chaptersWithoutEndings).toContain('ch2');
 
-    // And the book itself fails the linter, which is what hands it to repair.
     const ch2 = adventures.find((a) => a.id.endsWith('ch2'))!;
-    expect(lintGraph(ch2.graph).ok).toBe(false);
+    const lint = lintGraph(ch2.graph);
+    expect(lint.ok, lint.errors.map((e) => e.message).join('; ')).toBe(true);
+
+    const terminal = (ch2.graph as { beats: Array<{ id: string; terminal?: boolean }> }).beats.filter(
+      (b) => b.terminal,
+    );
+    expect(terminal.map((b) => b.id)).toEqual(['ch2-ends']);
+  });
+
+  it('still fails when the LAST chapter has no ending', () => {
+    // Nothing follows it, so there is nothing to hand off to. That is a real
+    // defect in the extraction and stays a lint failure.
+    const module = chapteredModule();
+    module.rooms[9]!.isEnding = false; // ch3 is last
+
+    const { report, adventures } = mapModuleToCampaign(module);
+    expect(report.chaptersWithoutEndings).toContain('ch3');
+    const ch3 = adventures.find((a) => a.id.endsWith('ch3'))!;
+    expect(lintGraph(ch3.graph).ok).toBe(false);
   });
 
   it('reports rooms that belong to no chapter', () => {

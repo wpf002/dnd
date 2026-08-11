@@ -37,10 +37,31 @@ export const IngestedEncounter = z.object({
         cr: z.number().min(0).max(30).optional(),
         /** beast, humanoid, undead, monstrosity, construct, giant, … */
         type: z.string().optional(),
+        /**
+         * Whose side they are on.
+         *
+         * Modules put allies and bystanders in the same statblock list as the
+         * monsters, marked only in prose — "(ally)", "(non-combatant)". With
+         * no way to say so, every one of them came out hostile, and a real
+         * module's friendly chipmunk archer, pixie ranger, and a snail were
+         * all set on the party they were supposed to be helping.
+         */
+        role: z.enum(['enemy', 'ally', 'noncombatant']).default('enemy'),
       }),
     )
     .min(1),
   setup: z.string().optional(),
+  /**
+   * How the encounter is won, as the module frames it.
+   *
+   * Not every fight is a fight to the death, and assuming so is how a real
+   * module's "avoid the weasel den or else fend them off" became a pack of
+   * predators that level-1 woodland critters were required to kill — which
+   * the solvability check correctly called impossible.
+   */
+  victory: z.enum(['defeat-all', 'escape', 'survive-rounds']).default('defeat-all'),
+  /** Rounds to survive, when `victory` is `survive-rounds`. */
+  rounds: z.number().int().min(1).max(20).optional(),
 });
 export type IngestedEncounter = z.infer<typeof IngestedEncounter>;
 
