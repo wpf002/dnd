@@ -53,7 +53,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion — research spike | — | done, research-grade |
 | 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
-| 7 | **Published modules, playable** | v5 — long-document extraction | open-ended |
+| 7 | **Published modules, playable** | v5 — long-document extraction | items 1–3 done; 4–5 and every exit criterion need module text |
 
 Phases 6 and 7 are the two things the library does *not* deliver. Read the
 next section before assuming otherwise.
@@ -502,25 +502,38 @@ chapters.
 
 ### What has to change
 
-**1. Topology.** The mapper produces a chain. Real modules are hub-and-spoke,
-looping, and non-linear. `Edge` + `Guard` already express this — the mapper
-simply does not use them. This is the single highest-value fix and it needs no
-schema change.
+**1. Topology.** ✅ Done. The mapper walked `module.rooms` in array order and
+padded every beat to three options by repeating the same target — a five-exit
+hub kept three, a ring came out a line, and two of every three "choices" were
+identical. Now every exit survives: a room with more than three is split
+across follow-on beats, rooms with fewer are padded with options that actually
+differ, and encounter outcomes route topologically instead of by array index.
+`apps/api/src/services/module-mapper.ts`.
 
-**2. Chapters become books.** A published campaign maps onto `CampaignGraph`
-from Phase 6, one book per chapter or act, with the module's own level bands.
-**This is why Phase 7 depends on Phase 6** — without it, every ingested module
-is compressed into one graph, which is the current failure.
+**2. Chapters become books.** ✅ Done. `IngestedModule` gained optional
+`chapters`; `mapModuleToCampaign` produces a `CampaignGraph` plus one
+`BeatGraph` per chapter, carrying the module's own printed level bands. Every
+book is linted individually and the campaign is linted with them resolved.
+Nothing is silently repaired: level bands that do not chain, chapters with no
+ending, rooms in no chapter, and connections leaving their chapter are each
+reported and left for the linter to reject.
 
-**3. Long-document extraction (Flint v5).** A campaign book is far beyond a
-single context window. Needs chunked extraction with a stable running index of
-areas, NPCs, and items, so chapter 14 can reference an NPC introduced in
-chapter 2.
+**3. Long-document extraction.** ✅ Done, untested against a real book.
+`apps/api/src/services/long-extract.ts` chunks on the module's own headings
+(never mid-paragraph, so read-aloud text stays verbatim), extracts each chunk
+separately, and merges. Every call carries a running index of the areas, NPCs,
+and chapters already found, so a later chapter connects back by id instead of
+inventing a near-duplicate. A failed chunk loses that section and is reported,
+rather than failing the run.
 
-**4. Human-in-the-loop repair.** Extraction will mangle things. The linter's
-error output is already human-legible; the missing piece is a review surface
-that shows the extracted graph beside the source text so mistakes are fixed
-before play rather than discovered mid-session.
+The constraint is the *output*, not the context window: three hundred rooms of
+read-aloud text will not come back complete and correct from one generation,
+and a single-call failure leaves nothing to keep.
+
+**4. Human-in-the-loop repair.** Not started. The data is now all there —
+`/ingest` returns the campaign, every book, every lint finding, and reports
+naming each room that was fanned out, padded, orphaned, merged, or renamed.
+What is missing is the surface that shows it beside the source text.
 
 **5. What a beat-graph still cannot express.** Some of a module is genuinely
 DM-improvisation-dependent — reactive factions, open exploration, table

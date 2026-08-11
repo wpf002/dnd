@@ -274,6 +274,88 @@ describe('the full pipeline with a scripted extractor', () => {
     expect(event.books).toBe(2);
   });
 
+  it('a long chaptered document extracts chunk by chunk and comes out a campaign', async () => {
+    // Three chapters, each padded past the long-module threshold so the
+    // pipeline takes the chunked path rather than the single-call one.
+    const filler = (label: string) => `${label} ${'The passage runs on. '.repeat(400)}`;
+    const text = [
+      'CHAPTER ONE',
+      '',
+      filler('The camp.'),
+      '',
+      'CHAPTER TWO',
+      '',
+      filler('Beneath the door.'),
+      '',
+      'CHAPTER THREE',
+      '',
+      filler('The throne.'),
+    ].join('\n');
+    expect(text.length).toBeGreaterThan(24_000);
+
+    /** Answers per chunk, and records the running index each call was given. */
+    class ChunkAdapter implements ProviderAdapter {
+      readonly id = 'anthropic';
+      calls: ProviderRequest[] = [];
+      private n = 0;
+      hasCredential(): boolean {
+        return true;
+      }
+      call(request: ProviderRequest): Promise<ProviderResponse> {
+        this.calls.push(request);
+        const payloads = [
+          {
+            rooms: [
+              { id: 'camp', name: 'Surface Camp', description: 'Tents in the salt.', connections: ['ch1-end'] },
+              { id: 'ch1-end', name: 'The Sealed Door', description: 'It stops here.', connections: [], isEnding: true },
+            ],
+            chapters: [{ id: 'ch1', title: 'Chapter One', levelStart: 1, levelEnd: 3, rooms: ['camp', 'ch1-end'] }],
+          },
+          {
+            rooms: [
+              { id: 'under-door', name: 'Beyond the Door', description: 'Through at last.', connections: ['ch2-end'] },
+              { id: 'ch2-end', name: 'The Drowned Stair', description: 'Water to the knee.', connections: [], isEnding: true },
+            ],
+            chapters: [{ id: 'ch2', title: 'Chapter Two', levelStart: 3, levelEnd: 5, rooms: ['under-door', 'ch2-end'] }],
+          },
+          {
+            rooms: [
+              { id: 'deep-hall', name: 'The Deep Hall', description: 'Pillars of salt.', connections: ['ch3-end'] },
+              { id: 'ch3-end', name: 'The Compact Broken', description: 'It ends here.', connections: [], isEnding: true },
+            ],
+            chapters: [{ id: 'ch3', title: 'Chapter Three', levelStart: 5, levelEnd: 8, rooms: ['deep-hall', 'ch3-end'] }],
+          },
+        ];
+        const payload = payloads[this.n] ?? { rooms: [], chapters: [] };
+        this.n++;
+        return Promise.resolve({
+          text: JSON.stringify(payload),
+          usage: { inputTokens: 1, outputTokens: 1 },
+          stopReason: 'end',
+        });
+      }
+    }
+
+    const adapter = new ChunkAdapter();
+    const telemetry = new MemoryTelemetry();
+    const result = await ingestModule(ingestFlint(adapter), telemetry, text);
+
+    // One call per chunk, not one call for the document.
+    expect(adapter.calls.length).toBeGreaterThanOrEqual(3);
+    expect(result.extractionReport!.chunks).toBeGreaterThanOrEqual(3);
+    expect(result.extractionReport!.failedChunks).toEqual([]);
+
+    // Later calls were told what earlier ones found — that is what lets a
+    // chapter connect back instead of inventing a duplicate.
+    expect(adapter.calls[1]!.input).toContain('camp');
+
+    // And it lands as a three-book campaign, every book linted.
+    expect(result.ok).toBe(true);
+    expect(result.campaign).toBeDefined();
+    expect(result.adventures).toHaveLength(3);
+    expect(result.lintErrors).toEqual([]);
+  });
+
   it('a lint failure still hands the candidate graph to the human repair pass', async () => {
     const broken = linearModule();
     // Ending unreachable: sever the hollow.

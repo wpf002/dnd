@@ -1,7 +1,8 @@
 import { BeatGraph } from '@lantern/schema';
-import { IngestedModule } from '@lantern/schema';
+import { IngestedFragment, IngestedModule } from '@lantern/schema';
 import { lintCampaign, lintGraph } from '@lantern/linter';
 import { callStructured, type Flint, type Telemetry } from '@lantern/flint';
+import { extractLongModule, renderIndex, type LongExtractReport } from './long-extract.js';
 import {
   mapModuleToCampaign,
   mapModuleToGraph,
@@ -54,13 +55,29 @@ export interface IngestResult {
   campaign?: unknown;
   adventures?: Array<{ id: string; graph: unknown }>;
   campaignReport?: CampaignMappingReport;
+
+  /** Set when the source was long enough to be extracted chunk by chunk. */
+  extractionReport?: LongExtractReport;
 }
+
+/**
+ * Above this, the module is extracted chunk by chunk instead of in one call.
+ *
+ * The limit is on the *output*, not the input: even with a million tokens of
+ * context, three hundred rooms of read-aloud text will not come back complete
+ * and correct from a single generation, and a failure leaves nothing to keep.
+ */
+const LONG_MODULE_CHARS = 24_000;
 
 export async function ingestModule(
   flint: Flint,
   telemetry: Telemetry,
   moduleText: string,
 ): Promise<IngestResult> {
+  if (moduleText.length > LONG_MODULE_CHARS) {
+    return ingestLong(flint, telemetry, moduleText);
+  }
+
   const extraction = await callStructured(flint, 'ingest', {
     schema: IngestedModule,
     schemaName: 'IngestedModule',
@@ -178,4 +195,108 @@ function ingestChaptered(moduleValue: unknown, telemetry: Telemetry): IngestResu
     lintWarnings: warnings,
     stage: ok ? 'done' : 'lint',
   };
+}
+
+/**
+ * The long path: chunk the document, extract each piece with a running index
+ * of everything already found, then map the assembled module as usual.
+ *
+ * The extraction report rides along with the result. A three-hundred-page
+ * book will not extract cleanly, and which chunks failed, which rooms were
+ * described twice, and which connections pointed at nothing are exactly what
+ * the repair pass needs.
+ */
+async function ingestLong(
+  flint: Flint,
+  telemetry: Telemetry,
+  moduleText: string,
+): Promise<IngestResult> {
+  const { module, report: extractionReport } = await extractLongModule(
+    moduleText,
+    'Untitled Module',
+    'Extracted from a long source document.',
+    async ({ chunk, index, total }) => {
+      const result = await callStructured(flint, 'ingest', {
+        schema: IngestedFragment,
+        schemaName: 'IngestedFragment',
+        maxRepairs: 1,
+        input: {
+          input: [
+            `Extract the areas of ONE SECTION of an adventure module — section`,
+            `${chunk.index + 1} of ${total}. Other sections are handled separately;`,
+            `extract only what is in front of you, and do not invent areas to fill`,
+            `gaps. A section with no areas at all (front matter, an appendix, a`,
+            `random encounter table) should return no rooms rather than inventing any.`,
+            ``,
+            `Preserve read-aloud text verbatim. Room ids must be kebab-case.`,
+            ``,
+            `"connections" is the module's real map: list EVERY area a room leads to,`,
+            `including ways back and areas named in an earlier section.`,
+            ``,
+            `If this section belongs to a chapter, act, or part, fill in "chapters"`,
+            `with that one entry and the level band the module prints for it.`,
+            ``,
+            `Set "title" and "summary" only if this section is the module's title page.`,
+            ``,
+            renderIndex(index),
+            ``,
+            `Section text:`,
+            chunk.text,
+          ].join('\n'),
+        },
+      });
+
+      if (!result.ok) {
+        return {
+          ok: false as const,
+          detail:
+            result.kind === 'call-failed'
+              ? (result.error?.message ?? 'provider call failed')
+              : result.issues.join('; '),
+        };
+      }
+      return { ok: true as const, value: IngestedFragment.parse(result.value) };
+    },
+  );
+
+  telemetry.record({
+    type: 'ingestion',
+    stage: 'extraction',
+    outcome: extractionReport.failedChunks.length === 0 ? 'pass' : 'partial',
+    chunks: extractionReport.chunks,
+    failedChunks: extractionReport.failedChunks.length,
+    rooms: extractionReport.rooms,
+  });
+
+  // Nothing usable came back. Say so rather than handing the mapper an empty
+  // module and letting it fail somewhere less legible.
+  const rooms = (module as { rooms: unknown[] }).rooms;
+  if (rooms.length < 2) {
+    return {
+      ok: false,
+      lintErrors: [],
+      lintWarnings: [],
+      stage: 'extraction',
+      extractionReport,
+      detail: `extracted ${rooms.length} areas from ${extractionReport.chunks} sections (${extractionReport.failedChunks.length} failed) — not enough to map`,
+    };
+  }
+
+  const chaptered = ((module as { chapters?: unknown[] }).chapters ?? []).length > 0;
+  const result = chaptered
+    ? ingestChaptered(module, telemetry)
+    : (() => {
+        const { graph, report } = mapModuleToGraph(module);
+        const lint = lintGraph(graph);
+        return {
+          ok: lint.ok,
+          graph: lint.ok ? BeatGraph.parse(graph) : graph,
+          report,
+          lintErrors: lint.errors.map((e) => e.message),
+          lintWarnings: lint.warnings.map((w) => w.message),
+          stage: lint.ok ? ('done' as const) : ('lint' as const),
+        };
+      })();
+
+  return { ...result, extractionReport };
 }

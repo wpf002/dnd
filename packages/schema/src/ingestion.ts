@@ -82,3 +82,20 @@ export const IngestedModule = z.object({
   chapters: z.array(IngestedChapter).max(12).optional(),
 });
 export type IngestedModule = z.infer<typeof IngestedModule>;
+
+/**
+ * One chunk's worth of extraction, for a document too long to do in one call.
+ *
+ * Everything is optional because a chunk may legitimately contain no areas at
+ * all — front matter, an appendix, a table of random encounters. Requiring
+ * two rooms the way `IngestedModule` does would make the extractor invent
+ * them, which is the one thing worse than extracting nothing.
+ */
+export const IngestedFragment = z.object({
+  /** Set on whichever chunk carries the module's title page. */
+  title: z.string().optional(),
+  summary: z.string().optional(),
+  rooms: z.array(IngestedRoom).default([]),
+  chapters: z.array(IngestedChapter).default([]),
+});
+export type IngestedFragment = z.infer<typeof IngestedFragment>;
