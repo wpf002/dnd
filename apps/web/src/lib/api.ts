@@ -27,6 +27,8 @@ export interface PartyMemberView {
   slots?: { remaining: number[]; max: number[] };
   /** Prepared spells, so the client can offer the ones it can actually cast. */
   prepared?: string[];
+  /** What this character can cast right now — the API decides, not the client. */
+  castable?: { id: string; name: string; level: number; slot: number; kind: 'heal' | 'attack' }[];
 }
 
 export interface CombatView {

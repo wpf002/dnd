@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { PREGENS, PREGENS_LEVEL_1, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD } from '@lantern/srd';
+import { PREGENS, PREGENS_LEVEL_1, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD, PREGEN_CLERIC, SPELLS } from '@lantern/srd';
 import { levelUp, levelParty, sneakAttackDiceFor, spellSaveDc } from './advancement/index.js';
 import { proficiencyBonus } from './checks/index.js';
 import { resolveDeathSave } from './combat/index.js';
 import { applyHealing, applyRest } from './state/index.js';
+import { castAtTarget } from './spells/index.js';
 
 /**
  * Phase 6 exit criterion: levelling is correct and reproducible.
@@ -214,5 +215,88 @@ describe('death is permanent state, not a transient result', () => {
       }
     }
     expect(sawDeath, 'no seed in 200 produced a death — widen the search').toBe(true);
+  });
+});
+
+describe('casting at a target', () => {
+  /**
+   * Until this existed the wizard had fire-bolt, magic missile, sleep and
+   * burning hands prepared and no way to cast any of them: the only combat
+   * actions were attack, heal, and flee.
+   */
+  const goblin = { id: 'g1', ac: 15, hp: 7, abilities: { str: 8, dex: 14, con: 10, int: 10, wis: 8, cha: 8 } };
+  const wizard = PREGEN_WIZARD;
+
+  it('resolves an attack cantrip against AC and spends no slot', () => {
+    const before = wizard.spellcasting!.slotsRemaining;
+    const r = castAtTarget({ seed: 'bolt', caster: wizard, spell: SPELLS['fire-bolt'], slotLevel: 0, target: goblin });
+    expect(r.resolution.checkKind).toBe('attack-roll');
+    expect(r.caster.spellcasting!.slotsRemaining).toEqual(before); // cantrips are free
+  });
+
+  it('spends the slot a levelled spell was cast with', () => {
+    const r = castAtTarget({ seed: 'mm', caster: wizard, spell: SPELLS['magic-missile'], slotLevel: 1, target: goblin });
+    expect(r.caster.spellcasting!.slotsRemaining[1]).toBe(wizard.spellcasting!.slotsRemaining[1]! - 1);
+    // Magic missile does not roll to hit; it simply lands.
+    expect(r.resolution.checkKind).toBe('none');
+    expect(r.damage).toBeGreaterThan(0);
+  });
+
+  it('halves a save spell on a success and applies nothing on it', () => {
+    // Searched rather than assumed: the point is that whenever the target
+    // saves, damage is halved and no condition lands.
+    let sawSave = false;
+    for (let i = 0; i < 60 && !sawSave; i++) {
+      const r = castAtTarget({
+        seed: `burn-${i}`,
+        caster: wizard,
+        spell: SPELLS['burning-hands'],
+        slotLevel: 1,
+        target: goblin,
+      });
+      if (r.resolution.outcome === 'success') {
+        sawSave = true;
+        expect(r.condition).toBeUndefined();
+        expect(r.damage).toBeGreaterThan(0); // burning hands is half-on-save
+      }
+    }
+    expect(sawSave).toBe(true);
+  });
+
+  it('treats sleep as a pool of hit points, not damage', () => {
+    // 5d8 against a 7 hp goblin lands essentially always, and deals nothing.
+    const r = castAtTarget({ seed: 'zzz', caster: wizard, spell: SPELLS.sleep, slotLevel: 1, target: goblin });
+    expect(r.damage).toBe(0);
+    expect(r.condition).toBe('unconscious');
+
+    // Against something far tougher the same pool does nothing at all.
+    const ogre = { ...goblin, id: 'o1', hp: 59 };
+    const miss = castAtTarget({ seed: 'zzz', caster: wizard, spell: SPELLS.sleep, slotLevel: 1, target: ogre });
+    expect(miss.condition).toBeUndefined();
+  });
+
+  it('scales a cantrip with the caster level, not the slot', () => {
+    const low = castAtTarget({ seed: 's', caster: wizard, spell: SPELLS['fire-bolt'], slotLevel: 0, target: goblin });
+    const high = castAtTarget({
+      seed: 's',
+      caster: levelUp(wizard, 11).character,
+      spell: SPELLS['fire-bolt'],
+      slotLevel: 0,
+      target: goblin,
+    });
+    const dice = (r: typeof low) => r.resolution.effects.flatMap((e) => ('roll' in e && e.roll ? e.roll.dice : []));
+    // Same seed, more dice: 1d10 at level 3, 3d10 at level 11.
+    expect(dice(high).length).toBeGreaterThan(dice(low).length);
+  });
+
+  it('refuses a spell it cannot resolve rather than doing nothing', () => {
+    expect(() =>
+      castAtTarget({ seed: 'x', caster: wizard, spell: SPELLS['mage-hand'], slotLevel: 0, target: goblin }),
+    ).toThrow(/no effect/);
+    // The cleric HAS cure-wounds prepared, so this reaches the healing check
+    // rather than stopping at "not prepared".
+    expect(() =>
+      castAtTarget({ seed: 'x', caster: PREGEN_CLERIC, spell: SPELLS['cure-wounds'], slotLevel: 1, target: goblin }),
+    ).toThrow(/cast it on an ally/);
   });
 });

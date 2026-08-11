@@ -14,6 +14,7 @@ import {
   applyDamage,
   applyMutations,
   applyRest,
+  castAtTarget,
   castHealing,
   characterAttackModifiers,
   evaluateGuard,
@@ -546,9 +547,12 @@ export function combatAttack(session: GameSession, actorId: string, targetId: st
 }
 
 /**
- * Cast a healing spell. Works in and out of combat — a party that just lost a
- * fight needs to patch itself up before the next beat as much as it needs
- * healing mid-round.
+ * Cast a spell.
+ *
+ * The target decides which kind of casting this is: a party member means
+ * healing, a combatant in the current fight means an attack, a save, or a
+ * control effect. Healing works out of combat too — a party that just lost a
+ * fight patches itself up before the next beat.
  *
  * In combat this consumes the caster's turn, exactly like an attack.
  */
@@ -563,9 +567,6 @@ export function castSpell(
   if (!caster) throw new Error(`no such character '${casterId}'`);
   if (caster.hp <= 0 || caster.dead) throw new Error(`${casterId} cannot act`);
 
-  const target = session.party.find((p) => p.id === targetId);
-  if (!target) throw new Error(`no such target '${targetId}'`);
-
   const spell = (SPELLS as Record<string, SpellInput>)[spellId];
   if (!spell) throw new Error(`no such spell '${spellId}'`);
 
@@ -574,34 +575,54 @@ export function castSpell(
     if (currentId !== casterId) throw new Error(`it is not ${casterId}'s turn`);
   }
 
-  const result = castHealing({
-    seed: nextSeed(session),
-    caster,
-    spell,
-    target,
-    slotLevel: slotLevel ?? spell.level,
-  });
+  const ally = session.party.find((p) => p.id === targetId);
+  const monster = session.combat?.monsters.find((m) => m.combatantId === targetId);
+  if (!ally && !monster) throw new Error(`no such target '${targetId}'`);
 
-  session.party = session.party.map((p) =>
-    p.id === casterId ? result.caster : p.id === targetId ? result.target : p,
-  );
-  // Healing the caster themselves: both writes above target the same person,
-  // so re-apply the healed sheet on top of the spent one.
-  if (casterId === targetId) {
+  let resolution: Resolution;
+
+  if (monster) {
+    const statblock = (MONSTERS as Record<string, MonsterInput>)[monster.statblock]!;
+    const result = castAtTarget({
+      seed: nextSeed(session),
+      caster,
+      spell,
+      slotLevel: slotLevel ?? spell.level,
+      target: {
+        id: monster.combatantId,
+        ac: monster.ac,
+        hp: monster.hp,
+        abilities: statblock.abilities,
+      },
+    });
+    monster.hp = Math.max(0, monster.hp - result.damage);
+    session.party = session.party.map((p) => (p.id === casterId ? result.caster : p));
+    resolution = result.resolution;
+  } else {
+    const result = castHealing({
+      seed: nextSeed(session),
+      caster,
+      spell,
+      target: ally!,
+      slotLevel: slotLevel ?? spell.level,
+    });
     session.party = session.party.map((p) =>
-      p.id === casterId
-        ? { ...result.target, spellcasting: result.caster.spellcasting }
-        : p,
+      p.id === casterId ? result.caster : p.id === targetId ? result.target : p,
     );
+    // Healing yourself: both writes above target the same person, so re-apply
+    // the healed sheet on top of the spent one.
+    if (casterId === targetId) {
+      session.party = session.party.map((p) =>
+        p.id === casterId ? { ...result.target, spellcasting: result.caster.spellcasting } : p,
+      );
+    }
+    resolution = result.resolution;
   }
-  session.turns.push({ index: session.turns.length, resolution: result.resolution });
+
+  session.turns.push({ index: session.turns.length, resolution });
 
   if (!session.combat) {
-    return {
-      session,
-      resolutions: [result.resolution],
-      narration: [templateNarration(result.resolution)],
-    };
+    return { session, resolutions: [resolution], narration: [templateNarration(resolution)] };
   }
 
   session.combat.turnIndex = (session.combat.turnIndex + 1) % session.combat.order.length;
@@ -609,8 +630,8 @@ export function castSpell(
   const after = advanceMonsters(session);
   return {
     session,
-    resolutions: [result.resolution, ...after.resolutions],
-    narration: [templateNarration(result.resolution), ...after.narration],
+    resolutions: [resolution, ...after.resolutions],
+    narration: [templateNarration(resolution), ...after.narration],
   };
 }
 
@@ -631,6 +652,44 @@ function equippedWeapon(character: Character): WeaponInput {
 // ---------------------------------------------------------------------------
 // View model
 // ---------------------------------------------------------------------------
+
+export interface CastableSpell {
+  id: string;
+  name: string;
+  level: number;
+  /** Lowest slot that can pay for it. 0 for a cantrip. */
+  slot: number;
+  /** 'heal' targets an ally; 'attack' targets a combatant. */
+  kind: 'heal' | 'attack';
+}
+
+/** What a character can cast right now, given prepared spells and slots. */
+export function castableSpells(character: Character): CastableSpell[] {
+  const sc = character.spellcasting;
+  if (!sc) return [];
+  const out: CastableSpell[] = [];
+  for (const id of sc.prepared) {
+    const spell = (SPELLS as Record<string, SpellInput>)[id];
+    if (!spell) continue;
+    // Utility spells have no resolution at a target; offering them would be
+    // offering a button that throws.
+    if (!spell.damage && !spell.healing && !spell.appliesCondition) continue;
+
+    let slot = spell.level;
+    if (spell.level > 0) {
+      slot = sc.slotsRemaining.findIndex((n, level) => level >= spell.level && n > 0);
+      if (slot < 1) continue;
+    }
+    out.push({
+      id,
+      name: spell.name,
+      level: spell.level,
+      slot,
+      kind: spell.healing ? 'heal' : 'attack',
+    });
+  }
+  return out.sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
+}
 
 export function sessionView(session: GameSession) {
   const beat = beatById(session, session.currentBeat);
@@ -668,6 +727,12 @@ export function sessionView(session: GameSession) {
         ? { remaining: p.spellcasting.slotsRemaining, max: p.spellcasting.slotsMax }
         : undefined,
       prepared: p.spellcasting?.prepared,
+      /**
+       * Spells this character can cast at this moment, already filtered by
+       * slots and by what the engine can resolve. The client renders a list;
+       * it does not decide what is castable.
+       */
+      castable: castableSpells(p),
     })),
     combat: session.combat
       ? {

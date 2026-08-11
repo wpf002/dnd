@@ -253,27 +253,45 @@ export function Game() {
               </li>
             ))}
           </ul>
-          {/* Healing. Death is permanent, so picking a downed ally up is the
-              single most consequential action available in a fight. */}
-          {activePc &&
-            (() => {
-              const dying = party.find((p) => p.hp === 0 && !p.dead);
-              const spell = ['healing-word', 'cure-wounds'].find((id) =>
-                activePc.prepared?.includes(id),
-              );
-              const slot = activePc.slots?.remaining.findIndex((n, lvl) => lvl >= 1 && n > 0) ?? -1;
-              if (!dying || !spell || slot < 1) return null;
-              return (
-                <button
-                  disabled={busy}
-                  onClick={() => run(() => api.cast(state.id, activePc.id, spell, dying.id, slot))}
-                  className="w-full rounded-md border border-[var(--success)] p-2 text-sm font-semibold"
-                  style={{ color: 'var(--success)' }}
-                >
-                  Cast {spell.replace(/-/g, ' ')} on {dying.name.split(' ')[0]} (level {slot} slot)
-                </button>
-              );
-            })()}
+          {/* Spells. The API says what is castable; this only renders it and
+              picks a sensible default target — the weakest living enemy for an
+              attack, whoever is down for a heal. */}
+          {activePc && (activePc.castable?.length ?? 0) > 0 && (
+            <div className="space-y-1 border-t border-[var(--ink-line)] pt-2">
+              {activePc.castable!.map((spell) => {
+                const dying = party.find((p) => p.hp === 0 && !p.dead);
+                const hurt = [...party]
+                  .filter((p) => !p.dead && p.hp < p.hpMax)
+                  .sort((a, b) => a.hp - b.hp)[0];
+                const enemy = [...combat.monsters]
+                  .filter((m) => m.hp > 0)
+                  .sort((a, b) => a.hp - b.hp)[0];
+                const target = spell.kind === 'heal' ? (dying ?? hurt) : enemy;
+                if (!target) return null;
+                return (
+                  <button
+                    key={spell.id}
+                    disabled={busy}
+                    onClick={() =>
+                      run(() => api.cast(state.id, activePc.id, spell.id, target.id, spell.slot))
+                    }
+                    className="flex w-full items-baseline justify-between rounded-md border p-2 text-left text-sm"
+                    style={{
+                      borderColor: spell.kind === 'heal' ? 'var(--success)' : 'var(--ember)',
+                      color: spell.kind === 'heal' ? 'var(--success)' : 'var(--ember)',
+                    }}
+                  >
+                    <span>
+                      {spell.name} <span className="opacity-60">on {target.name.split(' ')[0]}</span>
+                    </span>
+                    <span className="text-[10px] uppercase tracking-wider opacity-60">
+                      {spell.level === 0 ? 'cantrip' : `level ${spell.slot} slot`}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <button
             disabled={busy}
