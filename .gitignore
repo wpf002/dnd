@@ -25,3 +25,6 @@ telemetry/*.ndjson
 # Generated art (CDN-hosted in prod)
 content/art/generated/
 work/
+
+# Ingested from modules the user owns. Never committed.
+content-local/

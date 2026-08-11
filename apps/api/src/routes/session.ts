@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { lintCampaign, lintGraph } from '@lantern/linter';
@@ -27,8 +27,46 @@ import { narrate } from '../services/narration.js';
  */
 
 const here = dirname(fileURLToPath(import.meta.url));
-const ADVENTURES_DIR = join(here, '..', '..', '..', '..', 'content', 'adventures');
-const CAMPAIGNS_DIR = join(here, '..', '..', '..', '..', 'content', 'campaigns');
+const REPO = join(here, '..', '..', '..', '..');
+
+/**
+ * Content lives in two places.
+ *
+ * `content/` is committed: authored and generated adventures, which are this
+ * project's own work. `content-local/` is gitignored, and is where anything
+ * ingested from a module the user owns goes — those are the user's materials,
+ * and the repo does not redistribute them (ROADMAP, Content and licensing).
+ *
+ * Both are read the same way and gated by the same linter. The split is about
+ * what gets committed, not about what is playable.
+ */
+const LOCAL_ROOT = process.env.LANTERN_LOCAL_CONTENT ?? join(REPO, 'content-local');
+const ADVENTURE_DIRS = [join(REPO, 'content', 'adventures'), join(LOCAL_ROOT, 'adventures')];
+const CAMPAIGN_DIRS = [join(REPO, 'content', 'campaigns'), join(LOCAL_ROOT, 'campaigns')];
+
+/** First directory containing `<id>.json`, or undefined. */
+function findContent(dirs: string[], id: string): string | undefined {
+  for (const dir of dirs) {
+    const path = join(dir, `${id}.json`);
+    if (existsSync(path)) return path;
+  }
+  return undefined;
+}
+
+/** Ids available across all the given directories, deduped, first wins. */
+function listContent(dirs: string[]): string[] {
+  const ids = new Set<string>();
+  for (const dir of dirs) {
+    try {
+      for (const file of readdirSync(dir)) {
+        if (file.endsWith('.json')) ids.add(file.replace(/\.json$/, ''));
+      }
+    } catch {
+      // A missing content-local is the normal case, not an error.
+    }
+  }
+  return [...ids].sort();
+}
 
 export const sessions = new Map<string, GameSession>();
 
@@ -58,7 +96,11 @@ export function loadGraph(adventureId: string): unknown {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(adventureId)) {
     throw Object.assign(new Error('invalid adventure id'), { statusCode: 400 });
   }
-  const raw = JSON.parse(readFileSync(join(ADVENTURES_DIR, `${adventureId}.json`), 'utf8'));
+  const path = findContent(ADVENTURE_DIRS, adventureId);
+  if (!path) {
+    throw Object.assign(new Error(`no adventure '${adventureId}'`), { statusCode: 404 });
+  }
+  const raw = JSON.parse(readFileSync(path, 'utf8'));
 
   // Invariant 6: the linter is the sole gate. Hand-authored content loads
   // through the exact same check generated content would.
@@ -83,7 +125,11 @@ export function loadCampaignGraph(campaignId: string): unknown {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(campaignId)) {
     throw Object.assign(new Error('invalid campaign id'), { statusCode: 400 });
   }
-  const raw = JSON.parse(readFileSync(join(CAMPAIGNS_DIR, `${campaignId}.json`), 'utf8')) as {
+  const campaignPath = findContent(CAMPAIGN_DIRS, campaignId);
+  if (!campaignPath) {
+    throw Object.assign(new Error(`no campaign '${campaignId}'`), { statusCode: 404 });
+  }
+  const raw = JSON.parse(readFileSync(campaignPath, 'utf8')) as {
     books?: Array<{ adventure: string }>;
   };
 
@@ -111,14 +157,7 @@ export function loadCampaignGraph(campaignId: string): unknown {
 }
 
 export function listCampaignGraphs(): string[] {
-  try {
-    return readdirSync(CAMPAIGNS_DIR)
-      .filter((f) => f.endsWith('.json'))
-      .map((f) => f.replace(/\.json$/, ''))
-      .sort();
-  } catch {
-    return [];
-  }
+  return listContent(CAMPAIGN_DIRS);
 }
 
 async function respond(outcome: TurnOutcome): Promise<object> {
@@ -140,13 +179,18 @@ export function registerSessionRoutes(app: FastifyInstance): void {
    * end up not noticing it broke.
    */
   app.get('/adventures', async () => {
-    const adventures = readdirSync(ADVENTURES_DIR)
-      .filter((f) => f.endsWith('.json'))
-      .map((f) => {
-        const id = f.replace(/\.json$/, '');
+    const adventures = listContent(ADVENTURE_DIRS)
+      .map((id) => {
         try {
           const g = loadGraph(id) as {
-            metadata: { title: string; premise: string; tone: string[]; partyLevel: number; tier?: string };
+            metadata: {
+              title: string;
+              premise: string;
+              tone: string[];
+              partyLevel: number;
+              tier?: string;
+              provenance?: string;
+            };
             beats: unknown[];
             encounters: unknown[];
           };
@@ -157,6 +201,7 @@ export function registerSessionRoutes(app: FastifyInstance): void {
             premise: g.metadata.premise,
             tone: g.metadata.tone,
             tier: g.metadata.tier ?? 'local',
+            provenance: g.metadata.provenance ?? 'authored',
             partyLevel: g.metadata.partyLevel,
             beats: g.beats.length,
             encounters: g.encounters.length,

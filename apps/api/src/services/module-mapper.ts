@@ -496,7 +496,10 @@ export function mapModuleToGraph(moduleInput: unknown): {
       const onward = emitChoiceBeats(room, afterExits, {
         baseId: `${room.id}-after`,
         carriesRoom: false,
-        prose: `The last of them stops moving. ${room.name} is yours, for now.`,
+        prose:
+          `The fighting is over. ${room.name} is yours for the moment` +
+          `${room.npcs.length > 0 ? `, and ${room.npcs.map((n) => n.name).join(' and ')} still here` : ''}.` +
+          `\n\n${room.description}`,
         kind: 'discovery',
         onEntry: [{ flag: clearedFlag(room.id), value: true }],
       });
@@ -575,7 +578,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
       title: module.title,
       premise: module.summary,
       tone: ['exploration'],
-      partyLevel: 3,
+      partyLevel: module.partyLevel,
       narrationVoice:
         'Faithful to the source module: descriptive, unhurried, keeping the original read-aloud text intact where it exists.',
       provenance: 'ingested',

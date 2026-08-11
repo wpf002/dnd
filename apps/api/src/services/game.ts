@@ -395,8 +395,15 @@ function finishCombat(session: GameSession, outcome: 'victory' | 'defeat' | 'fle
   const destination =
     outcome === 'victory' ? enc.onVictory : outcome === 'defeat' ? enc.onDefeat : (enc.onFlee ?? enc.onDefeat);
   if (outcome === 'defeat') {
-    // The party wakes wherever the graph says, at 1 HP — beaten, not erased.
-    // Anyone who actually died stays dead; defeat is not a reset button.
+    // Everyone dead is the end of the story, whatever the graph says next.
+    // An adventure ingested from a module has no defeat ending — modules do
+    // not write one — so without this the session has nowhere to stop.
+    if (session.party.every((p) => p.dead)) {
+      session.ended = true;
+      return { session, resolutions: [], narration: ['The party does not rise again.'] };
+    }
+    // Otherwise the party wakes wherever the graph says, at 1 HP — beaten,
+    // not erased. Anyone who actually died stays dead; defeat is not a reset.
     session.party = session.party.map((p) =>
       p.hp <= 0 && !p.dead
         ? { ...p, hp: 1, deathSaveSuccesses: 0, deathSaveFailures: 0, conditions: [] }

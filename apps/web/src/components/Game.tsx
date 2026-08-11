@@ -496,6 +496,11 @@ function StartScreen({
                   </span>
                   {a.playable ? (
                     <span className="shrink-0 text-xs text-[var(--muted)]">
+                      {a.provenance === 'ingested' && (
+                        <span className="mr-2" style={{ color: 'var(--ember)' }}>
+                          ingested
+                        </span>
+                      )}
                       lvl {a.partyLevel} · {a.beats} beats · {a.endings} endings
                     </span>
                   ) : (

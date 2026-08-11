@@ -2,7 +2,7 @@
 /**
  * Ingest a module you own, from a text file.
  *
- *   node tools/ingest-module.mjs <file.txt> [--out work/<name>] [--map-only]
+ *   node tools/ingest-module.mjs <file.txt> [--out work/<name>] [--map-only] [--install]
  *
  * Writes everything to a working directory rather than into content/:
  *
@@ -11,9 +11,11 @@
  *   books/*.json     one BeatGraph per chapter (or one adventure)
  *   report.json      what the mapper did to each room, plus lint findings
  *
- * Nothing lands in content/ automatically. Moving a book there is a deliberate
- * step, because these are the user's own materials and the repo does not
- * redistribute them — see Content and licensing in docs/ROADMAP.md.
+ * Nothing lands in content/ automatically — that directory is committed, and
+ * these are the user's own materials which the repo does not redistribute.
+ * `--install` copies the linted result into content-local/, which is
+ * gitignored and which the API reads alongside content/. That is what makes
+ * an ingested module playable in the app.
  *
  * The repair loop:
  *   1. run this once (one model call per chunk — this is the part that costs)
@@ -32,6 +34,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith('--'));
 const mapOnly = args.includes('--map-only');
+const install = args.includes('--install');
 const outFlag = args.indexOf('--out');
 if (!file) {
   console.error('usage: node tools/ingest-module.mjs <file.txt> [--out dir] [--map-only]');
@@ -119,6 +122,28 @@ console.log(`\n${result.ok ? 'LINT CLEAN' : `${result.lintErrors.length} LINT ER
 for (const error of result.lintErrors.slice(0, 20)) console.log(`  - ${error}`);
 if (result.lintErrors.length > 20) console.log(`  ... and ${result.lintErrors.length - 20} more`);
 for (const warning of (result.lintWarnings ?? []).slice(0, 10)) console.log(`  ~ ${warning}`);
+
+if (install) {
+  if (!result.ok) {
+    console.error('\nrefusing to install: the linter is not clean. Repair first.');
+    process.exit(1);
+  }
+  const localRoot = process.env.LANTERN_LOCAL_CONTENT ?? join(root, 'content-local');
+  mkdirSync(join(localRoot, 'adventures'), { recursive: true });
+  mkdirSync(join(localRoot, 'campaigns'), { recursive: true });
+
+  for (const adventure of result.adventures ?? (result.graph ? [{ id: result.graph.id, graph: result.graph }] : [])) {
+    const path = join(localRoot, 'adventures', `${adventure.id}.json`);
+    writeFileSync(path, `${JSON.stringify(adventure.graph, null, 2)}\n`);
+    console.log(`installed ${path}`);
+  }
+  if (result.campaign) {
+    const path = join(localRoot, 'campaigns', `${result.campaign.id}.json`);
+    writeFileSync(path, `${JSON.stringify(result.campaign, null, 2)}\n`);
+    console.log(`installed ${path}`);
+  }
+  console.log('playable in the app now — content-local is gitignored');
+}
 
 console.log(`\nreport: ${join(outDir, 'report.json')}`);
 if (!result.ok) {

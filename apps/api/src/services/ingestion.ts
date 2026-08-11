@@ -75,8 +75,11 @@ export interface IngestResult {
  * The limit is on the *output*, not the input: even with a million tokens of
  * context, three hundred rooms of read-aloud text will not come back complete
  * and correct from a single generation, and a failure leaves nothing to keep.
+ *
+ * Overridable so the chunked path can be exercised against a short real module
+ * rather than only against a synthetic long one.
  */
-const LONG_MODULE_CHARS = 24_000;
+const LONG_MODULE_CHARS = Number(process.env.LANTERN_LONG_MODULE_CHARS ?? 24_000);
 
 export async function ingestModule(
   flint: Flint,
@@ -95,7 +98,8 @@ export async function ingestModule(
       input: [
         `Extract the structure of this adventure module. Preserve read-aloud text verbatim.`,
         `Room ids must be kebab-case. The first room is the entrance; mark plausible`,
-        `conclusion rooms with isEnding.`,
+        `conclusion rooms with isEnding. Set "partyLevel" to the level the module`,
+        `is written for, as printed on its cover.`,
         ``,
         `Use "requires" when the module states that an area — very often its`,
         `conclusion — can only be reached once other areas have been dealt with.`,

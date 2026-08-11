@@ -402,3 +402,89 @@ describe('edges and entryWhen actually run', () => {
     expect(s2.ended).toBe(true);
   });
 });
+
+describe('a wiped party ends the story', () => {
+  /**
+   * An adventure ingested from a published module has no defeat ending —
+   * modules do not write one — so without this the session had nowhere to
+   * stop. A party that keeps losing the same fight walked back into it
+   * forever.
+   */
+  function hopelessGraph() {
+    const opt = (id: string, target: string) => ({ id, label: id, target });
+    return {
+      id: 'hopeless-graph',
+      schemaVersion: 1,
+      metadata: {
+        title: 'Hopeless',
+        premise: 'A premise with a central conflict.',
+        tone: ['mystery'],
+        partyLevel: 3,
+        narrationVoice: 'Neutral.',
+      },
+      entry: 'start',
+      beats: [
+        {
+          id: 'start',
+          kind: 'threshold',
+          title: 'Start',
+          prose: 'Begin.',
+          art: 'art-start',
+          options: [opt('fight', 'pit'), opt('wait', 'safe'), opt('leave', 'safe')],
+        },
+        {
+          id: 'pit',
+          kind: 'conflict',
+          title: 'The Pit',
+          prose: 'Something is down there.',
+          art: 'art-pit',
+          encounter: 'hopeless',
+          options: [],
+        },
+        {
+          id: 'safe',
+          kind: 'ending',
+          title: 'Safe',
+          prose: 'You leave.',
+          art: 'art-safe',
+          terminal: true,
+          options: [],
+        },
+      ],
+      edges: [],
+      encounters: [
+        {
+          id: 'hopeless',
+          title: 'Hopeless',
+          combatants: [{ id: 'w1', statblock: 'wight', count: 8, hostile: true }],
+          terrain: [],
+          victory: { kind: 'defeat-all' },
+          // Defeat routes back into the graph — the module's own shape.
+          onVictory: 'safe',
+          onDefeat: 'start',
+          onFlee: 'start',
+        },
+      ],
+    };
+  }
+
+  it('ends the session when everyone is dead, whatever the graph routes to', () => {
+    const s = createSession(hopelessGraph(), 'tpk');
+    // Everyone already dead: the next defeat has nowhere to send them.
+    s.party = s.party.map((p) => ({ ...p, hp: 0, dead: true, deathSaveFailures: 3 }));
+
+    chooseOption(s, 'fight');
+    expect(s.ended).toBe(true);
+    expect(s.currentBeat).not.toBe('safe'); // not the graph's ending — the party's
+  });
+
+  it('still bounces a beaten-but-living party back into the graph', () => {
+    const s = createSession(hopelessGraph(), 'beaten');
+    s.party = s.party.map((p) => ({ ...p, hp: 0 })); // down, not dead
+
+    chooseOption(s, 'fight');
+    expect(s.ended).toBe(false);
+    expect(s.currentBeat).toBe('start');
+    expect(s.party.every((p) => p.hp === 1)).toBe(true);
+  });
+});

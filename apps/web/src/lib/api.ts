@@ -157,6 +157,8 @@ export interface AdventureSummary {
   premise?: string;
   tone?: string[];
   tier?: string;
+  /** 'authored', 'flint' (generated), or 'ingested' (a module you own). */
+  provenance?: string;
   partyLevel?: number;
   beats?: number;
   encounters?: number;

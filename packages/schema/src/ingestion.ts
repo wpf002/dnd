@@ -105,6 +105,12 @@ export const IngestedModule = z.object({
   /** First room is the entrance. */
   rooms: z.array(IngestedRoom).min(2).max(400),
   /**
+   * The level the module is written for, as printed. Defaults to 3 only
+   * because that is what the pregens are; a first-level adventure that says
+   * so on its cover should not be listed as third-level.
+   */
+  partyLevel: Level.default(3),
+  /**
    * Chapters, when the source is a multi-part campaign rather than a single
    * dungeon. Absent means one book — which is what every module was before
    * Phase 6 gave campaigns a container to map onto.
