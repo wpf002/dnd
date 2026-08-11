@@ -33,6 +33,7 @@ export type FindingCode =
   // Choice quality (warnings)
   | 'false-choice'
   | 'all-encounters-defeat-all'
+  | 'ending-too-close'
   // Campaign scale (Phase 6)
   | 'book-duplicate-id'
   | 'book-adventure-missing'

@@ -223,6 +223,16 @@ describe('the full pipeline with a scripted extractor', () => {
   function ingestFlint(adapter: ProviderAdapter): Flint {
     const registry = new ConsumerRegistry();
     registry.register({ id: 'ingest', provider: 'anthropic', model: 'm', system: 'extract', temperature: 0 });
+    // The chunked path uses its own consumer, sized for a section rather than
+    // a whole module. Without it registered here every chunk fails closed as
+    // an unknown consumer and no provider call is ever made.
+    registry.register({
+      id: 'ingest-fragment',
+      provider: 'anthropic',
+      model: 'm',
+      system: 'extract a section',
+      temperature: 0,
+    });
     return new Flint({ registry, adapters: [adapter] });
   }
 

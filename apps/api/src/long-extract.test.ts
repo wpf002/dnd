@@ -80,6 +80,43 @@ describe('chunking', () => {
     expect(chunks[0]!.text).toContain(giant.trim());
   });
 
+  it('splits on numbered area headings, which is how dungeons key their rooms', () => {
+    const text = [
+      'Some preamble about the town.',
+      '',
+      '1. Beer Cellar',
+      '',
+      'Barrels and rats.',
+      '',
+      '2. Mosaic Corridor',
+      '',
+      'A dusty stone corridor.',
+    ].join('\n');
+
+    const chunks = chunkModule(text);
+    expect(chunks.map((c) => c.heading)).toEqual([undefined, '1. Beer Cellar', '2. Mosaic Corridor']);
+  });
+
+  it('does not treat an ordinary sentence as a heading', () => {
+    // The original pattern carried an `i` flag, which made its shouted-heading
+    // branch match any line of text without punctuation. A 15,000-character
+    // module split into 64 sections, most of them cut mid-sentence, and cost
+    // 64 model calls instead of six.
+    const text = [
+      'THE SUNKEN VAULT',
+      '',
+      'The party may hear about the work by examining job',
+      'boards set up in the square, talking to an old friend',
+      '',
+      'That means that you and your friends can play this without',
+      'having to buy anything other than snacks',
+    ].join('\n');
+
+    const chunks = chunkModule(text);
+    expect(chunks).toHaveLength(1);
+    expect(chunks[0]!.heading).toBe('THE SUNKEN VAULT');
+  });
+
   it('handles text with no headings at all', () => {
     const chunks = chunkModule('Just some prose.\n\nAnd more of it.');
     expect(chunks).toHaveLength(1);
@@ -225,6 +262,57 @@ describe('the driver', () => {
     const rooms = (module as { rooms: IngestedRoom[] }).rooms;
     expect(rooms.find((r) => r.id === 'deep')!.connections).toEqual(['gate']);
     expect(report.droppedConnections).toEqual([]);
+  });
+
+  it('links forward references that the first pass could not see', async () => {
+    // The corridor is described before the rooms it leads to exist, so the
+    // first pass can only connect backwards. This is the limitation that
+    // reduced a real module's three-exit junction to one exit.
+    const text = ['1. Corridor', '', 'Three ways on.', '', '2. Well Room', '', 'A well.', '', '3. Lab', '', 'Glassware.'].join('\n');
+
+    const extractor: ChunkExtractor = ({ chunk }) => {
+      const byHeading = {
+        '1. Corridor': [room('corridor', 'Corridor', [])],
+        '2. Well Room': [room('well', 'Well Room', ['corridor'])],
+        '3. Lab': [room('lab', 'Lab', ['corridor'])],
+      };
+      return Promise.resolve({ ok: true, value: { rooms: byHeading[chunk.heading] ?? [] } });
+    };
+
+    // The linker sees every area, so the corridor can finally point onward.
+    const linker = ({ chunk, index }) => {
+      expect(index.rooms.map((r) => r.id)).toEqual(['corridor', 'well', 'lab']);
+      return Promise.resolve(
+        chunk.heading === '1. Corridor'
+          ? { ok: true, value: { rooms: [{ id: 'corridor', connections: ['well', 'lab'] }] } }
+          : { ok: true, value: { rooms: [] } },
+      );
+    };
+
+    const { module, report } = await extractLongModule(text, 'M', 'S', extractor, {
+      link: linker as never,
+    });
+
+    const rooms = (module as { rooms: IngestedRoom[] }).rooms;
+    expect(rooms.find((r) => r.id === 'corridor')!.connections).toEqual(['well', 'lab']);
+    expect(report.connectionsLinked).toBe(2);
+    expect(report.failedLinks).toEqual([]);
+  });
+
+  it('keeps the first pass when a linking call fails', async () => {
+    const text = ['1. A', '', 'x.', '', '2. B', '', 'y.'].join('\n');
+    const extractor: ChunkExtractor = ({ chunk }) =>
+      Promise.resolve({
+        ok: true,
+        value: { rooms: [room(chunk.heading === '1. A' ? 'a' : 'b', 'Room', [])] },
+      });
+
+    const { module, report } = await extractLongModule(text, 'M', 'S', extractor, {
+      link: (() => Promise.resolve({ ok: false, detail: 'refused' })) as never,
+    });
+
+    expect(report.failedLinks).toHaveLength(2);
+    expect((module as { rooms: IngestedRoom[] }).rooms).toHaveLength(2);
   });
 
   it('loses one chunk rather than the whole extraction when a call fails', async () => {

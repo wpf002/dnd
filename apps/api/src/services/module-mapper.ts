@@ -121,10 +121,19 @@ export interface MappingReport {
   paddedRooms: string[];
   /** Connections naming a room that does not exist. Dropped, never guessed at. */
   danglingConnections: Array<{ room: string; target: string }>;
-  /** Endings that also had onward exits. The exits are dropped; an ending ends. */
+  /**
+   * Endings that listed connections. An ending has no way on, so those are
+   * read as inbound instead — the areas named are the ones that lead here.
+   */
   endingsWithExits: string[];
   /** Rooms no path from the entry reaches. The linter will reject these too. */
   unreachableRooms: string[];
+  /**
+   * Exits added because another area listed this one. A printed dungeon map is
+   * undirected — a door between two rooms is one door — but extraction records
+   * it from whichever side the text happened to mention.
+   */
+  inferredReturns: Array<{ room: string; target: string }>;
 }
 
 // ---------------------------------------------------------------------------
@@ -166,6 +175,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
     danglingConnections: [],
     endingsWithExits: [],
     unreachableRooms: [],
+    inferredReturns: [],
   };
 
   const rooms = module.rooms;
@@ -198,10 +208,38 @@ export function mapModuleToGraph(moduleInput: unknown): {
   const forward = new Map<string, string[]>();
   for (const room of rooms) forward.set(room.id, room.isEnding ? [] : exitsOf(room));
 
+  // A printed map is undirected: a door between two rooms is one door, and the
+  // text describes it from whichever side it happens to be describing. Taking
+  // connections as one-way strands whole wings of a dungeon — chunked
+  // extraction of a real module left its storeroom and its conclusion
+  // unreachable purely because no earlier section happened to mention them.
+  //
+  // Endings are excluded: an ending ends.
   for (const room of rooms) {
-    if (room.isEnding && exitsOf(room).length > 0) {
-      report.endingsWithExits.push(room.id);
-      reshaped(room.id);
+    if (room.isEnding) continue;
+    for (const target of forward.get(room.id)!) {
+      const back = forward.get(target);
+      if (!back || byId.get(target)?.isEnding) continue;
+      if (!back.includes(room.id)) {
+        back.push(room.id);
+        report.inferredReturns.push({ room: target, target: room.id });
+      }
+    }
+  }
+
+  // An ending's own connection list is really "how the party gets here",
+  // written from the wrong side. Dropping it — which is what this used to do —
+  // left the conclusion unreachable and the adventure unable to end.
+  for (const room of rooms) {
+    if (!room.isEnding) continue;
+    const named = exitsOf(room);
+    if (named.length === 0) continue;
+    report.endingsWithExits.push(room.id);
+    reshaped(room.id);
+    for (const target of named) {
+      if (byId.get(target)?.isEnding) continue;
+      const exits = forward.get(target);
+      if (exits && !exits.includes(room.id)) exits.push(room.id);
     }
   }
 

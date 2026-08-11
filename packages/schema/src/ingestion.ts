@@ -135,3 +135,22 @@ export const IngestedFragment = z.object({
   chapters: z.array(IngestedChapter).default([]),
 });
 export type IngestedFragment = z.infer<typeof IngestedFragment>;
+
+/**
+ * A linking pass over one chunk, once every area in the document is known.
+ *
+ * Sequential extraction cannot make forward references: when the chunk
+ * describing a junction is read, the areas it leads to have not been seen yet,
+ * so their ids do not exist to connect to. The first real module through the
+ * chunked path lost most of its map that way — a corridor with three exits
+ * came back with one.
+ *
+ * So connections are asked for a second time, with the complete area list in
+ * hand. Only ids and connections; the prose is already extracted.
+ */
+export const IngestedLinks = z.object({
+  rooms: z
+    .array(z.object({ id: Id, connections: z.array(Id).default([]) }))
+    .default([]),
+});
+export type IngestedLinks = z.infer<typeof IngestedLinks>;

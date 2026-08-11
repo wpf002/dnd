@@ -232,3 +232,100 @@ describe('quality warnings', () => {
     expect(result.warnings.filter((w) => w.code === 'false-choice')).toEqual([]);
   });
 });
+
+describe('an adventure that can be skipped entirely', () => {
+  /** Eight beats; the entry opens straight onto an ending. */
+  function shallow(extraEnding = false) {
+    return {
+      id: 'shallow',
+      schemaVersion: 1,
+      metadata: {
+        title: 'Shallow',
+        premise: 'A premise with a central conflict.',
+        tone: ['mystery'],
+        partyLevel: 3,
+        narrationVoice: 'Neutral.',
+      },
+      entry: 'arrival',
+      beats: [
+        {
+          id: 'arrival',
+          kind: 'threshold',
+          title: 'Arrival',
+          prose: 'You arrive.',
+          art: 'art-arrival',
+          options: [opt('leave', 'the-end'), opt('in', 'hall'), opt('down', 'moat')],
+        },
+        {
+          id: 'moat',
+          kind: 'hazard',
+          title: 'Moat',
+          prose: 'Cold water.',
+          art: 'art-moat',
+          options: [opt('m1', 'hall'), opt('m2', 'arrival'), opt('m3', 'f0')],
+        },
+        {
+          id: 'hall',
+          kind: 'decision',
+          title: 'Hall',
+          prose: 'A hall.',
+          art: 'art-hall',
+          options: [opt('h1', 'f1'), opt('h2', 'f2'), opt('h3', 'f3')],
+        },
+        ...[0, 1, 2, 3].map((i) => ({
+          id: `f${i}`,
+          kind: 'discovery',
+          title: `Filler ${i}`,
+          prose: 'More of the place.',
+          art: `art-f${i}`,
+          options: [
+            opt(`a${i}`, 'hall'),
+            opt(`b${i}`, 'moat'),
+            // The deep ending hangs off the far side of the graph, four beats
+            // out, so it is genuinely further than the walk-away one.
+            opt(`c${i}`, i === 3 && extraEnding ? 'deep-end' : 'arrival'),
+          ],
+        })),
+        {
+          id: 'the-end',
+          kind: 'ending',
+          title: 'The End',
+          prose: 'It ends.',
+          art: 'art-end',
+          terminal: true,
+          options: [],
+        },
+        ...(extraEnding
+          ? [
+              {
+                id: 'deep-end',
+                kind: 'ending',
+                title: 'The Deep End',
+                prose: 'It really ends.',
+                art: 'art-deep-end',
+                terminal: true,
+                options: [],
+              },
+            ]
+          : []),
+      ],
+      edges: [],
+      encounters: [],
+    };
+  }
+
+  it('warns when every ending is a step or two from the entry', () => {
+    const result = lintGraph(shallow());
+    expect(result.ok).toBe(true); // structurally fine, and hollow
+    const warning = result.warnings.find((w) => w.code === 'ending-too-close');
+    expect(warning?.message).toMatch(/almost all of it can be skipped/);
+  });
+
+  it('stays quiet when a further ending also exists', () => {
+    // One early "walk away" ending among several is a real authored choice,
+    // not a defect — flagging it fired on seven shipped adventures.
+    const result = lintGraph(shallow(true));
+    expect(result.ok).toBe(true);
+    expect(result.warnings.some((w) => w.code === 'ending-too-close')).toBe(false);
+  });
+});

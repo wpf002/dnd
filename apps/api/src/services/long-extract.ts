@@ -1,4 +1,4 @@
-import type { IngestedChapter, IngestedFragment, IngestedRoom } from '@lantern/schema';
+import type { IngestedChapter, IngestedFragment, IngestedLinks, IngestedRoom } from '@lantern/schema';
 
 /**
  * Long-document extraction — Phase 7 item 3.
@@ -27,11 +27,30 @@ import type { IngestedChapter, IngestedFragment, IngestedRoom } from '@lantern/s
 // ---------------------------------------------------------------------------
 
 /**
- * Headings a published module actually uses. Deliberately conservative: a
- * false positive splits a room's description in half, which is worse than a
- * chunk running slightly long.
+ * Headings a published module actually uses.
+ *
+ * Three distinct forms, kept separate because they need different case rules.
+ * A single combined pattern with the `i` flag was catastrophic: it made the
+ * shouted-heading branch match any line of ordinary text without punctuation,
+ * so a 15,000-character module split into 64 sections — most of them cut
+ * mid-sentence — and cost 64 model calls instead of seven.
  */
-const HEADING = /^\s{0,3}(?:(?:chapter|part|act|book|appendix)\b[^\n]{0,80}|[A-Z][A-Z0-9 '’\-:]{6,60})\s*$/i;
+const HEADINGS = [
+  /** "Chapter One", "Part 2: The Descent", "Appendix A". Case-insensitive. */
+  /^\s{0,3}(?:chapter|part|act|book|appendix)\b[^\n]{0,80}$/i,
+  /**
+   * "1. Beer Cellar", "12) The Vault". The keyed-area heading, which is how
+   * most dungeons number their rooms — and which the original pattern could
+   * not match at all, because it required a letter first.
+   */
+  /^\s{0,3}\d{1,3}[.:)]\s+\S[^\n]{0,70}$/,
+  /** "THE SUNKEN VAULT". Case-SENSITIVE: shouted means shouted. */
+  /^\s{0,3}[A-Z][A-Z0-9 '’\-:&]{5,60}$/,
+];
+
+function isHeading(line: string): boolean {
+  return line.trim().length > 0 && HEADINGS.some((pattern) => pattern.test(line));
+}
 
 export interface Chunk {
   index: number;
@@ -55,7 +74,7 @@ export function chunkModule(text: string, maxChars = 12_000): Chunk[] {
   const sections: Array<{ heading?: string; lines: string[] }> = [];
   let current: { heading?: string; lines: string[] } = { lines: [] };
   for (const line of lines) {
-    if (HEADING.test(line) && line.trim().length > 0) {
+    if (isHeading(line)) {
       if (current.lines.some((l) => l.trim())) sections.push(current);
       current = { heading: line.trim(), lines: [] };
     } else {
@@ -300,6 +319,10 @@ export function finalizeExtraction(
 
 export interface LongExtractReport extends MergeReport {
   chunks: number;
+  /** Connections the linking pass added that the first pass could not see. */
+  connectionsLinked: number;
+  /** Chunks whose linking call failed. Their forward references stay missing. */
+  failedLinks: Array<{ index: number; detail: string }>;
   /** Chunks whose extraction call failed outright. Their content is lost. */
   failedChunks: Array<{ index: number; detail: string }>;
   droppedConnections: Array<{ room: string; target: string }>;
@@ -314,6 +337,16 @@ export type ChunkExtractor = (input: {
 }) => Promise<{ ok: true; value: Partial<IngestedFragment> } | { ok: false; detail: string }>;
 
 /**
+ * Second pass: given a chunk and the COMPLETE area list, say what each area in
+ * that chunk connects to. This is what makes a forward reference expressible.
+ */
+export type ChunkLinker = (input: {
+  chunk: Chunk;
+  index: RunningIndex;
+  total: number;
+}) => Promise<{ ok: true; value: IngestedLinks } | { ok: false; detail: string }>;
+
+/**
  * Extract a long module chunk by chunk.
  *
  * A failed chunk does not fail the run. Losing one section of a three-hundred
@@ -325,12 +358,14 @@ export async function extractLongModule(
   title: string,
   summary: string,
   extract: ChunkExtractor,
-  options: { maxChars?: number } = {},
+  options: { maxChars?: number; link?: ChunkLinker } = {},
 ): Promise<{ module: unknown; report: LongExtractReport }> {
   const chunks = chunkModule(text, options.maxChars);
   const assembled = { title, summary, rooms: [] as IngestedRoom[], chapters: [] as IngestedChapter[] };
   const report: LongExtractReport = {
     chunks: chunks.length,
+    connectionsLinked: 0,
+    failedLinks: [],
     mergedRooms: [],
     collidedRooms: [],
     emptyChunks: [],
@@ -354,6 +389,33 @@ export async function extractLongModule(
       continue;
     }
     mergeExtraction(assembled, result.value, report, chunk.index);
+  }
+
+  // Second pass. Every chunk is revisited with the complete area list, so a
+  // junction described early can finally point at the rooms described later.
+  // Skipped for a single chunk, which has nothing it could not already see.
+  if (options.link && chunks.length > 1) {
+    const complete = indexFrom(assembled);
+    const byId = new Map(assembled.rooms.map((r) => [r.id, r]));
+
+    for (const chunk of chunks) {
+      const linked = await options.link({ chunk, index: complete, total: chunks.length });
+      if (!linked.ok) {
+        report.failedLinks.push({ index: chunk.index, detail: linked.detail });
+        continue;
+      }
+      for (const entry of linked.value.rooms) {
+        const room = byId.get(entry.id);
+        if (!room) continue;
+        for (const target of entry.connections) {
+          if (!byId.has(target) || target === room.id) continue;
+          if (!room.connections.includes(target)) {
+            room.connections.push(target);
+            report.connectionsLinked++;
+          }
+        }
+      }
+    }
   }
 
   const { module, droppedConnections } = finalizeExtraction(assembled);

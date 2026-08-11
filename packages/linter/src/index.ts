@@ -4,7 +4,7 @@ import { toResult } from './errors.js';
 import { checkReachability } from './rules/reachability.js';
 import { checkFlags } from './rules/flags.js';
 import { checkSolvability } from './rules/solvability.js';
-import { checkQuality } from './rules/quality.js';
+import { checkEndingDistance, checkQuality } from './rules/quality.js';
 import { checkCampaign } from './rules/campaign.js';
 
 export * from './errors.js';
@@ -43,6 +43,7 @@ export function lintGraph(input: unknown): LintResult {
     ...checkFlags(graph),
     ...checkSolvability(graph),
     ...checkQuality(graph),
+    ...checkEndingDistance(graph),
   ];
   return toResult(findings);
 }

@@ -1,5 +1,5 @@
 import { BeatGraph } from '@lantern/schema';
-import { IngestedFragment, IngestedModule } from '@lantern/schema';
+import { IngestedFragment, IngestedLinks, IngestedModule } from '@lantern/schema';
 import { lintCampaign, lintGraph } from '@lantern/linter';
 import { callStructured, type Flint, type Telemetry } from '@lantern/flint';
 import { extractLongModule, renderIndex, type LongExtractReport } from './long-extract.js';
@@ -286,6 +286,51 @@ async function ingestLong(
       }
       return { ok: true as const, value: IngestedFragment.parse(result.value) };
     },
+    {
+      /**
+       * Second pass, once every area in the document is known.
+       *
+       * The first pass cannot make forward references: when the section
+       * describing a junction is read, the areas it leads to have not been
+       * extracted yet. The first real module through this path came back with
+       * a three-exit corridor reduced to one.
+       */
+      link: async ({ chunk, index, total }) => {
+        const result = await callStructured(flint, 'ingest-fragment', {
+          schema: IngestedLinks,
+          schemaName: 'IngestedLinks',
+          maxRepairs: 1,
+          input: {
+            input: [
+              `Section ${chunk.index + 1} of ${total} of an adventure module has already`,
+              `been extracted. Every area in the whole document is now known.`,
+              ``,
+              `For each area described in THIS section, list every area it leads to,`,
+              `including ones described in other sections and including ways back.`,
+              `Use only ids from the list below. Return nothing for areas this`,
+              `section does not describe, and do not invent connections the text`,
+              `does not support.`,
+              ``,
+              renderIndex(index, 400),
+              ``,
+              `Section text:`,
+              chunk.text,
+            ].join('\n'),
+          },
+        });
+
+        if (!result.ok) {
+          return {
+            ok: false as const,
+            detail:
+              result.kind === 'call-failed'
+                ? (result.error?.message ?? 'provider call failed')
+                : result.issues.join('; '),
+          };
+        }
+        return { ok: true as const, value: IngestedLinks.parse(result.value) };
+      },
+    },
   );
 
   telemetry.record({
@@ -294,6 +339,7 @@ async function ingestLong(
     outcome: extractionReport.failedChunks.length === 0 ? 'pass' : 'partial',
     chunks: extractionReport.chunks,
     failedChunks: extractionReport.failedChunks.length,
+    connectionsLinked: extractionReport.connectionsLinked,
     rooms: extractionReport.rooms,
   });
 
