@@ -42,8 +42,13 @@ const HEADINGS = [
    * "1. Beer Cellar", "12) The Vault". The keyed-area heading, which is how
    * most dungeons number their rooms — and which the original pattern could
    * not match at all, because it required a letter first.
+   *
+   * Deliberately short and punctuation-free: a real book is full of numbered
+   * lists and table rows ("1. They eat all manner of creatures", "19: deafened
+   * for 1d4 rounds") and a looser pattern turned every one of them into a
+   * section boundary.
    */
-  /^\s{0,3}\d{1,3}[.:)]\s+\S[^\n]{0,70}$/,
+  /^\s{0,3}\d{1,3}[.:)]\s+[A-Z][^\n.,;!?]{0,38}$/,
   /** "THE SUNKEN VAULT". Case-SENSITIVE: shouted means shouted. */
   /^\s{0,3}[A-Z][A-Z0-9 '’\-:&]{5,60}$/,
 ];
@@ -82,6 +87,21 @@ export function chunkModule(text: string, maxChars = 12_000): Chunk[] {
     }
   }
   if (current.lines.some((l) => l.trim()) || current.heading) sections.push(current);
+
+  // Pass 1b: a heading repeated back-to-back is a running page header, not a
+  // new section. A 64-page PDF prints its chapter name on every page, which
+  // turned one chapter into a dozen sections. Merge them back.
+  const merged: Array<{ heading?: string; lines: string[] }> = [];
+  for (const section of sections) {
+    const previous = merged[merged.length - 1];
+    if (previous && previous.heading !== undefined && previous.heading === section.heading) {
+      previous.lines.push(...section.lines);
+      continue;
+    }
+    merged.push(section);
+  }
+  sections.length = 0;
+  sections.push(...merged);
 
   // Pass 2: split oversized sections on paragraph boundaries.
   const chunks: Chunk[] = [];

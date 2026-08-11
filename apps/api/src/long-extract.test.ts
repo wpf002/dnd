@@ -117,6 +117,51 @@ describe('chunking', () => {
     expect(chunks[0]!.heading).toBe('THE SUNKEN VAULT');
   });
 
+  it('merges a running page header back into one section', () => {
+    // A 64-page PDF prints its chapter name at the top of every page. Taken at
+    // face value that turned one chapter into a dozen sections, and a real
+    // module into 61 model calls.
+    const page = (n: number) => ['Chapter 2: Into the Woods', '', `Page ${n} of the woods. `.repeat(20)].join('\n');
+    const chunks = chunkModule([page(1), page(2), page(3)].join('\n\n'));
+
+    expect(chunks).toHaveLength(1);
+    expect(chunks[0]!.heading).toBe('Chapter 2: Into the Woods');
+    expect(chunks[0]!.text).toContain('Page 3');
+  });
+
+  it('does not mistake a numbered list item for a keyed area', () => {
+    // Real books are full of numbered lists and table rows. A loose pattern
+    // made every one of them a section boundary.
+    const text = [
+      '1. Beer Cellar',
+      '',
+      'Barrels and rats. '.repeat(20),
+      '',
+      '1. They eat all manner of creatures—everything from',
+      '5. You can trick them into giving you food if you flap',
+      '19: deafened for 1d4 rounds. 13-15: blinded and deafened',
+    ].join('\n');
+
+    const chunks = chunkModule(text);
+    expect(chunks.map((c) => c.heading)).toEqual(['1. Beer Cellar']);
+  });
+
+  it('folds a section too small to be worth a call into the next one', () => {
+    // A table of contents is a run of heading-only sections; each would
+    // otherwise cost a model call to extract nothing.
+    const text = [
+      'Chapter 1: The Road',
+      'Chapter 2: The Keep',
+      'THE REAL SECTION',
+      '',
+      'Actual content here. '.repeat(30),
+    ].join('\n');
+
+    const chunks = chunkModule(text);
+    expect(chunks).toHaveLength(1);
+    expect(chunks[0]!.text).toContain('Actual content');
+  });
+
   it('handles text with no headings at all', () => {
     const chunks = chunkModule('Just some prose.\n\nAnd more of it.');
     expect(chunks).toHaveLength(1);
