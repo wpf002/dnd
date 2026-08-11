@@ -46,8 +46,8 @@
           "target": "the-chalk-liturgy",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 13,
             "onFailure": "the-groaning-stair"
           }
@@ -213,7 +213,7 @@
           "target": "the-counting-stones",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 14,
             "onFailure": "the-gnaw-warren"
           }
@@ -279,8 +279,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 14,
             "onFailure": "the-narrowing-gullet"
           }

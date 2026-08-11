@@ -271,7 +271,7 @@
           "target": "seal-vault-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 12,
             "onFailure": "seal-vault-approach"
@@ -322,8 +322,8 @@
           "target": "seal-in-hand",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "sleight of hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "vault-guardians"
           }
@@ -439,7 +439,7 @@
           "target": "decision-final",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 14,
             "onFailure": "mercenary-ambush"

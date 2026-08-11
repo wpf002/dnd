@@ -135,7 +135,7 @@
           "target": "beetle-road",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "dc": 13,
             "onFailure": "fever-dream"
           }
@@ -208,8 +208,8 @@
           "target": "drowned-stair",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 14,
             "onFailure": "fever-dream"
           }
@@ -304,8 +304,8 @@
           "target": "gallery-of-swallowed-kings",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 15,
             "onFailure": "throat-of-roots"
           }
@@ -373,8 +373,8 @@
           "target": "gallery-of-swallowed-kings",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "chapel-of-chewed-prayers"
           }
@@ -424,8 +424,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Religion",
+            "ability": "int",
+            "skill": "religion",
             "dc": 15,
             "onFailure": "chapel-of-chewed-prayers"
           }
@@ -570,7 +570,7 @@
           "target": "sallow-crown",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "dc": 14,
             "onFailure": "fever-dream"
           }

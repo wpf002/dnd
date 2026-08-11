@@ -83,13 +83,21 @@ export interface TurnOutcome {
 
 let sessionCounter = 0;
 
-export function createSession(graphInput: unknown, sessionSeed?: string): GameSession {
+/**
+ * @param party Carried party, for a campaign that spans books. Omitted for a
+ *   standalone session, which starts from the level-3 pregens.
+ */
+export function createSession(
+  graphInput: unknown,
+  sessionSeed?: string,
+  party?: readonly Character[],
+): GameSession {
   const graph = BeatGraph.parse(graphInput);
   const id = sessionSeed ?? `session-${++sessionCounter}-${graph.id}`;
   const session: GameSession = {
     id,
     graph,
-    party: PREGENS.map((p) => structuredClone(p)),
+    party: (party ?? PREGENS).map((p) => structuredClone(p)),
     flags: {},
     currentBeat: graph.entry,
     improvSpent: {},
@@ -187,14 +195,13 @@ export function chooseOption(session: GameSession, optionId: string): TurnOutcom
   if (option.requiresCheck) {
     const check = option.requiresCheck;
     // The most capable party member attempts it — solo-play convention.
-    const skill = check.skill as Parameters<typeof resolveCheck>[0]['skill'];
     const actor = bestAtCheck(session.party, check.ability, check.skill);
     const res = resolveCheck({
       seed: nextSeed(session),
       character: actor,
       dc: check.dc,
-      ability: check.ability as Parameters<typeof resolveCheck>[0]['ability'],
-      ...(skill ? { skill } : {}),
+      ability: check.ability,
+      ...(check.skill ? { skill: check.skill } : {}),
     });
     resolutions.push(res);
     session.turns.push({ index: session.turns.length, resolution: res });

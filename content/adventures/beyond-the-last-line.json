@@ -98,7 +98,7 @@
           "target": "wilderness-camp",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 12,
             "onFailure": "logging-road-ambush"
@@ -150,7 +150,7 @@
           "target": "wilderness-camp",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 13,
             "onFailure": "wolf-den"
@@ -243,7 +243,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 12,
             "onFailure": "cinder-ruin-entrance"
@@ -274,7 +274,7 @@
           "target": "ruin-puzzle",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 13,
             "onFailure": "undead-guardians"
@@ -334,7 +334,7 @@
           "target": "cinder-vein-climax",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 14,
             "onFailure": "undead-guardians"
           }
@@ -398,7 +398,7 @@
           "target": "cult-confrontation",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 12,
             "onFailure": "cult-confrontation"
@@ -443,7 +443,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "cult-encounter"
@@ -540,7 +540,7 @@
           "target": "ending-triumph",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 15,
             "onFailure": "ending-doom"

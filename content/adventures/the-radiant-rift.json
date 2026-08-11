@@ -150,8 +150,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "kobold-skirmish"
           }
@@ -265,8 +265,8 @@
           "target": "heart-of-maw",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 13,
             "onFailure": "heart-of-maw"
           }

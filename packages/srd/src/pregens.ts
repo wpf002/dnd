@@ -193,3 +193,104 @@ export const PREGEN_WIZARD = Character.parse({
 });
 
 export const PREGENS = [PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_CLERIC, PREGEN_WIZARD] as const;
+
+// ---------------------------------------------------------------------------
+// Level 1 — the same four characters at creation
+// ---------------------------------------------------------------------------
+
+/**
+ * The pregens as they were at first level.
+ *
+ * A campaign that opens at level 1 needs level-1 sheets, and `levelUp` cannot
+ * run backwards — the level-3 pregens above are what these become, not a
+ * source these can be derived from. So both are authored, and
+ * `pregens.test.ts` proves the relationship holds: advancing these four to
+ * level 3 reproduces the HP, hit dice, and spell slots above exactly. If that
+ * ever stops being true, one of the two sets has drifted.
+ *
+ * What advancement does NOT reproduce is spell selection — which spells a
+ * caster knows and prepares is a player's choice, not a rule — so the level-3
+ * sheets carry richer lists than levelling these would produce.
+ */
+
+export const PREGEN_FIGHTER_1 = Character.parse({
+  ...PREGEN_FIGHTER,
+  level: 1,
+  // Martial Archetype is a 3rd-level feature.
+  subclass: undefined,
+  hp: 13,
+  hpMax: 13,
+  hitDiceRemaining: 1,
+});
+
+export const PREGEN_ROGUE_1 = Character.parse({
+  ...PREGEN_ROGUE,
+  level: 1,
+  // Roguish Archetype is a 3rd-level feature. Expertise is not — it is 1st.
+  subclass: undefined,
+  hp: 9,
+  hpMax: 9,
+  hitDiceRemaining: 1,
+});
+
+export const PREGEN_CLERIC_1 = Character.parse({
+  ...PREGEN_CLERIC,
+  level: 1,
+  // Divine Domain IS a 1st-level feature, so the domain stays.
+  hp: 10,
+  hpMax: 10,
+  hitDiceRemaining: 1,
+  spellcasting: {
+    ...PREGEN_CLERIC.spellcasting!,
+    known: [
+      'sacred-flame',
+      'guidance',
+      'thaumaturgy',
+      'cure-wounds',
+      'bless',
+      'shield-of-faith',
+      'guiding-bolt',
+      'healing-word',
+    ],
+    // Wisdom modifier (+3) + cleric level (1) = 4 prepared.
+    prepared: ['cure-wounds', 'bless', 'guiding-bolt', 'healing-word'],
+    slotsMax: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    slotsRemaining: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+});
+
+export const PREGEN_WIZARD_1 = Character.parse({
+  ...PREGEN_WIZARD,
+  level: 1,
+  // Arcane Tradition is a 2nd-level feature.
+  subclass: undefined,
+  hp: 7,
+  hpMax: 7,
+  hitDiceRemaining: 1,
+  spellcasting: {
+    ...PREGEN_WIZARD.spellcasting!,
+    known: [
+      'fire-bolt',
+      'ray-of-frost',
+      'light',
+      'mage-hand',
+      'prestidigitation',
+      'magic-missile',
+      'shield',
+      'sleep',
+      'burning-hands',
+      'detect-magic',
+    ],
+    // Intelligence modifier (+3) + wizard level (1) = 4 prepared.
+    prepared: ['fire-bolt', 'ray-of-frost', 'magic-missile', 'burning-hands'],
+    slotsMax: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    slotsRemaining: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+});
+
+export const PREGENS_LEVEL_1 = [
+  PREGEN_FIGHTER_1,
+  PREGEN_ROGUE_1,
+  PREGEN_CLERIC_1,
+  PREGEN_WIZARD_1,
+] as const;

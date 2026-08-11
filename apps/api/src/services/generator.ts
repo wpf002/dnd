@@ -1,4 +1,4 @@
-import { BeatGraph, Tone } from '@lantern/schema';
+import { Ability, BeatGraph, Skill, Tone } from '@lantern/schema';
 import { lintGraph } from '@lantern/linter';
 import { MONSTERS } from '@lantern/srd';
 import { callValidated, type Flint, type Telemetry } from '@lantern/flint';
@@ -70,6 +70,8 @@ function buildPrompt(request: GenerationRequest): string {
     `- The three options on a beat MUST genuinely differ. Options that all point at the same target with no "effects" and no "requiresCheck" are a false choice and WILL be rejected. Give at least two of the three a different target, a state change, or a check — a choice the player cannot lose or win differently is not a choice.`,
     `- Encounter beats set "encounter" to an id defined in "encounters"; every encounter's onVictory/onDefeat (and optional onFlee) name existing beats.`,
     `- Monster statblocks must come from this exact list: ${Object.keys(MONSTERS).join(', ')}.`,
+    `- "requiresCheck.ability" must be one of: ${Ability.options.join(', ')} — the short ids, NOT "Intelligence" or "Wisdom".`,
+    `- "requiresCheck.skill" is optional and must be one of: ${Skill.options.join(', ')} — kebab-case, NOT "Animal Handling" or "Sleight of Hand". Omit it entirely for a raw ability check, a tool check, or a saving throw; there is no skill id for those.`,
     `- Encounters must be winnable by a level-${request.partyLevel} party of four; prefer 2-5 low-CR combatants over one huge one.`,
     `- Every flag read in any guard must be written somewhere (onEntry/onExit/option effects), and every written flag must be read somewhere.`,
     `- Every beat has a unique kebab-case "art" slot id.`,

@@ -175,7 +175,7 @@
           "target": "vanished-convoy",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 13,
             "onFailure": "narrows-ambush"
@@ -424,7 +424,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "hollow-vigil"
@@ -448,7 +448,7 @@
           "target": "reckoning-choice",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 15,
             "onFailure": "hollow-vigil"
           }

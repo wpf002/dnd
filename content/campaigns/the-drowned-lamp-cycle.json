@@ -1,0 +1,46 @@
+{
+  "id": "the-drowned-lamp-cycle",
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "The Drowned Lamp Cycle",
+    "premise": "A false light on the Black Tooth was never only a wrecker's trick. Three books carry one party from the tide-flooded lamp room of Sablewrack Isle, through a drowned parish whose bell has started ringing again, to the burnt inland road where the order that taught the coast to lie is finally holding court. Levels 1 to 7. What the party owes the Ashbound at the end of the first book is what they can call on in the third.",
+    "tone": ["nautical", "gothic-horror", "exploration"],
+    "tierStart": "local",
+    "tierEnd": "regional",
+    "narrationVoice": "Plain, salt-worn, and specific. Weather and tide are always doing something. Never explain a horror that the party could still walk away from.",
+    "provenance": "authored"
+  },
+  "books": [
+    {
+      "id": "book-i-sablewrack",
+      "title": "Book I — The False Beacon",
+      "adventure": "the-false-beacon-of-sablewrack-isle",
+      "levelStart": 1,
+      "levelEnd": 3,
+      "onComplete": [
+        { "flag": "sablewrack-resolved", "value": true },
+        { "flag": "allied-wizards", "value": true }
+      ],
+      "note": "The party leaves the isle owed a favour by the Ashbound, whichever way the wreck-pickers fall. `allied-wizards` is the debt; it is not spent until Book III."
+    },
+    {
+      "id": "book-ii-saltmire",
+      "title": "Book II — The Bell at Saltmire",
+      "adventure": "the-bell-at-saltmire",
+      "levelStart": 3,
+      "levelEnd": 5,
+      "entryWhen": { "op": "set", "flag": "sablewrack-resolved" },
+      "onComplete": [{ "flag": "saltmire-answered", "value": true }],
+      "note": "Gated on Book I finishing at all, rather than on how it finished — the coast road only opens once the wrecking stops."
+    },
+    {
+      "id": "book-iii-cindergate",
+      "title": "Book III — The Cindergate Road",
+      "adventure": "the-cindergate-road",
+      "levelStart": 5,
+      "levelEnd": 7,
+      "note": "The debt comes due. `allied-wizards`, carried from Book I, opens the Ashbound escort's hidden trail, the watchtower signal, and the key-rune at the sealed cairn — three options that are invisible to a party that arrives here without it."
+    }
+  ],
+  "carryFlags": ["sablewrack-resolved", "allied-wizards"]
+}

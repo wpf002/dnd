@@ -291,7 +291,7 @@
           "target": "corrin-envoy",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "history",
             "dc": 14,
             "onFailure": "council-summons"
@@ -355,7 +355,7 @@
           "target": "debt-reckoning",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "intimidation",
             "dc": 15,
             "onFailure": "ending-warfare"

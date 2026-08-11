@@ -43,8 +43,8 @@
           "target": "chancellor-offer",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Intimidation",
+            "ability": "cha",
+            "skill": "intimidation",
             "dc": 13,
             "onFailure": "forced-standoff"
           }
@@ -55,8 +55,8 @@
           "target": "investigate-the-keep",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "chancellor-offer"
           }
@@ -267,8 +267,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 15,
             "onFailure": "archive-ambush"
           }

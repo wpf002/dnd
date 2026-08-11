@@ -288,7 +288,7 @@
           "target": "cinder-door-threshold",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 14,
             "onFailure": "cinder-guardian-fight"
@@ -329,7 +329,7 @@
           "target": "cinder-door-threshold",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "river-guardian-fight"
@@ -411,7 +411,7 @@
           "target": "sparrow-court-arrival",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 12,
             "onFailure": "sparrow-court-arrival"
@@ -580,7 +580,7 @@
           "target": "ending-reunion-restored",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 14,
             "onFailure": "ending-lost-in-glass"

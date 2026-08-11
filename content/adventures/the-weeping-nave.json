@@ -40,7 +40,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "contaminated-plaza"
@@ -229,7 +229,7 @@
           "target": "descendant-house",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 14,
             "onFailure": "scavenger-ambush"
@@ -329,7 +329,7 @@
           "target": "crypt-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "religion",
             "dc": 12,
             "onFailure": "crypt-approach"
@@ -362,7 +362,7 @@
           "target": "sealed-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "history",
             "dc": 12,
             "onFailure": "crypt-guardians"
@@ -380,8 +380,8 @@
           "target": "sealed-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "sleight of hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "crypt-guardians"
           }

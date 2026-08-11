@@ -40,8 +40,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Deception",
+            "ability": "cha",
+            "skill": "deception",
             "dc": 13,
             "onFailure": "roof-chase-over-the-tannery"
           }
@@ -135,8 +135,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "press-gang-in-the-garrison-cellar"
           }
@@ -186,7 +186,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
+            "ability": "int",
             "dc": 15,
             "onFailure": "roof-chase-over-the-tannery"
           }
@@ -302,8 +302,8 @@
           "target": "the-lying-in-state",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "press-gang-in-the-garrison-cellar"
           }
@@ -463,8 +463,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 14,
             "onFailure": "knives-in-the-antechamber"
           }

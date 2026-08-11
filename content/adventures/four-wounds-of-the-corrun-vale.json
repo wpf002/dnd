@@ -204,8 +204,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 14,
             "onFailure": "weir-siege-fight"
           }
@@ -280,8 +280,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 14,
             "onFailure": "kiln-ring-fight"
           }
@@ -356,8 +356,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 15,
             "onFailure": "unbreath-shrine-fight"
           }
@@ -432,8 +432,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "keystone-descent-fight"
           }

@@ -37,6 +37,14 @@ export function proficiencyBonus(level: number): number {
 
 export function skillModifier(character: Character, skill: Skill): Modifier[] {
   const ability = SKILL_ABILITY[skill];
+  // Unreachable from validated content now that BeatOption.requiresCheck uses
+  // the Skill enum — but the engine must never be the thing that emits a NaN
+  // modifier. A check that resolves to nothing is worse than one that stops.
+  if (!ability) {
+    throw new Error(
+      `unknown skill '${String(skill)}' — no governing ability. Valid skills: ${Object.keys(SKILL_ABILITY).join(', ')}`,
+    );
+  }
   const mods: Modifier[] = [
     { source: ability, value: abilityModifier(character.abilities[ability]) },
   ];

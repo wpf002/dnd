@@ -242,8 +242,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "History",
+            "ability": "int",
+            "skill": "history",
             "dc": 15,
             "onFailure": "barrow-pack"
           }
@@ -317,8 +317,8 @@
           "target": "titan-heart",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 15,
             "onFailure": "siege-choice"
           }

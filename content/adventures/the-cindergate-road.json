@@ -66,7 +66,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "ashbound-watch"
@@ -133,7 +133,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 12,
             "onFailure": "path-divide"
@@ -170,7 +170,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "sinking-mire"
@@ -271,7 +271,7 @@
           "target": "sealed-cairn",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "survival",
             "dc": 13,
             "onFailure": "thornreach-ambush"
@@ -297,7 +297,7 @@
           "target": "sealed-cairn",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 15,
             "onFailure": "thornreach-ambush"
@@ -340,7 +340,7 @@
           "target": "sealed-cairn",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 12,
             "onFailure": "thornreach-ambush"
@@ -357,7 +357,7 @@
           "target": "sealed-cairn",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 8,
             "onFailure": "sealed-cairn"
@@ -406,7 +406,7 @@
           "target": "lost-expedition",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 15,
             "onFailure": "lost-expedition"
@@ -421,7 +421,7 @@
           "target": "lost-expedition",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 16,
             "onFailure": "thornreach-ambush"
@@ -478,7 +478,7 @@
           "target": "hollow-chapel",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "perception",
             "dc": 11,
             "onFailure": "hollow-chapel"
@@ -495,7 +495,7 @@
           "target": "hollow-chapel",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "hollow-chapel"
@@ -532,7 +532,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 14,
             "onFailure": "vault-decision"
@@ -547,7 +547,7 @@
           "target": "vault-decision",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "religion",
             "dc": 13,
             "onFailure": "vault-decision"

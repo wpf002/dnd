@@ -308,8 +308,8 @@
           "target": "climb-to-hrimgard",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "History",
+            "ability": "int",
+            "skill": "history",
             "dc": 13,
             "onFailure": "barrow-guardian-beat"
           }
@@ -359,8 +359,8 @@
           "target": "gate-of-the-giant-hold",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "shepherds-warning"
           }

@@ -41,7 +41,7 @@
           "target": "hollow-road",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 13,
             "onFailure": "mist-choir-ambush"
@@ -93,7 +93,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "performance",
             "dc": 12,
             "onFailure": "mist-choir-ambush"
@@ -137,7 +137,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "intimidation",
             "dc": 13,
             "onFailure": "thistlewick-square"
@@ -228,7 +228,7 @@
           "target": "castle-gate",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "mist-choir-ambush"
@@ -283,7 +283,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "castle-gate"
@@ -306,7 +306,7 @@
           "target": "castle-gate",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 12,
             "onFailure": "mist-choir-ambush"
@@ -356,7 +356,7 @@
           "target": "cistern-stair",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 13,
             "onFailure": "tithe-boneyard"
@@ -406,7 +406,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 14,
             "onFailure": "cistern-stair"
@@ -451,7 +451,7 @@
           "target": "the-walled-well",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "dc": 13,
             "onFailure": "tithe-boneyard"
           }

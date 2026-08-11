@@ -267,8 +267,8 @@
           "target": "toll-stone",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "abandoned-camp"
           }
@@ -282,8 +282,8 @@
           "target": "toll-stone",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 12,
             "onFailure": "abandoned-camp"
           }
@@ -436,8 +436,8 @@
           "target": "ferryman-bargain",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "kobold-ambush"
           }
@@ -451,7 +451,7 @@
           "target": "ferryman-bargain",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
+            "ability": "str",
             "dc": 15,
             "onFailure": "kobold-ambush"
           }
@@ -511,8 +511,8 @@
           "target": "barrow-wight",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Intimidation",
+            "ability": "cha",
+            "skill": "intimidation",
             "dc": 13,
             "onFailure": "barrow-wight"
           }

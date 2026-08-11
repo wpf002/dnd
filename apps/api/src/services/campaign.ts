@@ -1,4 +1,13 @@
-import { LedgerEntry, type FlagValue } from '@lantern/schema';
+import {
+  CampaignGraph,
+  LedgerEntry,
+  type Book,
+  type CampaignProgress,
+  type Character,
+  type FlagValue,
+} from '@lantern/schema';
+import { evaluateGuard, levelParty } from '@lantern/engine';
+import { PREGENS, PREGENS_LEVEL_1 } from '@lantern/srd';
 import { callStructured, type Flint } from '@lantern/flint';
 import { z } from 'zod';
 import { createSession, type GameSession } from './game.js';
@@ -32,15 +41,37 @@ export interface CampaignSessionRecord {
 export interface Campaign {
   id: string;
   title: string;
-  /** The adventure this campaign replays/continues. Multi-graph comes later. */
+  /** The adventure currently in play. For a multi-book campaign, the current book's. */
   graph: unknown;
   ledger: LedgerEntry[];
   sessions: CampaignSessionRecord[];
   activeSession?: string;
+
+  // -- Multi-book (Phase 6). Absent on a single-adventure campaign. -----------
+
+  /** The book sequence. Its presence is what makes a campaign multi-book. */
+  book?: CampaignGraph;
+  /** Which book, what level, what is finished. */
+  progress?: CampaignProgress;
+  /**
+   * The party, carried across books with its levels and its wounds.
+   *
+   * This is why it lives on the campaign rather than the session: a session is
+   * one book, and a party that reset between books would make levelling
+   * pointless.
+   */
+  party?: Character[];
+  /** Set once every book has been played (or skipped by an unmet gate). */
+  completedAt?: string;
 }
 
 let campaignCounter = 0;
 export const campaigns = new Map<string, Campaign>();
+
+function currentBook(campaign: Campaign): Book | undefined {
+  if (!campaign.book || !campaign.progress) return undefined;
+  return campaign.book.books[campaign.progress.bookIndex];
+}
 
 export function createCampaign(graph: unknown, title: string): Campaign {
   const campaign: Campaign = {
@@ -52,6 +83,136 @@ export function createCampaign(graph: unknown, title: string): Campaign {
   };
   campaigns.set(campaign.id, campaign);
   return campaign;
+}
+
+/**
+ * The pregens at any level, built by advancing the nearest lower baseline.
+ *
+ * Two baselines exist because `levelUp` cannot run backwards. Picking the
+ * highest one at or below the target matters: a level-3+ campaign starts from
+ * the authored level-3 sheets and keeps their fuller spell lists, while a
+ * campaign opening at 1 or 2 starts from the level-1 sheets instead of
+ * silently getting level-3 characters — which is what happened when this
+ * called `levelParty(PREGENS, 1)` and got back four unchanged level-3
+ * characters, because levelling down is a no-op.
+ */
+export function partyAtLevel(level: number): Character[] {
+  const base = level >= 3 ? PREGENS : PREGENS_LEVEL_1;
+  return levelParty(base, level).map((r) => r.character);
+}
+
+/**
+ * Start a multi-book campaign.
+ *
+ * The party is built at the first book's `levelStart` up front rather than
+ * assumed: a campaign that opens at level 5 opens with a level-5 party, and
+ * the levelling goes through the same `levelParty` play uses.
+ *
+ * @param resolve Adventure id -> graph. Injected so this service never touches
+ *   the filesystem; the route owns that, and the linter still gates it.
+ */
+export function createBookCampaign(
+  input: unknown,
+  resolve: (adventureId: string) => unknown,
+  title?: string,
+): Campaign {
+  const book = CampaignGraph.parse(input);
+  const first = book.books[0]!;
+  const campaign: Campaign = {
+    id: `campaign-${++campaignCounter}`,
+    title: title ?? book.metadata.title,
+    graph: resolve(first.adventure),
+    book,
+    progress: {
+      campaign: book.id,
+      bookIndex: 0,
+      partyLevel: first.levelStart,
+      completedBooks: [],
+    },
+    party: partyAtLevel(first.levelStart),
+    ledger: [],
+    sessions: [],
+  };
+  campaigns.set(campaign.id, campaign);
+  return campaign;
+}
+
+export interface BookTransition {
+  completed: Book;
+  /** Absent when the campaign is over — either out of books, or all gates failed. */
+  next?: Book;
+  /** Books skipped because their entry guard did not hold. */
+  skipped: Book[];
+  /** Level the party was raised to on completing the book. */
+  partyLevel: number;
+  featuresGained: string[];
+}
+
+/**
+ * Finish the current book and open the next one.
+ *
+ * Three things happen here that nothing else does: the book's `onComplete`
+ * lands in the ledger (so a later book can read it), the party levels to the
+ * book's `levelEnd`, and the next enterable book is chosen by evaluating entry
+ * guards against campaign state — which is what makes a campaign branch rather
+ * than merely concatenate.
+ */
+export function completeBook(
+  campaign: Campaign,
+  resolve: (adventureId: string) => unknown,
+): BookTransition | undefined {
+  const book = currentBook(campaign);
+  if (!book || !campaign.book || !campaign.progress) return undefined;
+
+  for (const mutation of book.onComplete) {
+    campaign.ledger = upsertEntry(campaign.ledger, {
+      kind: 'flag',
+      flag: mutation.flag,
+      value: mutation.value,
+    });
+  }
+
+  const results = levelParty(campaign.party ?? PREGENS, book.levelEnd);
+  campaign.party = results.map((r) => r.character);
+  campaign.progress.partyLevel = book.levelEnd;
+  campaign.progress.completedBooks = [...campaign.progress.completedBooks, book.id];
+
+  // Guards read the ledger, not session flags — a book gate may depend on
+  // something set several books ago.
+  const flags = clockFlags(campaign.ledger);
+  const skipped: Book[] = [];
+  let next: Book | undefined;
+  for (let i = campaign.progress.bookIndex + 1; i < campaign.book.books.length; i++) {
+    const candidate = campaign.book.books[i]!;
+    if (evaluateGuard(candidate.entryWhen, flags)) {
+      next = candidate;
+      campaign.progress.bookIndex = i;
+      break;
+    }
+    skipped.push(candidate);
+  }
+
+  if (next) {
+    campaign.graph = resolve(next.adventure);
+    // The party enters the next book at its own start level. Normally equal to
+    // the previous book's levelEnd — the linter rejects a campaign where it
+    // is not — but honour the declaration rather than assume.
+    if (next.levelStart > campaign.progress.partyLevel) {
+      campaign.party = levelParty(campaign.party, next.levelStart).map((r) => r.character);
+      campaign.progress.partyLevel = next.levelStart;
+    }
+  } else {
+    campaign.progress.bookIndex = campaign.book.books.length;
+    campaign.completedAt = new Date().toISOString();
+  }
+
+  return {
+    completed: book,
+    ...(next ? { next } : {}),
+    skipped,
+    partyLevel: campaign.progress.partyLevel,
+    featuresGained: [...new Set(results.flatMap((r) => r.featuresGained))],
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -99,9 +260,13 @@ export function clockFlags(ledger: LedgerEntry[]): Record<string, FlagValue> {
 
 export function startCampaignSession(campaign: Campaign): GameSession {
   if (campaign.activeSession) throw new Error('a session is already active');
+  if (campaign.book && !currentBook(campaign)) {
+    throw new Error('campaign is complete — every book has been played');
+  }
   const session = createSession(
     campaign.graph,
     `${campaign.id}-s${campaign.sessions.length + 1}`,
+    campaign.party,
   );
   // The ledger is the context: world flags and clock state seed the session,
   // so graph guards can gate content on what previous sessions did.
@@ -156,12 +321,19 @@ export interface EndSessionResult {
   campaign: Campaign;
   delta: LedgerEntry[];
   compaction: 'mechanical' | 'model';
+  /** Set when this session finished a book and the campaign moved on. */
+  transition?: BookTransition;
 }
 
+/**
+ * @param resolve Adventure resolver, required only for multi-book campaigns —
+ *   a book transition has to load the next book's graph.
+ */
 export async function endCampaignSession(
   campaign: Campaign,
   session: GameSession,
   flint?: Flint,
+  resolve?: (adventureId: string) => unknown,
 ): Promise<EndSessionResult> {
   if (campaign.activeSession !== session.id) throw new Error('session is not this campaign\'s active session');
 
@@ -208,7 +380,18 @@ export async function endCampaignSession(
   record.turnCount = session.turns.length;
   delete campaign.activeSession;
 
-  return { campaign, delta, compaction };
+  // The party carries forward with whatever the book cost it. Wounds persist
+  // across books; that is the point of a campaign.
+  if (campaign.book) campaign.party = session.party.map((p) => structuredClone(p));
+
+  // A book is finished when its graph reached a terminal beat. A session that
+  // merely stopped early leaves the book open, to be resumed next sitting.
+  let transition: BookTransition | undefined;
+  if (campaign.book && session.ended && resolve) {
+    transition = completeBook(campaign, resolve);
+  }
+
+  return { campaign, delta, compaction, ...(transition ? { transition } : {}) };
 }
 
 // ---------------------------------------------------------------------------

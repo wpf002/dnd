@@ -75,8 +75,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "lower-city-warning"
           }
@@ -144,8 +144,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "wharf-ambush"
           }
@@ -161,8 +161,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Insight",
+            "ability": "cha",
+            "skill": "insight",
             "dc": 13,
             "onFailure": "dredger-hall"
           }
@@ -227,8 +227,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Deception",
+            "ability": "cha",
+            "skill": "deception",
             "dc": 15,
             "onFailure": "wharf-ambush"
           }
@@ -323,8 +323,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Religion",
+            "ability": "int",
+            "skill": "religion",
             "dc": 13,
             "onFailure": "drowned-stair"
           }
@@ -389,8 +389,8 @@
           "target": "sluice-gate",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 14,
             "onFailure": "salt-choir"
           }
@@ -444,8 +444,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 15,
             "onFailure": "salt-choir"
           }

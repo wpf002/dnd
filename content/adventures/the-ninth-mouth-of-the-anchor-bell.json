@@ -86,8 +86,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 16,
             "onFailure": "mirror-market"
           }
@@ -126,8 +126,8 @@
           "target": "unstitched-gallery",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 15,
             "onFailure": "choir-ambush"
           }
@@ -221,8 +221,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 16,
             "onFailure": "the-thin-place"
           }
@@ -278,7 +278,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 15,
             "onFailure": "the-thin-place"
           }
@@ -316,8 +316,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 15,
             "onFailure": "mourncant-parley"
           }

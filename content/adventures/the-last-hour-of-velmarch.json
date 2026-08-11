@@ -69,8 +69,8 @@
           "target": "approach-to-cathedral",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 15,
             "onFailure": "cultist-ambush"
           }
@@ -124,8 +124,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 16,
             "onFailure": "approach-to-cathedral"
           }
@@ -180,8 +180,8 @@
           "target": "approach-to-cathedral",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Insight",
+            "ability": "cha",
+            "skill": "insight",
             "dc": 14,
             "onFailure": "approach-to-cathedral"
           }
@@ -246,8 +246,8 @@
           "target": "approach-to-cathedral",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 15,
             "onFailure": "approach-to-cathedral"
           }
@@ -297,7 +297,7 @@
           "target": "cathedral-threshold",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
+            "ability": "wis",
             "dc": 13,
             "onFailure": "cathedral-threshold"
           }
@@ -340,8 +340,8 @@
           "target": "the-engine-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 15,
             "onFailure": "rift-guardian"
           }
@@ -376,8 +376,8 @@
           "target": "the-engine-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 13,
             "onFailure": "rift-guardian"
           }
@@ -434,7 +434,7 @@
           "target": "ending-sealed-salvation",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 17,
             "onFailure": "fallen-in-the-dark"
           }
@@ -456,7 +456,7 @@
           "target": "ending-embrace-the-star",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
+            "ability": "wis",
             "dc": 18,
             "onFailure": "fallen-in-the-dark"
           }

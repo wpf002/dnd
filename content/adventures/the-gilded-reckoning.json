@@ -69,8 +69,8 @@
           "target": "massacre-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "archivists-warning"
           }
@@ -121,8 +121,8 @@
           "target": "massacre-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 10,
             "onFailure": "into-the-old-quarter"
           }
@@ -183,8 +183,8 @@
           "target": "massacre-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 14,
             "onFailure": "skeletal-watch"
           }
@@ -195,8 +195,8 @@
           "target": "massacre-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 15,
             "onFailure": "skeletal-watch"
           }
@@ -335,8 +335,8 @@
           "target": "weeping-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Intimidation",
+            "ability": "cha",
+            "skill": "intimidation",
             "dc": 14,
             "onFailure": "hollow-choir"
           }
@@ -384,8 +384,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "unquiet-king"
           }
@@ -412,8 +412,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 12,
             "onFailure": "unquiet-king"
           }

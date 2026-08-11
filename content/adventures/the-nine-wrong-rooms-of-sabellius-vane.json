@@ -47,8 +47,8 @@
           "target": "mirror-clerks-parlor",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "gallery-of-standing-armor"
           }
@@ -157,8 +157,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 14,
             "onFailure": "gallery-of-standing-armor"
           }
@@ -208,8 +208,8 @@
           "target": "stair-that-descends-upward",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "drowned-strongroom"
           }
@@ -313,8 +313,8 @@
           "target": "ledger-heart",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
-            "skill": "Athletics",
+            "ability": "con",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "the-false-vault"
           }
@@ -391,8 +391,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "rival-crew-in-the-margin"
           }

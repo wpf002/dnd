@@ -120,7 +120,7 @@
           "target": "coven-scout",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "performance",
             "dc": 13,
             "onFailure": "bog-of-forgetting"
@@ -218,7 +218,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "bog-of-forgetting"
@@ -247,7 +247,7 @@
           "target": "coven-scout",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "dc": 13,
             "onFailure": "bramble-ambush"
           }
@@ -298,7 +298,7 @@
           "target": "broker-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 12,
             "onFailure": "bramble-ambush"
@@ -372,7 +372,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "dc": 12,
             "onFailure": "approach-decision"
           }
@@ -405,7 +405,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "approach-decision"

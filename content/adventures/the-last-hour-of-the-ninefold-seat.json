@@ -47,8 +47,8 @@
           "target": "council-floor",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "chancery-steps"
           }
@@ -80,8 +80,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Performance",
+            "ability": "cha",
+            "skill": "performance",
             "dc": 14,
             "onFailure": "crowd-riot"
           }
@@ -153,8 +153,8 @@
           "target": "archive-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 15,
             "onFailure": "ash-emissary"
           }
@@ -283,8 +283,8 @@
           "target": "sanctum-threshold",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 14,
             "onFailure": "sappers-breach"
           }
@@ -316,8 +316,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 16,
             "onFailure": "sappers-breach"
           }

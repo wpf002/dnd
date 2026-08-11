@@ -235,7 +235,7 @@
           "target": "warden-of-swords",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 13,
             "onFailure": "duel-with-the-sword-warden"
@@ -250,7 +250,7 @@
           "target": "warden-of-swords",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "duel-with-the-sword-warden"
@@ -407,7 +407,7 @@
           "target": "ghast-nest",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "dc": 13,
             "onFailure": "ending-sacrificed-in-waste"
           }
@@ -421,7 +421,7 @@
           "target": "ghast-nest",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 14,
             "onFailure": "ending-sacrificed-in-waste"
           }

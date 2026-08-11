@@ -1,11 +1,13 @@
 import { z } from 'zod';
 import {
+  Ability,
   ArtSlotId,
   BeatId,
   CombatantId,
   EncounterId,
   Id,
   Level,
+  Skill,
   Tier,
   Tone,
 } from './primitives.js';
@@ -89,11 +91,20 @@ export const BeatOption = z.object({
   target: BeatId,
   /** Applied on selection, before the target beat is entered. */
   effects: z.array(StateMutation).default([]),
-  /** Optional gate — a check the option requires before it resolves. */
+  /**
+   * Optional gate — a check the option requires before it resolves.
+   *
+   * `ability` and `skill` are enums rather than strings on purpose. When they
+   * were strings, generated content wrote display names ("Animal Handling",
+   * "Intelligence"); the engine looked them up, missed, and produced a
+   * modifier of `NaN` from a source of `undefined` — a check that silently
+   * resolved to nothing at all. The contract is the only place that can make
+   * that unrepresentable.
+   */
   requiresCheck: z
     .object({
-      ability: z.string().min(1),
-      skill: z.string().optional(),
+      ability: Ability,
+      skill: Skill.optional(),
       dc: z.number().int().min(1).max(30),
       /** Where failure leads. Failure must go *somewhere* — see below. */
       onFailure: BeatId,

@@ -40,7 +40,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "lampless-tavern"
@@ -86,7 +86,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 15,
             "onFailure": "revenue-collectors"
@@ -132,7 +132,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 12,
             "onFailure": "revenue-collectors"
@@ -195,7 +195,7 @@
           "target": "weirwright-locks",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 15,
             "onFailure": "revenue-collectors"
@@ -245,7 +245,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
+            "ability": "int",
             "dc": 15,
             "onFailure": "revenue-collectors"
           }
@@ -256,7 +256,7 @@
           "target": "the-cinder-march",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 14,
             "onFailure": "no-mans-ember"
@@ -318,7 +318,7 @@
           "target": "the-cinder-march",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 14,
             "onFailure": "no-mans-ember"
@@ -358,7 +358,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "graveworks-skirmish"
@@ -392,7 +392,7 @@
           "target": "lampless-outpost",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 14,
             "onFailure": "graveworks-skirmish"
           }
@@ -448,7 +448,7 @@
           "target": "ledger-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 14,
             "onFailure": "graveworks-skirmish"

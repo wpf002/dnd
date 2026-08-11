@@ -47,8 +47,8 @@
           "target": "the-bleeding-hedge",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 12,
             "onFailure": "the-perfect-lawns"
           }
@@ -81,8 +81,8 @@
           "target": "the-bleeding-hedge",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 10,
             "onFailure": "the-hoa-meeting"
           }
@@ -166,8 +166,8 @@
           "target": "the-bleeding-hedge",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "imp-patrol"
           }
@@ -199,8 +199,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "imp-patrol"
           }
@@ -333,8 +333,8 @@
           "target": "choose-your-leverage",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
-            "skill": "Survival",
+            "ability": "con",
+            "skill": "survival",
             "dc": 12,
             "onFailure": "the-covenants-enforcer"
           }
@@ -393,8 +393,8 @@
           "target": "the-final-signing",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 14,
             "onFailure": "the-covenants-enforcer"
           }
@@ -464,8 +464,8 @@
           "target": "renewed-bargain",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "broken-covenant"
           }

@@ -47,7 +47,7 @@
           "target": "the-village-of-hollow-mourning",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 13,
             "onFailure": "ambush-at-the-crossroads"
@@ -242,7 +242,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "the-collapsing-vault"
@@ -410,7 +410,7 @@
           "target": "the-curse-bearer-confrontation",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 13,
             "onFailure": "the-lords-final-guard"
           }

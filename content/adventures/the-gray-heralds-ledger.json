@@ -123,7 +123,7 @@
           "target": "hub-clues",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "docks-investigation"
@@ -177,7 +177,7 @@
           "target": "hub-clues",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 13,
             "onFailure": "hub-clues"
@@ -226,7 +226,7 @@
           "target": "hub-clues",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "hub-clues"
@@ -323,7 +323,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 14,
             "onFailure": "lighthouse-approach"
@@ -388,7 +388,7 @@
           "target": "lighthouse-stealth",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "front-door-clash"
@@ -492,7 +492,7 @@
           "target": "ending-hero-rescue",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "intimidation",
             "dc": 15,
             "onFailure": "front-door-clash"
@@ -507,7 +507,7 @@
           "target": "ending-quiet-rescue",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 14,
             "onFailure": "front-door-clash"

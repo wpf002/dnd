@@ -81,8 +81,8 @@
           "target": "records-of-small-hours",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "archive-nightshift"
           }
@@ -137,8 +137,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 13,
             "onFailure": "courier-trail"
           }
@@ -230,8 +230,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "archive-nightshift"
           }
@@ -287,8 +287,8 @@
           "target": "quiet-and-sons",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 14,
             "onFailure": "pawnshop-scuffle"
           }
@@ -338,8 +338,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 14,
             "onFailure": "pawnshop-scuffle"
           }
@@ -355,8 +355,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "pawnshop-scuffle"
           }

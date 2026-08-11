@@ -100,7 +100,7 @@
           "target": "initiation-rite",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 12,
             "onFailure": "initiation-rite"
@@ -409,7 +409,7 @@
           "target": "wight-rises",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 13,
             "onFailure": "wight-rises"
           }
@@ -423,7 +423,7 @@
           "target": "wight-rises",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 12,
             "onFailure": "wight-rises"

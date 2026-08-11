@@ -402,7 +402,7 @@
           "target": "climax-showdown",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 14,
             "onFailure": "encounter-confrontation"

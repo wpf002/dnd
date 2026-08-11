@@ -75,8 +75,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "the-scarecrow-line"
           }
@@ -120,8 +120,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 12,
             "onFailure": "the-scarecrow-line"
           }
@@ -226,8 +226,8 @@
           "target": "the-fallow-stair",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "the-fallow-stair"
           }
@@ -309,8 +309,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 14,
             "onFailure": "the-scarecrow-line"
           }
@@ -388,8 +388,8 @@
           "target": "the-fallow-stair",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "the-fallow-stair"
           }

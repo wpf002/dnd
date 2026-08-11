@@ -68,7 +68,7 @@
           "target": "ruin-road",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "ruin-road"
@@ -118,7 +118,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 12,
             "onFailure": "ruin-road"
@@ -163,7 +163,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 13,
             "onFailure": "ruin-road"
@@ -286,7 +286,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 13,
             "onFailure": "bandit-ambush"
@@ -352,7 +352,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "ghoul-warren"
@@ -419,7 +419,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 13,
             "onFailure": "wight-guardian"

@@ -81,8 +81,7 @@
           "target": "bloomheart-antechamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
-            "skill": "Constitution Saving Throw",
+            "ability": "con",
             "dc": 14,
             "onFailure": "poison-tide"
           }
@@ -135,8 +134,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "ghast-hollow"
           }
@@ -269,8 +268,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "bloomheart-antechamber"
           }
@@ -328,8 +327,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 14,
             "onFailure": "bloomheart-antechamber"
           }
@@ -412,8 +411,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Arcana",
+            "ability": "wis",
+            "skill": "arcana",
             "dc": 15,
             "onFailure": "the-waking-heart"
           }
@@ -464,8 +463,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 16,
             "onFailure": "the-waking-heart"
           }
@@ -484,8 +483,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Performance",
+            "ability": "cha",
+            "skill": "performance",
             "dc": 14,
             "onFailure": "the-waking-heart"
           }

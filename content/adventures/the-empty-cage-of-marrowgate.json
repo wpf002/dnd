@@ -74,8 +74,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "quiet-market"
           }
@@ -164,8 +164,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 14,
             "onFailure": "toll-in-the-alley"
           }
@@ -272,8 +272,8 @@
           "target": "milestone-cipher",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 12,
             "onFailure": "the-drifting-road"
           }
@@ -312,7 +312,7 @@
           "target": "the-passenger",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
+            "ability": "int",
             "dc": 13,
             "onFailure": "hollow-caravan"
           }
@@ -425,8 +425,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "vault-of-roads"
           }

@@ -46,8 +46,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Athletics",
+            "ability": "dex",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "wind-gallery"
           }
@@ -136,8 +136,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "spiral-stair-descent"
           }
@@ -368,8 +368,8 @@
           "target": "scriptorium-mirror",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "ghostlight-cistern"
           }

@@ -69,7 +69,7 @@
           "target": "shard-trail",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 13,
             "onFailure": "shard-trail"
@@ -114,7 +114,7 @@
           "target": "shard-trail",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 12,
             "onFailure": "shard-trail"
@@ -170,7 +170,7 @@
           "target": "shard-trail",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "ember-scuffle"
@@ -338,7 +338,7 @@
           "target": "clocktower-sanctum",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "clocktower-alarm"
@@ -405,7 +405,7 @@
           "target": "renewal-night",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 13,
             "onFailure": "renewal-night"

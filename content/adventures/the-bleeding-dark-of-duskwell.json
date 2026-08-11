@@ -83,8 +83,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "alley-scene"
           }
@@ -134,8 +134,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "guild-hall"
           }
@@ -185,8 +185,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 13,
             "onFailure": "ashgrove-shop"
           }
@@ -245,8 +245,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 14,
             "onFailure": "undercroft-tunnels"
           }
@@ -302,8 +302,8 @@
           "target": "the-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "shadow-encounter"
           }
@@ -365,8 +365,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "the-vault"
           }
@@ -473,8 +473,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "ghoul-encounter"
           }

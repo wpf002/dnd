@@ -46,8 +46,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 12,
             "onFailure": "crooked-moot"
           }
@@ -63,8 +63,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 11,
             "onFailure": "crooked-moot"
           }
@@ -158,8 +158,8 @@
           "target": "night-tally",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "sapper-warren"
           }
@@ -209,8 +209,8 @@
           "target": "night-tally",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 12,
             "onFailure": "wolf-cull"
           }
@@ -265,8 +265,8 @@
           "target": "night-tally",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 12,
             "onFailure": "ford-standoff"
           }
@@ -431,8 +431,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "History",
+            "ability": "int",
+            "skill": "history",
             "dc": 13,
             "onFailure": "barrow-guardians"
           }

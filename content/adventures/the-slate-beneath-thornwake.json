@@ -46,8 +46,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 12,
             "onFailure": "quad-of-questions"
           }
@@ -159,8 +159,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 12,
             "onFailure": "dormitory-sleepwalk"
           }
@@ -176,8 +176,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "History",
+            "ability": "int",
+            "skill": "history",
             "dc": 13,
             "onFailure": "dormitory-sleepwalk"
           }
@@ -322,8 +322,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 12,
             "onFailure": "chalk-sealed-door"
           }
@@ -378,7 +378,7 @@
           "target": "silent-room",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
+            "ability": "str",
             "dc": 13,
             "onFailure": "bone-monitors"
           }
@@ -411,8 +411,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 12,
             "onFailure": "name-on-the-slate"
           }

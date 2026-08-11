@@ -75,8 +75,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "tide-market"
           }
@@ -116,8 +116,8 @@
           "target": "wreck-on-the-bar",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "undock-crawl"
           }
@@ -162,8 +162,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "false-lamp-cairn"
           }
@@ -208,8 +208,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 13,
             "onFailure": "undock-crawl"
           }
@@ -225,8 +225,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "History",
+            "ability": "int",
+            "skill": "history",
             "dc": 12,
             "onFailure": "undock-crawl"
           }
@@ -272,8 +272,8 @@
           "target": "salt-hold",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "rat-tide-crawl"
           }
@@ -318,8 +318,8 @@
           "target": "crale-vs-vane",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 13,
             "onFailure": "crale-vs-vane"
           }
@@ -468,8 +468,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "customs-house-brawl"
           }

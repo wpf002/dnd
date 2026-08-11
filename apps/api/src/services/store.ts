@@ -56,6 +56,21 @@ export class MemoryStore implements Store {
   }
 }
 
+/**
+ * Multi-book state as one JSON column. Kept together because the three parts
+ * are only meaningful together: a progress cursor without its book list, or a
+ * party without the level it was carried to, is not resumable state.
+ */
+function bookState(campaign: Campaign): string | null {
+  if (!campaign.book) return null;
+  return JSON.stringify({
+    book: campaign.book,
+    progress: campaign.progress,
+    party: campaign.party,
+    ...(campaign.completedAt ? { completedAt: campaign.completedAt } : {}),
+  });
+}
+
 /** Ledger key derivation — the same identity upsertEntry uses in memory. */
 export function ledgerKey(e: LedgerEntry): string {
   switch (e.kind) {
@@ -88,6 +103,7 @@ type PrismaLike = {
       adventureId: string;
       graphJson: string;
       activeSession: string | null;
+      bookStateJson: string | null;
     } | null>;
     findMany(args?: object): Promise<Array<{ id: string; title: string }>>;
   };
@@ -152,10 +168,15 @@ export class PrismaStore implements Store {
         adventureId: (campaign.graph as { id?: string }).id ?? 'unknown',
         graphJson: JSON.stringify(campaign.graph),
         activeSession: campaign.activeSession ?? null,
+        bookStateJson: bookState(campaign),
       },
       update: {
         title: campaign.title,
         activeSession: campaign.activeSession ?? null,
+        // The current book's graph moves on with the campaign, so it is not
+        // create-only the way a single-adventure campaign's graph is.
+        graphJson: JSON.stringify(campaign.graph),
+        bookStateJson: bookState(campaign),
       },
     });
     for (const entry of campaign.ledger) {
@@ -191,6 +212,12 @@ export class PrismaStore implements Store {
       ledger,
       sessions: [], // session records rehydrate lazily from the Session table
       ...(row.activeSession ? { activeSession: row.activeSession } : {}),
+      ...(row.bookStateJson
+        ? (JSON.parse(row.bookStateJson) as Pick<
+            Campaign,
+            'book' | 'progress' | 'party' | 'completedAt'
+          >)
+        : {}),
     };
   }
 

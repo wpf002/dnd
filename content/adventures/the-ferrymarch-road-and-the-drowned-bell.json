@@ -81,8 +81,8 @@
           "target": "sunken-milestone",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Medicine",
+            "ability": "wis",
+            "skill": "medicine",
             "dc": 13,
             "onFailure": "reed-blind-ambush"
           }
@@ -126,8 +126,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Intimidation",
+            "ability": "cha",
+            "skill": "intimidation",
             "dc": 13,
             "onFailure": "reed-blind-ambush"
           }
@@ -187,8 +187,8 @@
           "target": "wheel-ruts-through-the-willows",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "reed-blind-ambush"
           }
@@ -272,8 +272,8 @@
           "target": "the-baggage-train",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "tide-hound-kennels"
           }
@@ -395,8 +395,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 14,
             "onFailure": "tide-hound-kennels"
           }
@@ -407,8 +407,8 @@
           "target": "the-bell-cage",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "tide-hound-kennels"
           }
@@ -479,8 +479,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 14,
             "onFailure": "the-ringing-at-swiftwater-bend"
           }

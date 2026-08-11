@@ -147,8 +147,8 @@
           "target": "vault-antechamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 12,
             "onFailure": "sewer-ambush"
           }
@@ -192,8 +192,8 @@
           "target": "vault-antechamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "rooftop-guards"
           }
@@ -232,8 +232,8 @@
           "target": "vault-antechamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Deception",
+            "ability": "cha",
+            "skill": "deception",
             "dc": 13,
             "onFailure": "front-alarm"
           }
@@ -320,8 +320,8 @@
           "target": "vault-open",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 14,
             "onFailure": "ghost-thane-encounter"
           }
@@ -332,8 +332,8 @@
           "target": "vault-open",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 15,
             "onFailure": "ghost-thane-encounter"
           }

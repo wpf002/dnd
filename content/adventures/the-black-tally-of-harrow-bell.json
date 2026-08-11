@@ -46,8 +46,8 @@
           "target": "headframe-descent",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 12,
             "onFailure": "pump-house-quarrel"
           }
@@ -146,8 +146,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "pump-house-quarrel"
           }
@@ -198,8 +198,8 @@
           "target": "sump-and-signal",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "flooded-drift"
           }
@@ -255,8 +255,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 12,
             "onFailure": "kobold-picket"
           }
@@ -369,8 +369,8 @@
           "target": "sealed-door",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "kobold-picket"
           }
@@ -404,8 +404,8 @@
           "target": "tallyroom",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "tallyroom"
           }

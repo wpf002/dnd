@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { lintGraph } from '@lantern/linter';
+import { lintCampaign, lintGraph } from '@lantern/linter';
 import {
   chooseOption,
   combatAttack,
@@ -27,6 +27,7 @@ import { narrate } from '../services/narration.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ADVENTURES_DIR = join(here, '..', '..', '..', '..', 'content', 'adventures');
+const CAMPAIGNS_DIR = join(here, '..', '..', '..', '..', 'content', 'campaigns');
 
 export const sessions = new Map<string, GameSession>();
 
@@ -68,6 +69,55 @@ export function loadGraph(adventureId: string): unknown {
     );
   }
   return raw;
+}
+
+/**
+ * Load a multi-book campaign, with its books resolved and linted.
+ *
+ * Invariant 6 again: a campaign passes through `lintCampaign` with its
+ * adventures resolved, so a level-band gap or a dead book gate is caught at
+ * load rather than twenty hours into play.
+ */
+export function loadCampaignGraph(campaignId: string): unknown {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(campaignId)) {
+    throw Object.assign(new Error('invalid campaign id'), { statusCode: 400 });
+  }
+  const raw = JSON.parse(readFileSync(join(CAMPAIGNS_DIR, `${campaignId}.json`), 'utf8')) as {
+    books?: Array<{ adventure: string }>;
+  };
+
+  const adventures = new Map<string, unknown>();
+  for (const book of raw.books ?? []) {
+    // A book pointing at a broken adventure is left unresolved; lintCampaign
+    // then reports it as missing, which is the accurate finding.
+    try {
+      adventures.set(book.adventure, loadGraph(book.adventure));
+    } catch {
+      /* reported below */
+    }
+  }
+
+  const lint = lintCampaign(raw, adventures);
+  if (!lint.ok) {
+    throw Object.assign(
+      new Error(
+        `campaign '${campaignId}' fails the linter:\n${lint.errors.map((e) => e.message).join('\n')}`,
+      ),
+      { statusCode: 500 },
+    );
+  }
+  return raw;
+}
+
+export function listCampaignGraphs(): string[] {
+  try {
+    return readdirSync(CAMPAIGNS_DIR)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => f.replace(/\.json$/, ''))
+      .sort();
+  } catch {
+    return [];
+  }
 }
 
 async function respond(outcome: TurnOutcome): Promise<object> {

@@ -195,8 +195,8 @@
           "target": "vault-guardian",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "ending-captured"
           }
@@ -213,8 +213,8 @@
           "target": "vault-guardian",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "ending-captured"
           }

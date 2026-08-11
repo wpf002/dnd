@@ -40,7 +40,7 @@
           "target": "undertow-tunnels",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 15,
             "onFailure": "sun-gate-crowds"
@@ -52,7 +52,7 @@
           "target": "choir-sanctum-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 13,
             "onFailure": "sun-gate-crowds"
@@ -86,7 +86,7 @@
           "target": "the-failing-heart",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 14,
             "onFailure": "undertow-tunnels"
@@ -131,7 +131,7 @@
           "target": "the-failing-heart",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 15,
             "onFailure": "sun-gate-crowds"
@@ -143,7 +143,7 @@
           "target": "choir-sanctum-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 16,
             "onFailure": "the-failing-heart"
@@ -182,7 +182,7 @@
           "target": "the-failing-heart",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 14,
             "onFailure": "sun-gate-crowds"
@@ -194,7 +194,7 @@
           "target": "vesper-ritual-lore",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "the-failing-heart"
@@ -267,7 +267,7 @@
           "target": "vesper-ritual-lore",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "intimidation",
             "dc": 15,
             "onFailure": "ashen-uprising"
@@ -311,7 +311,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 16,
             "onFailure": "heart-chamber-guardians"
@@ -429,7 +429,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 17,
             "onFailure": "ending-fall-of-the-city"
@@ -446,7 +446,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 16,
             "onFailure": "ending-fall-of-the-city"
@@ -511,7 +511,7 @@
           "target": "ending-evacuation-embers",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "survival",
             "dc": 14,
             "onFailure": "ending-fall-of-the-city"

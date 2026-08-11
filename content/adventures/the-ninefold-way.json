@@ -81,8 +81,8 @@
           "target": "salt-ladder-descent",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "cartel-ambush"
           }
@@ -161,8 +161,8 @@
           "target": "sump-gate",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "cartel-ambush"
           }
@@ -229,7 +229,7 @@
           "target": "drowned-bazaar",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
+            "ability": "str",
             "dc": 15,
             "onFailure": "market-dead"
           }
@@ -274,8 +274,8 @@
           "target": "sump-gate",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "drowned-bazaar"
           }
@@ -432,8 +432,8 @@
           "target": "surveyors-name",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 15,
             "onFailure": "drowned-choir-battle"
           }

@@ -290,8 +290,8 @@
           "target": "debt-revealed",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 14,
             "onFailure": "vault-guardians"
           }

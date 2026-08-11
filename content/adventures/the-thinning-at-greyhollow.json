@@ -76,8 +76,8 @@
           "target": "tavern-informant",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 12,
             "onFailure": "chapel-exterior"
           }
@@ -111,8 +111,8 @@
           "target": "the-unspeakable-truth",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 15,
             "onFailure": "chapel-exterior"
           }
@@ -237,8 +237,8 @@
           "target": "cult-ritual-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "cult-ambush"
           }
@@ -294,7 +294,7 @@
           "target": "chapel-exterior",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "dc": 14,
             "onFailure": "rift-tear-encounter"
           }
@@ -366,8 +366,8 @@
           "target": "sealed-chapel-climax",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 13,
             "onFailure": "well-lights"
           }
@@ -384,8 +384,8 @@
           "target": "sealed-chapel-climax",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 12,
             "onFailure": "well-lights"
           }
@@ -418,8 +418,8 @@
           "target": "ending-true-seal",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
-            "skill": "Arcana",
+            "ability": "wis",
+            "skill": "arcana",
             "dc": 16,
             "onFailure": "ending-catastrophe"
           }

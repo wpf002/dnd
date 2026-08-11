@@ -141,7 +141,7 @@
           "target": "bell-ruins-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "cult-ambush"
@@ -219,7 +219,7 @@
           "target": "hollow-bell-chapel",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "dc": 12,
             "onFailure": "hollow-bell-chapel"
           }
@@ -233,7 +233,7 @@
           "target": "hollow-bell-chapel",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 12,
             "onFailure": "hollow-bell-chapel"
           }
@@ -316,7 +316,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "confront-cult-leader"
@@ -340,7 +340,7 @@
           "target": "confront-cult-leader",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "religion",
             "dc": 13,
             "onFailure": "confront-cult-leader"

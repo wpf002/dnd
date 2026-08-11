@@ -52,8 +52,8 @@
           "target": "chancery-orrery-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 14,
             "onFailure": "bazaar-of-cracked-glass"
           }
@@ -131,8 +131,8 @@
           "target": "bazaar-of-cracked-glass",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "bazaar-of-cracked-glass"
           }
@@ -206,7 +206,7 @@
           "target": "the-inverted-milestone",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 13,
             "onFailure": "caravan-of-vacant-eyes"
           }
@@ -324,8 +324,8 @@
           "target": "the-returned-cartographer",
           "effects": [],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Survival",
+            "ability": "wis",
+            "skill": "survival",
             "dc": 16,
             "onFailure": "choir-in-the-glasshouse"
           }
@@ -370,7 +370,7 @@
           "target": "the-returned-cartographer",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
+            "ability": "int",
             "dc": 15,
             "onFailure": "choir-in-the-glasshouse"
           }

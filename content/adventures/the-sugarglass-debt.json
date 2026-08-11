@@ -166,7 +166,7 @@
           "target": "buried-ledger",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "goblin-tollkeepers"
@@ -215,7 +215,7 @@
           "target": "godmothers-grove-edge",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 14,
             "onFailure": "shadow-guardians"
           }
@@ -360,7 +360,7 @@
           "target": "godmother-in-the-wood",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 15,
             "onFailure": "shadow-guardians"

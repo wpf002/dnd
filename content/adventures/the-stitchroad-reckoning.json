@@ -235,7 +235,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 15,
             "onFailure": "hazard-unstable-ground"
@@ -287,7 +287,7 @@
           "target": "discovery-warden-shrine",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "dc": 13,
             "onFailure": "conflict-seam-wardens"
           }
@@ -411,7 +411,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "religion",
             "dc": 14,
             "onFailure": "conflict-stitchroad-guardian"

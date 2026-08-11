@@ -141,8 +141,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "larder-level"
           }
@@ -332,8 +332,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "chapel-of-swallowed-sun"
           }
@@ -496,8 +496,8 @@
           "target": "the-founders-remnant",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "wardens-of-the-untruth"
           }

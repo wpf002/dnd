@@ -61,7 +61,7 @@
           "target": "ashfall-market",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "ashfall-market"
@@ -220,7 +220,7 @@
           "target": "stone-shard-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "acrobatics",
             "dc": 14,
             "onFailure": "undercroft-tunnels"
@@ -274,7 +274,7 @@
           "target": "stone-shard-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "ashbound-ambush"
@@ -403,7 +403,7 @@
           "target": "gate-mechanism",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "arcana",
             "dc": 13,
             "onFailure": "gate-mechanism"
@@ -434,7 +434,7 @@
           "target": "final-choice",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "wardens-betrayal"

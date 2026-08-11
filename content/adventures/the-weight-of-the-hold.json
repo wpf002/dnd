@@ -367,7 +367,7 @@
           "target": "final-descent",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "skill": "athletics",
             "dc": 13,
             "onFailure": "ending-lost-to-deep"

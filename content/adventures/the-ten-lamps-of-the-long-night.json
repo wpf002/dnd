@@ -75,8 +75,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "the-well-that-drinks-heat"
           }
@@ -120,8 +120,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "wolves-on-the-lampline"
           }
@@ -177,8 +177,8 @@
           "target": "the-buried-caravan",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 12,
             "onFailure": "crossing-the-black-shelf"
           }
@@ -227,8 +227,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 14,
             "onFailure": "cellar-of-the-quiet-feast"
           }
@@ -327,8 +327,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 14,
             "onFailure": "cellar-of-the-quiet-feast"
           }
@@ -344,8 +344,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Insight",
+            "ability": "wis",
+            "skill": "insight",
             "dc": 12,
             "onFailure": "wolves-on-the-lampline"
           }
@@ -390,8 +390,8 @@
           "target": "the-tenth-lamp",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 13,
             "onFailure": "dragged-under-the-drift"
           }
@@ -463,8 +463,8 @@
           "target": "the-cantors-loft",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
-            "skill": "Athletics",
+            "ability": "str",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "cellar-of-the-quiet-feast"
           }

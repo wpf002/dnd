@@ -205,7 +205,7 @@
           "target": "stone-alignment-puzzle",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "sandstorm-hazard"
@@ -321,7 +321,7 @@
           "target": "vault-entrance",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "perception",
             "dc": 13,
             "onFailure": "sandstorm-hazard"
@@ -333,7 +333,7 @@
           "target": "vault-entrance",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 15,
             "onFailure": "sandstorm-hazard"
@@ -367,7 +367,7 @@
           "target": "vault-entrance",
           "effects": [],
           "requiresCheck": {
-            "ability": "constitution",
+            "ability": "con",
             "skill": "survival",
             "dc": 12,
             "onFailure": "ending-dark"
@@ -446,7 +446,7 @@
           "target": "vashka-showdown",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 15,
             "onFailure": "guardian-encounter"
@@ -539,7 +539,7 @@
           "target": "ending-hero",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "arcana",
             "dc": 13,
             "onFailure": "ending-dark"

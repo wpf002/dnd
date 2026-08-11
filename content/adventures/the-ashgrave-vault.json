@@ -223,7 +223,7 @@
           "target": "inside-tallow-hall",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 13,
             "onFailure": "entry-fight"
@@ -348,7 +348,7 @@
           "target": "seal-in-hand",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 14,
             "onFailure": "vault-fight"
@@ -363,7 +363,7 @@
           "target": "seal-in-hand",
           "effects": [],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "skill": "athletics",
             "dc": 15,
             "onFailure": "vault-fight"
@@ -497,7 +497,7 @@
           "target": "betrayal-ending",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "intimidation",
             "dc": 14,
             "onFailure": "captured-ending"

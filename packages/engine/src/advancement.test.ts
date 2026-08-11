@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PREGENS, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD } from '@lantern/srd';
+import { PREGENS, PREGENS_LEVEL_1, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD } from '@lantern/srd';
 import { levelUp, levelParty, sneakAttackDiceFor, spellSaveDc } from './advancement/index.js';
 import { proficiencyBonus } from './checks/index.js';
 
@@ -139,5 +139,29 @@ describe('levelParty', () => {
       8,
     );
     expect(again.every((r) => r.steps.length === 0)).toBe(true);
+  });
+});
+
+describe('the level-1 pregens are the level-3 pregens, un-advanced', () => {
+  /**
+   * Both sets are authored, because levelling cannot run backwards. This is
+   * what keeps them from drifting apart: advance the level-1 sheets and the
+   * mechanical numbers on the level-3 sheets must come back exactly.
+   *
+   * Spell selection is excluded deliberately — which spells a caster knows is
+   * a player's choice, not something advancement derives.
+   */
+  it('reproduces hp, hit dice, and slots exactly', () => {
+    const advanced = levelParty(PREGENS_LEVEL_1, 3).map((r) => r.character);
+    for (const authored of PREGENS) {
+      const derived = advanced.find((c) => c.id === authored.id)!;
+      expect(derived.hpMax, `${authored.name} hpMax`).toBe(authored.hpMax);
+      expect(derived.hitDiceRemaining, `${authored.name} hit dice`).toBe(
+        authored.hitDiceRemaining,
+      );
+      expect(derived.spellcasting?.slotsMax, `${authored.name} slots`).toEqual(
+        authored.spellcasting?.slotsMax,
+      );
+    }
   });
 });

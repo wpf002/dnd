@@ -241,8 +241,7 @@
           "target": "interior-atrium",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "thieves' tools",
+            "ability": "dex",
             "dc": 13,
             "onFailure": "corridor-guards"
           }
@@ -258,7 +257,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "strength",
+            "ability": "str",
             "dc": 15,
             "onFailure": "corridor-guards"
           }
@@ -291,7 +290,7 @@
           "target": "interior-atrium",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 13,
             "onFailure": "corridor-guards"
@@ -303,8 +302,8 @@
           "target": "interior-atrium",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "sleight of hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 12,
             "onFailure": "corridor-guards"
           }
@@ -414,8 +413,8 @@
           "target": "ledger-secured",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "sleight of hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 14,
             "onFailure": "vault-guardians"
           }

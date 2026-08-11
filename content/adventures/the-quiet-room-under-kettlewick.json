@@ -135,8 +135,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "widows-row"
           }
@@ -304,8 +304,8 @@
           "target": "the-singing-vein",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Athletics",
+            "ability": "dex",
+            "skill": "athletics",
             "dc": 13,
             "onFailure": "the-hollow-crew"
           }
@@ -349,8 +349,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Investigation",
+            "ability": "int",
+            "skill": "investigation",
             "dc": 13,
             "onFailure": "the-hollow-crew"
           }
@@ -431,7 +431,7 @@
           "target": "the-quiet-room",
           "effects": [],
           "requiresCheck": {
-            "ability": "Strength",
+            "ability": "str",
             "dc": 15,
             "onFailure": "the-hollow-crew"
           }

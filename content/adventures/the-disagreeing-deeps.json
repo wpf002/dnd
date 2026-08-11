@@ -75,8 +75,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 14,
             "onFailure": "hollow-shaft"
           }
@@ -179,8 +179,8 @@
           "target": "the-sown-garden",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Acrobatics",
+            "ability": "dex",
+            "skill": "acrobatics",
             "dc": 14,
             "onFailure": "spore-tide"
           }
@@ -225,8 +225,8 @@
           "target": "cell-block-of-quiet-names",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "auditor-sweep"
           }
@@ -357,7 +357,7 @@
           "target": "foundation-vault",
           "effects": [],
           "requiresCheck": {
-            "ability": "Constitution",
+            "ability": "con",
             "dc": 15,
             "onFailure": "the-sown-garden"
           }
@@ -429,8 +429,8 @@
           "target": "the-inscribing",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Intimidation",
+            "ability": "cha",
+            "skill": "intimidation",
             "dc": 15,
             "onFailure": "warden-bellhouse"
           }

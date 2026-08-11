@@ -82,7 +82,7 @@
           "target": "choose-approach",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 12,
             "onFailure": "choose-approach"
@@ -137,7 +137,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "deception",
             "dc": 13,
             "onFailure": "warehouse-heist"
@@ -213,7 +213,7 @@
           "target": "into-the-passage",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 13,
             "onFailure": "into-the-passage"
@@ -288,8 +288,7 @@
           "target": "first-wreck",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "vehicles-water",
+            "ability": "dex",
             "dc": 14,
             "onFailure": "first-wreck"
           }

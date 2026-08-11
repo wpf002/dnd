@@ -46,8 +46,8 @@
           "target": "midway-lamps",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 13,
             "onFailure": "clerk-writ-beat"
           }
@@ -121,8 +121,8 @@
           "target": "mirror-corridor",
           "effects": [],
           "requiresCheck": {
-            "ability": "Intelligence",
-            "skill": "Arcana",
+            "ability": "int",
+            "skill": "arcana",
             "dc": 13,
             "onFailure": "midway-lamps"
           }
@@ -165,8 +165,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "mirror-corridor"
           }
@@ -327,8 +327,8 @@
           "target": "brokers-parlour",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 13,
             "onFailure": "lantern-of-her-laugh"
           }
@@ -345,8 +345,8 @@
           "target": "lantern-of-her-laugh",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Stealth",
+            "ability": "dex",
+            "skill": "stealth",
             "dc": 14,
             "onFailure": "clerk-writ-beat"
           }
@@ -383,8 +383,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Wisdom",
-            "skill": "Perception",
+            "ability": "wis",
+            "skill": "perception",
             "dc": 13,
             "onFailure": "brokers-parlour"
           }
@@ -395,8 +395,8 @@
           "target": "brokers-parlour",
           "effects": [],
           "requiresCheck": {
-            "ability": "Dexterity",
-            "skill": "Sleight of Hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 15,
             "onFailure": "thin-mirror-beat"
           }
@@ -440,8 +440,8 @@
             }
           ],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 14,
             "onFailure": "final-encore"
           }
@@ -507,8 +507,8 @@
           "target": "ending-lamps-relit",
           "effects": [],
           "requiresCheck": {
-            "ability": "Charisma",
-            "skill": "Persuasion",
+            "ability": "cha",
+            "skill": "persuasion",
             "dc": 15,
             "onFailure": "champions-beat"
           }

@@ -81,7 +81,7 @@
           "target": "mill-exterior",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "insight",
             "dc": 12,
             "onFailure": "tavern-gossip"
@@ -126,7 +126,7 @@
           "target": "mill-exterior",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "dc": 11,
             "onFailure": "mill-exterior"
           }
@@ -153,7 +153,7 @@
           "target": "hidden-trapdoor",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "skill": "stealth",
             "dc": 12,
             "onFailure": "mill-guard-encounter"
@@ -165,7 +165,7 @@
           "target": "hidden-trapdoor",
           "effects": [],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 11,
             "onFailure": "mill-guard-encounter"
@@ -221,8 +221,8 @@
           "target": "hidden-room",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
-            "skill": "sleight of hand",
+            "ability": "dex",
+            "skill": "sleight-of-hand",
             "dc": 13,
             "onFailure": "goblin-ambush"
           }
@@ -233,7 +233,7 @@
           "target": "hidden-room",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 12,
             "onFailure": "goblin-ambush"
@@ -333,7 +333,7 @@
             }
           ],
           "requiresCheck": {
-            "ability": "charisma",
+            "ability": "cha",
             "skill": "persuasion",
             "dc": 14,
             "onFailure": "bandit-captain-fight"

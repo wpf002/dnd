@@ -224,7 +224,7 @@
           "target": "warded-door",
           "effects": [],
           "requiresCheck": {
-            "ability": "intelligence",
+            "ability": "int",
             "skill": "investigation",
             "dc": 12,
             "onFailure": "goblin-ambush"
@@ -280,7 +280,7 @@
           "target": "vault-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "dexterity",
+            "ability": "dex",
             "dc": 13,
             "onFailure": "goblin-ambush"
           }
@@ -291,7 +291,7 @@
           "target": "vault-chamber",
           "effects": [],
           "requiresCheck": {
-            "ability": "wisdom",
+            "ability": "wis",
             "skill": "arcana",
             "dc": 14,
             "onFailure": "goblin-ambush"
