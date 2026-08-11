@@ -158,10 +158,28 @@ describe('structured errors', () => {
 });
 
 describe('lantern defaults', () => {
-  it('registers the six consumers', () => {
+  it('registers the seven consumers', () => {
     const flint = createLanternFlint();
     const ids = flint.consumers.list().map((c) => c.id).sort();
-    expect(ids).toEqual(['compaction', 'dm-narration', 'generator', 'ingest', 'intent-parse', 'npc-dialogue']);
+    expect(ids).toEqual([
+      'compaction',
+      'dm-narration',
+      'generator',
+      'ingest',
+      'ingest-fragment',
+      'intent-parse',
+      'npc-dialogue',
+    ]);
+  });
+
+  it('sizes a section extraction well below a whole-module one', () => {
+    // `ingest` is sized for a whole document in one call. Reusing it per chunk
+    // made every chunk trip the SDK's long-request guard and stream.
+    const flint = createLanternFlint();
+    const whole = flint.consumers.get('ingest')!;
+    const fragment = flint.consumers.get('ingest-fragment')!;
+    expect(fragment.maxTokens).toBeLessThan(whole.maxTokens);
+    expect(fragment.maxTokens).toBeLessThanOrEqual(8_192);
   });
 
   it('gives each consumer a distinct system block', () => {

@@ -93,6 +93,22 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
     temperature: 0,
   });
   registry.register({
+    id: 'ingest-fragment',
+    provider: 'anthropic',
+    model: 'claude-opus-5',
+    system:
+      'You extract the structure of ONE SECTION of a published tabletop adventure: rooms, ' +
+      'connections, encounters, NPCs, and read-aloud passages. You preserve read-aloud text ' +
+      'verbatim. You never invent rooms or creatures that are not in the section in front of ' +
+      'you, and you reuse ids you are told already exist rather than creating near-duplicates.',
+    // A section is not a module. The 32k on `ingest` is sized for a whole
+    // document in one call; asking for it per chunk made every chunk stream
+    // (the SDK's long-request guard trips above 8k) and turned a five-section
+    // extraction into minutes of wall clock for no extra fidelity.
+    maxTokens: 8_192,
+    temperature: 0,
+  });
+  registry.register({
     id: 'compaction',
     provider: 'anthropic',
     model: 'claude-sonnet-5',

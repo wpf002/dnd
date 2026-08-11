@@ -245,7 +245,7 @@ async function ingestLong(
     'Untitled Module',
     'Extracted from a long source document.',
     async ({ chunk, index, total }) => {
-      const result = await callStructured(flint, 'ingest', {
+      const result = await callStructured(flint, 'ingest-fragment', {
         schema: IngestedFragment,
         schemaName: 'IngestedFragment',
         maxRepairs: 1,
