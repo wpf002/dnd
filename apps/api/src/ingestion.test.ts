@@ -109,12 +109,93 @@ describe('the deterministic mapper', () => {
     expect(lintGraph(graph).ok).toBe(true); // substitution keeps it playable
   });
 
-  it('reports rooms whose spatial freedom was reshaped — the honest railroad', () => {
+  it('keeps every exit of a hub, at the cost of an extra beat', () => {
     const module = linearModule();
-    // A junction with five exits: more spatial freedom than three options hold.
-    module.rooms[2]!.connections = ['old-face', 'upper-gallery', 'mine-entrance', 'old-face', 'upper-gallery'];
-    const { report } = mapModuleToGraph(module);
+    // Five distinct exits: more than three options hold, so the junction is
+    // split rather than truncated. The old mapper kept the first three and
+    // silently dropped the rest.
+    module.rooms.push(
+      { id: 'sump', name: 'The Sump', description: 'Black water.', connections: ['flooded-junction'] },
+      { id: 'crawl', name: 'The Crawl', description: 'A tight squeeze.', connections: ['flooded-junction'] },
+    );
+    module.rooms[2]!.connections = ['old-face', 'upper-gallery', 'mine-entrance', 'sump', 'crawl'];
+
+    const { graph, report } = mapModuleToGraph(module);
+    expect(report.fannedOut).toContainEqual({ room: 'flooded-junction', exits: 5, extraBeats: 1 });
     expect(report.reshapedRooms).toContain('flooded-junction');
+
+    // Every one of the five is still reachable from the junction.
+    const junction = (graph as { beats: Array<{ id: string; options: Array<{ target: string }> }> })
+      .beats.filter((b) => b.id.startsWith('flooded-junction'));
+    const targets = new Set(junction.flatMap((b) => b.options.map((o) => o.target)));
+    for (const exit of ['old-face', 'upper-gallery', 'mine-entrance', 'sump', 'crawl']) {
+      expect(targets.has(exit), `exit '${exit}' was dropped`).toBe(true);
+    }
+    expect(lintGraph(graph).ok).toBe(true);
+  });
+
+  it('preserves a loop instead of straightening it into a chain', () => {
+    // A ring: every room leads on, and the last leads back to the first. The
+    // old mapper walked the array in order, so a ring came out as a line.
+    const ring = {
+      title: 'The Ring Barrow',
+      summary: 'A circular barrow with a chamber at its heart.',
+      rooms: [
+        { id: 'north-door', name: 'North Door', description: 'A way in.', connections: ['east-arc', 'west-arc'] },
+        { id: 'east-arc', name: 'East Arc', description: 'Curving passage.', connections: ['south-vault', 'north-door'] },
+        { id: 'west-arc', name: 'West Arc', description: 'Curving passage.', connections: ['south-vault', 'north-door'] },
+        { id: 'south-vault', name: 'South Vault', description: 'The heart.', connections: ['heart'] },
+        { id: 'heart', name: 'The Heart', description: 'It ends here.', connections: [], isEnding: true },
+      ],
+    };
+
+    const { graph } = mapModuleToGraph(ring);
+    const beats = (graph as { beats: Array<{ id: string; options: Array<{ target: string }> }> }).beats;
+    const targetsOf = (id: string) =>
+      new Set(beats.find((b) => b.id === id)!.options.map((o) => o.target));
+
+    // Both arcs are reachable from the door, and both lead back to it — the
+    // ring is still a ring.
+    expect(targetsOf('north-door').has('east-arc')).toBe(true);
+    expect(targetsOf('north-door').has('west-arc')).toBe(true);
+    expect(targetsOf('east-arc').has('north-door')).toBe(true);
+    expect(targetsOf('west-arc').has('north-door')).toBe(true);
+    expect(lintGraph(graph).ok).toBe(true);
+  });
+
+  it('never produces a beat whose three options are the same bare choice', () => {
+    // The old padding repeated a target verbatim, which is a false choice by
+    // the linter's own definition. Checked structurally rather than by
+    // trusting the linter, because the linter only warns.
+    for (const module of [linearModule(), { ...linearModule(), rooms: linearModule().rooms.slice(0, 3).concat([{ id: 'end', name: 'End', description: 'Done.', connections: [], isEnding: true }]) }]) {
+      (module.rooms[2] as { connections: string[] }).connections = ['old-face'];
+      const { graph } = mapModuleToGraph(module);
+      for (const beat of (graph as { beats: Array<{ id: string; options: Array<{ target: string; effects?: unknown[]; requiresCheck?: unknown; visibleWhen?: unknown }> }> }).beats) {
+        if (beat.options.length === 0) continue;
+        const bare = beat.options.filter(
+          (o) => (o.effects ?? []).length === 0 && !o.requiresCheck && !o.visibleWhen,
+        );
+        const bareTargets = new Set(bare.map((o) => o.target));
+        expect(
+          bare.length === bareTargets.size,
+          `beat '${beat.id}' repeats a bare target: ${bare.map((o) => o.target).join(', ')}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it('pads a dead end to three options without inventing a destination', () => {
+    const module = linearModule();
+    module.rooms[3]!.connections = [];
+    delete (module.rooms[3] as { encounter?: unknown }).encounter;
+
+    const { graph, report } = mapModuleToGraph(module);
+    expect(report.paddedRooms).toContain('old-face');
+
+    const beat = (graph as { beats: Array<{ id: string; options: unknown[] }> }).beats.find(
+      (b) => b.id === 'old-face',
+    )!;
+    expect(beat.options).toHaveLength(3);
   });
 });
 
@@ -171,6 +252,9 @@ describe('the full pipeline with a scripted extractor', () => {
     expect(result.stage).toBe('lint');
     expect(result.graph).toBeDefined(); // work is handed over, not discarded
     expect(result.lintErrors.some((e) => e.includes('the-hollow'))).toBe(true);
+    // The report names the room to reconnect, so the repair pass does not
+    // have to infer it from a lint message.
+    expect(result.report!.unreachableRooms).toContain('the-hollow');
   });
 
   it('an extraction that fails schema twice fails at the extraction stage', async () => {

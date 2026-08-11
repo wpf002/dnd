@@ -1,0 +1,436 @@
+import {
+  IngestedModule,
+  type Beat,
+  type BeatOption,
+  type Encounter,
+  type IngestedRoom,
+} from '@lantern/schema';
+import { MONSTERS, type MonsterInput } from '@lantern/srd';
+
+/**
+ * IngestedModule → BeatGraph. Deterministic, no model involved.
+ *
+ * Split out of `ingestion.ts` because this is the part Phase 7 turns on: the
+ * extraction is a model job that will always be somewhat lossy, but the
+ * mapping is plain code, and a plain-code mistake here becomes every ingested
+ * module's shape.
+ *
+ * The mistake it was making: the first version walked `module.rooms` in array
+ * order and padded every beat to three options by repeating the same target.
+ * A hub with five exits kept three. A loop became a chain. Two of every three
+ * "choices" led to the same room with no difference between them. That is the
+ * railroad the roadmap predicted — but it was this file's doing, not anything
+ * inherent to beat-graphs, and `Edge`, `Guard`, and `connections` were all
+ * already there to do better.
+ */
+
+// ---------------------------------------------------------------------------
+// Creature name → SRD statblock matching
+// ---------------------------------------------------------------------------
+
+/** Best-effort match of a printed creature name onto the SRD subset. */
+export function matchStatblock(name: string): string | undefined {
+  const needle = name.toLowerCase().trim();
+  const entries = Object.entries(MONSTERS as Record<string, MonsterInput>);
+  // Exact id or name match first.
+  for (const [id, m] of entries) {
+    if (id === needle || m.name.toLowerCase() === needle) return id;
+  }
+  // Then containment either way ("cult fanatic guard" → none; "giant rat swarm" → giant-rat).
+  for (const [id, m] of entries) {
+    if (needle.includes(m.name.toLowerCase()) || m.name.toLowerCase().includes(needle)) return id;
+  }
+  // Singular/plural.
+  const singular = needle.replace(/s$/, '');
+  for (const [id, m] of entries) {
+    if (m.name.toLowerCase() === singular) return id;
+  }
+  return undefined;
+}
+
+// ---------------------------------------------------------------------------
+// Report
+// ---------------------------------------------------------------------------
+
+export interface MappingReport {
+  /** Creatures with no SRD match — substituted or dropped, always reported. */
+  unmatchedCreatures: Array<{ room: string; name: string; substituted?: string }>;
+  /**
+   * Every room whose shape had to be reworked to fit the three-option rule.
+   * The fields below say what happened to each; this is the flat list the
+   * repair surface reads.
+   */
+  reshapedRooms: string[];
+  /** Hubs with more than three exits, split across extra beats to keep them all. */
+  fannedOut: Array<{ room: string; exits: number; extraBeats: number }>;
+  /** Rooms with fewer than three exits, padded up to three. */
+  paddedRooms: string[];
+  /** Connections naming a room that does not exist. Dropped, never guessed at. */
+  danglingConnections: Array<{ room: string; target: string }>;
+  /** Endings that also had onward exits. The exits are dropped; an ending ends. */
+  endingsWithExits: string[];
+  /** Rooms no path from the entry reaches. The linter will reject these too. */
+  unreachableRooms: string[];
+}
+
+// ---------------------------------------------------------------------------
+// Mapping
+// ---------------------------------------------------------------------------
+
+/**
+ * Map an IngestedModule onto a BeatGraph candidate.
+ *
+ * The topology is the module's own:
+ *  - exits come from `connections`, and all of them survive. A room with more
+ *    than three is split across follow-on beats, which costs a beat and keeps
+ *    the shape.
+ *  - rooms with fewer than three exits are padded with options that actually
+ *    differ — searching (sets a flag and then hides itself) and doubling back
+ *    along a reverse connection.
+ *  - encounter outcomes route topologically: victory onward, defeat and
+ *    flight back the way the party came.
+ *
+ * Known, accepted losses:
+ *  - Unmatched creatures substitute the closest SRD monster (reported).
+ *  - DM improvisation notes have nowhere to live and fold into prose.
+ *  - Timed events, reactive factions, and simultaneity are not expressed at
+ *    all. The improv budget absorbs some of it; the rest is genuinely gone,
+ *    and no amount of mapper cleverness recovers it.
+ */
+export function mapModuleToGraph(moduleInput: unknown): {
+  graph: unknown;
+  report: MappingReport;
+} {
+  // Parse at the boundary so defaults (connections, npcs) are applied whether
+  // the IR came from the extractor or from a hand-edited repair file.
+  const module = IngestedModule.parse(moduleInput);
+  const report: MappingReport = {
+    unmatchedCreatures: [],
+    reshapedRooms: [],
+    fannedOut: [],
+    paddedRooms: [],
+    danglingConnections: [],
+    endingsWithExits: [],
+    unreachableRooms: [],
+  };
+
+  const rooms = module.rooms;
+  const byId = new Map(rooms.map((r) => [r.id, r]));
+  const entryId = rooms[0]!.id;
+  const encounters: Encounter[] = [];
+  const beats: Beat[] = [];
+
+  const reshaped = (id: string) => {
+    if (!report.reshapedRooms.includes(id)) report.reshapedRooms.push(id);
+  };
+
+  // -- Topology -------------------------------------------------------------
+
+  /** Real exits: existing rooms, no self-loops, deduped, order preserved. */
+  const exitsOf = (room: IngestedRoom): string[] => {
+    const out: string[] = [];
+    for (const target of room.connections) {
+      if (target === room.id) continue;
+      if (!byId.has(target)) {
+        report.danglingConnections.push({ room: room.id, target });
+        continue;
+      }
+      if (!out.includes(target)) out.push(target);
+    }
+    return out;
+  };
+
+  const forward = new Map<string, string[]>();
+  for (const room of rooms) forward.set(room.id, room.isEnding ? [] : exitsOf(room));
+
+  for (const room of rooms) {
+    if (room.isEnding && exitsOf(room).length > 0) {
+      report.endingsWithExits.push(room.id);
+      reshaped(room.id);
+    }
+  }
+
+  // Who leads here. Used for doubling back, and for where a lost fight leaves
+  // the party — a module's movement is bidirectional far more often than its
+  // printed connection lists bother to say.
+  const reverse = new Map<string, string[]>();
+  for (const room of rooms) reverse.set(room.id, []);
+  for (const [from, targets] of forward) {
+    for (const target of targets) {
+      const list = reverse.get(target)!;
+      if (!list.includes(from)) list.push(from);
+    }
+  }
+
+  /** Where the party most plausibly came from. */
+  const camefrom = (id: string): string | undefined => {
+    const back = (reverse.get(id) ?? []).find((r) => r !== id);
+    if (back) return back;
+    return id === entryId ? undefined : entryId;
+  };
+
+  const titleOf = (id: string) => byId.get(id)?.name ?? id;
+
+  // Reachability is the linter's call, but reporting it here tells the repair
+  // pass which room to reconnect rather than leaving it to read a lint error.
+  const seen = new Set<string>([entryId]);
+  const queue = [entryId];
+  while (queue.length > 0) {
+    for (const next of forward.get(queue.shift()!) ?? []) {
+      if (!seen.has(next)) {
+        seen.add(next);
+        queue.push(next);
+      }
+    }
+  }
+  for (const room of rooms) if (!seen.has(room.id)) report.unreachableRooms.push(room.id);
+
+  // -- Options --------------------------------------------------------------
+
+  const searchFlag = (roomId: string) => `searched-${roomId}`;
+
+  /**
+   * Exactly three options for a beat exposing `targets` (at most three —
+   * anything larger has already been split by the fan-out below).
+   *
+   * Padding never repeats a bare target: a repeated destination always carries
+   * an effect or a check, so the outcomes genuinely differ and the linter's
+   * false-choice rule is satisfied by construction rather than by luck.
+   */
+  const optionsFor = (room: IngestedRoom, targets: string[], slot: string): BeatOption[] => {
+    const options: BeatOption[] = targets.map((target, i) => ({
+      id: `${slot}-to-${i}`,
+      label: `Toward ${titleOf(target)}`,
+      target,
+      effects: [],
+    }));
+
+    // Where padding sends the party when the room has nowhere of its own to
+    // go: onward if there is an onward, otherwise back the way they came.
+    const back = camefrom(room.id);
+    const fallback = targets[0] ?? back ?? entryId;
+
+    // Padders in preference order. Each is applied at most once, and each
+    // differs from the others by more than its label — an effect, a distinct
+    // destination, or a check. A dead-end room genuinely has one way out, so
+    // its three options share a target; they are still not a false choice,
+    // because what happens on the way differs.
+    const padders: BeatOption[] = [
+      {
+        id: `${slot}-search`,
+        label: `Search ${room.name} before moving on`,
+        target: fallback,
+        effects: [{ flag: searchFlag(room.id), value: true }],
+        visibleWhen: { op: 'unset', flag: searchFlag(room.id) },
+      } as BeatOption,
+      ...(back && !targets.includes(back)
+        ? [
+            {
+              id: `${slot}-back`,
+              label: `Back toward ${titleOf(back)}`,
+              target: back,
+              effects: [],
+            } as BeatOption,
+          ]
+        : []),
+      {
+        id: `${slot}-press`,
+        label: 'Press on quickly, without checking the way',
+        target: fallback,
+        effects: [],
+        requiresCheck: { ability: 'wis', skill: 'perception', dc: 12, onFailure: fallback },
+      } as BeatOption,
+      {
+        id: `${slot}-listen`,
+        label: 'Stop, and listen to the dark for a while',
+        target: fallback,
+        effects: [],
+        requiresCheck: { ability: 'wis', skill: 'insight', dc: 10, onFailure: fallback },
+      } as BeatOption,
+    ];
+
+    for (const padder of padders) {
+      if (options.length >= 3) break;
+      options.push(padder);
+    }
+
+    // A room with no exits at all still has to produce three. If that ever
+    // fails, the graph would be schema-invalid in a way that is hard to trace
+    // back here, so say so at the source instead.
+    if (options.length !== 3) {
+      throw new Error(
+        `room '${room.id}' produced ${options.length} options, not 3 — ` +
+          `${targets.length} exits, back=${back ?? 'none'}`,
+      );
+    }
+
+    return options;
+  };
+
+  // -- Beats ----------------------------------------------------------------
+
+  for (const room of rooms) {
+    const exits = forward.get(room.id)!;
+    const prose = [
+      room.description,
+      ...room.npcs.map(
+        (n) => `NPC: ${n.name}${n.role ? ` — ${n.role}` : ''}${n.wants ? `; wants ${n.wants}` : ''}`,
+      ),
+    ].join('\n');
+
+    // --- an ending
+    if (room.isEnding) {
+      beats.push({
+        id: room.id,
+        kind: 'ending',
+        title: room.name,
+        prose,
+        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: `art-${room.id}`,
+        improvBudget: 6,
+        options: [] as BeatOption[],
+        terminal: true,
+      } as Beat);
+      continue;
+    }
+
+    // --- a fight
+    if (room.encounter) {
+      const encounterId = `enc-${room.id}`;
+      const combatants = room.encounter.creatures.map((c, ci) => {
+        let statblock = matchStatblock(c.name);
+        if (!statblock) {
+          statblock = 'bandit';
+          report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
+        }
+        return { id: `${room.id}-c${ci}`, statblock, count: Math.min(c.count, 8), hostile: true };
+      });
+
+      const onward = exits[0] ?? camefrom(room.id) ?? entryId;
+      const back = camefrom(room.id) ?? onward;
+      encounters.push({
+        id: encounterId,
+        title: room.name,
+        combatants,
+        terrain: [],
+        victory: { kind: 'defeat-all' },
+        onVictory: onward,
+        onDefeat: back,
+        onFlee: back,
+      } as Encounter);
+
+      beats.push({
+        id: room.id,
+        kind: 'conflict',
+        title: room.name,
+        prose,
+        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: `art-${room.id}`,
+        improvBudget: 6,
+        options: [] as BeatOption[],
+        encounter: encounterId,
+        terminal: false,
+      } as Beat);
+      continue;
+    }
+
+    // --- an ordinary room, possibly a hub
+    //
+    // Three options per beat is a hard schema rule. A hub with more exits is
+    // split across follow-on beats rather than truncated: each carries two
+    // exits plus a door to the next, and the last carries what remains. Five
+    // exits cost one extra beat and nothing is lost.
+    const chunks: string[][] = [];
+    if (exits.length <= 3) {
+      chunks.push(exits);
+    } else {
+      let rest = [...exits];
+      while (rest.length > 3) {
+        chunks.push(rest.slice(0, 2));
+        rest = rest.slice(2);
+      }
+      chunks.push(rest);
+    }
+
+    if (exits.length > 3) {
+      report.fannedOut.push({ room: room.id, exits: exits.length, extraBeats: chunks.length - 1 });
+      reshaped(room.id);
+    } else if (exits.length < 3) {
+      report.paddedRooms.push(room.id);
+      reshaped(room.id);
+    }
+
+    chunks.forEach((chunk, ci) => {
+      const isFirst = ci === 0;
+      const id = isFirst ? room.id : `${room.id}-ways-${ci}`;
+      const last = ci === chunks.length - 1;
+
+      const options: BeatOption[] = last
+        ? optionsFor(room, chunk, id)
+        : [
+            ...chunk.map((target, i) => ({
+              id: `${id}-to-${i}`,
+              label: `Toward ${titleOf(target)}`,
+              target,
+              effects: [],
+            })),
+            {
+              id: `${id}-more`,
+              label: `Look for another way out of ${room.name}`,
+              target: `${room.id}-ways-${ci + 1}`,
+              effects: [],
+            },
+          ];
+
+      beats.push({
+        id,
+        kind: isFirst ? (room.id === entryId ? 'threshold' : 'discovery') : 'decision',
+        title: isFirst ? room.name : `${room.name} — another way`,
+        prose: isFirst
+          ? prose
+          : `You look again at ${room.name}. There are ways out of here you have not taken.`,
+        ...(isFirst && room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: isFirst ? `art-${room.id}` : `art-${room.id}-ways-${ci}`,
+        improvBudget: isFirst ? 6 : 3,
+        options,
+        terminal: false,
+      } as Beat);
+    });
+  }
+
+  // Every `searched-<room>` flag is read by the very option that sets it — the
+  // option hides itself once used — so the linter's orphan-flag check passes
+  // by construction. The previous version wrote those flags with no reader and
+  // then rewired an arbitrary option on the last beat to read them.
+
+  const graphId =
+    module.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60) || 'ingested-module';
+
+  const graph = {
+    id: graphId,
+    schemaVersion: 1,
+    metadata: {
+      title: module.title,
+      premise: module.summary,
+      tone: ['exploration'],
+      partyLevel: 3,
+      narrationVoice:
+        'Faithful to the source module: descriptive, unhurried, keeping the original read-aloud text intact where it exists.',
+      provenance: 'ingested',
+    },
+    entry: entryId,
+    beats,
+    // Edges carry transitions no option owns — timed events, triggered
+    // consequences. Extraction produces none of those today, and inventing
+    // them here would be the mapper writing content. Empty until the IR
+    // carries something real to put in it.
+    edges: [],
+    encounters,
+  };
+
+  return { graph, report };
+}
