@@ -53,7 +53,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion — research spike | — | done, research-grade |
 | 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
-| 7 | **Published modules, playable** | v5 — long-document extraction | 1–3 done, 4 partial; exit criteria need module text |
+| 7 | **Published modules, playable** | v5 — long-document extraction | first real module plays; chapters untested |
 
 Phases 6 and 7 are the two things the library does *not* deliver. Read the
 next section before assuming otherwise.
@@ -530,7 +530,7 @@ The constraint is the *output*, not the context window: three hundred rooms of
 read-aloud text will not come back complete and correct from one generation,
 and a single-call failure leaves nothing to keep.
 
-**4. Human-in-the-loop repair.** Loop works; the visual surface does not exist.
+**4. Human-in-the-loop repair.** ✅ Done.
 
 `/ingest` now returns the extracted IR alongside the campaign, the books, the
 lint findings, and reports naming every room that was fanned out, padded,
@@ -542,8 +542,14 @@ no model call, so repair is free and can be iterated to convergence.
 never into `content/`. Extract once (that is the part that costs), then edit
 `ir.json` and re-run with `--map-only` until the linter is clean.
 
-What is still missing is the review surface that shows the extracted graph
-beside the source text. The data is all there; nothing renders it.
+`tools/review-ingest.mjs` builds a local review page: per area, what the module
+says beside what extraction understood beside what the mapper built, with every
+finding attached to the area it concerns. It embeds the source text, so it stays
+on disk and is never published.
+
+Ingested content is playable: `content-local/` is gitignored and read by the API
+alongside `content/`, and `--install` puts a linted result there. `content/` is
+committed and so can never hold a module the user owns.
 
 **5. What a beat-graph still cannot express.** Some of a module is genuinely
 DM-improvisation-dependent — reactive factions, open exploration, table
@@ -558,13 +564,42 @@ phase is the first thing deleted if distribution is ever on the table.
 
 ### Exit criteria
 
-- A module you own plays end to end, recognizably itself: its named
-  characters, its locations, its actual plot
-- Its branching survives — at least one player choice reaches content a
-  different choice would not have
-- Chapters map to books with the module's own level progression
-- A blind read of the ingested graph is identifiably that module, not a
-  generic adventure in its setting
+Measured against *A Most Potent Brew* (Winghorn Press), a module the user
+owns. Its text and everything derived from it stay in gitignored directories.
+
+- ✅ **Plays end to end, recognizably itself.** 9/10 runs reach an ending under
+  a policy that explores and then leaves; mean 98 turns; 10 of 11 beats
+  exercised.
+- ✅ **Branching survives.** Choosing the Lab reaches two beats the Well Room
+  choice never sees, and the reverse.
+- ❌ **Chapters map to books with the module's own level progression.** Built
+  and unit-tested, never run against a real multi-chapter module.
+- ✅ **A blind read is identifiably that module.** Glowkindle, the Beer Cellar,
+  the Mosaic Corridor, the Well Room, read-aloud text verbatim.
+
+### What a real module found that fixtures did not
+
+Every one of these was invisible until actual published text went through:
+
+- `temperature` is deprecated on Claude 5 — the first extraction call 400'd
+- encounter victory routed to the room the party had just come from, because
+  printed connection lists are bidirectional
+- a room that is both a fight and a junction lost its other exits
+- a cleared room re-ran its fight forever — which uncovered that `Edge` and
+  `entryWhen` were declared, linted, and never evaluated in play
+- every unmatched creature became the same fixed statblock
+- the module's conclusion was wired as just another exit, so the whole dungeon
+  was skippable
+- chunked extraction reused a 32k-token config per section and was unusably
+  slow
+
+### Still open
+
+- A defeat has no ending in the module, so a party that keeps losing the same
+  fight loops. A total party kill now ends the session; short of that, walking
+  back into a losing fight is the player's own affair.
+- Chapters → books is unexercised against real material.
+- Long-document extraction is unexercised against a real book-length source.
 
 ### Honest assessment
 
