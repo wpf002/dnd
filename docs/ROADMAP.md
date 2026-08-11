@@ -53,7 +53,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion — research spike | — | done, research-grade |
 | 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
-| 7 | **Published modules, playable** | v5 — long-document extraction | items 1–3 done; 4–5 and every exit criterion need module text |
+| 7 | **Published modules, playable** | v5 — long-document extraction | 1–3 done, 4 partial; exit criteria need module text |
 
 Phases 6 and 7 are the two things the library does *not* deliver. Read the
 next section before assuming otherwise.
@@ -530,10 +530,20 @@ The constraint is the *output*, not the context window: three hundred rooms of
 read-aloud text will not come back complete and correct from one generation,
 and a single-call failure leaves nothing to keep.
 
-**4. Human-in-the-loop repair.** Not started. The data is now all there —
-`/ingest` returns the campaign, every book, every lint finding, and reports
-naming each room that was fanned out, padded, orphaned, merged, or renamed.
-What is missing is the surface that shows it beside the source text.
+**4. Human-in-the-loop repair.** Loop works; the visual surface does not exist.
+
+`/ingest` now returns the extracted IR alongside the campaign, the books, the
+lint findings, and reports naming every room that was fanned out, padded,
+orphaned, merged, or renamed. `POST /ingest/map` re-maps a hand-edited IR with
+no model call, so repair is free and can be iterated to convergence.
+
+`tools/ingest-module.mjs` is the practical path: it writes `ir.json`,
+`campaign.json`, `books/*.json`, and `report.json` to a working directory,
+never into `content/`. Extract once (that is the part that costs), then edit
+`ir.json` and re-run with `--map-only` until the linter is clean.
+
+What is still missing is the review surface that shows the extracted graph
+beside the source text. The data is all there; nothing renders it.
 
 **5. What a beat-graph still cannot express.** Some of a module is genuinely
 DM-improvisation-dependent — reactive factions, open exploration, table

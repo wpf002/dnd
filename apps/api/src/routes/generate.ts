@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import { readFileSync, existsSync } from 'node:fs';
 import { createLanternFlint, NdjsonTelemetry, type Flint, type Telemetry } from '@lantern/flint';
 import { benchmarkFromEvents, generateAdventure } from '../services/generator.js';
-import { ingestModule } from '../services/ingestion.js';
+import { ingestModule, remapModule } from '../services/ingestion.js';
 import { createSession, sessionView, type GameSession } from '../services/game.js';
 
 /**
@@ -109,6 +109,28 @@ export function registerGenerateRoutes(
       lintErrors: result.lintErrors,
       detail: result.detail,
     });
+  });
+
+  /**
+   * Re-map a hand-repaired IR.
+   *
+   * The repair loop the roadmap describes: extraction mangles something, the
+   * mangling is visible in the IR, a human fixes the IR, and it comes back
+   * through here. No model call — this is the deterministic half of the
+   * pipeline on its own, so repairing costs nothing and can be iterated.
+   */
+  app.post<{ Body: { module?: unknown } }>('/ingest/map', async (request, reply) => {
+    if (!request.body?.module) {
+      return reply.code(400).send({ error: 'provide the edited IngestedModule as `module`' });
+    }
+    try {
+      const result = remapModule(request.body.module);
+      return reply.code(result.ok ? 200 : 422).send(result);
+    } catch (err) {
+      // A malformed IR is the ordinary case here, not an exception — the
+      // whole point is that a human is editing it by hand.
+      return reply.code(400).send({ error: (err as Error).message });
+    }
   });
 
   app.get('/benchmark', async () => {

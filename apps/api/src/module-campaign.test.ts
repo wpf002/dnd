@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { lintCampaign, lintGraph } from '@lantern/linter';
 import { mapModuleToCampaign, mapModuleToGraph } from './services/module-mapper.js';
+import { remapModule } from './services/ingestion.js';
 
 /**
  * Phase 7 item 2: a published campaign's chapters become a CampaignGraph's
@@ -172,5 +173,31 @@ describe('a single-book module still maps as one graph', () => {
       rooms: module.rooms.slice(0, 4),
     });
     expect(lintGraph(graph).ok).toBe(true);
+  });
+});
+
+describe('the repair loop', () => {
+  it('re-maps a hand-edited IR with no model call, and lints it', () => {
+    const broken = chapteredModule();
+    broken.chapters[1]!.levelStart = 4; // a band that does not chain
+
+    const first = remapModule(broken);
+    expect(first.ok).toBe(false);
+    expect(first.lintErrors.some((e) => e.includes('level'))).toBe(true);
+    // The IR comes back so there is something to edit.
+    expect(first.ir).toBeDefined();
+
+    // A human fixes the IR and resubmits. Free, deterministic, repeatable.
+    const repaired = JSON.parse(JSON.stringify(first.ir)) as ReturnType<typeof chapteredModule>;
+    repaired.chapters[1]!.levelStart = 3;
+
+    const second = remapModule(repaired);
+    expect(second.ok).toBe(true);
+    expect(second.lintErrors).toEqual([]);
+    expect(second.adventures).toHaveLength(3);
+  });
+
+  it('rejects an IR that does not parse, rather than throwing past the caller', () => {
+    expect(() => remapModule({ title: 'x' })).toThrow();
   });
 });

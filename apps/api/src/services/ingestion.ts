@@ -58,6 +58,15 @@ export interface IngestResult {
 
   /** Set when the source was long enough to be extracted chunk by chunk. */
   extractionReport?: LongExtractReport;
+
+  /**
+   * The extracted IR, returned whether mapping succeeded or not.
+   *
+   * This is the repairable artifact. Mapping and linting are deterministic and
+   * free, so a human fixes THIS and resubmits — without it there is nothing to
+   * repair except the output, which is the wrong end.
+   */
+  ir?: unknown;
 }
 
 /**
@@ -143,6 +152,7 @@ export async function ingestModule(
     ok: lint.ok,
     graph: lint.ok ? BeatGraph.parse(graph) : graph,
     report,
+    ir: extraction.value,
     lintErrors: lint.errors.map((e) => e.message),
     lintWarnings: lint.warnings.map((w) => w.message),
     stage: lint.ok ? 'done' : 'lint',
@@ -191,6 +201,7 @@ function ingestChaptered(moduleValue: unknown, telemetry: Telemetry): IngestResu
     campaign,
     adventures,
     campaignReport: report,
+    ir: moduleValue,
     lintErrors: errors,
     lintWarnings: warnings,
     stage: ok ? 'done' : 'lint',
@@ -278,6 +289,7 @@ async function ingestLong(
       lintWarnings: [],
       stage: 'extraction',
       extractionReport,
+      ir: module,
       detail: `extracted ${rooms.length} areas from ${extractionReport.chunks} sections (${extractionReport.failedChunks.length} failed) — not enough to map`,
     };
   }
@@ -298,5 +310,31 @@ async function ingestLong(
         };
       })();
 
-  return { ...result, extractionReport };
+  return { ...result, ir: module, extractionReport };
+}
+
+/**
+ * Map and lint an IR without extracting it — the repair loop.
+ *
+ * Deterministic and free: no model call, so a human can fix the IR, resubmit,
+ * read the findings, and fix again as many times as it takes. That is the
+ * whole reason extraction and mapping are separate stages.
+ */
+export function remapModule(moduleInput: unknown): IngestResult {
+  const module = IngestedModule.parse(moduleInput);
+
+  if (module.chapters && module.chapters.length > 0) {
+    return ingestChaptered(module, { record: () => {} });
+  }
+
+  const { graph, report } = mapModuleToGraph(module);
+  const lint = lintGraph(graph);
+  return {
+    ok: lint.ok,
+    graph: lint.ok ? BeatGraph.parse(graph) : graph,
+    report,
+    lintErrors: lint.errors.map((e) => e.message),
+    lintWarnings: lint.warnings.map((w) => w.message),
+    stage: lint.ok ? 'done' : 'lint',
+  };
 }
