@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { Resolution } from '@lantern/schema';
 import {
   chooseOption,
+  DEFEAT_LIMIT,
   castSpell,
   combatAttack,
   combatFlee,
@@ -476,6 +477,34 @@ describe('a wiped party ends the story', () => {
     chooseOption(s, 'fight');
     expect(s.ended).toBe(true);
     expect(s.currentBeat).not.toBe('safe'); // not the graph's ending — the party's
+  });
+
+  it('stops sending the party back to a fight they keep losing', () => {
+    // A module writes no defeat ending, so an ingested graph routes a loss
+    // straight back to the fight. A party that cannot win one encounter lost
+    // it forever — the first real module ground a single fight for 2,000 turns.
+    const s = createSession(hopelessGraph(), 'grind');
+    let losses = 0;
+
+    for (let i = 0; i < 10 && !s.ended; i++) {
+      // Regroup fully between attempts, so each trip in is a fresh defeat
+      // rather than a party too dead to fight and forced to flee.
+      s.party = s.party.map((p) => ({ ...p, hp: p.hpMax, dead: false, deathSaveFailures: 0 }));
+      chooseOption(s, 'fight');
+      while (s.combat) {
+        // Act as whoever initiative says is up, not whoever is first alive.
+        const up = s.combat.order[s.combat.turnIndex];
+        const pc = s.party.find((p) => p.id === up && p.hp > 0 && !p.dead);
+        const monster = s.combat.monsters.find((m) => m.hp > 0);
+        if (!pc || !monster) { combatFlee(s); break; }
+        combatAttack(s, pc.id, monster.combatantId);
+      }
+      losses++;
+    }
+
+    expect(s.ended).toBe(true);
+    expect(losses).toBeLessThanOrEqual(DEFEAT_LIMIT);
+    expect(s.defeats.hopeless).toBe(DEFEAT_LIMIT);
   });
 
   it('still bounces a beaten-but-living party back into the graph', () => {

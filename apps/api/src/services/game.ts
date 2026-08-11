@@ -82,7 +82,21 @@ export interface GameSession {
   turns: TurnRecord[];
   ended: boolean;
   seedCounter: number;
+  /**
+   * Defeats per encounter. A module writes no defeat ending, so an ingested
+   * graph routes a loss straight back to the fight that caused it — a party
+   * that cannot win one encounter loses it forever.
+   */
+  defeats: Record<string, number>;
 }
+
+/**
+ * How many times the party may lose the same fight before the graph stops
+ * sending them back to it. Chosen high enough that a bad-luck loss and a
+ * regroup are ordinary, low enough that a genuinely unwinnable encounter
+ * ends the session instead of grinding.
+ */
+export const DEFEAT_LIMIT = 3;
 
 export interface TurnOutcome {
   session: GameSession;
@@ -119,6 +133,7 @@ export function createSession(
     turns: [],
     ended: false,
     seedCounter: 0,
+    defeats: {},
   };
   // Entering the entry beat may start a combat or apply entry mutations.
   return enterBeat(session, graph.entry).session;
@@ -396,6 +411,24 @@ function finishCombat(session: GameSession, outcome: 'victory' | 'defeat' | 'fle
   const destination =
     outcome === 'victory' ? enc.onVictory : outcome === 'defeat' ? enc.onDefeat : (enc.onFlee ?? enc.onDefeat);
   if (outcome === 'defeat') {
+    const lost = (session.defeats[enc.id] ?? 0) + 1;
+    session.defeats[enc.id] = lost;
+
+    // Losing the same fight over and over is not a story, it is a loop. The
+    // graph has nowhere else to send them — a module does not write a defeat
+    // ending — so the session ends here rather than grinding.
+    if (lost >= DEFEAT_LIMIT) {
+      session.ended = true;
+      session.combat = null;
+      return {
+        session,
+        resolutions: [],
+        narration: [
+          `The party has been beaten back at ${enc.title} ${lost} times. They do not try a ${lost + 1}th.`,
+        ],
+      };
+    }
+
     // Everyone dead is the end of the story, whatever the graph says next.
     // An adventure ingested from a module has no defeat ending — modules do
     // not write one — so without this the session has nowhere to stop.
