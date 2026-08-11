@@ -5,6 +5,9 @@ import type { Resolution } from '@lantern/schema';
 import {
   api,
   type AdventureSummary,
+  type BookTransitionView,
+  type CampaignGraphSummary,
+  type CampaignProgressView,
   type GenerateRequest,
   type Recap,
   type SessionState,
@@ -25,6 +28,9 @@ export function Game() {
   // Which adventure this session came from, so 'play again' replays the right one.
   const [currentAdventure, setCurrentAdventure] = useState<string | null>(null);
   const [recap, setRecap] = useState<Recap | null>(null);
+  // Multi-book state. Null for a one-shot or a single-adventure campaign.
+  const [progress, setProgress] = useState<CampaignProgressView | null>(null);
+  const [transition, setTransition] = useState<BookTransitionView | null>(null);
   const [narration, setNarration] = useState<string[]>([]);
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
   const [freeText, setFreeText] = useState('');
@@ -90,13 +96,43 @@ export function Game() {
     }
   }, []);
 
+  /** A multi-book campaign: many adventures, one party, levels 1 upward. */
+  const startBookCampaign = useCallback(async (graphId: string) => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { campaign } = await api.createBookCampaign(graphId);
+      setCampaignId(campaign.id);
+      setCurrentAdventure(null);
+      const opened = await api.campaignSession(campaign.id);
+      setState(opened.state);
+      setProgress(opened.progress ?? null);
+      setTransition(null);
+      setNarration([]);
+      setResolutions([]);
+      setRecap(null);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }, []);
+
   const endSession = useCallback(async () => {
     if (!campaignId) return;
     setBusy(true);
     try {
       const res = await api.endCampaignSession(campaignId);
-      setRecap(res.recap);
+      setProgress(res.progress ?? null);
       setState(null);
+      // A book boundary gets its own screen. Without one, levelling and the
+      // next book's title would flash past inside the recap.
+      if (res.transition) {
+        setTransition(res.transition);
+        setRecap(null);
+      } else {
+        setRecap(res.recap);
+      }
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -108,9 +144,11 @@ export function Game() {
     if (!campaignId) return;
     setBusy(true);
     try {
-      const { state: fresh } = await api.campaignSession(campaignId);
-      setState(fresh);
+      const opened = await api.campaignSession(campaignId);
+      setState(opened.state);
+      setProgress(opened.progress ?? progress);
       setRecap(null);
+      setTransition(null);
       setNarration([]);
       setResolutions([]);
     } catch (err) {
@@ -118,7 +156,18 @@ export function Game() {
     } finally {
       setBusy(false);
     }
-  }, [campaignId]);
+  }, [campaignId, progress]);
+
+  if (!state && transition) {
+    return (
+      <BetweenBooks
+        transition={transition}
+        progress={progress}
+        busy={busy}
+        onContinue={nextSession}
+      />
+    );
+  }
 
   if (!state && recap) {
     return <RecapScreen recap={recap} busy={busy} onNextSession={nextSession} />;
@@ -128,6 +177,7 @@ export function Game() {
     return (
       <StartScreen
         onStartCampaign={startCampaign}
+        onStartBookCampaign={startBookCampaign}
         busy={busy}
         error={error}
         onStart={start}
@@ -146,6 +196,8 @@ export function Game() {
 
   return (
     <div className="space-y-4 pb-24">
+      {progress && <BookStrip progress={progress} />}
+
       <BeatArt slot={beat.art} title={beat.title} />
 
       {/* Prose */}
@@ -310,22 +362,25 @@ function StartScreen({
   error,
   onStart,
   onStartCampaign,
+  onStartBookCampaign,
   onGenerate,
 }: {
   busy: boolean;
   error: string | null;
   onStart: (adventure: string) => void;
   onStartCampaign: (adventure: string) => void;
+  onStartBookCampaign: (campaign: string) => void;
   onGenerate: (req: GenerateRequest) => void;
 }) {
   const [premise, setPremise] = useState('');
   const [setting, setSetting] = useState('');
   const [tone, setTone] = useState('mystery');
   const [adventures, setAdventures] = useState<AdventureSummary[] | null>(null);
+  const [campaigns, setCampaigns] = useState<CampaignGraphSummary[] | null>(null);
   const [picked, setPicked] = useState<string | null>(null);
 
-  // The library is whatever passes the linter on disk — there is no hardcoded
-  // list to drift out of sync with content/adventures/.
+  // Both libraries are whatever passes the linter on disk — there is no
+  // hardcoded list to drift out of sync with content/.
   useEffect(() => {
     let live = true;
     api
@@ -336,6 +391,10 @@ function StartScreen({
         setPicked(r.adventures.find((a) => a.playable)?.id ?? null);
       })
       .catch(() => live && setAdventures([]));
+    api
+      .campaignGraphs()
+      .then((r) => live && setCampaigns(r.campaigns))
+      .catch(() => live && setCampaigns([]));
     return () => {
       live = false;
     };
@@ -345,6 +404,41 @@ function StartScreen({
 
   return (
     <div className="mt-8 space-y-8">
+      {/* Campaigns first: many books, one party, levels that actually climb. */}
+      {campaigns && campaigns.length > 0 && (
+        <div>
+          <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">Campaigns</h2>
+          <ul className="mt-3 space-y-2">
+            {campaigns.map((c) => (
+              <li key={c.id}>
+                <button
+                  onClick={() => c.playable && onStartBookCampaign(c.id)}
+                  disabled={busy || !c.playable}
+                  className="w-full rounded-lg border p-3 text-left transition-colors disabled:opacity-50"
+                  style={{ borderColor: c.playable ? 'var(--ember)' : 'var(--ink-line)' }}
+                >
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-semibold" style={{ color: 'var(--ember)' }}>
+                      {c.title ?? c.id}
+                    </span>
+                    {c.playable ? (
+                      <span className="shrink-0 text-xs text-[var(--muted)]">
+                        {c.books} books · levels {c.levelStart}–{c.levelEnd}
+                      </span>
+                    ) : (
+                      <span className="shrink-0 text-xs" style={{ color: 'var(--blood)' }}>
+                        fails the linter
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{c.premise ?? c.error}</p>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div>
         <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">Adventures</h2>
 
@@ -555,6 +649,152 @@ function RecapScreen({
       >
         {busy ? 'The tide turns…' : 'Next session'}
       </button>
+    </div>
+  );
+}
+
+/**
+ * Where the party is in the campaign, above the beat.
+ *
+ * Book N of M and the party level, because those are the two facts a
+ * long-campaign player loses track of between sittings.
+ */
+function BookStrip({ progress }: { progress: CampaignProgressView }) {
+  const current = progress.current;
+  return (
+    <div className="rounded-md border border-[var(--ink-line)] bg-[var(--ink-raised)] px-3 py-2">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="truncate text-xs uppercase tracking-widest text-[var(--muted)]">
+          {progress.title}
+        </span>
+        <span className="shrink-0 text-xs" style={{ color: 'var(--ember)' }}>
+          Level {progress.partyLevel}
+        </span>
+      </div>
+      {current && (
+        <p className="mt-0.5 truncate text-sm" style={{ color: 'var(--parchment)' }}>
+          {current.title}
+        </p>
+      )}
+      <div className="mt-2 flex gap-1">
+        {progress.books.map((b) => (
+          <div
+            key={b.id}
+            title={`${b.title} — levels ${b.levelStart}–${b.levelEnd}`}
+            className="h-1 flex-1 rounded"
+            style={{
+              background:
+                b.status === 'complete'
+                  ? 'var(--success)'
+                  : b.status === 'current'
+                    ? 'var(--ember)'
+                    : 'var(--ink-line)',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The book boundary.
+ *
+ * This screen exists because a level-up is the one moment in a campaign the
+ * player most wants to see, and it happens exactly when a book closes. It
+ * reports what the engine already did — the levelling is not pending here,
+ * it has already been applied and persisted.
+ */
+function BetweenBooks({
+  transition,
+  progress,
+  busy,
+  onContinue,
+}: {
+  transition: BookTransitionView;
+  progress: CampaignProgressView | null;
+  busy: boolean;
+  onContinue: () => void;
+}) {
+  const finished = progress?.books.find((b) => b.id === transition.completed);
+  const next = progress?.books.find((b) => b.id === transition.next);
+  const done = !transition.next;
+
+  return (
+    <div className="mt-6 space-y-5">
+      <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">
+        {done ? 'The campaign ends' : 'The book closes'}
+      </h2>
+      <h3 className="text-xl" style={{ color: 'var(--ember)' }}>
+        {finished?.title ?? transition.completed}
+      </h3>
+
+      <div className="rounded-lg border border-[var(--ember)] p-4">
+        <p className="text-sm">
+          The party is now{' '}
+          <span className="font-semibold" style={{ color: 'var(--ember)' }}>
+            level {transition.partyLevel}
+          </span>
+          .
+        </p>
+        {transition.featuresGained.length > 0 && (
+          <ul className="mt-2 space-y-0.5">
+            {transition.featuresGained.map((f) => (
+              <li key={f} className="text-sm text-[var(--muted)]">
+                + {f}
+              </li>
+            ))}
+          </ul>
+        )}
+        {progress && progress.party.length > 0 && (
+          <div className="mt-3 flex gap-2">
+            {progress.party.map((p) => (
+              <div key={p.id} className="flex-1 rounded-md bg-[var(--ink-raised)] p-2">
+                <div className="truncate text-xs font-semibold">{p.name.split(' ')[0]}</div>
+                <div className="text-[10px] text-[var(--muted)]">
+                  {p.characterClass} {p.level}
+                </div>
+                <HpBar hp={p.hp} hpMax={p.hpMax} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* A skipped book is a branch not taken, not an error. Say so plainly. */}
+      {transition.skipped.length > 0 && (
+        <p className="text-sm text-[var(--muted)]">
+          Passed over: {transition.skipped.join(', ')} — the way in never opened.
+        </p>
+      )}
+
+      {done ? (
+        <p className="text-sm text-[var(--muted)]">
+          Every book is played. The ledger keeps what happened.
+        </p>
+      ) : (
+        <>
+          <div>
+            <p className="text-xs uppercase tracking-widest text-[var(--muted)]">Next</p>
+            <p className="text-lg" style={{ color: 'var(--parchment)' }}>
+              {next?.title ?? transition.next}
+            </p>
+            {next && (
+              <p className="text-xs text-[var(--muted)]">
+                levels {next.levelStart}–{next.levelEnd}
+              </p>
+            )}
+          </div>
+          <button
+            onClick={onContinue}
+            disabled={busy}
+            className="w-full rounded-md p-3 font-semibold"
+            style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+          >
+            {busy ? 'The road goes on…' : 'Begin the next book'}
+          </button>
+        </>
+      )}
     </div>
   );
 }

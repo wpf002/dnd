@@ -99,6 +99,53 @@ export interface Recap {
   worldFlags: { flag: string; value: boolean | number | string }[];
 }
 
+/** A multi-book campaign on disk, as the start screen lists it. */
+export interface CampaignGraphSummary {
+  id: string;
+  playable: boolean;
+  title?: string;
+  premise?: string;
+  tone?: string[];
+  books?: number;
+  levelStart?: number;
+  levelEnd?: number;
+  error?: string;
+}
+
+export interface BookView {
+  id: string;
+  title: string;
+  levelStart: number;
+  levelEnd: number;
+  status: 'complete' | 'current' | 'locked';
+}
+
+/**
+ * Where a party is in a campaign. Absent on a single-adventure campaign,
+ * which is why every consumer treats it as optional rather than defaulting it.
+ */
+export interface CampaignProgressView {
+  campaign: string;
+  title: string;
+  partyLevel: number;
+  bookIndex: number;
+  bookCount: number;
+  completedBooks: string[];
+  completedAt?: string;
+  current?: { id: string; title: string; adventure: string; levelStart: number; levelEnd: number };
+  books: BookView[];
+  party: { id: string; name: string; characterClass: string; level: number; hp: number; hpMax: number }[];
+}
+
+/** What happened at a book boundary. Rendered as the between-books screen. */
+export interface BookTransitionView {
+  completed: string;
+  next?: string;
+  skipped: string[];
+  partyLevel: number;
+  featuresGained: string[];
+}
+
 export interface AdventureSummary {
   id: string;
   playable: boolean;
@@ -115,11 +162,23 @@ export interface AdventureSummary {
 
 export const api = {
   adventures: () => get<{ adventures: AdventureSummary[] }>('/adventures'),
+  campaignGraphs: () => get<{ campaigns: CampaignGraphSummary[] }>('/campaign-graphs'),
   createCampaign: (adventure?: string, title?: string) =>
     post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title }),
-  campaignSession: (id: string) => post<{ state: SessionState }>(`/campaign/${id}/session`),
+  /** Multi-book: `campaign` is a campaign graph id, not an adventure id. */
+  createBookCampaign: (campaign: string) =>
+    post<{ campaign: { id: string; title: string }; progress: CampaignProgressView }>('/campaign', {
+      campaign,
+    }),
+  campaignSession: (id: string) =>
+    post<{ state: SessionState; progress?: CampaignProgressView }>(`/campaign/${id}/session`),
   endCampaignSession: (id: string) =>
-    post<{ recap: Recap; compaction: string }>(`/campaign/${id}/end-session`),
+    post<{
+      recap: Recap;
+      compaction: string;
+      transition?: BookTransitionView;
+      progress?: CampaignProgressView;
+    }>(`/campaign/${id}/end-session`),
   start: (adventure?: string) => post<{ state: SessionState }>('/session', { adventure }),
   generate: (req: GenerateRequest) =>
     post<{ state: SessionState; generation: { attempts: number; firstAttemptPassed: boolean } }>(

@@ -52,7 +52,7 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 3 | **Generation** — campaign generator | v3 — routing, tiering, telemetry | 3–4 weeks |
 | 4 | State ledger + multi-session | v4 — streaming, context compaction | 4–5 weeks |
 | 5 | Module ingestion — research spike | — | done, research-grade |
-| 6 | **Campaign scale** — multi-book, level 1→20 | — | 5–7 weeks |
+| 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
 | 7 | **Published modules, playable** | v5 — long-document extraction | open-ended |
 
 Phases 6 and 7 are the two things the library does *not* deliver. Read the
@@ -451,12 +451,34 @@ Per-graph linting is not sufficient once graphs chain:
 - Between-book transition screen, reading from the ledger
 - The existing "Previously on…" recap generalizes from session to book
 
-### Exit criteria
+### Exit criteria — all met
 
-- One campaign of 3+ books runs end to end, party levelling across them
-- A flag set in Book I visibly changes content in Book III
-- The linter rejects a campaign whose level bands do not chain
-- A 200-turn simulated run across books produces zero mechanical errors
+- **One campaign of 3+ books runs end to end, party levelling across them.**
+  `content/campaigns/the-drowned-lamp-cycle.json` — three books, levels 1→7,
+  driven through the shipping services in `apps/api/src/campaign-scale.test.ts`.
+- **A flag set in Book I visibly changes content in Book III.**
+  `allied-wizards`, earned in Book I, opens three options in Book III that a
+  party arriving without it never sees. Tested both ways.
+- **The linter rejects a campaign whose level bands do not chain.**
+  `level-band-gap`, plus gates on flags no earlier book writes, inverted
+  bands, duplicate book ids, and per-band encounter solvability.
+- **A 200-turn simulated run across books produces zero mechanical errors.**
+  300+ turns, every resolution schema-validated and re-derived as it happened.
+
+### What the audit found
+
+The 200-turn run was not a formality. It caught a defect that had been live
+since the library was generated: `requiresCheck.ability` and `.skill` were
+`z.string()`, generated content wrote display names ("Animal Handling",
+"Intelligence"), and `skillModifier` returned `{ source: undefined, value: NaN }`
+for every one of them. 389 of 416 checks across 74 of 79 adventures silently
+resolved to nothing — the roll happened, the total was `NaN`, the comparison
+was always false.
+
+The linter never saw it because the graphs were structurally perfect. Fixed in
+the schema (enums, so the state is unrepresentable), in the content
+(`tools/normalize-check-ids.mjs`), in the engine (throw rather than emit NaN),
+and in the generator prompt.
 
 ### Kill condition
 
