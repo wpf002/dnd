@@ -1,0 +1,176 @@
+import { describe, expect, it } from 'vitest';
+import { lintCampaign, lintGraph } from '@lantern/linter';
+import { mapModuleToCampaign, mapModuleToGraph } from './services/module-mapper.js';
+
+/**
+ * Phase 7 item 2: a published campaign's chapters become a CampaignGraph's
+ * books, with the module's own level bands.
+ *
+ * This is the piece that depended on Phase 6. Without a campaign container
+ * every ingested module was compressed into one 16-beat graph, which is why
+ * the Phase 5 spike produced a railroad before the topology bug was even
+ * reached: a multi-chapter campaign does not fit in one graph, so most of it
+ * was never going to survive.
+ */
+
+const room = (
+  id: string,
+  name: string,
+  connections: string[],
+  extra: Record<string, unknown> = {},
+) => ({ id, name, description: `${name} description.`, connections, ...extra });
+
+/** Three chapters, level bands chaining 1 → 8. */
+function chapteredModule() {
+  return {
+    title: 'The Sunless Compact',
+    summary: 'A three-part descent under the salt flats.',
+    rooms: [
+      room('camp', 'Surface Camp', ['shaft']),
+      room('shaft', 'The Shaft', ['gallery', 'camp']),
+      room('gallery', 'First Gallery', ['ch1-end', 'shaft'], {
+        encounter: { creatures: [{ name: 'kobold', count: 4 }] },
+      }),
+      room('ch1-end', 'The Sealed Door', [], { isEnding: true }),
+
+      room('under-door', 'Beyond the Door', ['cistern']),
+      room('cistern', 'The Cistern', ['ch2-end', 'under-door']),
+      room('ch2-end', 'The Drowned Stair', [], { isEnding: true }),
+
+      room('deep-hall', 'The Deep Hall', ['throne']),
+      room('throne', 'The Salt Throne', ['ch3-end'], {
+        encounter: { creatures: [{ name: 'wight', count: 1 }] },
+      }),
+      room('ch3-end', 'The Compact Broken', [], { isEnding: true }),
+    ],
+    chapters: [
+      { id: 'ch1', title: 'Chapter 1 — The Shaft', levelStart: 1, levelEnd: 3, rooms: ['camp', 'shaft', 'gallery', 'ch1-end'] },
+      { id: 'ch2', title: 'Chapter 2 — The Cistern', levelStart: 3, levelEnd: 5, rooms: ['under-door', 'cistern', 'ch2-end'] },
+      { id: 'ch3', title: 'Chapter 3 — The Salt Throne', levelStart: 5, levelEnd: 8, rooms: ['deep-hall', 'throne', 'ch3-end'] },
+    ],
+  };
+}
+
+describe('chapters become books', () => {
+  it('produces one linted adventure per chapter and a campaign that links them', () => {
+    const { campaign, adventures, report } = mapModuleToCampaign(chapteredModule());
+
+    expect(adventures).toHaveLength(3);
+    for (const adventure of adventures) {
+      const lint = lintGraph(adventure.graph);
+      expect(lint.ok, `${adventure.id}: ${lint.errors.map((e) => e.message).join('; ')}`).toBe(true);
+    }
+
+    // The campaign passes the same gate a hand-authored one does, with its
+    // books resolved — level bands, book gates, per-band solvability.
+    const resolved = new Map(adventures.map((a) => [a.id, a.graph]));
+    const lint = lintCampaign(campaign, resolved);
+    expect(lint.errors).toEqual([]);
+    expect(lint.warnings).toEqual([]);
+
+    expect(report.levelBandBreaks).toEqual([]);
+    expect(report.orphanedRooms).toEqual([]);
+    expect(report.chaptersWithoutEndings).toEqual([]);
+  });
+
+  it("keeps the module's own level bands rather than inventing a progression", () => {
+    const { campaign } = mapModuleToCampaign(chapteredModule());
+    const books = (campaign as { books: Array<{ levelStart: number; levelEnd: number }> }).books;
+    expect(books.map((b) => [b.levelStart, b.levelEnd])).toEqual([
+      [1, 3],
+      [3, 5],
+      [5, 8],
+    ]);
+  });
+
+  it('gates each book on the one before it', () => {
+    const { campaign } = mapModuleToCampaign(chapteredModule());
+    const books = (campaign as {
+      books: Array<{ id: string; entryWhen?: { op: string; flag: string }; onComplete: Array<{ flag: string }> }>;
+    }).books;
+
+    expect(books[0]!.entryWhen).toBeUndefined(); // the first book needs no key
+    expect(books[1]!.entryWhen).toEqual({ op: 'set', flag: books[0]!.onComplete[0]!.flag });
+    expect(books[2]!.entryWhen).toEqual({ op: 'set', flag: books[1]!.onComplete[0]!.flag });
+  });
+
+  it('marks each chapter as ingested, with the source named for audit', () => {
+    const { campaign } = mapModuleToCampaign(chapteredModule());
+    const metadata = (campaign as { metadata: Record<string, unknown> }).metadata;
+    expect(metadata.provenance).toBe('ingested');
+    expect(metadata.ingestedFrom).toBe('The Sunless Compact');
+  });
+});
+
+describe('what the mapper refuses to paper over', () => {
+  it('reports a connection that leaves its chapter instead of following it', () => {
+    // A book is one graph; a graph cannot point into another one. Where the
+    // party goes next is the campaign's business.
+    const module = chapteredModule();
+    module.rooms[3]!.connections = ['under-door']; // ch1-end reaches into ch2
+    module.rooms[3]!.isEnding = true;
+
+    const { report } = mapModuleToCampaign(module);
+    expect(report.crossChapterExits).toContainEqual({
+      chapter: 'ch1',
+      room: 'ch1-end',
+      target: 'under-door',
+      targetChapter: 'ch2',
+    });
+  });
+
+  it('reports a level band that does not chain, and lets the linter reject it', () => {
+    const module = chapteredModule();
+    module.chapters[1]!.levelStart = 4; // ch1 ends at 3
+
+    const { campaign, adventures, report } = mapModuleToCampaign(module);
+    expect(report.levelBandBreaks).toContainEqual({
+      from: 'ch1',
+      to: 'ch2',
+      endsAt: 3,
+      startsAt: 4,
+    });
+
+    // Reported, not silently patched — the linter is still the gate.
+    const resolved = new Map(adventures.map((a) => [a.id, a.graph]));
+    expect(lintCampaign(campaign, resolved).errors.map((e) => e.code)).toContain('level-band-gap');
+  });
+
+  it('reports a chapter with no ending rather than nominating one', () => {
+    const module = chapteredModule();
+    module.rooms[6]!.isEnding = false; // ch2 loses its only ending
+
+    const { report, adventures } = mapModuleToCampaign(module);
+    expect(report.chaptersWithoutEndings).toContain('ch2');
+
+    // And the book itself fails the linter, which is what hands it to repair.
+    const ch2 = adventures.find((a) => a.id.endsWith('ch2'))!;
+    expect(lintGraph(ch2.graph).ok).toBe(false);
+  });
+
+  it('reports rooms that belong to no chapter', () => {
+    const module = chapteredModule();
+    module.rooms.push(room('forgotten-vault', 'The Forgotten Vault', ['camp']));
+
+    const { report } = mapModuleToCampaign(module);
+    expect(report.orphanedRooms).toContain('forgotten-vault');
+  });
+
+  it('refuses to map a module with no chapters', () => {
+    expect(() => mapModuleToCampaign({ ...chapteredModule(), chapters: undefined })).toThrow(
+      /no chapters/,
+    );
+  });
+});
+
+describe('a single-book module still maps as one graph', () => {
+  it('ignores the campaign path entirely', () => {
+    const module = chapteredModule();
+    const { graph } = mapModuleToGraph({
+      title: module.title,
+      summary: module.summary,
+      rooms: module.rooms.slice(0, 4),
+    });
+    expect(lintGraph(graph).ok).toBe(true);
+  });
+});

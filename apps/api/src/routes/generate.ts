@@ -72,13 +72,37 @@ export function registerGenerateRoutes(
       return reply.code(400).send({ error: 'provide the module text (>= 100 chars); PDF-to-text is a front-step outside this API' });
     }
     const result = await ingestModule(flint(), telemetry, text);
+
+    // A chaptered source produces a campaign, not a session. It is not
+    // playable from this endpoint: the books have to be written to
+    // content/ and started as a campaign, which is a deliberate human step
+    // for material the user owns.
+    if (result.campaign) {
+      return reply.code(result.ok ? 200 : 422).send({
+        kind: 'campaign',
+        ok: result.ok,
+        stage: result.stage,
+        campaign: result.campaign,
+        adventures: result.adventures,
+        report: result.campaignReport,
+        lintErrors: result.lintErrors,
+        lintWarnings: result.lintWarnings,
+      });
+    }
+
     if (result.ok) {
       const session = createSession(result.graph);
       sessions.set(session.id, session);
-      return { state: sessionView(session), report: result.report, warnings: result.lintWarnings };
+      return {
+        kind: 'adventure',
+        state: sessionView(session),
+        report: result.report,
+        warnings: result.lintWarnings,
+      };
     }
     // Human-in-the-loop handoff: candidate graph + findings, 422.
     return reply.code(422).send({
+      kind: 'adventure',
       stage: result.stage,
       graph: result.graph,
       report: result.report,

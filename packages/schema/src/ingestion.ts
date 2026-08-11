@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Id } from './primitives.js';
+import { Id, Level } from './primitives.js';
 
 /**
  * Phase 5 — the intermediate representation for module ingestion.
@@ -48,10 +48,37 @@ export const IngestedRoom = z.object({
 });
 export type IngestedRoom = z.infer<typeof IngestedRoom>;
 
+/**
+ * A chapter or act of a published campaign — one book of a `CampaignGraph`.
+ *
+ * Rooms are referenced by id rather than nested, so the module keeps a single
+ * room list. That matters because published chapters are not cleanly
+ * separable: a connection that crosses a chapter boundary is real information
+ * about the module, and nesting would have thrown it away at extraction time
+ * instead of reporting it at mapping time.
+ */
+export const IngestedChapter = z.object({
+  id: Id,
+  title: z.string().min(1),
+  summary: z.string().optional(),
+  /** The module's own level band for this chapter, as printed. */
+  levelStart: Level,
+  levelEnd: Level,
+  /** Room ids in this chapter. The first is where the chapter begins. */
+  rooms: z.array(Id).min(2),
+});
+export type IngestedChapter = z.infer<typeof IngestedChapter>;
+
 export const IngestedModule = z.object({
   title: z.string().min(1),
   summary: z.string().min(1),
   /** First room is the entrance. */
-  rooms: z.array(IngestedRoom).min(2).max(40),
+  rooms: z.array(IngestedRoom).min(2).max(400),
+  /**
+   * Chapters, when the source is a multi-part campaign rather than a single
+   * dungeon. Absent means one book — which is what every module was before
+   * Phase 6 gave campaigns a container to map onto.
+   */
+  chapters: z.array(IngestedChapter).max(12).optional(),
 });
 export type IngestedModule = z.infer<typeof IngestedModule>;

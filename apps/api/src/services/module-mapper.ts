@@ -434,3 +434,182 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
   return { graph, report };
 }
+
+// ---------------------------------------------------------------------------
+// Chapters → books
+// ---------------------------------------------------------------------------
+
+export interface CampaignMappingReport {
+  /** One per book, keyed by chapter id. */
+  books: Array<{ chapter: string; adventure: string; report: MappingReport }>;
+  /**
+   * Connections that left their chapter. Dropped from the book's graph —
+   * a book is a graph, and a graph cannot point into another one. Where the
+   * party goes next is the campaign's business, not the beat's.
+   */
+  crossChapterExits: Array<{ chapter: string; room: string; target: string; targetChapter: string }>;
+  /** Chapters with no ending room. Their graphs will fail the linter, by design. */
+  chaptersWithoutEndings: string[];
+  /** Rooms in no chapter at all. Extraction dropped them on the floor. */
+  orphanedRooms: string[];
+  /** Level bands that do not chain. Reported, never silently patched. */
+  levelBandBreaks: Array<{ from: string; to: string; endsAt: number; startsAt: number }>;
+}
+
+/**
+ * Map a chaptered module onto a CampaignGraph plus one BeatGraph per chapter.
+ *
+ * This is why Phase 7 waited on Phase 6. Without a campaign container every
+ * ingested module was compressed into a single graph, which is the reason the
+ * Phase 5 spike produced a railroad even before the topology bug: a
+ * three-hundred-room campaign does not fit in sixteen beats, so most of it
+ * was never going to survive.
+ *
+ * Nothing here silently repairs the module. A level band that does not chain,
+ * a chapter with no ending, a room in no chapter — each is reported and left
+ * for the linter to reject and a human to fix, which is invariant 6 doing its
+ * job rather than the mapper guessing at a published author's intent.
+ */
+export function mapModuleToCampaign(moduleInput: unknown): {
+  campaign: unknown;
+  adventures: Array<{ id: string; graph: unknown }>;
+  report: CampaignMappingReport;
+} {
+  const module = IngestedModule.parse(moduleInput);
+  const chapters = module.chapters;
+  if (!chapters || chapters.length === 0) {
+    throw new Error('module has no chapters — use mapModuleToGraph for a single-book module');
+  }
+
+  const report: CampaignMappingReport = {
+    books: [],
+    crossChapterExits: [],
+    chaptersWithoutEndings: [],
+    orphanedRooms: [],
+    levelBandBreaks: [],
+  };
+
+  const roomsById = new Map(module.rooms.map((r) => [r.id, r]));
+  /** Which chapter each room belongs to. A room in two chapters belongs to the first. */
+  const chapterOf = new Map<string, string>();
+  for (const chapter of chapters) {
+    for (const roomId of chapter.rooms) {
+      if (!chapterOf.has(roomId)) chapterOf.set(roomId, chapter.id);
+    }
+  }
+  for (const room of module.rooms) {
+    if (!chapterOf.has(room.id)) report.orphanedRooms.push(room.id);
+  }
+
+  const slug = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60);
+
+  const moduleSlug = slug(module.title) || 'ingested-module';
+  const adventures: Array<{ id: string; graph: unknown }> = [];
+
+  for (const chapter of chapters) {
+    const adventureId = `${moduleSlug}-${slug(chapter.id)}`.slice(0, 60);
+
+    // Build a standalone module out of this chapter's rooms, severing exits
+    // that leave it. `mapModuleToGraph` then does the ordinary topology work,
+    // so a chapter is mapped exactly the way a single-book module is.
+    const chapterRooms = chapter.rooms
+      .map((id) => roomsById.get(id))
+      .filter((r): r is IngestedRoom => r !== undefined)
+      .map((room) => {
+        const kept: string[] = [];
+        for (const target of room.connections) {
+          const targetChapter = chapterOf.get(target);
+          if (targetChapter !== undefined && targetChapter !== chapter.id) {
+            report.crossChapterExits.push({
+              chapter: chapter.id,
+              room: room.id,
+              target,
+              targetChapter,
+            });
+            continue;
+          }
+          kept.push(target);
+        }
+        return { ...room, connections: kept };
+      });
+
+    if (!chapterRooms.some((r) => r.isEnding)) report.chaptersWithoutEndings.push(chapter.id);
+
+    const { graph, report: chapterReport } = mapModuleToGraph({
+      title: chapter.title,
+      summary: chapter.summary ?? module.summary,
+      rooms: chapterRooms,
+    });
+
+    // The chapter's own id and level band, not the ones mapModuleToGraph
+    // derived from the title.
+    const withIdentity = {
+      ...(graph as Record<string, unknown>),
+      id: adventureId,
+      metadata: {
+        ...((graph as { metadata: Record<string, unknown> }).metadata),
+        partyLevel: chapter.levelStart,
+      },
+    };
+
+    adventures.push({ id: adventureId, graph: withIdentity });
+    report.books.push({ chapter: chapter.id, adventure: adventureId, report: chapterReport });
+  }
+
+  for (let i = 1; i < chapters.length; i++) {
+    const prev = chapters[i - 1]!;
+    const next = chapters[i]!;
+    if (prev.levelEnd !== next.levelStart) {
+      report.levelBandBreaks.push({
+        from: prev.id,
+        to: next.id,
+        endsAt: prev.levelEnd,
+        startsAt: next.levelStart,
+      });
+    }
+  }
+
+  // Each book records that it finished; the next book reads it. That is the
+  // minimum honest continuity — the module's real cross-chapter conditions
+  // live in prose the extractor does not yet capture, and inventing guards
+  // for them would be the mapper writing the campaign.
+  const finishedFlag = (chapterId: string) => `finished-${slug(chapterId)}`;
+
+  const books = chapters.map((chapter, i) => ({
+    id: slug(chapter.id),
+    title: chapter.title,
+    adventure: report.books[i]!.adventure,
+    levelStart: chapter.levelStart,
+    levelEnd: chapter.levelEnd,
+    ...(i === 0
+      ? {}
+      : { entryWhen: { op: 'set' as const, flag: finishedFlag(chapters[i - 1]!.id) } }),
+    onComplete: [{ flag: finishedFlag(chapter.id), value: true }],
+    ...(chapter.summary ? { note: chapter.summary } : {}),
+  }));
+
+  const campaign = {
+    id: moduleSlug,
+    schemaVersion: 1,
+    metadata: {
+      title: module.title,
+      premise: module.summary,
+      tone: ['exploration'],
+      narrationVoice:
+        'Faithful to the source module: descriptive, unhurried, keeping the original read-aloud text intact where it exists.',
+      provenance: 'ingested',
+      ingestedFrom: module.title,
+    },
+    books,
+    // The last book's flag is written and never read, which the campaign
+    // linter warns about — so it is deliberately not carried.
+    carryFlags: chapters.slice(0, -1).map((c) => finishedFlag(c.id)),
+  };
+
+  return { campaign, adventures, report };
+}

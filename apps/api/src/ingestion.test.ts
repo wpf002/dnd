@@ -241,6 +241,39 @@ describe('the full pipeline with a scripted extractor', () => {
     expect(event.rooms).toBe(5);
   });
 
+  it('a chaptered module comes out as a campaign, not one compressed graph', async () => {
+    const chaptered = {
+      title: 'The Sunless Compact',
+      summary: 'A two-part descent under the salt flats.',
+      rooms: [
+        { id: 'camp', name: 'Surface Camp', description: 'Tents.', connections: ['shaft'] },
+        { id: 'shaft', name: 'The Shaft', description: 'Down.', connections: ['ch1-end', 'camp'] },
+        { id: 'ch1-end', name: 'The Sealed Door', description: 'It stops here.', connections: [], isEnding: true },
+        { id: 'under-door', name: 'Beyond the Door', description: 'Through.', connections: ['ch2-end'] },
+        { id: 'cistern', name: 'The Cistern', description: 'Water.', connections: ['ch2-end', 'under-door'] },
+        { id: 'ch2-end', name: 'The Drowned Stair', description: 'The end.', connections: [], isEnding: true },
+      ],
+      chapters: [
+        { id: 'ch1', title: 'Chapter 1', levelStart: 1, levelEnd: 3, rooms: ['camp', 'shaft', 'ch1-end'] },
+        { id: 'ch2', title: 'Chapter 2', levelStart: 3, levelEnd: 5, rooms: ['under-door', 'cistern', 'ch2-end'] },
+      ],
+    };
+
+    const telemetry = new MemoryTelemetry();
+    const result = await ingestModule(ingestFlint(new ScriptedAdapter(chaptered)), telemetry, 'text');
+
+    expect(result.ok).toBe(true);
+    expect(result.campaign).toBeDefined();
+    expect(result.adventures).toHaveLength(2);
+    // No single graph, because there is no single graph a two-chapter
+    // campaign honestly collapses into.
+    expect(result.graph).toBeUndefined();
+    expect(result.lintErrors).toEqual([]);
+
+    const event = telemetry.events.find((e) => e.type === 'ingestion')!;
+    expect(event.books).toBe(2);
+  });
+
   it('a lint failure still hands the candidate graph to the human repair pass', async () => {
     const broken = linearModule();
     // Ending unreachable: sever the hollow.
