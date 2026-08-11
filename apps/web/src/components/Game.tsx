@@ -253,6 +253,28 @@ export function Game() {
               </li>
             ))}
           </ul>
+          {/* Healing. Death is permanent, so picking a downed ally up is the
+              single most consequential action available in a fight. */}
+          {activePc &&
+            (() => {
+              const dying = party.find((p) => p.hp === 0 && !p.dead);
+              const spell = ['healing-word', 'cure-wounds'].find((id) =>
+                activePc.prepared?.includes(id),
+              );
+              const slot = activePc.slots?.remaining.findIndex((n, lvl) => lvl >= 1 && n > 0) ?? -1;
+              if (!dying || !spell || slot < 1) return null;
+              return (
+                <button
+                  disabled={busy}
+                  onClick={() => run(() => api.cast(state.id, activePc.id, spell, dying.id, slot))}
+                  className="w-full rounded-md border border-[var(--success)] p-2 text-sm font-semibold"
+                  style={{ color: 'var(--success)' }}
+                >
+                  Cast {spell.replace(/-/g, ' ')} on {dying.name.split(' ')[0]} (level {slot} slot)
+                </button>
+              );
+            })()}
+
           <button
             disabled={busy}
             onClick={() => run(() => api.flee(state.id))}
@@ -340,8 +362,14 @@ export function Game() {
           {party.map((p) => (
             <div key={p.id} className="flex-1 rounded-md bg-[var(--ink-raised)] p-2">
               <div className="flex items-baseline justify-between">
-                <span className="truncate text-xs font-semibold">{p.name.split(' ')[0]}</span>
-                <span className="text-[10px] text-[var(--muted)]">AC {p.ac}</span>
+                <span
+                  className={`truncate text-xs font-semibold ${p.dead ? 'line-through opacity-60' : ''}`}
+                >
+                  {p.name.split(' ')[0]}
+                </span>
+                <span className="text-[10px] text-[var(--muted)]">
+                  {p.dead ? 'dead' : `AC ${p.ac}`}
+                </span>
               </div>
               <HpBar hp={p.hp} hpMax={p.hpMax} />
               {p.conditions.length > 0 && (

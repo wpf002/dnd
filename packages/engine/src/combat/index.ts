@@ -171,7 +171,7 @@ export function resolveDeathSave(seed: Seed, character: Character): DeathSaveRes
   } else if (face === 1) {
     outcome = 'critical-failure';
     failures = Math.min(3, failures + 2);
-    next = { ...character, deathSaveFailures: failures };
+    next = { ...character, deathSaveFailures: failures, dead: failures >= 3 };
     if (failures >= 3) final = 'dead';
   } else if (face >= 10) {
     outcome = 'success';
@@ -181,7 +181,7 @@ export function resolveDeathSave(seed: Seed, character: Character): DeathSaveRes
   } else {
     outcome = 'failure';
     failures = Math.min(3, failures + 1);
-    next = { ...character, deathSaveFailures: failures };
+    next = { ...character, deathSaveFailures: failures, dead: failures >= 3 };
     if (failures >= 3) final = 'dead';
   }
 

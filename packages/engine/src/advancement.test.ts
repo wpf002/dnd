@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { PREGENS, PREGENS_LEVEL_1, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD } from '@lantern/srd';
 import { levelUp, levelParty, sneakAttackDiceFor, spellSaveDc } from './advancement/index.js';
 import { proficiencyBonus } from './checks/index.js';
+import { resolveDeathSave } from './combat/index.js';
+import { applyHealing, applyRest } from './state/index.js';
 
 /**
  * Phase 6 exit criterion: levelling is correct and reproducible.
@@ -163,5 +165,54 @@ describe('the level-1 pregens are the level-3 pregens, un-advanced', () => {
         authored.spellcasting?.slotsMax,
       );
     }
+  });
+});
+
+describe('death is permanent state, not a transient result', () => {
+  /**
+   * `resolveDeathSave` computed `final: 'dead'` and nothing ever stored it.
+   * The character sheet only carried `deathSaveFailures`, and both
+   * `applyRest` and `applyHealing` reset that and healed to full — so a
+   * character who failed three death saves came back at the next long rest,
+   * fully healed, with no record that they had died.
+   */
+  const corpse = { ...PREGEN_FIGHTER, hp: 0, deathSaveFailures: 3, dead: true };
+
+  it('is not undone by a long rest', () => {
+    const rested = applyRest(corpse, 'long');
+    expect(rested.dead).toBe(true);
+    expect(rested.hp).toBe(0);
+  });
+
+  it('is not undone by healing', () => {
+    const healed = applyHealing(corpse, 50);
+    expect(healed.dead).toBe(true);
+    expect(healed.hp).toBe(0);
+  });
+
+  it('still lets the living rest normally', () => {
+    const hurt = { ...PREGEN_FIGHTER, hp: 1 };
+    expect(applyRest(hurt, 'long').hp).toBe(hurt.hpMax);
+    expect(applyHealing(hurt, 5).hp).toBe(6);
+  });
+
+  it('is recorded on the sheet the moment the third save fails', () => {
+    // Seeds are searched rather than assumed: the point is that whenever the
+    // engine reports 'dead', the character it returns says so too.
+    let sawDeath = false;
+    for (let i = 0; i < 200 && !sawDeath; i++) {
+      let pc = { ...PREGEN_FIGHTER, hp: 0 };
+      for (let save = 0; save < 5; save++) {
+        const r = resolveDeathSave(`death-seed-${i}-${save}`, pc);
+        pc = r.character;
+        if (r.final === 'dead') {
+          expect(pc.dead).toBe(true);
+          sawDeath = true;
+          break;
+        }
+        if (r.final) break; // stable or revived
+      }
+    }
+    expect(sawDeath, 'no seed in 200 produced a death — widen the search').toBe(true);
   });
 });

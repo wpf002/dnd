@@ -15,6 +15,17 @@ import { sessionView, type GameSession } from '../services/game.js';
 import { listCampaignGraphs, loadCampaignGraph, persistSession, store } from './session.js';
 
 /**
+ * Write-behind: persistence never blocks a request, but a failure is reported.
+ * Swallowing it silently is how a missing database column went unnoticed while
+ * every campaign write was failing.
+ */
+function persistCampaign(campaign: Campaign): void {
+  void store()
+    .then((s) => s.saveCampaign(campaign))
+    .catch((err) => console.warn(`persist campaign: ${(err as Error).message}`));
+}
+
+/**
  * What the app needs to render a campaign: where the party is in the book
  * sequence, and at what level. Absent for a single-adventure campaign, which
  * has no books to be anywhere in.
@@ -89,7 +100,7 @@ export function registerCampaignRoutes(
         if (request.body?.campaign) {
           const graph = loadCampaignGraph(request.body.campaign);
           const campaign = createBookCampaign(graph, loadGraph, request.body.title);
-          void store().then((s) => s.saveCampaign(campaign)).catch(() => {});
+          persistCampaign(campaign);
           return {
             campaign: { id: campaign.id, title: campaign.title },
             progress: progressView(campaign),
@@ -98,7 +109,7 @@ export function registerCampaignRoutes(
         const adventureId = request.body?.adventure ?? 'the-bell-at-saltmire';
         const graph = loadGraph(adventureId);
         const campaign = createCampaign(graph, request.body?.title ?? adventureId);
-        void store().then((s) => s.saveCampaign(campaign)).catch(() => {});
+        persistCampaign(campaign);
         return { campaign: { id: campaign.id, title: campaign.title } };
       } catch (err) {
         const status = (err as { statusCode?: number }).statusCode ?? 400;
@@ -150,7 +161,7 @@ export function registerCampaignRoutes(
       const session = startCampaignSession(campaign);
       sessions.set(session.id, session);
       persistSession(session, campaign.id);
-      void store().then((s) => s.saveCampaign(campaign!)).catch(() => {});
+      persistCampaign(campaign!);
       return { state: sessionView(session), progress: progressView(campaign) };
     } catch (err) {
       return reply.code(400).send({ error: (err as Error).message });
@@ -172,7 +183,7 @@ export function registerCampaignRoutes(
       loadGraph,
     );
     persistSession(session, campaign.id);
-    void store().then((s) => s.saveCampaign(campaign)).catch(() => {});
+    persistCampaign(campaign);
     return {
       delta: result.delta,
       compaction: result.compaction,

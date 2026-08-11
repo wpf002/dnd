@@ -158,6 +158,16 @@ export const Character = z.object({
   deathSaveSuccesses: z.number().int().min(0).max(3).default(0),
   deathSaveFailures: z.number().int().min(0).max(3).default(0),
 
+  /**
+   * Three failed death saves. Persisted on the sheet, because a death that
+   * lives only in the resolution that caused it is a death nothing downstream
+   * can honour — a long rest reset the failure count and healed the character
+   * back to full, so dying had no lasting consequence at all.
+   *
+   * Only true resurrection clears this. Healing and rest do not.
+   */
+  dead: z.boolean().default(false),
+
   hitDiceRemaining: z.number().int().min(0).default(0),
   speed: z.number().int().min(0).default(30),
 

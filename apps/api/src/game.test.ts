@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { Resolution } from '@lantern/schema';
 import {
   chooseOption,
+  castSpell,
   combatAttack,
   combatFlee,
   createSession,
@@ -36,8 +37,22 @@ function fightItOut(session: GameSession): void {
   let guard = 0;
   while (session.combat && guard++ < 300) {
     const currentId = session.combat.order[session.combat.turnIndex]!;
-    const pc = session.party.find((p) => p.id === currentId && p.hp > 0);
+    const pc = session.party.find((p) => p.id === currentId && p.hp > 0 && !p.dead);
     if (!pc) throw new Error('advanceMonsters should have left a living PC on turn');
+
+    // Pick a downed ally up before swinging. Death is permanent, so a party
+    // that ignores its dying loses members for the rest of the campaign.
+    const sc = pc.spellcasting;
+    const dying = session.party.find((p) => p.hp === 0 && !p.dead);
+    if (sc && dying) {
+      const spell = ['healing-word', 'cure-wounds'].find((id) => sc.prepared.includes(id));
+      const slot = sc.slotsRemaining.findIndex((n, level) => level >= 1 && n > 0);
+      if (spell && slot >= 1) {
+        castSpell(session, pc.id, spell, dying.id, slot);
+        continue;
+      }
+    }
+
     const target = [...session.combat.monsters].filter((m) => m.hp > 0).sort((a, b) => a.hp - b.hp)[0];
     if (!target) break;
     combatAttack(session, pc.id, target.combatantId);

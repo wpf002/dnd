@@ -11,6 +11,7 @@ import {
   type Campaign,
 } from './services/campaign.js';
 import {
+  castSpell,
   chooseOption,
   combatAttack,
   combatFlee,
@@ -95,11 +96,33 @@ const STEP_BUDGET = 400;
 const REST_BUDGET = 25;
 
 /**
+ * If the actor can heal and somebody is down, heal instead of attacking.
+ * Returns undefined when there is nothing to do, so the caller falls through
+ * to its normal action.
+ */
+function healIfDying(
+  session: GameSession,
+  actor: GameSession['party'][number],
+): ReturnType<typeof castSpell> | undefined {
+  const sc = actor.spellcasting;
+  if (!sc) return undefined;
+  const dying = session.party.find((p) => p.hp === 0 && !p.dead);
+  if (!dying) return undefined;
+  const spell = ['healing-word', 'cure-wounds'].find((id) => sc.prepared.includes(id));
+  if (!spell) return undefined;
+  const slot = sc.slotsRemaining.findIndex((n, level) => level >= 1 && n > 0);
+  if (slot < 1) return undefined;
+  return castSpell(session, actor.id, spell, dying.id, slot);
+}
+
+/**
  * Play a session to a terminal beat.
  *
  * The policy is a plausible player rather than an optimal one, because a
  * driver that plays nothing like a player proves nothing about play:
  *
+ *  - heal the dying first: a character left at 0 HP rolls death saves and
+ *    dies for good. A party with a cleric and a slot spends it.
  *  - explore: prefer the option leading somewhere least-visited. Always
  *    taking option 0 cycles between adjacent beats forever.
  *  - rest when hurt: without this the party accumulates damage across every
@@ -122,13 +145,13 @@ function playToEnding(session: GameSession, budget: number): PlayResult {
       // Initiative order is the engine's, not the driver's: act as whoever is
       // actually up. Monster turns resolve inside combatAttack.
       const upNext = session.combat.order[session.combat.turnIndex]!;
-      const actor = session.party.find((p) => p.id === upNext && p.hp > 0);
+      const actor = session.party.find((p) => p.id === upNext && p.hp > 0 && !p.dead);
       const target = session.combat.monsters.find((m) => m.hp > 0);
-      // Nobody standing, or nothing left to hit: disengage rather than spin.
-      const outcome =
-        actor && target
-          ? combatAttack(session, actor.id, target.combatantId)
-          : combatFlee(session);
+
+      const outcome = actor
+        ? (healIfDying(session, actor) ??
+          (target ? combatAttack(session, actor.id, target.combatantId) : combatFlee(session)))
+        : combatFlee(session);
       auditTurn(outcome.resolutions);
       auditParty(session);
       continue;

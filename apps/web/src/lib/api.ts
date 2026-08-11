@@ -19,10 +19,14 @@ export interface PartyMemberView {
   class: string;
   hp: number;
   hpMax: number;
+  /** Three failed death saves. Neither healing nor rest clears it. */
+  dead: boolean;
   ac: number;
   passivePerception: number;
   conditions: string[];
   slots?: { remaining: number[]; max: number[] };
+  /** Prepared spells, so the client can offer the ones it can actually cast. */
+  prepared?: string[];
 }
 
 export interface CombatView {
@@ -190,5 +194,8 @@ export const api = {
   attack: (id: string, actor: string, target: string) =>
     post<TurnResponse>(`/session/${id}/attack`, { actor, target }),
   flee: (id: string) => post<TurnResponse>(`/session/${id}/flee`),
+  /** Healing only — the API rejects any other spell. */
+  cast: (id: string, caster: string, spell: string, target: string, slot?: number) =>
+    post<TurnResponse>(`/session/${id}/cast`, { caster, spell, target, slot }),
   rest: (id: string, kind: 'short' | 'long') => post<TurnResponse>(`/session/${id}/rest`, { kind }),
 };

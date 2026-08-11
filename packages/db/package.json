@@ -8,12 +8,12 @@
   "scripts": {
     "build": "prisma generate && tsc -p tsconfig.json",
     "generate": "prisma generate",
-    "migrate": "prisma migrate dev",
-    "deploy": "prisma migrate deploy",
-    "studio": "prisma studio",
+    "migrate": "node ../../tools/with-env.mjs npx prisma migrate dev",
+    "deploy": "node ../../tools/with-env.mjs npx prisma migrate deploy",
+    "studio": "node ../../tools/with-env.mjs npx prisma studio",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "clean": "rm -rf dist .turbo",
-    "push": "prisma db push"
+    "push": "node ../../tools/with-env.mjs npx prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0"

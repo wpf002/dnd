@@ -1,17 +1,20 @@
 import {
   BeatGraph,
+  type Ability,
   type Beat,
   type BeatOption,
   type Character,
   type Encounter,
   type FlagValue,
   type Resolution,
+  type Skill,
   type TurnRecord,
 } from '@lantern/schema';
 import {
   applyDamage,
   applyMutations,
   applyRest,
+  castHealing,
   characterAttackModifiers,
   evaluateGuard,
   passivePerception,
@@ -21,7 +24,17 @@ import {
   rollInitiative,
   type Flags,
 } from '@lantern/engine';
-import { ARMOR, MONSTERS, PREGENS, WEAPONS, type ArmorInput, type MonsterInput, type WeaponInput } from '@lantern/srd';
+import {
+  ARMOR,
+  MONSTERS,
+  PREGENS,
+  SPELLS,
+  WEAPONS,
+  type ArmorInput,
+  type MonsterInput,
+  type SpellInput,
+  type WeaponInput,
+} from '@lantern/srd';
 
 /**
  * The Lantern game loop. App logic — the engine stays pure and this service
@@ -219,14 +232,16 @@ export function chooseOption(session: GameSession, optionId: string): TurnOutcom
   };
 }
 
-function bestAtCheck(party: Character[], ability: string, skill?: string): Character {
-  const alive = party.filter((p) => p.hp > 0);
-  const pool = alive.length > 0 ? alive : party;
+function bestAtCheck(party: Character[], ability: Ability, skill?: Skill): Character {
+  // The dead attempt nothing. Fall back to the whole party only when everyone
+  // is down, so the check still resolves rather than throwing mid-turn.
+  const able = party.filter((p) => p.hp > 0 && !p.dead);
+  const pool = able.length > 0 ? able : party;
   return [...pool].sort((a, b) => {
     const score = (c: Character) => {
-      const abilityScore = c.abilities[ability as keyof Character['abilities']] ?? 10;
-      const prof = skill && c.skillProficiencies.includes(skill as never) ? 10 : 0;
-      const expert = skill && c.skillExpertise.includes(skill as never) ? 10 : 0;
+      const abilityScore = c.abilities[ability];
+      const prof = skill && c.skillProficiencies.includes(skill) ? 10 : 0;
+      const expert = skill && c.skillExpertise.includes(skill) ? 10 : 0;
       return abilityScore + prof + expert;
     };
     return score(b) - score(a);
@@ -349,7 +364,12 @@ function finishCombat(session: GameSession, outcome: 'victory' | 'defeat' | 'fle
     outcome === 'victory' ? enc.onVictory : outcome === 'defeat' ? enc.onDefeat : (enc.onFlee ?? enc.onDefeat);
   if (outcome === 'defeat') {
     // The party wakes wherever the graph says, at 1 HP — beaten, not erased.
-    session.party = session.party.map((p) => (p.hp <= 0 ? { ...p, hp: 1, deathSaveSuccesses: 0, deathSaveFailures: 0, conditions: [] } : p));
+    // Anyone who actually died stays dead; defeat is not a reset button.
+    session.party = session.party.map((p) =>
+      p.hp <= 0 && !p.dead
+        ? { ...p, hp: 1, deathSaveSuccesses: 0, deathSaveFailures: 0, conditions: [] }
+        : p,
+    );
   }
   return enterBeat(session, destination);
 }
@@ -376,6 +396,13 @@ function advanceMonsters(session: GameSession): TurnOutcome {
 
     if (pc && pc.hp > 0) {
       return { session, resolutions, narration }; // player's turn
+    }
+
+    if (pc && pc.hp <= 0 && pc.dead) {
+      // The dead do not act and do not roll. Skip their slot in the order.
+      combat.turnIndex = (combat.turnIndex + 1) % combat.order.length;
+      if (combat.turnIndex === 0) combat.round++;
+      continue;
     }
 
     if (pc && pc.hp <= 0) {
@@ -479,6 +506,75 @@ export function combatAttack(session: GameSession, actorId: string, targetId: st
   };
 }
 
+/**
+ * Cast a healing spell. Works in and out of combat — a party that just lost a
+ * fight needs to patch itself up before the next beat as much as it needs
+ * healing mid-round.
+ *
+ * In combat this consumes the caster's turn, exactly like an attack.
+ */
+export function castSpell(
+  session: GameSession,
+  casterId: string,
+  spellId: string,
+  targetId: string,
+  slotLevel?: number,
+): TurnOutcome {
+  const caster = session.party.find((p) => p.id === casterId);
+  if (!caster) throw new Error(`no such character '${casterId}'`);
+  if (caster.hp <= 0 || caster.dead) throw new Error(`${casterId} cannot act`);
+
+  const target = session.party.find((p) => p.id === targetId);
+  if (!target) throw new Error(`no such target '${targetId}'`);
+
+  const spell = (SPELLS as Record<string, SpellInput>)[spellId];
+  if (!spell) throw new Error(`no such spell '${spellId}'`);
+
+  if (session.combat) {
+    const currentId = session.combat.order[session.combat.turnIndex]!;
+    if (currentId !== casterId) throw new Error(`it is not ${casterId}'s turn`);
+  }
+
+  const result = castHealing({
+    seed: nextSeed(session),
+    caster,
+    spell,
+    target,
+    slotLevel: slotLevel ?? spell.level,
+  });
+
+  session.party = session.party.map((p) =>
+    p.id === casterId ? result.caster : p.id === targetId ? result.target : p,
+  );
+  // Healing the caster themselves: both writes above target the same person,
+  // so re-apply the healed sheet on top of the spent one.
+  if (casterId === targetId) {
+    session.party = session.party.map((p) =>
+      p.id === casterId
+        ? { ...result.target, spellcasting: result.caster.spellcasting }
+        : p,
+    );
+  }
+  session.turns.push({ index: session.turns.length, resolution: result.resolution });
+
+  if (!session.combat) {
+    return {
+      session,
+      resolutions: [result.resolution],
+      narration: [templateNarration(result.resolution)],
+    };
+  }
+
+  session.combat.turnIndex = (session.combat.turnIndex + 1) % session.combat.order.length;
+  if (session.combat.turnIndex === 0) session.combat.round++;
+  const after = advanceMonsters(session);
+  return {
+    session,
+    resolutions: [result.resolution, ...after.resolutions],
+    narration: [templateNarration(result.resolution), ...after.narration],
+  };
+}
+
 export function combatFlee(session: GameSession): TurnOutcome {
   if (!session.combat) throw new Error('no combat in progress');
   return finishCombat(session, 'flee');
@@ -525,12 +621,14 @@ export function sessionView(session: GameSession) {
       class: p.characterClass,
       hp: p.hp,
       hpMax: p.hpMax,
+      dead: p.dead,
       ac: acOf(p),
       passivePerception: passivePerception(p),
       conditions: p.conditions.map((c) => c.condition),
       slots: p.spellcasting
         ? { remaining: p.spellcasting.slotsRemaining, max: p.spellcasting.slotsMax }
         : undefined,
+      prepared: p.spellcasting?.prepared,
     })),
     combat: session.combat
       ? {

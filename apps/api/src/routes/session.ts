@@ -6,6 +6,7 @@ import { lintCampaign, lintGraph } from '@lantern/linter';
 import {
   chooseOption,
   combatAttack,
+  castSpell,
   combatFlee,
   createSession,
   freeTextConstraint,
@@ -242,6 +243,24 @@ export function registerSessionRoutes(app: FastifyInstance): void {
       }
     },
   );
+
+  /**
+   * Cast a healing spell. Healing is the only spellcasting implemented — the
+   * route rejects anything else rather than pretending to cast it.
+   */
+  app.post<{
+    Params: { id: string };
+    Body: { caster: string; spell: string; target: string; slot?: number };
+  }>('/session/:id/cast', async (request, reply) => {
+    const session = await getSession(request.params.id);
+    if (!session) return reply.code(404).send({ error: 'no such session' });
+    const { caster, spell, target, slot } = request.body;
+    try {
+      return await respond(castSpell(session, caster, spell, target, slot));
+    } catch (err) {
+      return reply.code(400).send({ error: (err as Error).message });
+    }
+  });
 
   app.post<{ Params: { id: string } }>('/session/:id/flee', async (request, reply) => {
     const session = await getSession(request.params.id);

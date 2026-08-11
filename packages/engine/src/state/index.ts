@@ -35,6 +35,9 @@ export function applyDamage(character: Character, amount: number): Character {
  */
 export function applyHealing(character: Character, amount: number): Character {
   if (amount <= 0) return character;
+  // Ordinary healing does not raise the dead. Only resurrection clears `dead`,
+  // and nothing in the SRD subset grants it yet.
+  if (character.dead) return character;
   const wasDown = character.hp === 0;
   const newHp = Math.min(character.hpMax, character.hp + amount);
 
@@ -155,6 +158,10 @@ export function spendSlot(character: Character, level: SpellLevel): Character {
  */
 export function applyRest(character: Character, kind: RestKind): Character {
   if (kind === 'short') return character;
+  // A long rest used to reset deathSaveFailures and heal to hpMax, which
+  // silently resurrected anyone who had died. The dead rest no better than
+  // they fought.
+  if (character.dead) return character;
 
   const sc = character.spellcasting;
   const maxHitDice = character.level;
