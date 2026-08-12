@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { lintCampaign, lintGraph } from '@lantern/linter';
+import { MONSTERS } from '@lantern/srd';
 import { mapModuleToCampaign, mapModuleToGraph } from './services/module-mapper.js';
 import { remapModule } from './services/ingestion.js';
 
@@ -231,11 +232,15 @@ describe('what a real published module exposed', () => {
       rooms: [
         room('entry', 'The Hatch', ['cellar']),
         room('cellar', 'The Cellar', ['entry', 'corridor', 'exit'], {
-          encounter: { creatures: [{ name: 'Giant Centipede', count: 3, cr: 0.25, type: 'Small monstrosity' }] },
+          encounter: {
+            creatures: [{ name: 'Bramblewisp Swarmling', count: 3, cr: 0.25, type: 'Small monstrosity' }],
+          },
         }),
         room('corridor', 'The Corridor', ['cellar', 'vault']),
         room('vault', 'The Vault', ['corridor'], {
-          encounter: { creatures: [{ name: 'Giant Inferno Spider', count: 1, cr: 1, type: 'Large Monstrosity' }] },
+          encounter: {
+            creatures: [{ name: 'Emberweave Colossus', count: 1, cr: 1, type: 'Large Monstrosity' }],
+          },
         }),
         room('exit', 'Back to Daylight', [], { isEnding: true, requires: ['vault'] }),
       ],
@@ -281,10 +286,13 @@ describe('what a real published module exposed', () => {
     const { graph, report } = mapModuleToGraph(dungeon());
     const encounters = (graph as { encounters: Array<{ id: string; combatants: Array<{ statblock: string }> }> })
       .encounters;
-    // A centipede is a beast at CR 1/4 — a wolf, not a bandit or a skeleton.
-    expect(encounters.find((e) => e.id === 'enc-cellar')!.combatants[0]!.statblock).toBe('wolf');
-    // The spider is a beast at CR 1.
-    expect(encounters.find((e) => e.id === 'enc-vault')!.combatants[0]!.statblock).toBe('dire-wolf');
+    // Monstrosity has no SRD representative, so both fall back to beast — and
+    // to the right challenge rating, rather than to one fixed statblock.
+    const cellar = encounters.find((e) => e.id === 'enc-cellar')!.combatants[0]!.statblock;
+    const vault = encounters.find((e) => e.id === 'enc-vault')!.combatants[0]!.statblock;
+    expect(MONSTERS[cellar]!.cr).toBe(0.25);
+    expect(MONSTERS[vault]!.cr).toBe(1);
+    expect(MONSTERS[cellar]!.type).toBe('beast');
     expect(report.unmatchedCreatures).toHaveLength(2);
   });
 

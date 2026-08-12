@@ -205,13 +205,23 @@ describe('dangling references', () => {
     expect(finding!.message).toContain('nonexistent-beat');
   });
 
-  it('catches unknown monster statblocks with the available list', () => {
+  it('catches an unknown statblock and suggests near matches', () => {
     const g = validGraph();
-    g.encounters[0]!.combatants = [{ statblock: 'tarrasque', id: 't', count: 1 }];
+    g.encounters[0]!.combatants = [{ statblock: 'goblin-chieftain', id: 't', count: 1 }];
     const result = lintGraph(g);
     const finding = result.errors.find((e) => e.code === 'monster-unknown');
     expect(finding).toBeDefined();
-    expect(finding!.message).toContain('goblin'); // suggests what IS available
+    // Listing all 230 ids helped nobody; near matches do.
+    expect(finding!.message).toMatch(/Did you mean/);
+    expect(finding!.message).toContain('goblin');
+    expect(finding!.message.length).toBeLessThan(400);
+  });
+
+  it('says plainly when nothing resembles the name', () => {
+    const g = validGraph();
+    g.encounters[0]!.combatants = [{ statblock: 'xyzzy', id: 't', count: 1 }];
+    const finding = lintGraph(g).errors.find((e) => e.code === 'monster-unknown');
+    expect(finding!.message).toMatch(/none resemble that name/);
   });
 });
 

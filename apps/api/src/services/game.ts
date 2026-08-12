@@ -490,7 +490,12 @@ function advanceMonsters(session: GameSession): TurnOutcome {
       if (monster && monster.hp > 0) {
         const statblock = (MONSTERS as Record<string, MonsterInput>)[monster.statblock]!;
         const target = [...session.party].filter((p) => p.hp > 0).sort((a, b) => a.hp - b.hp)[0];
-        if (target) {
+        // Not every stat block carries a parsed attack: a few state their
+        // damage in prose the importer does not read. Such a creature does
+        // nothing on its turn rather than crashing the fight. The linter
+        // rejects encounters built on them, so this is the backstop, not the
+        // gate.
+        if (target && (statblock.attacks?.length ?? 0) > 0) {
           const attack = statblock.attacks![0]!;
           const res = resolveAttack({
             seed: nextSeed(session),

@@ -5,7 +5,7 @@ import type { MonsterInput } from './types.js';
  * threat band, undead for the crypt beats, and two boss-capable creatures.
  * CR spread runs 1/8 to 3 so the linter's solvability check has real cases.
  */
-export const MONSTERS = {
+export const LEGACY_MONSTERS = {
   // ---------------------------------------------------------------- CR 1/8–1/4
   bandit: {
     id: 'bandit',
@@ -420,4 +420,4 @@ export const MONSTERS = {
   },
 } as const satisfies Record<string, MonsterInput>;
 
-export type MonsterId = keyof typeof MONSTERS;
+export type LegacyMonsterId = keyof typeof LEGACY_MONSTERS;

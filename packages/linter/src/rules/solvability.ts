@@ -13,6 +13,37 @@ import type { Finding } from '../errors.js';
  * what victory costs; unwinnable is a different category from Deadly.
  */
 
+/**
+ * Statblocks close to a name that did not resolve.
+ *
+ * This used to list every available id. That was helpful at sixteen and
+ * useless at two hundred and thirty — an error message nobody reads is an
+ * error message that does not work. Suggestions are ranked by shared word,
+ * then by prefix, which is what actually goes wrong: 'goblin' for
+ * 'goblin-boss', 'wolf' for 'winter-wolf'.
+ */
+function suggestStatblocks(wanted: string): string {
+  const needle = wanted.toLowerCase();
+  const words = needle.split(/[^a-z0-9]+/).filter((w) => w.length > 2);
+  const ids = Object.keys(MONSTERS);
+
+  const scored = ids
+    .map((id) => {
+      let score = 0;
+      for (const word of words) if (id.includes(word)) score += 10;
+      if (id.startsWith(needle.slice(0, 4))) score += 3;
+      return { id, score };
+    })
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8)
+    .map((s) => s.id);
+
+  return scored.length > 0
+    ? `Did you mean: ${scored.join(', ')}?`
+    : `There are ${ids.length} statblocks available; none resemble that name.`;
+}
+
 /** Expected damage per round for one side, hit-chance weighted. */
 function monsterDpr(monster: MonsterInput, targetAc: number): number {
   let best = 0;
@@ -111,12 +142,31 @@ export function checkSolvability(graph: BeatGraph, level = 3): Finding[] {
         findings.push({
           severity: 'error',
           code: 'monster-unknown',
-          message: `encounter '${enc.id}' uses statblock '${combatant.statblock}', which is not in the SRD data — available: ${Object.keys(MONSTERS).join(', ')}`,
+          message:
+            `encounter '${enc.id}' uses statblock '${combatant.statblock}', which is not in the ` +
+            `SRD data. ${suggestStatblocks(combatant.statblock)}`,
           at: enc.id,
         });
         unknown = true;
         continue;
       }
+      // A hostile with no attack does nothing on its turn — the fight cannot
+      // be lost, and the encounter is theatre. The importer leaves such a
+      // stat block empty on purpose rather than inventing numbers, so this is
+      // where that shows up.
+      if ((statblock.attacks?.length ?? 0) === 0) {
+        findings.push({
+          severity: 'error',
+          code: 'monster-cannot-act',
+          message:
+            `encounter '${enc.id}' uses '${combatant.statblock}', whose stat block carries no ` +
+            `attack the engine can resolve — it would stand there. Choose a different creature`,
+          at: enc.id,
+        });
+        unknown = true;
+        continue;
+      }
+
       const hp = combatant.hpOverride ?? statblock.hp;
       monsterHpTotal += hp * combatant.count;
       // Assume monsters focus a mid-AC target (15).

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ConsumerRegistry, Flint, MemoryTelemetry } from '@lantern/flint';
 import type { ProviderAdapter, ProviderRequest, ProviderResponse } from '@lantern/flint';
 import { lintGraph } from '@lantern/linter';
+import { MONSTERS } from '@lantern/srd';
 import { ingestModule, mapModuleToGraph, matchStatblock } from './services/ingestion.js';
 import { createSession, chooseOption, sessionView } from './services/game.js';
 
@@ -98,14 +99,18 @@ describe('the deterministic mapper', () => {
 
   it('substitutes unmatched creatures and REPORTS the substitution', () => {
     const module = linearModule();
-    module.rooms[1]!.encounter = { creatures: [{ name: 'Gibbering Mouther', count: 1 }] };
+    // A creature no edition has. Most of what modules print now matches SRD
+    // 5.2 directly — this test needs something that genuinely cannot.
+    module.rooms[1]!.encounter = {
+      creatures: [{ name: 'Clockwork Bramblewisp', count: 1, cr: 1, type: 'beast' }],
+    };
     const { graph, report } = mapModuleToGraph(module);
     expect(report.unmatchedCreatures).toHaveLength(1);
-    expect(report.unmatchedCreatures[0]).toMatchObject({
-      room: 'upper-gallery',
-      name: 'Gibbering Mouther',
-      substituted: 'bandit',
-    });
+    expect(report.unmatchedCreatures[0]!.name).toBe('Clockwork Bramblewisp');
+    // Substituted by type and CR, not by a fixed fallback.
+    const substitute = report.unmatchedCreatures[0]!.substituted!;
+    expect(MONSTERS[substitute]!.type).toBe('beast');
+    expect(MONSTERS[substitute]!.cr).toBe(1);
     expect(lintGraph(graph).ok).toBe(true); // substitution keeps it playable
   });
 

@@ -39,18 +39,28 @@ import { MONSTERS, type MonsterInput } from '@lantern/srd';
  * With no CR and no type to go on it still has to pick something; it says so
  * through the mapping report either way.
  */
-export function substituteStatblock(cr?: number, type?: string): string {
-  const entries = Object.entries(MONSTERS as Record<string, MonsterInput>);
+export function substituteStatblock(cr?: number, type?: string, name?: string): string {
+  const entries = Object.entries(USABLE);
   const wantedType = normalizeCreatureType(type);
+  const words = (name ?? '')
+    .toLowerCase()
+    .split(/[^a-z]+/)
+    .filter((w) => w.length > 2 && !['the', 'giant', 'adult', 'young'].includes(w));
 
   let best = entries[0]![0];
   let bestScore = Number.POSITIVE_INFINITY;
   for (const [id, monster] of entries) {
+    // A shared word in the name outweighs everything. A module's scaled-up
+    // "Great Horned Owl" is a CR 4 creature, and the only CR 4 beasts in the
+    // SRD are an elephant and a hippopotamus — mechanically defensible and
+    // unreadable in narration. An owl that is too weak is a better lie than
+    // an elephant, and the report says the challenge rating moved.
+    const namePenalty = words.some((w) => id.includes(w)) ? 0 : 20;
     const typePenalty = wantedType && monster.type?.toLowerCase() === wantedType ? 0 : 10;
     // Compared on a log scale: CR 1/8 to 1/4 is the same step as 1 to 2.
     const crPenalty =
-      cr === undefined ? 0 : Math.abs(Math.log2(Math.max(cr, 0.0625)) - Math.log2(monster.cr));
-    const score = typePenalty + crPenalty;
+      cr === undefined ? 0 : Math.abs(Math.log2(Math.max(cr, 0.0625)) - Math.log2(Math.max(monster.cr, 0.0625)));
+    const score = namePenalty + typePenalty + crPenalty;
     if (score < bestScore) {
       bestScore = score;
       best = id;
@@ -82,10 +92,26 @@ export function normalizeCreatureType(printed?: string): string | undefined {
   return undefined;
 }
 
+/**
+ * Stat blocks the engine can actually run a fight with.
+ *
+ * Twenty-six of the imported creatures carry no attack — their damage is
+ * stated in prose the importer does not read, and it leaves them empty rather
+ * than inventing numbers. Matching one would put a creature on the battle map
+ * that stands still, so they are skipped here and the near-match logic finds
+ * an armed relative instead: a module's badger becomes a giant badger, not a
+ * badger that cannot bite.
+ */
+const USABLE = Object.fromEntries(
+  Object.entries(MONSTERS as Record<string, MonsterInput>).filter(
+    ([, m]) => (m.attacks?.length ?? 0) > 0,
+  ),
+);
+
 /** Best-effort match of a printed creature name onto the SRD subset. */
 export function matchStatblock(name: string): string | undefined {
   const needle = name.toLowerCase().trim();
-  const entries = Object.entries(MONSTERS as Record<string, MonsterInput>);
+  const entries = Object.entries(USABLE);
   // Exact id or name match first.
   for (const [id, m] of entries) {
     if (id === needle || m.name.toLowerCase() === needle) return id;
@@ -107,8 +133,19 @@ export function matchStatblock(name: string): string | undefined {
 // ---------------------------------------------------------------------------
 
 export interface MappingReport {
-  /** Creatures with no SRD match — substituted or dropped, always reported. */
-  unmatchedCreatures: Array<{ room: string; name: string; substituted?: string }>;
+  /**
+   * Creatures with no SRD match. Always reported, with the challenge rating
+   * the module printed beside the one the stand-in actually has — a
+   * substitution that changes the difficulty is the thing a human most needs
+   * to see.
+   */
+  unmatchedCreatures: Array<{
+    room: string;
+    name: string;
+    substituted?: string;
+    printedCr?: number;
+    substituteCr?: number;
+  }>;
   /**
    * Every room whose shape had to be reworked to fit the three-option rule.
    * The fields below say what happened to each; this is the flat list the
@@ -517,8 +554,14 @@ export function mapModuleToGraph(moduleInput: unknown): {
         .map((c, ci) => {
           let statblock = matchStatblock(c.name);
           if (!statblock) {
-            statblock = substituteStatblock(c.cr, c.type);
-            report.unmatchedCreatures.push({ room: room.id, name: c.name, substituted: statblock });
+            statblock = substituteStatblock(c.cr, c.type, c.name);
+            report.unmatchedCreatures.push({
+              room: room.id,
+              name: c.name,
+              substituted: statblock,
+              ...(c.cr !== undefined ? { printedCr: c.cr } : {}),
+              substituteCr: (MONSTERS as Record<string, MonsterInput>)[statblock]!.cr,
+            });
           }
           return {
             id: `${room.id}-c${ci}`,

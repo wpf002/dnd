@@ -28,6 +28,7 @@ export type FindingCode =
   | 'encounter-unwinnable'
   | 'encounter-transition-dangling'
   | 'monster-unknown'
+  | 'monster-cannot-act'
   // Art
   | 'art-slot-duplicate'
   // Choice quality (warnings)

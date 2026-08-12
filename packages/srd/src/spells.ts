@@ -8,7 +8,7 @@ import type { SpellInput } from './types.js';
  * full session — attack cantrips, healing, a save-or-suck, an area effect, and
  * a handful of utility spells that create non-combat options.
  */
-export const SPELLS = {
+export const LEGACY_SPELLS = {
   // ------------------------------------------------------------------ cantrips
   'fire-bolt': {
     id: 'fire-bolt',
@@ -536,4 +536,4 @@ export const SPELLS = {
   },
 } as const satisfies Record<string, SpellInput>;
 
-export type SpellId = keyof typeof SPELLS;
+export type LegacySpellId = keyof typeof LEGACY_SPELLS;

@@ -60,10 +60,11 @@ describe('spells', () => {
     }
   });
 
-  it('is a playable subset, not a full list', () => {
-    const count = Object.keys(SPELLS).length;
-    expect(count).toBeGreaterThanOrEqual(25);
-    expect(count).toBeLessThan(50); // the full list is on the cut list
+  it('is the published list, not a hand-picked subset', () => {
+    // This used to assert fewer than fifty spells, because the list was
+    // chosen to make one adventure work. SRD 5.2 is CC-BY-4.0, so the real
+    // list can simply be in the repository.
+    expect(Object.keys(SPELLS).length).toBeGreaterThan(300);
   });
 
   it('covers the roles one adventure needs', () => {
@@ -99,9 +100,21 @@ describe('monsters', () => {
     expect(Math.max(...crs)).toBeGreaterThanOrEqual(2);
   });
 
-  it('every monster can threaten the party', () => {
-    for (const m of Object.values(MONSTERS)) {
-      expect(m.attacks.length, `${m.id} has no attacks`).toBeGreaterThan(0);
+  it('is the published bestiary, not a hand-picked subset', () => {
+    expect(Object.keys(MONSTERS).length).toBeGreaterThan(200);
+  });
+
+  it('leaves a creature with no attacks rather than inventing one', () => {
+    // Some stat blocks state their damage in prose the importer does not
+    // parse, and a few genuinely have no attack action. Those arrive with an
+    // empty list on purpose: a monster with plausible invented numbers is
+    // worse than one the linter can report as unusable.
+    const armed = Object.values(MONSTERS).filter((m) => m.attacks.length > 0);
+    expect(armed.length / Object.keys(MONSTERS).length).toBeGreaterThan(0.8);
+
+    // Everything the shipped adventures actually use is armed.
+    for (const id of ['goblin', 'wolf', 'skeleton', 'zombie', 'ogre', 'bandit', 'giant-rat']) {
+      expect(MONSTERS[id]?.attacks.length, `${id} has no attacks`).toBeGreaterThan(0);
     }
   });
 });
