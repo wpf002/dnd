@@ -72,6 +72,22 @@ export function lanternDefaults(registry: ConsumerRegistry): void {
     temperature: 1,
   });
   registry.register({
+    // The same job as dm-narration, sized and routed for the middle of a
+    // fight. A player clicking through a dozen attacks is waiting on every
+    // one of them, and a single exchange does not need the larger model — it
+    // needs a sentence, quickly. Consumers own their model choice, so this is
+    // a consumer rather than a per-call override.
+    id: 'dm-narration-brief',
+    provider: 'anthropic',
+    model: 'claude-haiku-4-5-20251001',
+    system:
+      'You narrate one exchange in a fight, in a single sentence. The numbers are final: ' +
+      'you never change, add, or imply mechanical values beyond what the Resolution states. ' +
+      'Voice and register are supplied per-adventure in the request.',
+    maxTokens: 160,
+    temperature: 1,
+  });
+  registry.register({
     id: 'npc-dialogue',
     provider: 'anthropic',
     model: 'claude-haiku-4-5-20251001',

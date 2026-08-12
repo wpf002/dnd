@@ -158,18 +158,42 @@ describe('structured errors', () => {
 });
 
 describe('lantern defaults', () => {
-  it('registers the seven consumers', () => {
+  it('registers the eight consumers', () => {
     const flint = createLanternFlint();
     const ids = flint.consumers.list().map((c) => c.id).sort();
     expect(ids).toEqual([
       'compaction',
       'dm-narration',
+      'dm-narration-brief',
       'generator',
       'ingest',
       'ingest-fragment',
       'intent-parse',
       'npc-dialogue',
     ]);
+  });
+
+  it('routes a fight to a faster model than a scene', () => {
+    // A player clicking through a dozen attacks waits on every one of them.
+    // Sized and routed for the scene, each swing took seven seconds.
+    const flint = createLanternFlint();
+    const scene = flint.consumers.get('dm-narration')!;
+    const swing = flint.consumers.get('dm-narration-brief')!;
+    expect(swing.maxTokens).toBeLessThan(scene.maxTokens);
+    expect(swing.model).not.toBe(scene.model);
+  });
+
+  it('lets a call lower its own ceiling but never raise it', async () => {
+    const adapter = new FakeAdapter();
+    const flint = flintWith(adapter);
+    const configured = flint.consumers.get('dm-narration')!.maxTokens;
+
+    await flint.call('dm-narration', { input: 'x', maxTokens: 64 });
+    expect(adapter.calls.at(-1)!.config.maxTokens).toBe(64);
+
+    // The registry stays the authority on the ceiling.
+    await flint.call('dm-narration', { input: 'x', maxTokens: configured * 10 });
+    expect(adapter.calls.at(-1)!.config.maxTokens).toBe(configured);
   });
 
   it('sizes a section extraction well below a whole-module one', () => {

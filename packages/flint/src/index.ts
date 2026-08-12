@@ -32,6 +32,19 @@ export interface FlintCallInput {
   input: string;
   /** Per-call system suffix — e.g. the adventure's narration voice block. */
   systemSuffix?: string;
+  /**
+   * Per-call ceiling on output length, for when one consumer's calls are not
+   * all the same size.
+   *
+   * Narration is the case that needed it: a beat the party has just walked
+   * into wants a paragraph or three, and a single sword swing in the middle of
+   * a fight wants a sentence. Sized for the paragraph, every swing took seven
+   * seconds, because output length is most of the latency.
+   *
+   * Only ever lowers. A call cannot ask for more than its consumer is
+   * configured to allow — the registry stays the authority on the ceiling.
+   */
+  maxTokens?: number;
 }
 
 export class Flint {
@@ -108,7 +121,10 @@ export class Flint {
     const startedAt = Date.now();
     try {
       const response = await adapter.call({
-        config,
+        config:
+          input.maxTokens !== undefined
+            ? { ...config, maxTokens: Math.min(config.maxTokens, Math.max(1, input.maxTokens)) }
+            : config,
         input: input.input,
         ...(input.systemSuffix !== undefined ? { systemSuffix: input.systemSuffix } : {}),
       });
