@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Id, Level } from './primitives.js';
+import { Ability, Id, Level, Skill } from './primitives.js';
 
 /**
  * Phase 5 — the intermediate representation for module ingestion.
@@ -85,6 +85,26 @@ export const IngestedRoom = z.object({
   npcs: z.array(IngestedNpc).default([]),
   /** Marks a plausible conclusion point of the module. */
   isEnding: z.boolean().default(false),
+  /**
+   * A check the module states for entering or passing this area — very often
+   * printed as a skill challenge: "DC 13 group Stealth check. Success: avoid
+   * the encounter. Failure: the weasels attack."
+   *
+   * Without it, an avoidable obstacle can only be represented as the fight
+   * that follows failing it, which is the opposite of what the module says.
+   */
+  check: z
+    .object({
+      ability: Ability,
+      skill: Skill.optional(),
+      dc: z.number().int().min(1).max(30),
+      /** Whether the whole party rolls, as printed. */
+      group: z.boolean().default(true),
+      /** The area failure leads to. Defaults to this area's own encounter. */
+      onFailure: Id.optional(),
+    })
+    .optional(),
+
   /**
    * Areas that must be dealt with before this one can be entered.
    *

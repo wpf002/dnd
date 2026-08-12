@@ -445,12 +445,7 @@
             "op": "always"
           },
           "target": "reckoning-decision",
-          "effects": [
-            {
-              "flag": "chose-payment",
-              "value": true
-            }
-          ]
+          "effects": []
         },
         {
           "id": "demand-lift",

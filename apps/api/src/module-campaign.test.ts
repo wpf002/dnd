@@ -303,3 +303,47 @@ describe('what a real published module exposed', () => {
     expect(lintGraph(graph).ok).toBe(true);
   });
 });
+
+describe('checks the module prints', () => {
+  function guarded() {
+    return {
+      title: 'Sneak Test',
+      summary: 'A den you are meant to slip past.',
+      rooms: [
+        room('entry', 'The Path', ['den']),
+        room('den', 'The Weasel Den', ['deeper'], {
+          encounter: { creatures: [{ name: 'weasel', count: 4, cr: 0.125, type: 'beast' }] },
+          check: { ability: 'dex', skill: 'stealth', dc: 13, group: true },
+        }),
+        room('deeper', 'Beyond', [], { isEnding: true }),
+      ],
+    };
+  }
+
+  it('puts the fight behind the check instead of in the way', () => {
+    const { graph } = mapModuleToGraph(guarded());
+    const beats = (graph as { beats: Array<Record<string, unknown>> }).beats;
+
+    const approach = beats.find((b) => b.id === 'den-approach')!;
+    expect(approach).toBeDefined();
+
+    const slip = (approach.options as Array<Record<string, unknown>>)[0]!;
+    expect(slip.requiresCheck).toMatchObject({ ability: 'dex', skill: 'stealth', dc: 13, group: true });
+    // Success goes onward; failure walks into the fight, which is what the
+    // module says and the opposite of what an unconditional encounter says.
+    expect(slip.target).toBe('deeper');
+    expect((slip.requiresCheck as { onFailure: string }).onFailure).toBe('den');
+
+    // And the way in now leads to the approach, not straight to the fight.
+    const entry = beats.find((b) => b.id === 'entry')!;
+    expect((entry.options as Array<{ target: string }>).some((o) => o.target === 'den-approach')).toBe(true);
+    expect(lintGraph(graph).ok).toBe(true);
+  });
+
+  it('leaves an unguarded fight exactly as it was', () => {
+    const module = guarded();
+    delete (module.rooms[1] as { check?: unknown }).check;
+    const { graph } = mapModuleToGraph(module);
+    expect((graph as { beats: Array<{ id: string }> }).beats.some((b) => b.id === 'den-approach')).toBe(false);
+  });
+});

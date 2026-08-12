@@ -165,6 +165,8 @@ export interface MappingReport {
   endingsWithExits: string[];
   /** Rooms no path from the entry reaches. The linter will reject these too. */
   unreachableRooms: string[];
+  /** Areas the module gates behind a check, given an approach beat. */
+  checkedApproaches: Array<{ room: string; dc: number }>;
   /**
    * Exits added because another area listed this one. A printed dungeon map is
    * undirected — a door between two rooms is one door — but extraction records
@@ -213,6 +215,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
     endingsWithExits: [],
     unreachableRooms: [],
     inferredReturns: [],
+    checkedApproaches: [],
   };
 
   const rooms = module.rooms;
@@ -298,6 +301,40 @@ export function mapModuleToGraph(moduleInput: unknown): {
     if (back) return back;
     return id === entryId ? undefined : entryId;
   };
+
+  /**
+   * Areas the module gates behind a check get an approach beat, and every
+   * route into them is redirected to it.
+   *
+   * This has to happen before any beat is emitted: a room processed earlier
+   * would already have written an option pointing straight at the fight, and
+   * rewiring afterwards leaves it there.
+   */
+  const approachOf = new Map<string, string>();
+  for (const room of rooms) {
+    if (!room.check || !room.encounter || room.isEnding) continue;
+    approachOf.set(room.id, `${room.id}-approach`);
+    report.checkedApproaches.push({ room: room.id, dc: room.check.dc });
+  }
+  if (approachOf.size > 0) {
+    for (const [id, list] of forward) {
+      forward.set(
+        id,
+        list.map((target) => (approachOf.has(target) && target !== id ? approachOf.get(target)! : target)),
+      );
+    }
+    // The approach stands where the room did, so reverse lookups — and with
+    // them "where the party came from" — must be rebuilt.
+    reverse.clear();
+    for (const room of rooms) reverse.set(room.id, []);
+    for (const id of approachOf.values()) reverse.set(id, []);
+    for (const [from, targets] of forward) {
+      for (const target of targets) {
+        const list = reverse.get(target);
+        if (list && !list.includes(from)) list.push(from);
+      }
+    }
+  }
 
   const titleOf = (id: string) => byId.get(id)?.name ?? id;
 
@@ -390,14 +427,14 @@ export function mapModuleToGraph(moduleInput: unknown): {
         label: 'Press on quickly, without checking the way',
         target: fallback,
         effects: [],
-        requiresCheck: { ability: 'wis', skill: 'perception', dc: 12, onFailure: fallback },
+        requiresCheck: { ability: 'wis', skill: 'perception', dc: 12, onFailure: fallback, group: false },
       } as BeatOption,
       {
         id: `${slot}-listen`,
         label: 'Stop, and listen to the dark for a while',
         target: fallback,
         effects: [],
-        requiresCheck: { ability: 'wis', skill: 'insight', dc: 10, onFailure: fallback },
+        requiresCheck: { ability: 'wis', skill: 'insight', dc: 10, onFailure: fallback, group: false },
       } as BeatOption,
     ];
 
@@ -541,6 +578,51 @@ export function mapModuleToGraph(moduleInput: unknown): {
         terminal: true,
       } as Beat);
       continue;
+    }
+
+    // --- the approach to a gated area
+    const approachId = approachOf.get(room.id);
+    if (approachId) {
+      const onward = exits[0] ?? camefrom(room.id) ?? entryId;
+      const check = room.check!;
+      beats.push({
+        id: approachId,
+        kind: 'threshold',
+        title: `${room.name} — the approach`,
+        prose:
+          `${room.description}\n\nThere is a way past this without being noticed, ` +
+          `if everyone is careful.`,
+        art: `art-${room.id}-approach`,
+        improvBudget: 6,
+        options: [
+          {
+            id: `${approachId}-try`,
+            label: `Slip past ${room.name} together`,
+            target: onward,
+            effects: [],
+            requiresCheck: {
+              ability: check.ability,
+              ...(check.skill ? { skill: check.skill } : {}),
+              dc: check.dc,
+              group: check.group,
+              onFailure: room.id,
+            },
+          },
+          {
+            id: `${approachId}-confront`,
+            label: `Face what is in ${room.name}`,
+            target: room.id,
+            effects: [],
+          },
+          {
+            id: `${approachId}-back`,
+            label: `Turn back from ${room.name}`,
+            target: (reverse.get(approachId) ?? []).find((r) => r !== approachId) ?? onward,
+            effects: [],
+          },
+        ] as BeatOption[],
+        terminal: false,
+      } as Beat);
     }
 
     // --- a fight

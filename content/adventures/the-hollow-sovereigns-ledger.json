@@ -232,12 +232,7 @@
           "id": "opt-ask-weakness",
           "label": "Ask about the seventh relic's weakness",
           "target": "ruin-threshold",
-          "effects": [
-            {
-              "flag": "learned-weakness",
-              "value": true
-            }
-          ]
+          "effects": []
         }
       ],
       "improvBudget": 7,

@@ -203,12 +203,7 @@
             "op": "always"
           },
           "target": "coin-wager-puzzle",
-          "effects": [
-            {
-              "flag": "cheated-coins",
-              "value": true
-            }
-          ]
+          "effects": []
         }
       ],
       "improvBudget": 6,
@@ -352,12 +347,7 @@
             "op": "always"
           },
           "target": "final-suit-choice",
-          "effects": [
-            {
-              "flag": "jester-trust",
-              "value": "trusted"
-            }
-          ]
+          "effects": []
         },
         {
           "id": "opt-betray-jester",
@@ -366,12 +356,7 @@
             "op": "always"
           },
           "target": "flooded-hourglass",
-          "effects": [
-            {
-              "flag": "jester-trust",
-              "value": "betrayed"
-            }
-          ]
+          "effects": []
         },
         {
           "id": "opt-ignore-jester",

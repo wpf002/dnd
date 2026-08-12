@@ -167,12 +167,7 @@
           "id": "pledge-to-curia",
           "label": "Pledge to help the Curia seal the Rift",
           "target": "approach-to-cathedral",
-          "effects": [
-            {
-              "flag": "sided-with-curia",
-              "value": true
-            }
-          ]
+          "effects": []
         },
         {
           "id": "question-about-undertow",

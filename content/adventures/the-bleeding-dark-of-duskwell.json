@@ -442,12 +442,7 @@
             ]
           },
           "target": "ghoul-encounter",
-          "effects": [
-            {
-              "flag": "vale-hostile",
-              "value": true
-            }
-          ]
+          "effects": []
         },
         {
           "id": "persuade-vale",
@@ -486,12 +481,7 @@
             "op": "always"
           },
           "target": "ghoul-encounter",
-          "effects": [
-            {
-              "flag": "vale-hostile",
-              "value": true
-            }
-          ]
+          "effects": []
         }
       ],
       "improvBudget": 8,

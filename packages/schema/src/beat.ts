@@ -108,6 +108,16 @@ export const BeatOption = z.object({
       dc: z.number().int().min(1).max(30),
       /** Where failure leads. Failure must go *somewhere* — see below. */
       onFailure: BeatId,
+      /**
+       * A group check: everyone rolls, and the party succeeds if at least
+       * half of them do.
+       *
+       * This is the shape published modules actually print — "DC 13 group
+       * Stealth check, Success: avoid the encounter, Failure: the weasels
+       * attack" — and without it such a moment could only be represented as
+       * one character's roll, or as a fight the party was never meant to have.
+       */
+      group: z.boolean().default(false),
     })
     .optional(),
 });

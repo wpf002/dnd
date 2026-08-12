@@ -46,23 +46,16 @@ describe('shipped adventures', () => {
     expect(ids.length).toBeGreaterThan(1);
   });
 
-  /**
-   * Warnings that describe authoring debt rather than a defect, and which
-   * shipped content is allowed to carry.
-   *
-   * `flag-set-never-read` is here because it is genuinely advisory — the
-   * ledger reads flags from outside the graph — and because giving every
-   * stranding beat a default outcome deliberately removed guards that were
-   * the only readers of a flag. That trade is worth making: a beat where a
-   * party can arrive with nothing to click is a defect, and a flag nobody
-   * reads is a tidiness problem.
-   */
-  const ADVISORY = new Set(['flag-set-never-read']);
-
-  it.each(ids)('%s passes the linter with no errors and no substantive warnings', (id) => {
+  it.each(ids)('%s passes the linter with zero errors and zero warnings', (id) => {
     const result = lintGraph(graphs.get(id));
-    const substantive = result.warnings.filter((w) => !ADVISORY.has(w.code));
-    expect({ id, errors: result.errors, warnings: substantive }).toEqual({
+    // Warnings are failures here on purpose. A flag nothing reads, or a
+    // false choice, is authoring debt — catching it later costs more.
+    //
+    // Giving every stranding beat a default outcome removed guards that were
+    // the only readers of six flags. Those writes were dropped rather than
+    // carved out of this check: state nothing consumes is noise, and an
+    // exception list is how a strict bar quietly stops being one.
+    expect({ id, errors: result.errors, warnings: result.warnings }).toEqual({
       id,
       errors: [],
       warnings: [],

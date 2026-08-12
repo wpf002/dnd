@@ -21,6 +21,7 @@ import {
   passivePerception,
   resolveAttack,
   resolveCheck,
+  resolveGroupCheck,
   resolveDeathSave,
   rollInitiative,
   type Flags,
@@ -272,19 +273,37 @@ export function chooseOption(session: GameSession, optionId: string): TurnOutcom
 
   if (option.requiresCheck) {
     const check = option.requiresCheck;
-    // The most capable party member attempts it — solo-play convention.
-    const actor = bestAtCheck(session.party, check.ability, check.skill);
-    const res = resolveCheck({
-      seed: nextSeed(session),
-      character: actor,
-      dc: check.dc,
-      ability: check.ability,
-      ...(check.skill ? { skill: check.skill } : {}),
-    });
-    resolutions.push(res);
-    session.turns.push({ index: session.turns.length, resolution: res });
-    if (res.outcome === 'failure' || res.outcome === 'critical-failure') {
-      destination = check.onFailure;
+
+    if (check.group) {
+      // Everyone rolls; the party succeeds if at least half do. Every roll is
+      // recorded, because a party told "you were heard" is owed the dice.
+      const result = resolveGroupCheck({
+        seed: nextSeed(session),
+        party: session.party,
+        dc: check.dc,
+        ability: check.ability,
+        ...(check.skill ? { skill: check.skill } : {}),
+      });
+      for (const res of result.resolutions) {
+        resolutions.push(res);
+        session.turns.push({ index: session.turns.length, resolution: res });
+      }
+      if (!result.succeeded) destination = check.onFailure;
+    } else {
+      // The most capable party member attempts it — solo-play convention.
+      const actor = bestAtCheck(session.party, check.ability, check.skill);
+      const res = resolveCheck({
+        seed: nextSeed(session),
+        character: actor,
+        dc: check.dc,
+        ability: check.ability,
+        ...(check.skill ? { skill: check.skill } : {}),
+      });
+      resolutions.push(res);
+      session.turns.push({ index: session.turns.length, resolution: res });
+      if (res.outcome === 'failure' || res.outcome === 'critical-failure') {
+        destination = check.onFailure;
+      }
     }
   }
 
@@ -764,7 +783,12 @@ export function sessionView(session: GameSession) {
         id: o.id,
         label: o.label,
         check: o.requiresCheck
-          ? { ability: o.requiresCheck.ability, skill: o.requiresCheck.skill, dc: o.requiresCheck.dc }
+          ? {
+              ability: o.requiresCheck.ability,
+              skill: o.requiresCheck.skill,
+              dc: o.requiresCheck.dc,
+              group: o.requiresCheck.group,
+            }
           : undefined,
       })),
     },

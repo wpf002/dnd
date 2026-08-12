@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { PREGENS, PREGENS_LEVEL_1, PREGEN_FIGHTER, PREGEN_ROGUE, PREGEN_WIZARD, PREGEN_CLERIC, SPELLS } from '@lantern/srd';
 import { levelUp, levelParty, sneakAttackDiceFor, spellSaveDc } from './advancement/index.js';
-import { proficiencyBonus } from './checks/index.js';
+import { proficiencyBonus, resolveGroupCheck } from './checks/index.js';
 import { resolveDeathSave } from './combat/index.js';
 import { applyHealing, applyRest } from './state/index.js';
 import { castAtTarget } from './spells/index.js';
@@ -298,5 +298,52 @@ describe('casting at a target', () => {
     expect(() =>
       castAtTarget({ seed: 'x', caster: PREGEN_CLERIC, spell: SPELLS['cure-wounds'], slotLevel: 1, target: goblin }),
     ).toThrow(/cast it on an ally/);
+  });
+});
+
+describe('group checks', () => {
+  /**
+   * Modules print these constantly — "DC 13 group Stealth check, Success:
+   * avoid the encounter" — and without them an avoidable obstacle could only
+   * be represented as the fight that follows failing it.
+   */
+  const party = PREGENS;
+
+  it('succeeds when at least half the party succeeds', () => {
+    // A DC anyone clears: everyone passes, so the party passes.
+    const easy = resolveGroupCheck({ seed: 'g1', party, dc: 1, ability: 'dex', skill: 'stealth' });
+    expect(easy.succeeded).toBe(true);
+    expect(easy.passed).toBe(easy.attempted);
+
+    // A DC nobody clears.
+    const hard = resolveGroupCheck({ seed: 'g1', party, dc: 30, ability: 'dex', skill: 'stealth' });
+    expect(hard.succeeded).toBe(false);
+    expect(hard.passed).toBe(0);
+  });
+
+  it('returns every roll, not just the tally', () => {
+    // A party told "you were heard" is owed the dice that said so.
+    const result = resolveGroupCheck({ seed: 'g2', party, dc: 12, ability: 'dex', skill: 'stealth' });
+    expect(result.resolutions).toHaveLength(party.length);
+    for (const res of result.resolutions) expect(res.roll).toBeDefined();
+  });
+
+  it('leaves out the unconscious and the dead', () => {
+    const hurt = party.map((p, i) => (i === 0 ? { ...p, hp: 0 } : i === 1 ? { ...p, dead: true } : p));
+    const result = resolveGroupCheck({ seed: 'g3', party: hurt, dc: 10, ability: 'dex' });
+    expect(result.attempted).toBe(party.length - 2);
+  });
+
+  it('fails when nobody can attempt it', () => {
+    const down = party.map((p) => ({ ...p, hp: 0 }));
+    const result = resolveGroupCheck({ seed: 'g4', party: down, dc: 5, ability: 'dex' });
+    expect(result.attempted).toBe(0);
+    expect(result.succeeded).toBe(false);
+  });
+
+  it('is reproducible under a seed', () => {
+    const a = resolveGroupCheck({ seed: 'same', party, dc: 12, ability: 'dex', skill: 'stealth' });
+    const b = resolveGroupCheck({ seed: 'same', party, dc: 12, ability: 'dex', skill: 'stealth' });
+    expect(a.resolutions.map((r) => r.total)).toEqual(b.resolutions.map((r) => r.total));
   });
 });

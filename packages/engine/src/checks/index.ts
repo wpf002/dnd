@@ -144,3 +144,55 @@ export function resolveSave(input: CheckInput & { ability: Ability }): Resolutio
 export function scoresSaveModifier(scores: AbilityScores, ability: Ability): Modifier[] {
   return [{ source: ability, value: abilityModifier(scores[ability]) }];
 }
+
+export interface GroupCheckResult {
+  /** One resolution per participant, in party order. */
+  resolutions: Resolution[];
+  /** The party succeeds when at least half of them do. */
+  succeeded: boolean;
+  passed: number;
+  attempted: number;
+}
+
+/**
+ * A group check: everyone rolls, and the party succeeds if at least half do.
+ *
+ * The rule exists because some obstacles are faced together — a whole party
+ * sneaking past a den, crossing ice, keeping a story straight — and resolving
+ * that as one character's roll misrepresents it in both directions: the
+ * party's best hides everyone, or its worst dooms them.
+ *
+ * Every participant's roll is returned, not just the tally. A player who was
+ * told "you failed" is owed the six dice that said so.
+ */
+export function resolveGroupCheck(input: {
+  seed: Seed;
+  party: readonly Character[];
+  dc: DifficultyClass;
+  ability: Ability;
+  skill?: Skill;
+  mode?: RollMode;
+}): GroupCheckResult {
+  const { seed, party, dc, ability, skill } = input;
+  // The unconscious and the dead do not attempt it; a party of none fails.
+  const participants = party.filter((c) => c.hp > 0 && !c.dead);
+  const resolutions = participants.map((character, i) =>
+    resolveCheck({
+      seed: `${seed}:${character.id}:${i}`,
+      character,
+      dc,
+      ability,
+      ...(skill ? { skill } : {}),
+      ...(input.mode ? { mode: input.mode } : {}),
+    }),
+  );
+  const passed = resolutions.filter(
+    (r) => r.outcome === 'success' || r.outcome === 'critical-success',
+  ).length;
+  return {
+    resolutions,
+    passed,
+    attempted: participants.length,
+    succeeded: participants.length > 0 && passed * 2 >= participants.length,
+  };
+}
