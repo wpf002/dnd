@@ -2,7 +2,9 @@
 /**
  * Placeholder art generator.
  *
- * Reads every manifest in content/art/manifest/ and writes one atmospheric
+ * Reads every manifest in content/art/manifest/, plus the art slots named by
+ * every adventure graph — ingested modules have no manifest — and writes one
+ * atmospheric
  * SVG per slot into apps/web/public/art/<slot>.svg — layered gradient sky,
  * ground band, fog, grain, and a scene silhouette chosen from keywords in the
  * slot id.
@@ -17,10 +19,12 @@
  *
  * Run: node tools/generate-placeholder-art.mjs
  */
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const MANIFEST_DIR = 'content/art/manifest';
+/** Where adventures live. Ingested ones are local-only and have no manifest. */
+const ADVENTURE_DIRS = ['content/adventures', 'content-local/adventures'];
 const OUT_DIR = 'apps/web/public/art';
 const W = 800;
 const H = 450;
@@ -319,6 +323,32 @@ function scene(s, r, p) {
   if (/ending-tide/.test(s)) return causeway(r);
   if (/ending-silence/.test(s)) return `<g opacity="0.6">${bell(W / 2, H * 0.78, 50)}</g>`;
 
+  // --- Everything else -------------------------------------------------
+  //
+  // The rules above name slots in the four hand-authored adventures. The
+  // other twelve hundred — generated and ingested — used to fall straight
+  // through to a town skyline, so a beer cellar and a drowned crypt were
+  // drawn as the same row of rooftops. These read the words that are actually
+  // in slot names and pick something that belongs underneath them. Order
+  // matters: the more specific word wins.
+  if (/cellar|vault|crypt|catacomb|tomb|grave|barrow|ossuar/.test(s)) return columns(r) + stones(H * 0.9, 6, r);
+  if (/tunnel|mine|cave|cavern|warren|burrow|beneath|under|deep/.test(s)) return columns(r);
+  if (/stair|descent|shaft|well|pit/.test(s)) return stair(r);
+  if (/library|archive|ledger|study|scriptor|record|tally/.test(s)) return shelves(r) + page(p.key);
+  if (/forge|furnace|kiln|hearth|smith|ember|brazier/.test(s)) return hearth(W * 0.5, H * 0.72, p.key);
+  if (/bell|belfry|carillon|toll|chime/.test(s)) return `<g opacity="0.7">${bell(W / 2, H * 0.72, 48)}</g>`;
+  if (/tower|spire|keep|watch|lighthouse|beacon/.test(s)) return tower(W * 0.4, 160, 280);
+  if (/gate|door|threshold|arch|portal|entrance/.test(s)) return gateway(p.key);
+  if (/tide|shore|causeway|harbor|harbour|dock|wharf|ford|marsh|fen|drowned|lake|river/.test(s))
+    return causeway(r);
+  if (/circle|ring|array|henge|sigil|ward|rite|ritual/.test(s)) return rings(W * 0.5, H * 0.55, p.key);
+  if (/camp|ambush|clearing|crowd|council|court|meeting|parley|market/.test(s))
+    return figures(3, r) + stones(H * 0.9, 4, r);
+  if (/hall|chamber|room|sanctum|nave|shrine|temple|chapel/.test(s)) return columns(r);
+  if (/moor|hill|ridge|pass|waste|field|heath|barrens|road|track|way/.test(s))
+    return stones(H * 0.88, 12, r);
+  if (/wood|forest|grove|thicket|copse|glade/.test(s)) return stones(H * 0.86, 18, r);
+
   return roofline(H * 0.62, r);
 }
 
@@ -359,6 +389,27 @@ for (const file of readdirSync(MANIFEST_DIR)) {
       process.exit(1);
     }
     owner.set(slot, manifest.adventure);
+  }
+}
+
+/**
+ * Ingested modules have no manifest — nobody wrote one, because the adventure
+ * did not exist until a PDF was read. Their beats still name art slots, and
+ * without this every ingested adventure played on bare gradients while every
+ * generated one had a frame. The graph is the authority on which slots exist,
+ * so it is read directly here rather than through a file that can drift.
+ */
+for (const dir of ADVENTURE_DIRS) {
+  if (!existsSync(dir)) continue;
+  for (const file of readdirSync(dir)) {
+    if (!file.endsWith('.json')) continue;
+    const graph = JSON.parse(readFileSync(join(dir, file), 'utf8'));
+    const tone = (graph.metadata?.tone ?? [])[0];
+    for (const beat of graph.beats ?? []) {
+      if (!beat.art || owner.has(beat.art)) continue;
+      owner.set(beat.art, graph.id ?? file);
+      if (tone) SLOT_TONE.set(beat.art, tone);
+    }
   }
 }
 

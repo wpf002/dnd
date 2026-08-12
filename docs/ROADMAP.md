@@ -688,6 +688,9 @@ playing the same four pregens the limiting factor.
 - **Homebrew rules** — the engine is the authority; don't make it configurable
 - **UGC / marketplace** — n=1
 - **Runtime image generation in the core loop** — Phase 4, not before
+- **Generated art frames** — cut at the finish line. 1,285 deterministic
+  placeholder SVGs are the art. `BeatArt` still prefers `<slot>.png` if one
+  ever appears, so this costs nothing to reverse.
 
 ### Deliberately dropped from the commercial framing
 
@@ -818,16 +821,32 @@ Until that is chosen, F2 is done as scoped and this is the only part left.
 > `public/sw.js` and drive its events directly. **Registration itself still
 > wants one check in real Chrome or Safari.**
 
-### F3 — Art
+### F3 — Art — *decided: the placeholders are the art*
 
-1,247 placeholder SVGs cover 1,247 of 1,285 slots. The remaining 38 fall
-through to the gradient, which is by design and looks deliberate. There are
-zero real images.
+**The decision.** Generated frames are moved to the cut list. The placeholders
+are what ships. They are deterministic, they re-render identically from the
+slot id, and they cost nothing to keep. `BeatArt`'s fallback chain is
+unchanged — png, then svg, then a per-slot gradient — so if real frames are
+ever made, dropping `<slot>.png` into `apps/web/public/art/` makes them win
+with no code change at all. This is reversible; leaving it undecided was the
+thing that was not.
 
-Finished when: either every slot has a real image generated offline with the
-locked prompt prefix and seed, **or** this is moved to the cut list and the
-placeholders are declared final. Both are legitimate; leaving it undecided is
-not.
+Two things were fixed on the way to deciding, because the placeholders were
+not actually finished:
+
+- **Coverage.** 1,247 of 1,285 slots had a file. The 38 without were every
+  beat of every ingested module, which played on bare gradients while
+  generated adventures had frames — the generator read a manifest directory,
+  and nobody writes a manifest for an adventure that did not exist until a PDF
+  was read. It now reads art slots from the adventure graphs as well, which
+  are the authority and cannot drift. 1,285 of 1,285.
+- **Variety.** The scene chooser had hand-written rules for the four authored
+  adventures and dropped everything else onto the same town skyline, so a beer
+  cellar and a drowned crypt were the same row of rooftops. Generic keyword
+  rules now cover 70% of slots — cellars and crypts get columns, tunnels get
+  pillars, tide and causeway get a causeway, bells get a bell — and the rest
+  still land on the skyline, which is a reasonable thing for an unknown place
+  to look like.
 
 ### F4 — Phase 0, the fun test
 
