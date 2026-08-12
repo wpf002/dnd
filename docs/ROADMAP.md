@@ -814,12 +814,31 @@ later — an architecture change, not a cache. Two honest options:
 
 Until that is chosen, F2 is done as scoped and this is the only part left.
 
-> Registration could not be exercised end to end here: the embedded browser
-> used for visual checks refuses to register any service worker, including a
-> one-line one. The worker's logic — which strategy each request gets, the
-> offline fallbacks, and old-version cleanup — is covered by 7 tests that load
-> `public/sw.js` and drive its events directly. **Registration itself still
-> wants one check in real Chrome or Safari.**
+**Verified in real Chrome** (151), not just in tests. `tools/check-service-worker.mjs`
+launches headless Chrome with a throwaway profile, drives it over the DevTools
+protocol, and reports what actually happened — no new dependencies, re-runnable
+any time:
+
+```bash
+pnpm --filter @lantern/web build && (cd apps/web && npx next start -p 3100 &)
+node tools/check-service-worker.mjs http://localhost:3100
+```
+
+It confirms the worker registers and activates, takes control on the next
+load, fills all three caches, and precaches the shell. Then it puts Chrome
+itself offline and confirms the page still renders, art already seen is still
+served, and a write fails as a `TypeError` — which is what `OfflineError`
+turns into the message a player sees.
+
+Art the player has *not* reached is not cached, because runtime caching cannot
+cache what was never fetched. That is coherent rather than a gap: taking a turn
+needs the engine, so a beat they cannot reach offline is a beat whose picture
+they do not need.
+
+The first attempt at this reported that registration was impossible to test.
+That was wrong — the finding was a stale dev server, and the reason it took an
+afternoon to see is that the registration call swallowed its own errors. It
+warns now.
 
 ### F3 — Art — *decided: the placeholders are the art*
 

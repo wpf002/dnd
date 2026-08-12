@@ -22,8 +22,12 @@ export function ServiceWorker() {
       return;
     }
 
-    void navigator.serviceWorker.register('/sw.js').catch(() => {
-      // No worker means no offline. It does not mean no game.
+    // Say why it failed. Swallowing this silently cost an afternoon: the
+    // worker was not registering, the app looked fine, and there was nothing
+    // anywhere to say so. No worker means no offline; it does not mean no
+    // game, so this warns rather than throws.
+    void navigator.serviceWorker.register('/sw.js').catch((err: unknown) => {
+      console.warn('Lantern: service worker did not register, so offline is off.', err);
     });
   }, []);
 
