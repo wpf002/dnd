@@ -841,14 +841,39 @@ generated one-shot, one ingested module, one multi-book campaign — and the
 verdict is written down. If the verdict is no, kill condition 1 fires and the
 rest of this list is moot.
 
-### F5 — One more ingested module
+### F5 — Does the mapper generalise? — *half done*
 
-Two modules prove the ingestion path works. Both are small and free. A third,
-structurally different one — a sandbox or a hex crawl rather than a linear
-dungeon — is what tells you whether the mapper generalises or was fitted to
-two examples.
+The worry behind this item was never "three is better than two". It was that
+every mapping decision was made while looking at two small linear dungeons —
+seven and twenty-five areas, a spine with short branches, nothing with more
+than six connections — which is exactly the condition under which code
+quietly stops working on anything else.
 
-Finished when: a third module of a different shape ingests, lints clean, and
+**Done: the mapper.** `apps/api/src/sandbox-shape.test.ts` builds a
+nineteen-region hex field — no spine, four to six connections per region,
+three endings, two of them gated — and runs it through the real mapper,
+linter, and engine. It maps clean, keeps every region, splits hubs with more
+than three exits instead of dropping the extras, leaves an ending reachable
+from anywhere, and plays to an ending on all ten seeds. The mapper generalises
+past the shape it was written against.
+
+**Not done: extraction.** That still needs a real module, because the thing
+untested is reading an unfamiliar document — different layout conventions,
+sidebars, tables, hex descriptions instead of numbered rooms. No synthetic
+fixture tests that.
+
+Two ways to close it, both needing one decision:
+
+- **A module you already own.** Any published adventure, ideally a sandbox,
+  hex crawl, or city investigation rather than a dungeon. It never enters the
+  repository — `content-local/` and `work/` are gitignored, same as the two
+  already ingested.
+- **A generated sandbox from [HEXROLL 5E](https://5e.hexroll.app/).** Free,
+  no account, output under CC-BY-NC-SA and OGL, and a hex crawl by
+  construction. Export needs their desktop app installed, which is more than
+  a download.
+
+Finished when: a third module of a different shape extracts, lints clean, and
 finishes on ten seeds without hand-editing its IR.
 
 ### Explicitly not on this list
