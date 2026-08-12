@@ -34,6 +34,17 @@ export async function narrate(outcome: TurnOutcome): Promise<string[]> {
 
   const input = [
     `Scene: ${beat?.title ?? 'unknown'} — ${beat?.prose ?? ''}`,
+    // Without this the narrator is guessing. A free-text turn resolves to
+    // `interact / automatic / no effects`, which describes nothing, so the
+    // model filled the gap with whatever the scene suggested and narrated an
+    // action the player never took.
+    ...(outcome.rawInput
+      ? [
+          `The player, in their own words: "${outcome.rawInput}"`,
+          `Narrate what they attempted. Do not substitute a different action, and do not`,
+          `move the party anywhere the outcomes below do not say they moved.`,
+        ]
+      : []),
     `Mechanical outcomes to narrate (numbers are final; do not alter or invent any):`,
     JSON.stringify(outcome.resolutions),
     `Respond with 1-3 short paragraphs of narration covering these outcomes in order.`,

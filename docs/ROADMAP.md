@@ -848,17 +848,56 @@ not actually finished:
   still land on the skyline, which is a reasonable thing for an unknown place
   to look like.
 
-### F4 — Phase 0, the fun test
+### F4 — Phase 0, the fun test — *played; the verdict is yours*
 
-Never done. It gates nothing technically and it is the only thing that
-answers whether any of this is worth playing. The roadmap has carried it as a
-waived phase since the beginning and as the project's single largest standing
-risk.
+Three sessions were played end to end through the real API, with narration
+live: the ingested module (*A Most Potent Brew*), the authored one-shot (*The
+Bell at Saltmire*), and the first book of *The Drowned Lamp Cycle*. Reading
+the prose and choosing deliberately, not driving the sweep.
 
-Finished when: three full sessions have been played start to finish — one
-generated one-shot, one ingested module, one multi-book campaign — and the
-verdict is written down. If the verdict is no, kill condition 1 fires and the
-rest of this list is moot.
+**It found four defects that 570 tests and a ten-seed sweep did not**, because
+every one of them is about what a player experiences rather than what the
+engine computes:
+
+1. **You could not heal anyone outside combat, and you could not rest at all.**
+   The spell panel only rendered on a caster's turn in a fight, and nothing in
+   the app ever called the rest endpoint — both had been in the API since
+   Phase 2. A party that won a fight with two of its four at nought hit points
+   walked into the next room bleeding out and stayed that way. This was the
+   worst thing in the app and no automated check could have seen it: the sweep
+   heals through the API directly.
+2. **The narrator was never told what the player typed.** A free-text turn
+   resolves to `interact / automatic / no effects`, which describes nothing, so
+   the model invented a plausible action for the scene. Asking Sister Maren to
+   shout across the water produced a paragraph about the party walking onto
+   the causeway — an action nobody took, in a scene they had not left.
+3. **"Toward Calling it"** was the second option on the opening scene of the
+   ingested module, from the withdrawal ending added the same day. Renamed;
+   options read `Toward <name>`, so the name has to survive that.
+4. **Searching a room tells you nothing.** The padded "search before moving on"
+   option sets a flag and produces no visible outcome. It satisfies the
+   linter's false-choice rule by construction and is still a false choice to
+   the person clicking it. **Not fixed** — see below.
+
+All but the last are fixed and covered by tests.
+
+**What playing was actually like.** The authored and campaign content is
+strong: a natural 18 on an investigation check produced narration that named
+the specific thing found and carried it into the next beat, and the read-aloud
+text has a voice. The engine was correct everywhere it was watched — death
+saves, downed characters, healing, spell slots, the level-1 party in book one.
+The ingested module is recognizably itself and noticeably plainer, which is
+what faithful mapping of a plain module should look like.
+
+**The verdict is not mine to give.** Kill condition 1 asks whether solo play
+is fun, and that is a question about the person playing. What can be reported
+is that it works, it reads well, and the defects above are gone. Play it, and
+write the answer here.
+
+**Still open from this pass:** finding 4. A search that finds nothing is a
+false choice, and the honest fixes are to give search a real outcome — a
+discovery, a clue, an item — or to stop emitting it as padding. Both are
+mapper work and neither is a one-liner.
 
 ### F5 — Does the mapper generalise? — *half done*
 

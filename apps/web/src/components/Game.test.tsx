@@ -14,6 +14,45 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const started = vi.fn();
 const fetchedSession = vi.fn();
+const rested = vi.fn();
+const cast = vi.fn();
+
+/**
+ * A session standing in a cleared room with the rogue at nought hit points and
+ * a cleric who can do something about it — the state the app used to have no
+ * answer for.
+ */
+const sessionAfterFight = () => ({
+  id: 's-after',
+  title: 'A Most Potent Brew',
+  ended: false,
+  beat: {
+    id: 'beer-cellar-after',
+    title: '1. Beer Cellar — after the fight',
+    prose: 'The fighting is over.',
+    art: 'art-beer-cellar-after',
+    options: [{ id: 'on', label: 'Toward 2. Mosaic Corridor' }],
+    terminal: false,
+  },
+  party: [
+    { id: 'pregen-fighter', name: 'Branka Ironvow', hp: 31, hpMax: 31, ac: 18, dead: false, conditions: [] },
+    { id: 'pregen-rogue', name: 'Pip Fenwick', hp: 0, hpMax: 21, ac: 14, dead: false, conditions: [] },
+    {
+      id: 'pregen-cleric',
+      name: 'Sister Maren Hale',
+      hp: 9,
+      hpMax: 24,
+      ac: 15,
+      dead: false,
+      conditions: [],
+      castable: [
+        { id: 'cure-wounds', name: 'Cure Wounds', level: 1, slot: 1, kind: 'heal' },
+        { id: 'guiding-bolt', name: 'Guiding Bolt', level: 1, slot: 1, kind: 'attack' },
+      ],
+    },
+  ],
+  flags: {},
+});
 
 /** What GET /session/:id returns. Set per test. */
 let sessionOnServer: { id: string; title: string; ended: boolean } | null = null;
@@ -72,6 +111,14 @@ vi.mock('../lib/api', () => ({
     session: async (id: string) => {
       fetchedSession(id);
       if (!sessionOnServer) throw new Error('no such session');
+      // The cleared-room fixture, for the between-fights tests.
+      if (sessionOnServer.id === 's-after') return { state: sessionAfterFight() };
+      if (sessionOnServer.id === 's-whole') {
+        const whole = sessionAfterFight();
+        whole.party = whole.party.map((p) => ({ ...p, hp: p.hpMax }));
+        whole.beat.prose = 'The bell is still ringing.';
+        return { state: whole };
+      }
       return {
         state: {
           sessionId: sessionOnServer.id,
@@ -91,6 +138,14 @@ vi.mock('../lib/api', () => ({
       };
     },
     campaignRecap: async () => ({ recap: { title: 'A campaign', sessions: 1, clocks: [], promises: [] } }),
+    rest: async (id: string, kind: string) => {
+      rested(id, kind);
+      return { state: sessionAfterFight(), narration: [], resolutions: [] };
+    },
+    cast: async (id: string, caster: string, spell: string, target: string, slot?: number) => {
+      cast(caster, spell, target, slot);
+      return { state: sessionAfterFight(), narration: [], resolutions: [] };
+    },
     start: async (adventure: string, character?: unknown) => {
       started(adventure, character);
       return {
@@ -113,6 +168,8 @@ const { Game } = await import('./Game');
 beforeEach(() => {
   started.mockClear();
   fetchedSession.mockClear();
+  rested.mockClear();
+  cast.mockClear();
   sessionOnServer = null;
   window.localStorage.clear();
 });
@@ -270,5 +327,74 @@ describe('picking a run back up', () => {
       expect(raw).not.toBeNull();
       expect(JSON.parse(raw!).sessionId).toBe('s1');
     });
+  });
+});
+
+/**
+ * Winning a fight used to be the end of the party's options.
+ *
+ * The spell panel only rendered on a caster's turn in combat, and nothing in
+ * the app ever called the rest endpoint — both had been in the API since
+ * Phase 2. So a party that came out of a fight with two of its four at nought
+ * hit points could not heal them and could not camp; they walked into the
+ * next room bleeding out and stayed that way for the rest of the adventure.
+ */
+describe('between fights', () => {
+  const enterCleared = async () => {
+    window.localStorage.setItem(
+      'lantern.run.v1',
+      JSON.stringify({ sessionId: 's-after', title: 'A Most Potent Brew', savedAt: new Date().toISOString() }),
+    );
+    sessionOnServer = { id: 's-after', title: 'A Most Potent Brew', ended: false };
+    const user = userEvent.setup();
+    render(<Game />);
+    await user.click(await screen.findByText('Carry on'));
+    return user;
+  };
+
+  it('offers the cleric her healing when someone is down', async () => {
+    await enterCleared();
+    await screen.findByText('Someone is bleeding out');
+    expect(screen.getByText(/Cure Wounds/)).toBeDefined();
+  });
+
+  it('does not offer an attack spell as first aid', async () => {
+    await enterCleared();
+    await screen.findByText('Someone is bleeding out');
+    expect(screen.queryByText(/Guiding Bolt/)).toBeNull();
+  });
+
+  it('casts it at whoever is down, not at whoever is merely hurt', async () => {
+    const user = await enterCleared();
+    await user.click(await screen.findByText(/Cure Wounds/));
+    expect(cast).toHaveBeenCalledWith('pregen-cleric', 'cure-wounds', 'pregen-rogue', 1);
+  });
+
+  it('lets the party camp', async () => {
+    const user = await enterCleared();
+    await user.click(await screen.findByText(/Long rest/));
+    expect(rested).toHaveBeenCalledWith('s-after', 'long');
+  });
+
+  it('offers a short rest too, so hit dice are reachable', async () => {
+    const user = await enterCleared();
+    await user.click(await screen.findByText(/Short rest/));
+    expect(rested).toHaveBeenCalledWith('s-after', 'short');
+  });
+
+  it('says nothing at all when the party is whole', async () => {
+    // A party at full health with no caster has nothing to recover from and
+    // nothing to recover with, so the panel should not take up the screen.
+    sessionOnServer = { id: 's-whole', title: 'Untouched', ended: false };
+    window.localStorage.setItem(
+      'lantern.run.v1',
+      JSON.stringify({ sessionId: 's-whole', title: 'Untouched', savedAt: new Date().toISOString() }),
+    );
+    const user = userEvent.setup();
+    render(<Game />);
+    await user.click(await screen.findByText('Carry on'));
+
+    await screen.findByText('The bell is still ringing.');
+    expect(screen.queryByText(/Long rest/)).toBeNull();
   });
 });

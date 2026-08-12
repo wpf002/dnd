@@ -11,6 +11,7 @@ import {
   type CampaignGraphSummary,
   type CampaignProgressView,
   type GenerateRequest,
+  type PartyMemberView,
   type Recap,
   type SessionState,
   type TurnResponse,
@@ -473,6 +474,18 @@ export function Game() {
           </button>
         </div>
       )}
+
+      {/*
+        Between fights.
+
+        The spell panel below only ever appeared on a caster's combat turn, and
+        nothing in this app ever called the rest endpoint — so a party that won
+        a fight with two of its four at nought hit points could not heal them
+        and could not camp. They walked into the next room bleeding out, for
+        the rest of the adventure. Both had been sitting in the API the whole
+        time.
+      */}
+      {!combat && !state.ended && <Recovery party={party} busy={busy} run={run} sessionId={state.id} />}
 
       {/* Options */}
       {!combat && !state.ended && (
@@ -1118,6 +1131,98 @@ function BetweenBooks({
           </button>
         </>
       )}
+    </div>
+  );
+}
+
+/**
+ * Healing and rest, out of combat.
+ *
+ * The party's own casters, offered whenever someone is hurt — the API decides
+ * what is castable and this only renders it. Rest is always offered, because
+ * a party choosing to camp is a decision, not a repair.
+ */
+function Recovery({
+  party,
+  busy,
+  run,
+  sessionId,
+}: {
+  party: PartyMemberView[];
+  busy: boolean;
+  run: (fn: () => Promise<TurnResponse>) => void;
+  sessionId: string;
+}) {
+  const dying = party.find((p) => p.hp === 0 && !p.dead);
+  const hurt = [...party]
+    .filter((p) => !p.dead && p.hp < p.hpMax)
+    .sort((a, b) => a.hp / a.hpMax - b.hp / b.hpMax)[0];
+  const wounded = dying ?? hurt;
+
+  // Every heal any conscious caster can cast right now.
+  const heals = party
+    .filter((p) => p.hp > 0 && !p.dead)
+    .flatMap((caster) =>
+      (caster.castable ?? [])
+        .filter((spell) => spell.kind === 'heal')
+        .map((spell) => ({ caster, spell })),
+    );
+
+  // Nothing to gain, nothing on screen. A party at full health with every
+  // slot unspent would only be looking at clutter on every beat of the
+  // adventure; one that is hurt, or has spent something, has a decision.
+  const spentSlots = party.some((p) =>
+    (p.slots?.remaining ?? []).some((n, level) => n < (p.slots?.max?.[level] ?? 0)),
+  );
+  if (!wounded && !spentSlots) return null;
+
+  return (
+    <div className="space-y-2 rounded-lg border border-[var(--ink-line)] bg-[var(--ink-raised)] p-3">
+      <div className="flex items-baseline justify-between">
+        <span className="text-xs uppercase tracking-widest text-[var(--muted)]">
+          {dying ? 'Someone is bleeding out' : wounded ? 'Patching up' : 'Catching your breath'}
+        </span>
+        {wounded && (
+          <span className="text-xs text-[var(--muted)]">
+            {wounded.name} {wounded.hp}/{wounded.hpMax}
+          </span>
+        )}
+      </div>
+
+      {wounded && heals.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {heals.map(({ caster, spell }) => (
+            <button
+              key={`${caster.id}-${spell.id}`}
+              disabled={busy}
+              onClick={() =>
+                run(() => api.cast(sessionId, caster.id, spell.id, wounded.id, spell.slot))
+              }
+              className="rounded-md border px-2 py-1 text-xs disabled:opacity-40"
+              style={{ borderColor: 'var(--success)', color: 'var(--success)' }}
+            >
+              {caster.name.split(' ')[0]}: {spell.name} → {wounded.name.split(' ')[0]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="flex gap-2">
+        <button
+          disabled={busy}
+          onClick={() => run(() => api.rest(sessionId, 'short'))}
+          className="flex-1 rounded-md border border-[var(--ink-line)] p-2 text-xs text-[var(--muted)] disabled:opacity-40"
+        >
+          Short rest — spend hit dice
+        </button>
+        <button
+          disabled={busy}
+          onClick={() => run(() => api.rest(sessionId, 'long'))}
+          className="flex-1 rounded-md border border-[var(--ink-line)] p-2 text-xs text-[var(--muted)] disabled:opacity-40"
+        >
+          Long rest — camp until morning
+        </button>
+      </div>
     </div>
   );
 }

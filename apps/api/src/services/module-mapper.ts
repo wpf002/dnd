@@ -345,7 +345,10 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
     const withdrawal: IngestedRoom = {
       id: withdrawalId,
-      name: 'Calling it',
+      // Named for how it reads as an option, not for how it reads as a title:
+      // every option is labelled "Toward <name>", and "Toward Calling it" was
+      // the second thing a party saw on the opening scene.
+      name: 'the road home',
       description:
         'The job is not finished and the party knows it. There is no shame in the walk back ' +
         'that there would be in the walk in — only the weight of what was left behind, and ' +

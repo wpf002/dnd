@@ -116,6 +116,17 @@ export interface TurnOutcome {
   resolutions: Resolution[];
   /** Templated narration fallback lines, one per resolution. */
   narration: string[];
+  /**
+   * What the player typed, when they typed something.
+   *
+   * The narrator needs it. A free-text turn resolves to `interact / automatic
+   * / no effects`, which says nothing about what was attempted — handed only
+   * that, the DM invented a plausible action for the scene and narrated it,
+   * so asking a cleric to shout across the water produced a paragraph about
+   * the party walking onto the causeway. The words are the content of the
+   * turn; the resolution is only its consequence.
+   */
+  rawInput?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -410,6 +421,7 @@ export function freeTextConstraint(session: GameSession, rawInput: string): Free
     narration: [
       'You act off the written path. The world bends to absorb it — this time.',
     ],
+    rawInput,
     accepted: true,
   };
 }
