@@ -688,6 +688,9 @@ playing the same four pregens the limiting factor.
 - **Homebrew rules** — the engine is the authority; don't make it configurable
 - **UGC / marketplace** — n=1
 - **Runtime image generation in the core loop** — Phase 4, not before
+- **Offline play** — cut at the finish line. Offline *reading* ships; taking a
+  turn needs the server. Reversing it is a phase, and the design to start from
+  is written under F2 — replay an input log, do not sync state.
 - **Generated art frames** — cut at the finish line. 1,285 deterministic
   placeholder SVGs are the art. `BeatArt` still prefers `<slot>.png` if one
   ever appears, so this costs nothing to reverse.
@@ -786,7 +789,7 @@ Finished when: reopening the app offers to resume an unfinished session or
 campaign, resuming restores party, flags, beat, and combat exactly, and there
 is a way to abandon a run and start fresh. Covered by a web test.
 
-### F2 — Offline play — *done, with one decision left*
+### F2 — Offline play — *done*
 
 **Built.** `manifest.webmanifest` named two icons and `public/icons/` was
 empty, so the install prompt never appeared — a manifest whose icons 404 is
@@ -800,19 +803,28 @@ A request that never reached the server now raises `OfflineError` — "you are
 offline", distinct from a rules refusal, which calls for a completely
 different reaction from the player.
 
-**Not built, and it needs a decision.** Taking a turn offline. Every
-mechanical outcome is computed by the engine on the server and persisted
-before the client sees it; that invariant is the product. Offline *play* means
-moving the engine into the browser, keeping local state, and reconciling it
-later — an architecture change, not a cache. Two honest options:
+**Taking a turn offline is cut.** Offline means the app opens, the library is
+there, and you can read where you are. Playing needs the server. That is the
+current state, it is coherent, and it is what ships.
 
-- **Cut it.** Offline means "the app opens and you can read where you are".
-  Playing needs the server. This is the current state and it is coherent.
-- **Do it as its own phase.** Extract the game service into a package the web
-  can run, decide what wins when local and server state disagree, and accept
-  that the audit trail is written in two places.
+The reason is not that it is impossible — it is that it is a phase, and the
+finish line exists to stop phases arriving disguised as polish. Recorded here
+so that reversing it starts from a design rather than from scratch:
 
-Until that is chosen, F2 is done as scoped and this is the only part left.
+> **If it is ever built, build it as replay, not as sync.** The engine is
+> deterministic and seeded, so the honest unit of offline play is the *input
+> log*, not the state. The client appends option ids and free-text strings to
+> a local log; on reconnect it posts the log and the server replays it through
+> the same engine and arrives at the same state, byte for byte. That is the
+> existing invariant — every mechanical outcome persists its inputs — read
+> forwards, not an exception to it. There is no conflict resolution, because
+> there is only ever one writer.
+>
+> What it costs: extracting `apps/api/src/services/game.ts` into a package the
+> web app can run; a local append-only log; a replay endpoint. What stays
+> broken offline regardless: DM narration and free-text intent parsing, both
+> of which need the model. Free text would have to be refused offline the way
+> an exhausted improv budget is refused now — in fiction, and closed.
 
 **Verified in real Chrome** (151), not just in tests. `tools/check-service-worker.mjs`
 launches headless Chrome with a throwaway profile, drives it over the DevTools
@@ -918,40 +930,41 @@ false choice, and the honest fixes are to give search a real outcome — a
 discovery, a clue, an item — or to stop emitting it as padding. Both are
 mapper work and neither is a one-liner.
 
-### F5 — Does the mapper generalise? — *half done*
+### F5 — Does ingestion generalise? — *done for what can be tested here*
 
-The worry behind this item was never "three is better than two". It was that
-every mapping decision was made while looking at two small linear dungeons —
+The worry was never "three modules is better than two". It was that every
+decision in the pipeline was made while looking at two small keyed dungeons —
 seven and twenty-five areas, a spine with short branches, nothing with more
-than six connections — which is exactly the condition under which code
-quietly stops working on anything else.
+than six connections — which is exactly the condition under which code quietly
+stops working on anything else.
 
-**Done: the mapper.** `apps/api/src/sandbox-shape.test.ts` builds a
-nineteen-region hex field — no spine, four to six connections per region,
-three endings, two of them gated — and runs it through the real mapper,
-linter, and engine. It maps clean, keeps every region, splits hubs with more
-than three exits instead of dropping the extras, leaves an ending reachable
-from anywhere, and plays to an ending on all ten seeds. The mapper generalises
-past the shape it was written against.
+Both halves were tested against the shape those two modules are not, and both
+were broken:
 
-**Not done: extraction.** That still needs a real module, because the thing
-untested is reading an unfamiliar document — different layout conventions,
-sidebars, tables, hex descriptions instead of numbered rooms. No synthetic
-fixture tests that.
+**The mapper.** `apps/api/src/sandbox-shape.test.ts` builds a nineteen-region
+hex field — no spine, four to six connections per region, three endings, two
+of them gated — and runs it through the real mapper, linter, and engine. It
+maps clean, keeps every region, splits hubs with more than three exits, leaves
+an ending reachable from anywhere, and plays to an ending on all ten seeds.
+The mapper generalises.
 
-Two ways to close it, both needing one decision:
+**Extraction.** It did not. A dungeon numbers its rooms — "1. Beer Cellar" —
+and the heading patterns were written while looking at exactly that. A
+hexcrawl keys its areas by coordinate, and *none* of the three patterns
+matched `Hex 0304:`, `Hex 0305 —`, `0402  Broken Aqueduct`, or `Area 7:`. A
+whole hexcrawl arrived as **one chunk with no area boundaries in it at all**,
+so every location in the book would have extracted, if at all, as part of
+whatever came first. Two patterns added, four tests, and the two real modules
+chunk to exactly the same 6 and 22 as before.
 
-- **A module you already own.** Any published adventure, ideally a sandbox,
-  hex crawl, or city investigation rather than a dungeon. It never enters the
-  repository — `content-local/` and `work/` are gitignored, same as the two
-  already ingested.
-- **A generated sandbox from [HEXROLL 5E](https://5e.hexroll.app/).** Free,
-  no account, output under CC-BY-NC-SA and OGL, and a hex crawl by
-  construction. Export needs their desktop app installed, which is more than
-  a download.
-
-Finished when: a third module of a different shape extracts, lints clean, and
-finishes on ten seeds without hand-editing its IR.
+**What is still not tested, and cannot be here:** an unfamiliar document's
+*prose* — sidebars, stat blocks in two columns, tables mixed into room text,
+a voice the extractor has never seen. Only a real module tests that, and a
+module written to be a test case is written by someone who knows what the
+extractor expects, which is not a test. If a third module ever gets ingested,
+this is what to watch. It is no longer a gap in the pipeline; it is the
+residual risk of reading documents at all, and the repair surface
+(`--map-only`, `tools/review-ingest.mjs`) exists for exactly that.
 
 ### Explicitly not on this list
 

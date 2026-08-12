@@ -51,6 +51,25 @@ const HEADINGS = [
   /^\s{0,3}\d{1,3}[.:)]\s+[A-Z][^\n.,;!?]{0,38}$/,
   /** "THE SUNKEN VAULT". Case-SENSITIVE: shouted means shouted. */
   /^\s{0,3}[A-Z][A-Z0-9 '’\-:&]{5,60}$/,
+  /**
+   * "Hex 0304: The Drowned Chapel", "Hex 12.05", "Area 7 — The Kiln".
+   *
+   * A dungeon numbers its rooms; a hexcrawl keys its areas by coordinate, and
+   * a region book by name-and-number. None of the patterns above match any of
+   * those, so a whole hexcrawl arrived as one chunk with no area boundaries in
+   * it at all — every location in the book extracted, if it extracted, as part
+   * of whatever came first.
+   */
+  /^\s{0,3}(?:hex|area|location|site|region|encounter)\s+\d{1,4}(?:[.\-]\d{1,4})?\s*(?:[.:)—–-]\s*[A-Z][^\n.,;!?]{0,38})?$/i,
+  /**
+   * "0402  Broken Aqueduct" — the bare coordinate, which hexcrawls print
+   * without the word "hex" once the reader knows what they are looking at.
+   *
+   * Four digits, then whitespace, then a short unpunctuated title. Tight on
+   * purpose: a looser rule turns every year and every table row into a
+   * section boundary.
+   */
+  /^\s{0,3}\d{4}(?:[.\-]\d{1,4})?\s{1,6}[A-Z][^\n.,;!?]{0,38}$/,
 ];
 
 function isHeading(line: string): boolean {

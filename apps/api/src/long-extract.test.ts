@@ -376,3 +376,76 @@ describe('the driver', () => {
     expect(report.rooms).toBe(2);
   });
 });
+
+/**
+ * A hexcrawl does not number rooms; it keys areas by coordinate.
+ *
+ * Both modules ingested for real are keyed dungeons — "1. Beer Cellar" — and
+ * the heading patterns were written while looking at them. A hexcrawl arrived
+ * as a single chunk with no area boundaries anywhere in it, so every location
+ * in the book would have extracted, if at all, as part of whatever came first.
+ * This is the extraction half of the same worry the sandbox test covers for
+ * the mapper.
+ */
+describe('area headings that are not room numbers', () => {
+  const hexcrawl = [
+    'THE ASHFELL REACHES',
+    '',
+    'A hexcrawl for four characters of third level.',
+    '',
+    'Hex 0304: The Drowned Chapel',
+    '',
+    'A chapel stands to its shoulders in black water. The bell tower is dry.',
+    '',
+    "Hex 0305 — Ferryman's Post",
+    '',
+    'A punt, a pole, and a man who will not say his name. He crosses for coin.',
+    '',
+    '0402  Broken Aqueduct',
+    '',
+    'Three spans still stand. The fourth came down and took the road with it.',
+    '',
+    'Area 7: The Kiln',
+    '',
+    'Still warm. Somebody has been firing it, and not for pots.',
+  ].join('\n');
+
+  it('splits a hexcrawl into its areas instead of one undifferentiated chunk', () => {
+    const headings = chunkModule(hexcrawl).map((c) => c.heading);
+    expect(headings).toEqual([
+      'THE ASHFELL REACHES',
+      'Hex 0304: The Drowned Chapel',
+      "Hex 0305 — Ferryman's Post",
+      '0402  Broken Aqueduct',
+      'Area 7: The Kiln',
+    ]);
+  });
+
+  it('takes a bare hex reference with no title after it', () => {
+    const chunks = chunkModule(['Hex 1204', '', 'Nothing here but gorse and a cairn.'].join('\n'));
+    expect(chunks[0]?.heading).toBe('Hex 1204');
+  });
+
+  it('does not turn a year in prose into a section', () => {
+    const prose = [
+      'The Long Retreat',
+      '',
+      '1487 was the year the road closed, and nobody has opened it since then.',
+      'The garrison marched south and did not come back.',
+    ].join('\n');
+    expect(chunkModule(prose).length).toBe(1);
+  });
+
+  it('does not turn a table row into a section', () => {
+    const table = [
+      'WANDERING MONSTERS',
+      '',
+      '1. 1d4 wolves, hungry and unafraid of fire',
+      '2. A pedlar, lost, with one good rumour',
+      '3. Nothing, but it takes an hour to be sure',
+    ].join('\n');
+    // The keyed-area pattern is deliberately punctuation-free, so a row with a
+    // comma in it is prose rather than a heading.
+    expect(chunkModule(table).length).toBe(1);
+  });
+});
