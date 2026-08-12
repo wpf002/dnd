@@ -322,3 +322,70 @@ describe('book gates', () => {
     expect(() => startCampaignSession(campaign)).toThrow(/complete/);
   });
 });
+
+/**
+ * A campaign carried its corpses forward.
+ *
+ * Death is permanent within a session — that is deliberate and stays. But
+ * playing the drowned lamp cycle through showed three of four dying in book
+ * two and the party walking into book three as one fighter on one hit point,
+ * against encounters balanced for four. Nothing said so, and nothing could
+ * fix it. A table does not play that way: someone rolls a new character and
+ * turns up in the next chapter at everyone else's level.
+ */
+describe('who comes back for the next book', () => {
+  function killTheParty(campaign: Campaign, except = 1) {
+    campaign.party = campaign.party!.map((c, i) =>
+      i < except ? c : { ...c, hp: 0, dead: true },
+    );
+  }
+
+  it('replaces the fallen before the next book opens', () => {
+    const campaign = createBookCampaign(readCampaign('the-drowned-lamp-cycle'), readAdventure);
+    killTheParty(campaign);
+    expect(campaign.party!.filter((c) => c.dead)).toHaveLength(3);
+
+    completeBook(campaign, readAdventure);
+
+    expect(campaign.party!.filter((c) => c.dead)).toHaveLength(0);
+    expect(campaign.party).toHaveLength(4);
+  });
+
+  it('keeps the party’s shape, so the encounter maths still holds', () => {
+    const campaign = createBookCampaign(readCampaign('the-drowned-lamp-cycle'), readAdventure);
+    const classes = campaign.party!.map((c) => c.characterClass);
+    killTheParty(campaign);
+
+    completeBook(campaign, readAdventure);
+
+    expect(campaign.party!.map((c) => c.characterClass)).toEqual(classes);
+  });
+
+  it('brings them in at the level everyone else has reached', () => {
+    const campaign = createBookCampaign(readCampaign('the-drowned-lamp-cycle'), readAdventure);
+    killTheParty(campaign);
+
+    completeBook(campaign, readAdventure);
+
+    const level = campaign.progress!.partyLevel;
+    expect(level).toBeGreaterThan(1);
+    expect(campaign.party!.every((c) => c.level === level)).toBe(true);
+    expect(campaign.party!.every((c) => c.hp > 0)).toBe(true);
+  });
+
+  it('says who did not come back, rather than quietly handing back a full party', () => {
+    const campaign = createBookCampaign(readCampaign('the-drowned-lamp-cycle'), readAdventure);
+    const doomed = campaign.party!.slice(1).map((c) => c.name);
+    killTheParty(campaign);
+
+    const transition = completeBook(campaign, readAdventure);
+
+    expect(transition.fallen).toEqual(doomed);
+  });
+
+  it('says nothing when everyone walked out alive', () => {
+    const campaign = createBookCampaign(readCampaign('the-drowned-lamp-cycle'), readAdventure);
+    const transition = completeBook(campaign, readAdventure);
+    expect(transition.fallen).toBeUndefined();
+  });
+});

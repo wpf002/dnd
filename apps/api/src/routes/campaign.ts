@@ -201,6 +201,7 @@ export function registerCampaignRoutes(
               skipped: result.transition.skipped.map((b) => b.id),
               partyLevel: result.transition.partyLevel,
               featuresGained: result.transition.featuresGained,
+              ...(result.transition.fallen ? { fallen: result.transition.fallen } : {}),
             },
           }
         : {}),

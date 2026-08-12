@@ -568,6 +568,9 @@ export function Game() {
                   className={`truncate text-xs font-semibold ${p.dead ? 'line-through opacity-60' : ''}`}
                 >
                   {p.name.split(' ')[0]}
+                  {/* The number a campaign is about. It was levelled and
+                      persisted correctly from book to book and never shown. */}
+                  {!p.dead && <span className="ml-1 font-normal text-[var(--muted)]">L{p.level}</span>}
                 </span>
                 <span className="text-[10px] text-[var(--muted)]">
                   {p.dead ? 'dead' : `AC ${p.ac}`}
@@ -1082,6 +1085,17 @@ function BetweenBooks({
             ))}
           </ul>
         )}
+        {/* Who did not come back. Said plainly, because the party the player
+            walks into the next book with is not the one they finished this
+            one with, and finding that out silently is worse. */}
+        {transition.fallen && transition.fallen.length > 0 && (
+          <p className="mt-3 text-sm" style={{ color: 'var(--blood)' }}>
+            {transition.fallen.join(', ')} did not come back from{' '}
+            {finished?.title ?? 'the last book'}. Word travels, and someone else takes the
+            place — at the level the rest of you have reached.
+          </p>
+        )}
+
         {progress && progress.party.length > 0 && (
           <div className="mt-3 flex gap-2">
             {progress.party.map((p) => (

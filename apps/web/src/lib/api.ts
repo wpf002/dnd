@@ -17,6 +17,7 @@ export interface PartyMemberView {
   id: string;
   name: string;
   class: string;
+  level: number;
   hp: number;
   hpMax: number;
   /** Three failed death saves. Neither healing nor rest clears it. */
@@ -198,6 +199,8 @@ export interface BookTransitionView {
   skipped: string[];
   partyLevel: number;
   featuresGained: string[];
+  /** Who died in the book just finished, and is replaced in the next one. */
+  fallen?: string[];
 }
 
 export interface AdventureSummary {

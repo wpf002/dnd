@@ -157,6 +157,13 @@ export interface BookTransition {
   /** Level the party was raised to on completing the book. */
   partyLevel: number;
   featuresGained: string[];
+  /**
+   * Who died in the book just finished. They are replaced before the next one
+   * opens — a table does not play three books down three characters — and the
+   * between-books screen says so rather than quietly handing back a full
+   * party.
+   */
+  fallen?: string[];
 }
 
 /**
@@ -180,6 +187,27 @@ export function completeBook(
       kind: 'flag',
       flag: mutation.flag,
       value: mutation.value,
+    });
+  }
+
+  // A book ends; the dead are replaced before the next one starts.
+  //
+  // Death is permanent within a session — that is deliberate and stays. But a
+  // campaign carried the corpses forward: three of four died in book two and
+  // the party walked into book three as one fighter on 1 hit point, against
+  // encounters balanced for four. Nothing said so and nothing could fix it.
+  //
+  // A table does not play that way. Someone rolls a new character and turns up
+  // in the next chapter, at the level everyone else is. So does this — same
+  // class, so the party keeps its shape and the encounter maths still holds.
+  const fallen = (campaign.party ?? PREGENS).filter((p) => p.dead);
+  if (fallen.length > 0) {
+    const replacements = partyAtLevel(book.levelEnd);
+    campaign.party = (campaign.party ?? PREGENS).map((member) => {
+      if (!member.dead) return member;
+      const fresh =
+        replacements.find((r) => r.characterClass === member.characterClass) ?? replacements[0]!;
+      return structuredClone(fresh);
     });
   }
 
@@ -223,6 +251,9 @@ export function completeBook(
     skipped,
     partyLevel: campaign.progress.partyLevel,
     featuresGained: [...new Set(results.flatMap((r) => r.featuresGained))],
+    // Who did not come back. Reported so the between-books screen can say it
+    // rather than quietly handing the player a full party again.
+    ...(fallen.length > 0 ? { fallen: fallen.map((p) => p.name) } : {}),
   };
 }
 

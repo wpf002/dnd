@@ -919,6 +919,11 @@ export function sessionView(session: GameSession) {
       id: p.id,
       name: p.name,
       class: p.characterClass,
+      // The one number a campaign is about. It was computed, levelled, and
+      // persisted correctly from book to book, and never sent to the client —
+      // so a game that runs from level 1 to level 20 never told the player
+      // which one they were on.
+      level: p.level,
       hp: p.hp,
       hpMax: p.hpMax,
       dead: p.dead,
