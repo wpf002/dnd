@@ -64,8 +64,30 @@ export interface TurnResponse {
   rejected?: { reason: string };
 }
 
+/**
+ * Thrown when the request never reached the server.
+ *
+ * Worth its own type because it is the one failure the player can do something
+ * about, and because it must never be confused with a rules refusal. A turn
+ * that did not reach the engine did not happen — the client does not get to
+ * decide it did.
+ */
+export class OfflineError extends Error {
+  constructor() {
+    super('You are offline. The rules run on the server, so this turn has to wait.');
+    this.name = 'OfflineError';
+  }
+}
+
+/** A fetch that failed outright, rather than a server that answered badly. */
+function offline(err: unknown): never {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) throw new OfflineError();
+  if (err instanceof TypeError) throw new OfflineError();
+  throw err;
+}
+
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`);
+  const res = await fetch(`${BASE}${path}`).catch(offline);
   if (!res.ok) {
     const detail = (await res.json().catch(() => ({}))) as { error?: string };
     throw new Error(detail.error ?? `${res.status}`);
@@ -78,7 +100,7 @@ async function post<T>(path: string, body?: object): Promise<T> {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body ?? {}),
-  });
+  }).catch(offline);
   if (!res.ok) {
     const detail = (await res.json().catch(() => ({}))) as { error?: string };
     throw new Error(detail.error ?? `${res.status}`);

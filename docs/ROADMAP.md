@@ -772,9 +772,9 @@ Anything discovered later goes in "Standing risks" or the cut list, not here.
 | Gate | linter (0 errors, 0 warnings), 568 tests, boundary guard, playability sweep |
 | Session | plays end to end in the browser — choices, free text, combat, spells, rest, death |
 
-### F1 — A session survives closing the tab
+### F1 — A session survives closing the tab — *done*
 
-**The one real hole.** The API persists every session to the database and
+**Was the one real hole.** The API persists every session to the database and
 serves `GET /session/:id`. The web client never stores the id, so a reload
 loses the game. For a solo game meant to be played in sittings, that is the
 difference between a toy and a thing you use.
@@ -783,16 +783,40 @@ Finished when: reopening the app offers to resume an unfinished session or
 campaign, resuming restores party, flags, beat, and combat exactly, and there
 is a way to abandon a run and start fresh. Covered by a web test.
 
-### F2 — Offline play
+### F2 — Offline play — *done, with one decision left*
 
-`manifest.webmanifest` and icons exist, so the app installs. There is no
-service worker, so an installed app with no network shows nothing. A solo
-game played on a phone should not need a network for content it already has.
+**Built.** `manifest.webmanifest` named two icons and `public/icons/` was
+empty, so the install prompt never appeared — a manifest whose icons 404 is
+not installable. `tools/generate-icons.mjs` draws both, deterministically and
+with no dependencies. A service worker now precaches the shell, serves
+content-hashed build output and art cache-first, and reads the API
+network-first with a cache fallback, so the app opens with no network and
+shows the library, the art, and the beat a session was on.
 
-Finished when: an installed app opens and plays an already-started session
-with the network off, and the API calls that genuinely need the server —
-narration, free-text parsing, generation — degrade to the authored text
-rather than erroring.
+A request that never reached the server now raises `OfflineError` — "you are
+offline", distinct from a rules refusal, which calls for a completely
+different reaction from the player.
+
+**Not built, and it needs a decision.** Taking a turn offline. Every
+mechanical outcome is computed by the engine on the server and persisted
+before the client sees it; that invariant is the product. Offline *play* means
+moving the engine into the browser, keeping local state, and reconciling it
+later — an architecture change, not a cache. Two honest options:
+
+- **Cut it.** Offline means "the app opens and you can read where you are".
+  Playing needs the server. This is the current state and it is coherent.
+- **Do it as its own phase.** Extract the game service into a package the web
+  can run, decide what wins when local and server state disagree, and accept
+  that the audit trail is written in two places.
+
+Until that is chosen, F2 is done as scoped and this is the only part left.
+
+> Registration could not be exercised end to end here: the embedded browser
+> used for visual checks refuses to register any service worker, including a
+> one-line one. The worker's logic — which strategy each request gets, the
+> offline fallbacks, and old-version cleanup — is covered by 7 tests that load
+> `public/sw.js` and drive its events directly. **Registration itself still
+> wants one check in real Chrome or Safari.**
 
 ### F3 — Art
 
