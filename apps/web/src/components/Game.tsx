@@ -15,6 +15,7 @@ import {
   type SessionState,
   type TurnResponse,
 } from '../lib/api';
+import { clearRun, describeAge, loadRun, saveRun, type SavedRun } from '../lib/saved-run';
 import { BeatArt } from './BeatArt';
 import { DiceTray } from './DiceTray';
 
@@ -42,12 +43,48 @@ export function Game() {
   const [freeText, setFreeText] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // A run left unfinished last time. Null until the mount check has run, so
+  // the start screen never flashes a resume card that turns out to be stale.
+  const [saved, setSaved] = useState<SavedRun | null>(null);
 
-  const applyTurn = useCallback((response: TurnResponse) => {
-    setState(response.state);
-    setNarration(response.narration);
-    setResolutions(response.resolutions);
+  /**
+   * Write down where we are, after every turn.
+   *
+   * A one-shot that has ended has nothing to resume, so it is forgotten. A
+   * campaign is kept even when its session ends — the player is standing
+   * between books, which is a place to come back to.
+   */
+  const remember = useCallback(
+    (next: SessionState) => {
+      if (next.ended && !campaignId) {
+        clearRun();
+        setSaved(null);
+        return;
+      }
+      saveRun({
+        sessionId: next.id,
+        title: next.title,
+        ...(campaignId ? { campaignId } : {}),
+        ...(currentAdventure ? { adventureId: currentAdventure } : {}),
+      });
+    },
+    [campaignId, currentAdventure],
+  );
+
+  const forget = useCallback(() => {
+    clearRun();
+    setSaved(null);
   }, []);
+
+  const applyTurn = useCallback(
+    (response: TurnResponse) => {
+      setState(response.state);
+      setNarration(response.narration);
+      setResolutions(response.resolutions);
+      remember(response.state);
+    },
+    [remember],
+  );
 
   const run = useCallback(
     async (fn: () => Promise<TurnResponse>) => {
@@ -78,6 +115,7 @@ export function Game() {
       const { state: fresh } = await api.start(adventure, who ?? character ?? undefined);
       setCurrentAdventure(adventure);
       setState(fresh);
+      saveRun({ sessionId: fresh.id, title: fresh.title, adventureId: adventure });
       setNarration([]);
       setResolutions([]);
       setRecap(null);
@@ -103,6 +141,7 @@ export function Game() {
       setCampaignId(campaign.id);
       const { state: fresh } = await api.campaignSession(campaign.id);
       setState(fresh);
+      saveRun({ sessionId: fresh.id, title: fresh.title, campaignId: campaign.id, adventureId: adventure });
       setNarration([]);
       setResolutions([]);
       setRecap(null);
@@ -123,6 +162,7 @@ export function Game() {
       setCurrentAdventure(null);
       const opened = await api.campaignSession(campaign.id);
       setState(opened.state);
+      saveRun({ sessionId: opened.state.id, title: opened.state.title, campaignId: campaign.id });
       setProgress(opened.progress ?? null);
       setTransition(null);
       setNarration([]);
@@ -163,6 +203,7 @@ export function Game() {
     try {
       const opened = await api.campaignSession(campaignId);
       setState(opened.state);
+      saveRun({ sessionId: opened.state.id, title: opened.state.title, campaignId });
       setProgress(opened.progress ?? progress);
       setRecap(null);
       setTransition(null);
@@ -178,6 +219,68 @@ export function Game() {
   const [pending, setPending] = useState<null | { kind: 'one-shot' | 'campaign' | 'book'; id: string }>(
     null,
   );
+
+  /**
+   * Pick a run back up.
+   *
+   * The saved id is checked against the server before anything is shown. A
+   * session the database no longer has — a reset, a different machine, an id
+   * from an older schema — is forgotten rather than offered, because a resume
+   * card that fails when tapped is worse than no card.
+   */
+  const resume = useCallback(async (target: SavedRun) => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { state: fresh } = await api.session(target.sessionId);
+      if (target.campaignId) {
+        setCampaignId(target.campaignId);
+        // Progress rides along with the recap route; a campaign that cannot
+        // report it still plays, so this never blocks the resume.
+        const where = await api.campaignRecap(target.campaignId).catch(() => null);
+        if (where?.progress) setProgress(where.progress);
+      }
+      if (target.adventureId) setCurrentAdventure(target.adventureId);
+      setState(fresh);
+      setNarration([]);
+      setResolutions([]);
+      setSaved(null);
+    } catch {
+      setError('That session is gone — the server no longer has it. Starting fresh.');
+      forget();
+    } finally {
+      setBusy(false);
+    }
+  }, [forget]);
+
+  /**
+   * On mount, look for a run and confirm the server still has it.
+   *
+   * Verifying before offering costs one request and means the resume card is
+   * never a lie. An ended one-shot is dropped here too — it is a finished
+   * game, not an unfinished one.
+   */
+  useEffect(() => {
+    const target = loadRun();
+    if (!target) return;
+    let live = true;
+    api
+      .session(target.sessionId)
+      .then(({ state: found }) => {
+        if (!live) return;
+        if (found.ended && !target.campaignId) {
+          clearRun();
+          return;
+        }
+        setSaved(target);
+      })
+      .catch(() => {
+        if (live) clearRun();
+      });
+    return () => {
+      live = false;
+    };
+  }, []);
 
   /** Launch whatever the player picked, with whatever character they have. */
   const launch = useCallback(
@@ -225,6 +328,9 @@ export function Game() {
   if (!state) {
     return (
       <StartScreen
+        saved={saved}
+        onResume={() => saved && void resume(saved)}
+        onDiscard={forget}
         onStartCampaign={(id) => {
           setPending({ kind: 'campaign', id });
           void startCampaign(id);
@@ -477,6 +583,9 @@ function StartScreen({
   onGenerate,
   character,
   onCreateCharacter,
+  saved,
+  onResume,
+  onDiscard,
 }: {
   busy: boolean;
   error: string | null;
@@ -486,6 +595,9 @@ function StartScreen({
   onGenerate: (req: GenerateRequest) => void;
   character: CreationChoices | null;
   onCreateCharacter: (target: { kind: 'one-shot' | 'campaign' | 'book'; id: string }) => void;
+  saved: SavedRun | null;
+  onResume: () => void;
+  onDiscard: () => void;
 }) {
   const [premise, setPremise] = useState('');
   const [setting, setSetting] = useState('');
@@ -535,6 +647,35 @@ function StartScreen({
 
   return (
     <div className="mt-8 space-y-8">
+      {/* An unfinished run comes first. It is the reason the app was opened. */}
+      {saved && (
+        <div
+          className="rounded-lg border p-3"
+          style={{ borderColor: 'var(--ember)', background: 'var(--ink-raised)' }}
+        >
+          <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">
+            Where you left off
+          </h2>
+          <p className="mt-1 text-sm">
+            <span style={{ color: 'var(--ember)' }}>{saved.title}</span>
+            <span className="text-[var(--muted)]"> — {describeAge(saved.savedAt)}</span>
+          </p>
+          <div className="mt-3 flex items-center gap-3">
+            <button
+              onClick={onResume}
+              disabled={busy}
+              className="flex-1 rounded-md p-2 text-sm font-semibold disabled:opacity-40"
+              style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+            >
+              {busy ? 'Opening…' : 'Carry on'}
+            </button>
+            <button onClick={onDiscard} className="text-sm underline text-[var(--muted)]">
+              Start something else
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Campaigns first: many books, one party, levels that actually climb. */}
       {campaigns && campaigns.length > 0 && (
         <div>

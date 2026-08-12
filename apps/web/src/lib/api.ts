@@ -219,6 +219,11 @@ export const api = {
       transition?: BookTransitionView;
       progress?: CampaignProgressView;
     }>(`/campaign/${id}/end-session`),
+  /** An existing session, revived from the database if it is not in memory. */
+  session: (id: string) => get<{ state: SessionState }>(`/session/${id}`),
+  /** Where a campaign has got to. Used when resuming one mid-book. */
+  campaignRecap: (id: string) =>
+    get<{ recap: Recap; progress?: CampaignProgressView }>(`/campaign/${id}/recap`),
   start: (adventure?: string, character?: CreationChoices) =>
     post<{ state: SessionState }>('/session', { adventure, character }),
   generate: (req: GenerateRequest) =>

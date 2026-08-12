@@ -13,6 +13,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
  */
 
 const started = vi.fn();
+const fetchedSession = vi.fn();
+
+/** What GET /session/:id returns. Set per test. */
+let sessionOnServer: { id: string; title: string; ended: boolean } | null = null;
 
 vi.mock('../lib/api', () => ({
   api: {
@@ -65,15 +69,38 @@ vi.mock('../lib/api', () => ({
         { dice: [3, 3, 2, 1], score: 8 },
       ],
     }),
+    session: async (id: string) => {
+      fetchedSession(id);
+      if (!sessionOnServer) throw new Error('no such session');
+      return {
+        state: {
+          sessionId: sessionOnServer.id,
+          id: sessionOnServer.id,
+          title: sessionOnServer.title,
+          ended: sessionOnServer.ended,
+          beat: {
+            id: 'b9',
+            title: 'Where you left off',
+            prose: 'The bell is still ringing.',
+            options: [],
+            terminal: false,
+          },
+          party: [{ id: 'pc', name: 'Wren', hp: 9, hpMax: 12, ac: 18, conditions: [] }],
+          flags: {},
+        },
+      };
+    },
+    campaignRecap: async () => ({ recap: { title: 'A campaign', sessions: 1, clocks: [], promises: [] } }),
     start: async (adventure: string, character?: unknown) => {
       started(adventure, character);
       return {
         state: {
           sessionId: 's1',
+          id: 's1',
+          ended: false,
           beat: { id: 'b1', title: 'The Brewery', body: 'Hops.', options: [], terminal: false },
           party: [{ id: 'pc', name: 'Wren Ashbound', hp: 12, hpMax: 12, ac: 18, conditions: [] }],
           flags: {},
-          ended: false,
         },
       };
     },
@@ -83,7 +110,12 @@ vi.mock('../lib/api', () => ({
 // Imported after the mock so the component picks it up.
 const { Game } = await import('./Game');
 
-beforeEach(() => started.mockClear());
+beforeEach(() => {
+  started.mockClear();
+  fetchedSession.mockClear();
+  sessionOnServer = null;
+  window.localStorage.clear();
+});
 afterEach(cleanup);
 
 async function openCreator() {
@@ -153,5 +185,90 @@ describe('making a character', () => {
 
     await waitFor(() => expect(started).toHaveBeenCalled());
     expect((started.mock.calls[0]![1] as { rollSeed?: string }).rollSeed).toBe('a-seed');
+  });
+});
+
+/**
+ * Closing the tab used to lose the game. The state was in the database the
+ * whole time; nothing on the client remembered which row it was.
+ */
+describe('picking a run back up', () => {
+  const remember = (run: object) =>
+    window.localStorage.setItem(
+      'lantern.run.v1',
+      JSON.stringify({ savedAt: new Date().toISOString(), ...run }),
+    );
+
+  it('offers the run the server still has', async () => {
+    remember({ sessionId: 's-77', title: 'The Bell at Saltmire' });
+    sessionOnServer = { id: 's-77', title: 'The Bell at Saltmire', ended: false };
+
+    render(<Game />);
+    await screen.findByText('Where you left off');
+    expect(screen.getByText('The Bell at Saltmire')).toBeDefined();
+    expect(fetchedSession).toHaveBeenCalledWith('s-77');
+  });
+
+  it('carries on into the session it was in', async () => {
+    remember({ sessionId: 's-77', title: 'The Bell at Saltmire' });
+    sessionOnServer = { id: 's-77', title: 'The Bell at Saltmire', ended: false };
+    const user = userEvent.setup();
+
+    render(<Game />);
+    await user.click(await screen.findByText('Carry on'));
+
+    await screen.findByText('The bell is still ringing.');
+  });
+
+  it('says nothing about a session the server has lost', async () => {
+    remember({ sessionId: 's-gone', title: 'A run from another machine' });
+    sessionOnServer = null;
+
+    render(<Game />);
+    await screen.findByText('A Most Potent Brew');
+    expect(screen.queryByText('Where you left off')).toBeNull();
+    expect(window.localStorage.getItem('lantern.run.v1')).toBeNull();
+  });
+
+  it('does not offer to resume a one-shot that already ended', async () => {
+    remember({ sessionId: 's-done', title: 'A finished adventure' });
+    sessionOnServer = { id: 's-done', title: 'A finished adventure', ended: true };
+
+    render(<Game />);
+    await screen.findByText('A Most Potent Brew');
+    expect(screen.queryByText('Where you left off')).toBeNull();
+  });
+
+  it('offers a campaign back even when its last session ended', async () => {
+    remember({ sessionId: 's-book2', title: 'Book Two', campaignId: 'c-1' });
+    sessionOnServer = { id: 's-book2', title: 'Book Two', ended: true };
+
+    render(<Game />);
+    await screen.findByText('Where you left off');
+  });
+
+  it('forgets the run when the player starts something else', async () => {
+    remember({ sessionId: 's-77', title: 'The Bell at Saltmire' });
+    sessionOnServer = { id: 's-77', title: 'The Bell at Saltmire', ended: false };
+    const user = userEvent.setup();
+
+    render(<Game />);
+    await user.click(await screen.findByText('Start something else'));
+
+    expect(screen.queryByText('Where you left off')).toBeNull();
+    expect(window.localStorage.getItem('lantern.run.v1')).toBeNull();
+  });
+
+  it('remembers a run the moment it starts, before any turn is taken', async () => {
+    const user = await openCreator();
+    await user.type(screen.getByPlaceholderText('Who are you?'), 'Wren');
+    await user.click(screen.getByText('Play as this character'));
+
+    await waitFor(() => expect(started).toHaveBeenCalled());
+    await waitFor(() => {
+      const raw = window.localStorage.getItem('lantern.run.v1');
+      expect(raw).not.toBeNull();
+      expect(JSON.parse(raw!).sessionId).toBe('s1');
+    });
   });
 });
