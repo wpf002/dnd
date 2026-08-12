@@ -339,3 +339,59 @@ describe('an adventure that can be skipped entirely', () => {
     expect(result.warnings.some((w) => w.code === 'ending-too-close')).toBe(false);
   });
 });
+
+describe('beats that can strand a party', () => {
+  /**
+   * Every individual rule can pass and the adventure still be unfinishable:
+   * the beat is reachable, its targets exist, its flags are all written
+   * somewhere — and a party arriving without the right ones has no option to
+   * click and no way on. A shipped adventure's finale was exactly this.
+   */
+  function forkedGraph(guards: Array<object | undefined>) {
+    const graph = validGraph() as ReturnType<typeof validGraph> & {
+      beats: Array<{ id: string; options: Array<Record<string, unknown>> }>;
+    };
+    const hall = graph.beats.find((b) => b.id === 'hall')!;
+    hall.options = guards.map((guard, i) => ({
+      id: `fork-${i}`,
+      label: `Fork ${i}`,
+      target: i === 0 ? 'the-end' : 'retreat',
+      effects: [{ flag: 'took-right', value: true }],
+      ...(guard ? { visibleWhen: guard } : {}),
+    }));
+    return graph;
+  }
+
+  it('warns when every way out is conditional', () => {
+    const result = lintGraph(
+      forkedGraph([
+        { op: 'set', flag: 'gate-used' },
+        { op: 'set', flag: 'soaked' },
+        { op: 'set', flag: 'took-right' },
+      ]),
+    );
+    const warning = result.warnings.find((w) => w.code === 'beat-can-strand');
+    expect(warning?.at).toBe('hall');
+    expect(warning?.message).toMatch(/nothing to choose/);
+  });
+
+  it('stays quiet when one option is unconditional', () => {
+    const result = lintGraph(
+      forkedGraph([undefined, { op: 'set', flag: 'soaked' }, { op: 'set', flag: 'took-right' }]),
+    );
+    expect(result.warnings.some((w) => w.code === 'beat-can-strand')).toBe(false);
+  });
+
+  it('stays quiet when two guards are complementary', () => {
+    // `set X` beside `unset X` always leaves exactly one open. That is a
+    // legitimate fork, and flagging it would be noise.
+    const result = lintGraph(
+      forkedGraph([
+        { op: 'set', flag: 'gate-used' },
+        { op: 'unset', flag: 'gate-used' },
+        { op: 'set', flag: 'soaked' },
+      ]),
+    );
+    expect(result.warnings.some((w) => w.code === 'beat-can-strand')).toBe(false);
+  });
+});

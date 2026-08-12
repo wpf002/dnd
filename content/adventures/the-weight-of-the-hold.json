@@ -223,11 +223,6 @@
         {
           "id": "aftermath-clean",
           "label": "The crew relaxes, trusting your careful hand.",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "vault-opened-clean",
-            "value": true
-          },
           "target": "loyal-crew-path",
           "effects": []
         },
@@ -487,11 +482,6 @@
         {
           "id": "victory-clean",
           "label": "The cargo comes up clean, and so does the crew's trust in you.",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "vault-opened-clean",
-            "value": true
-          },
           "target": "ending-triumph",
           "effects": []
         },

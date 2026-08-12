@@ -528,19 +528,6 @@
         {
           "id": "choose-seal",
           "label": "Seal the wound with the old ritual, and let the city forget again",
-          "visibleWhen": {
-            "op": "or",
-            "clauses": [
-              {
-                "op": "always"
-              },
-              {
-                "op": "eq",
-                "flag": "vale-hostile",
-                "value": true
-              }
-            ]
-          },
           "target": "ending-seal",
           "effects": []
         },

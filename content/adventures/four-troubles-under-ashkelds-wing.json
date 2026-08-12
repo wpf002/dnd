@@ -358,11 +358,6 @@
         {
           "id": "second-delve",
           "label": "Down into the Cinderdelve after the Choir's sap",
-          "visibleWhen": {
-            "op": "neq",
-            "flag": "first-front",
-            "value": "delve"
-          },
           "target": "cinderdelve-descent",
           "effects": [
             {

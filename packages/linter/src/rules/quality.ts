@@ -1,4 +1,4 @@
-import type { BeatGraph } from '@lantern/schema';
+import type { BeatGraph, Guard } from '@lantern/schema';
 import type { Finding } from '../errors.js';
 
 /**
@@ -175,5 +175,59 @@ export function checkEdges(graph: BeatGraph): Finding[] {
       });
     }
   }
+  return findings;
+}
+
+/**
+ * Beats where every way out is conditional.
+ *
+ * Arrive without the right flags and there is nothing to click: no options,
+ * not terminal, no way on. The linter could not see it because every
+ * individual rule was satisfied — the beat is reachable, its targets exist,
+ * its flags are all written somewhere. It was a shipped adventure's finale,
+ * where all three endings were gated and a party could reach it qualifying
+ * for none.
+ *
+ * Complementary guards are not flagged: an option on `set X` beside one on
+ * `unset X` always leaves exactly one open, which is a legitimate and common
+ * way to write a fork.
+ */
+export function checkStranding(graph: BeatGraph): Finding[] {
+  const findings: Finding[] = [];
+
+  /** The flag a simple guard turns on, if it is that simple. */
+  const pivot = (guard: Guard): { flag: string; positive: boolean } | undefined => {
+    if (guard.op === 'set') return { flag: guard.flag, positive: true };
+    if (guard.op === 'unset') return { flag: guard.flag, positive: false };
+    if (guard.op === 'not') {
+      const inner = pivot(guard.clause);
+      return inner ? { flag: inner.flag, positive: !inner.positive } : undefined;
+    }
+    return undefined;
+  };
+
+  for (const beat of graph.beats) {
+    if (beat.terminal || beat.encounter !== undefined || beat.options.length === 0) continue;
+    const guards = beat.options.map((o) => o.visibleWhen);
+    if (guards.some((g) => !g || g.op === 'always')) continue;
+
+    // A complementary pair covers every case between them.
+    const pivots = guards.map((g) => pivot(g!)).filter(Boolean) as Array<{ flag: string; positive: boolean }>;
+    const covered = pivots.some((a) =>
+      pivots.some((b) => a.flag === b.flag && a.positive !== b.positive),
+    );
+    if (covered) continue;
+
+    findings.push({
+      severity: 'warning',
+      code: 'beat-can-strand',
+      message:
+        `every option on beat '${beat.id}' is conditional, so a party arriving without the right ` +
+        `flags has nothing to choose and no way on. Make one option unconditional — a default ` +
+        `outcome — or gate the beat itself so it cannot be entered unqualified`,
+      at: beat.id,
+    });
+  }
+
   return findings;
 }

@@ -240,10 +240,20 @@ export function visibleOptions(session: GameSession): BeatOption[] {
   const beat = beatById(session, session.currentBeat);
   return beat.options.filter((o) => {
     if (o.visibleWhen && !evaluateGuard(o.visibleWhen, session.flags)) return false;
+
     // `entryWhen` is the target's own condition: "must hold for this beat to
-    // be enterable". An option leading somewhere unenterable is not offered.
+    // be enterable". It is checked against the state the option WOULD leave
+    // behind, not the state before it.
+    //
+    // The distinction is the whole ballgame. Authors write "do the thing that
+    // opens the door, and go through it" — an option that sets a flag and
+    // targets the beat requiring it. Judging that option against the flags it
+    // has not set yet hides it permanently, which made a shipped adventure
+    // unfinishable: every route to its finale set `pylons-down` on the way in.
     const target = session.graph.beats.find((b) => b.id === o.target);
-    return !target || evaluateGuard(target.entryWhen, session.flags);
+    if (!target) return true;
+    const after = o.effects.length > 0 ? applyMutations(session.flags, o.effects) : session.flags;
+    return evaluateGuard(target.entryWhen, after);
   });
 }
 

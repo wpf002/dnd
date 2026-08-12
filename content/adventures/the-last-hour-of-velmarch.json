@@ -349,19 +349,6 @@
         {
           "id": "charge-the-guardian",
           "label": "Stand and face the guardian directly",
-          "visibleWhen": {
-            "op": "or",
-            "clauses": [
-              {
-                "op": "always"
-              },
-              {
-                "op": "eq",
-                "flag": "sided-with-curia",
-                "value": true
-              }
-            ]
-          },
           "target": "rift-guardian",
           "effects": []
         },

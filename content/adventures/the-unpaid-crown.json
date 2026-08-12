@@ -463,11 +463,6 @@
         {
           "id": "opt-resolve-alliance",
           "label": "Seal the peace with the land grant",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "resolution",
-            "value": "land"
-          },
           "target": "ending-alliance",
           "effects": []
         },

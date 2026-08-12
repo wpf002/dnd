@@ -384,11 +384,6 @@
         {
           "id": "opt-exploit-weakness",
           "label": "Exploit the weakness you learned from the cult",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "learned-weakness",
-            "value": true
-          },
           "target": "sovereign-climax",
           "effects": []
         },

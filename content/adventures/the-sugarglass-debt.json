@@ -500,10 +500,6 @@
         {
           "id": "end-toll-paid",
           "label": "Accept the burden of the old debt",
-          "visibleWhen": {
-            "op": "set",
-            "flag": "chose-payment"
-          },
           "target": "ending-toll-paid",
           "effects": []
         },

@@ -638,31 +638,6 @@
         {
           "id": "opt-end-sacrifice",
           "label": "Sacrifice your escape to seal the waste forever",
-          "visibleWhen": {
-            "op": "or",
-            "clauses": [
-              {
-                "op": "gte",
-                "flag": "door-seal",
-                "value": 3
-              },
-              {
-                "op": "eq",
-                "flag": "suit-chosen",
-                "value": "cups"
-              },
-              {
-                "op": "eq",
-                "flag": "cheated-coins",
-                "value": true
-              },
-              {
-                "op": "eq",
-                "flag": "jester-trust",
-                "value": "betrayed"
-              }
-            ]
-          },
           "target": "ending-sacrificed-in-waste",
           "effects": []
         }

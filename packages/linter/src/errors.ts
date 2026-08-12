@@ -36,6 +36,7 @@ export type FindingCode =
   | 'all-encounters-defeat-all'
   | 'ending-too-close'
   | 'edge-always'
+  | 'beat-can-strand'
   // Campaign scale (Phase 6)
   | 'book-duplicate-id'
   | 'book-adventure-missing'

@@ -286,11 +286,6 @@
         {
           "id": "bargain-gold-for-secret",
           "label": "Trade a future share of gold for the safe route's secret",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "fey-bargain",
-            "value": true
-          },
           "target": "resonant-vein-puzzle",
           "effects": [
             {

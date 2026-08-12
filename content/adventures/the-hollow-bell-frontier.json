@@ -502,11 +502,6 @@
         {
           "id": "seal-with-chains",
           "label": "Seal the bound god in silver chains beneath the chapel",
-          "visibleWhen": {
-            "op": "eq",
-            "flag": "god-bound",
-            "value": true
-          },
           "target": "ending-uneasy-peace",
           "effects": []
         },

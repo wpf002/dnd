@@ -59,7 +59,10 @@ function exitsOf(graph, beat, flags) {
   }
   for (const encounter of graph.encounters ?? []) {
     if (beat.encounter !== encounter.id) continue;
-    for (const target of [encounter.onVictory, encounter.onDefeat, encounter.onFlee]) {
+    // Victory and flight only. Routing through onDefeat plans a loss, and a
+    // driver that does keeps walking into a fight it then wins, over and over,
+    // because the ending it was aiming for lay on the far side of losing.
+    for (const target of [encounter.onVictory, encounter.onFlee]) {
       if (target && enterable(target)) out.add(target);
     }
   }
