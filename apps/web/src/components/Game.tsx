@@ -536,10 +536,30 @@ export function Game() {
 
       {/* Ending */}
       {state.ended && (
-        <div className="rounded-lg border border-[var(--ember)] p-4 text-center">
-          <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--ember)' }}>
-            {beat.title}
+        <div
+          className="rounded-lg border p-4 text-center"
+          style={{ borderColor: party.every((p) => p.dead) ? 'var(--blood)' : 'var(--ember)' }}
+        >
+          {/*
+            How it ended, not just where.
+
+            A session that ends because everyone died ends on the beat of the
+            fight that killed them, not on a terminal one — so this printed the
+            name of the room, and a total party kill looked exactly like
+            finishing the adventure.
+          */}
+          <p
+            className="text-xs uppercase tracking-widest"
+            style={{ color: party.every((p) => p.dead) ? 'var(--blood)' : 'var(--ember)' }}
+          >
+            {party.every((p) => p.dead) ? 'The party does not rise again' : beat.title}
           </p>
+          {party.some((p) => p.dead) && !party.every((p) => p.dead) && (
+            <p className="mt-1 text-xs text-[var(--muted)]">
+              {party.filter((p) => p.dead).map((p) => p.name.split(' ')[0]).join(', ')} did not
+              make it out.
+            </p>
+          )}
           {campaignId ? (
             <button onClick={endSession} disabled={busy} className="mt-4 text-sm underline text-[var(--muted)]">
               Close the session — write it to the ledger

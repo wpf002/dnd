@@ -56,6 +56,8 @@ const sessionAfterFight = () => ({
 
 /** What GET /session/:id returns. Set per test. */
 let sessionOnServer: { id: string; title: string; ended: boolean } | null = null;
+/** Overrides the party for the end-of-session tests. */
+let endedParty: Array<{ dead: boolean; name: string }> | null = null;
 
 vi.mock('../lib/api', () => ({
   api: {
@@ -113,6 +115,22 @@ vi.mock('../lib/api', () => ({
       if (!sessionOnServer) throw new Error('no such session');
       // The cleared-room fixture, for the between-fights tests.
       if (sessionOnServer.id === 's-after') return { state: sessionAfterFight() };
+      if (sessionOnServer.id === 's-end') {
+        const ended = sessionAfterFight();
+        ended.id = 's-end';
+        ended.ended = true;
+        ended.beat.title = 'What the Seventh Wave Kept';
+        ended.party = (endedParty ?? []).map((p, i) => ({
+          id: `pc-${i}`,
+          name: p.name,
+          hp: p.dead ? 0 : 5,
+          hpMax: 10,
+          ac: 12,
+          dead: p.dead,
+          conditions: [],
+        }));
+        return { state: ended };
+      }
       if (sessionOnServer.id === 's-whole') {
         const whole = sessionAfterFight();
         whole.party = whole.party.map((p) => ({ ...p, hp: p.hpMax }));
@@ -171,6 +189,7 @@ beforeEach(() => {
   rested.mockClear();
   cast.mockClear();
   sessionOnServer = null;
+  endedParty = null;
   window.localStorage.clear();
 });
 afterEach(cleanup);
@@ -396,5 +415,55 @@ describe('between fights', () => {
 
     await screen.findByText('The bell is still ringing.');
     expect(screen.queryByText(/Long rest/)).toBeNull();
+  });
+});
+
+/**
+ * How a session ended, not just where it stopped.
+ *
+ * A wipe ends on the beat of the fight that killed the party, not on a
+ * terminal one, so the ending panel printed the name of the room — and a
+ * total party kill looked exactly like finishing the adventure.
+ */
+describe('the end of a session', () => {
+  const enterEnded = async (party: Array<{ dead: boolean; name: string }>) => {
+    sessionOnServer = { id: 's-end', title: 'An ending', ended: true };
+    endedParty = party;
+    window.localStorage.setItem(
+      'lantern.run.v1',
+      JSON.stringify({ sessionId: 's-end', title: 'An ending', campaignId: 'c-1', savedAt: new Date().toISOString() }),
+    );
+    const user = userEvent.setup();
+    render(<Game />);
+    await user.click(await screen.findByText('Carry on'));
+    return user;
+  };
+
+  it('says so plainly when nobody survived', async () => {
+    await enterEnded([
+      { name: 'Branka Ironvow', dead: true },
+      { name: 'Pip Fenwick', dead: true },
+    ]);
+    expect(await screen.findByText(/does not rise again/i)).toBeDefined();
+  });
+
+  it('names the losses when some of the party got out', async () => {
+    await enterEnded([
+      { name: 'Branka Ironvow', dead: false },
+      { name: 'Pip Fenwick', dead: true },
+    ]);
+    expect(await screen.findByText(/Pip did not make it out/)).toBeDefined();
+  });
+
+  it('shows the ending’s own title when everyone walked out', async () => {
+    await enterEnded([
+      { name: 'Branka Ironvow', dead: false },
+      { name: 'Pip Fenwick', dead: false },
+    ]);
+    // Twice: the art caption, and the ending panel. What matters is that the
+    // panel shows the ending's name rather than a death notice.
+    expect((await screen.findAllByText('What the Seventh Wave Kept')).length).toBeGreaterThan(1);
+    expect(screen.queryByText(/does not rise again/i)).toBeNull();
+    expect(screen.queryByText(/did not make it out/i)).toBeNull();
   });
 });
