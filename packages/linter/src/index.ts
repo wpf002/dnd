@@ -4,7 +4,13 @@ import { toResult } from './errors.js';
 import { checkReachability } from './rules/reachability.js';
 import { checkFlags } from './rules/flags.js';
 import { checkSolvability } from './rules/solvability.js';
-import { checkEdges, checkEndingDistance, checkQuality, checkStranding } from './rules/quality.js';
+import {
+  checkEdges,
+  checkEndingDistance,
+  checkNoGuaranteedEnding,
+  checkQuality,
+  checkStranding,
+} from './rules/quality.js';
 import { checkCampaign } from './rules/campaign.js';
 
 export * from './errors.js';
@@ -48,6 +54,7 @@ export function lintGraph(input: unknown): LintResult {
     ...checkEndingDistance(graph),
     ...checkEdges(graph),
     ...checkStranding(graph),
+    ...checkNoGuaranteedEnding(graph),
   ];
   return toResult(findings);
 }

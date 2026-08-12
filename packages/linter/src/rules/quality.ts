@@ -192,19 +192,43 @@ export function checkEdges(graph: BeatGraph): Finding[] {
  * `unset X` always leaves exactly one open, which is a legitimate and common
  * way to write a fork.
  */
+/** The flag a simple guard turns on, if it is that simple. */
+function pivot(guard: Guard): { flag: string; positive: boolean } | undefined {
+  if (guard.op === 'set') return { flag: guard.flag, positive: true };
+  if (guard.op === 'unset') return { flag: guard.flag, positive: false };
+  if (guard.op === 'not') {
+    const inner = pivot(guard.clause);
+    return inner ? { flag: inner.flag, positive: !inner.positive } : undefined;
+  }
+  return undefined;
+}
+
+/**
+ * Options that between them are always open: `set X` beside `unset X` leaves
+ * exactly one available whatever the state, so both destinations count as
+ * reachable without a flag.
+ */
+function complementaryTargets(
+  options: readonly { target: string; visibleWhen?: Guard | undefined }[],
+): string[] {
+  const out: string[] = [];
+  for (const a of options) {
+    if (!a.visibleWhen) continue;
+    const pa = pivot(a.visibleWhen);
+    if (!pa) continue;
+    for (const b of options) {
+      if (b === a || !b.visibleWhen) continue;
+      const pb = pivot(b.visibleWhen);
+      if (pb && pb.flag === pa.flag && pb.positive !== pa.positive) {
+        out.push(a.target, b.target);
+      }
+    }
+  }
+  return out;
+}
+
 export function checkStranding(graph: BeatGraph): Finding[] {
   const findings: Finding[] = [];
-
-  /** The flag a simple guard turns on, if it is that simple. */
-  const pivot = (guard: Guard): { flag: string; positive: boolean } | undefined => {
-    if (guard.op === 'set') return { flag: guard.flag, positive: true };
-    if (guard.op === 'unset') return { flag: guard.flag, positive: false };
-    if (guard.op === 'not') {
-      const inner = pivot(guard.clause);
-      return inner ? { flag: inner.flag, positive: !inner.positive } : undefined;
-    }
-    return undefined;
-  };
 
   for (const beat of graph.beats) {
     if (beat.terminal || beat.encounter !== undefined || beat.options.length === 0) continue;
@@ -230,4 +254,78 @@ export function checkStranding(graph: BeatGraph): Finding[] {
   }
 
   return findings;
+}
+
+/**
+ * Beats with no guaranteed way to an ending.
+ *
+ * `checkStranding` catches a beat with no unconditional option at all. This
+ * catches the subtler version: the beat has one, but following only the
+ * transitions that need no flag leads in a circle and never to a terminal. A
+ * party arriving without the right flags is not stuck standing still — they
+ * are walking a loop, which looks like play and is not.
+ *
+ * One shipped adventure sent a party from a choice to a fight whose victory
+ * returned them to the same choice, with the real exits gated behind flags
+ * they had no way left to earn.
+ *
+ * Guarded transitions are ignored deliberately: they might be open, and might
+ * not. What matters is whether a way out exists when none of them are.
+ */
+export function checkNoGuaranteedEnding(graph: BeatGraph): Finding[] {
+  const unguarded = (guard?: Guard) => !guard || guard.op === 'always';
+
+  // Beats from which a terminal is reachable using only unguarded moves.
+  const guaranteed = new Set(graph.beats.filter((b) => b.terminal).map((b) => b.id));
+  const byId = new Map(graph.beats.map((b) => [b.id, b]));
+
+  for (let pass = 0; pass < graph.beats.length + 1; pass++) {
+    let grew = false;
+    for (const beat of graph.beats) {
+      if (guaranteed.has(beat.id)) continue;
+
+      const outs: string[] = [];
+      for (const option of beat.options) {
+        if (!unguarded(option.visibleWhen)) continue;
+        const target = byId.get(option.target);
+        // An option that sets a flag can open its own target.
+        if (target && !unguarded(target.entryWhen) && option.effects.length === 0) continue;
+        outs.push(option.target);
+      }
+      // A complementary pair always leaves one of its two ways open.
+      outs.push(...complementaryTargets(beat.options));
+      for (const edge of graph.edges) {
+        if (edge.from === beat.id && !unguarded(edge.when)) outs.push(edge.to);
+      }
+      for (const encounter of graph.encounters) {
+        if (beat.encounter !== encounter.id) continue;
+        // Victory, flight, and defeat all genuinely happen.
+        outs.push(encounter.onVictory, encounter.onDefeat);
+        if (encounter.onFlee) outs.push(encounter.onFlee);
+      }
+
+      if (outs.some((id) => guaranteed.has(id))) {
+        guaranteed.add(beat.id);
+        grew = true;
+      }
+    }
+    if (!grew) break;
+  }
+
+  const trapped = graph.beats.filter((b) => !guaranteed.has(b.id));
+  if (trapped.length === 0) return [];
+
+  return [
+    {
+      severity: 'warning',
+      code: 'beat-can-strand',
+      message:
+        `no guaranteed route from ${trapped.length === 1 ? 'beat' : 'beats'} ` +
+        `${trapped.slice(0, 4).map((b) => `'${b.id}'`).join(', ')}${trapped.length > 4 ? ', …' : ''} ` +
+        `to any ending: following only the moves that need no flag leads in a circle. A party ` +
+        `arriving without the right flags walks it forever. Give one of those beats an ` +
+        `unconditional way on`,
+      at: trapped[0]!.id,
+    },
+  ];
 }

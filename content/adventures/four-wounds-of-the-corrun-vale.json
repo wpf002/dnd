@@ -81,11 +81,6 @@
         {
           "id": "ride-to-weir",
           "label": "Ride upriver to the broken weir and the Drowning Choir",
-          "visibleWhen": {
-            "op": "neq",
-            "flag": "weir-mended",
-            "value": true
-          },
           "target": "broken-weir",
           "effects": []
         },
@@ -197,12 +192,7 @@
             "value": true
           },
           "target": "nightfall-tally",
-          "effects": [
-            {
-              "flag": "weir-mended",
-              "value": true
-            }
-          ],
+          "effects": [],
           "requiresCheck": {
             "ability": "str",
             "skill": "athletics",
@@ -240,12 +230,7 @@
         "op": "always"
       },
       "onEntry": [],
-      "onExit": [
-        {
-          "flag": "weir-mended",
-          "value": true
-        }
-      ],
+      "onExit": [],
       "encounter": "weir-siege",
       "terminal": false
     },

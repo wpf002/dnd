@@ -89,6 +89,18 @@ export interface GameSession {
    * that cannot win one encounter loses it forever.
    */
   defeats: Record<string, number>;
+  /**
+   * Encounters the party has already won.
+   *
+   * Recorded, not acted on. Skipping a re-entered fight sounds right — the
+   * monsters are dead — but it silently teleports the party to the victory
+   * destination, and where that leads back to the room they came from it
+   * replaces a loop they could flee or lose their way out of with one they
+   * cannot. An ingested module expresses "this fight is over" as a guarded
+   * edge to an aftermath beat, which is the honest version: visible in the
+   * graph, and still leaving a way on.
+   */
+  cleared: Record<string, boolean>;
 }
 
 /**
@@ -135,6 +147,7 @@ export function createSession(
     ended: false,
     seedCounter: 0,
     defeats: {},
+    cleared: {},
   };
   // Entering the entry beat may start a combat or apply entry mutations.
   return enterBeat(session, graph.entry).session;
@@ -446,6 +459,8 @@ function finishCombat(session: GameSession, outcome: 'victory' | 'defeat' | 'fle
   // Defeat never dead-ends: the graph authors where failure leads (Ch8 §VII).
   const destination =
     outcome === 'victory' ? enc.onVictory : outcome === 'defeat' ? enc.onDefeat : (enc.onFlee ?? enc.onDefeat);
+  if (outcome === 'victory') session.cleared[enc.id] = true;
+
   if (outcome === 'defeat') {
     const lost = (session.defeats[enc.id] ?? 0) + 1;
     session.defeats[enc.id] = lost;

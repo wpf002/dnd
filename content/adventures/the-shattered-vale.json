@@ -406,10 +406,6 @@
         {
           "id": "call-the-debt",
           "label": "Call in Black Anvil against the other two",
-          "visibleWhen": {
-            "op": "set",
-            "flag": "syndicate-debt"
-          },
           "target": "heart-fragment",
           "effects": [
             {

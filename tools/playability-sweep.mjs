@@ -108,22 +108,26 @@ function play(session) {
   const graph = session.graph;
   const seen = new Set();
   const aimed = new Map();
+  const visits = new Map();
+  const won = new Set();
   let rests = 0;
 
   for (let i = 0; i < STEP_BUDGET && !session.ended; i++) {
     seen.add(session.currentBeat);
+    for (const [id, cleared] of Object.entries(session.cleared ?? {})) if (cleared) won.add(id);
 
     if (session.combat) {
       const up = session.combat.order[session.combat.turnIndex];
       const actor = session.party.find((p) => p.id === up && p.hp > 0 && !p.dead);
       const target = session.combat.monsters.find((m) => m.hp > 0);
-      if (actor) {
-        if (!healIfDying(session, actor)) {
-          if (target) combatAttack(session, actor.id, target.combatantId);
-          else combatFlee(session);
-        }
-      } else {
+      const encounterId = session.combat.encounterId;
+      if (!actor || won.has(encounterId)) {
+        // Already beaten once and sent back into it: winning again changes
+        // nothing, so get out and try another way.
         combatFlee(session);
+      } else if (!healIfDying(session, actor)) {
+        if (target) combatAttack(session, actor.id, target.combatantId);
+        else combatFlee(session);
       }
       continue;
     }
@@ -137,7 +141,14 @@ function play(session) {
     const options = visibleOptions(session);
     if (options.length === 0) break;
 
-    const route = routeToEnding(graph, session.currentBeat, session.flags);
+    visits.set(session.currentBeat, (visits.get(session.currentBeat) ?? 0) + 1);
+
+    // Standing somewhere for the fourth time means the plan is not working.
+    // One adventure loops a party between a choice and a fight whose victory
+    // returns them to the same choice, and the only way on is a flag they do
+    // not have. A player notices and tries something else.
+    const looping = (visits.get(session.currentBeat) ?? 0) > 3;
+    const route = looping ? undefined : routeToEnding(graph, session.currentBeat, session.flags);
     const next =
       (route && options.find((o) => o.target === route[1])) ??
       [...options].sort((a, b) => (aimed.get(a.target) ?? 0) - (aimed.get(b.target) ?? 0))[0];
