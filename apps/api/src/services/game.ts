@@ -23,6 +23,8 @@ import {
   resolveCheck,
   resolveGroupCheck,
   resolveDeathSave,
+  resolveSave,
+  rollDamage,
   rollInitiative,
   type Flags,
 } from '@lantern/engine';
@@ -267,12 +269,89 @@ function enterBeat(session: GameSession, beatId: string, redirects = 0): TurnOut
     return { session, resolutions: [], narration: [] };
   }
 
+  // The area's own trap, before anything else happens in it. A module prints
+  // these in the room description — the blade under the mosaic, the pit under
+  // the rug — and until this ran they were scenery.
+  const hazard = triggerHazard(session, beat);
+
   if (beat.encounter) {
-    return startCombat(session, beat.encounter);
+    const combat = startCombat(session, beat.encounter);
+    return {
+      ...combat,
+      resolutions: [...hazard.resolutions, ...combat.resolutions],
+      narration: [...hazard.narration, ...combat.narration],
+    };
   }
 
   session.combat = null;
-  return { session, resolutions: [], narration: [] };
+  return { session, resolutions: hazard.resolutions, narration: hazard.narration };
+}
+
+/**
+ * Resolve a beat's stated trap against everyone still standing.
+ *
+ * Skipped entirely when the party has worked out how to pass it — that guard
+ * is what makes a riddle-trap a puzzle rather than a toll. The mosaic
+ * corridor's safe panels are the ones its verses name, and a party that reads
+ * the verses walks across untouched, which is what the module intends.
+ *
+ * Every roll is a real saving throw through the same engine everything else
+ * uses, and the damage is the dice the module printed.
+ */
+function triggerHazard(session: GameSession, beat: Beat): { resolutions: Resolution[]; narration: string[] } {
+  const hazard = beat.hazard;
+  if (!hazard) return { resolutions: [], narration: [] };
+  if (hazard.avoidedWhen && evaluateGuard(hazard.avoidedWhen, session.flags)) {
+    return { resolutions: [], narration: [] };
+  }
+
+  const resolutions: Resolution[] = [];
+  const narration: string[] = [];
+
+  for (const [index, character] of session.party.entries()) {
+    if (character.dead || character.hp === 0) continue;
+
+    const save = resolveSave({
+      seed: `${session.id}:hazard:${beat.id}:${character.id}`,
+      character,
+      dc: hazard.dc,
+      ability: hazard.ability,
+    });
+    const failed = save.outcome === 'failure' || save.outcome === 'critical-failure';
+
+    // Half on a success is what printed traps almost always say, and the
+    // module's own sentence is the authority when it says otherwise.
+    let damage = 0;
+    if (failed || hazard.halfOnSave) {
+      const rolled = rollDamage(
+        `${session.id}:hazard:${beat.id}:${character.id}:damage`,
+        hazard.damage,
+      );
+      const total =
+        rolled.record.dice.reduce((sum, die) => sum + die.face, 0) + rolled.modifier;
+      damage = failed ? total : Math.floor(total / 2);
+    }
+
+    // applyDamage returns a new character rather than mutating one, so the
+    // party has to be reassigned. Calling it for its side effect rolled four
+    // saving throws and took nobody a single hit point.
+    if (damage > 0) session.party[index] = applyDamage(character, damage);
+    resolutions.push(save);
+    narration.push(
+      damage > 0
+        ? `${character.name} takes ${damage} from the ${beat.title.toLowerCase()}.`
+        : `${character.name} is untouched.`,
+    );
+  }
+
+  session.turns.push(
+    ...resolutions.map((resolution, i) => ({
+      index: session.turns.length + i,
+      resolution,
+    })),
+  );
+
+  return { resolutions, narration };
 }
 
 /** Options currently visible given the flags. */

@@ -46,6 +46,15 @@ export function checkFlags(graph: BeatGraph): Finding[] {
     collectGuardFlags(beat.entryWhen, guardFlags);
     for (const f of guardFlags) addRead(f, `beat '${beat.id}' entryWhen`);
 
+    // A hazard's `avoidedWhen` reads a flag like any other guard: it is how a
+    // party that worked out the riddle crosses the trapped floor untouched.
+    // Without this the flag the puzzle sets looks like it is never read.
+    if (beat.hazard?.avoidedWhen) {
+      const hazardFlags = new Set<string>();
+      collectGuardFlags(beat.hazard.avoidedWhen, hazardFlags);
+      for (const f of hazardFlags) addRead(f, `beat '${beat.id}' hazard avoidedWhen`);
+    }
+
     for (const m of beat.onEntry) addWrite(m.flag, `beat '${beat.id}' onEntry`);
     for (const m of beat.onExit) addWrite(m.flag, `beat '${beat.id}' onExit`);
 

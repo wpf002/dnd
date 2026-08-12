@@ -932,16 +932,32 @@ harsh for room one and is also D&D. The ingested module is recognizably itself
 and noticeably plainer, which is what faithful mapping of a plain module
 should look like.
 
-**Known fidelity limits of ingestion**, observed rather than inferred:
+**Both fidelity limits are closed.** They turned out to be one thing: the
+module states mechanics in prose and the mapper carried them through as text
+and none of them as mechanics. `apps/api/src/services/stated-mechanics.ts`
+reads them deterministically, with no model involved, because they are
+quotations rather than judgements.
 
-- A module's riddle survives as *text* and not as a puzzle. The mosaic
-  corridor prints its verse and offers three exits; nothing engages with it,
-  and free text is refused because the intent parser has nothing to bind to.
-- A module's own stated DCs are not extracted. The lab says "a character who
-  searches the room and makes a DC 13 Wisdom (Perception) check notices one
-  book" and the generic search padder rolls its own check instead.
+- **Traps go off.** The mosaic corridor prints "any creature standing on any
+  other area must make a DC 12 Dexterity saving throw, taking 5 (1d10) damage
+  on a failure or half as much on a success". `Beat.hazard` now holds it and
+  the engine rolls it on entry, through the same saving throw everything else
+  uses. A trap that cannot go off is scenery.
+- **A riddle is a puzzle, not a toll.** When the area also states that the
+  safe route is what the verses name, the trapped room gets a near-side beat:
+  read it through, walk on and take your chances, or turn back. Reading sets
+  a flag the hazard's `avoidedWhen` reads, and the party crosses untouched.
+  No check on reading it — the module prints the answer on the wall in Common,
+  and inventing a DC for reading something the book simply tells you is the
+  mapper overruling the module. What the party spends is time.
+- **Printed DCs are used.** The lab's "a character who searches the room and
+  makes a DC 13 Wisdom (Perception) check notices one book" is now what
+  searching the lab rolls, instead of the generic Investigation 13.
 
-Both are mapper depth rather than bugs, and both are honest to write down.
+Anything not matched confidently is left alone. A saving throw with no stated
+damage, or a DC in a sentence that is not about looking, is skipped rather
+than guessed at — a half-read trap is an invention, and not inventing is the
+mapper's whole contract.
 
 **The verdict is not mine to give.** Kill condition 1 asks whether solo play
 is fun, and that is a question about the person playing. What can be reported

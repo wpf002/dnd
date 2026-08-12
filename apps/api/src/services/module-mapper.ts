@@ -6,6 +6,7 @@ import {
   type IngestedRoom,
 } from '@lantern/schema';
 import { MONSTERS, type MonsterInput } from '@lantern/srd';
+import { statedHazard, statedSearchCheck, statesAPuzzle } from './stated-mechanics.js';
 
 /**
  * IngestedModule → BeatGraph. Deterministic, no model involved.
@@ -167,6 +168,10 @@ export interface MappingReport {
   unreachableRooms: string[];
   /** Areas the module gates behind a check, given an approach beat. */
   checkedApproaches: Array<{ room: string; dc: number }>;
+  /** Traps read out of the area's own prose and made real. */
+  statedHazards: Array<{ room: string; dc: number; damage: string; puzzle: boolean }>;
+  /** Search checks taken from the module's own printed DC rather than invented. */
+  statedSearches: Array<{ room: string; dc: number; skill?: string }>;
   /**
    * Set when every ending the module prints is conditional and a withdrawal
    * ending was added so the party can always leave.
@@ -232,6 +237,8 @@ export function mapModuleToGraph(moduleInput: unknown): {
     unreachableRooms: [],
     inferredReturns: [],
     checkedApproaches: [],
+    statedHazards: [],
+    statedSearches: [],
     scaledCounts: [],
   };
 
@@ -374,11 +381,27 @@ export function mapModuleToGraph(moduleInput: unknown): {
    * would already have written an option pointing straight at the fight, and
    * rewiring afterwards leaves it there.
    */
+  /** Areas whose trap the module says can be reasoned past. */
+  const puzzleRooms = new Set(
+    rooms
+      .filter((r) => !r.isEnding && statedHazard(r.description) && statesAPuzzle(r.description))
+      .map((r) => r.id),
+  );
+
   const approachOf = new Map<string, string>();
   for (const room of rooms) {
-    if (!room.check || !room.encounter || room.isEnding) continue;
-    approachOf.set(room.id, `${room.id}-approach`);
-    report.checkedApproaches.push({ room: room.id, dc: room.check.dc });
+    if (room.isEnding) continue;
+    if (room.check && room.encounter) {
+      approachOf.set(room.id, `${room.id}-approach`);
+      report.checkedApproaches.push({ room: room.id, dc: room.check.dc });
+      continue;
+    }
+    // A riddle-trap gets one too, for the same reason: the decision has to be
+    // available *before* the party is standing on the thing. The verses on the
+    // mosaic corridor's wall name the safe panels, and a party that stops to
+    // read them should cross untouched — which is impossible if the blade has
+    // already gone off by the time they can choose to look.
+    if (puzzleRooms.has(room.id)) approachOf.set(room.id, `${room.id}-approach`);
   }
   if (approachOf.size > 0) {
     for (const [id, list] of forward) {
@@ -400,7 +423,20 @@ export function mapModuleToGraph(moduleInput: unknown): {
     }
   }
 
-  const titleOf = (id: string) => byId.get(id)?.name ?? id;
+  /**
+   * What to call a destination in an option label.
+   *
+   * Approach beats are not rooms, so they are not in `byId`, and the fallback
+   * printed their raw id: "Toward mosaic-corridor-approach". A player should
+   * never be shown a beat id. An approach is named for the area it approaches.
+   */
+  const titleOf = (id: string): string => {
+    const room = byId.get(id);
+    if (room) return room.name;
+    const approached = [...approachOf.entries()].find(([, approachId]) => approachId === id)?.[0];
+    if (approached) return byId.get(approached)?.name ?? approached;
+    return id;
+  };
 
   // Reachability is the linter's call, but reporting it here tells the repair
   // pass which room to reconnect rather than leaving it to read a lint error.
@@ -433,6 +469,59 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
   /** Rooms some other room lists as a prerequisite. Only these need a marker. */
   const requiredRooms = new Set(rooms.flatMap((r) => r.requires.filter((id) => byId.has(id))));
+
+  /**
+   * What searching this area rolls: the module's printed check if it states
+   * one, and a plain Investigation 13 if it does not.
+   */
+  const searchCheckFor = (room: IngestedRoom, fallback: string) => {
+    const stated = statedSearchCheck(room.description);
+    if (stated) {
+      report.statedSearches.push({
+        room: room.id,
+        dc: stated.dc,
+        ...(stated.skill ? { skill: stated.skill } : {}),
+      });
+      return {
+        ability: stated.ability,
+        ...(stated.skill ? { skill: stated.skill } : {}),
+        dc: stated.dc,
+        onFailure: fallback,
+      };
+    }
+    return { ability: 'int' as const, skill: 'investigation' as const, dc: 13, onFailure: fallback };
+  };
+
+  /**
+   * The trap this area prints, if it prints one.
+   *
+   * When the room also states a puzzle whose answer is in the room — verses on
+   * the wall and panels that match them — the hazard is avoidable by working
+   * it out, and the beat gets an option to do so. That is the difference
+   * between a riddle that is scenery and a riddle that is the point.
+   */
+  const hazardFor = (room: IngestedRoom) => {
+    const stated = statedHazard(room.description);
+    if (!stated) return undefined;
+    const puzzle = statesAPuzzle(room.description);
+    report.statedHazards.push({
+      room: room.id,
+      dc: stated.dc,
+      damage: stated.damage,
+      puzzle,
+    });
+    return {
+      ability: stated.ability,
+      dc: stated.dc,
+      damage: stated.damage,
+      halfOnSave: stated.halfOnSave,
+      source: stated.source,
+      ...(puzzle ? { avoidedWhen: { op: 'set' as const, flag: solvedFlag(room.id) } } : {}),
+    };
+  };
+
+  const solvedFlag = (roomId: string) => `worked-out-${roomId}`;
+
 
   /** `entryWhen` for a room that states prerequisites. */
   const entryGuardFor = (room: IngestedRoom): object | undefined => {
@@ -488,18 +577,21 @@ export function mapModuleToGraph(moduleInput: unknown): {
         // Deliberately not gated on success: a failed search is a party that
         // looked and found nothing, which is a real outcome and a different
         // sentence. The flag records that they looked either way.
-        // Investigation, not perception, and a DC above the hurried glance
-        // below it: "press on quickly" is already a Wisdom (Perception) 12,
-        // and giving search the same check made the two options identical in
-        // everything but their labels — which is the false choice this padder
-        // exists to avoid. Searching a room deliberately is what Intelligence
-        // (Investigation) is for, and modules that print their own search DC
-        // print 13 about as often as not.
+        // The module's own printed check when it states one — "a character
+        // who searches the room and makes a DC 13 Wisdom (Perception) check
+        // notices one book that seems strange" — because rolling a DC the
+        // book never printed is the app overruling the book it is running.
+        //
+        // Otherwise Intelligence (Investigation) 13: deliberately not the
+        // Wisdom (Perception) 12 that "press on quickly" already rolls, since
+        // the same check on both would make the two options identical in
+        // everything but their labels, which is the false choice this padder
+        // exists to avoid.
         //
         // Failure leads the same way success does. Searching is not a gate —
         // the party goes on either way, and what changes is whether they go on
         // having found anything.
-        requiresCheck: { ability: 'int', skill: 'investigation', dc: 13, onFailure: fallback },
+        requiresCheck: searchCheckFor(room, fallback),
       } as BeatOption,
       ...(back && !targets.includes(back)
         ? [
@@ -567,6 +659,8 @@ export function mapModuleToGraph(moduleInput: unknown): {
       onEntry?: Array<{ flag: string; value: boolean }> | undefined;
       /** Guard on the FIRST emitted beat only. */
       entryWhen?: object | undefined;
+      /** The area's stated trap, on the FIRST emitted beat only. */
+      hazard?: object | undefined;
     },
   ): string => {
     const chunks: string[][] = [];
@@ -633,6 +727,10 @@ export function mapModuleToGraph(moduleInput: unknown): {
         improvBudget: isFirst && opts.carriesRoom ? 6 : 3,
         ...(isFirst && opts.onEntry ? { onEntry: opts.onEntry } : {}),
         ...(isFirst && opts.entryWhen ? { entryWhen: opts.entryWhen } : {}),
+        // The area's trap goes on the beat that carries the area's prose, so
+        // it fires when the party is actually standing in the room rather
+        // than on one of the extra beats a wide hub is fanned across.
+        ...(isFirst && opts.carriesRoom && opts.hazard ? { hazard: opts.hazard } : {}),
         options,
         terminal: false,
       } as Beat);
@@ -671,7 +769,52 @@ export function mapModuleToGraph(moduleInput: unknown): {
 
     // --- the approach to a gated area
     const approachId = approachOf.get(room.id);
-    if (approachId) {
+
+    // --- the near side of a riddle-trap
+    //
+    // The verses are readable from the edge; the blade is not. So the choice
+    // that matters — read it, or walk on and find out — belongs here, one step
+    // before the room whose entry sets the trap off.
+    //
+    // No check on working it out. The module prints the answer on the wall in
+    // Common, and inventing a DC for reading something the book simply tells
+    // you is the mapper overruling the module. What the party spends is time
+    // and attention, and the trap is what happens to those who spend neither.
+    if (approachId && puzzleRooms.has(room.id)) {
+      const back = camefrom(room.id) ?? entryId;
+      beats.push({
+        id: approachId,
+        kind: 'threshold',
+        title: `${room.name} — the near side`,
+        prose:
+          `${room.description}\n\nFrom the edge of it you can read the whole thing without ` +
+          `setting foot on anything. Working out what it means is a matter of taking the time.`,
+        ...(room.readAloud !== undefined ? { readAloud: room.readAloud } : {}),
+        art: `art-${room.id}-approach`,
+        improvBudget: 6,
+        options: [
+          {
+            id: `${approachId}-study`,
+            label: `Read it through before setting foot on ${room.name}`,
+            target: room.id,
+            effects: [{ flag: solvedFlag(room.id), value: true }],
+          },
+          {
+            id: `${approachId}-chance`,
+            label: 'Walk on and take your chances',
+            target: room.id,
+            effects: [],
+          },
+          {
+            id: `${approachId}-back`,
+            label: `Back toward ${titleOf(back)}`,
+            target: back,
+            effects: [],
+          },
+        ] as BeatOption[],
+        terminal: false,
+      } as Beat);
+    } else if (approachId) {
       const onward = exits[0] ?? camefrom(room.id) ?? entryId;
       const check = room.check!;
       beats.push({
@@ -828,11 +971,13 @@ export function mapModuleToGraph(moduleInput: unknown): {
     }
 
     // --- an ordinary room, possibly a hub
+    const hazard = hazardFor(room);
     emitChoiceBeats(room, exits, {
       baseId: room.id,
       carriesRoom: true,
       prose,
       kind: room.id === entryId ? 'threshold' : 'discovery',
+      ...(hazard ? { hazard } : {}),
       ...(requiredRooms.has(room.id)
         ? { onEntry: [{ flag: visitedFlag(room.id), value: true }] }
         : {}),

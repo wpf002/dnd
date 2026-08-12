@@ -4,6 +4,7 @@ import {
   ArtSlotId,
   BeatId,
   CombatantId,
+  DiceNotation,
   EncounterId,
   Id,
   Level,
@@ -182,6 +183,37 @@ export const Beat = z.object({
   onEntry: z.array(StateMutation).default([]),
   /** Applied on exit, whichever option was taken. */
   onExit: z.array(StateMutation).default([]),
+
+  /**
+   * A trap the area states, resolved when the party enters.
+   *
+   * Published modules print their traps in the room description — "any
+   * creature standing on any other area must make a DC 12 Dexterity saving
+   * throw, taking 5 (1d10) damage on a failure or half as much on a success" —
+   * and until this existed the mapper carried that through as text and none of
+   * it as mechanics. The room read correctly and did nothing, which makes a
+   * trap into scenery.
+   *
+   * `avoidedWhen` is what makes a riddle a puzzle rather than a toll: the
+   * mosaic corridor's safe panels are the ones its verses name, so a party
+   * that works the verses out walks across untouched. Without it the only way
+   * to model "the answer is on the wall" is to charge everyone the damage
+   * anyway.
+   */
+  hazard: z
+    .object({
+      ability: Ability,
+      dc: z.number().int().min(1).max(30),
+      /** Dice as the module prints them. */
+      damage: DiceNotation,
+      /** Most printed traps halve on a success. */
+      halfOnSave: z.boolean().default(true),
+      /** The sentence the module states it in, kept for provenance. */
+      source: z.string().optional(),
+      /** When this holds, the party has worked it out and passes safely. */
+      avoidedWhen: Guard.optional(),
+    })
+    .optional(),
 
   /** Set when this beat runs an encounter. */
   encounter: EncounterId.optional(),
