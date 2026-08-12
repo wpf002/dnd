@@ -21,6 +21,8 @@ import {
   CREATION_CLASSES,
   createCharacter,
   backgrounds,
+  CLASS_SKILLS,
+  CLASS_SKILL_COUNT,
   lineages,
   rollAbilityScores,
   STANDARD_ARRAY,
@@ -193,6 +195,8 @@ export function registerSessionRoutes(app: FastifyInstance): void {
       name: CLASS_PROGRESSION[id].name,
       hitDie: CLASS_PROGRESSION[id].hitDie,
       caster: Boolean(CLASS_PROGRESSION[id].spellcastingAbility),
+      skills: CLASS_SKILLS[id],
+      skillCount: CLASS_SKILL_COUNT[id],
     })),
     lineages: lineages().map((l) => ({ id: l.id, name: l.name, speed: l.speed, size: l.size })),
     backgrounds: backgrounds().map((b) => ({
@@ -204,10 +208,17 @@ export function registerSessionRoutes(app: FastifyInstance): void {
     standardArray: [...STANDARD_ARRAY],
   }));
 
-  /** Roll 4d6-drop-lowest six times. Seeded, and it shows every die. */
-  app.post<{ Body: { seed?: string } }>('/creation/roll', async (request) => ({
-    scores: rollAbilityScores(request.body?.seed ?? `roll-${Date.now()}`),
-  }));
+  /**
+   * Roll 4d6-drop-lowest six times. Seeded, and it shows every die.
+   *
+   * The seed comes back with the scores because it is what makes them
+   * checkable: creation re-rolls it and refuses a sheet the dice did not
+   * produce, so a rolled 18 has to be an 18 somebody actually rolled.
+   */
+  app.post<{ Body: { seed?: string } }>('/creation/roll', async (request) => {
+    const seed = request.body?.seed ?? `roll-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    return { seed, scores: rollAbilityScores(seed) };
+  });
 
   /**
    * Build the sheet without starting anything, so a player can see what their

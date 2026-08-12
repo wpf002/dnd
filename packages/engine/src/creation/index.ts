@@ -78,6 +78,15 @@ export interface CreationChoices {
   improvements?: { plusTwo: Ability; plusOne: Ability };
   /** Skills chosen from the class's list, on top of the background's. */
   skills?: Skill[];
+  /**
+   * The seed the scores were rolled with, if they were rolled.
+   *
+   * Without it there is no way to tell a rolled 18 from a claimed one — every
+   * number 3 to 18 is reachable on 4d6. With it the engine rolls the same dice
+   * again and checks the sheet against them, which is the same bargain the
+   * rest of the engine makes: the inputs to an outcome are kept.
+   */
+  rollSeed?: string;
 }
 
 export class CreationError extends Error {}
@@ -86,7 +95,7 @@ export class CreationError extends Error {}
  * Skills each class may choose from. The SRD prints these per class; this is
  * the subset for the four classes the progression tables cover.
  */
-const CLASS_SKILLS: Record<ProgressionClassId, Skill[]> = {
+export const CLASS_SKILLS: Record<ProgressionClassId, Skill[]> = {
   fighter: ['acrobatics', 'animal-handling', 'athletics', 'history', 'insight', 'intimidation', 'perception', 'survival'],
   rogue: ['acrobatics', 'athletics', 'deception', 'insight', 'intimidation', 'investigation', 'perception', 'persuasion', 'sleight-of-hand', 'stealth'],
   cleric: ['history', 'insight', 'medicine', 'persuasion', 'religion'],
@@ -102,7 +111,7 @@ const CLASS_SAVES: Record<ProgressionClassId, Ability[]> = {
 };
 
 /** How many skills each class picks. */
-const CLASS_SKILL_COUNT: Record<ProgressionClassId, number> = {
+export const CLASS_SKILL_COUNT: Record<ProgressionClassId, number> = {
   fighter: 2,
   rogue: 4,
   cleric: 2,
@@ -177,6 +186,24 @@ export function createCharacter(choices: CreationChoices): Character {
   if (!background) {
     throw new CreationError(
       `no background '${choices.background}' — choose from ${backgrounds().map((b) => b.id).join(', ')}`,
+    );
+  }
+
+  // The six numbers must be the six numbers the player was given, rearranged.
+  // The creation screen offers a swap and cannot produce anything else, but
+  // the screen is not where the rule lives — a sheet posted straight at the
+  // API is held to the same standard, and a rolled set is checked by rolling
+  // the same seed again.
+  const source = choices.rollSeed
+    ? rollAbilityScores(choices.rollSeed).map((r) => r.score)
+    : [...STANDARD_ARRAY];
+  const got = Object.values(choices.abilities).sort((a, b) => a - b);
+  const want = [...source].sort((a, b) => a - b);
+  if (got.length !== want.length || got.some((n, i) => n !== want[i])) {
+    throw new CreationError(
+      choices.rollSeed
+        ? `those are not the numbers seed '${choices.rollSeed}' rolled (${want.join(', ')}) — assign them, do not change them`
+        : `assign the standard array (${STANDARD_ARRAY.join(', ')}), each number once`,
     );
   }
 

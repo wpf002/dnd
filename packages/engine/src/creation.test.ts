@@ -154,3 +154,79 @@ describe('a created character is a real character', () => {
     expect(proficiencyBonus(grown.level)).toBe(6);
   });
 });
+
+/**
+ * The creation screen offers a swap, so its six numbers are a permutation of
+ * whatever the player was given. The screen is not where the rule lives — a
+ * sheet posted straight at the API is held to the same standard.
+ */
+describe('the numbers have to be the numbers you were given', () => {
+  it('takes the standard array in any arrangement', () => {
+    // Soldier improves str and dex, so the sheet is 15+1 in dex, not 15.
+    const swapped = { str: 8, dex: 15, con: 14, int: 13, wis: 12, cha: 10 };
+    expect(createCharacter({ ...base, abilities: swapped }).abilities.dex).toBe(16);
+  });
+
+  it('refuses six fifteens', () => {
+    expect(() =>
+      createCharacter({
+        ...base,
+        abilities: { str: 15, dex: 15, con: 15, int: 15, wis: 15, cha: 15 },
+      }),
+    ).toThrow(CreationError);
+  });
+
+  it('refuses the standard array with one number quietly raised', () => {
+    expect(() => createCharacter({ ...base, abilities: { ...standard, cha: 15 } })).toThrow(
+      /standard array/,
+    );
+  });
+
+  it('takes rolled scores when the seed rolls them', () => {
+    const seed = 'the-dice-i-rolled';
+    const scores = rollAbilityScores(seed).map((s) => s.score);
+    const abilities = {
+      str: scores[0]!,
+      dex: scores[1]!,
+      con: scores[2]!,
+      int: scores[3]!,
+      wis: scores[4]!,
+      cha: scores[5]!,
+    };
+    expect(() => createCharacter({ ...base, abilities, rollSeed: seed })).not.toThrow();
+  });
+
+  it('lets a player put their best roll wherever they want it', () => {
+    const seed = 'the-dice-i-rolled';
+    const scores = [...rollAbilityScores(seed).map((s) => s.score)].sort((a, b) => a - b);
+    const abilities = {
+      str: scores[0]!,
+      dex: scores[1]!,
+      con: scores[2]!,
+      int: scores[3]!,
+      wis: scores[4]!,
+      cha: scores[5]!,
+    };
+    expect(() => createCharacter({ ...base, abilities, rollSeed: seed })).not.toThrow();
+  });
+
+  it('refuses a rolled sheet the seed did not roll', () => {
+    const seed = 'the-dice-i-rolled';
+    const scores = rollAbilityScores(seed).map((s) => s.score);
+    const abilities = {
+      str: 18,
+      dex: scores[1]!,
+      con: scores[2]!,
+      int: scores[3]!,
+      wis: scores[4]!,
+      cha: scores[5]!,
+    };
+    expect(() => createCharacter({ ...base, abilities, rollSeed: seed })).toThrow(/did not roll|rolled/);
+  });
+
+  it('refuses a seed nobody rolled', () => {
+    expect(() =>
+      createCharacter({ ...base, abilities: standard, rollSeed: 'a-seed-i-made-up' }),
+    ).toThrow(CreationError);
+  });
+});

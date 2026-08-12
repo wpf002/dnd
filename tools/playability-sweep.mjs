@@ -21,8 +21,17 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 process.loadEnvFile?.(join(root, '.env'));
 
-const { createSession, chooseOption, visibleOptions, combatAttack, combatFlee, restParty, castSpell } =
-  await import(join(root, 'apps/api/dist/services/game.js'));
+const {
+  createSession,
+  chooseOption,
+  visibleOptions,
+  combatAttack,
+  combatFlee,
+  restParty,
+  castSpell,
+  partyWith,
+} = await import(join(root, 'apps/api/dist/services/game.js'));
+const { createCharacter, STANDARD_ARRAY } = await import(join(root, 'packages/engine/dist/index.js'));
 const { createBookCampaign, startCampaignSession, endCampaignSession } = await import(
   join(root, 'apps/api/dist/services/campaign.js')
 );
@@ -30,6 +39,37 @@ const { lintGraph } = await import(join(root, 'packages/linter/dist/index.js'));
 const { evaluateGuard } = await import(join(root, 'packages/engine/dist/index.js'));
 
 const SEEDS = (process.env.SEEDS ?? 'a,b,c').split(',');
+
+/**
+ * A party is no longer four frozen pregens — a player can make their own
+ * character, and it takes the place of the pregen of its class. That is a
+ * different party in every fight in every adventure, so it gets swept too.
+ * One made character per class, built the way the creation screen builds them.
+ */
+const [best, good, fair, fine, low, worst] = STANDARD_ARRAY;
+const MADE = [
+  ['fighter', 'dwarf', 'soldier',
+    { str: best, con: good, dex: fair, wis: fine, cha: low, int: worst },
+    ['athletics', 'perception']],
+  ['rogue', 'halfling', 'criminal',
+    { dex: best, con: good, str: fair, int: fine, wis: low, cha: worst },
+    ['stealth', 'acrobatics', 'perception', 'deception']],
+  ['cleric', 'human', 'acolyte',
+    { wis: best, con: good, str: fair, cha: fine, dex: low, int: worst },
+    ['religion', 'insight']],
+  ['wizard', 'elf', 'sage',
+    { int: best, dex: good, con: fair, wis: fine, str: low, cha: worst },
+    ['arcana', 'investigation']],
+].map(([characterClass, lineage, background, abilities, skills]) =>
+  createCharacter({
+    name: `Made ${characterClass}`,
+    characterClass,
+    lineage,
+    background,
+    abilities,
+    skills,
+  }),
+);
 const STEP_BUDGET = 400;
 const REST_BUDGET = 25;
 
@@ -187,6 +227,7 @@ console.log(`${adventures.size} adventures, ${campaigns.size} campaigns\n`);
 let unplayable = 0;
 let lintFailed = 0;
 const slow = [];
+const madeFailed = [];
 
 const ONLY = process.env.ONLY;
 for (const [id, graph] of [...adventures].sort()) {
@@ -204,6 +245,17 @@ for (const [id, graph] of [...adventures].sort()) {
       if (play(createSession(graph, `sweep-${id}-${seed}`)).ended) finished++;
     } catch (err) {
       crash = err.message;
+    }
+  }
+  // The same adventure again, once per made character. A level-1 wizard the
+  // player built walks into the same fights the level-3 pregen was balanced
+  // for, so this is where that shows up.
+  for (const made of MADE) {
+    try {
+      const session = createSession(graph, `sweep-${id}-made-${made.characterClass}`, partyWith(made));
+      if (!play(session).ended) madeFailed.push(`${id} (${made.characterClass})`);
+    } catch (err) {
+      crash ??= `made ${made.characterClass}: ${err.message}`;
     }
   }
   if (crash) {
@@ -247,9 +299,16 @@ for (const [id, campaign] of [...campaigns].sort()) {
 
 console.log();
 if (slow.length) console.log(`finished on some seeds but not all: ${slow.join(', ')}`);
+if (madeFailed.length)
+  console.log(`stalled for a made character: ${madeFailed.slice(0, 12).join(', ')}${madeFailed.length > 12 ? ` … and ${madeFailed.length - 12} more` : ''}`);
 console.log(
   `${adventures.size - unplayable - lintFailed}/${adventures.size} adventures playable` +
     `${lintFailed ? `, ${lintFailed} fail the linter` : ''}` +
     `${unplayable ? `, ${unplayable} stall` : ''}`,
 );
-process.exit(unplayable + lintFailed > 0 ? 1 : 0);
+console.log(
+  madeFailed.length === 0
+    ? `all ${adventures.size} playable by a character the player made, in all four classes`
+    : `${madeFailed.length} runs stalled for a made character`,
+);
+process.exit(unplayable + lintFailed + madeFailed.length > 0 ? 1 : 0);

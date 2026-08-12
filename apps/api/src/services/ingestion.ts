@@ -2,6 +2,7 @@ import { BeatGraph } from '@lantern/schema';
 import { IngestedFragment, IngestedLinks, IngestedModule } from '@lantern/schema';
 import { lintCampaign, lintGraph } from '@lantern/linter';
 import { callStructured, type Flint, type Telemetry } from '@lantern/flint';
+import { describeDocument } from './document-summary.js';
 import { extractLongModule, renderIndex, type LongExtractReport } from './long-extract.js';
 import {
   mapModuleToCampaign,
@@ -265,10 +266,14 @@ async function ingestLong(
   telemetry: Telemetry,
   moduleText: string,
 ): Promise<IngestResult> {
+  // Read the module's own title and opening paragraph first. A title page
+  // that survives extraction overwrites both; when none does, the fallback is
+  // still the document talking about itself rather than a note to me.
+  const described = describeDocument(moduleText);
   const { module, report: extractionReport } = await extractLongModule(
     moduleText,
-    'Untitled Module',
-    'Extracted from a long source document.',
+    described.title ?? 'Untitled Module',
+    described.premise ?? 'Extracted from a long source document.',
     async ({ chunk, index, total }) => {
       const result = await callStructured(flint, 'ingest-fragment', {
         schema: IngestedFragment,

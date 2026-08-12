@@ -87,7 +87,14 @@ async function post<T>(path: string, body?: object): Promise<T> {
 }
 
 export interface CreationOptions {
-  classes: { id: string; name: string; hitDie: number; caster: boolean }[];
+  classes: {
+    id: string;
+    name: string;
+    hitDie: number;
+    caster: boolean;
+    skills: string[];
+    skillCount: number;
+  }[];
   lineages: { id: string; name: string; speed: number; size: string }[];
   backgrounds: { id: string; name: string; abilities: string[]; skills: string[] }[];
   standardArray: number[];
@@ -102,6 +109,7 @@ export interface CreationChoices {
   abilities: Record<string, number>;
   improvements?: { plusTwo: string; plusOne: string };
   skills?: string[];
+  rollSeed?: string;
 }
 
 export interface GenerateRequest {
@@ -191,6 +199,8 @@ export const api = {
   creationOptions: () => get<CreationOptions>('/creation'),
   previewCharacter: (choices: CreationChoices) =>
     post<{ character: PartyMemberView & { hpMax: number } }>('/creation/preview', choices),
+  rollAbilities: (seed?: string) =>
+    post<{ seed: string; scores: { dice: number[]; score: number }[] }>('/creation/roll', { seed }),
   campaignGraphs: () => get<{ campaigns: CampaignGraphSummary[] }>('/campaign-graphs'),
   createCampaign: (adventure?: string, title?: string, character?: CreationChoices) =>
     post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title, character }),

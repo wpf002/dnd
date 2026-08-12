@@ -29,7 +29,9 @@ const wren = {
   lineage: 'dwarf',
   characterClass: 'cleric' as const,
   background: 'acolyte',
-  abilities: { str: 12, dex: 10, con: 14, int: 11, wis: 15, cha: 13 },
+  // The standard array, arranged for a cleric. Anything else is refused now:
+  // the six numbers have to be six numbers the player was actually given.
+  abilities: { str: 12, dex: 10, con: 14, int: 8, wis: 15, cha: 13 },
   improvements: { plusTwo: 'wis' as const, plusOne: 'int' as const },
   skills: ['insight' as const, 'medicine' as const],
 };

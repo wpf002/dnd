@@ -64,11 +64,18 @@ export function Game() {
     [applyTurn],
   );
 
-  const start = useCallback(async (adventure: string) => {
+  /**
+   * `who` is passed rather than read from state on purpose.
+   *
+   * Finishing creation set the character and launched in the same tick, so
+   * these callbacks still closed over the previous value — null — and every
+   * character a player made was silently dropped on the way into the session.
+   */
+  const start = useCallback(async (adventure: string, who?: CreationChoices) => {
     setBusy(true);
     setError(null);
     try {
-      const { state: fresh } = await api.start(adventure, character ?? undefined);
+      const { state: fresh } = await api.start(adventure, who ?? character ?? undefined);
       setCurrentAdventure(adventure);
       setState(fresh);
       setNarration([]);
@@ -83,11 +90,15 @@ export function Game() {
     }
   }, []);
 
-  const startCampaign = useCallback(async (adventure: string) => {
+  const startCampaign = useCallback(async (adventure: string, who?: CreationChoices) => {
     setBusy(true);
     setError(null);
     try {
-      const { campaign } = await api.createCampaign(adventure, undefined, character ?? undefined);
+      const { campaign } = await api.createCampaign(
+        adventure,
+        undefined,
+        who ?? character ?? undefined,
+      );
       setCurrentAdventure(adventure);
       setCampaignId(campaign.id);
       const { state: fresh } = await api.campaignSession(campaign.id);
@@ -103,11 +114,11 @@ export function Game() {
   }, []);
 
   /** A multi-book campaign: many adventures, one party, levels 1 upward. */
-  const startBookCampaign = useCallback(async (graphId: string) => {
+  const startBookCampaign = useCallback(async (graphId: string, who?: CreationChoices) => {
     setBusy(true);
     setError(null);
     try {
-      const { campaign } = await api.createBookCampaign(graphId, character ?? undefined);
+      const { campaign } = await api.createBookCampaign(graphId, who ?? character ?? undefined);
       setCampaignId(campaign.id);
       setCurrentAdventure(null);
       const opened = await api.campaignSession(campaign.id);
@@ -170,10 +181,10 @@ export function Game() {
 
   /** Launch whatever the player picked, with whatever character they have. */
   const launch = useCallback(
-    (target: { kind: 'one-shot' | 'campaign' | 'book'; id: string }) => {
-      if (target.kind === 'one-shot') return start(target.id);
-      if (target.kind === 'campaign') return startCampaign(target.id);
-      return startBookCampaign(target.id);
+    (target: { kind: 'one-shot' | 'campaign' | 'book'; id: string }, who?: CreationChoices) => {
+      if (target.kind === 'one-shot') return start(target.id, who);
+      if (target.kind === 'campaign') return startCampaign(target.id, who);
+      return startBookCampaign(target.id, who);
     },
     [start, startCampaign, startBookCampaign],
   );
@@ -186,7 +197,7 @@ export function Game() {
         onDone={(choices) => {
           setCharacter(choices);
           setCreating(false);
-          if (pending) void launch(pending);
+          if (pending) void launch(pending, choices);
         }}
         onCancel={() => {
           setCreating(false);
@@ -482,6 +493,8 @@ function StartScreen({
   const [adventures, setAdventures] = useState<AdventureSummary[] | null>(null);
   const [campaigns, setCampaigns] = useState<CampaignGraphSummary[] | null>(null);
   const [picked, setPicked] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+  const [showAll, setShowAll] = useState(false);
 
   // Both libraries are whatever passes the linter on disk — there is no
   // hardcoded list to drift out of sync with content/.
@@ -505,6 +518,20 @@ function StartScreen({
   }, []);
 
   const chosen = adventures?.find((a) => a.id === picked);
+
+  // Eighty-three adventures in one scroll is a wall, not a library. Show a
+  // handful, let the player search, and keep whatever they have picked
+  // visible so the buttons below it always refer to something on screen.
+  const needle = search.trim().toLowerCase();
+  const matching = (adventures ?? []).filter(
+    (a) =>
+      !needle ||
+      (a.title ?? a.id).toLowerCase().includes(needle) ||
+      (a.premise ?? '').toLowerCase().includes(needle) ||
+      (a.tone ?? []).some((t) => t.includes(needle)),
+  );
+  const visible = showAll || needle ? matching : matching.slice(0, 6);
+  const hidden = matching.length - visible.length;
 
   return (
     <div className="mt-8 space-y-8">
@@ -554,8 +581,17 @@ function StartScreen({
           </p>
         )}
 
+        {adventures && adventures.length > 6 && (
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={`Search ${adventures.length} adventures…`}
+            className="mt-3 w-full rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm outline-none focus:border-[var(--ember)]"
+          />
+        )}
+
         <ul className="mt-3 space-y-2">
-          {adventures?.map((a) => (
+          {visible.map((a) => (
             <li key={a.id}>
               <button
                 onClick={() => a.playable && setPicked(a.id)}
@@ -602,6 +638,19 @@ function StartScreen({
             </li>
           ))}
         </ul>
+
+        {needle && matching.length === 0 && (
+          <p className="mt-3 text-sm text-[var(--muted)]">Nothing matches “{search}”.</p>
+        )}
+
+        {hidden > 0 && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="mt-3 w-full rounded-md border border-[var(--ink-line)] p-2 text-sm text-[var(--muted)]"
+          >
+            Show {hidden} more
+          </button>
+        )}
 
         <div className="mt-4 rounded-lg border border-[var(--ink-line)] p-3 text-center">
           {character ? (
@@ -933,6 +982,23 @@ function BetweenBooks({
 }
 
 /**
+ * A labelled field.
+ *
+ * Module scope, not inside CreateCharacter. Declared in the component body it
+ * is a brand-new component type on every render, so React unmounts and
+ * remounts its children each keystroke — the name field lost focus after one
+ * letter and every character was called "Unnamed".
+ */
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="text-xs uppercase tracking-widest text-[var(--muted)]">{label}</span>
+      <div className="mt-1">{children}</div>
+    </label>
+  );
+}
+
+/**
  * Character creation.
  *
  * The API owns every rule here — which abilities a background improves, which
@@ -961,8 +1027,35 @@ function CreateCharacter({
   );
   const [preview, setPreview] = useState<{ hpMax: number; name: string } | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
+  // The six numbers being assigned, and where they came from. Rolling gives a
+  // different set, so the pool is state rather than the standard array.
+  const [pool, setPool] = useState<number[]>(options.standardArray);
+  const [rolled, setRolled] = useState<{ dice: number[]; score: number }[] | null>(null);
+  // Kept because the API re-rolls it to check the sheet: scores a player was
+  // not actually dealt are refused, so the seed travels with them.
+  const [rollSeed, setRollSeed] = useState<string | null>(null);
+  const [rolling, setRolling] = useState(false);
+  const [skills, setSkills] = useState<string[]>([]);
 
+  const chosenClass = options.classes.find((c) => c.id === characterClass);
   const chosenBackground = options.backgrounds.find((b) => b.id === background);
+
+  /**
+   * Assigning a score swaps it with whoever had it.
+   *
+   * Six independent dropdowns let a player give themselves 15 in everything,
+   * which is not a character sheet. A swap makes the six numbers a permutation
+   * of the array by construction, which is what assigning an array means.
+   */
+  const assign = (ability: string, score: number) => {
+    setAssigned((current) => {
+      const previous = current[ability]!;
+      const holder = ABILITIES.find((a) => a !== ability && current[a] === score);
+      const next = { ...current, [ability]: score };
+      if (holder) next[holder] = previous;
+      return next;
+    });
+  };
   const [plusTwo, setPlusTwo] = useState(chosenBackground?.abilities[0] ?? 'str');
   const [plusOne, setPlusOne] = useState(chosenBackground?.abilities[1] ?? 'dex');
 
@@ -973,6 +1066,8 @@ function CreateCharacter({
     background,
     abilities: assigned,
     improvements: { plusTwo, plusOne },
+    ...(skills.length > 0 ? { skills } : {}),
+    ...(rollSeed ? { rollSeed } : {}),
   };
 
   // Show what the choices produce before committing twenty levels to them.
@@ -990,14 +1085,17 @@ function CreateCharacter({
       live = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, lineage, characterClass, background, JSON.stringify(assigned), plusTwo, plusOne]);
-
-  const Row = ({ label, children }: { label: string; children: React.ReactNode }) => (
-    <label className="block">
-      <span className="text-xs uppercase tracking-widest text-[var(--muted)]">{label}</span>
-      <div className="mt-1">{children}</div>
-    </label>
-  );
+  }, [
+    name,
+    lineage,
+    characterClass,
+    background,
+    JSON.stringify(assigned),
+    plusTwo,
+    plusOne,
+    JSON.stringify(skills),
+    rollSeed,
+  ]);
 
   const select = 'w-full rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm';
 
@@ -1027,7 +1125,10 @@ function CreateCharacter({
         <Row label="Class">
           <select
             value={characterClass}
-            onChange={(e) => setCharacterClass(e.target.value)}
+            onChange={(e) => {
+              setCharacterClass(e.target.value);
+              setSkills([]); // A fighter's picks are not on a wizard's list.
+            }}
             className={select}
           >
             {options.classes.map((c) => (
@@ -1062,7 +1163,50 @@ function CreateCharacter({
       </Row>
 
       <div>
-        <span className="text-xs uppercase tracking-widest text-[var(--muted)]">Ability scores</span>
+        <div className="flex items-baseline justify-between">
+          <span className="text-xs uppercase tracking-widest text-[var(--muted)]">
+            Ability scores
+          </span>
+          <div className="flex gap-3 text-xs">
+            <button
+              onClick={async () => {
+                setRolling(true);
+                try {
+                  const { seed, scores } = await api.rollAbilities();
+                  setRolled(scores);
+                  setRollSeed(seed);
+                  const next = scores.map((s) => s.score);
+                  setPool(next);
+                  setAssigned(
+                    Object.fromEntries(ABILITIES.map((a, i) => [a, next[i] ?? 10])),
+                  );
+                } finally {
+                  setRolling(false);
+                }
+              }}
+              className="underline text-[var(--muted)]"
+            >
+              {rolling ? 'Rolling…' : 'Roll 4d6'}
+            </button>
+            {rolled && (
+              <button
+                onClick={() => {
+                  setRolled(null);
+                  setRollSeed(null);
+                  setPool(options.standardArray);
+                  setAssigned(
+                    Object.fromEntries(
+                      ABILITIES.map((a, i) => [a, options.standardArray[i] ?? 10]),
+                    ),
+                  );
+                }}
+                className="underline text-[var(--muted)]"
+              >
+                Standard array
+              </button>
+            )}
+          </div>
+        </div>
         <div className="mt-1 grid grid-cols-3 gap-2">
           {ABILITIES.map((ability) => (
             <label key={ability} className="rounded-md border border-[var(--ink-line)] p-2">
@@ -1071,15 +1215,14 @@ function CreateCharacter({
               </span>
               <select
                 value={assigned[ability]}
-                onChange={(e) =>
-                  setAssigned({ ...assigned, [ability]: Number(e.target.value) })
-                }
+                onChange={(e) => assign(ability, Number(e.target.value))}
                 className="w-full bg-transparent text-lg"
               >
-                {[...new Set([...options.standardArray, assigned[ability]!])]
-                  .sort((a, b) => b - a)
-                  .map((score) => (
-                    <option key={score} value={score}>
+                {pool
+                  .map((score, i) => ({ score, key: `${score}-${i}` }))
+                  .sort((a, b) => b.score - a.score)
+                  .map(({ score, key }) => (
+                    <option key={key} value={score}>
                       {score}
                     </option>
                   ))}
@@ -1088,6 +1231,57 @@ function CreateCharacter({
           ))}
         </div>
       </div>
+
+      {rolled && (
+        <p className="text-xs text-[var(--muted)]">
+          {rolled
+            .map((r) => `${r.score} (${[...r.dice].sort((a, b) => b - a).join(' ')})`)
+            .join(' · ')}{' '}
+          — lowest die dropped.
+        </p>
+      )}
+
+      {chosenClass && chosenClass.skills.length > 0 && (
+        <div>
+          <span className="text-xs uppercase tracking-widest text-[var(--muted)]">
+            Skills — choose {chosenClass.skillCount}
+            {skills.length > 0 ? ` (${skills.length} chosen)` : ''}
+          </span>
+          <div className="mt-1 flex flex-wrap gap-2">
+            {chosenClass.skills.map((skill) => {
+              const chosen = skills.includes(skill);
+              const full = skills.length >= chosenClass.skillCount;
+              return (
+                <button
+                  key={skill}
+                  disabled={!chosen && full}
+                  onClick={() =>
+                    // Functional form: two taps in the same frame both read
+                    // the render's array otherwise, and the second is lost.
+                    setSkills((current) =>
+                      current.includes(skill)
+                        ? current.filter((s) => s !== skill)
+                        : [...current, skill],
+                    )
+                  }
+                  className="rounded-md border px-2 py-1 text-xs disabled:opacity-30"
+                  style={
+                    chosen
+                      ? { borderColor: 'var(--ember)', color: 'var(--ember)' }
+                      : { borderColor: 'var(--ink-line)', color: 'var(--muted)' }
+                  }
+                >
+                  {skill.replace(/-/g, ' ')}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-1 text-xs text-[var(--muted)]">
+            Whatever you leave unchosen is filled from the top of the list, and your
+            background&rsquo;s skills come free.
+          </p>
+        </div>
+      )}
 
       {chosenBackground && (
         <div className="grid grid-cols-2 gap-3">

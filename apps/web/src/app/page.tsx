@@ -8,7 +8,7 @@ export default function Home() {
           Lantern
         </h1>
         <span className="text-xs text-[var(--muted)]">
-          SRD 5.1 ·{' '}
+          SRD 5.1 &amp; 5.2 ·{' '}
           <a
             className="underline"
             href="https://creativecommons.org/licenses/by/4.0/legalcode"

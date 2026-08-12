@@ -17,8 +17,13 @@ export function BeatArt({ slot, title }: { slot: string; title: string }) {
   // Reset the chain when the beat changes.
   useEffect(() => setSource('png'), [slot]);
 
+  // The schema requires a slot and the linter enforces coverage, so this is
+  // belt and braces — but the fallback above exists so a missing picture never
+  // costs the player their session, and a missing slot should not either.
+  const key = slot || title || 'beat';
+
   let hash = 0;
-  for (const ch of slot) hash = (hash * 31 + ch.charCodeAt(0)) | 0;
+  for (const ch of key) hash = (hash * 31 + ch.charCodeAt(0)) | 0;
   const hue = ((hash % 360) + 360) % 360;
 
   return (
@@ -28,11 +33,11 @@ export function BeatArt({ slot, title }: { slot: string; title: string }) {
         background: `linear-gradient(160deg, hsl(${hue} 18% 14%), hsl(${(hue + 40) % 360} 22% 8%))`,
       }}
     >
-      {source !== 'gradient' && (
+      {slot && source !== 'gradient' && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          key={`${slot}-${source}`}
-          src={`/art/${slot}.${source}`}
+          key={`${key}-${source}`}
+          src={`/art/${key}.${source}`}
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
           onError={() => setSource(source === 'png' ? 'svg' : 'gradient')}
