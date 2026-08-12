@@ -201,3 +201,34 @@ export const Monster = z.object({
 });
 export type Monster = z.infer<typeof Monster>;
 export type MonsterInput = z.input<typeof Monster>;
+
+// ---------------------------------------------------------------------------
+// Character creation
+// ---------------------------------------------------------------------------
+
+/**
+ * A species. Called lineage throughout because that is the field name the
+ * Character schema has always used.
+ */
+export const Lineage = z.object({
+  id: Id,
+  name: z.string(),
+  size: CreatureSize,
+  speed: z.number().int().min(0),
+  /** Named traits, as printed. Descriptive: the engine reads speed and size. */
+  traits: z.array(z.object({ name: z.string(), text: z.string() })).default([]),
+});
+export type Lineage = z.infer<typeof Lineage>;
+export type LineageInput = z.input<typeof Lineage>;
+
+export const Background = z.object({
+  id: Id,
+  name: z.string(),
+  /** The three abilities this background improves. */
+  abilities: z.array(Ability).length(3),
+  skillProficiencies: z.array(Skill).default([]),
+  /** Tool proficiency as printed. The engine has no tool rules yet. */
+  tool: z.string().optional(),
+});
+export type Background = z.infer<typeof Background>;
+export type BackgroundInput = z.input<typeof Background>;

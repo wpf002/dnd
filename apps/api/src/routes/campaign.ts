@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { LedgerEntry } from '@lantern/schema';
 import { createLanternFlint, type Flint } from '@lantern/flint';
+import { createCharacter } from '@lantern/engine';
 import {
   buildRecap,
   campaigns,
@@ -93,13 +94,17 @@ export function registerCampaignRoutes(
    * single-adventure when `adventure` names one. The two are not variants of
    * a request shape; they are different objects, and the response says which.
    */
-  app.post<{ Body: { adventure?: string; campaign?: string; title?: string } }>(
+  app.post<{ Body: { adventure?: string; campaign?: string; title?: string; character?: unknown } }>(
     '/campaign',
     async (request, reply) => {
       try {
+        const character = request.body?.character
+          ? createCharacter(request.body.character as never)
+          : undefined;
+
         if (request.body?.campaign) {
           const graph = loadCampaignGraph(request.body.campaign);
-          const campaign = createBookCampaign(graph, loadGraph, request.body.title);
+          const campaign = createBookCampaign(graph, loadGraph, request.body.title, character);
           persistCampaign(campaign);
           return {
             campaign: { id: campaign.id, title: campaign.title },

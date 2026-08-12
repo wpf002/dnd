@@ -354,6 +354,99 @@ function parseSpell(name, body) {
 }
 
 // ---------------------------------------------------------------------------
+// Lineages and backgrounds
+// ---------------------------------------------------------------------------
+
+const ABILITY_BY_NAME = {
+  strength: 'str', dexterity: 'dex', constitution: 'con',
+  intelligence: 'int', wisdom: 'wis', charisma: 'cha',
+};
+
+/**
+ * Section headings sit immediately above the first entry they introduce, so
+ * "Species Descriptions" looks exactly like a species and "Background
+ * Descriptions" like a background. A real entry is a plain name.
+ */
+const looksLikeEntryName = (name) =>
+  /^[A-Z][A-Za-z'’-]*(?: [A-Z][A-Za-z'’-]*)?$/.test(name) && !/Descriptions?$/i.test(name);
+
+/** A species entry: a name, then "Creature Type:", "Size:", "Speed:". */
+function parseLineages(from, to) {
+  const out = [];
+  for (let i = from; i < to; i++) {
+    const name = lines[i]?.trim();
+    if (!name || isNoise(name) || name.length > 30 || !looksLikeEntryName(name)) continue;
+
+    const window = lines.slice(i + 1, i + 8).join('\n');
+    if (!/^Creature Type:/m.test(window)) continue;
+
+    const size = /^Size:\s*(\w+)/m.exec(window);
+    const speed = /^Speed:\s*(\d+)/m.exec(window);
+    if (!size || !speed) continue;
+    if (!SIZES.includes(size[1].toLowerCase())) continue;
+
+    // Traits run to the next entry; keep them as printed, for the sheet.
+    const body = lines.slice(i + 1, i + 60).join('\n');
+    const traits = [];
+    for (const m of body.matchAll(/^([A-Z][A-Za-z' ]{2,40})\.\s+([^\n]+(?:\n(?![A-Z][A-Za-z' ]{2,40}\.)[^\n]+)*)/gm)) {
+      traits.push({ name: m[1].trim(), text: m[2].replace(/\s+/g, ' ').trim().slice(0, 400) });
+      if (traits.length >= 8) break;
+    }
+
+    out.push({
+      id: kebab(name),
+      name,
+      size: size[1].toLowerCase(),
+      speed: Number(speed[1]),
+      traits,
+    });
+  }
+  return out;
+}
+
+/** A background: a name, then "Ability Scores:", "Skill Proficiencies:". */
+function parseBackgrounds(from, to) {
+  const out = [];
+  for (let i = from; i < to; i++) {
+    const name = lines[i]?.trim();
+    if (!name || isNoise(name) || name.length > 30 || !looksLikeEntryName(name)) continue;
+
+    const window = lines.slice(i + 1, i + 10).join('\n');
+    const abilities = /^Ability Scores:\s*([^\n]+)/m.exec(window);
+    const skills = /^Skill Proficiencies:\s*([^\n]+)/m.exec(window);
+    if (!abilities || !skills) continue;
+
+    const abilityIds = abilities[1]
+      .split(/,|\band\b/)
+      .map((a) => ABILITY_BY_NAME[a.trim().toLowerCase()])
+      .filter(Boolean);
+    if (abilityIds.length !== 3) continue;
+
+    const skillIds = skills[1]
+      .split(/,|\band\b/)
+      .map((sk) => kebab(sk))
+      .filter((sk) => SKILL_IDS.includes(sk));
+
+    const tool = /^Tool Proficiency:\s*([^\n]+)/m.exec(window);
+    out.push({
+      id: kebab(name),
+      name,
+      abilities: abilityIds,
+      skillProficiencies: skillIds,
+      ...(tool ? { tool: tool[1].trim() } : {}),
+    });
+  }
+  return out;
+}
+
+const SKILL_IDS = [
+  'athletics', 'acrobatics', 'sleight-of-hand', 'stealth', 'arcana', 'history',
+  'investigation', 'nature', 'religion', 'animal-handling', 'insight',
+  'medicine', 'perception', 'survival', 'deception', 'intimidation',
+  'performance', 'persuasion',
+];
+
+// ---------------------------------------------------------------------------
 // Run
 // ---------------------------------------------------------------------------
 
@@ -417,6 +510,24 @@ for (let i = 0; i < spellStarts.length; i++) {
   spells.push(parsed.value);
 }
 
+const lineages = [];
+const seenLineages = new Set();
+for (const lineage of parseLineages(0, lines.length)) {
+  if (seenLineages.has(lineage.id)) continue;
+  seenLineages.add(lineage.id);
+  lineages.push(lineage);
+}
+
+const backgrounds = [];
+const seenBackgrounds = new Set();
+for (const background of parseBackgrounds(0, lines.length)) {
+  if (seenBackgrounds.has(background.id)) continue;
+  seenBackgrounds.add(background.id);
+  backgrounds.push(background);
+}
+
+lineages.sort((a, b) => a.id.localeCompare(b.id));
+backgrounds.sort((a, b) => a.id.localeCompare(b.id));
 monsters.sort((a, b) => a.id.localeCompare(b.id));
 spells.sort((a, b) => a.level - b.level || a.id.localeCompare(b.id));
 
@@ -458,6 +569,34 @@ export const SRD52_SPELLS: Record<string, SpellInput> = ${JSON.stringify(
 `,
 );
 
+writeFileSync(
+  join(outDir, 'lineages.ts'),
+  `${banner('Species')}
+import type { LineageInput } from '../types.js';
+
+export const SRD52_LINEAGES: Record<string, LineageInput> = ${JSON.stringify(
+    Object.fromEntries(lineages.map((l) => [l.id, l])),
+    null,
+    2,
+  )} as unknown as Record<string, LineageInput>;
+`,
+);
+
+writeFileSync(
+  join(outDir, 'backgrounds.ts'),
+  `${banner('Backgrounds')}
+import type { BackgroundInput } from '../types.js';
+
+export const SRD52_BACKGROUNDS: Record<string, BackgroundInput> = ${JSON.stringify(
+    Object.fromEntries(backgrounds.map((b) => [b.id, b])),
+    null,
+    2,
+  )} as unknown as Record<string, BackgroundInput>;
+`,
+);
+
+console.log(`lineages: ${lineages.length} — ${lineages.map((l) => l.id).join(', ')}`);
+console.log(`backgrounds: ${backgrounds.length} — ${backgrounds.map((b) => b.id).join(', ')}`);
 console.log(`monsters: ${monsters.length} parsed, ${monsterFailures.length} skipped`);
 console.log(`  with attacks: ${monsters.filter((m) => m.attacks.length > 0).length}`);
 console.log(`  CR range: ${Math.min(...monsters.map((m) => m.cr))} to ${Math.max(...monsters.map((m) => m.cr))}`);

@@ -13,6 +13,8 @@ export * from './spells.js';
 export * from './monsters.js';
 export * from './srd52/monsters.js';
 export * from './srd52/spells.js';
+export * from './srd52/lineages.js';
+export * from './srd52/backgrounds.js';
 // MONSTERS and SPELLS are the merged tables; the two above are their sources.
 export * from './content.js';
 export * from './pregens.js';

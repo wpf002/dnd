@@ -18,3 +18,4 @@ export * from './state/index.js';
 export * from './guards/index.js';
 export * from './advancement/index.js';
 export * from './spells/index.js';
+export * from './creation/index.js';

@@ -86,6 +86,24 @@ async function post<T>(path: string, body?: object): Promise<T> {
   return (await res.json()) as T;
 }
 
+export interface CreationOptions {
+  classes: { id: string; name: string; hitDie: number; caster: boolean }[];
+  lineages: { id: string; name: string; speed: number; size: string }[];
+  backgrounds: { id: string; name: string; abilities: string[]; skills: string[] }[];
+  standardArray: number[];
+}
+
+/** Everything a player picks. Sent to the API, which owns the rules. */
+export interface CreationChoices {
+  name: string;
+  lineage: string;
+  characterClass: string;
+  background: string;
+  abilities: Record<string, number>;
+  improvements?: { plusTwo: string; plusOne: string };
+  skills?: string[];
+}
+
 export interface GenerateRequest {
   premise: string;
   setting: string;
@@ -170,13 +188,17 @@ export interface AdventureSummary {
 
 export const api = {
   adventures: () => get<{ adventures: AdventureSummary[] }>('/adventures'),
+  creationOptions: () => get<CreationOptions>('/creation'),
+  previewCharacter: (choices: CreationChoices) =>
+    post<{ character: PartyMemberView & { hpMax: number } }>('/creation/preview', choices),
   campaignGraphs: () => get<{ campaigns: CampaignGraphSummary[] }>('/campaign-graphs'),
-  createCampaign: (adventure?: string, title?: string) =>
-    post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title }),
+  createCampaign: (adventure?: string, title?: string, character?: CreationChoices) =>
+    post<{ campaign: { id: string; title: string } }>('/campaign', { adventure, title, character }),
   /** Multi-book: `campaign` is a campaign graph id, not an adventure id. */
-  createBookCampaign: (campaign: string) =>
+  createBookCampaign: (campaign: string, character?: CreationChoices) =>
     post<{ campaign: { id: string; title: string }; progress: CampaignProgressView }>('/campaign', {
       campaign,
+      character,
     }),
   campaignSession: (id: string) =>
     post<{ state: SessionState; progress?: CampaignProgressView }>(`/campaign/${id}/session`),
@@ -187,7 +209,8 @@ export const api = {
       transition?: BookTransitionView;
       progress?: CampaignProgressView;
     }>(`/campaign/${id}/end-session`),
-  start: (adventure?: string) => post<{ state: SessionState }>('/session', { adventure }),
+  start: (adventure?: string, character?: CreationChoices) =>
+    post<{ state: SessionState }>('/session', { adventure, character }),
   generate: (req: GenerateRequest) =>
     post<{ state: SessionState; generation: { attempts: number; firstAttemptPassed: boolean } }>(
       '/generate',

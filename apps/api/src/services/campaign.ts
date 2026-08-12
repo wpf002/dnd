@@ -115,6 +115,8 @@ export function createBookCampaign(
   input: unknown,
   resolve: (adventureId: string) => unknown,
   title?: string,
+  /** A character the player made, in place of the pregen of their class. */
+  character?: Character,
 ): Campaign {
   const book = CampaignGraph.parse(input);
   const first = book.books[0]!;
@@ -129,7 +131,16 @@ export function createBookCampaign(
       partyLevel: first.levelStart,
       completedBooks: [],
     },
-    party: partyAtLevel(first.levelStart),
+    party: character
+      ? // Levelled to the band first, so a level-1 sheet can start a campaign
+        // that opens at 5 without arriving four levels short.
+        levelParty(
+          partyAtLevel(first.levelStart).map((p) =>
+            p.characterClass === character.characterClass ? character : p,
+          ),
+          first.levelStart,
+        ).map((r) => r.character)
+      : partyAtLevel(first.levelStart),
     ledger: [],
     sessions: [],
   };

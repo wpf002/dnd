@@ -5,6 +5,8 @@ import type { Resolution } from '@lantern/schema';
 import {
   api,
   type AdventureSummary,
+  type CreationChoices,
+  type CreationOptions,
   type BookTransitionView,
   type CampaignGraphSummary,
   type CampaignProgressView,
@@ -31,6 +33,10 @@ export function Game() {
   // Multi-book state. Null for a one-shot or a single-adventure campaign.
   const [progress, setProgress] = useState<CampaignProgressView | null>(null);
   const [transition, setTransition] = useState<BookTransitionView | null>(null);
+  // A character the player made. Null means the pregens.
+  const [character, setCharacter] = useState<CreationChoices | null>(null);
+  const [creationOptions, setCreationOptions] = useState<CreationOptions | null>(null);
+  const [creating, setCreating] = useState(false);
   const [narration, setNarration] = useState<string[]>([]);
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
   const [freeText, setFreeText] = useState('');
@@ -62,7 +68,7 @@ export function Game() {
     setBusy(true);
     setError(null);
     try {
-      const { state: fresh } = await api.start(adventure);
+      const { state: fresh } = await api.start(adventure, character ?? undefined);
       setCurrentAdventure(adventure);
       setState(fresh);
       setNarration([]);
@@ -81,7 +87,7 @@ export function Game() {
     setBusy(true);
     setError(null);
     try {
-      const { campaign } = await api.createCampaign(adventure);
+      const { campaign } = await api.createCampaign(adventure, undefined, character ?? undefined);
       setCurrentAdventure(adventure);
       setCampaignId(campaign.id);
       const { state: fresh } = await api.campaignSession(campaign.id);
@@ -101,7 +107,7 @@ export function Game() {
     setBusy(true);
     setError(null);
     try {
-      const { campaign } = await api.createBookCampaign(graphId);
+      const { campaign } = await api.createBookCampaign(graphId, character ?? undefined);
       setCampaignId(campaign.id);
       setCurrentAdventure(null);
       const opened = await api.campaignSession(campaign.id);
@@ -158,6 +164,38 @@ export function Game() {
     }
   }, [campaignId, progress]);
 
+  const [pending, setPending] = useState<null | { kind: 'one-shot' | 'campaign' | 'book'; id: string }>(
+    null,
+  );
+
+  /** Launch whatever the player picked, with whatever character they have. */
+  const launch = useCallback(
+    (target: { kind: 'one-shot' | 'campaign' | 'book'; id: string }) => {
+      if (target.kind === 'one-shot') return start(target.id);
+      if (target.kind === 'campaign') return startCampaign(target.id);
+      return startBookCampaign(target.id);
+    },
+    [start, startCampaign, startBookCampaign],
+  );
+
+  if (!state && creating && creationOptions) {
+    return (
+      <CreateCharacter
+        options={creationOptions}
+        busy={busy}
+        onDone={(choices) => {
+          setCharacter(choices);
+          setCreating(false);
+          if (pending) void launch(pending);
+        }}
+        onCancel={() => {
+          setCreating(false);
+          if (pending) void launch(pending);
+        }}
+      />
+    );
+  }
+
   if (!state && transition) {
     return (
       <BetweenBooks
@@ -176,11 +214,27 @@ export function Game() {
   if (!state) {
     return (
       <StartScreen
-        onStartCampaign={startCampaign}
-        onStartBookCampaign={startBookCampaign}
+        onStartCampaign={(id) => {
+          setPending({ kind: 'campaign', id });
+          void startCampaign(id);
+        }}
+        onStartBookCampaign={(id) => {
+          setPending({ kind: 'book', id });
+          void startBookCampaign(id);
+        }}
         busy={busy}
         error={error}
-        onStart={start}
+        character={character}
+        onCreateCharacter={async (target) => {
+          setPending(target);
+          const options = creationOptions ?? (await api.creationOptions());
+          setCreationOptions(options);
+          setCreating(true);
+        }}
+        onStart={(id) => {
+          setPending({ kind: 'one-shot', id });
+          void start(id);
+        }}
         onGenerate={(req) =>
           run(async () => {
             const res = await api.generate(req);
@@ -410,6 +464,8 @@ function StartScreen({
   onStartCampaign,
   onStartBookCampaign,
   onGenerate,
+  character,
+  onCreateCharacter,
 }: {
   busy: boolean;
   error: string | null;
@@ -417,6 +473,8 @@ function StartScreen({
   onStartCampaign: (adventure: string) => void;
   onStartBookCampaign: (campaign: string) => void;
   onGenerate: (req: GenerateRequest) => void;
+  character: CreationChoices | null;
+  onCreateCharacter: (target: { kind: 'one-shot' | 'campaign' | 'book'; id: string }) => void;
 }) {
   const [premise, setPremise] = useState('');
   const [setting, setSetting] = useState('');
@@ -544,6 +602,30 @@ function StartScreen({
             </li>
           ))}
         </ul>
+
+        <div className="mt-4 rounded-lg border border-[var(--ink-line)] p-3 text-center">
+          {character ? (
+            <p className="text-sm">
+              Playing as{' '}
+              <span style={{ color: 'var(--ember)' }}>{character.name}</span>, a{' '}
+              {character.lineage} {character.characterClass}.{' '}
+              <button
+                onClick={() => picked && onCreateCharacter({ kind: 'one-shot', id: picked })}
+                className="underline text-[var(--muted)]"
+              >
+                change
+              </button>
+            </p>
+          ) : (
+            <button
+              onClick={() => picked && onCreateCharacter({ kind: 'one-shot', id: picked })}
+              disabled={!picked}
+              className="text-sm underline text-[var(--muted)] disabled:opacity-40"
+            >
+              Make your own character, or play the four pregens
+            </button>
+          )}
+        </div>
 
         <div className="mt-4 flex justify-center gap-3">
           <button
@@ -846,6 +928,216 @@ function BetweenBooks({
           </button>
         </>
       )}
+    </div>
+  );
+}
+
+/**
+ * Character creation.
+ *
+ * The API owns every rule here — which abilities a background improves, which
+ * skills a class may take, what the sheet comes out as. This screen collects
+ * choices and shows what they produce, and the preview it displays is the
+ * same object the session will be built from.
+ */
+function CreateCharacter({
+  options,
+  busy,
+  onDone,
+  onCancel,
+}: {
+  options: CreationOptions;
+  busy: boolean;
+  onDone: (choices: CreationChoices) => void;
+  onCancel: () => void;
+}) {
+  const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha'] as const;
+  const [name, setName] = useState('');
+  const [lineage, setLineage] = useState(options.lineages[0]?.id ?? '');
+  const [characterClass, setCharacterClass] = useState(options.classes[0]?.id ?? '');
+  const [background, setBackground] = useState(options.backgrounds[0]?.id ?? '');
+  const [assigned, setAssigned] = useState<Record<string, number>>(
+    Object.fromEntries(ABILITIES.map((a, i) => [a, options.standardArray[i] ?? 10])),
+  );
+  const [preview, setPreview] = useState<{ hpMax: number; name: string } | null>(null);
+  const [problem, setProblem] = useState<string | null>(null);
+
+  const chosenBackground = options.backgrounds.find((b) => b.id === background);
+  const [plusTwo, setPlusTwo] = useState(chosenBackground?.abilities[0] ?? 'str');
+  const [plusOne, setPlusOne] = useState(chosenBackground?.abilities[1] ?? 'dex');
+
+  const choices: CreationChoices = {
+    name: name.trim() || 'Unnamed',
+    lineage,
+    characterClass,
+    background,
+    abilities: assigned,
+    improvements: { plusTwo, plusOne },
+  };
+
+  // Show what the choices produce before committing twenty levels to them.
+  useEffect(() => {
+    let live = true;
+    api
+      .previewCharacter(choices)
+      .then((r) => {
+        if (!live) return;
+        setPreview(r.character);
+        setProblem(null);
+      })
+      .catch((err) => live && setProblem((err as Error).message));
+    return () => {
+      live = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, lineage, characterClass, background, JSON.stringify(assigned), plusTwo, plusOne]);
+
+  const Row = ({ label, children }: { label: string; children: React.ReactNode }) => (
+    <label className="block">
+      <span className="text-xs uppercase tracking-widest text-[var(--muted)]">{label}</span>
+      <div className="mt-1">{children}</div>
+    </label>
+  );
+
+  const select = 'w-full rounded-md border border-[var(--ink-line)] bg-[var(--ink)] p-3 text-sm';
+
+  return (
+    <div className="mt-6 space-y-4 pb-24">
+      <h2 className="text-xs uppercase tracking-widest text-[var(--muted)]">Make a character</h2>
+
+      <Row label="Name">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Who are you?"
+          className={select}
+        />
+      </Row>
+
+      <div className="grid grid-cols-2 gap-3">
+        <Row label="Species">
+          <select value={lineage} onChange={(e) => setLineage(e.target.value)} className={select}>
+            {options.lineages.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.name}
+              </option>
+            ))}
+          </select>
+        </Row>
+        <Row label="Class">
+          <select
+            value={characterClass}
+            onChange={(e) => setCharacterClass(e.target.value)}
+            className={select}
+          >
+            {options.classes.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name} (d{c.hitDie})
+              </option>
+            ))}
+          </select>
+        </Row>
+      </div>
+
+      <Row label="Background">
+        <select
+          value={background}
+          onChange={(e) => {
+            const next = options.backgrounds.find((b) => b.id === e.target.value);
+            setBackground(e.target.value);
+            // The improvements must belong to the new background.
+            if (next) {
+              setPlusTwo(next.abilities[0]!);
+              setPlusOne(next.abilities[1]!);
+            }
+          }}
+          className={select}
+        >
+          {options.backgrounds.map((b) => (
+            <option key={b.id} value={b.id}>
+              {b.name} — {b.skills.join(', ')}
+            </option>
+          ))}
+        </select>
+      </Row>
+
+      <div>
+        <span className="text-xs uppercase tracking-widest text-[var(--muted)]">Ability scores</span>
+        <div className="mt-1 grid grid-cols-3 gap-2">
+          {ABILITIES.map((ability) => (
+            <label key={ability} className="rounded-md border border-[var(--ink-line)] p-2">
+              <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                {ability}
+              </span>
+              <select
+                value={assigned[ability]}
+                onChange={(e) =>
+                  setAssigned({ ...assigned, [ability]: Number(e.target.value) })
+                }
+                className="w-full bg-transparent text-lg"
+              >
+                {[...new Set([...options.standardArray, assigned[ability]!])]
+                  .sort((a, b) => b - a)
+                  .map((score) => (
+                    <option key={score} value={score}>
+                      {score}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {chosenBackground && (
+        <div className="grid grid-cols-2 gap-3">
+          <Row label="+2 to">
+            <select value={plusTwo} onChange={(e) => setPlusTwo(e.target.value)} className={select}>
+              {chosenBackground.abilities.map((a) => (
+                <option key={a} value={a}>
+                  {a}
+                </option>
+              ))}
+            </select>
+          </Row>
+          <Row label="+1 to">
+            <select value={plusOne} onChange={(e) => setPlusOne(e.target.value)} className={select}>
+              {chosenBackground.abilities.map((a) => (
+                <option key={a} value={a}>
+                  {a}
+                </option>
+              ))}
+            </select>
+          </Row>
+        </div>
+      )}
+
+      {problem && (
+        <p className="rounded-md border p-2 text-sm" style={{ borderColor: 'var(--blood)', color: 'var(--blood)' }}>
+          {problem}
+        </p>
+      )}
+
+      {preview && !problem && (
+        <p className="rounded-md border border-[var(--ink-line)] bg-[var(--ink-raised)] p-3 text-sm">
+          <span style={{ color: 'var(--ember)' }}>{preview.name}</span> — {preview.hpMax} hit points
+          at level 1.
+        </p>
+      )}
+
+      <div className="flex gap-3">
+        <button
+          disabled={busy || Boolean(problem)}
+          onClick={() => onDone(choices)}
+          className="flex-1 rounded-md p-3 font-semibold disabled:opacity-40"
+          style={{ background: 'var(--ember)', color: 'var(--ink)' }}
+        >
+          {busy ? 'Beginning…' : 'Play as this character'}
+        </button>
+        <button onClick={onCancel} className="text-sm text-[var(--muted)] underline">
+          Use the pregens
+        </button>
+      </div>
     </div>
   );
 }

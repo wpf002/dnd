@@ -9,6 +9,7 @@ import {
   castSpell,
   combatFlee,
   createSession,
+  partyWith,
   freeTextConstraint,
   restParty,
   sessionView,
@@ -16,6 +17,15 @@ import {
   type GameSession,
   type TurnOutcome,
 } from '../services/game.js';
+import {
+  CREATION_CLASSES,
+  createCharacter,
+  backgrounds,
+  lineages,
+  rollAbilityScores,
+  STANDARD_ARRAY,
+} from '@lantern/engine';
+import { CLASS_PROGRESSION } from '@lantern/srd';
 import { parseIntent } from '../services/intent.js';
 import { createStore, type Store } from '../services/store.js';
 import { narrate } from '../services/narration.js';
@@ -174,6 +184,45 @@ async function respond(outcome: TurnOutcome): Promise<object> {
 
 export function registerSessionRoutes(app: FastifyInstance): void {
   /**
+   * What a player can choose from when making a character. The API answers
+   * this rather than the client hardcoding it, so the two cannot drift.
+   */
+  app.get('/creation', async () => ({
+    classes: CREATION_CLASSES.map((id) => ({
+      id,
+      name: CLASS_PROGRESSION[id].name,
+      hitDie: CLASS_PROGRESSION[id].hitDie,
+      caster: Boolean(CLASS_PROGRESSION[id].spellcastingAbility),
+    })),
+    lineages: lineages().map((l) => ({ id: l.id, name: l.name, speed: l.speed, size: l.size })),
+    backgrounds: backgrounds().map((b) => ({
+      id: b.id,
+      name: b.name,
+      abilities: b.abilities,
+      skills: b.skillProficiencies ?? [],
+    })),
+    standardArray: [...STANDARD_ARRAY],
+  }));
+
+  /** Roll 4d6-drop-lowest six times. Seeded, and it shows every die. */
+  app.post<{ Body: { seed?: string } }>('/creation/roll', async (request) => ({
+    scores: rollAbilityScores(request.body?.seed ?? `roll-${Date.now()}`),
+  }));
+
+  /**
+   * Build the sheet without starting anything, so a player can see what their
+   * choices produce — hit points, speed, proficiencies, slots — before
+   * committing to twenty levels of it.
+   */
+  app.post<{ Body: unknown }>('/creation/preview', async (request, reply) => {
+    try {
+      return { character: createCharacter(request.body as never) };
+    } catch (err) {
+      return reply.code(400).send({ error: (err as Error).message });
+    }
+  });
+
+  /**
    * Every playable adventure. A graph that fails the linter is reported as
    * unplayable rather than omitted — silently hiding broken content is how you
    * end up not noticing it broke.
@@ -215,14 +264,30 @@ export function registerSessionRoutes(app: FastifyInstance): void {
     return { adventures };
   });
 
-  app.post<{ Body: { adventure?: string } }>('/session', async (request) => {
-    const adventureId = request.body?.adventure ?? 'the-bell-at-saltmire';
-    const graph = loadGraph(adventureId);
-    const session = createSession(graph);
-    sessions.set(session.id, session);
-    persistSession(session);
-    return { state: sessionView(session) };
-  });
+  app.post<{ Body: { adventure?: string; character?: unknown } }>(
+    '/session',
+    async (request, reply) => {
+      const adventureId = request.body?.adventure ?? 'the-bell-at-saltmire';
+      const graph = loadGraph(adventureId);
+
+      // A character the player made takes the place of the pregen of their
+      // class. The party stays at four, which is what every encounter in
+      // every shipped adventure was balanced against.
+      let party;
+      if (request.body?.character) {
+        try {
+          party = partyWith(createCharacter(request.body.character as never));
+        } catch (err) {
+          return reply.code(400).send({ error: (err as Error).message });
+        }
+      }
+
+      const session = createSession(graph, undefined, party);
+      sessions.set(session.id, session);
+      persistSession(session);
+      return { state: sessionView(session) };
+    },
+  );
 
   app.get<{ Params: { id: string } }>('/session/:id', async (request, reply) => {
     const session = await getSession(request.params.id);

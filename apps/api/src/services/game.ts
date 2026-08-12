@@ -128,6 +128,21 @@ let sessionCounter = 0;
  * @param party Carried party, for a campaign that spans books. Omitted for a
  *   standalone session, which starts from the level-3 pregens.
  */
+/**
+ * The party for a fresh session: the pregens, with the player's own character
+ * in place of the one of their class, or in place of the first if it is a
+ * class no pregen covers.
+ *
+ * Replacing rather than adding keeps the party at four, which every encounter
+ * in every shipped adventure was balanced against.
+ */
+export function partyWith(character: Character, base: readonly Character[] = PREGENS): Character[] {
+  const party = base.map((p) => structuredClone(p));
+  const sameClass = party.findIndex((p) => p.characterClass === character.characterClass);
+  party[sameClass >= 0 ? sameClass : 0] = character;
+  return party;
+}
+
 export function createSession(
   graphInput: unknown,
   sessionSeed?: string,
