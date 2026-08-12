@@ -879,56 +879,74 @@ not actually finished:
   still land on the skyline, which is a reasonable thing for an unknown place
   to look like.
 
-### F4 — Phase 0, the fun test — *played; the verdict is yours*
+### F4 — Phase 0, the fun test — *played twice; the verdict is yours*
 
-Three sessions were played end to end through the real API, with narration
-live: the ingested module (*A Most Potent Brew*), the authored one-shot (*The
-Bell at Saltmire*), and the first book of *The Drowned Lamp Cycle*. Reading
-the prose and choosing deliberately, not driving the sweep.
+Sessions were played end to end through the real API with narration live: the
+ingested module (*A Most Potent Brew*, twice, the second time to an ending),
+the authored one-shot (*The Bell at Saltmire*), and the first book of *The
+Drowned Lamp Cycle*. Reading the prose and choosing deliberately, not driving
+the sweep.
 
-**It found four defects that 570 tests and a ten-seed sweep did not**, because
-every one of them is about what a player experiences rather than what the
-engine computes:
+**Playing found seven defects that 578 tests and a ten-seed sweep did not.**
+Every one is about what a player experiences rather than what the engine
+computes, which is exactly why no automated check saw them.
 
-1. **You could not heal anyone outside combat, and you could not rest at all.**
-   The spell panel only rendered on a caster's turn in a fight, and nothing in
-   the app ever called the rest endpoint — both had been in the API since
-   Phase 2. A party that won a fight with two of its four at nought hit points
-   walked into the next room bleeding out and stayed that way. This was the
-   worst thing in the app and no automated check could have seen it: the sweep
-   heals through the API directly.
-2. **The narrator was never told what the player typed.** A free-text turn
-   resolves to `interact / automatic / no effects`, which describes nothing, so
-   the model invented a plausible action for the scene. Asking Sister Maren to
-   shout across the water produced a paragraph about the party walking onto
-   the causeway — an action nobody took, in a scene they had not left.
-3. **"Toward Calling it"** was the second option on the opening scene of the
-   ingested module, from the withdrawal ending added the same day. Renamed;
-   options read `Toward <name>`, so the name has to survive that.
-4. **Searching a room tells you nothing.** The padded "search before moving on"
-   option sets a flag and produces no visible outcome. It satisfies the
-   linter's false-choice rule by construction and is still a false choice to
-   the person clicking it. **Not fixed** — see below.
+1. **No healing outside combat, and no rest at all.** The spell panel rendered
+   only on a caster's turn in a fight, and nothing in the app ever called the
+   rest endpoint — both had been in the API since Phase 2. A party that won a
+   fight with two of four at nought hit points walked on bleeding out and
+   stayed that way. The sweep never noticed because it heals through the API
+   directly; only someone looking at the screen would see there was no button.
+2. **The narrator was never told what the player typed.** Free text resolves
+   to `interact / automatic / no effects`, so the model invented a plausible
+   action for the scene. Asking a cleric to shout across the water produced a
+   paragraph about the party walking onto the causeway.
+3. **The linter's guarantee was "you can always lose."** `checkNoGuaranteedEnding`
+   counted an encounter's `onDefeat` as a route to an ending. In the ingested
+   module the first fight's defeat route led back to the entry, the only beat
+   that could reach the walk-away ending — so nine of eleven beats had no way
+   to finish and the linter reported nothing. **The worst of the seven**: the
+   gate that exists to prevent walking forever was passing a graph where a
+   winning party does exactly that.
+4. **One adventure genuinely stranded a winning party**, found the moment (3)
+   was fixed. *Four Wounds of the Corrun Vale* now offers the downriver boat
+   at the campfire every victory routes to.
+5. **Searching a room produced nothing.** A flag and no outcome, which is a
+   false choice however well it satisfies the linter. It rolls Investigation
+   DC 13 now — deliberately not the Perception 12 that "press on quickly"
+   already rolls.
+6. **"Toward Calling it"** as option two on an opening scene.
+7. **The refusal lines were about Saltmire**, in all eighty-three adventures.
+   Being told the salt air swallows half-made plans in a wizard's tower
+   basement is worse than a plain refusal.
 
-All but the last are fixed and covered by tests.
+All seven are fixed and covered by tests.
 
 **What playing was actually like.** The authored and campaign content is
-strong: a natural 18 on an investigation check produced narration that named
-the specific thing found and carried it into the next beat, and the read-aloud
-text has a voice. The engine was correct everywhere it was watched — death
-saves, downed characters, healing, spell slots, the level-1 party in book one.
-The ingested module is recognizably itself and noticeably plainer, which is
-what faithful mapping of a plain module should look like.
+strong: a natural 18 on an investigation produced narration naming the
+specific thing found and carried it into the next beat, and the read-aloud has
+a voice. The engine was correct everywhere it was watched — death saves,
+downed characters, healing, slots, a level-1 party in book one. Eight giant
+rats in the ingested module's first room killed the wizard outright, which is
+harsh for room one and is also D&D. The ingested module is recognizably itself
+and noticeably plainer, which is what faithful mapping of a plain module
+should look like.
+
+**Known fidelity limits of ingestion**, observed rather than inferred:
+
+- A module's riddle survives as *text* and not as a puzzle. The mosaic
+  corridor prints its verse and offers three exits; nothing engages with it,
+  and free text is refused because the intent parser has nothing to bind to.
+- A module's own stated DCs are not extracted. The lab says "a character who
+  searches the room and makes a DC 13 Wisdom (Perception) check notices one
+  book" and the generic search padder rolls its own check instead.
+
+Both are mapper depth rather than bugs, and both are honest to write down.
 
 **The verdict is not mine to give.** Kill condition 1 asks whether solo play
 is fun, and that is a question about the person playing. What can be reported
-is that it works, it reads well, and the defects above are gone. Play it, and
-write the answer here.
-
-**Still open from this pass:** finding 4. A search that finds nothing is a
-false choice, and the honest fixes are to give search a real outcome — a
-discovery, a clue, an item — or to stop emitting it as padding. Both are
-mapper work and neither is a one-liner.
+is that it works, it reads well, and those seven are gone. Play it, and write
+the answer here.
 
 ### F5 — Does ingestion generalise? — *done for what can be tested here*
 
