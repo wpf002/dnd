@@ -196,7 +196,12 @@ describe('free text — the improv budget', () => {
     }
     const out = freeTextConstraint(s, 'one more');
     expect(out.accepted).toBe(false);
-    expect(out.refusal).toContain('tide'); // in-fiction, not an error message
+    // In-fiction, not an error message — and not about Saltmire. This used to
+    // assert the word "tide", which pinned the one adventure the line was
+    // written for into a refusal every one of the eighty-three can hit.
+    expect(out.refusal).toBeTruthy();
+    expect(out.refusal!).not.toMatch(/error|invalid|budget|failed/i);
+    expect(out.refusal!).not.toMatch(/tide|salt|village|causeway/i);
   });
 });
 

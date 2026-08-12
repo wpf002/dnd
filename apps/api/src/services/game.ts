@@ -400,9 +400,11 @@ export function freeTextConstraint(session: GameSession, rawInput: string): Free
       resolutions: [],
       narration: [],
       accepted: false,
+      // No weather, no village, no tide: this line is read in all
+      // eighty-three adventures, and the ones it was written for are one.
       refusal:
-        'The moment closes around you like the tide around a stone — whatever you intended, ' +
-        'the village has its own idea of what happens next. The paths before you remain.',
+        'The moment closes before you can take it — whatever you intended, what happens ' +
+        'next is already happening. What is in front of you is still in front of you.',
     };
   }
 

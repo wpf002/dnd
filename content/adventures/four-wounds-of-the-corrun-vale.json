@@ -480,12 +480,9 @@
           "effects": []
         },
         {
-          "id": "return-to-ridge",
-          "label": "Go back up to Cobbet's waystone and take on another wound in the south",
-          "visibleWhen": {
-            "op": "always"
-          },
-          "target": "ridge-road-survey",
+          "id": "take-the-boat-home",
+          "label": "Settle up, walk down to the landing, and take the downriver boat",
+          "target": "ending-downriver-silence",
           "effects": []
         },
         {

@@ -405,17 +405,29 @@ export function registerSessionRoutes(app: FastifyInstance): void {
   );
 }
 
-/** Invariant 7: refusals are in-fiction constraint, keyed by rejection reason. */
+/**
+ * Invariant 7: refusals are in-fiction constraint, keyed by rejection reason.
+ *
+ * These have to work in every adventure, and they did not. They were written
+ * for Saltmire, when Saltmire was the only adventure — a drowned village on a
+ * tidal causeway — and then eighty-two more arrived and kept using them. Being
+ * told that "the salt air swallows half-made plans" while standing in the
+ * basement of a wizard's tower is a worse immersion break than a plain refusal
+ * would have been, because it is confidently about somewhere else.
+ *
+ * So: in-fiction, but about the party rather than the weather. Nothing here
+ * names a place, a season, or a smell.
+ */
 function refusalLine(reason: string): string {
   switch (reason) {
     case 'unavailable':
-      return 'You reach for what is not there. The village offers only what it offers.';
+      return 'You reach for what is not there. This place offers what it offers, and no more.';
     case 'illegal':
       return 'Your body knows before your mind does: that cannot be done from where you stand.';
     case 'budget-exhausted':
-      return 'The moment closes around you like the tide around a stone. The paths before you remain.';
+      return 'The moment closes before you can take it. What is in front of you is still in front of you.';
     default:
-      return 'The intent slips away from you, unformed — the salt air swallows half-made plans. Try another way.';
+      return 'The thought will not finish itself into an action. Try it another way.';
   }
 }
 

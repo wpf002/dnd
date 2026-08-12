@@ -299,8 +299,17 @@ export function checkNoGuaranteedEnding(graph: BeatGraph): Finding[] {
       }
       for (const encounter of graph.encounters) {
         if (beat.encounter !== encounter.id) continue;
-        // Victory, flight, and defeat all genuinely happen.
-        outs.push(encounter.onVictory, encounter.onDefeat);
+        // Victory and flight are things a party can decide to do. Defeat is
+        // not — nobody chooses to lose — so a route that exists only through
+        // being beaten is not a route out.
+        //
+        // This used to count `onDefeat`, and it hid a real one: in a shipped
+        // module the first fight's defeat route led back to the entry, which
+        // was the only beat that could reach the walk-away ending. Nine of
+        // eleven beats had no way to finish, the linter reported nothing, and
+        // the guarantee it was making amounted to "you can always get out by
+        // losing the first fight".
+        outs.push(encounter.onVictory);
         if (encounter.onFlee) outs.push(encounter.onFlee);
       }
 

@@ -424,3 +424,56 @@ describe('advice rules and ingested modules', () => {
     expect(allDefeatAll('ingested')).not.toContain('all-encounters-defeat-all');
   });
 });
+
+/**
+ * Losing is not a way out.
+ *
+ * `checkNoGuaranteedEnding` used to count an encounter's `onDefeat` as a route
+ * to an ending, and it hid a real one: in a shipped module the first fight's
+ * defeat route led back to the entry, which was the only beat that could reach
+ * the walk-away ending. Nine of eleven beats had no way to finish, the linter
+ * reported nothing, and the guarantee it was making amounted to "you can
+ * always get out by losing the first fight". A party that wins every fight is
+ * the ordinary case, not the exception.
+ */
+describe('a route out has to be one the party can choose', () => {
+  /**
+   * The valid graph, rearranged so that every unguarded move loops and the
+   * only terminal sits behind losing the fight.
+   */
+  function onlyLosingEnds() {
+    const graph = validGraph() as unknown as {
+      beats: Array<{ id: string; terminal?: boolean; options: Array<{ target: string }> }>;
+      encounters: Array<{ onVictory: string; onDefeat: string; onFlee?: string }>;
+    };
+    // Both endings become reachable only by losing.
+    for (const beat of graph.beats) {
+      if (beat.terminal) continue;
+      for (const option of beat.options) {
+        const target = graph.beats.find((b) => b.id === option.target);
+        if (target?.terminal) option.target = 'courtyard';
+      }
+    }
+    graph.encounters[0]!.onDefeat = 'the-end';
+    delete graph.encounters[0]!.onFlee;
+    return graph;
+  }
+
+  it('warns when the only way to finish is to be beaten', () => {
+    const codes = lintGraph(onlyLosingEnds() as never).warnings.map((w) => w.code);
+    expect(codes).toContain('beat-can-strand');
+  });
+
+  it('accepts the same graph once fleeing reaches the ending', () => {
+    // Fleeing is a decision. Losing is not.
+    const graph = onlyLosingEnds();
+    graph.encounters[0]!.onFlee = 'the-end';
+    const codes = lintGraph(graph as never).warnings.map((w) => w.code);
+    expect(codes).not.toContain('beat-can-strand');
+  });
+
+  it('is quiet on the unmodified graph, which ends by winning', () => {
+    const codes = lintGraph(validGraph() as never).warnings.map((w) => w.code);
+    expect(codes).not.toContain('beat-can-strand');
+  });
+});

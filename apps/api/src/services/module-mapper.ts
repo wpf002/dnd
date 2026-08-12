@@ -475,6 +475,31 @@ export function mapModuleToGraph(moduleInput: unknown): {
         target: fallback,
         effects: [{ flag: searchFlag(room.id), value: true }],
         visibleWhen: { op: 'unset', flag: searchFlag(room.id) },
+        // A check, so that searching produces something.
+        //
+        // Without it the option set a flag and said nothing: the party
+        // searched, and the game returned the next room's description with no
+        // acknowledgement that anything had been looked for. It satisfied the
+        // linter's false-choice rule by construction and was still a false
+        // choice to the person clicking it, because a resolution is what the
+        // narrator has to describe — and `interact / automatic / no effects`
+        // describes nothing.
+        //
+        // Deliberately not gated on success: a failed search is a party that
+        // looked and found nothing, which is a real outcome and a different
+        // sentence. The flag records that they looked either way.
+        // Investigation, not perception, and a DC above the hurried glance
+        // below it: "press on quickly" is already a Wisdom (Perception) 12,
+        // and giving search the same check made the two options identical in
+        // everything but their labels — which is the false choice this padder
+        // exists to avoid. Searching a room deliberately is what Intelligence
+        // (Investigation) is for, and modules that print their own search DC
+        // print 13 about as often as not.
+        //
+        // Failure leads the same way success does. Searching is not a gate —
+        // the party goes on either way, and what changes is whether they go on
+        // having found anything.
+        requiresCheck: { ability: 'int', skill: 'investigation', dc: 13, onFailure: fallback },
       } as BeatOption,
       ...(back && !targets.includes(back)
         ? [
