@@ -167,6 +167,11 @@ export interface MappingReport {
   unreachableRooms: string[];
   /** Areas the module gates behind a check, given an approach beat. */
   checkedApproaches: Array<{ room: string; dc: number }>;
+  /**
+   * Set when every ending the module prints is conditional and a withdrawal
+   * ending was added so the party can always leave.
+   */
+  addedWithdrawal?: string;
   /** Counts read from a party-size table rather than taken flat. */
   scaledCounts: Array<{ room: string; creature: string; partySize: number; count: number }>;
   /**
@@ -313,6 +318,50 @@ export function mapModuleToGraph(moduleInput: unknown): {
     if (back) return back;
     return id === entryId ? undefined : entryId;
   };
+
+  /**
+   * A party must always be able to walk away.
+   *
+   * Modules gate their conclusion on having done the job — "return to
+   * Glowkindle once the cellar is clear" — which is right for a printed
+   * adventure with a DM in the room. Mapped literally it produces a graph whose
+   * only ending is behind a flag, so a party that loses the fight, or flees it,
+   * or simply never finds the storeroom, walks the same three rooms forever.
+   * That is not a hard adventure; it is an adventure with no exit.
+   *
+   * If nothing terminal can be reached without a flag, the module gets one more
+   * ending: leaving with the job unfinished. It hangs off the entry, where a
+   * party doubling back arrives anyway, and it is a real D&D outcome rather
+   * than a safety valve — walking out of a job you cannot finish is a session,
+   * and a worse one than winning, which is the point.
+   */
+  const everyEndingIsGated =
+    rooms.some((r) => r.isEnding) &&
+    rooms.filter((r) => r.isEnding).every((r) => r.requires.some((id) => byId.has(id)));
+
+  if (everyEndingIsGated) {
+    let withdrawalId = 'withdrew';
+    for (let n = 2; byId.has(withdrawalId); n++) withdrawalId = `withdrew-${n}`;
+
+    const withdrawal: IngestedRoom = {
+      id: withdrawalId,
+      name: 'Calling it',
+      description:
+        'The job is not finished and the party knows it. There is no shame in the walk back ' +
+        'that there would be in the walk in — only the weight of what was left behind, and ' +
+        'whoever asked for the work still waiting on an answer.',
+      connections: [],
+      npcs: [],
+      requires: [],
+      isEnding: true,
+    } as IngestedRoom;
+
+    rooms.push(withdrawal);
+    byId.set(withdrawal.id, withdrawal);
+    forward.set(withdrawal.id, []);
+    forward.get(entryId)!.push(withdrawal.id);
+    report.addedWithdrawal = withdrawal.id;
+  }
 
   /**
    * Areas the module gates behind a check get an approach beat, and every

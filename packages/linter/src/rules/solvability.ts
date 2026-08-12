@@ -220,7 +220,14 @@ export function checkSolvability(graph: BeatGraph, level = 3): Finding[] {
   }
 
   // Vol III Ch2 §XIV: an all-defeat-all graph is thin. Warning only.
+  //
+  // Not for ingested modules. This is advice to whoever is writing the
+  // adventure, and nobody is — a published module that prints three fights and
+  // says "kill the things" three times has been mapped correctly, and the only
+  // way to satisfy the rule is to invent an objective the module never stated.
+  // The mapper's whole contract is that it does not do that.
   if (
+    graph.metadata.provenance !== 'ingested' &&
     graph.encounters.length >= 2 &&
     graph.encounters.every((e) => e.victory.kind === 'defeat-all')
   ) {

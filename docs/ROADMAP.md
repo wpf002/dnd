@@ -55,8 +55,8 @@ Non-negotiable. Enforced by `pnpm guard` in CI, not by discipline.
 | 6 | **Campaign scale** — multi-book, level 1→20 | — | done |
 | 7 | **Published modules, playable** | v5 — long-document extraction | done — two real modules play |
 
-Phases 6 and 7 are the two things the library does *not* deliver. Read the
-next section before assuming otherwise.
+Every phase is built. Read the next section for what the library is, since
+the naming invites exactly one wrong assumption.
 
 Solo, part-time. Treat estimates as sequencing, not commitments.
 
@@ -64,8 +64,9 @@ Solo, part-time. Treat estimates as sequencing, not commitments.
 
 ## What the adventure library is, and is not
 
-The repo ships **79 playable adventures**. Be precise about what they are,
-because the naming invites exactly one wrong assumption.
+The repo ships **79 playable adventures**, plus whatever has been ingested
+locally — 4 on this machine, for 83 in the app. Be precise about what they
+are, because the naming invites exactly one wrong assumption.
 
 `content/library-index.json` maps each generated adventure to an `inspiredBy`
 entry from the canon list. **That is an attribution record, not a claim of
@@ -75,15 +76,17 @@ Curse of Strahd slot yields *The Tithe of Grauvane*, an original gothic story
 with invented characters and plot. Zero published characters, places, or plot
 elements appear anywhere in the corpus.
 
-Two consequences, both of which Phases 6 and 7 exist to fix:
+Two consequences. Phases 6 and 7 addressed both, and the corrected statements
+are recorded here rather than deleted, because the distinction still holds:
 
 1. **They are not the published modules.** Playing the real *Curse of Strahd*
-   requires that module's own text, through Phase 7 ingestion.
-2. **They are one-shots, not campaigns.** Every graph is 10–16 beats — one
-   sitting. A published campaign is a level 1–10 book; the stated ambition
-   (see `content/adventures/synopses/emberfall-chronicles.md`) is a saga
-   across multiple books, level 1→20. Nothing in the app is campaign-scale
-   yet, including the four hand-authored graphs.
+   still requires that module's own text. Phase 7 built the ingestion path,
+   and two real modules — *A Most Potent Brew* and *Battle for Critter Vale* —
+   play end to end through it. The generated corpus remains original work.
+2. **They are one-shots.** Every generated graph is 10–16 beats, one sitting.
+   Campaign scale arrived in Phase 6 as `CampaignGraph`: two campaigns run
+   multi-book with advancement, and the engine levels correctly 1→20. The 79
+   generated graphs were not retrofitted and are still one-shots by design.
 
 ---
 
@@ -733,9 +736,13 @@ arrangement is building against a real consumer instead of imagination.
 
 ## Content and licensing
 
-Mechanics derive from **SRD 5.1** under
-[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode). Attribution
-in `packages/srd/ATTRIBUTION.md` and surfaced in-app.
+Mechanics derive from **SRD 5.1 and SRD 5.2**, both under
+[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode). SRD 5.2
+supplies 222 creatures, 326 spells, 8 species and 4 backgrounds, parsed by
+`tools/import-srd52.mjs`; the SRD 5.1 subset was hand-transcribed and is
+retained where 5.2 has no matching entry. Attribution in
+`packages/srd/ATTRIBUTION.md` and `docs/ATTRIBUTION.md`, and surfaced in-app
+in the header.
 
 Private tool, undistributed. If that changes: Phase 5 is deleted, all art
 provenance gets documented, branding never says "Dungeons & Dragons," and the
@@ -743,34 +750,94 @@ whole licensing posture gets rebuilt before anything ships.
 
 ---
 
-## Immediate next steps
+## The finish line
 
-Phases 0–5 are built and pushed. The app ships 79 playable adventures, a
-deterministic engine, the linter gate, the state ledger, and a working
-generator. **What it does not ship is the two things that matter most from
-here**, and they are ordered by dependency:
+Every numbered phase is built. What follows is the complete list of what
+stands between the current state and *done*, written so nothing new appears
+later. Each item states what "finished" means for it, so it can be checked off
+rather than argued about.
 
-1. **Phase 6 — campaign scale.** Do this first; Phase 7 depends on it. A
-   published campaign is multi-book, so without `CampaignGraph` and character
-   advancement, every ingested module collapses into one 16-beat graph — which
-   is exactly the current failure.
-   - The long pole inside it is `advancement/`: 20 levels of class features
-     across `srd` and `engine`. Deterministic, fully testable, no model calls.
-   - The schema work (`Book`, `CampaignGraph`) is small by comparison and lands
-     first, same as every other contract in this project.
+The rule for this list: **if it is not here, it is not required to ship.**
+Anything discovered later goes in "Standing risks" or the cut list, not here.
 
-2. **Phase 7 — published modules, playable.** In this order:
-   - Fix the mapper's topology (hub-and-spoke and looping instead of a chain).
-     Highest value, needs no schema change — `Edge` and `Guard` already express
-     it and the mapper simply does not use them.
-   - Map chapters to books via Phase 6's `CampaignGraph`.
-   - Flint v5 long-document extraction with a running index, so late chapters
-     can reference NPCs introduced early.
-   - A human-in-the-loop repair surface before anything is played.
+### Where the app actually is
 
-3. **Supply one module you own, as text**, to drive Phase 7 against something
-   real. Start with a linear, single-book module — not a sandbox.
+| | |
+|---|---|
+| Adventures | 79 generated + 4 ingested, all lint-clean, all finish on ten seeds |
+| Campaigns | 2, multi-book, both complete with advancement |
+| Rules | SRD 5.1 + 5.2 — 222 creatures, 326 spells, levels 1→20 |
+| Characters | 4 pregens, or make your own: 8 species, 4 backgrounds, 4 classes |
+| Engine | deterministic, seeded, 88 tests |
+| Gate | linter (0 errors, 0 warnings), 568 tests, boundary guard, playability sweep |
+| Session | plays end to end in the browser — choices, free text, combat, spells, rest, death |
 
-4. **Phase 0 was waived.** It gates nothing technically. It remains the only
-   thing that answers whether any of this is worth playing, and the roadmap's
-   standing risk section still applies.
+### F1 — A session survives closing the tab
+
+**The one real hole.** The API persists every session to the database and
+serves `GET /session/:id`. The web client never stores the id, so a reload
+loses the game. For a solo game meant to be played in sittings, that is the
+difference between a toy and a thing you use.
+
+Finished when: reopening the app offers to resume an unfinished session or
+campaign, resuming restores party, flags, beat, and combat exactly, and there
+is a way to abandon a run and start fresh. Covered by a web test.
+
+### F2 — Offline play
+
+`manifest.webmanifest` and icons exist, so the app installs. There is no
+service worker, so an installed app with no network shows nothing. A solo
+game played on a phone should not need a network for content it already has.
+
+Finished when: an installed app opens and plays an already-started session
+with the network off, and the API calls that genuinely need the server —
+narration, free-text parsing, generation — degrade to the authored text
+rather than erroring.
+
+### F3 — Art
+
+1,247 placeholder SVGs cover 1,247 of 1,285 slots. The remaining 38 fall
+through to the gradient, which is by design and looks deliberate. There are
+zero real images.
+
+Finished when: either every slot has a real image generated offline with the
+locked prompt prefix and seed, **or** this is moved to the cut list and the
+placeholders are declared final. Both are legitimate; leaving it undecided is
+not.
+
+### F4 — Phase 0, the fun test
+
+Never done. It gates nothing technically and it is the only thing that
+answers whether any of this is worth playing. The roadmap has carried it as a
+waived phase since the beginning and as the project's single largest standing
+risk.
+
+Finished when: three full sessions have been played start to finish — one
+generated one-shot, one ingested module, one multi-book campaign — and the
+verdict is written down. If the verdict is no, kill condition 1 fires and the
+rest of this list is moot.
+
+### F5 — One more ingested module
+
+Two modules prove the ingestion path works. Both are small and free. A third,
+structurally different one — a sandbox or a hex crawl rather than a linear
+dungeon — is what tells you whether the mapper generalises or was fitted to
+two examples.
+
+Finished when: a third module of a different shape ingests, lints clean, and
+finishes on ten seeds without hand-editing its IR.
+
+### Explicitly not on this list
+
+Deployment, hosting, accounts, payments, multiplayer, voice, AR, app stores,
+homebrew rule configuration, and a marketplace. The cut list covers why. This
+is a private tool for one player; "finished" means the player can play it,
+not that anyone else can reach it.
+
+### Order
+
+F1 first — it is the only thing that makes the app usable across sittings,
+and everything else is more pleasant to evaluate once a session can be picked
+back up. Then F4, because it can invalidate the rest. F2, F3, and F5 in any
+order after that.
+

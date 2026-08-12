@@ -66,7 +66,23 @@ if (mapOnly) {
     process.exit(1);
   }
   console.log(`re-mapping ${irPath} (no model calls)`);
-  result = remapModule(JSON.parse(readFileSync(irPath, 'utf8')));
+  const ir = JSON.parse(readFileSync(irPath, 'utf8'));
+
+  // An IR extracted before the title/premise were read off the document still
+  // carries the placeholders, and re-mapping would put them straight back into
+  // the installed campaign. The source text is right here, so read them again.
+  if (existsSync(file) && (/^Untitled/.test(ir.title ?? '') || /^Extracted from a long source/.test(ir.summary ?? ''))) {
+    const { describeDocument } = await import(
+      join(root, 'apps/api/dist/services/document-summary.js')
+    );
+    const described = describeDocument(readFileSync(file, 'utf8'));
+    if (described.title) ir.title = described.title;
+    if (described.premise) ir.summary = described.premise;
+    writeFileSync(irPath, `${JSON.stringify(ir, null, 2)}\n`);
+    console.log(`read title and premise off the source: ${ir.title}`);
+  }
+
+  result = remapModule(ir);
 } else {
   const text = readFileSync(file, 'utf8');
   console.log(`${file}: ${text.length.toLocaleString()} characters`);

@@ -395,3 +395,32 @@ describe('beats that can strand a party', () => {
     expect(result.warnings.some((w) => w.code === 'beat-can-strand')).toBe(false);
   });
 });
+
+/**
+ * The advice rules are advice to an author. Nobody is authoring an ingested
+ * module, and the only way to satisfy this one on a published adventure that
+ * prints three kill-the-things fights is to invent an objective the module
+ * never stated — which is precisely what the mapper is forbidden to do.
+ */
+describe('advice rules and ingested modules', () => {
+  const allDefeatAll = (provenance: string) => {
+    const graph = validGraph() as unknown as {
+      metadata: Record<string, unknown>;
+      encounters: Array<{ id: string; victory: { kind: string } }>;
+    };
+    graph.metadata.provenance = provenance;
+    graph.encounters = [
+      ...graph.encounters,
+      { ...graph.encounters[0]!, id: 'second-fight' },
+    ];
+    return lintGraph(graph as never).warnings.map((w) => w.code);
+  };
+
+  it('tells an author their fights are all the same', () => {
+    expect(allDefeatAll('authored')).toContain('all-encounters-defeat-all');
+  });
+
+  it('says nothing about a module that was printed that way', () => {
+    expect(allDefeatAll('ingested')).not.toContain('all-encounters-defeat-all');
+  });
+});
