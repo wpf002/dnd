@@ -887,9 +887,11 @@ the authored one-shot (*The Bell at Saltmire*), and the first book of *The
 Drowned Lamp Cycle*. Reading the prose and choosing deliberately, not driving
 the sweep.
 
-**Playing found seven defects that 578 tests and a ten-seed sweep did not.**
-Every one is about what a player experiences rather than what the engine
-computes, which is exactly why no automated check saw them.
+**Playing has found thirteen defects that the test suite did not.** Every one
+is about what a player experiences rather than what the engine computes, which
+is exactly why no automated check saw them. The pattern is worth stating
+plainly: the suite is good at what the engine computes and blind to what the
+player goes through. Nothing in this list was found by a test.
 
 1. **No healing outside combat, and no rest at all.** The spell panel rendered
    only on a caster's turn in a fight, and nothing in the app ever called the
@@ -920,7 +922,27 @@ computes, which is exactly why no automated check saw them.
    Being told the salt air swallows half-made plans in a wizard's tower
    basement is worse than a plain refusal.
 
-All seven are fixed and covered by tests.
+8. **A module's riddle was scenery.** The mosaic corridor printed its verses,
+   its safe panels, and its DC 12 Dexterity save with 1d10 damage, and the
+   mapper carried all of it through as text and none of it as mechanics. The
+   trap could not go off. `Beat.hazard` and the near-side beat fixed it.
+9. **A module's own stated DCs were ignored.** The lab prints "a DC 13 Wisdom
+   (Perception) check notices one book" and searching rolled an invented
+   Investigation 13 instead.
+10. **A click in a fight took seven seconds.** Measured, 7,046ms — every turn
+    asked for three paragraphs from the larger model, including a single sword
+    swing. The narration policy has said "never block a turn" since Phase 2.
+    Now 1,470ms.
+11. **The party sheet never showed a level**, in a game about going from 1 to
+    20. Computed, levelled, and persisted correctly; never sent to the client.
+12. **A campaign carried its corpses forward.** Three of four died in book two
+    and book three opened with one fighter on one hit point against encounters
+    balanced for four.
+13. **A total party kill looked exactly like winning.** A wipe ends on the beat
+    of the fight that killed the party, so the ending panel printed the name of
+    the room in ember with a "play again" link.
+
+All thirteen are fixed and covered by tests.
 
 **What playing was actually like.** The authored and campaign content is
 strong: a natural 18 on an investigation produced narration naming the
