@@ -167,6 +167,8 @@ export interface MappingReport {
   unreachableRooms: string[];
   /** Areas the module gates behind a check, given an approach beat. */
   checkedApproaches: Array<{ room: string; dc: number }>;
+  /** Counts read from a party-size table rather than taken flat. */
+  scaledCounts: Array<{ room: string; creature: string; partySize: number; count: number }>;
   /**
    * Exits added because another area listed this one. A printed dungeon map is
    * undirected — a door between two rooms is one door — but extraction records
@@ -199,6 +201,15 @@ export interface MappingReport {
  *    all. The improv budget absorbs some of it; the rest is genuinely gone,
  *    and no amount of mapper cleverness recovers it.
  */
+/**
+ * The party this content is being built for.
+ *
+ * Four, because that is how many pregens there are. A published module scales
+ * its encounters by party size, and picking the wrong column is the
+ * difference between a fight and a slaughter.
+ */
+export const PARTY_SIZE = 4;
+
 export function mapModuleToGraph(moduleInput: unknown): {
   graph: unknown;
   report: MappingReport;
@@ -216,6 +227,7 @@ export function mapModuleToGraph(moduleInput: unknown): {
     unreachableRooms: [],
     inferredReturns: [],
     checkedApproaches: [],
+    scaledCounts: [],
   };
 
   const rooms = module.rooms;
@@ -645,10 +657,24 @@ export function mapModuleToGraph(moduleInput: unknown): {
               substituteCr: (MONSTERS as Record<string, MonsterInput>)[statblock]!.cr,
             });
           }
+          // A printed scaling table beats a flat number: it is what the
+          // module says this party faces.
+          let count = c.count;
+          const scaled = c.countByPartySize?.[String(PARTY_SIZE)];
+          if (scaled !== undefined) {
+            count = scaled;
+            report.scaledCounts.push({
+              room: room.id,
+              creature: c.name,
+              partySize: PARTY_SIZE,
+              count: scaled,
+            });
+          }
+
           return {
             id: `${room.id}-c${ci}`,
             statblock,
-            count: Math.min(c.count, 8),
+            count: Math.max(1, Math.min(count, 8)),
             hostile: c.role !== 'ally',
           };
         });

@@ -35,6 +35,16 @@ export const IngestedEncounter = z.object({
         count: z.number().int().min(1).max(20),
         /** Challenge rating as printed. 1/4 is 0.25. */
         cr: z.number().min(0).max(30).optional(),
+        /**
+         * How the count scales with party size, when the module prints a
+         * table: "3 PCs: Adult x1, Cubs x2 | 4 PCs: Adult x1, Cubs x2 | ..."
+         *
+         * Keyed by number of player characters. Extraction reads such a table
+         * as a single number otherwise, and it picks the wrong column: a real
+         * module's two badger cubs came through as six, which is the
+         * difference between a fight and a slaughter.
+         */
+        countByPartySize: z.record(z.string(), z.number().int().min(0).max(20)).optional(),
         /** beast, humanoid, undead, monstrosity, construct, giant, … */
         type: z.string().optional(),
         /**

@@ -347,3 +347,54 @@ describe('checks the module prints', () => {
     expect((graph as { beats: Array<{ id: string }> }).beats.some((b) => b.id === 'den-approach')).toBe(false);
   });
 });
+
+describe('encounters that scale with party size', () => {
+  it('reads the column for this party, not the flat number', () => {
+    // The badger fight in a real module prints "4 PCs: Adult x1, Cubs x2".
+    // Read as one number it came through as six cubs — a fight the party
+    // loses every time rather than one they win.
+    const module = {
+      title: 'Scaling Test',
+      summary: 'A fight the module scales.',
+      rooms: [
+        room('entry', 'The Path', ['den']),
+        room('den', 'The Den', ['out'], {
+          encounter: {
+            creatures: [
+              { name: 'Badger Cub', count: 6, cr: 0.25, type: 'beast', countByPartySize: { '3': 2, '4': 2, '5': 3, '6': 4 } },
+            ],
+          },
+        }),
+        room('out', 'Out', [], { isEnding: true }),
+      ],
+    };
+
+    const { graph, report } = mapModuleToGraph(module);
+    const encounter = (graph as { encounters: Array<{ combatants: Array<{ count: number }> }> })
+      .encounters[0]!;
+    expect(encounter.combatants[0]!.count).toBe(2);
+    expect(report.scaledCounts).toContainEqual({
+      room: 'den',
+      creature: 'Badger Cub',
+      partySize: 4,
+      count: 2,
+    });
+  });
+
+  it('keeps the flat count when the module prints no table', () => {
+    const module = {
+      title: 'Flat',
+      summary: 'No scaling here.',
+      rooms: [
+        room('entry', 'The Path', ['den']),
+        room('den', 'The Den', ['out'], {
+          encounter: { creatures: [{ name: 'wolf', count: 3, cr: 0.25, type: 'beast' }] },
+        }),
+        room('out', 'Out', [], { isEnding: true }),
+      ],
+    };
+    const { graph, report } = mapModuleToGraph(module);
+    expect((graph as { encounters: Array<{ combatants: Array<{ count: number }> }> }).encounters[0]!.combatants[0]!.count).toBe(3);
+    expect(report.scaledCounts).toEqual([]);
+  });
+});
