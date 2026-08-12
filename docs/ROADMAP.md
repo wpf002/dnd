@@ -668,14 +668,20 @@ Fixes discovered here land in Flint proper and propagate across the portfolio.
 ## Cut list
 
 Explicit. Each is reasonable to want and each is a reason v1 doesn't ship.
+Two have since been built and are struck through — both because the ground
+moved: SRD 5.2 arrived under CC-BY-4.0, and eighty-three adventures made
+playing the same four pregens the limiting factor.
 
 - **AR** — a demo, not a product. Nobody plays three hours holding a phone at
   arm's length.
 - **Multiplayer** — the whole premise is solo play
 - **Voice** — later, if ever
 - **Native app / app stores** — PWA covers it, zero review overhead
-- **Character creator** — four pregens until Phase 4 at the earliest
-- **Full spell list** — ~30, chosen to make the content work
+- ~~**Character creator**~~ — built. Eight SRD species, four backgrounds, the
+  four classes the progression tables cover; a made character replaces the
+  pregen of its class so the party stays at four.
+- ~~**Full spell list**~~ — built. SRD 5.2 is CC-BY-4.0, so the real list (326
+  spells, 222 creatures) is simply in the repository.
 - **Homebrew rules** — the engine is the authority; don't make it configurable
 - **UGC / marketplace** — n=1
 - **Runtime image generation in the core loop** — Phase 4, not before
