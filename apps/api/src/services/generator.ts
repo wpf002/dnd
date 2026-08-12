@@ -78,6 +78,7 @@ function buildPrompt(request: GenerationRequest): string {
     `- All ids are kebab-case. "schemaVersion" is 1. metadata.tone uses only the provided tone tags.`,
     `- Vary victory conditions: not every encounter should be defeat-all.`,
     `- Give each beat a generous "improvBudget" (5-10).`,
+    `- Leave "edges" empty unless a transition genuinely fires on state alone, and give any you do write a real condition. An edge with no condition would move the party off a beat the instant they arrive; options already carry the ordinary routes.`,
   ]
     .filter(Boolean)
     .join('\n');

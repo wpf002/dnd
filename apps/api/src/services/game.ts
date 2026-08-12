@@ -199,11 +199,18 @@ function enterBeat(session: GameSession, beatId: string, redirects = 0): TurnOut
   // moves". Evaluated BEFORE the encounter starts, so a fight the party has
   // already won does not run a second time when they walk back through.
   //
-  // These were declared in the schema and enumerated by the linter from the
-  // beginning, and never evaluated here. Neither was `entryWhen` — an
-  // authored ending guarded on a flag has been silently reachable all along.
+  // Only CONDITIONAL edges fire. An `always` edge would move the party off the
+  // beat the instant they arrived, every time — which is not a transition, it
+  // is a beat that cannot be played. Generated content uses unconditional
+  // edges as a redundant adjacency list mirroring its options, and treating
+  // those as triggers sent fifteen shipped adventures into an endless
+  // redirect chain the moment a session opened.
   const edge = session.graph.edges.find(
-    (e) => e.from === beatId && evaluateGuard(e.when, session.flags),
+    (e) =>
+      e.from === beatId &&
+      e.to !== beatId &&
+      e.when.op !== 'always' &&
+      evaluateGuard(e.when, session.flags),
   );
   if (edge) {
     if (redirects >= MAX_EDGE_REDIRECTS) {

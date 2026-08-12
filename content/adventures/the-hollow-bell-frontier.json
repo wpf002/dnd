@@ -604,40 +604,12 @@
   ],
   "edges": [
     {
-      "from": "sixnail-crossing",
-      "to": "gathering-the-threads",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "gathering-the-threads",
       "to": "ledger-of-grudges",
       "when": {
         "op": "eq",
         "flag": "met-warden",
         "value": true
-      }
-    },
-    {
-      "from": "gathering-the-threads",
-      "to": "hollowmarket-trail",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "hollowmarket-trail",
-      "to": "bell-ruins-approach",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "hollowmarket-trail",
-      "to": "cult-ambush",
-      "when": {
-        "op": "always"
       }
     },
     {
@@ -648,105 +620,6 @@
         "flag": "know-rumors",
         "value": true
       }
-    },
-    {
-      "from": "cult-ambush",
-      "to": "bell-ruins-approach",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter victory"
-    },
-    {
-      "from": "cult-ambush",
-      "to": "ending-frontier-burns",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter defeat"
-    },
-    {
-      "from": "cult-ambush",
-      "to": "hollowmarket-trail",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter flee"
-    },
-    {
-      "from": "bell-ruins-approach",
-      "to": "hollow-bell-chapel",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "hollow-bell-chapel",
-      "to": "ledger-of-grudges",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "ledger-of-grudges",
-      "to": "confront-cult-leader",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "confront-cult-leader",
-      "to": "cult-champion-fight",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "cult-champion-fight",
-      "to": "the-choice-of-debts",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter victory"
-    },
-    {
-      "from": "cult-champion-fight",
-      "to": "ending-frontier-burns",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter defeat"
-    },
-    {
-      "from": "cult-champion-fight",
-      "to": "confront-cult-leader",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter flee"
-    },
-    {
-      "from": "the-choice-of-debts",
-      "to": "gods-wrath-manifests",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "gods-wrath-manifests",
-      "to": "aftermath-of-the-storm",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter victory"
-    },
-    {
-      "from": "gods-wrath-manifests",
-      "to": "ending-frontier-burns",
-      "when": {
-        "op": "always"
-      },
-      "note": "encounter defeat"
     },
     {
       "from": "aftermath-of-the-storm",

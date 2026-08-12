@@ -35,6 +35,7 @@ export type FindingCode =
   | 'false-choice'
   | 'all-encounters-defeat-all'
   | 'ending-too-close'
+  | 'edge-always'
   // Campaign scale (Phase 6)
   | 'book-duplicate-id'
   | 'book-adventure-missing'

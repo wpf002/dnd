@@ -660,28 +660,6 @@
         "value": true
       },
       "note": "The swap keeps the tally constant, so the strongrooms never object to your leaving."
-    },
-    {
-      "from": "the-architect-unspent",
-      "to": "ending-clean-lift",
-      "when": {
-        "op": "always"
-      },
-      "note": "Vane put down; the crawlway is open and the roof is four rooms of running away."
-    },
-    {
-      "from": "gallery-of-standing-armor",
-      "to": "stair-that-descends-upward",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "rival-crew-in-the-margin",
-      "to": "ledger-heart",
-      "when": {
-        "op": "always"
-      }
     }
   ],
   "encounters": [

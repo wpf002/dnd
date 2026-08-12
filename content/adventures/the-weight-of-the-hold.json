@@ -589,34 +589,6 @@
   ],
   "edges": [
     {
-      "from": "wreck-threshold",
-      "to": "flooded-passage",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "flooded-passage",
-      "to": "crew-camp",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "crew-camp",
-      "to": "cargo-vault",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "cargo-vault",
-      "to": "vault-aftermath",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "vault-aftermath",
       "to": "loyal-crew-path",
       "when": {
@@ -642,73 +614,6 @@
         "flag": "vault-bargained",
         "value": true
       }
-    },
-    {
-      "from": "loyal-crew-path",
-      "to": "pressure-hazard",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "engineer-alliance",
-      "to": "final-descent",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "pressure-hazard",
-      "to": "final-descent",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "pressure-hazard",
-      "to": "ending-lost-to-deep",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "final-descent",
-      "to": "cargo-guardian",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "crew-mutiny",
-      "to": "final-descent",
-      "when": {
-        "op": "always"
-      },
-      "note": "on victory"
-    },
-    {
-      "from": "crew-mutiny",
-      "to": "ending-crushed-hull",
-      "when": {
-        "op": "always"
-      },
-      "note": "on defeat or flee"
-    },
-    {
-      "from": "cargo-guardian",
-      "to": "victory-aftermath",
-      "when": {
-        "op": "always"
-      },
-      "note": "on victory"
-    },
-    {
-      "from": "cargo-guardian",
-      "to": "ending-lost-to-deep",
-      "when": {
-        "op": "always"
-      },
-      "note": "on defeat"
     },
     {
       "from": "victory-aftermath",

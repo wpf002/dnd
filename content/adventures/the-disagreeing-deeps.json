@@ -555,72 +555,7 @@
       "terminal": true
     }
   ],
-  "edges": [
-    {
-      "from": "cistern-tithe",
-      "to": "hollow-shaft",
-      "when": {
-        "op": "always"
-      },
-      "note": "Survived the rising tithe; reached the lower sluice."
-    },
-    {
-      "from": "cistern-tithe",
-      "to": "tallow-market",
-      "when": {
-        "op": "always"
-      },
-      "note": "Fished out by Choir wick-divers, minus gear and dignity."
-    },
-    {
-      "from": "cistern-tithe",
-      "to": "the-listening-well",
-      "when": {
-        "op": "always"
-      },
-      "note": "Fled up the overflow into the well shaft."
-    },
-    {
-      "from": "auditor-sweep",
-      "to": "the-sown-garden",
-      "when": {
-        "op": "always"
-      },
-      "note": "Escaped down the linen chute past Intake."
-    },
-    {
-      "from": "auditor-sweep",
-      "to": "ending-ledger",
-      "when": {
-        "op": "always"
-      },
-      "note": "Contained, catalogued, shelved."
-    },
-    {
-      "from": "warden-bellhouse",
-      "to": "the-inscribing",
-      "when": {
-        "op": "always"
-      },
-      "note": "Bellhouse silenced; the Codicil is unguarded."
-    },
-    {
-      "from": "warden-bellhouse",
-      "to": "ending-refuge",
-      "when": {
-        "op": "always"
-      },
-      "note": "Overcome; the Choir carries you up and the deep answers for you."
-    },
-    {
-      "from": "warden-bellhouse",
-      "to": "spore-tide",
-      "when": {
-        "op": "always"
-      },
-      "note": "Withdrew into the fungal vents to regroup."
-    }
-  ],
+  "edges": [],
   "encounters": [
     {
       "id": "cistern-swarm",

@@ -580,47 +580,12 @@
   ],
   "edges": [
     {
-      "from": "threshold-gate",
-      "to": "beacon-causeway",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "threshold-gate",
-      "to": "gatehouse-search",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "threshold-gate",
-      "to": "warden-parley",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "gatehouse-search",
       "to": "beacon-causeway",
       "when": {
         "op": "eq",
         "flag": "has-map",
         "value": true
-      }
-    },
-    {
-      "from": "gatehouse-search",
-      "to": "supply-cache",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "gatehouse-search",
-      "to": "warden-parley",
-      "when": {
-        "op": "always"
       }
     },
     {
@@ -633,13 +598,6 @@
       }
     },
     {
-      "from": "warden-parley",
-      "to": "supply-cache",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "supply-cache",
       "to": "beacon-causeway",
       "when": {
@@ -649,34 +607,6 @@
       }
     },
     {
-      "from": "supply-cache",
-      "to": "rat-nest-encounter",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "supply-cache",
-      "to": "warden-parley",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "beacon-causeway",
-      "to": "beacon-repair",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "beacon-causeway",
-      "to": "sunken-shrine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "sunken-shrine",
       "to": "beacon-repair",
       "when": {
@@ -686,124 +616,12 @@
       }
     },
     {
-      "from": "sunken-shrine",
-      "to": "shadow-ambush",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "sunken-shrine",
-      "to": "beacon-causeway",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "rat-nest-encounter",
-      "to": "beacon-causeway",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "rat-nest-encounter",
-      "to": "the-way-seals",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "shadow-ambush",
-      "to": "beacon-repair",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "shadow-ambush",
-      "to": "the-way-seals",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "beacon-repair",
       "to": "final-ascent",
       "when": {
         "op": "eq",
         "flag": "has-beacon-key",
         "value": true
-      }
-    },
-    {
-      "from": "beacon-repair",
-      "to": "hobgoblin-guard",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "beacon-repair",
-      "to": "desperate-flight",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "hobgoblin-guard",
-      "to": "final-ascent",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "hobgoblin-guard",
-      "to": "the-way-seals",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "desperate-flight",
-      "to": "final-ascent",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "desperate-flight",
-      "to": "ending-lightkeeper",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "desperate-flight",
-      "to": "the-way-seals",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "final-ascent",
-      "to": "ending-new-dawn",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "final-ascent",
-      "to": "ending-lightkeeper",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "final-ascent",
-      "to": "ending-severance",
-      "when": {
-        "op": "always"
       }
     }
   ],

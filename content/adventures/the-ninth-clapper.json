@@ -590,55 +590,6 @@
   ],
   "edges": [
     {
-      "from": "nightside-terminal",
-      "to": "bureau-offer",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "nightside-terminal",
-      "to": "syndicate-offer",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "nightside-terminal",
-      "to": "mothkeeper-alley",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "bureau-offer",
-      "to": "records-of-small-hours",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "mothkeeper-alley",
-      "to": "records-of-small-hours",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "records-of-small-hours",
-      "to": "archive-nightshift",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "archive-nightshift",
-      "to": "courier-trail",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "courier-trail",
       "to": "quiet-and-sons",
       "when": {
@@ -649,14 +600,6 @@
       "note": "They know Pell Marrow's route and the pawn lot."
     },
     {
-      "from": "courier-trail",
-      "to": "mirrorline-crossing",
-      "when": {
-        "op": "always"
-      },
-      "note": "Following the sleepwalkers through the glass."
-    },
-    {
       "from": "quiet-and-sons",
       "to": "mirrorline-crossing",
       "when": {
@@ -665,13 +608,6 @@
         "value": true
       },
       "note": "Lot 909 is in their pocket."
-    },
-    {
-      "from": "quiet-and-sons",
-      "to": "pawnshop-scuffle",
-      "when": {
-        "op": "always"
-      }
     },
     {
       "from": "pawnshop-scuffle",
@@ -694,13 +630,6 @@
       "note": "Dream-attuned guests are welcomed aboard the barge."
     },
     {
-      "from": "mirrorline-crossing",
-      "to": "carillon-watch",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "thistlewharf-revel",
       "to": "bell-tower-of-nine",
       "when": {
@@ -719,21 +648,6 @@
         "value": true
       },
       "note": "Filament collectors are already climbing; the Silence is roused."
-    },
-    {
-      "from": "carillon-watch",
-      "to": "bell-tower-of-nine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "carillon-watch",
-      "to": "ending-melted-hush",
-      "when": {
-        "op": "always"
-      },
-      "note": "Driven from the stair, the Bureau collects the clapper."
     },
     {
       "from": "bell-tower-of-nine",

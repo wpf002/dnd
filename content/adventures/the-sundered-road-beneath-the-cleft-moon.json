@@ -521,48 +521,6 @@
   ],
   "edges": [
     {
-      "from": "crown-gate-of-salt",
-      "to": "chancery-orrery-vault",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "crown-gate-of-salt",
-      "to": "bazaar-of-cracked-glass",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "bazaar-of-cracked-glass",
-      "to": "the-sundered-road",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "bazaar-of-cracked-glass",
-      "to": "chancery-orrery-vault",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "chancery-orrery-vault",
-      "to": "the-sundered-road",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "chancery-orrery-vault",
-      "to": "bazaar-of-cracked-glass",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "the-sundered-road",
       "to": "the-inverted-milestone",
       "when": {
@@ -571,34 +529,6 @@
         "value": true
       },
       "note": "Ruhal's star-lines skip the mirror-storm entirely."
-    },
-    {
-      "from": "the-sundered-road",
-      "to": "singing-dunes",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "the-sundered-road",
-      "to": "caravan-of-vacant-eyes",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "singing-dunes",
-      "to": "the-inverted-milestone",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "singing-dunes",
-      "to": "caravan-of-vacant-eyes",
-      "when": {
-        "op": "always"
-      }
     },
     {
       "from": "singing-dunes",
@@ -611,76 +541,6 @@
       "note": "Optional grim shortcut: if the party lingers in the glass and the marks ripen, the singing claims them here."
     },
     {
-      "from": "caravan-of-vacant-eyes",
-      "to": "the-inverted-milestone",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "caravan-of-vacant-eyes",
-      "to": "singing-dunes",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "caravan-of-vacant-eyes",
-      "to": "ending-the-longer-night",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "the-inverted-milestone",
-      "to": "two-shadows-fork",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "the-inverted-milestone",
-      "to": "well-of-nine-mouths",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "two-shadows-fork",
-      "to": "well-of-nine-mouths",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "two-shadows-fork",
-      "to": "choir-in-the-glasshouse",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "two-shadows-fork",
-      "to": "the-returned-cartographer",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "well-of-nine-mouths",
-      "to": "the-returned-cartographer",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "well-of-nine-mouths",
-      "to": "choir-in-the-glasshouse",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "well-of-nine-mouths",
       "to": "vigil-at-the-cleft",
       "when": {
@@ -691,41 +551,6 @@
       "note": "Branded by the Choir, the party is drawn straight down the shaft when the pale half touches the notch."
     },
     {
-      "from": "choir-in-the-glasshouse",
-      "to": "the-returned-cartographer",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "choir-in-the-glasshouse",
-      "to": "well-of-nine-mouths",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "choir-in-the-glasshouse",
-      "to": "ending-the-longer-night",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "the-returned-cartographer",
-      "to": "vigil-at-the-cleft",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "the-returned-cartographer",
-      "to": "ending-the-cartographers-map",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
       "from": "the-returned-cartographer",
       "to": "ending-the-road-sealed",
       "when": {
@@ -734,20 +559,6 @@
         "value": true
       },
       "note": "If Sefa has already been formally relieved, a decisive naming can end the vigil without a fight."
-    },
-    {
-      "from": "vigil-at-the-cleft",
-      "to": "ending-the-road-sealed",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "vigil-at-the-cleft",
-      "to": "ending-the-longer-night",
-      "when": {
-        "op": "always"
-      }
     }
   ],
   "encounters": [

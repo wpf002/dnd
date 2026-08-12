@@ -462,22 +462,6 @@
   ],
   "edges": [
     {
-      "from": "muster-gate",
-      "to": "warden-council",
-      "when": {
-        "op": "always"
-      },
-      "note": "Intended spine: brief with the Marshal before going into the streets."
-    },
-    {
-      "from": "crypt-riddle",
-      "to": "hollow-legate",
-      "when": {
-        "op": "always"
-      },
-      "note": "Knowing the sentence in iron makes the Legate's compact legible as a trade, not a mercy."
-    },
-    {
       "from": "wall-breach",
       "to": "titan-heart",
       "when": {

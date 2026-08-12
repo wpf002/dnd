@@ -4,7 +4,7 @@ import { toResult } from './errors.js';
 import { checkReachability } from './rules/reachability.js';
 import { checkFlags } from './rules/flags.js';
 import { checkSolvability } from './rules/solvability.js';
-import { checkEndingDistance, checkQuality } from './rules/quality.js';
+import { checkEdges, checkEndingDistance, checkQuality } from './rules/quality.js';
 import { checkCampaign } from './rules/campaign.js';
 
 export * from './errors.js';
@@ -46,6 +46,7 @@ export function lintGraph(input: unknown): LintResult {
     ...checkSolvability(graph, graph.metadata.partyLevel),
     ...checkQuality(graph),
     ...checkEndingDistance(graph),
+    ...checkEdges(graph),
   ];
   return toResult(findings);
 }

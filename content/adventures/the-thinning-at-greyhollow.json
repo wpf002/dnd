@@ -508,64 +508,7 @@
       "terminal": true
     }
   ],
-  "edges": [
-    {
-      "from": "cult-ambush",
-      "to": "cult-ritual-chamber",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter victory"
-    },
-    {
-      "from": "cult-ambush",
-      "to": "ending-catastrophe",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter defeat"
-    },
-    {
-      "from": "cult-ambush",
-      "to": "chapel-exterior",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter flee"
-    },
-    {
-      "from": "rift-tear-encounter",
-      "to": "chapel-exterior",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter victory"
-    },
-    {
-      "from": "rift-tear-encounter",
-      "to": "ending-catastrophe",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter defeat"
-    },
-    {
-      "from": "well-lights",
-      "to": "chapel-exterior",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter victory"
-    },
-    {
-      "from": "well-lights",
-      "to": "ending-catastrophe",
-      "when": {
-        "op": "always"
-      },
-      "note": "Encounter defeat"
-    }
-  ],
+  "edges": [],
   "encounters": [
     {
       "id": "cult-ambush",

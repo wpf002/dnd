@@ -635,72 +635,6 @@
   ],
   "edges": [
     {
-      "from": "broken-tide-bell",
-      "to": "chair-of-nine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "broken-tide-bell",
-      "to": "ledger-house",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "broken-tide-bell",
-      "to": "dredger-hall",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "chair-of-nine",
-      "to": "dredger-hall",
-      "when": {
-        "op": "always"
-      },
-      "note": "With or without a writ, the dredge-yards are next."
-    },
-    {
-      "from": "chair-of-nine",
-      "to": "lower-city-warning",
-      "when": {
-        "op": "always"
-      },
-      "note": "Deadlock, or a failed appeal to the Speaker."
-    },
-    {
-      "from": "ledger-house",
-      "to": "chair-of-nine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "ledger-house",
-      "to": "dredger-hall",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "ledger-house",
-      "to": "tidewarden-shrine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "ledger-house",
-      "to": "wharf-ambush",
-      "when": {
-        "op": "always"
-      },
-      "note": "Caught copying the folio."
-    },
-    {
       "from": "dredger-hall",
       "to": "drowned-stair",
       "when": {
@@ -708,36 +642,6 @@
         "flag": "quay-allied",
         "value": true
       }
-    },
-    {
-      "from": "dredger-hall",
-      "to": "tidewarden-shrine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "dredger-hall",
-      "to": "wharf-ambush",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "wharf-ambush",
-      "to": "tidewarden-shrine",
-      "when": {
-        "op": "always"
-      },
-      "note": "Victory: Bracken's coin points at the shrine."
-    },
-    {
-      "from": "wharf-ambush",
-      "to": "lower-city-warning",
-      "when": {
-        "op": "always"
-      },
-      "note": "Defeat or flight: you wake up in Cinderquay."
     },
     {
       "from": "lower-city-warning",
@@ -749,120 +653,12 @@
       }
     },
     {
-      "from": "lower-city-warning",
-      "to": "drowned-stair",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "lower-city-warning",
-      "to": "ending-tide-unanswered",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "tidewarden-shrine",
-      "to": "drowned-stair",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "tidewarden-shrine",
-      "to": "lower-city-warning",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "drowned-stair",
-      "to": "sluice-gate",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "drowned-stair",
-      "to": "salt-choir",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "sluice-gate",
-      "to": "loom-antechamber",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "sluice-gate",
-      "to": "salt-choir",
-      "when": {
-        "op": "always"
-      },
-      "note": "Mis-set wheels flood the choir vault around you."
-    },
-    {
-      "from": "salt-choir",
-      "to": "loom-antechamber",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "salt-choir",
-      "to": "ending-tide-unanswered",
-      "when": {
-        "op": "always"
-      },
-      "note": "Defeat: the choir keeps its post and the Loom finishes."
-    },
-    {
-      "from": "loom-antechamber",
-      "to": "loom-heart",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "loom-heart",
-      "to": "loom-crown",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "loom-heart",
-      "to": "ending-tide-unanswered",
-      "when": {
-        "op": "always"
-      },
-      "note": "Defeat at the regulator."
-    },
-    {
       "from": "loom-crown",
       "to": "ending-stilled-tide",
       "when": {
         "op": "eq",
         "flag": "knows-stilling-rite",
         "value": true
-      }
-    },
-    {
-      "from": "loom-crown",
-      "to": "ending-charter-of-brine",
-      "when": {
-        "op": "always"
-      }
-    },
-    {
-      "from": "loom-crown",
-      "to": "ending-tide-unanswered",
-      "when": {
-        "op": "always"
       }
     }
   ],

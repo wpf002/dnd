@@ -139,3 +139,41 @@ export function checkEndingDistance(graph: BeatGraph): Finding[] {
     },
   ];
 }
+
+/**
+ * Edges that fire unconditionally.
+ *
+ * An edge is a transition no option owns — a timed event, a state-triggered
+ * move. One with an `always` guard would move the party off the beat the
+ * instant they arrived, which makes the beat unplayable rather than
+ * triggered. Generated content emits them as a redundant adjacency list
+ * mirroring its options, so the engine ignores them; this says so, rather
+ * than leaving an author wondering why their edge never fires.
+ */
+export function checkEdges(graph: BeatGraph): Finding[] {
+  const findings: Finding[] = [];
+  const unconditional = graph.edges.filter((e) => e.when.op === 'always');
+  if (unconditional.length > 0) {
+    findings.push({
+      severity: 'warning',
+      code: 'edge-always',
+      message:
+        `${unconditional.length} edge${unconditional.length === 1 ? '' : 's'} fire unconditionally ` +
+        `(${unconditional.slice(0, 3).map((e) => `${e.from} → ${e.to}`).join(', ')}` +
+        `${unconditional.length > 3 ? ', …' : ''}). An edge with no condition would move the party ` +
+        `off the beat the moment they arrive, so the engine ignores them. Give each a guard, or ` +
+        `express the transition as an option`,
+    });
+  }
+  for (const edge of graph.edges) {
+    if (edge.from === edge.to) {
+      findings.push({
+        severity: 'warning',
+        code: 'edge-always',
+        message: `edge '${edge.from}' → itself does nothing; remove it`,
+        at: edge.from,
+      });
+    }
+  }
+  return findings;
+}
